@@ -60,12 +60,13 @@ public class dashBoard extends javax.swing.JFrame {
     //<editor-fold desc="Custom Functions"> 
     JDialog dialog;
     
-    private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height){
+    private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable){
         dialog = new JDialog(this);
         dialog.setTitle(title);
         dialog.add(customPanel);
         dialog.setModal(isModal);
         dialog.setSize(width, height);
+        dialog.setResizable(isResizable);
         
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
@@ -165,6 +166,7 @@ public class dashBoard extends javax.swing.JFrame {
             btnCheckAttendance,
             //Check Attendance
             btnFinishAttendance,
+            btnSaveChangesToAttendance,
         };
         
         JButton lightButtons [] = {
@@ -195,7 +197,7 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
-            jLabel35,jLabel36,
+            jLabel35,jLabel36,jLabel37,
         };
         JLabel labels [] = {
             lbSearchResult,lbSearchResult1,
@@ -205,7 +207,7 @@ public class dashBoard extends javax.swing.JFrame {
             jLabel1,jLabel2,jLabel3,jLabel4,jLabel8,
         };
         JLabel textFieldHeaderLabels [] = {
-            lbAttendanceCount,jLabel7,jLabel5,
+            lbAttendanceCount,jLabel7,jLabel5,lbDateAdded,jLabel10,jLabel11,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -347,8 +349,23 @@ public class dashBoard extends javax.swing.JFrame {
         btnFinishAttendance = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         setDateGroup = new javax.swing.ButtonGroup();
+        setStatusGroup = new javax.swing.ButtonGroup();
         testDialog = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
+        editAttendanceDialog = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        lbAttendanceID = new javax.swing.JLabel();
+        btnSaveChangesToAttendance = new javax.swing.JButton();
+        lbDateAdded = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        rbPresent = new javax.swing.JRadioButton();
+        rbAbsent = new javax.swing.JRadioButton();
+        rbTardy = new javax.swing.JRadioButton();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jtaNotes = new javax.swing.JTextArea();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -933,6 +950,146 @@ public class dashBoard extends javax.swing.JFrame {
                 .addGap(32, 32, 32))
         );
 
+        editAttendanceDialog.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel9.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel37.setText("Edit Attendance");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel37)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel37)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel6.setText("Record ID: ");
+
+        lbAttendanceID.setText("ATTENDANCE_ID");
+
+        btnSaveChangesToAttendance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_ok_16px.png"))); // NOI18N
+        btnSaveChangesToAttendance.setText("Save Changes");
+        btnSaveChangesToAttendance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveChangesToAttendanceActionPerformed(evt);
+            }
+        });
+
+        lbDateAdded.setText("Date: DATE_ADDED");
+
+        jLabel10.setText("Status");
+
+        setStatusGroup.add(rbPresent);
+        rbPresent.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        rbPresent.setText("Present");
+        rbPresent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        rbPresent.setIconTextGap(5);
+        rbPresent.setOpaque(false);
+        rbPresent.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_tick_box_20px.png"))); // NOI18N
+        rbPresent.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+
+        setStatusGroup.add(rbAbsent);
+        rbAbsent.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        rbAbsent.setText("Absent");
+        rbAbsent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        rbAbsent.setIconTextGap(5);
+        rbAbsent.setOpaque(false);
+        rbAbsent.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_tick_box_20px.png"))); // NOI18N
+        rbAbsent.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+
+        setStatusGroup.add(rbTardy);
+        rbTardy.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        rbTardy.setText("Late");
+        rbTardy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        rbTardy.setIconTextGap(5);
+        rbTardy.setOpaque(false);
+        rbTardy.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_tick_box_20px.png"))); // NOI18N
+        rbTardy.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+
+        jLabel11.setText("Notes (Optional)");
+
+        jtaNotes.setColumns(20);
+        jtaNotes.setFont(myVariables.TEXTFIELD_FONT);
+        jtaNotes.setLineWrap(true);
+        jtaNotes.setRows(5);
+        jtaNotes.setText("asda asd asd asd asd asd asd asd asd asd asd asd asdas dasdasd asd asd asdasda ad asd asd asdasdasdas a asd");
+        jtaNotes.setWrapStyleWord(true);
+        jScrollPane5.setViewportView(jtaNotes);
+
+        javax.swing.GroupLayout editAttendanceDialogLayout = new javax.swing.GroupLayout(editAttendanceDialog);
+        editAttendanceDialog.setLayout(editAttendanceDialogLayout);
+        editAttendanceDialogLayout.setHorizontalGroup(
+            editAttendanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editAttendanceDialogLayout.createSequentialGroup()
+                .addGroup(editAttendanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editAttendanceDialogLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnSaveChangesToAttendance))
+                    .addGroup(editAttendanceDialogLayout.createSequentialGroup()
+                        .addGroup(editAttendanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editAttendanceDialogLayout.createSequentialGroup()
+                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbAttendanceID))
+                            .addGroup(editAttendanceDialogLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(editAttendanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbDateAdded)
+                                    .addComponent(jLabel10)
+                                    .addGroup(editAttendanceDialogLayout.createSequentialGroup()
+                                        .addComponent(rbPresent, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbAbsent, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbTardy, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel11))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editAttendanceDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane5)))
+                .addContainerGap())
+        );
+        editAttendanceDialogLayout.setVerticalGroup(
+            editAttendanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editAttendanceDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(editAttendanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(editAttendanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(lbAttendanceID)))
+                .addGap(18, 18, 18)
+                .addComponent(lbDateAdded)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(editAttendanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbPresent)
+                    .addComponent(rbAbsent)
+                    .addComponent(rbTardy))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSaveChangesToAttendance)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Dashboard");
         setIconImage(my.getImgIcn(myVariables.getAttendanceWindowIcon()).getImage()
@@ -1214,8 +1371,38 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_searchSpecificAttendanceHandler
 
     private void btnEditAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditAttendanceActionPerformed
-        showCustomDialog("Edit Selected Attendance",testDialog, true, 400, 250);
+        int row = attendanceTable.getSelectedRow();
+        
+        String id = attendanceTable.getValueAt(row, 0).toString();
+        String status = attendanceTable.getValueAt(row, 4).toString();
+        String date = attendanceTable.getValueAt(row, 5).toString();
+        String notes = attendanceTable.getValueAt(row, 6).toString();
+        
+        lbAttendanceID.setText(id);
+        switch (status){
+            case "Present":{
+                rbPresent.setSelected(true);
+                break;
+            }case "Absent":{
+                rbAbsent.setSelected(true);
+                break;
+            }case "Late":{
+                rbTardy.setSelected(true);
+                break;
+            }default:{
+                rbPresent.setSelected(true);
+                break;
+            }
+        }
+        lbDateAdded.setText("Date : "+my.numberToWordDate(date));
+        jtaNotes.setText(notes);
+        
+        showCustomDialog("Edit Selected Attendance",editAttendanceDialog, true, 400, 350, false);
     }//GEN-LAST:event_btnEditAttendanceActionPerformed
+
+    private void btnSaveChangesToAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesToAttendanceActionPerformed
+        closeCustomDialog();
+    }//GEN-LAST:event_btnSaveChangesToAttendanceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1302,32 +1489,40 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnEditAttendance;
     private javax.swing.JButton btnFinishAttendance;
     private javax.swing.JButton btnRecheckAttendance;
+    private javax.swing.JButton btnSaveChangesToAttendance;
     private javax.swing.JButton btnSearchDate;
     private javax.swing.JButton btnSearchEnrolledStudent;
     private javax.swing.JButton btnSearchSection;
     private javax.swing.JPanel checkAttendanceTab;
     private javax.swing.JTable checkAttendanceTable;
+    private javax.swing.JPanel editAttendanceDialog;
     private javax.swing.JTable enrolledStudentsTable;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
@@ -1337,8 +1532,11 @@ public class dashBoard extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jdcDate;
     private javax.swing.JSpinner jsHours;
     private javax.swing.JSpinner jsMinutes;
+    private javax.swing.JTextArea jtaNotes;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel lbAttendanceCount;
+    private javax.swing.JLabel lbAttendanceID;
+    private javax.swing.JLabel lbDateAdded;
     private javax.swing.JLabel lbDateTime;
     private javax.swing.JLabel lbLoggedInUser;
     private javax.swing.JLabel lbSchoolAddress;
@@ -1348,12 +1546,16 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel left;
     private javax.swing.JPanel left1;
     private javax.swing.JTabbedPane mainTab;
+    private javax.swing.JRadioButton rbAbsent;
     private javax.swing.JRadioButton rbCustomDate;
+    private javax.swing.JRadioButton rbPresent;
+    private javax.swing.JRadioButton rbTardy;
     private javax.swing.JRadioButton rbToday;
     private javax.swing.JPanel right;
     private javax.swing.JPanel right1;
     private javax.swing.JPanel selectSectionTab;
     private javax.swing.ButtonGroup setDateGroup;
+    private javax.swing.ButtonGroup setStatusGroup;
     private javax.swing.JPanel testDialog;
     private javax.swing.JTextField tfSearchEnrolledStudent;
     private javax.swing.JTextField tfSearchTeacherLoad;
