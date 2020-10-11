@@ -671,9 +671,10 @@ public class dashBoard extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnSearchDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jdcDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jdcDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1352,22 +1353,32 @@ public class dashBoard extends javax.swing.JFrame {
             return;
         }
         if(jdcDate.getDate() == null){
-            my.showMessage("Please select a Date to search.", JOptionPane.WARNING_MESSAGE);
-            return;
+            //my.showMessage("Please select a Date to search.", JOptionPane.WARNING_MESSAGE);
+            //return;
         }
         
-        String date = my.jCalendarToNumberDate(jdcDate.getDate().toString(),false);
+        String date = "";
         String studentId = enrolledStudentsTable.getValueAt(row, 1).toString();
         String sectionId = enrolledStudentsTable.getValueAt(row, 5).toString();
         String subjectId = assignedTeacherTable.getValueAt(subjectRow, 6).toString();
-
-        String where = "WHERE studentId='"+studentId+"' AND sectionId='"+sectionId+
+        
+        String where = "";
+        
+        if(jdcDate.getDate() == null){
+            where = "WHERE studentId='"+studentId+"' AND sectionId='"+sectionId+
+                "' AND subjectId='"+subjectId+"' ORDER BY dateAdded DESC";
+            
+            System.err.println("No date selected");
+        }else{
+            date = my.jCalendarToNumberDate(jdcDate.getDate().toString(),false);
+            where = "WHERE studentId='"+studentId+"' AND sectionId='"+sectionId+
                 "' AND subjectId='"+subjectId+"' AND dateAdded LIKE '"+date+"%' ORDER BY dateAdded DESC";
+        }
 
         my.searchItem(where, attendanceTable, 7, null, null, false, true, null, null, true);
         calculateAttendanceCount(lbAttendanceCount,attendanceTable);
         
-        resetViewStudentsTab(false, true, false);
+        resetViewStudentsTab(false, false, false);
     }//GEN-LAST:event_searchSpecificAttendanceHandler
 
     private void btnEditAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditAttendanceActionPerformed
@@ -1401,7 +1412,32 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditAttendanceActionPerformed
 
     private void btnSaveChangesToAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesToAttendanceActionPerformed
-        closeCustomDialog();
+        String id = lbAttendanceID.getText();
+        String status = "";
+        String notes = jtaNotes.getText();
+        
+        if(rbPresent.isSelected())
+            status = "Present";
+        if(rbAbsent.isSelected())
+            status = "Absent";
+        if(rbTardy.isSelected())
+            status = "Late";
+        
+        String [] sets = {
+            "status='"+status+"'",
+            "notes='"+notes+"'",
+        };
+        
+        if(my.update_values("attendance", sets, "id='"+id+"'")){
+            my.showMessage("Update Successful.", JOptionPane.INFORMATION_MESSAGE);
+            
+            jdcDate.setDate(null);
+            searchSpecificAttendanceHandler(evt);
+            
+            closeCustomDialog();
+        }else{
+            my.showMessage("Update failed. Please make sure you are connected to the school network.", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnSaveChangesToAttendanceActionPerformed
 
     /**
