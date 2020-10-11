@@ -12,6 +12,7 @@ import java.awt.ComponentOrientation;
 import java.awt.Cursor;
 import java.awt.Font;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -366,6 +367,12 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jtaNotes = new javax.swing.JTextArea();
+        addNotesDialog = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel38 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jtaLeaveNotes = new javax.swing.JTextArea();
+        btnSaveNotes = new javax.swing.JButton();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -673,8 +680,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnSearchDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jdcDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jdcDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -743,7 +749,24 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
         checkAttendanceTable.getTableHeader().setReorderingAllowed(false);
+        checkAttendanceTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                checkAttendanceTableMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(checkAttendanceTable);
+        if (checkAttendanceTable.getColumnModel().getColumnCount() > 0) {
+            checkAttendanceTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+            checkAttendanceTable.getColumnModel().getColumn(2).setMaxWidth(100);
+            checkAttendanceTable.getColumnModel().getColumn(4).setMaxWidth(60);
+            checkAttendanceTable.getColumnModel().getColumn(6).setPreferredWidth(60);
+            checkAttendanceTable.getColumnModel().getColumn(6).setMaxWidth(60);
+            checkAttendanceTable.getColumnModel().getColumn(7).setPreferredWidth(60);
+            checkAttendanceTable.getColumnModel().getColumn(7).setMaxWidth(60);
+            checkAttendanceTable.getColumnModel().getColumn(8).setPreferredWidth(60);
+            checkAttendanceTable.getColumnModel().getColumn(8).setMaxWidth(60);
+            checkAttendanceTable.getColumnModel().getColumn(9).setPreferredWidth(50);
+        }
 
         javax.swing.GroupLayout left1Layout = new javax.swing.GroupLayout(left1);
         left1.setLayout(left1Layout);
@@ -828,8 +851,8 @@ public class dashBoard extends javax.swing.JFrame {
 
         jcbMeridan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
 
-        btnFinishAttendance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_ok_16px.png"))); // NOI18N
-        btnFinishAttendance.setText("Finish Attendance");
+        btnFinishAttendance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_save_16px.png"))); // NOI18N
+        btnFinishAttendance.setText("Save Attendance");
         btnFinishAttendance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveAttendanceHandler(evt);
@@ -1091,6 +1114,72 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        addNotesDialog.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel10.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel38.setText("Leave Notes for this Student");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel38)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel38)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jtaLeaveNotes.setColumns(20);
+        jtaLeaveNotes.setFont(myVariables.TEXTFIELD_FONT);
+        jtaLeaveNotes.setRows(5);
+        jScrollPane6.setViewportView(jtaLeaveNotes);
+
+        btnSaveNotes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_save_16px.png"))); // NOI18N
+        btnSaveNotes.setText("Save");
+        btnSaveNotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveNotesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout addNotesDialogLayout = new javax.swing.GroupLayout(addNotesDialog);
+        addNotesDialog.setLayout(addNotesDialogLayout);
+        addNotesDialogLayout.setHorizontalGroup(
+            addNotesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addNotesDialogLayout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(addNotesDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addNotesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addNotesDialogLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnSaveNotes)))
+                .addContainerGap())
+        );
+        addNotesDialogLayout.setVerticalGroup(
+            addNotesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addNotesDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSaveNotes)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Dashboard");
         setIconImage(my.getImgIcn(myVariables.getAttendanceWindowIcon()).getImage()
@@ -1331,6 +1420,36 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_checkAttendanceTypeHandler
 
     private void checkAttendanceNowHamdler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAttendanceNowHamdler
+        //Load Students
+        int row = assignedTeacherTable.getSelectedRow();
+        
+        if(row == -1){
+            my.showMessage("Please select a section first.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
+        String toSearch = tfSearchEnrolledStudent.getText();
+        
+        String where = "WHERE sectionId='"+sectionId+"'";
+        
+        String result [] = my.return_values("*", "v_enrollment_minimal", where, myVariables.getEnrollmentViewMinimalOrder());
+        
+        if(result == null){
+            my.showMessage("Can't check attendance without students. Please enroll some first.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        my.clear_table_rows(checkAttendanceTable);
+        for(String n : result){
+            n = my.toNameFormat(n, new int []{3,4,5});
+            n += "O@@ @@ @@ @@";
+            
+            my.add_table_row(n, checkAttendanceTable);
+        }        
+        //my.searchItem(where, checkAttendanceTable, 6, null, new int [] {3,4,5}, true, true, lbSearchResult1, tfSearchEnrolledStudent, true);
+        
+        //Add the tab        
         if(mainTab.getTabCount() <= 2){
             mainTab.addTab("Check Attendance", my.getImgIcn(myVariables.getSectionsIcon()),checkAttendanceTab);
         }
@@ -1440,6 +1559,40 @@ public class dashBoard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSaveChangesToAttendanceActionPerformed
 
+    private void btnSaveNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveNotesActionPerformed
+        closeCustomDialog();
+    }//GEN-LAST:event_btnSaveNotesActionPerformed
+
+    private void checkAttendanceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkAttendanceTableMouseClicked
+        if(evt.getClickCount() == 1){
+            int row = checkAttendanceTable.getSelectedRow();
+            int column = checkAttendanceTable.getSelectedColumn();
+
+            //columns 6,7,8 & 9
+            switch (column){
+                case 6:{
+                    checkAttendanceTable.setValueAt("O", row, 6);
+                    checkAttendanceTable.setValueAt(" ", row, 7);
+                    checkAttendanceTable.setValueAt(" ", row, 8);
+                    break;
+                }case 7:{
+                    checkAttendanceTable.setValueAt(" ", row, 6);
+                    checkAttendanceTable.setValueAt("O", row, 7);
+                    checkAttendanceTable.setValueAt(" ", row, 8);
+                    break;
+                }case 8:{
+                    checkAttendanceTable.setValueAt(" ", row, 6);
+                    checkAttendanceTable.setValueAt(" ", row, 7);
+                    checkAttendanceTable.setValueAt("O", row, 8);
+                    break;
+                }case 9:{
+                    showCustomDialog("Write Notes", addNotesDialog, true, 400, 300, false);
+                    break;
+                }
+            }
+        }
+    }//GEN-LAST:event_checkAttendanceTableMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1519,6 +1672,7 @@ public class dashBoard extends javax.swing.JFrame {
         jcbMeridan.setEnabled(enabled);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel addNotesDialog;
     private javax.swing.JTable assignedTeacherTable;
     private javax.swing.JTable attendanceTable;
     private javax.swing.JButton btnCheckAttendance;
@@ -1526,6 +1680,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnFinishAttendance;
     private javax.swing.JButton btnRecheckAttendance;
     private javax.swing.JButton btnSaveChangesToAttendance;
+    private javax.swing.JButton btnSaveNotes;
     private javax.swing.JButton btnSearchDate;
     private javax.swing.JButton btnSearchEnrolledStudent;
     private javax.swing.JButton btnSearchSection;
@@ -1543,12 +1698,14 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
@@ -1559,6 +1716,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
@@ -1568,6 +1726,7 @@ public class dashBoard extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jdcDate;
     private javax.swing.JSpinner jsHours;
     private javax.swing.JSpinner jsMinutes;
+    private javax.swing.JTextArea jtaLeaveNotes;
     private javax.swing.JTextArea jtaNotes;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel lbAttendanceCount;
