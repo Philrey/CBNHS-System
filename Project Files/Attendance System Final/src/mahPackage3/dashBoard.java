@@ -73,8 +73,9 @@ public class dashBoard extends javax.swing.JFrame {
     private void closeCustomDialog(){
         if(dialog != null){
             dialog.dispose();
+        }else{
+            System.err.println("Dialog is null");
         }
-        System.err.println("Dialog is null");
     }
     private void setScrollSpeeds(){
         JScrollPane scrollpanes [] = {
