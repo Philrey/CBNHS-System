@@ -74,7 +74,7 @@ public class dashBoard extends javax.swing.JFrame {
         if(dialog != null){
             dialog.dispose();
         }else{
-            System.err.println("Dialog is null");
+            System.err.println("Dialog is null...skipping");
         }
     }
     private void setScrollSpeeds(){
