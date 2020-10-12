@@ -104,6 +104,7 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(enrolledStudentsTable, new int [] {0,1,5});
             my.hideColumns(attendanceTable, new int [] {0,1,2,3});
             my.hideColumns(checkAttendanceTable, new int [] {0,1,5});
+            my.hideColumns(recheckAttendanceTable, new int [] {/*0,1,5*/});
         }
         
         //Set table fonts
@@ -112,6 +113,7 @@ public class dashBoard extends javax.swing.JFrame {
             attendanceTable,
             enrolledStudentsTable,
             checkAttendanceTable,
+            recheckAttendanceTable,
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
         //customHeaders(sf1SectionTable, new int []{0,1,2,3}, Color.RED, Color.WHITE, new Font("Comic Sans MS", Font.BOLD, 12), true);
@@ -1755,13 +1757,25 @@ public class dashBoard extends javax.swing.JFrame {
 
     private void btnSaveNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveNotesActionPerformed
         String notes = jtaLeaveNotes.getText();
+        String title = dialog.getTitle();
         
-        int row = checkAttendanceTable.getSelectedRow();
+        if(title.contains("Check Attendance")){
+            int row = checkAttendanceTable.getSelectedRow();
         
-        if(notes.length() > 1){
-            checkAttendanceTable.setValueAt(notes, row, 9);
-        }else{
-            checkAttendanceTable.setValueAt(" ", row, 9);
+            if(notes.length() > 1){
+                checkAttendanceTable.setValueAt(notes, row, 9);
+            }else{
+                checkAttendanceTable.setValueAt(" ", row, 9);
+            }
+        }
+        if(title.contains("Re-check Attendance")){
+            int row = recheckAttendanceTable.getSelectedRow();
+        
+            if(notes.length() > 1){
+                recheckAttendanceTable.setValueAt(notes, row, 9);
+            }else{
+                recheckAttendanceTable.setValueAt(" ", row, 9);
+            }
         }
         closeCustomDialog();
     }//GEN-LAST:event_btnSaveNotesActionPerformed
@@ -1795,7 +1809,7 @@ public class dashBoard extends javax.swing.JFrame {
                     }else{
                         jtaLeaveNotes.setText("");
                     }
-                    showCustomDialog("Write Notes", addNotesDialog, true, 400, 300, false);
+                    showCustomDialog("Write Notes (Check Attendance)", addNotesDialog, true, 400, 300, false);
                     break;
                 }
             }
@@ -1803,7 +1817,39 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_checkAttendanceTableMouseClicked
 
     private void recheckAttendanceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recheckAttendanceTableMouseClicked
-        // TODO add your handling code here:
+        if(evt.getClickCount() == 1){
+            int row = recheckAttendanceTable.getSelectedRow();
+            int column = recheckAttendanceTable.getSelectedColumn();
+
+            //columns 6,7,8 & 9
+            switch (column){
+                case 6:{
+                    recheckAttendanceTable.setValueAt("O", row, 6);
+                    recheckAttendanceTable.setValueAt(" ", row, 7);
+                    recheckAttendanceTable.setValueAt(" ", row, 8);
+                    break;
+                }case 7:{
+                    recheckAttendanceTable.setValueAt(" ", row, 6);
+                    recheckAttendanceTable.setValueAt("O", row, 7);
+                    recheckAttendanceTable.setValueAt(" ", row, 8);
+                    break;
+                }case 8:{
+                    recheckAttendanceTable.setValueAt(" ", row, 6);
+                    recheckAttendanceTable.setValueAt(" ", row, 7);
+                    recheckAttendanceTable.setValueAt("O", row, 8);
+                    break;
+                }case 9:{
+                    String notes = recheckAttendanceTable.getValueAt(row, 9).toString();
+                    if(notes.length() > 1){
+                        jtaLeaveNotes.setText(notes);
+                    }else{
+                        jtaLeaveNotes.setText("");
+                    }
+                    showCustomDialog("Write Notes (Re-check Attendance)", addNotesDialog, true, 400, 300, false);
+                    break;
+                }
+            }
+        }
     }//GEN-LAST:event_recheckAttendanceTableMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1817,8 +1863,7 @@ public class dashBoard extends javax.swing.JFrame {
             my.showMessage("Re-checking attendance canceled.", JOptionPane.PLAIN_MESSAGE);
             return;
         }
-        
-        //Load Students
+        //<editor-fold desc="Load Students">
         int row = assignedTeacherTable.getSelectedRow();
         int attendanceRow = attendanceTable.getSelectedRow();
         
@@ -1828,6 +1873,8 @@ public class dashBoard extends javax.swing.JFrame {
         }
         
         String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
+        String subjectId = assignedTeacherTable.getValueAt(row, 6).toString();
+        
         String dateSelected = attendanceTable.getValueAt(attendanceRow, 5).toString();
         
         String where = "WHERE sectionId='"+sectionId+"'";
@@ -1841,16 +1888,73 @@ public class dashBoard extends javax.swing.JFrame {
         
         lbDateToRecheck.setText("Selected Date to Change: "+dateSelected);
         my.clear_table_rows(recheckAttendanceTable);
-        for(String n : result){
-            n = my.toNameFormat(n, new int []{3,4,5});
-            n += "O@@ @@ @@ @@null@@";  //Start off with empty IDs for easier query later in saving
+        
+        String studentIds = "";
+        for(int n=0;n<result.length;n++){
+            result[n] = my.toNameFormat(result[n], new int []{3,4,5});
+            result[n] += "O@@ @@ @@ @@-1@@";  //Start off with negative IDs for easier query later in saving
             
-            my.add_table_row(n, recheckAttendanceTable);
+            //For loading existing attendances later
+            studentIds += my.getValueAtColumn(result[n], 1);
+            if(n!=result.length-1){
+                studentIds+=",";
+            }
+            
+            my.add_table_row(result[n], recheckAttendanceTable);
         }
         my.remove_multiple_tabs(mainTab, new int [] {2});
+        //</editor-fold>
+        //<editor-fold desc="Load attendance record for the selected date">
+        String [] attendanceResult = my.return_values("*", "attendance", "WHERE studentId IN("+studentIds+") AND sectionId='"+sectionId+"' AND subjectId='"+subjectId+"' AND dateAdded='"+dateSelected+"'", myVariables.getAttendanceOrder());
         
-        //Load attendance record for the selected date
-        
+        if(attendanceResult != null){
+            int studentCount = recheckAttendanceTable.getRowCount();
+            for(int r=0;r<studentCount;r++){
+                int currStudId = Integer.parseInt(recheckAttendanceTable.getValueAt(r, 1).toString());
+                
+                //Search id in attendanceResult
+                for(String attendance : attendanceResult){
+                    int foundStudId = Integer.valueOf(my.getValueAtColumn(attendance, 1));
+                    
+                    
+                    if(currStudId == foundStudId){
+                        System.err.println("Match found.");
+                        
+                        String status = my.getValueAtColumn(attendance, 4);
+                        String notes = my.getValueAtColumn(attendance, 6);
+                        String attendanceId = my.getValueAtColumn(attendance, 0);
+                        
+                        //Set values
+                        switch (status){
+                            case "Present":{
+                                recheckAttendanceTable.setValueAt("O", r, 6);
+                                recheckAttendanceTable.setValueAt(" ", r, 7);
+                                recheckAttendanceTable.setValueAt(" ", r, 8);
+                                break;
+                            }case "Absent":{
+                                recheckAttendanceTable.setValueAt(" ", r, 6);
+                                recheckAttendanceTable.setValueAt("O", r, 7);
+                                recheckAttendanceTable.setValueAt(" ", r, 8);
+                                break;
+                            }case "Late":{
+                                recheckAttendanceTable.setValueAt(" ", r, 6);
+                                recheckAttendanceTable.setValueAt(" ", r, 7);
+                                recheckAttendanceTable.setValueAt("O", r, 8);
+                                break;
+                            }default:
+                                break;
+                        }
+                        recheckAttendanceTable.setValueAt(notes, r, 9);
+                        recheckAttendanceTable.setValueAt(attendanceId, r, 10);
+                        break;
+                    }
+                }
+            }
+            
+        }else{
+            System.err.println("No attendance found. Skipping");
+        }
+        //</editor-fold>
         //Show dialog
         showCustomDialog("Re-check Attendance from selected Date", recheckAttendanceDialog, true, 600, 400, true);
     }//GEN-LAST:event_btnRecheckAttendanceActionPerformed
