@@ -375,6 +375,13 @@ public class dashBoard extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jtaLeaveNotes = new javax.swing.JTextArea();
         btnSaveNotes = new javax.swing.JButton();
+        recheckAttendanceDialog = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel39 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        recheckAttendanceTable = new javax.swing.JTable();
+        lbDateToRecheck = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -633,6 +640,11 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnRecheckAttendance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_rollback_16px.png"))); // NOI18N
         btnRecheckAttendance.setText("Re-check Attendances");
+        btnRecheckAttendance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRecheckAttendanceActionPerformed(evt);
+            }
+        });
 
         btnCheckAttendance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_report_card_16px.png"))); // NOI18N
         btnCheckAttendance.setText("Check Attendance Now");
@@ -1183,6 +1195,114 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        recheckAttendanceDialog.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel11.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel39.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel39.setText("Re-check Attendance");
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel39)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel39)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        recheckAttendanceTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID", "Present", "Absent", "Tardy", "Notes", "Attendance ID"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        recheckAttendanceTable.getTableHeader().setReorderingAllowed(false);
+        recheckAttendanceTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recheckAttendanceTableMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(recheckAttendanceTable);
+        if (recheckAttendanceTable.getColumnModel().getColumnCount() > 0) {
+            recheckAttendanceTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+            recheckAttendanceTable.getColumnModel().getColumn(2).setMaxWidth(100);
+            recheckAttendanceTable.getColumnModel().getColumn(4).setMaxWidth(60);
+            recheckAttendanceTable.getColumnModel().getColumn(6).setPreferredWidth(60);
+            recheckAttendanceTable.getColumnModel().getColumn(6).setMaxWidth(60);
+            recheckAttendanceTable.getColumnModel().getColumn(7).setPreferredWidth(60);
+            recheckAttendanceTable.getColumnModel().getColumn(7).setMaxWidth(60);
+            recheckAttendanceTable.getColumnModel().getColumn(8).setPreferredWidth(60);
+            recheckAttendanceTable.getColumnModel().getColumn(8).setMaxWidth(60);
+            recheckAttendanceTable.getColumnModel().getColumn(9).setPreferredWidth(50);
+            recheckAttendanceTable.getColumnModel().getColumn(9).setMaxWidth(50);
+        }
+
+        lbDateToRecheck.setText("Selected Date to Change: DATE_SELECTED");
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_save_16px.png"))); // NOI18N
+        jButton1.setText("Save Changes");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout recheckAttendanceDialogLayout = new javax.swing.GroupLayout(recheckAttendanceDialog);
+        recheckAttendanceDialog.setLayout(recheckAttendanceDialogLayout);
+        recheckAttendanceDialogLayout.setHorizontalGroup(
+            recheckAttendanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(recheckAttendanceDialogLayout.createSequentialGroup()
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(recheckAttendanceDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(recheckAttendanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                    .addGroup(recheckAttendanceDialogLayout.createSequentialGroup()
+                        .addComponent(lbDateToRecheck)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, recheckAttendanceDialogLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
+                .addContainerGap())
+        );
+        recheckAttendanceDialogLayout.setVerticalGroup(
+            recheckAttendanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(recheckAttendanceDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbDateToRecheck)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Dashboard");
         setIconImage(my.getImgIcn(myVariables.getAttendanceWindowIcon()).getImage()
@@ -1682,6 +1802,59 @@ public class dashBoard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkAttendanceTableMouseClicked
 
+    private void recheckAttendanceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recheckAttendanceTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_recheckAttendanceTableMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        closeCustomDialog();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnRecheckAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecheckAttendanceActionPerformed
+        //Prompt user
+        if(!my.getConfirmation("Re-checking allows you to change the values of the attendance on\n"
+                + "the selected date. Continue?")){
+            my.showMessage("Re-checking attendance canceled.", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+        
+        //Load Students
+        int row = assignedTeacherTable.getSelectedRow();
+        int attendanceRow = attendanceTable.getSelectedRow();
+        
+        if(row == -1){
+            my.showMessage("Please select a section first.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
+        String dateSelected = attendanceTable.getValueAt(attendanceRow, 5).toString();
+        
+        String where = "WHERE sectionId='"+sectionId+"'";
+        
+        String result [] = my.return_values("*", "v_enrollment_minimal", where, myVariables.getEnrollmentViewMinimalOrder());
+        
+        if(result == null){
+            my.showMessage("Can't check attendance without students. Please enroll some first.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        lbDateToRecheck.setText("Selected Date to Change: "+dateSelected);
+        my.clear_table_rows(recheckAttendanceTable);
+        for(String n : result){
+            n = my.toNameFormat(n, new int []{3,4,5});
+            n += "O@@ @@ @@ @@null@@";  //Start off with empty IDs for easier query later in saving
+            
+            my.add_table_row(n, recheckAttendanceTable);
+        }
+        my.remove_multiple_tabs(mainTab, new int [] {2});
+        
+        //Load attendance record for the selected date
+        
+        //Show dialog
+        showCustomDialog("Re-check Attendance from selected Date", recheckAttendanceDialog, true, 600, 400, true);
+    }//GEN-LAST:event_btnRecheckAttendanceActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1778,6 +1951,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel editAttendanceDialog;
     private javax.swing.JTable enrolledStudentsTable;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1788,6 +1962,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1795,6 +1970,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
@@ -1806,6 +1982,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
@@ -1822,6 +1999,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel lbAttendanceID;
     private javax.swing.JLabel lbDateAdded;
     private javax.swing.JLabel lbDateTime;
+    private javax.swing.JLabel lbDateToRecheck;
     private javax.swing.JLabel lbLoggedInUser;
     private javax.swing.JLabel lbSchoolAddress;
     private javax.swing.JLabel lbSchoolName;
@@ -1835,6 +2013,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbPresent;
     private javax.swing.JRadioButton rbTardy;
     private javax.swing.JRadioButton rbToday;
+    private javax.swing.JPanel recheckAttendanceDialog;
+    private javax.swing.JTable recheckAttendanceTable;
     private javax.swing.JPanel right;
     private javax.swing.JPanel right1;
     private javax.swing.JPanel selectSectionTab;
