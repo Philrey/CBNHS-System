@@ -60,6 +60,7 @@ public class dashBoard extends javax.swing.JFrame {
     
     //<editor-fold desc="Custom Functions"> 
     JDialog dialog;
+    JDialog seconDaryDialog;
     
     private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable){
         dialog = new JDialog(this);
@@ -79,6 +80,26 @@ public class dashBoard extends javax.swing.JFrame {
             System.err.println("Dialog is null...skipping");
         }
     }
+    //Use only when making two jdialogs overlap
+    private void showSecondaryCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable){
+        seconDaryDialog = new JDialog(this);
+        seconDaryDialog.setTitle(title);
+        seconDaryDialog.add(customPanel);
+        seconDaryDialog.setModal(isModal);
+        seconDaryDialog.setSize(width, height);
+        seconDaryDialog.setResizable(isResizable);
+        
+        seconDaryDialog.setLocationRelativeTo(this);
+        seconDaryDialog.setVisible(true);
+    }
+    private void closeSecondaryCustomDialog(){
+        if(seconDaryDialog != null){
+            seconDaryDialog.dispose();
+        }else{
+            System.err.println("Dialog is null...skipping");
+        }
+    }
+    
     private void setScrollSpeeds(){
         JScrollPane scrollpanes [] = {
             jScrollPane2,jScrollPane4,
@@ -1769,6 +1790,7 @@ public class dashBoard extends javax.swing.JFrame {
             }else{
                 checkAttendanceTable.setValueAt(" ", row, 9);
             }
+            closeCustomDialog();
         }
         if(title.contains("Re-check Attendance")){
             int row = recheckAttendanceTable.getSelectedRow();
@@ -1778,8 +1800,8 @@ public class dashBoard extends javax.swing.JFrame {
             }else{
                 recheckAttendanceTable.setValueAt(" ", row, 9);
             }
+            closeSecondaryCustomDialog();
         }
-        closeCustomDialog();
     }//GEN-LAST:event_btnSaveNotesActionPerformed
 
     private void checkAttendanceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkAttendanceTableMouseClicked
@@ -1847,7 +1869,7 @@ public class dashBoard extends javax.swing.JFrame {
                     }else{
                         jtaLeaveNotes.setText("");
                     }
-                    showCustomDialog("Write Notes (Re-check Attendance)", addNotesDialog, true, 400, 300, false);
+                    showSecondaryCustomDialog("Write Notes (Re-check Attendance)", addNotesDialog, true, 400, 300, false);
                     break;
                 }
             }
@@ -1855,14 +1877,51 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_recheckAttendanceTableMouseClicked
 
     private void btnSaveRecheckAttendanceChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveRecheckAttendanceChangesActionPerformed
-        closeCustomDialog();
+        //Get values
+        int subjectRow = assignedTeacherTable.getSelectedRow();
+        int attendanceRow = attendanceTable.getSelectedRow();
+        
+        String sectionId = assignedTeacherTable.getValueAt(subjectRow, 1).toString();
+        String subjectId = assignedTeacherTable.getValueAt(subjectRow, 6).toString();
+        String dateSelected = attendanceTable.getValueAt(attendanceRow, 5).toString();
+        
+        //Prepare values
+        int count = recheckAttendanceTable.getRowCount();
+        String sets [] = new String[count];
+        String attendanceId,studentId,status="",notes;
+        
+        for(int n=0;n<count;n++){
+            attendanceId = recheckAttendanceTable.getValueAt(n, 10).toString();
+            attendanceId = attendanceId.contains("-1")? "null" : attendanceId;
+            
+            studentId = recheckAttendanceTable.getValueAt(n, 1).toString();
+            
+            if(recheckAttendanceTable.getValueAt(n, 6).toString().contains("O")){
+                status = "Present";
+            }if(recheckAttendanceTable.getValueAt(n, 7).toString().contains("O")){
+                status = "Absent";
+            }if(recheckAttendanceTable.getValueAt(n, 8).toString().contains("O")){
+                status = "Late";
+            }
+            notes = recheckAttendanceTable.getValueAt(n, 9).toString();
+            
+            //id,studentId,sectionId,subjectId,status,dateAdded,notes
+            sets[n] = attendanceId+","+studentId+","+sectionId+","+subjectId+",'"+status+"','"+dateSelected+"','"+notes+"'";
+            
+        }
+        if(my.update_multiple_values("attendance", "id,studentId,sectionId,subjectId,status,dateAdded,notes", "status=VALUES(status),notes=VALUES(notes)", sets)){
+            my.showMessage("Update Success.", JOptionPane.INFORMATION_MESSAGE);
+            closeCustomDialog();
+        }else{
+            my.showMessage("Update Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnSaveRecheckAttendanceChangesActionPerformed
 
     private void btnRecheckAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecheckAttendanceActionPerformed
         //Prompt user
         if(!my.getConfirmation("Re-checking allows you to change the values of the attendance on\n"
                 + "the selected date. Continue?")){
-            my.showMessage("Re-checking attendance canceled.", JOptionPane.PLAIN_MESSAGE);
+            my.showMessage("Re-checking Canceled.", JOptionPane.PLAIN_MESSAGE);
             return;
         }
         //<editor-fold desc="Load Students">
