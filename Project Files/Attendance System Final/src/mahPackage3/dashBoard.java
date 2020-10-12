@@ -104,7 +104,7 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(enrolledStudentsTable, new int [] {0,1,5});
             my.hideColumns(attendanceTable, new int [] {0,1,2,3});
             my.hideColumns(checkAttendanceTable, new int [] {0,1,5});
-            my.hideColumns(recheckAttendanceTable, new int [] {/*0,1,5*/});
+            my.hideColumns(recheckAttendanceTable, new int [] {0,1,5,10});
         }
         
         //Set table fonts
@@ -172,6 +172,8 @@ public class dashBoard extends javax.swing.JFrame {
             btnSaveChangesToAttendance,
                 //Add Notes Dialog
                 btnSaveNotes,
+            //Recheck Attendance
+            btnSaveRecheckAttendanceChanges,
         };
         
         JButton lightButtons [] = {
@@ -202,7 +204,7 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
-            jLabel35,jLabel36,jLabel37,jLabel38,
+            jLabel35,jLabel36,jLabel37,jLabel38,jLabel39,
         };
         JLabel labels [] = {
             lbSearchResult,lbSearchResult1,
@@ -212,7 +214,7 @@ public class dashBoard extends javax.swing.JFrame {
             jLabel1,jLabel2,jLabel3,jLabel4,jLabel8,
         };
         JLabel textFieldHeaderLabels [] = {
-            lbAttendanceCount,jLabel7,jLabel5,lbDateAdded,jLabel10,jLabel11,
+            lbAttendanceCount,jLabel7,jLabel5,lbDateAdded,jLabel10,jLabel11,lbDateToRecheck,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -383,7 +385,7 @@ public class dashBoard extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         recheckAttendanceTable = new javax.swing.JTable();
         lbDateToRecheck = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnSaveRecheckAttendanceChanges = new javax.swing.JButton();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -1264,11 +1266,11 @@ public class dashBoard extends javax.swing.JFrame {
 
         lbDateToRecheck.setText("Selected Date to Change: DATE_SELECTED");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_save_16px.png"))); // NOI18N
-        jButton1.setText("Save Changes");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSaveRecheckAttendanceChanges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_save_16px.png"))); // NOI18N
+        btnSaveRecheckAttendanceChanges.setText("Save Changes");
+        btnSaveRecheckAttendanceChanges.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSaveRecheckAttendanceChangesActionPerformed(evt);
             }
         });
 
@@ -1288,7 +1290,7 @@ public class dashBoard extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, recheckAttendanceDialogLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(btnSaveRecheckAttendanceChanges)))
                 .addContainerGap())
         );
         recheckAttendanceDialogLayout.setVerticalGroup(
@@ -1301,7 +1303,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnSaveRecheckAttendanceChanges)
                 .addContainerGap())
         );
 
@@ -1852,9 +1854,9 @@ public class dashBoard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_recheckAttendanceTableMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSaveRecheckAttendanceChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveRecheckAttendanceChangesActionPerformed
         closeCustomDialog();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSaveRecheckAttendanceChangesActionPerformed
 
     private void btnRecheckAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecheckAttendanceActionPerformed
         //Prompt user
@@ -1886,7 +1888,7 @@ public class dashBoard extends javax.swing.JFrame {
             return;
         }
         
-        lbDateToRecheck.setText("Selected Date to Change: "+dateSelected);
+        lbDateToRecheck.setText("Selected Date :    "+dateSelected);
         my.clear_table_rows(recheckAttendanceTable);
         
         String studentIds = "";
@@ -2047,6 +2049,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnRecheckAttendance;
     private javax.swing.JButton btnSaveChangesToAttendance;
     private javax.swing.JButton btnSaveNotes;
+    private javax.swing.JButton btnSaveRecheckAttendanceChanges;
     private javax.swing.JButton btnSearchDate;
     private javax.swing.JButton btnSearchEnrolledStudent;
     private javax.swing.JButton btnSearchSection;
@@ -2055,7 +2058,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel editAttendanceDialog;
     private javax.swing.JTable enrolledStudentsTable;
     private javax.swing.JPanel headerPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
