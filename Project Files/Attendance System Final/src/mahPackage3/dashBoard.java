@@ -1382,7 +1382,46 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_attendanceTableMouseClicked
 
     private void saveAttendanceHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAttendanceHandler
-        //Check for existing attendance for current day
+        //Get Values
+        int row = assignedTeacherTable.getSelectedRow();
+        
+        String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
+        String subjectId = assignedTeacherTable.getValueAt(row, 6).toString();
+        String dateSelected = "";
+        String time = "";
+        
+        if(rbToday.isSelected()){
+            dateSelected = my.getDateNow(false);
+        }
+        if(rbCustomDate.isSelected()){
+            if(jdcCustomDate.getDate() == null){
+                my.showMessage("Please select a date.", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            dateSelected = my.jCalendarToNumberDate(jdcCustomDate.getDate().toString(), false);
+            time = jsHours.getValue().toString()+":"+jsMinutes.getValue().toString()+":00 "+jcbMeridan.getSelectedItem().toString();
+            
+            time = my.from12To24HourFormat(time);
+            
+            if(time == null){
+                System.err.println("Invalid time. Returning");
+                return;
+            }
+        }
+        
+        String where = "WHERE sectionId='"+sectionId+"' AND subjectId='"+subjectId+"' AND dateAdded LIKE '"+dateSelected+"%'";
+        
+        if(my.checkForDuplicates("attendance",where,myVariables.getAttendanceOrder())){
+            if(my.getConfirmation("This section already had an attendance conducted on this day.\n"
+                    + "Proceeding will overwrite values on this specific date. Continue?")){
+                my.showMessage("Attendance Updated!", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                my.showMessage("Checking Attendance Canceled!", JOptionPane.PLAIN_MESSAGE);
+            }
+        }else{
+            //No duplicate. Proceed to save attendance
+            my.showMessage("Attendance Saved!", JOptionPane.INFORMATION_MESSAGE);
+        }
         
         my.remove_multiple_tabs(mainTab, new int [] {2});
     }//GEN-LAST:event_saveAttendanceHandler

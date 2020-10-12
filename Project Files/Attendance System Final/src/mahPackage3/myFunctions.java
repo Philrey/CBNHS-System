@@ -645,6 +645,66 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
+    public String getDateNow(boolean includeTime){
+        String result [] = return_values("now() AS 'dateNow'", "", "", new int [] {0});
+        if(result != null){
+            String dateNow = getValueAtColumn(result[0], 0);
+            
+            if(includeTime){
+                return dateNow;
+            }else{
+                String dates [] = dateNow.split(" ");
+                return dates[0];
+            }
+        }else{
+            return null;
+        }
+    }
+    
+    public String from12To24HourFormat(String time12Hour){
+        try {
+            String time [] = time12Hour.split(" ");
+            String temp [] = time[0].split(":");
+            int hour = Integer.valueOf(temp[0]);
+            int minute = Integer.valueOf(temp[1]);
+            int seconds = Integer.valueOf(temp[2]);
+            String meridan = time[1];
+            
+            String finalTime = "";
+            //Check for invalid time
+            if(hour > 12 || hour < 1){
+                throw new Exception("Invalid Hour.");
+            }
+            if(minute < 0 || minute > 59){
+                throw new Exception("Invalid Minute.");
+            }
+            
+            if(meridan.contains("PM") || meridan.contains("pm")){
+               hour+=12;
+            }
+            finalTime += hour<10? "0"+hour : hour +":";
+            finalTime += minute<10? "0"+minute : minute +":"+seconds;
+            
+            return finalTime;
+        } catch (Exception e) {
+            showMessage("Invalid time provided. Time must be in a '12:00:00 AM' format.\nMore info: "+e.getMessage(), JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }
+    public String from24To12HourFormat(String time24Hour){
+        
+        return null;
+    }
+    
+    public boolean checkForDuplicates(String tableName,String whereLimitExluded,int [] order){
+        whereLimitExluded +=" LIMIT 1"; //For fast search. You only need to find at least 1 dupliclate
+        String result [] = return_values("*", tableName, whereLimitExluded, order);
+        
+        if(result != null){
+            return true;
+        }
+        return false;
+    }
     public ActionEvent getButtonPressedEvent(Object source){
         return new ActionEvent(source,ActionEvent.ACTION_FIRST, "");
     }
