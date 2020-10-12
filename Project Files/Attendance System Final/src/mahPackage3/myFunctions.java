@@ -682,8 +682,11 @@ public class myFunctions {
             if(meridan.contains("PM") || meridan.contains("pm")){
                hour+=12;
             }
-            finalTime += hour<10? "0"+hour : hour +":";
-            finalTime += minute<10? "0"+minute : minute +":"+seconds;
+            finalTime += hour<10? "0"+hour : hour;
+            finalTime+=":";
+            finalTime += minute<10? "0"+minute : minute;
+            finalTime+=":";
+            finalTime+=seconds<10? "0"+seconds : seconds;
             
             return finalTime;
         } catch (Exception e) {

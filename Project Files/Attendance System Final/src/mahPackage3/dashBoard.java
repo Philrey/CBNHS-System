@@ -1408,19 +1408,49 @@ public class dashBoard extends javax.swing.JFrame {
                 return;
             }
         }
+        //<editor-fold desc="Get Values">
+        int count = checkAttendanceTable.getRowCount();
+        String sets [] = new String[count];
+        String studentId,status="",notes;
         
+        for(int n=0;n<count;n++){
+            studentId = checkAttendanceTable.getValueAt(n, 1).toString();
+            
+            if(checkAttendanceTable.getValueAt(n, 6).toString().contains("O")){
+                status = "Present";
+            }if(checkAttendanceTable.getValueAt(n, 7).toString().contains("O")){
+                status = "Absent";
+            }if(checkAttendanceTable.getValueAt(n, 8).toString().contains("O")){
+                status = "Late";
+            }
+            notes = checkAttendanceTable.getValueAt(n, 9).toString();
+            
+            //id,studentId,sectionId,subjectId,status,dateAdded,notes
+            if(rbToday.isSelected()){
+                sets[n] = "null,'"+studentId+"','"+sectionId+"','"+subjectId+"','"+status+"',now(),'"+notes+"'";
+                System.err.println("Today's Date Selected");
+            }if(rbCustomDate.isSelected()){
+                System.err.println("Custom Date Selected");
+                sets[n] = "null,'"+studentId+"','"+sectionId+"','"+subjectId+"','"+status+"','"+dateSelected+" "+time+"','"+notes+"'";
+            }
+        }
+        
+        //</editor-fold>
         String where = "WHERE sectionId='"+sectionId+"' AND subjectId='"+subjectId+"' AND dateAdded LIKE '"+dateSelected+"%'";
         
         if(my.checkForDuplicates("attendance",where,myVariables.getAttendanceOrder())){
-            if(my.getConfirmation("This section already had an attendance conducted on this day.\n"
-                    + "Proceeding will overwrite values on this specific date. Continue?")){
-                my.showMessage("Attendance Updated!", JOptionPane.INFORMATION_MESSAGE);
-            }else{
-                my.showMessage("Checking Attendance Canceled!", JOptionPane.PLAIN_MESSAGE);
-            }
+            my.showMessage("This section already had an Attendance conducted for this day.\n"
+                    + "Please use the 'Re-Check Attendance' feature to overwrite this attendance.",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
         }else{
+            if(my.add_multiple_values("attendance", "id,studentId,sectionId,subjectId,status,dateAdded,notes", sets)){
+                my.showMessage("Attendance Saved!", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                my.showMessage("Saving failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+            }
             //No duplicate. Proceed to save attendance
-            my.showMessage("Attendance Saved!", JOptionPane.INFORMATION_MESSAGE);
         }
         
         my.remove_multiple_tabs(mainTab, new int [] {2});
