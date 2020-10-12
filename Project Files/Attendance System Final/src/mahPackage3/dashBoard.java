@@ -81,7 +81,7 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void setScrollSpeeds(){
         JScrollPane scrollpanes [] = {
-            jScrollPane2,
+            jScrollPane2,jScrollPane4,
         };
         
         int scrollSpeed = 15;
@@ -168,6 +168,8 @@ public class dashBoard extends javax.swing.JFrame {
             //Check Attendance
             btnFinishAttendance,
             btnSaveChangesToAttendance,
+                //Add Notes Dialog
+                btnSaveNotes,
         };
         
         JButton lightButtons [] = {
@@ -198,7 +200,7 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
-            jLabel35,jLabel36,jLabel37,
+            jLabel35,jLabel36,jLabel37,jLabel38,
         };
         JLabel labels [] = {
             lbSearchResult,lbSearchResult1,
@@ -741,7 +743,7 @@ public class dashBoard extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, true, true
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -766,6 +768,7 @@ public class dashBoard extends javax.swing.JFrame {
             checkAttendanceTable.getColumnModel().getColumn(8).setPreferredWidth(60);
             checkAttendanceTable.getColumnModel().getColumn(8).setMaxWidth(60);
             checkAttendanceTable.getColumnModel().getColumn(9).setPreferredWidth(50);
+            checkAttendanceTable.getColumnModel().getColumn(9).setMaxWidth(50);
         }
 
         javax.swing.GroupLayout left1Layout = new javax.swing.GroupLayout(left1);
@@ -918,7 +921,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnFinishAttendance)
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jScrollPane4.setViewportView(jPanel2);
@@ -1120,7 +1123,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel38.setText("Leave Notes for this Student");
+        jLabel38.setText("Leave a Note for this Student. (Optional)");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -1379,6 +1382,8 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_attendanceTableMouseClicked
 
     private void saveAttendanceHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAttendanceHandler
+        //Check for existing attendance for current day
+        
         my.remove_multiple_tabs(mainTab, new int [] {2});
     }//GEN-LAST:event_saveAttendanceHandler
 
@@ -1560,6 +1565,15 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveChangesToAttendanceActionPerformed
 
     private void btnSaveNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveNotesActionPerformed
+        String notes = jtaLeaveNotes.getText();
+        
+        int row = checkAttendanceTable.getSelectedRow();
+        
+        if(notes.length() > 1){
+            checkAttendanceTable.setValueAt(notes, row, 9);
+        }else{
+            checkAttendanceTable.setValueAt(" ", row, 9);
+        }
         closeCustomDialog();
     }//GEN-LAST:event_btnSaveNotesActionPerformed
 
@@ -1586,6 +1600,12 @@ public class dashBoard extends javax.swing.JFrame {
                     checkAttendanceTable.setValueAt("O", row, 8);
                     break;
                 }case 9:{
+                    String notes = checkAttendanceTable.getValueAt(row, 9).toString();
+                    if(notes.length() > 1){
+                        jtaLeaveNotes.setText(notes);
+                    }else{
+                        jtaLeaveNotes.setText("");
+                    }
                     showCustomDialog("Write Notes", addNotesDialog, true, 400, 300, false);
                     break;
                 }

@@ -707,8 +707,8 @@
                             <Column editable="false" title="Section ID" type="java.lang.Object"/>
                             <Column editable="false" title="Present" type="java.lang.Object"/>
                             <Column editable="false" title="Absent" type="java.lang.Object"/>
-                            <Column editable="true" title="Tardy" type="java.lang.Object"/>
-                            <Column editable="true" title="Notes" type="java.lang.Object"/>
+                            <Column editable="false" title="Tardy" type="java.lang.Object"/>
+                            <Column editable="false" title="Notes" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -758,7 +758,7 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="true">
+                            <Column maxWidth="50" minWidth="-1" prefWidth="50" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -877,7 +877,7 @@
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="btnFinishAttendance" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="303" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1407,7 +1407,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Leave Notes for this Student"/>
+                <Property name="text" type="java.lang.String" value="Leave a Note for this Student. (Optional)"/>
               </Properties>
             </Component>
           </SubComponents>
