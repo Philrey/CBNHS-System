@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mahPackage3;
+package mahPackage4;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
