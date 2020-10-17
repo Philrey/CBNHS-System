@@ -262,7 +262,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         my.remove_multiple_tabs(mainTab, new int [] {1,2});
 
-        String where = "WHERE subjectCode LIKE 'ADV%'";
+        String where = "WHERE subjectCode NOT LIKE 'ADV%'";
 
         if(myVariables.getAccessLevel() < 5){
             where += " AND teacherId='"+myVariables.getUserLoggedInId()+"'";
@@ -307,7 +307,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         my.remove_multiple_tabs(mainTab, new int [] {1,2});
 
-        String where = "WHERE subjectCode LIKE 'ADV%'";
+        String where = "WHERE subjectCode NOT LIKE 'ADV%'";
 
         if(myVariables.getAccessLevel() < 5){
             where += " AND teacherId='"+myVariables.getUserLoggedInId()+"'";
@@ -501,7 +501,7 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadColoredButtons(){
         JButton buttons [] = {
-            
+            btnSearchSection,
         };
         
         JButton lightButtons [] = {
@@ -535,7 +535,7 @@ public class dashBoard extends javax.swing.JFrame {
             //jLabel35,jLabel36,jLabel37,jLabel38,jLabel39,
         };
         JLabel labels [] = {
-            //lbSearchResult,lbSearchResult1,
+            lbSearchResult,
         };
         
         JLabel formsHeaderLabels [] = {
@@ -574,7 +574,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         
         JTextField searchFields [] = {
-            //tfSearchTeacherLoad,tfSearchEnrolledStudent,
+            tfSearchTeacherLoad,
         };
         JTextField forms [] = {
             
@@ -599,7 +599,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         
         JComboBox [] yearDropDownsWithAllOption = {
-            //jcbSchoolYear1,
+            jcbSchoolYear1,
         };
         JComboBox [] dropDowns = {
             //jcbMeridan,
