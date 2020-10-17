@@ -236,7 +236,7 @@ public class login extends javax.swing.JFrame {
         String userName = jTextField1.getText();
         String password = String.valueOf(jPasswordField1.getPassword());
 
-        int result = my.login(userName, password, new int [] {4,5});
+        int result = my.login(userName, password, new int [] {1,2,4,5});
 
         switch(result){
             case 0:{
@@ -258,7 +258,7 @@ public class login extends javax.swing.JFrame {
         String userName = jTextField1.getText();
         String password = String.valueOf(jPasswordField1.getPassword());
 
-        int result = my.login(userName, password, new int [] {1,4,5});
+        int result = my.login(userName, password, new int [] {1,2,4,5});
 
         switch(result){
             case 0:{

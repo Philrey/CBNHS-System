@@ -93,16 +93,7 @@ public class myVariables {
     private static final String assignSubjectTeacherIcon = "icons/icons8_audit_20px.png";
     
     private static final String sectionsIcon = "icons/icons8_page_20px.png";
-    
-    private static final String exportIcon = "Imagez/Icons/buttons/icons8_send_file_20px.png";
-    private static final String searchIcon = "Imagez/Icons/buttons/icons8_search_20px_2.png";
-    private static final String loadIcon = "Imagez/Icons/buttons/icons8_data_backup_20px.png";
-    private static final String nextIcon = "Imagez/Icons/buttons/icons8_forward_button_20px.png";
-    
-    private static final String handCursor = "Imagez/Window Icons/icons8_hand_cursor_32px_3.png";
-    
-    private static final String addIcon = "Imagez/Icons/icons8_add_25px_1.png";
-    private static final String editIcon = "Imagez/Icons/icons8_pencil_drawing_25px.png";
+            
     //Window Icons
     private static final String attendanceWindowIcon = "icons/attendanceIcon.png";
     private static final String registrationWindowIcon = "icons/registerIcon.png";
@@ -172,22 +163,6 @@ public class myVariables {
     
     public static boolean isDebugModeOn() {
         return debugModeOn;
-    }
-    
-    public static String getNextIcon() {
-        return nextIcon;
-    }
-    
-    public static String getLoadIcon() {
-        return loadIcon;
-    }
-    
-    public static String getSearchIcon() {
-        return searchIcon;
-    }
-    
-    public static String getExportIcon() {
-        return exportIcon;
     }
     
     public static String getYearSelected() {
@@ -270,9 +245,6 @@ public class myVariables {
         return jhsf1Order;
     }
     
-    public static String getHandCursor() {
-        return handCursor;
-    }
     public static int[] getSectionViewRev3Order() {
         return sectionViewRev3Order;
     }
@@ -431,14 +403,6 @@ public class myVariables {
     
     public static String getFormsIcon() {
         return formsIcon;
-    }
-    
-    public static String getAddIcon() {
-        return addIcon;
-    }
-
-    public static String getEditIcon() {
-        return editIcon;
     }
     
     public static String getRegistrationWindowIcon() {

@@ -54,7 +54,7 @@ public class dashBoard extends javax.swing.JFrame {
         setScrollSpeeds();
         loadYearDropDowns(12);
         
-        lbSchoolName.setText(myVariables.getSchoolName() + " Enrollment System");
+        lbSchoolName.setText(myVariables.getSchoolName() + " Attendance System");
         lbSchoolAddress.setText(myVariables.getSchoolAddress());
     }
     
@@ -167,8 +167,8 @@ public class dashBoard extends javax.swing.JFrame {
     private void loadTabIcons(){
         Icon tabIcons [] = {
             my.getImgIcn(myVariables.getSectionsIcon()),
-            my.getImgIcn(myVariables.getSectionsIcon()),
-            my.getImgIcn(myVariables.getSectionsIcon()),
+            my.getImgIcn(myVariables.getViewStudentsIcon()),
+            my.getImgIcn(myVariables.getCheckAttendanceIcon()),
         };
         
         for(int n=0;n<tabIcons.length;n++){
@@ -1406,14 +1406,14 @@ public class dashBoard extends javax.swing.JFrame {
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(mainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE)
+            .addComponent(mainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 1003, Short.MAX_VALUE)
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE))
+                .addComponent(mainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1439,7 +1439,7 @@ public class dashBoard extends javax.swing.JFrame {
     private void assignedTeacherTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assignedTeacherTableMouseClicked
         if(evt.getClickCount() == 2){
             if(mainTab.getTabCount() <= 1){
-                mainTab.addTab("View Students", my.getImgIcn(myVariables.getSectionsIcon()), viewStudentsTab);
+                mainTab.addTab("View Students", my.getImgIcn(myVariables.getViewStudentsIcon()), viewStudentsTab);
                 mainTab.setSelectedIndex(1);
             }
             resetViewStudentsTab(true, true, false);
@@ -1670,7 +1670,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         //Add the tab        
         if(mainTab.getTabCount() <= 2){
-            mainTab.addTab("Check Attendance", my.getImgIcn(myVariables.getSectionsIcon()),checkAttendanceTab);
+            mainTab.addTab("Check Attendance", my.getImgIcn(myVariables.getCheckAttendanceIcon()),checkAttendanceTab);
         }
         mainTab.setSelectedIndex(2);
         
