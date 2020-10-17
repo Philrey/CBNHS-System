@@ -93,6 +93,7 @@ public class myVariables {
     private static final String assignSubjectTeacherIcon = "icons/icons8_audit_20px.png";
     
     private static final String sectionsIcon = "icons/icons8_page_20px.png";
+    private static final String viewStudentsIcon = "icons/icons8_read_online_20px.png";
             
     //Window Icons
     private static final String attendanceWindowIcon = "icons/attendanceIcon.png";
@@ -317,6 +318,10 @@ public class myVariables {
     //</editor-fold>
 
     //<editor-fold desc="Getters & Setters">
+    
+    public static String getViewStudentsIcon() {
+        return viewStudentsIcon;
+    }
 
     public static String getGradingWindowIcon() {
         return gradingWindowIcon;
