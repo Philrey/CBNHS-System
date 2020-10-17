@@ -78,7 +78,6 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnEditGrades = new javax.swing.JButton();
-        btnSaveChanges = new javax.swing.JButton();
         lbDateUodated = new javax.swing.JLabel();
         lbGradeStatus = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -200,6 +199,7 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
 
+        btnSearchEnrolledStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_find_user_male_16px.png"))); // NOI18N
         btnSearchEnrolledStudent.setText("Search");
         btnSearchEnrolledStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,7 +254,7 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(tfSearchEnrolledStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearchEnrolledStudent))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -293,9 +293,6 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnEditGrades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_edit_16px.png"))); // NOI18N
         btnEditGrades.setText("Edit Grades");
-
-        btnSaveChanges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_save_16px.png"))); // NOI18N
-        btnSaveChanges.setText("Save Changes");
 
         lbDateUodated.setText("Date Updated: YYYY-MM-DD HH:MM:SS");
 
@@ -343,7 +340,6 @@ public class dashBoard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEditGrades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSaveChanges, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbDateUodated, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -394,11 +390,9 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfGeneralWeighedAverage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnEditGrades)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSaveChanges)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel1);
@@ -411,7 +405,7 @@ public class dashBoard extends javax.swing.JFrame {
         );
         rightLayout.setVerticalGroup(
             rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
         );
 
         jSplitPane1.setRightComponent(right);
@@ -621,7 +615,7 @@ public class dashBoard extends javax.swing.JFrame {
                 mainTab.addTab("View Students", my.getImgIcn(myVariables.getViewStudentsIcon()), viewStudentsTab);
                 mainTab.setSelectedIndex(1);
             }
-            //resetViewStudentsTab(true, true, false);
+            resetStudentDetails(true, true, false);
             //calculateAttendanceCount(lbAttendanceCount, attendanceTable);
         }else{
             my.remove_multiple_tabs(mainTab, new int [] {1,2});
@@ -629,6 +623,7 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_assignedTeacherTableMouseClicked
 
     private void tfSearchEnrolledStudentsearchEnrolledStudentsHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchEnrolledStudentsearchEnrolledStudentsHandler
+        //DUPLICATED SEARCH
         int row = assignedTeacherTable.getSelectedRow();
 
         if(row == -1){
@@ -639,11 +634,13 @@ public class dashBoard extends javax.swing.JFrame {
         String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
         String toSearch = tfSearchEnrolledStudent.getText();
 
+        resetStudentDetails(true, true, false);
         String where = "WHERE sectionId='"+sectionId+"' AND (lrn='"+toSearch+"' OR lName LIKE '%"+toSearch+"%')";
         my.searchItem(where, enrolledStudentsTable, 6, null, new int [] {3,4,5}, true, true, lbSearchResult1, tfSearchEnrolledStudent, true);
     }//GEN-LAST:event_tfSearchEnrolledStudentsearchEnrolledStudentsHandler
 
     private void btnSearchEnrolledStudentsearchEnrolledStudentsHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchEnrolledStudentsearchEnrolledStudentsHandler
+        //DUPLICATED SEARCH
         int row = assignedTeacherTable.getSelectedRow();
 
         if(row == -1){
@@ -653,7 +650,8 @@ public class dashBoard extends javax.swing.JFrame {
 
         String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
         String toSearch = tfSearchEnrolledStudent.getText();
-
+        
+        resetStudentDetails(true, true, false);
         String where = "WHERE sectionId='"+sectionId+"' AND (lrn='"+toSearch+"' OR lName LIKE '%"+toSearch+"%')";
         my.searchItem(where, enrolledStudentsTable, 6, null, new int [] {3,4,5}, true, true, lbSearchResult1, tfSearchEnrolledStudent, true);
     }//GEN-LAST:event_btnSearchEnrolledStudentsearchEnrolledStudentsHandler
@@ -692,6 +690,24 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
     }
+    private void resetStudentDetails(boolean clearTable,boolean clearFields, boolean enableEditBtn){
+        if(clearTable){
+            my.clear_table_rows(enrolledStudentsTable);
+        }
+        if(clearFields){
+            lbDateUodated.setText("Date: --Please Select A Student--");
+            lbGradeStatus.setText("Status: --Please Select A Student--");
+            
+            tfFirstQ.setText("");
+            tfSecondQ.setText("");
+            tfThirdQ.setText("");
+            tfFourthQ.setText("");
+            tfGeneralWeighedAverage.setText("");
+        }
+        
+        btnEditGrades.setEnabled(enableEditBtn);
+    }
+    
     //<editor-fold desc="Custom Functions"> 
     JDialog dialog;
     JDialog seconDaryDialog;
@@ -808,7 +824,6 @@ public class dashBoard extends javax.swing.JFrame {
             btnSearchSection,
             //View Students
             btnEditGrades,
-            btnSaveChanges,
             btnSearchEnrolledStudent,
         };
         
@@ -937,7 +952,6 @@ public class dashBoard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable assignedTeacherTable;
     private javax.swing.JButton btnEditGrades;
-    private javax.swing.JButton btnSaveChanges;
     private javax.swing.JButton btnSearchEnrolledStudent;
     private javax.swing.JButton btnSearchSection;
     private javax.swing.JTable enrolledStudentsTable;
