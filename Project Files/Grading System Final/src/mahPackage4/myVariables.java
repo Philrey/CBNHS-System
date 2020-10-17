@@ -108,6 +108,7 @@ public class myVariables {
     private static final String registrationWindowIcon = "icons/registerIcon.png";
     private static final String enrollmentWindowIcon = "icons/enrollmentIcon.png";
     private static final String formsWindowIcon = "Imagez/Window Icons/forms.png";
+    private static final String gradingWindowIcon = "icons/gradingIcon.png";
     
     //Dropdown Icons
     private static final String maleIcon = "icons/icons8_male_16px.png";
@@ -344,6 +345,11 @@ public class myVariables {
     //</editor-fold>
 
     //<editor-fold desc="Getters & Setters">
+
+    public static String getGradingWindowIcon() {
+        return gradingWindowIcon;
+    }
+    
     
     public static int[] getEnrollmentViewMinimalOrder(){
         return enrollmentViewMinimalOrder;

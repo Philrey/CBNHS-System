@@ -74,6 +74,9 @@ public class login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Welcome to Grading System");
+        setIconImage(my.getImgIcn(myVariables.getGradingWindowIcon()).getImage()
+        );
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setOpaque(false);
@@ -113,8 +116,11 @@ public class login extends javax.swing.JFrame {
         jCheckBox1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(22, 66, 33));
         jCheckBox1.setText("Remember Me");
+        jCheckBox1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
         jCheckBox1.setIconTextGap(10);
         jCheckBox1.setOpaque(false);
+        jCheckBox1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_tick_box_20px.png"))); // NOI18N
+        jCheckBox1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
