@@ -246,7 +246,7 @@
                               <Component id="btnSearchEnrolledStudent" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="478" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="584" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -432,7 +432,7 @@
                                   <Component id="tfGeneralWeighedAverage" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnEditGrades" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="123" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -642,27 +642,26 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btnSaveGradeChanges" max="32767" attributes="0"/>
-                              <Component id="jLabel14" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="tfEditFirstQuarter" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
-                                      <Component id="tfEditSecondQuarter" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
-                                      <Component id="tfEditThirdQuarter" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
-                                      <Component id="tfEditFourthQuarter" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
-                                      <Component id="tfEditGwa" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
-                                      <Component id="jLabel1" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jLabel11" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel4" alignment="0" pref="155" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
                               <Component id="jLabel12" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel13" alignment="0" max="32767" attributes="0"/>
                               <Component id="rbAutomatic" alignment="0" max="32767" attributes="0"/>
                               <Component id="rbManual" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tfEditFirstQuarter" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
+                              <Component id="tfEditSecondQuarter" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
+                              <Component id="tfEditThirdQuarter" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
+                              <Component id="tfEditFourthQuarter" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jLabel11" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel4" alignment="0" pref="155" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="jLabel14" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="cbAllowDecimalValues" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfEditGwa" min="-2" pref="76" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -699,9 +698,12 @@
                           <Component id="rbManual" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tfEditGwa" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="15" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="tfEditGwa" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbAllowDecimalValues" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="25" max="32767" attributes="0"/>
                           <Component id="btnSaveGradeChanges" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -760,6 +762,9 @@
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="90"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="calculateGwaOnKeyReleaseHandler"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
@@ -771,12 +776,18 @@
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="90"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="calculateGwaOnKeyReleaseHandler"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfEditThirdQuarter">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="90"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="calculateGwaOnKeyReleaseHandler"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel10">
                   <Properties>
@@ -793,6 +804,9 @@
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="90"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="calculateGwaOnKeyReleaseHandler"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
@@ -816,6 +830,9 @@
                     </Property>
                     <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="Automatic"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_unchecked_checkbox_20px.png"/>
                     </Property>
@@ -828,6 +845,9 @@
                       <Image iconType="3" name="/mahPackage4/icons/icons8_checked_checkbox_20px.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cbAllowDecimalValuesMouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="rbManual">
                   <Properties>
@@ -838,6 +858,9 @@
                       <Connection code="myVariables.TEXTFIELD_HEADER_FONT" type="code"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Manual"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_unchecked_checkbox_20px.png"/>
                     </Property>
@@ -850,9 +873,13 @@
                       <Image iconType="3" name="/mahPackage4/icons/icons8_checked_checkbox_20px.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cbAllowDecimalValuesMouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel14">
                   <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="General Weighed Average (GWA)"/>
                   </Properties>
                 </Component>
@@ -873,6 +900,34 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Save Changes"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveGradeChangesActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JCheckBox" name="cbAllowDecimalValues">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="myVariables.TEXTFIELD_FONT" type="code"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Allow decimal values?"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/mahPackage4/icons/icons8_unchecked_checkbox_20px.png"/>
+                    </Property>
+                    <Property name="iconTextGap" type="int" value="10"/>
+                    <Property name="opaque" type="boolean" value="false"/>
+                    <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/mahPackage4/icons/icons8_unchecked_checkbox_20px.png"/>
+                    </Property>
+                    <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cbAllowDecimalValuesMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
