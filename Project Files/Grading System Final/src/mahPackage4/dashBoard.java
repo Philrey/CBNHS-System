@@ -92,6 +92,27 @@ public class dashBoard extends javax.swing.JFrame {
         tfGeneralWeighedAverage = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         lbSubjectName = new javax.swing.JLabel();
+        computationOptionGroup = new javax.swing.ButtonGroup();
+        editGradeDialog = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        contentsPanel = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        tfEditFirstQuarter = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        tfEditSecondQuarter = new javax.swing.JTextField();
+        tfEditThirdQuarter = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        tfEditFourthQuarter = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        rbAutomatic = new javax.swing.JRadioButton();
+        rbManual = new javax.swing.JRadioButton();
+        jLabel14 = new javax.swing.JLabel();
+        tfEditGwa = new javax.swing.JTextField();
+        btnSaveGradeChanges = new javax.swing.JButton();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -310,6 +331,11 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnEditGrades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_edit_16px.png"))); // NOI18N
         btnEditGrades.setText("Edit Grades");
+        btnEditGrades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditGradesActionPerformed(evt);
+            }
+        });
 
         lbDateUpdated.setText("Date Updated: YYYY-MM-DD HH:MM:SS");
 
@@ -449,7 +475,177 @@ public class dashBoard extends javax.swing.JFrame {
             .addComponent(jSplitPane1)
         );
 
+        jScrollPane3.setBorder(null);
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        contentsPanel.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel8.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel36.setText("Edit Grades");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel36)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel36)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel1.setText("1st Quarter");
+
+        tfEditFirstQuarter.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfEditFirstQuarter.setText("90");
+
+        jLabel4.setText("2nd Quarter");
+
+        tfEditSecondQuarter.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfEditSecondQuarter.setText("90");
+
+        tfEditThirdQuarter.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfEditThirdQuarter.setText("90");
+
+        jLabel10.setText("3rd Quarter");
+
+        jLabel11.setText("4th Quarter");
+
+        tfEditFourthQuarter.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfEditFourthQuarter.setText("90");
+
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Grade Details");
+
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Computation Options");
+
+        computationOptionGroup.add(rbAutomatic);
+        rbAutomatic.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        rbAutomatic.setSelected(true);
+        rbAutomatic.setText("Automatic");
+        rbAutomatic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        rbAutomatic.setIconTextGap(10);
+        rbAutomatic.setOpaque(false);
+        rbAutomatic.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_tick_box_20px.png"))); // NOI18N
+        rbAutomatic.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+
+        computationOptionGroup.add(rbManual);
+        rbManual.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        rbManual.setText("Manual");
+        rbManual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        rbManual.setIconTextGap(10);
+        rbManual.setOpaque(false);
+        rbManual.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_tick_box_20px.png"))); // NOI18N
+        rbManual.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+
+        jLabel14.setText("General Weighed Average (GWA)");
+
+        tfEditGwa.setEditable(false);
+        tfEditGwa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfEditGwa.setText("90");
+        tfEditGwa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfEditGwaActionPerformed(evt);
+            }
+        });
+
+        btnSaveGradeChanges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_save_16px.png"))); // NOI18N
+        btnSaveGradeChanges.setText("Save Changes");
+
+        javax.swing.GroupLayout contentsPanelLayout = new javax.swing.GroupLayout(contentsPanel);
+        contentsPanel.setLayout(contentsPanelLayout);
+        contentsPanelLayout.setHorizontalGroup(
+            contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentsPanelLayout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(contentsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSaveGradeChanges, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(contentsPanelLayout.createSequentialGroup()
+                        .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfEditFirstQuarter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfEditSecondQuarter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfEditThirdQuarter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfEditFourthQuarter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfEditGwa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rbAutomatic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rbManual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        contentsPanelLayout.setVerticalGroup(
+            contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfEditFirstQuarter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfEditSecondQuarter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfEditThirdQuarter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfEditFourthQuarter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbAutomatic)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbManual)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfEditGwa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(btnSaveGradeChanges)
+                .addContainerGap())
+        );
+
+        jScrollPane3.setViewportView(contentsPanel);
+
+        javax.swing.GroupLayout editGradeDialogLayout = new javax.swing.GroupLayout(editGradeDialog);
+        editGradeDialog.setLayout(editGradeDialogLayout);
+        editGradeDialogLayout.setHorizontalGroup(
+            editGradeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3)
+        );
+        editGradeDialogLayout.setVerticalGroup(
+            editGradeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Dashboard");
         setIconImage(my.getImgIcn(myVariables.getGradingWindowIcon()).getImage()
         );
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -734,6 +930,14 @@ public class dashBoard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_enrolledStudentsTableMouseClicked
 
+    private void tfEditGwaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEditGwaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfEditGwaActionPerformed
+
+    private void btnEditGradesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditGradesActionPerformed
+        showCustomDialog("Edit Grade Details", editGradeDialog, true, 280, 400, false);
+    }//GEN-LAST:event_btnEditGradesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -830,7 +1034,7 @@ public class dashBoard extends javax.swing.JFrame {
     
     private void setScrollSpeeds(){
         JScrollPane scrollpanes [] = {
-            jScrollPane2,
+            jScrollPane2,jScrollPane3,
         };
         
         int scrollSpeed = 15;
@@ -903,6 +1107,8 @@ public class dashBoard extends javax.swing.JFrame {
             //View Students
             btnEditGrades,
             btnSearchEnrolledStudent,
+            //Edit Grades Dialog
+            btnSaveGradeChanges,
         };
         
         JButton lightButtons [] = {
@@ -933,17 +1139,18 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
-            jLabel35,
+            jLabel35,jLabel36,
         };
         JLabel labels [] = {
             lbSearchResult,lbSearchResult1,
         };
         
         JLabel formsHeaderLabels [] = {
-            jLabel2,jLabel3,
+            jLabel2,jLabel3,jLabel12,jLabel13,
         };
         JLabel textFieldHeaderLabels [] = {
             lbDateUpdated,lbGradeStatus,jLabel5,jLabel6,jLabel7,jLabel8,jLabel9,lbSubjectName,
+            jLabel1,jLabel4,jLabel10,jLabel11,jLabel14,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -979,6 +1186,9 @@ public class dashBoard extends javax.swing.JFrame {
         };
         JTextField forms [] = {
             tfFirstQ,tfSecondQ,tfThirdQ,tfFourthQ,tfGeneralWeighedAverage,
+            //Edit Grades Dialog
+            tfEditFirstQuarter,tfEditSecondQuarter,tfEditThirdQuarter,tfEditFourthQuarter,
+            tfEditGwa,
         };
         for(JSpinner n : spinners){
             n.setFont(myVariables.TEXTFIELD_FONT);
@@ -1030,13 +1240,25 @@ public class dashBoard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable assignedTeacherTable;
     private javax.swing.JButton btnEditGrades;
+    private javax.swing.JButton btnSaveGradeChanges;
     private javax.swing.JButton btnSearchEnrolledStudent;
     private javax.swing.JButton btnSearchSection;
+    private javax.swing.ButtonGroup computationOptionGroup;
+    private javax.swing.JPanel contentsPanel;
+    private javax.swing.JPanel editGradeDialog;
     private javax.swing.JTable enrolledStudentsTable;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1044,8 +1266,10 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
@@ -1060,8 +1284,15 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel lbSubjectName;
     private javax.swing.JPanel left;
     private javax.swing.JTabbedPane mainTab;
+    private javax.swing.JRadioButton rbAutomatic;
+    private javax.swing.JRadioButton rbManual;
     private javax.swing.JPanel right;
     private javax.swing.JPanel selectSectionTab;
+    private javax.swing.JTextField tfEditFirstQuarter;
+    private javax.swing.JTextField tfEditFourthQuarter;
+    private javax.swing.JTextField tfEditGwa;
+    private javax.swing.JTextField tfEditSecondQuarter;
+    private javax.swing.JTextField tfEditThirdQuarter;
     private javax.swing.JTextField tfFirstQ;
     private javax.swing.JTextField tfFourthQ;
     private javax.swing.JTextField tfGeneralWeighedAverage;
