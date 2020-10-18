@@ -92,6 +92,8 @@ public class dashBoard extends javax.swing.JFrame {
         tfGeneralWeighedAverage = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         lbSubjectName = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        lbRecordId = new javax.swing.JLabel();
         computationOptionGroup = new javax.swing.ButtonGroup();
         editGradeDialog = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -376,6 +378,10 @@ public class dashBoard extends javax.swing.JFrame {
 
         lbSubjectName.setText("Subject Name: SUBJECT_NAME");
 
+        jLabel15.setText("Record ID:");
+
+        lbRecordId.setText("RECORD_ID");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -391,6 +397,8 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbDateUpdated, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbSubjectName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbGradeStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -405,8 +413,10 @@ public class dashBoard extends javax.swing.JFrame {
                             .addComponent(tfFourthQ, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfGeneralWeighedAverage, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(lbSubjectName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbGradeStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbRecordId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -417,6 +427,10 @@ public class dashBoard extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(lbRecordId))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbSubjectName)
                 .addGap(10, 10, 10)
                 .addComponent(lbDateUpdated)
@@ -446,7 +460,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(tfGeneralWeighedAverage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEditGrades)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel1);
@@ -905,6 +919,7 @@ public class dashBoard extends javax.swing.JFrame {
                 if(result != null){
                     String values[] = result[0].split("@@");
                     
+                    lbRecordId.setText(values[0]);
                     lbDateUpdated.setText("Date:  "+my.numberToWordDate(values[10]));
                     lbGradeStatus.setText("Status:  "+values[9]);
                     
@@ -1150,7 +1165,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         JLabel textFieldHeaderLabels [] = {
             lbDateUpdated,lbGradeStatus,jLabel5,jLabel6,jLabel7,jLabel8,jLabel9,lbSubjectName,
-            jLabel1,jLabel4,jLabel10,jLabel11,jLabel14,
+            jLabel1,jLabel4,jLabel10,jLabel11,jLabel14,jLabel15,lbRecordId,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -1254,6 +1269,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel35;
@@ -1277,6 +1293,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel lbDateUpdated;
     private javax.swing.JLabel lbGradeStatus;
     private javax.swing.JLabel lbLoggedInUser;
+    private javax.swing.JLabel lbRecordId;
     private javax.swing.JLabel lbSchoolAddress;
     private javax.swing.JLabel lbSchoolName;
     private javax.swing.JLabel lbSearchResult;
