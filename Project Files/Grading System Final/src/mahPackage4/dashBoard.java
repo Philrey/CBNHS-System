@@ -78,7 +78,7 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnEditGrades = new javax.swing.JButton();
-        lbDateUodated = new javax.swing.JLabel();
+        lbDateUpdated = new javax.swing.JLabel();
         lbGradeStatus = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         tfFirstQ = new javax.swing.JTextField();
@@ -90,6 +90,8 @@ public class dashBoard extends javax.swing.JFrame {
         tfFourthQ = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         tfGeneralWeighedAverage = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        lbSubjectName = new javax.swing.JLabel();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -152,6 +154,16 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
         jScrollPane8.setViewportView(assignedTeacherTable);
+        if (assignedTeacherTable.getColumnModel().getColumnCount() > 0) {
+            assignedTeacherTable.getColumnModel().getColumn(5).setPreferredWidth(70);
+            assignedTeacherTable.getColumnModel().getColumn(5).setMaxWidth(70);
+            assignedTeacherTable.getColumnModel().getColumn(7).setPreferredWidth(70);
+            assignedTeacherTable.getColumnModel().getColumn(7).setMaxWidth(70);
+            assignedTeacherTable.getColumnModel().getColumn(9).setPreferredWidth(70);
+            assignedTeacherTable.getColumnModel().getColumn(9).setMaxWidth(70);
+            assignedTeacherTable.getColumnModel().getColumn(10).setPreferredWidth(100);
+            assignedTeacherTable.getColumnModel().getColumn(10).setMaxWidth(100);
+        }
 
         javax.swing.GroupLayout selectSectionTabLayout = new javax.swing.GroupLayout(selectSectionTab);
         selectSectionTab.setLayout(selectSectionTabLayout);
@@ -227,6 +239,11 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
         enrolledStudentsTable.getTableHeader().setReorderingAllowed(false);
+        enrolledStudentsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                enrolledStudentsTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(enrolledStudentsTable);
 
         javax.swing.GroupLayout leftLayout = new javax.swing.GroupLayout(left);
@@ -294,7 +311,7 @@ public class dashBoard extends javax.swing.JFrame {
         btnEditGrades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_edit_16px.png"))); // NOI18N
         btnEditGrades.setText("Edit Grades");
 
-        lbDateUodated.setText("Date Updated: YYYY-MM-DD HH:MM:SS");
+        lbDateUpdated.setText("Date Updated: YYYY-MM-DD HH:MM:SS");
 
         lbGradeStatus.setText("Status: SUBMISSION_STATUS");
 
@@ -328,6 +345,11 @@ public class dashBoard extends javax.swing.JFrame {
         tfGeneralWeighedAverage.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfGeneralWeighedAverage.setText("90");
 
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Basic Info");
+
+        lbSubjectName.setText("Subject Name: SUBJECT_NAME");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -340,23 +362,25 @@ public class dashBoard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEditGrades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbDateUpdated, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbDateUodated, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbGradeStatus)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(tfFirstQ, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(tfSecondQ, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
+                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfThirdQ, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfFourthQ, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfGeneralWeighedAverage, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lbSubjectName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbGradeStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -365,11 +389,15 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbDateUodated)
+                .addComponent(lbSubjectName)
+                .addGap(10, 10, 10)
+                .addComponent(lbDateUpdated)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbGradeStatus)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -612,6 +640,11 @@ public class dashBoard extends javax.swing.JFrame {
     private void assignedTeacherTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assignedTeacherTableMouseClicked
         if(evt.getClickCount() == 2){
             if(mainTab.getTabCount() <= 1){
+                int row = assignedTeacherTable.getSelectedRow();
+                
+                String subjectName = assignedTeacherTable.getValueAt(row, 8).toString();
+                lbSubjectName.setText("Subject Name:  "+subjectName);
+                
                 mainTab.addTab("View Students", my.getImgIcn(myVariables.getViewStudentsIcon()), viewStudentsTab);
                 mainTab.setSelectedIndex(1);
             }
@@ -656,6 +689,51 @@ public class dashBoard extends javax.swing.JFrame {
         my.searchItem(where, enrolledStudentsTable, 6, null, new int [] {3,4,5}, true, true, lbSearchResult1, tfSearchEnrolledStudent, true);
     }//GEN-LAST:event_btnSearchEnrolledStudentsearchEnrolledStudentsHandler
 
+    private void enrolledStudentsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enrolledStudentsTableMouseClicked
+        if(evt.getClickCount() == 2){
+            int row = enrolledStudentsTable.getSelectedRow();
+            int sectionRow = assignedTeacherTable.getSelectedRow();
+            
+            String sectionId = assignedTeacherTable.getValueAt(sectionRow,1).toString();
+            String subjectId = assignedTeacherTable.getValueAt(sectionRow, 6).toString();
+            String studentId = enrolledStudentsTable.getValueAt(row, 1).toString();
+            
+            //Check if record exists...Add if none are found
+            String where = "WHERE sectionId='"+sectionId+"' AND subjectId='"+subjectId+"' AND studentId='"+studentId+"'";
+            
+            if(my.checkForDuplicates("grades", where, myVariables.getGradesOrder())){
+                //Load data here
+                System.err.println("Record found.");
+                String result[] = my.return_values("*", "grades", where, myVariables.getGradesOrder());
+                
+                if(result != null){
+                    String values[] = result[0].split("@@");
+                    
+                    lbDateUpdated.setText("Date:  "+my.numberToWordDate(values[10]));
+                    lbGradeStatus.setText("Status:  "+values[9]);
+                    
+                    tfFirstQ.setText(values[4].contains("-1")? " " : values[4]);
+                    tfSecondQ.setText(values[5].contains("-1")? " " : values[5]);
+                    tfThirdQ.setText(values[6].contains("-1")? " " : values[6]);
+                    tfFourthQ.setText(values[7].contains("-1")? " " : values[7]);
+                    tfGeneralWeighedAverage.setText(values[8].contains("-1")? " " : values[8]);
+                    
+                    resetStudentDetails(false, false, true);
+                }else{
+                    my.showMessage("Oooops! This record might have been deleted just now.\nPlease contact your Developer for help.", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                if(my.getConfirmation("This student has no record yet. Add one now?")){
+                    my.showMessage("Adding Successful. Please select the student again", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    my.showMessage("Adding Grade Records canceled.", JOptionPane.PLAIN_MESSAGE);
+                }
+            }
+        }else{
+            resetStudentDetails(false, true, false);
+        }
+    }//GEN-LAST:event_enrolledStudentsTableMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -695,7 +773,7 @@ public class dashBoard extends javax.swing.JFrame {
             my.clear_table_rows(enrolledStudentsTable);
         }
         if(clearFields){
-            lbDateUodated.setText("Date: --Please Select A Student--");
+            lbDateUpdated.setText("Date: --Please Select A Student--");
             lbGradeStatus.setText("Status: --Please Select A Student--");
             
             tfFirstQ.setText("");
@@ -862,10 +940,10 @@ public class dashBoard extends javax.swing.JFrame {
         };
         
         JLabel formsHeaderLabels [] = {
-            jLabel2,
+            jLabel2,jLabel3,
         };
         JLabel textFieldHeaderLabels [] = {
-            lbDateUodated,lbGradeStatus,jLabel5,jLabel6,jLabel7,jLabel8,jLabel9,
+            lbDateUpdated,lbGradeStatus,jLabel5,jLabel6,jLabel7,jLabel8,jLabel9,lbSubjectName,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -957,6 +1035,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTable enrolledStudentsTable;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -971,13 +1050,14 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
     private keeptoo.KGradientPanel kGradientPanel1;
-    private javax.swing.JLabel lbDateUodated;
+    private javax.swing.JLabel lbDateUpdated;
     private javax.swing.JLabel lbGradeStatus;
     private javax.swing.JLabel lbLoggedInUser;
     private javax.swing.JLabel lbSchoolAddress;
     private javax.swing.JLabel lbSchoolName;
     private javax.swing.JLabel lbSearchResult;
     private javax.swing.JLabel lbSearchResult1;
+    private javax.swing.JLabel lbSubjectName;
     private javax.swing.JPanel left;
     private javax.swing.JTabbedPane mainTab;
     private javax.swing.JPanel right;

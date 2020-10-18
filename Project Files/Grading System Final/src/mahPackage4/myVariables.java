@@ -61,25 +61,26 @@ public class myVariables {
     
     
     //Table Orders
-    private static int [] usersOrder = new int [] {6,4,3,7,1,2,0,5};
-    private static int [] usersPersonalInfoOrder = new int [] {5,7,8,9,6,3,4,1,2,0};
-    private static int [] studentsOrder = new int [] {6,5,0,2,7,4,1,3};
-    private static int [] studentsPersonalInfoOrder = new int[] {14,10,12,16,8,17,4,11,3,5,6,0,9,15,2,7,13,1};
-    private static int [] subjectLoadsOrder = new int [] {0,3,2,1};
-    private static int [] sectionsOrder = new int [] {9,0,4,6,5,10,1,2,11,7,8,3};
+    private static final int [] usersOrder = new int [] {6,4,3,7,1,2,0,5};
+    private static final int [] usersPersonalInfoOrder = new int [] {5,7,8,9,6,3,4,1,2,0};
+    private static final int [] studentsOrder = new int [] {6,5,0,2,7,4,1,3};
+    private static final int [] gradesOrder = new int [] {4,0,5,8,1,6,3,7,2,9,10};
+    private static final int [] studentsPersonalInfoOrder = new int[] {14,10,12,16,8,17,4,11,3,5,6,0,9,15,2,7,13,1};
+    private static final int [] subjectLoadsOrder = new int [] {0,3,2,1};
+    private static final int [] sectionsOrder = new int [] {9,0,4,6,5,10,1,2,11,7,8,3};
     
-    private static int [] enrollmentViewOrder = new int [] {15,7,3,0,9,16,1,5,8,11,4,2,17,10,6,12,13,14};
-    private static int [] enrollmentViewMinimalOrder = new int [] {5,0,4,1,2,7,3,6};
-    private static int [] teacherLoadsViewOrder = new int [] {6,7,1,4,3,8,2,10,9,5,0};
-    private static int [] managedSubjectsViewOrder = new int [] {10,4,6,8,2,1,11,0,5,12,3,7,9};
+    private static final int [] enrollmentViewOrder = new int [] {15,7,3,0,9,16,1,5,8,11,4,2,17,10,6,12,13,14};
+    private static final int [] enrollmentViewMinimalOrder = new int [] {5,0,4,1,2,7,3,6};
+    private static final int [] teacherLoadsViewOrder = new int [] {6,7,1,4,3,8,2,10,9,5,0};
+    private static final int [] managedSubjectsViewOrder = new int [] {10,4,6,8,2,1,11,0,5,12,3,7,9};
     
-    private static int [] sectionViewRev3Order = new int [] {8,0,2,4,5,6,3,1,7};
-    private static int [] jhsf1Order= new int [] {18,11,5,20,0,9,12,1,8,21,13,23,4,10,3,7,17,14,2,15,6,19,16,22};
-    private static int [] sf2StudentListViewOrder = new int [] {4,5,0,2,6,1,3};
-    private static int [] sf2StudentListViewOrderRev2 = new int [] {4,5,0,2,6,1,3,7};
-    private static int [] attendanceOrder = new int [] {2,0,3,4,6,5,1};
-    private static int [] subjectOrder = new int[] {2,3,1,0};
-    private static int [] booksViewOrder = new int [] {14,21,8,0,4,23,1,3,9,12,7,5,19,24,2,17,26,20,16,18,25,13,22,6,15,10,11};
+    private static final int [] sectionViewRev3Order = new int [] {8,0,2,4,5,6,3,1,7};
+    private static final int [] jhsf1Order= new int [] {18,11,5,20,0,9,12,1,8,21,13,23,4,10,3,7,17,14,2,15,6,19,16,22};
+    private static final int [] sf2StudentListViewOrder = new int [] {4,5,0,2,6,1,3};
+    private static final int [] sf2StudentListViewOrderRev2 = new int [] {4,5,0,2,6,1,3,7};
+    private static final int [] attendanceOrder = new int [] {2,0,3,4,6,5,1};
+    private static final int [] subjectOrder = new int[] {2,3,1,0};
+    private static final int [] booksViewOrder = new int [] {14,21,8,0,4,23,1,3,9,12,7,5,19,24,2,17,26,20,16,18,25,13,22,6,15,10,11};
     
     //Icons
     private static final String studentsIcon = "icons/icons8_user_groups_skin_type_7_20px_1.png";
@@ -319,6 +320,10 @@ public class myVariables {
 
     //<editor-fold desc="Getters & Setters">
     
+    public static int[] getGradesOrder() {
+        return gradesOrder;
+    }
+
     public static String getViewStudentsIcon() {
         return viewStudentsIcon;
     }
