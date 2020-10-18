@@ -209,50 +209,17 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1loginHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1loginHandler
-        // TODO add your handling code here:
-
-        String userName = jTextField1.getText();
-        String password = String.valueOf(jPasswordField1.getPassword());
-
-        int result = my.login(userName, password, new int [] {1,2,3,4,5});
-
-        switch(result){
-            case 0:{
-                my.openWindow(this,new dashBoard());
-                break;
-            }case 1:{
-                my.showMessage("Your account does not have the Access Level required\nto use this program.", JOptionPane.WARNING_MESSAGE);
-                break;
-            }case 2:{
-                my.showMessage("Incorrect Username or Password", JOptionPane.ERROR_MESSAGE);
-                break;
-            }
-        }
+        loginUser();
     }//GEN-LAST:event_jTextField1loginHandler
 
     private void jPasswordField1loginHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1loginHandler
-        // TODO add your handling code here:
-
-        String userName = jTextField1.getText();
-        String password = String.valueOf(jPasswordField1.getPassword());
-
-        int result = my.login(userName, password, new int [] {1,2,4,5});
-
-        switch(result){
-            case 0:{
-                my.openWindow(this,new dashBoard());
-                break;
-            }case 1:{
-                my.showMessage("Your account does not have the Access Level required\nto use this program.", JOptionPane.WARNING_MESSAGE);
-                break;
-            }case 2:{
-                my.showMessage("Incorrect Username or Password", JOptionPane.ERROR_MESSAGE);
-                break;
-            }
-        }
+        loginUser();
     }//GEN-LAST:event_jPasswordField1loginHandler
 
     private void btnLoginloginHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginloginHandler
+        loginUser();
+    }//GEN-LAST:event_btnLoginloginHandler
+    private void loginUser(){
         // TODO add your handling code here:
 
         String userName = jTextField1.getText();
@@ -272,8 +239,7 @@ public class login extends javax.swing.JFrame {
                 break;
             }
         }
-    }//GEN-LAST:event_btnLoginloginHandler
-
+    }
     /**
      * @param args the command line arguments
      */
