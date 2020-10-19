@@ -19,6 +19,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
@@ -95,6 +96,7 @@ public class dashBoard extends javax.swing.JFrame {
         lbSubjectName = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         lbRecordId = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         editGradeDialog = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         contentsPanel = new javax.swing.JPanel();
@@ -116,7 +118,7 @@ public class dashBoard extends javax.swing.JFrame {
         tfEditGwa = new javax.swing.JTextField();
         btnSaveGradeChanges = new javax.swing.JButton();
         cbAllowDecimalValues = new javax.swing.JCheckBox();
-        jLabel17 = new javax.swing.JLabel();
+        lbStatusOptions = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
@@ -364,7 +366,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         lbDateUpdated.setText("Date Updated: YYYY-MM-DD HH:MM:SS");
 
-        lbGradeStatus.setText("Status: SUBMISSION_STATUS");
+        lbGradeStatus.setText("SUBMISSION_STATUS");
 
         jLabel5.setText("1st Quarter");
 
@@ -405,6 +407,8 @@ public class dashBoard extends javax.swing.JFrame {
 
         lbRecordId.setText("RECORD_ID");
 
+        jLabel16.setText("Record ID:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -418,10 +422,13 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEditGrades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbDateUpdated, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbDateUpdated, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbSubjectName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbGradeStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbRecordId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -437,9 +444,9 @@ public class dashBoard extends javax.swing.JFrame {
                             .addComponent(tfGeneralWeighedAverage, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
+                        .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbRecordId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lbGradeStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -458,7 +465,9 @@ public class dashBoard extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(lbDateUpdated)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbGradeStatus)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbGradeStatus)
+                    .addComponent(jLabel16))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -483,7 +492,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(tfGeneralWeighedAverage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEditGrades)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel1);
@@ -595,11 +604,10 @@ public class dashBoard extends javax.swing.JFrame {
         rbAutomatic.setSelected(true);
         rbAutomatic.setText("Automatic");
         rbAutomatic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        rbAutomatic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        rbAutomatic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         rbAutomatic.setIconTextGap(10);
         rbAutomatic.setOpaque(false);
-        rbAutomatic.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_tick_box_20px.png"))); // NOI18N
-        rbAutomatic.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+        rbAutomatic.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
         rbAutomatic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbAllowDecimalValuesMouseClicked(evt);
@@ -610,11 +618,10 @@ public class dashBoard extends javax.swing.JFrame {
         rbManual.setFont(myVariables.TEXTFIELD_HEADER_FONT);
         rbManual.setText("Manual");
         rbManual.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        rbManual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        rbManual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         rbManual.setIconTextGap(10);
         rbManual.setOpaque(false);
-        rbManual.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_tick_box_20px.png"))); // NOI18N
-        rbManual.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+        rbManual.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
         rbManual.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbAllowDecimalValuesMouseClicked(evt);
@@ -648,15 +655,15 @@ public class dashBoard extends javax.swing.JFrame {
         cbAllowDecimalValues.setIconTextGap(10);
         cbAllowDecimalValues.setOpaque(false);
         cbAllowDecimalValues.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
-        cbAllowDecimalValues.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        cbAllowDecimalValues.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
         cbAllowDecimalValues.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbAllowDecimalValuesMouseClicked(evt);
             }
         });
 
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("Status Options");
+        lbStatusOptions.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbStatusOptions.setText("Status Options");
 
         jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
         q1StatusGroup.add(jRadioButton1);
@@ -664,6 +671,11 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton1.setForeground(new java.awt.Color(0, 102, 0));
         jRadioButton1.setText("Open");
         jRadioButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton1.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton1.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton1.setOpaque(false);
+        jRadioButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
         q1StatusGroup.add(jRadioButton2);
@@ -671,6 +683,11 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton2.setForeground(new java.awt.Color(0, 0, 153));
         jRadioButton2.setText("Submitted");
         jRadioButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton2.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton2.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton2.setOpaque(false);
+        jRadioButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
         q1StatusGroup.add(jRadioButton3);
@@ -678,6 +695,11 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton3.setForeground(new java.awt.Color(255, 102, 0));
         jRadioButton3.setText("Approved");
         jRadioButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton3.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton3.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton3.setOpaque(false);
+        jRadioButton3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
         q1StatusGroup.add(jRadioButton4);
@@ -685,6 +707,11 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton4.setForeground(new java.awt.Color(204, 0, 0));
         jRadioButton4.setText("Closed");
         jRadioButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton4.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton4.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton4.setOpaque(false);
+        jRadioButton4.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         jRadioButton5.setBackground(new java.awt.Color(255, 255, 255));
         q2StatusGroup.add(jRadioButton5);
@@ -692,6 +719,11 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton5.setForeground(new java.awt.Color(0, 102, 0));
         jRadioButton5.setText("Open");
         jRadioButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton5.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton5.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton5.setOpaque(false);
+        jRadioButton5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         jRadioButton6.setBackground(new java.awt.Color(255, 255, 255));
         q2StatusGroup.add(jRadioButton6);
@@ -699,6 +731,11 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton6.setForeground(new java.awt.Color(0, 0, 153));
         jRadioButton6.setText("Submitted");
         jRadioButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton6.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton6.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton6.setOpaque(false);
+        jRadioButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         jRadioButton7.setBackground(new java.awt.Color(255, 255, 255));
         q2StatusGroup.add(jRadioButton7);
@@ -706,6 +743,11 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton7.setForeground(new java.awt.Color(255, 102, 0));
         jRadioButton7.setText("Approved");
         jRadioButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton7.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton7.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton7.setOpaque(false);
+        jRadioButton7.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         jRadioButton8.setBackground(new java.awt.Color(255, 255, 255));
         q2StatusGroup.add(jRadioButton8);
@@ -713,55 +755,95 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton8.setForeground(new java.awt.Color(204, 0, 0));
         jRadioButton8.setText("Closed");
         jRadioButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton8.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton8.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton8.setOpaque(false);
+        jRadioButton8.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         jRadioButton9.setBackground(new java.awt.Color(255, 255, 255));
         q3tatusGroup.add(jRadioButton9);
         jRadioButton9.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        jRadioButton9.setForeground(new java.awt.Color(0, 0, 153));
-        jRadioButton9.setText("Submitted");
+        jRadioButton9.setForeground(new java.awt.Color(0, 102, 0));
+        jRadioButton9.setText("Open");
         jRadioButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton9.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton9.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton9.setOpaque(false);
+        jRadioButton9.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         jRadioButton10.setBackground(new java.awt.Color(255, 255, 255));
         q3tatusGroup.add(jRadioButton10);
         jRadioButton10.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        jRadioButton10.setForeground(new java.awt.Color(255, 102, 0));
-        jRadioButton10.setText("Approved");
+        jRadioButton10.setForeground(new java.awt.Color(0, 0, 153));
+        jRadioButton10.setText("Submitted");
         jRadioButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton10.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton10.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton10.setOpaque(false);
+        jRadioButton10.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         jRadioButton11.setBackground(new java.awt.Color(255, 255, 255));
         q3tatusGroup.add(jRadioButton11);
         jRadioButton11.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        jRadioButton11.setForeground(new java.awt.Color(204, 0, 0));
-        jRadioButton11.setText("Closed");
+        jRadioButton11.setForeground(new java.awt.Color(255, 102, 0));
+        jRadioButton11.setText("Approved");
         jRadioButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton11.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton11.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton11.setOpaque(false);
+        jRadioButton11.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         jRadioButton12.setBackground(new java.awt.Color(255, 255, 255));
         q3tatusGroup.add(jRadioButton12);
         jRadioButton12.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        jRadioButton12.setForeground(new java.awt.Color(0, 102, 0));
-        jRadioButton12.setText("Open");
+        jRadioButton12.setForeground(new java.awt.Color(204, 0, 0));
+        jRadioButton12.setText("Closed");
         jRadioButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton12.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton12.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton12.setOpaque(false);
+        jRadioButton12.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         jRadioButton13.setBackground(new java.awt.Color(255, 255, 255));
         q4StatusGroup.add(jRadioButton13);
         jRadioButton13.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        jRadioButton13.setForeground(new java.awt.Color(0, 0, 153));
-        jRadioButton13.setText("Submitted");
+        jRadioButton13.setForeground(new java.awt.Color(0, 102, 0));
+        jRadioButton13.setText("Open");
         jRadioButton13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton13.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton13.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton13.setOpaque(false);
+        jRadioButton13.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         jRadioButton14.setBackground(new java.awt.Color(255, 255, 255));
         q4StatusGroup.add(jRadioButton14);
         jRadioButton14.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        jRadioButton14.setForeground(new java.awt.Color(255, 102, 0));
-        jRadioButton14.setText("Approved");
+        jRadioButton14.setForeground(new java.awt.Color(0, 0, 153));
+        jRadioButton14.setText("Submitted");
         jRadioButton14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton14.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton14.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton14.setOpaque(false);
+        jRadioButton14.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         jRadioButton15.setBackground(new java.awt.Color(255, 255, 255));
         q4StatusGroup.add(jRadioButton15);
         jRadioButton15.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        jRadioButton15.setForeground(new java.awt.Color(0, 102, 0));
-        jRadioButton15.setText("Open");
+        jRadioButton15.setForeground(new java.awt.Color(255, 102, 0));
+        jRadioButton15.setText("Approved");
         jRadioButton15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton15.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton15.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton15.setOpaque(false);
+        jRadioButton15.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         jRadioButton16.setBackground(new java.awt.Color(255, 255, 255));
         q4StatusGroup.add(jRadioButton16);
@@ -769,6 +851,11 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton16.setForeground(new java.awt.Color(204, 0, 0));
         jRadioButton16.setText("Closed");
         jRadioButton16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton16.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton16.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton16.setOpaque(false);
+        jRadioButton16.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
         javax.swing.GroupLayout contentsPanelLayout = new javax.swing.GroupLayout(contentsPanel);
         contentsPanel.setLayout(contentsPanelLayout);
@@ -786,11 +873,6 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(rbAutomatic, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rbManual, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, contentsPanelLayout.createSequentialGroup()
-                        .addComponent(cbAllowDecimalValues)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfEditGwa, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(contentsPanelLayout.createSequentialGroup()
                         .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -805,20 +887,8 @@ public class dashBoard extends javax.swing.JFrame {
                                 .addComponent(jRadioButton3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jRadioButton4))
-                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(contentsPanelLayout.createSequentialGroup()
-                        .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfEditFourthQuarter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton16))
-                    .addGroup(contentsPanelLayout.createSequentialGroup()
+                            .addComponent(lbStatusOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, contentsPanelLayout.createSequentialGroup()
                         .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tfEditSecondQuarter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -830,18 +900,35 @@ public class dashBoard extends javax.swing.JFrame {
                         .addComponent(jRadioButton7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jRadioButton8))
-                    .addGroup(contentsPanelLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, contentsPanelLayout.createSequentialGroup()
                         .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tfEditThirdQuarter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jRadioButton9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jRadioButton10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton11)))
+                        .addComponent(jRadioButton11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButton12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, contentsPanelLayout.createSequentialGroup()
+                        .addComponent(cbAllowDecimalValues)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfEditGwa, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, contentsPanelLayout.createSequentialGroup()
+                        .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfEditFourthQuarter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jRadioButton13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButton14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButton15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButton16)))
                 .addContainerGap())
         );
         contentsPanelLayout.setVerticalGroup(
@@ -851,55 +938,45 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12)
-                .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(contentsPanelLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton4)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentsPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfEditFirstQuarter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17)
+                .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lbStatusOptions))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfEditFirstQuarter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton3)
+                    .addComponent(jRadioButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfEditSecondQuarter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton5)
+                    .addComponent(jRadioButton6)
+                    .addComponent(jRadioButton7)
+                    .addComponent(jRadioButton8))
                 .addGap(8, 8, 8)
-                .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton5)
-                        .addComponent(jRadioButton6)
-                        .addComponent(jRadioButton7)
-                        .addComponent(jRadioButton8))
-                    .addGroup(contentsPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfEditSecondQuarter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(13, 13, 13)
-                .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton12)
-                        .addComponent(jRadioButton9)
-                        .addComponent(jRadioButton10)
-                        .addComponent(jRadioButton11))
-                    .addGroup(contentsPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfEditThirdQuarter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(13, 13, 13)
-                .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton15)
-                        .addComponent(jRadioButton13)
-                        .addComponent(jRadioButton14)
-                        .addComponent(jRadioButton16))
-                    .addGroup(contentsPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfEditFourthQuarter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfEditThirdQuarter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton9)
+                    .addComponent(jRadioButton10)
+                    .addComponent(jRadioButton11)
+                    .addComponent(jRadioButton12))
+                .addGap(8, 8, 8)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfEditFourthQuarter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton13)
+                    .addComponent(jRadioButton14)
+                    .addComponent(jRadioButton15)
+                    .addComponent(jRadioButton16))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbAutomatic)
@@ -926,7 +1003,7 @@ public class dashBoard extends javax.swing.JFrame {
         );
         editGradeDialogLayout.setVerticalGroup(
             editGradeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jScrollPane3)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -1192,7 +1269,7 @@ public class dashBoard extends javax.swing.JFrame {
                     
                     lbRecordId.setText(values[0]);
                     lbDateUpdated.setText("Date:  "+my.numberToWordDate(values[10]));
-                    lbGradeStatus.setText("Status:  "+values[9]);
+                    lbGradeStatus.setText(values[9]);
                     
                     tfFirstQ.setText(values[4].contains("-1")||Double.valueOf(values[4])== 0? " " : values[4]);
                     tfSecondQ.setText(values[5].contains("-1")||Double.valueOf(values[5])== 0? " " : values[5]);
@@ -1241,6 +1318,25 @@ public class dashBoard extends javax.swing.JFrame {
         tfEditFourthQuarter.setText(q4);
         tfEditGwa.setText(gwa);
         
+        //Load Status
+        String [] statuses = lbGradeStatus.getText().split(":");
+        JTextField [] quarterFields = {tfEditFirstQuarter,tfEditSecondQuarter,tfEditThirdQuarter,tfEditFourthQuarter};
+        JRadioButton [][] radioSets = {
+            new JRadioButton[] {jRadioButton1,jRadioButton2,jRadioButton3,jRadioButton4},
+            new JRadioButton[] {jRadioButton5,jRadioButton6,jRadioButton7,jRadioButton8},
+            new JRadioButton[] {jRadioButton9,jRadioButton10,jRadioButton11,jRadioButton12},
+            new JRadioButton[] {jRadioButton13,jRadioButton14,jRadioButton15,jRadioButton16},
+        };
+        for(int n=0;n<statuses.length;n++){
+            loadStatuses(quarterFields[n], statuses[n], radioSets[n], myVariables.getAccessLevel()!=5? true:false);
+        }
+        
+        if(myVariables.getAccessLevel() == 5){
+            lbStatusOptions.setText("Status Options (Ignored By Admin)");
+        }else{
+            lbStatusOptions.setText("Status Options");
+        }
+        
         cbAllowDecimalValues.setSelected(false);
         checkCalculationMethod(false,cbAllowDecimalValues.isSelected());
         
@@ -1248,6 +1344,20 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditGradesActionPerformed
 
     private void btnSaveGradeChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveGradeChangesActionPerformed
+        String recordId = lbRecordId.getText();
+        String q1 = tfEditFirstQuarter.getText();
+        String q2 = tfEditSecondQuarter.getText();
+        String q3 = tfEditThirdQuarter.getText();
+        String q4 = tfEditFourthQuarter.getText();
+        String gwa = tfEditGwa.getText();
+        String status = retrieveStatuses();
+        
+        
+        if(gwa.contains("NaN")){
+            my.showMessage("Invalid Grade. Please check your inputs first.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         my.showMessage("Changes Saved.", JOptionPane.INFORMATION_MESSAGE);
         closeCustomDialog();
     }//GEN-LAST:event_btnSaveGradeChangesActionPerformed
@@ -1357,7 +1467,83 @@ public class dashBoard extends javax.swing.JFrame {
             }
         }
     }
-    //<editor-fold desc="Custom Functions"> 
+    private void loadStatuses(JTextField quarterTextField,String status, JRadioButton [] radioButtonsInOrder, boolean disableByUserLevel){
+        switch(status){
+            case "Open":{
+                quarterTextField.setEditable(true);
+                radioButtonsInOrder[0].setSelected(true);
+                break;
+            }case "Submitted":{
+                quarterTextField.setEditable(false);
+                radioButtonsInOrder[1].setSelected(true);
+                break;
+            }case "Approved":{
+                quarterTextField.setEditable(false);
+                radioButtonsInOrder[2].setSelected(true);
+                break;
+            }case "Closed":{
+                quarterTextField.setEditable(false);
+                radioButtonsInOrder[3].setSelected(true);
+                break;
+            }
+        }
+        
+        if(disableByUserLevel){
+            switch(myVariables.getAccessLevel()){
+                case 5:{
+                    for(JRadioButton n : radioButtonsInOrder){
+                        n.setEnabled(true);
+                    }
+                    break;
+                }case 4:{
+                    radioButtonsInOrder[0].setEnabled(true);    //Open
+                    radioButtonsInOrder[1].setEnabled(false);   //Submitted
+                    radioButtonsInOrder[2].setEnabled(true);   //Approved
+                    radioButtonsInOrder[3].setEnabled(true);    //Closed
+                    break;
+                }case 2:{
+                    radioButtonsInOrder[0].setEnabled(true);
+                    radioButtonsInOrder[1].setEnabled(true);
+                    radioButtonsInOrder[2].setEnabled(true);
+                    radioButtonsInOrder[3].setEnabled(false);
+                    break;
+                }case 1:{
+                    for(JRadioButton n : radioButtonsInOrder){
+                        n.setEnabled(false);
+                    }
+                    break;
+                }
+                default:{
+                    break;
+                }
+            }
+        }
+    }
+    private String retrieveStatuses(){
+        String status [] = new String[4];
+        JRadioButton [][] radioSets = {
+            new JRadioButton[] {jRadioButton1,jRadioButton2,jRadioButton3,jRadioButton4},
+            new JRadioButton[] {jRadioButton5,jRadioButton6,jRadioButton7,jRadioButton8},
+            new JRadioButton[] {jRadioButton9,jRadioButton10,jRadioButton11,jRadioButton12},
+            new JRadioButton[] {jRadioButton13,jRadioButton14,jRadioButton15,jRadioButton16},
+        };
+        for(int n=0;n<radioSets.length;n++){
+            if(radioSets[n][0].isSelected()){   //Open
+                status[n] = "Open";continue;
+            }if(radioSets[n][1].isSelected()){  //Submitted
+                status[n] = "Submitted";continue;
+            }if(radioSets[n][2].isSelected()){  //Approved
+                status[n] = "Approved";continue;
+            }if(radioSets[n][3].isSelected()){  //Closed
+                status[n] = "Closed";
+            }
+        }
+        String finalStatus = status[0]+":"+status[1]+":"+status[2]+":"+status[3]+":";
+        System.err.println(finalStatus);
+        
+        return finalStatus;
+    }
+//<editor-fold desc="Custom Functions"> 
     JDialog dialog;
     JDialog seconDaryDialog;
     
@@ -1517,7 +1703,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         JLabel textFieldHeaderLabels [] = {
             lbDateUpdated,lbGradeStatus,jLabel5,jLabel6,jLabel7,jLabel8,jLabel9,lbSubjectName,
-            jLabel1,jLabel4,jLabel10,jLabel11,jLabel15,lbRecordId,
+            jLabel1,jLabel4,jLabel10,jLabel11,jLabel15,lbRecordId,jLabel16,lbStatusOptions,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -1623,7 +1809,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel35;
@@ -1668,6 +1854,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel lbSchoolName;
     private javax.swing.JLabel lbSearchResult;
     private javax.swing.JLabel lbSearchResult1;
+    private javax.swing.JLabel lbStatusOptions;
     private javax.swing.JLabel lbSubjectName;
     private javax.swing.JPanel left;
     private javax.swing.JTabbedPane mainTab;
