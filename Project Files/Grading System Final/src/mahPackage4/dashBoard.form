@@ -1046,6 +1046,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>
@@ -1079,6 +1080,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>
@@ -1112,6 +1114,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>
@@ -1145,6 +1148,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>
@@ -1178,6 +1182,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>
@@ -1211,6 +1216,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>
@@ -1244,6 +1250,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>
@@ -1277,6 +1284,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>
@@ -1310,6 +1318,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>
@@ -1343,6 +1352,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>
@@ -1376,6 +1386,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>
@@ -1409,6 +1420,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>
@@ -1422,9 +1434,6 @@
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                      <ComponentRef name="default"/>
                     </Property>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="q4StatusGroup"/>
@@ -1445,6 +1454,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>
@@ -1458,9 +1468,6 @@
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                      <ComponentRef name="default"/>
                     </Property>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="q4StatusGroup"/>
@@ -1481,6 +1488,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>
@@ -1494,9 +1502,6 @@
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                      <ComponentRef name="default"/>
                     </Property>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="q4StatusGroup"/>
@@ -1517,6 +1522,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>
@@ -1530,9 +1536,6 @@
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                      <ComponentRef name="default"/>
                     </Property>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="q4StatusGroup"/>
@@ -1553,6 +1556,7 @@
                     <Property name="disabledSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/mahPackage4/icons/icons8_round_20px.png"/>
                     </Property>

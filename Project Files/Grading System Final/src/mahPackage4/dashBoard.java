@@ -684,6 +684,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton1.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton1.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton1.setFocusable(false);
         jRadioButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton1.setOpaque(false);
         jRadioButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -696,6 +697,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton2.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton2.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton2.setFocusable(false);
         jRadioButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton2.setOpaque(false);
         jRadioButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -708,6 +710,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton3.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton3.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton3.setFocusable(false);
         jRadioButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton3.setOpaque(false);
         jRadioButton3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -720,6 +723,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton4.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton4.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton4.setFocusable(false);
         jRadioButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton4.setOpaque(false);
         jRadioButton4.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -732,6 +736,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton5.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton5.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton5.setFocusable(false);
         jRadioButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton5.setOpaque(false);
         jRadioButton5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -744,6 +749,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton6.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton6.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton6.setFocusable(false);
         jRadioButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton6.setOpaque(false);
         jRadioButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -756,6 +762,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton7.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton7.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton7.setFocusable(false);
         jRadioButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton7.setOpaque(false);
         jRadioButton7.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -768,6 +775,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton8.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton8.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton8.setFocusable(false);
         jRadioButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton8.setOpaque(false);
         jRadioButton8.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -780,6 +788,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton9.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton9.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton9.setFocusable(false);
         jRadioButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton9.setOpaque(false);
         jRadioButton9.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -792,6 +801,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton10.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton10.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton10.setFocusable(false);
         jRadioButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton10.setOpaque(false);
         jRadioButton10.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -804,6 +814,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton11.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton11.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton11.setFocusable(false);
         jRadioButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton11.setOpaque(false);
         jRadioButton11.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -816,6 +827,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton12.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton12.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton12.setFocusable(false);
         jRadioButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton12.setOpaque(false);
         jRadioButton12.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -828,6 +840,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton13.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton13.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton13.setFocusable(false);
         jRadioButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton13.setOpaque(false);
         jRadioButton13.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -840,6 +853,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton14.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton14.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton14.setFocusable(false);
         jRadioButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton14.setOpaque(false);
         jRadioButton14.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -852,6 +866,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton15.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton15.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton15.setFocusable(false);
         jRadioButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton15.setOpaque(false);
         jRadioButton15.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -864,6 +879,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton16.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton16.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton16.setFocusable(false);
         jRadioButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         jRadioButton16.setOpaque(false);
         jRadioButton16.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -1447,11 +1463,11 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_tfEditGwaActionPerformed
 
     private void btnEditGradesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditGradesActionPerformed
-        String q1 = tfFirstQ.getText();
-        String q2 = tfSecondQ.getText();
-        String q3 = tfThirdQ.getText();
-        String q4 = tfFourthQ.getText();
-        String gwa = tfGeneralWeighedAverage.getText();
+        String q1 = tfFirstQ.getText().trim();
+        String q2 = tfSecondQ.getText().trim();
+        String q3 = tfThirdQ.getText().trim();
+        String q4 = tfFourthQ.getText().trim();
+        String gwa = tfGeneralWeighedAverage.getText().trim();
         
         tfEditFirstQuarter.setText(q1);
         tfEditSecondQuarter.setText(q2);
@@ -1471,6 +1487,7 @@ public class dashBoard extends javax.swing.JFrame {
         for(int n=0;n<statuses.length;n++){
             loadStatuses(quarterFields[n], statuses[n], radioSets[n], myVariables.getAccessLevel()!=5? true:false);
         }
+        enableDisableSaveButtonViaStatus();
         
         if(myVariables.getAccessLevel() == 5){
             lbStatusOptions.setText("Status Options (Ignored By Admin)");
@@ -1486,11 +1503,11 @@ public class dashBoard extends javax.swing.JFrame {
 
     private void btnSaveGradeChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveGradeChangesActionPerformed
         String recordId = lbRecordId.getText();
-        String q1 = tfEditFirstQuarter.getText();
-        String q2 = tfEditSecondQuarter.getText();
-        String q3 = tfEditThirdQuarter.getText();
-        String q4 = tfEditFourthQuarter.getText();
-        String gwa = tfEditGwa.getText();
+        String q1 = tfEditFirstQuarter.getText().trim().length()>0? tfEditFirstQuarter.getText() : "-1";
+        String q2 = tfEditSecondQuarter.getText().trim().length()>0? tfEditSecondQuarter.getText() : "-1";
+        String q3 = tfEditThirdQuarter.getText().trim().length()>0? tfEditThirdQuarter.getText() : "-1";
+        String q4 = tfEditFourthQuarter.getText().trim().length()>0? tfEditFourthQuarter.getText() : "-1";
+        String gwa = tfEditGwa.getText().trim();
         String status = retrieveStatuses();
         
         
@@ -1498,9 +1515,23 @@ public class dashBoard extends javax.swing.JFrame {
             my.showMessage("Invalid Grade. Please check your inputs first.", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        String [] sets = {
+            "firstQuarter='"+q1+"'",
+            "secondQuarter='"+q2+"'",
+            "thirdQuarter='"+q3+"'",
+            "fourthQuarter='"+q4+"'",
+            "gwa='"+gwa+"'",
+            "status='"+status+"'",
+            "dateUpdated=now()",
+        };
         
-        my.showMessage("Changes Saved.", JOptionPane.INFORMATION_MESSAGE);
-        closeCustomDialog();
+        if(my.update_values("grades", sets, "id='"+recordId+"'")){
+            my.showMessage("Changes Saved.", JOptionPane.INFORMATION_MESSAGE);
+            closeCustomDialog();
+            resetStudentDetails(false, true, false);
+        }else{
+            my.showMessage("Update Failed. Please make sure you are connected to the School Network", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnSaveGradeChangesActionPerformed
 
     private void calculateGwaOnKeyReleaseHandler(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calculateGwaOnKeyReleaseHandler
@@ -1583,13 +1614,13 @@ public class dashBoard extends javax.swing.JFrame {
         if(calculateGwa && rbAutomatic.isSelected()){
             if(allowDecimalValues){
                 DecimalFormat df = new DecimalFormat("#.##");
-                double q1=0f,q2=0f,q3=0f,q4=0f,gwa=0f;
+                double q1,q2,q3,q4,gwa;
                 
                 try {
-                    q1 = Double.parseDouble(tfEditFirstQuarter.getText());
-                    q2 = Double.parseDouble(tfEditSecondQuarter.getText());
-                    q3 = Double.parseDouble(tfEditThirdQuarter.getText());
-                    q4 = Double.parseDouble(tfEditFourthQuarter.getText());
+                    q1 = tfEditFirstQuarter.getText().length()>0 ? Double.parseDouble(tfEditFirstQuarter.getText()) : 0f;
+                    q2 = tfEditSecondQuarter.getText().length()>0 ? Double.parseDouble(tfEditSecondQuarter.getText()) : 0f;
+                    q3 = tfEditThirdQuarter.getText().length()>0 ? Double.parseDouble(tfEditThirdQuarter.getText()) : 0f;
+                    q4 = tfEditFourthQuarter.getText().length()>0 ? Double.parseDouble(tfEditFourthQuarter.getText()) : 0f;
 
                     gwa = (q1+q2+q3+q4)/4;
 
@@ -1599,12 +1630,12 @@ public class dashBoard extends javax.swing.JFrame {
                     tfEditGwa.setText("NaN");
                 }
             }else{
-                int q1=0,q2=0,q3=0,q4=0,gwa=0;
+                int q1,q2,q3,q4,gwa;
                 try {
-                    q1 = Integer.parseInt(tfEditFirstQuarter.getText());
-                    q2 = Integer.parseInt(tfEditSecondQuarter.getText());
-                    q3 = Integer.parseInt(tfEditThirdQuarter.getText());
-                    q4 = Integer.parseInt(tfEditFourthQuarter.getText());
+                    q1 = tfEditFirstQuarter.getText().length()>0 ? Integer.parseInt(tfEditFirstQuarter.getText()) : 0;
+                    q2 = tfEditSecondQuarter.getText().length()>0 ? Integer.parseInt(tfEditSecondQuarter.getText()) : 0;
+                    q3 = tfEditThirdQuarter.getText().length()>0 ? Integer.parseInt(tfEditThirdQuarter.getText()) : 0;
+                    q4 = tfEditFourthQuarter.getText().length()>0 ? Integer.parseInt(tfEditFourthQuarter.getText()) : 0;
 
                     gwa = (q1+q2+q3+q4)/4;
 
@@ -1668,8 +1699,17 @@ public class dashBoard extends javax.swing.JFrame {
             }
         }
     }
+    private void enableDisableSaveButtonViaStatus(){
+        //Disable save button if all statuses are not equal to open. Note: Works on Access Level 1 users only.
+        if(!jRadioButton1.isSelected() && !jRadioButton5.isSelected() && !jRadioButton9.isSelected() && !jRadioButton13.isSelected() && myVariables.getAccessLevel()==1){
+            btnSaveGradeChanges.setEnabled(false);
+        }else{
+            btnSaveGradeChanges.setEnabled(true);
+        }
+    }
     private String retrieveStatuses(){
         String status [] = new String[4];
+        JTextField [] textFields = {tfEditFirstQuarter,tfEditSecondQuarter,tfEditThirdQuarter,tfEditFourthQuarter};
         JRadioButton [][] radioSets = {
             new JRadioButton[] {jRadioButton1,jRadioButton2,jRadioButton3,jRadioButton4},
             new JRadioButton[] {jRadioButton5,jRadioButton6,jRadioButton7,jRadioButton8},
@@ -1678,7 +1718,12 @@ public class dashBoard extends javax.swing.JFrame {
         };
         for(int n=0;n<radioSets.length;n++){
             if(radioSets[n][0].isSelected()){   //Open
-                status[n] = "Open";continue;
+                //Override and Set to submitted if user is an ADVISER_USER and Textfield has a value
+                if(myVariables.getAccessLevel() == 1 && textFields[n].getText().trim().length() > 0){
+                    status[n] = "Submitted";
+                }else{
+                    status[n] = "Open";
+                }continue;
             }if(radioSets[n][1].isSelected()){  //Submitted
                 status[n] = "Submitted";continue;
             }if(radioSets[n][2].isSelected()){  //Approved
