@@ -3123,7 +3123,7 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_addNewStudentHandler
 
     private void searchStudentHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentHandler
-        String toSearch = tfSearchStudent.getText().trim();
+        String toSearch = my.convertEscapeCharacters(tfSearchStudent.getText().trim());
         String where = "WHERE lrn='"+toSearch+"' ";
         
         if(myVariables.getAccessLevel() <5){
@@ -3226,7 +3226,7 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_loadStudentPersonalInfo
 
     private void searchStudentForPrsnlInfHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentForPrsnlInfHandler
-        String toSearch = tfSearchStudent1.getText().trim();
+        String toSearch = my.convertEscapeCharacters(tfSearchStudent1.getText().trim());
         String where = "WHERE lrn='"+toSearch+"' ";
         
         if(myVariables.getAccessLevel() <5){
@@ -3257,7 +3257,7 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbGradeLevel2ActionPerformed
 
     private void searchLoadsHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchLoadsHandler
-        String toSearch = tfSearchSubjectLoad.getText().trim();
+        String toSearch = my.convertEscapeCharacters(tfSearchSubjectLoad.getText().trim());
         String where = "WHERE b_loadName LIKE '%"+toSearch+"%' ";
         
         if(subjectLoadTabs.getTabCount() > 1){
@@ -3267,7 +3267,7 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_searchLoadsHandler
 
     private void findSubjectHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findSubjectHandler
-        String toSearch = tfSearchSubject2.getText();
+        String toSearch = my.convertEscapeCharacters(tfSearchSubject2.getText());
         
         String gradeLevelSelected [] = jcbGradeLevel3.getSelectedItem().toString().split(" ");
         
@@ -3457,7 +3457,7 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbAccessLevelActionPerformed
 
     private void searchUsersHander(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUsersHander
-        String toSearch = tfSearchUser.getText().trim();
+        String toSearch = my.convertEscapeCharacters(tfSearchUser.getText().trim());
         String where = "WHERE user_Lname='"+toSearch+"' OR user_Fname='"+toSearch+"' OR user_Mname='"+toSearch+"'";
         
         if(myVariables.getAccessLevel() <5){
@@ -3567,7 +3567,7 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPasswordActionPerformed
 
     private void searchUserPersonalInfoHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserPersonalInfoHandler
-        String toSearch = tfSearchUser1.getText().trim();
+        String toSearch = my.convertEscapeCharacters(tfSearchUser1.getText().trim());
         String where = "WHERE user_Lname='"+toSearch+"' OR user_Fname='"+toSearch+"' OR user_Mname='"+toSearch+"'";
         
         if(myVariables.getAccessLevel() <5){
@@ -3689,7 +3689,22 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEdit1editPersonalInfoHandler
 
     private void btnSaveChanges6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChanges6ActionPerformed
-        // TODO add your handling code here:
+        //Get Values
+        String userInfoId = lbUserInfoId.getText();
+        String empNum;
+        String fundSrc;
+        String posDes;
+        String noaEs;
+        String major;
+        String minor;
+        
+        String [] sets = {
+            "employeeNumber=''",
+            "fundSource=''",
+            "position=''",
+            "nature=''",
+            ""
+        };
     }//GEN-LAST:event_btnSaveChanges6ActionPerformed
 
     private void btnEditAssignedSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditAssignedSubjectActionPerformed
@@ -3741,9 +3756,9 @@ public class dashBoard extends javax.swing.JFrame {
         String studentId = studentTable.getValueAt(studentTable.getSelectedRow(), 0).toString();
         
         String [] fields = {
-            tfLastName1.getText(),
-            tfFirstName1.getText(),
-            tfMiddleName1.getText(),            
+            my.convertEscapeCharacters(tfLastName1.getText()),
+            my.convertEscapeCharacters(tfFirstName1.getText()),
+            my.convertEscapeCharacters(tfMiddleName1.getText()),
             tfStudentLrn1.getText(),
             rbMale1.isSelected()?"Male":"Female",
             tfInitialGrade1.getText(),
@@ -3820,25 +3835,25 @@ public class dashBoard extends javax.swing.JFrame {
         
         //<editor-fold desc="Retrieve Values By Batch">
         String [] basic = {
-            "bDate='"+tfBdate.getText()+"'",
-            "age='"+tfAge.getText()+"'",
-            "bPlace='"+tfBirthPlace.getText()+"'",
-            "mTongue='"+tfMotherTongue.getText()+"'",
-            "ip='"+tfEthnicGroup.getText()+"'",
-            "rlgn='"+tfReligion.getText()+"'",            
+            "bDate='"+my.convertEscapeCharacters(tfBdate.getText())+"'",
+            "age='"+my.convertEscapeCharacters(tfAge.getText())+"'",
+            "bPlace='"+my.convertEscapeCharacters(tfBirthPlace.getText())+"'",
+            "mTongue='"+my.convertEscapeCharacters(tfMotherTongue.getText())+"'",
+            "ip='"+my.convertEscapeCharacters(tfEthnicGroup.getText())+"'",
+            "rlgn='"+my.convertEscapeCharacters(tfReligion.getText())+"'",            
         };
         String [] address = {
-            "houseN='"+tfHouseNumber.getText()+"'",
-            "brgy='"+tfBarangay.getText()+"'",
-            "mncpl='"+tfMunicipality.getText()+"'",
-            "prvnce='"+tfProvince.getText()+"'",
+            "houseN='"+my.convertEscapeCharacters(tfHouseNumber.getText())+"'",
+            "brgy='"+my.convertEscapeCharacters(tfBarangay.getText())+"'",
+            "mncpl='"+my.convertEscapeCharacters(tfMunicipality.getText())+"'",
+            "prvnce='"+my.convertEscapeCharacters(tfProvince.getText())+"'",
         };
         String [] parentGuardian = {
-            "fName='"+tfFathersName.getText()+"'",
-            "mName='"+tfMothersName.getText()+"'",
-            "gName='"+tfGuardiansName.getText()+"'",
-            "rltnshp='"+tfRelationship.getText()+"'",
-            "contact='"+tfContactNumber.getText()+"'",
+            "fName='"+my.convertEscapeCharacters(tfFathersName.getText())+"'",
+            "mName='"+my.convertEscapeCharacters(tfMothersName.getText())+"'",
+            "gName='"+my.convertEscapeCharacters(tfGuardiansName.getText())+"'",
+            "rltnshp='"+my.convertEscapeCharacters(tfRelationship.getText())+"'",
+            "contact='"+my.convertEscapeCharacters(tfContactNumber.getText())+"'",
             "date=now()",
         };
         //</editor-fold>
@@ -3940,8 +3955,8 @@ public class dashBoard extends javax.swing.JFrame {
         }
         
         String sets [] = {
-            "subjectCode='"+subjectCode+"'",
-            "description='"+description+"'",
+            "subjectCode='"+my.convertEscapeCharacters(subjectCode)+"'",
+            "description='"+my.convertEscapeCharacters(description)+"'",
             "gradeLevel='"+gradeLevel+"'",
         };
         
@@ -4052,13 +4067,13 @@ public class dashBoard extends javax.swing.JFrame {
         int row = usersTable.getSelectedRow();
         String userId = usersTable.getValueAt(row, 0).toString();
         
-        String lName = tfLName2.getText();
-        String fName = tfFname2.getText();
-        String mName = tfMname2.getText();
+        String lName = my.convertEscapeCharacters(tfLName2.getText());
+        String fName = my.convertEscapeCharacters(tfFname2.getText());
+        String mName = my.convertEscapeCharacters(tfMname2.getText());
         
         String gender = jcbGender1.getSelectedIndex()==0?"Male":"Female";
-        String userName = tfUserName1.getText();
-        String password = tfPassword1.getText();
+        String userName = my.convertEscapeCharacters(tfUserName1.getText());
+        String password = my.convertEscapeCharacters(tfPassword1.getText());
         String accessLevel = String.valueOf(jcbAccessLevel1.getSelectedIndex()+1);
         
         String [] fields = {
@@ -4188,7 +4203,7 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteManagedSubjectActionPerformed
 
     private void btnSearch7findSubjectHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearch7findSubjectHandler
-        String toSearch = tfSearchSubject3.getText();
+        String toSearch = my.convertEscapeCharacters(tfSearchSubject3.getText());
         my.searchItem("WHERE subjectCode LIKE '%"+toSearch+"%' OR description LIKE '%"+toSearch+"%'", searchedsubjectTable1, 1, null, null, false, true, null, tfSearchSubject3,true);
     }//GEN-LAST:event_btnSearch7findSubjectHandler
 

@@ -645,6 +645,19 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
+    public String convertEscapeCharacters(String toConvert){
+        if(toConvert.contains("\\")){
+            toConvert = toConvert.replace("\\", "\\\\");
+        }
+        if(toConvert.contains("\"")){
+            toConvert = toConvert.replace("\"", "\\\"");
+        }
+        if(toConvert.contains("\'")){
+            toConvert = toConvert.replace("\'", "\\\'");
+        }
+        
+        return toConvert;
+    }
     public String multipleColumnSearch(String columnValues, String columnValuesOnDisplay, String logOperatorPerColumn, String toSearch){
         String [] values = toSearch.split(",");                         //Paderogao,Phil Rey,Estrella
         String [] columns = columnValues.split(",");                    //lName,fName,mName
