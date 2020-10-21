@@ -12,7 +12,7 @@ import java.awt.Font;
  * @author Phil Rey
  */
 public class myVariables {
-    private static boolean debugModeOn = true;
+    private static boolean debugModeOn = false;
     
     private static String ipAddress = "";
     private static String schoolName;
@@ -61,19 +61,26 @@ public class myVariables {
     
     
     //Table Orders
-    private static int [] usersOrder = new int [] {6,4,3,7,1,2,0,5};
-    private static int [] usersPersonalInfoOrder = new int [] {5,7,8,9,6,3,4,1,2,0};
-    private static int [] studentsOrder = new int [] {6,5,0,2,7,4,1,3};
-    private static int [] studentsPersonalInfoOrder = new int[] {14,10,12,16,8,17,4,11,3,5,6,0,9,15,2,7,13,1};
-    private static int [] subjectLoadsOrder = new int [] {0,3,2,1};
+    private static final int [] usersOrder = new int [] {6,4,3,7,1,2,0,5};
+    private static final int [] usersPersonalInfoOrder = new int [] {5,7,8,9,6,3,4,1,2,0};
+    private static final int [] studentsOrder = new int [] {6,5,0,2,7,4,1,3};
+    private static final int [] gradesOrder = new int [] {4,0,5,8,1,6,3,7,2,9,10};
+    private static final int [] studentsPersonalInfoOrder = new int[] {14,10,12,16,8,17,4,11,3,5,6,0,9,15,2,7,13,1};
+    private static final int [] subjectLoadsOrder = new int [] {0,3,2,1};
+    private static final int [] sectionsOrder = new int [] {9,0,4,6,5,10,1,2,11,7,8,3};
     
-    private static int [] sectionViewRev3Order = new int [] {8,0,2,4,5,6,3,1,7};
-    private static int [] jhsf1Order= new int [] {18,11,5,20,0,9,12,1,8,21,13,23,4,10,3,7,17,14,2,15,6,19,16,22};
-    private static int [] sf2StudentListViewOrder = new int [] {4,5,0,2,6,1,3};
-    private static int [] sf2StudentListViewOrderRev2 = new int [] {4,5,0,2,6,1,3,7};
-    private static int [] attendanceOrder = new int [] {1,0,2,3,5,4};
-    private static int [] subjectOrder = new int[] {2,3,1,0};
-    private static int [] booksViewOrder = new int [] {14,21,8,0,4,23,1,3,9,12,7,5,19,24,2,17,26,20,16,18,25,13,22,6,15,10,11};
+    private static final int [] enrollmentViewOrder = new int [] {15,7,3,0,9,16,1,5,8,11,4,2,17,10,6,12,13,14};
+    private static final int [] enrollmentViewMinimalOrder = new int [] {5,0,4,1,2,7,3,6};
+    private static final int [] teacherLoadsViewOrder = new int [] {6,7,1,4,3,8,2,10,9,5,0};
+    private static final int [] managedSubjectsViewOrder = new int [] {10,4,6,8,2,1,11,0,5,12,3,7,9};
+    
+    private static final int [] sectionViewRev3Order = new int [] {8,0,2,4,5,6,3,1,7};
+    private static final int [] jhsf1Order= new int [] {18,11,5,20,0,9,12,1,8,21,13,23,4,10,3,7,17,14,2,15,6,19,16,22};
+    private static final int [] sf2StudentListViewOrder = new int [] {4,5,0,2,6,1,3};
+    private static final int [] sf2StudentListViewOrderRev2 = new int [] {4,5,0,2,6,1,3,7};
+    private static final int [] attendanceOrder = new int [] {2,0,3,4,6,5,1};
+    private static final int [] subjectOrder = new int[] {2,3,1,0};
+    private static final int [] booksViewOrder = new int [] {14,21,8,0,4,23,1,3,9,12,7,5,19,24,2,17,26,20,16,18,25,13,22,6,15,10,11};
     
     //Icons
     private static final String studentsIcon = "icons/icons8_user_groups_skin_type_7_20px_1.png";
@@ -83,19 +90,18 @@ public class myVariables {
     private static final String usersIcon = "icons/icons8_teacher_20px.png";
     private static final String usersPrsnlInfIcon = "icons/icons8_name_tag_20px.png";
     private static final String formsIcon = "Imagez/Icons/icons8_microsoft_excel_2019_25px.png";
+    private static final String enrollmentIcon = "icons/icons8_user_groups_skin_type_7_20px_1.png";
+    private static final String assignSubjectTeacherIcon = "icons/icons8_audit_20px.png";
     
-    private static final String exportIcon = "Imagez/Icons/buttons/icons8_send_file_20px.png";
-    private static final String searchIcon = "Imagez/Icons/buttons/icons8_search_20px_2.png";
-    private static final String loadIcon = "Imagez/Icons/buttons/icons8_data_backup_20px.png";
-    private static final String nextIcon = "Imagez/Icons/buttons/icons8_forward_button_20px.png";
-    
-    private static final String handCursor = "Imagez/Window Icons/icons8_hand_cursor_32px_3.png";
-    
-    private static final String addIcon = "Imagez/Icons/icons8_add_25px_1.png";
-    private static final String editIcon = "Imagez/Icons/icons8_pencil_drawing_25px.png";
+    private static final String sectionsIcon = "icons/icons8_page_20px.png";
+    private static final String viewStudentsIcon = "icons/icons8_read_online_20px.png";
+            
     //Window Icons
+    private static final String attendanceWindowIcon = "icons/attendanceIcon.png";
     private static final String registrationWindowIcon = "icons/registerIcon.png";
+    private static final String enrollmentWindowIcon = "icons/enrollmentIcon.png";
     private static final String formsWindowIcon = "Imagez/Window Icons/forms.png";
+    private static final String gradingWindowIcon = "icons/gradingIcon.png";
     
     //Dropdown Icons
     private static final String maleIcon = "icons/icons8_male_16px.png";
@@ -159,22 +165,6 @@ public class myVariables {
     
     public static boolean isDebugModeOn() {
         return debugModeOn;
-    }
-    
-    public static String getNextIcon() {
-        return nextIcon;
-    }
-    
-    public static String getLoadIcon() {
-        return loadIcon;
-    }
-    
-    public static String getSearchIcon() {
-        return searchIcon;
-    }
-    
-    public static String getExportIcon() {
-        return exportIcon;
     }
     
     public static String getYearSelected() {
@@ -257,9 +247,6 @@ public class myVariables {
         return jhsf1Order;
     }
     
-    public static String getHandCursor() {
-        return handCursor;
-    }
     public static int[] getSectionViewRev3Order() {
         return sectionViewRev3Order;
     }
@@ -287,7 +274,24 @@ public class myVariables {
     public static int getAccessLevel() {
         return accessLevel;
     }
-
+    public static String getAccessLevelName(int customLevel){
+        //Use -1 if you want to get the access level of the current user logged in...put a value in custom otherwise.
+        switch(getAccessLevel()){
+            case 1:{
+                return "Teacher";
+            }case 2:{
+                return "Department Head";
+            }case 3:{
+                return "Curriculum Head";
+            }case 4:{
+                return "Registrar";
+            }case 5:{
+                return "Administrator";
+            }default:{
+                return "Guest";
+            }
+        }
+    }
     public static void setAccessLevel(int accessLevel) {
         myVariables.accessLevel = accessLevel;
     }
@@ -315,9 +319,64 @@ public class myVariables {
     //</editor-fold>
 
     //<editor-fold desc="Getters & Setters">
-    public static void setDebugMode(boolean onOff){
+    
+    public static int[] getGradesOrder() {
+        return gradesOrder;
+    }
+
+    public static String getViewStudentsIcon() {
+        return viewStudentsIcon;
+    }
+
+    public static String getGradingWindowIcon() {
+        return gradingWindowIcon;
+    }
+    
+    
+    public static int[] getEnrollmentViewMinimalOrder(){
+        return enrollmentViewMinimalOrder;
+    }
+
+    public static int[] getManagedSubjectsViewOrder() {
+        return managedSubjectsViewOrder;
+    }
+
+    public static String getAttendanceWindowIcon() {
+        return attendanceWindowIcon;
+    }
+
+    public static int[] getTeacherLoadsViewOrder() {
+        return teacherLoadsViewOrder;
+    }
+
+    public static void setDebugMode(boolean onOff) {
         debugModeOn = onOff;
     }
+    public static String getAssignSubjectTeacherIcon() {
+        return assignSubjectTeacherIcon;
+    }
+
+    public static int[] getEnrollmentViewOrder() {
+        return enrollmentViewOrder;
+    }
+
+    public static String getEnrollmentIcon() {
+        return enrollmentIcon;
+    }
+
+    public static int[] getSectionsOrder() {
+        return sectionsOrder;
+    }
+    
+    
+    public static String getSectionsIcon() {
+        return sectionsIcon;
+    }
+
+    public static String getEnrollmentWindowIcon() {
+        return enrollmentWindowIcon;
+    }
+    
     public static String getSchoolAddress() {
         return schoolAddress;
     }
@@ -354,14 +413,6 @@ public class myVariables {
     
     public static String getFormsIcon() {
         return formsIcon;
-    }
-    
-    public static String getAddIcon() {
-        return addIcon;
-    }
-
-    public static String getEditIcon() {
-        return editIcon;
     }
     
     public static String getRegistrationWindowIcon() {

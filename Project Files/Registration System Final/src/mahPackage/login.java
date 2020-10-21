@@ -244,7 +244,7 @@ public class login extends javax.swing.JFrame {
             buttons[n].setUI(new custom_styledButtonIU());
             buttons[n].setBackground(new Color(22,66,33));
             buttons[n].setForeground(Color.WHITE);            
-            buttons[n].setFont(new Font("Comic Sans MS",Font.BOLD,12));
+            buttons[n].setFont(myVariables.BUTTON_FONT);
             //buttons[n].setCursor(my.getCursor(myVariables.getHandCursor()));
             buttons[n].setCursor(new Cursor(Cursor.HAND_CURSOR));
             buttons[n].setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);

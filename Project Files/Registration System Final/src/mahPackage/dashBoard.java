@@ -39,6 +39,9 @@ public class dashBoard extends javax.swing.JFrame {
     public dashBoard() {
         my = new myFunctions();
         initComponents();
+        
+        lbLoggedInUser.setText("Welcome "+myVariables.getUserLoggedInName()+" ("+myVariables.getAccessLevelName(-1)+")");
+        
         loadColoredButtons();
         loadTabs();
         loadTabIcons();
@@ -328,6 +331,7 @@ public class dashBoard extends javax.swing.JFrame {
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
         lbSchoolAddress = new javax.swing.JLabel();
+        lbLoggedInUser = new javax.swing.JLabel();
         mainTab = new javax.swing.JTabbedPane();
 
         manageStudentsTab.setBackground(new java.awt.Color(11, 102, 35));
@@ -2973,6 +2977,11 @@ public class dashBoard extends javax.swing.JFrame {
         lbSchoolAddress.setForeground(new java.awt.Color(255, 255, 255));
         lbSchoolAddress.setText("SCHOOL_ADDRESS");
 
+        lbLoggedInUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbLoggedInUser.setForeground(new java.awt.Color(255, 255, 255));
+        lbLoggedInUser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbLoggedInUser.setText("Welcome USER_NAME, ACCESS_LEVEL");
+
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
@@ -2980,15 +2989,22 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(headerPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbSchoolName, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbSchoolAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(headerPanelLayout.createSequentialGroup()
+                        .addComponent(lbSchoolName, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbLoggedInUser))
+                    .addGroup(headerPanelLayout.createSequentialGroup()
+                        .addComponent(lbSchoolAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         headerPanelLayout.setVerticalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbSchoolName)
+                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbSchoolName)
+                    .addComponent(lbLoggedInUser))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbSchoolAddress)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -4318,7 +4334,12 @@ public class dashBoard extends javax.swing.JFrame {
         
         //Hide Table Columns
         if(!myVariables.isDebugModeOn()){
-            //my.hideColumns(studentTable, new int [] {0});
+            my.hideColumns(studentTable, new int [] {0});
+            my.hideColumns(studentTable1, new int [] {0,6});
+            my.hideColumns(subjectTable, new int [] {0});
+            my.hideColumns(subjectTable1, new int [] {0,3});
+            my.hideColumns(usersTable, new int [] {0});
+            my.hideColumns(usersTable1, new int [] {0,5,6,7});
         }
         
         //Set table fonts
@@ -4691,6 +4712,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbGradeLevel3;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel lbLoadId;
+    private javax.swing.JLabel lbLoggedInUser;
     private javax.swing.JLabel lbSchoolAddress;
     private javax.swing.JLabel lbSchoolName;
     private javax.swing.JLabel lbSearchResult;

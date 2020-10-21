@@ -2,6 +2,7 @@ package mahPackage;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -77,6 +78,15 @@ public class myFunctions {
     public void select_tab(JTabbedPane tabName,int selectedIndex){
         tabName.setSelectedIndex(selectedIndex);
     }
+    public void remove_multiple_tabs(JTabbedPane tabName,int [] indexASC){
+        for(int n=indexASC.length-1 ; n>=0 ; n--){
+            try {
+                tabName.removeTabAt(indexASC[n]);
+            } catch (Exception e) {
+                System.err.println("Tab already removed.");
+            }
+        }
+    }
     //</editor-fold>
     //<editor-fold desc="TABLE FUNCTIONS">
     /**
@@ -93,13 +103,16 @@ public class myFunctions {
     * @param clearTable set TRUE if you want to clear the table before inserting new DATA. FALSE if you wish to append results.
     */
     public void searchItem(String where,JTable resultTable,int viewTableIndex,int [] skipColumns,int [] combineColumns,boolean toNameFormat,boolean clearTable,JLabel resultText,JTextField searchField,boolean allowEmptyFields){
-        if(searchField.getText().length() <=0 && !allowEmptyFields){
-            showMessage("Please search someting", JOptionPane.ERROR_MESSAGE);
-            if(resultText!= null){
-                resultText.setText("Search using the search bar...");
+        if(searchField != null){
+            if(searchField.getText().length() <=0 && !allowEmptyFields){
+                showMessage("Please search someting", JOptionPane.ERROR_MESSAGE);
+                if(resultText!= null){
+                    resultText.setText("Search using the search bar...");
+                }
+                return;
             }
-            return;
         }
+        
         
         String from="";
         int [] order = null;
@@ -120,7 +133,24 @@ public class myFunctions {
                 from = "users";
                 order = myVariables.getUsersOrder();
                 break;
+            }case 4:{
+                from = "v_sections";
+                order = myVariables.getSectionsOrder();
+                break;
+            }case 5:{
+                from = "v_teacherloads";
+                order = myVariables.getTeacherLoadsViewOrder();
+                break;
+            }case 6:{
+                from = "v_enrollment_minimal";
+                order = myVariables.getEnrollmentViewMinimalOrder();
+                break;
+            }case 7:{
+                from = "attendance";
+                order = myVariables.getAttendanceOrder();
+                break;
             }default:{
+                System.err.println("View table index out of bounds. Please check your index selected.");
                 return;
             }
         }
@@ -152,6 +182,7 @@ public class myFunctions {
             }
         }else{
             showMessage("No Results found.", JOptionPane.PLAIN_MESSAGE);
+            clear_table_rows(resultTable);
             if(resultText!= null){
                 resultText.setText("Showing 0 results for '"+searchField.getText()+"'.");
             }
@@ -415,7 +446,59 @@ public class myFunctions {
         return null;
     }
     //U= Update Method //
-    
+    protected  boolean update_multiple_values(String tableName,String columnNames,String onDuplicateFoundUpdateWhat,String [] rows){
+        String toSend = "";
+        String [] columns = rows;
+        //Sort rows
+        for(int n=0;n<columns.length;n++){
+            toSend += columns[n];
+            if(n < columns.length-1){
+                toSend+="@@";
+            }
+        }
+        
+        try {
+            String url = myVariables.getIpAddress()+"updateMultipleValues.php?tName="+tableName+"&cNames="+columnNames+"&dPlicate="+onDuplicateFoundUpdateWhat+"&cValues=";
+            url = url.replace("%", "%25");
+            toSend = toSend.replace("%", "%25");
+            toSend = toSend.replace("&", "%26");
+            url += toSend;
+            url = url.replace(" ", "%20");
+            
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            // optional default is GET
+            con.setRequestMethod("GET");
+            //add request header
+            con.setRequestProperty("User-Agent", "Mozilla/5.0");
+            int responseCode = con.getResponseCode();
+            
+            System.out.println("\nSending 'GET' request to URL : " + url);
+            System.out.println("Response Code : " + responseCode);
+            
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+               response.append(inputLine);
+            }
+            in.close();
+            //print in String
+            //System.out.println(response.toString());
+
+
+            //Read JSON response and print
+            JSONObject myResponse = new JSONObject(response.toString());
+            JSONArray res = myResponse.getJSONArray("queryResult");
+            //System.out.println(res.getJSONObject(0).getString("result"));
+            
+            return true;
+        } catch (Exception e) {
+            System.err.println("Exception Found");
+            return false;
+        }
+    }
     //JSON Query
     public boolean update_values(String tableName,String [] sets, String where){
         String set = "";
@@ -562,6 +645,72 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
+    public String getDateNow(boolean includeTime){
+        String result [] = return_values("now() AS 'dateNow'", "", "", new int [] {0});
+        if(result != null){
+            String dateNow = getValueAtColumn(result[0], 0);
+            
+            if(includeTime){
+                return dateNow;
+            }else{
+                String dates [] = dateNow.split(" ");
+                return dates[0];
+            }
+        }else{
+            return null;
+        }
+    }
+    
+    public String from12To24HourFormat(String time12Hour){
+        try {
+            String time [] = time12Hour.split(" ");
+            String temp [] = time[0].split(":");
+            int hour = Integer.valueOf(temp[0]);
+            int minute = Integer.valueOf(temp[1]);
+            int seconds = Integer.valueOf(temp[2]);
+            String meridan = time[1];
+            
+            String finalTime = "";
+            //Check for invalid time
+            if(hour > 12 || hour < 1){
+                throw new Exception("Invalid Hour.");
+            }
+            if(minute < 0 || minute > 59){
+                throw new Exception("Invalid Minute.");
+            }
+            
+            if(meridan.contains("PM") || meridan.contains("pm")){
+               hour+=12;
+            }
+            finalTime += hour<10? "0"+hour : hour;
+            finalTime+=":";
+            finalTime += minute<10? "0"+minute : minute;
+            finalTime+=":";
+            finalTime+=seconds<10? "0"+seconds : seconds;
+            
+            return finalTime;
+        } catch (Exception e) {
+            showMessage("Invalid time provided. Time must be in a '12:00:00 AM' format.\nMore info: "+e.getMessage(), JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }
+    public String from24To12HourFormat(String time24Hour){
+        
+        return null;
+    }
+    
+    public boolean checkForDuplicates(String tableName,String whereLimitExluded,int [] order){
+        whereLimitExluded +=" LIMIT 1"; //For fast search. You only need to find at least 1 dupliclate
+        String result [] = return_values("*", tableName, whereLimitExluded, order);
+        
+        if(result != null){
+            return true;
+        }
+        return false;
+    }
+    public ActionEvent getButtonPressedEvent(Object source){
+        return new ActionEvent(source,ActionEvent.ACTION_FIRST, "");
+    }
     public int login(String userName,String passWord,int [] accessLevelAllowed){
         String [] result = return_values("*", "users","WHERE user_name ='"+userName+"' AND user_password = '"+passWord+"'",myVariables.getUsersOrder());
         if(result != null){
@@ -596,7 +745,18 @@ public class myFunctions {
         
         return  toSend;
     }
-    
+    public String setValueAtColumn(String line, int indexAt, String newValue){
+        String [] temp = line.split("@@");
+        String newLine = "";
+        for(int n=0;n<temp.length;n++){
+            if(n == indexAt){
+                temp[n] = newValue;
+            }            
+            newLine+=temp[n]+"@@";
+        }
+        
+        return newLine;
+    }
     public String getValueAtColumn(String line,int indexAt){
         String [] temp = line.split("@@");
         return temp[indexAt];
@@ -789,12 +949,139 @@ public class myFunctions {
         DefaultComboBoxModel model = (DefaultComboBoxModel) dropDownName.getModel();
         model.removeElementAt(index);
     }
+    public String numberToWordDateInsideRow(String line,int column){
+        String temp [] = line.split("@@");
+        String dateWithTime []  = temp[column].split(" ");
+        
+        temp[column] = numberToWordDate(dateWithTime[0])+" "+dateWithTime[1];
+        
+        String toSend = "";
+        for(int n=0;n<temp.length;n++){
+            toSend+=temp[n];
+            
+            if(n<temp.length-1){
+                toSend+="@@";
+            }
+        }
+        return  toSend;
+    }
+    public String numberToWordDate(String date){
+        String temp [] = date.split(" ");
+        String separated [] = temp[0].split("-");
+        String finalDate = "";
+        
+        System.err.println(date);
+        // <editor-fold desc="Month">
+        switch (Integer.parseInt(separated[1])){
+            case 1:{
+                finalDate = "January";
+                break;
+            }case 2:{
+                finalDate = "February";
+                break;
+            }case 3:{
+                finalDate = "March";
+                break;
+            }case 4:{
+                finalDate = "April";
+                break;
+            }case 5:{
+                finalDate = "May";
+                break;
+            }case 6:{
+                finalDate = "June";
+                break;
+            }case 7:{
+                finalDate = "July";
+                break;
+            }case 8:{
+                finalDate = "August";
+                break;
+            }case 9:{
+                finalDate = "September";
+                break;
+            }case 10:{
+                finalDate = "October";
+                break;
+            }case 11:{
+                finalDate = "November";
+                break;
+            }case 12:{
+                finalDate = "December";
+                break;
+            }
+        }
+        // </editor-fold>
+        //Day
+        finalDate += " "+separated[2];
+        //year
+        finalDate +=", "+separated[0];
+        
+        if(temp.length > 1){
+            finalDate+=" "+temp[1];
+        }
+        return finalDate;
+    }
+    public String jCalendarToNumberDate(String jCalendarDateString,boolean includeTime){
+        String [] temp = jCalendarDateString.split(" ");
+        String m = temp[1];
+        String d = temp[2];
+        String time = temp[3];
+        String y = temp[5];
+        
+        switch(m){
+            case "Jan":{
+                m = "01";
+                break;
+            }case "Feb":{
+                m = "02";
+                break;
+            }case "Mar":{
+                m = "03";
+                break;
+            }case "Apr":{
+                m = "04";
+                break;
+            }case "May":{
+                m = "05";
+                break;
+            }case "Jun":{
+                m = "06";
+                break;
+            }case "Jul":{
+                m = "07";
+                break;
+            }case "Aug":{
+                m = "08";
+                break;
+            }case "Sep":{
+                m = "09";
+                break;
+            }case "Oct":{
+                m = "10";
+                break;
+            }case "Nov":{
+                m = "11";
+                break;
+            }case "Dec":{
+                m = "12";
+                break;
+            }
+        }
+        if(includeTime){
+            return y+"-"+m+"-"+d+" "+time;
+        }else{
+            return y+"-"+m+"-"+d;
+        }        
+    }
+    
     //</editor-fold>
     public ImageIcon getImgIcn(String url){
         return new ImageIcon(getClass().getResource(url));
     }
     
-    public Image getImgage(String url){
+    public Image getImage(String url){
         return new ImageIcon(getClass().getResource(url)).getImage();
     }
 }
+
