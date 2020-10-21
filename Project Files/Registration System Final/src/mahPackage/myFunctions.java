@@ -645,6 +645,40 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
+    public String multipleColumnSearch(String columnValues, String columnValuesOnDisplay, String logOperatorPerColumn, String toSearch){
+        String [] values = toSearch.split(",");                         //Paderogao,Phil Rey,Estrella
+        String [] columns = columnValues.split(",");                    //lName,fName,mName
+        String [] logicalOperators = logOperatorPerColumn.split(",");   //=,=,LIKE
+        int valLength = values.length;
+        int colLen = columns.length;
+        
+        String newWhere = "";
+        
+        if(valLength > colLen){
+            showMessage("Search much be in a \""+columnValuesOnDisplay+"\" format.", JOptionPane.WARNING_MESSAGE);
+            return null;
+        }
+        
+        for(int n=0;n<valLength;n++){
+            switch(logicalOperators[n]){
+                case "=":{
+                    newWhere+=columns[n]+"='"+values[n].trim()+"' ";
+                    break;
+                }case "!=":{
+                    newWhere+=columns[n]+"!='"+values[n].trim()+"' ";
+                    break;
+                }case "LIKE":{
+                    newWhere+=columns[n]+" LIKE '%"+values[n].trim()+"%' ";
+                    break;
+                }
+            }
+            if(n<valLength-1){
+                newWhere+="AND ";
+            }
+        }
+        
+        return newWhere;
+    }
     public String getDateNow(boolean includeTime){
         String result [] = return_values("now() AS 'dateNow'", "", "", new int [] {0});
         if(result != null){

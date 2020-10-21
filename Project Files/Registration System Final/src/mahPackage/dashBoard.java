@@ -3123,7 +3123,25 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_addNewStudentHandler
 
     private void searchStudentHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentHandler
-        my.searchItem("", studentTable, 0, null, null, false, true, lbSearchResult, tfSearchStudent,true);
+        String toSearch = tfSearchStudent.getText().trim();
+        String where = "WHERE lrn='"+toSearch+"' ";
+        
+        if(myVariables.getAccessLevel() <5){
+            if(toSearch.contains(",")){
+                String additionalQuery;
+                additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
+                if(additionalQuery == null){
+                    return;
+                }
+
+                where+="OR ("+additionalQuery+")";
+            }
+
+            my.searchItem(where, studentTable, 0, null, null, false, true, lbSearchResult, tfSearchStudent,false);
+        }else{
+            where = "WHERE lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%'";
+            my.searchItem(where, studentTable, 0, null, null, false, true, lbSearchResult, tfSearchStudent,true);
+        }
         clearAddStudentFields();
         
         if(jTabbedPane2.getTabCount() > 1){
@@ -3140,11 +3158,13 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbGradeLevel1ActionPerformed
 
     private void searchSubjects(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSubjects
-        //my.searchItem("", subjectTable, 0, null, null, false, true, lbSearchResult, tfSearchStudent);
+        String toSearch = tfSearchSubject.getText().trim();
+        String where = "WHERE subjectCode LIKE '%"+toSearch+"%' OR description LIKE '%"+toSearch+"%'";
+        
         if(subjectsTab.getTabCount() > 1){
             subjectsTab.removeTabAt(1);
         }        
-        my.searchItem("", subjectTable, 1,null, null, false, true, lbSearchResult2, tfSearchSubject,true);
+        my.searchItem(where, subjectTable, 1,null, null, false, true, lbSearchResult2, tfSearchSubject,true);
     }//GEN-LAST:event_searchSubjects
 
     private void loadStudentPersonalInfo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadStudentPersonalInfo
@@ -3206,7 +3226,25 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_loadStudentPersonalInfo
 
     private void searchStudentForPrsnlInfHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentForPrsnlInfHandler
-        my.searchItem("", studentTable1, 0, null, null, false, true, lbSearchResult1, tfSearchStudent1,true);
+        String toSearch = tfSearchStudent1.getText().trim();
+        String where = "WHERE lrn='"+toSearch+"' ";
+        
+        if(myVariables.getAccessLevel() <5){
+            if(toSearch.contains(",")){
+                String additionalQuery;
+                additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
+                if(additionalQuery == null){
+                    return;
+                }
+
+                where+="OR ("+additionalQuery+")";
+            }
+
+            my.searchItem(where, studentTable1, 0, null, null, false, true, lbSearchResult1, tfSearchStudent1,false);
+        }else{
+            where = "WHERE lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%'";
+            my.searchItem(where, studentTable1, 0, null, null, false, true, lbSearchResult1, tfSearchStudent1,true);
+        }
         enableDisablePersonalInfoFields(false, true);
     }//GEN-LAST:event_searchStudentForPrsnlInfHandler
 
@@ -3219,10 +3257,13 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbGradeLevel2ActionPerformed
 
     private void searchLoadsHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchLoadsHandler
+        String toSearch = tfSearchSubjectLoad.getText().trim();
+        String where = "WHERE b_loadName LIKE '%"+toSearch+"%' ";
+        
         if(subjectLoadTabs.getTabCount() > 1){
             subjectLoadTabs.remove(1);
         }
-        my.searchItem("", subjectTable1, 2, null, null, false, true, lbSearchResult3, tfSearchSubjectLoad, true);
+        my.searchItem(where, subjectTable1, 2, null, null, false, true, lbSearchResult3, tfSearchSubjectLoad, true);
     }//GEN-LAST:event_searchLoadsHandler
 
     private void findSubjectHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findSubjectHandler
@@ -3416,10 +3457,30 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbAccessLevelActionPerformed
 
     private void searchUsersHander(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUsersHander
+        String toSearch = tfSearchUser.getText().trim();
+        String where = "WHERE user_Lname='"+toSearch+"' OR user_Fname='"+toSearch+"' OR user_Mname='"+toSearch+"'";
+        
+        if(myVariables.getAccessLevel() <5){
+            if(toSearch.contains(",")){
+                String additionalQuery;
+                additionalQuery = my.multipleColumnSearch("user_Lname,user_Fname,user_Mname", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
+                if(additionalQuery == null){
+                    return;
+                }
+
+                where+=" OR ("+additionalQuery+")";
+            }
+
+            my.searchItem(where, usersTable, 3, null, null, false, true, lbSearchResult4, tfSearchUser,false);
+        }else{
+            where = "WHERE user_Lname LIKE'%"+toSearch+"%' OR user_Fname LIKE'%"+toSearch+"%' OR user_Mname LIKE'%"+toSearch+"%'";
+            my.searchItem(where, usersTable, 3, null, null, false, true, lbSearchResult4, tfSearchUser,true);
+        }
+        
         if(usersTab.getTabCount() > 1){
             usersTab.remove(1);
         }
-        my.searchItem("", usersTable, 3, null, null, false, true, lbSearchResult4, tfSearchUser, true);
+        //my.searchItem("", usersTable, 3, null, null, false, true, lbSearchResult4, tfSearchUser, true);
     }//GEN-LAST:event_searchUsersHander
 
     private void usersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersTableMouseClicked
@@ -3506,7 +3567,27 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPasswordActionPerformed
 
     private void searchUserPersonalInfoHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserPersonalInfoHandler
-        my.searchItem("", usersTable1, 3, null, null, false, true, lbSearchResult5, tfSearchUser1, true);
+        String toSearch = tfSearchUser1.getText().trim();
+        String where = "WHERE user_Lname='"+toSearch+"' OR user_Fname='"+toSearch+"' OR user_Mname='"+toSearch+"'";
+        
+        if(myVariables.getAccessLevel() <5){
+            if(toSearch.contains(",")){
+                String additionalQuery;
+                additionalQuery = my.multipleColumnSearch("user_Lname,user_Fname,user_Mname", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
+                if(additionalQuery == null){
+                    return;
+                }
+
+                where+=" OR ("+additionalQuery+")";
+            }
+
+            my.searchItem(where, usersTable1, 3, null, null, false, true, lbSearchResult5, tfSearchUser1,false);
+        }else{
+            where = "WHERE user_Lname LIKE'%"+toSearch+"%' OR user_Fname LIKE'%"+toSearch+"%' OR user_Mname LIKE'%"+toSearch+"%'";
+            my.searchItem(where, usersTable1, 3, null, null, false, true, lbSearchResult5, tfSearchUser1,true);
+        }
+        
+        //my.searchItem("", usersTable1, 3, null, null, false, true, lbSearchResult5, tfSearchUser1, true);
         enableDisableUsersPersonalInfoFields(false, true);
     }//GEN-LAST:event_searchUserPersonalInfoHandler
 
@@ -4280,7 +4361,12 @@ public class dashBoard extends javax.swing.JFrame {
             if(clearFields){
                 btnEdit1.setEnabled(false);
             }else{
-                btnEdit1.setEnabled(true);
+                //Enable only for Registrar and Admin Only
+                if(myVariables.getAccessLevel() == 4 || myVariables.getAccessLevel() == 5){
+                    btnEdit1.setEnabled(true);
+                }else{
+                    btnEdit1.setEnabled(false);
+                }
             }
             btnSaveChanges6.setEnabled(false);
         }
