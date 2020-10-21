@@ -445,6 +445,75 @@ public class myFunctions {
         
         return null;
     }
+    public String [] return_values_silent(String select,String from,String where,int [] order){
+        String [] lines;
+        String cLine;
+        
+        try {
+            String url = myVariables.getIpAddress()+"returnValues.php?select="+select+"&from="+from+"&where="+where;
+            //System.out.println(url);
+            url = url.replace("%", "%25");
+            url = url.replace(" ", "%20");
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            // optional default is GET
+            con.setRequestMethod("GET");
+            //add request header
+            con.setRequestProperty("User-Agent", "Mozilla/5.0");
+            int responseCode = con.getResponseCode();
+            
+            if(responseCode != 200){
+                //JOptionPane.showMessageDialog(null, "Server Error. Please check your connection.");
+                return null;
+            }
+            
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+               response.append(inputLine);
+            }
+            in.close();
+            //print in String
+            //System.out.println(response.toString());
+            
+
+            //Read JSON response and print
+            JSONObject myResponse = new JSONObject(response.toString());
+            JSONArray res = myResponse.getJSONArray("result");
+            
+            //Get column names
+            
+            
+            
+            if(res.length() > 0){
+                //Get column names
+                JSONObject sample = res.getJSONObject(0);
+                cLine = "";
+                
+                //Get values based on column name keys
+                for(int n=0;n<res.length();n++){
+                    JSONObject row = res.getJSONObject(n);
+                    String temp = "";
+                    for(int x=0;x<order.length;x++){
+                        //System.err.println(row.names().getString(order[x]));
+                        temp+=row.getString(row.names().getString(order[x]))+"@@";
+                    }
+                    cLine+=temp+"//";
+                }
+                lines = cLine.split("//");
+                return lines;
+            }else{
+                System.err.println("No result");
+            }
+        } catch (Exception e) {
+            //showMessage("Lost Connection to Database. \n\nError: "+e.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
+            //System.err.println("Exception Found "+e.getLocalizedMessage());
+        }
+        
+        return null;
+    }
     //U= Update Method //
     protected  boolean update_multiple_values(String tableName,String columnNames,String onDuplicateFoundUpdateWhat,String [] rows){
         String toSend = "";
@@ -970,7 +1039,7 @@ public class myFunctions {
         String separated [] = temp[0].split("-");
         String finalDate = "";
         
-        System.err.println(date);
+        //System.err.println(date);
         // <editor-fold desc="Month">
         switch (Integer.parseInt(separated[1])){
             case 1:{

@@ -19,7 +19,7 @@ public class timeThread extends SwingWorker<String, String>{
             String timeFull[];
             String dateTime[];
             while (true) {                
-                result = my.return_values("now()", "", "",new int[] {0});
+                result = my.return_values_silent("now()", "", "",new int[] {0});
                 if(result != null){
                     timeFull = result[0].split("@@");
                     dateTime = timeFull[0].split(" ");

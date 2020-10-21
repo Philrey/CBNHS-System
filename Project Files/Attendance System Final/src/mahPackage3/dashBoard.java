@@ -40,7 +40,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         tr = new timeThread(lbDateTime);
         lbLoggedInUser.setText("Welcome "+myVariables.getUserLoggedInName()+" ("+myVariables.getAccessLevelName(-1)+")");
-        //tr.execute();
+        tr.execute();
         
         loadTabs();
         loadTabIcons();

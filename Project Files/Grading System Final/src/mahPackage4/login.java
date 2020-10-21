@@ -156,6 +156,7 @@ public class login extends javax.swing.JFrame {
         jPanel2.setOpaque(false);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/depeduseplogo.png"))); // NOI18N
 
         jScrollPane1.setBorder(null);
 
