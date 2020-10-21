@@ -4387,6 +4387,11 @@ public class dashBoard extends javax.swing.JFrame {
         mainTab.add("User's Personal Info",usersPersonalInfoTab);
         
         mainTab.setFont(myVariables.TAB_HEADER_FONT);
+        
+        my.remove_multiple_tabs(jTabbedPane2, new int [] {1});
+        my.remove_multiple_tabs(subjectsTab, new int [] {1});
+        my.remove_multiple_tabs(subjectLoadTabs, new int [] {1});
+        my.remove_multiple_tabs(usersTab, new int [] {1});
     }
     private void loadTabIcons(){
         Icon tabIcons [] = {
