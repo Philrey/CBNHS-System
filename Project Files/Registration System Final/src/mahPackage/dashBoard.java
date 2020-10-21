@@ -3056,9 +3056,9 @@ public class dashBoard extends javax.swing.JFrame {
         
         String [] fields = {
             "null",
-            tfFname.getText(),
-            tfMname.getText(),
-            tfLName.getText(),
+            my.convertEscapeCharacters(tfFname.getText().trim()),
+            my.convertEscapeCharacters(tfMname.getText().trim()),
+            my.convertEscapeCharacters(tfLName.getText().trim()),
             tfStudentLrn.getText(),
             rbMale.isSelected()?"Male":"Female",
             tfInitialGrade.getText(),
@@ -3407,12 +3407,12 @@ public class dashBoard extends javax.swing.JFrame {
         //Get text fields
         String [] fields = {
             "null",
-            tfLName1.getText(),
-            tfFname1.getText(),
-            tfMname1.getText(),
+            my.convertEscapeCharacters(tfLName1.getText().trim()),
+            my.convertEscapeCharacters(tfFname1.getText().trim()),
+            my.convertEscapeCharacters(tfMname1.getText().trim()),
             jcbGender2.getSelectedIndex()==0?"Male":"Female",
-            tfUserName.getText(),
-            tfPassword.getText(),
+            my.convertEscapeCharacters(tfUserName.getText()),
+            my.convertEscapeCharacters(tfPassword.getText()),
             String.valueOf(jcbAccessLevel.getSelectedIndex()+1),
         };
         
@@ -3990,8 +3990,8 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_saveLoadChangesHandler
 
     private void addNewSubjectHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewSubjectHandler
-        String subjectCode = tfSubjectCode.getText();
-        String description = tfSubjectDescription.getText();
+        String subjectCode = my.convertEscapeCharacters(tfSubjectCode.getText().trim());
+        String description = my.convertEscapeCharacters(tfSubjectDescription.getText().trim());
         String gradeLevel = "";
         
         switch(jcbGradeLevel.getSelectedIndex()){
@@ -4029,7 +4029,7 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_addNewSubjectHandler
 
     private void addNewLoadHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewLoadHandler
-        String loadName = tfLoadName1.getText();
+        String loadName = my.convertEscapeCharacters(tfLoadName1.getText().trim());
         String gradeLevel = "";
         switch(jcbGradeLevel2.getSelectedIndex()){
             case 0:{

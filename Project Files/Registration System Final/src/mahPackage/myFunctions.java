@@ -646,6 +646,9 @@ public class myFunctions {
     //</editor-fold>
     //<editor-fold desc="Other Functions">
     public String convertEscapeCharacters(String toConvert){
+        //This function is primarily used for user input with possible escape characters being typed.
+        //Usually on SEARCH FIELDS and INPUT FIELDS during add_values and/or update_values
+        
         if(toConvert.contains("\\")){
             toConvert = toConvert.replace("\\", "\\\\");
         }
