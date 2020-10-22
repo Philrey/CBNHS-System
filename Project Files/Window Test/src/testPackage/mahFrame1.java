@@ -132,9 +132,10 @@ public class mahFrame1 extends javax.swing.JFrame {
         int currPos = jButton1.getLocationOnScreen().x;
         
         anim.jButtonXRight(currPos, currPos+100, 1, 15, jButton1);
-        
-//new mahFrame2().setVisible(true);
-        //this.dispose();
+        animationWindow ani = new animationWindow();
+        ani.pack();
+        ani.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
