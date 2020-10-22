@@ -6,6 +6,8 @@
 package testPackage;
 
 import AppPackage.AnimationClass;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -38,7 +40,13 @@ public class animationWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        card.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         card.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testPackage/Card Example.jpg"))); // NOI18N
+        card.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cardMouseEntered(evt);
+            }
+        });
         getContentPane().add(card);
         card.setBounds(160, 30, 110, 140);
 
@@ -60,10 +68,12 @@ public class animationWindow extends javax.swing.JFrame {
         getContentPane().add(jButton2);
         jButton2.setBounds(20, 420, 67, 23);
 
+        card1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         card1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testPackage/Card Example.jpg"))); // NOI18N
         getContentPane().add(card1);
         card1.setBounds(280, 30, 110, 140);
 
+        card2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         card2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/testPackage/Card Example.jpg"))); // NOI18N
         getContentPane().add(card2);
         card2.setBounds(400, 30, 110, 140);
@@ -76,9 +86,9 @@ public class animationWindow extends javax.swing.JFrame {
         if(animator != null){
             if(animator.isDone() && animator.getProgress() == 100){
                 movingFormsClass [] animations = {
-                    new movingFormsClass(card.getX(),card.getX()-350, 1, 1, card,3),
-                    new movingFormsClass(card1.getX(),card1.getX()-350, 1, 1, card1,3),
-                    new movingFormsClass(card2.getX(),card2.getX()-350, 1, 1, card2,3),
+                    new movingFormsClass(card.getX(),card.getX()-350, 2, 1, card,3),
+                    new movingFormsClass(card1.getX(),card1.getX()-350, 2, 1, card1,3),
+                    new movingFormsClass(card2.getX(),card2.getX()-350, 2, 1, card2,3),
                 };
                 
                 animator = new animationThread(animations, 40);
@@ -88,9 +98,9 @@ public class animationWindow extends javax.swing.JFrame {
             }
         }else{
             movingFormsClass [] animations = {
-                new movingFormsClass(card.getX(),card.getX()-350, 1, 1, card,3),
-                new movingFormsClass(card1.getX(),card1.getX()-350, 1, 1, card1,3),
-                new movingFormsClass(card2.getX(),card2.getX()-350, 1, 1, card2,3),
+                new movingFormsClass(card.getX(),card.getX()-350, 2, 1, card,3),
+                new movingFormsClass(card1.getX(),card1.getX()-350, 2, 1, card1,3),
+                new movingFormsClass(card2.getX(),card2.getX()-350, 2, 1, card2,3),
             };
 
             animator = new animationThread(animations, 40);
@@ -104,9 +114,9 @@ public class animationWindow extends javax.swing.JFrame {
         if(animator != null){
             if(animator.isDone() && animator.getProgress() == 100){
                 movingFormsClass [] animations = {
-                    new movingFormsClass(card2.getX(),card2.getX()+350, 1, 1, card2,4),
-                    new movingFormsClass(card1.getX(),card1.getX()+350, 1, 1, card1,4),
-                    new movingFormsClass(card.getX(),card.getX()+350, 1, 1, card,4),
+                    new movingFormsClass(card2.getX(),card2.getX()+350, 2, 1, card2,4),
+                    new movingFormsClass(card1.getX(),card1.getX()+350, 2, 1, card1,4),
+                    new movingFormsClass(card.getX(),card.getX()+350, 2, 1, card,4),
                 };
                 
                 animator = new animationThread(animations, 40);
@@ -116,9 +126,9 @@ public class animationWindow extends javax.swing.JFrame {
             }
         }else{
             movingFormsClass [] animations = {
-                new movingFormsClass(card2.getX(),card2.getX()+350, 1, 1, card2,4),
-                new movingFormsClass(card1.getX(),card1.getX()+350, 1, 1, card1,4),
-                new movingFormsClass(card.getX(),card.getX()+350, 1, 1, card,4),
+                new movingFormsClass(card2.getX(),card2.getX()+350, 2, 1, card2,4),
+                new movingFormsClass(card1.getX(),card1.getX()+350, 2, 1, card1,4),
+                new movingFormsClass(card.getX(),card.getX()+350, 2, 1, card,4),
             };
 
             animator = new animationThread(animations, 40);
@@ -127,6 +137,18 @@ public class animationWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void cardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardMouseEntered
+        card.setVisible(false);
+        card.setIcon(rescaleImage(new ImageIcon("Card Example.jpg"), 100, 50));
+        card.setVisible(true);
+    }//GEN-LAST:event_cardMouseEntered
+    
+    private ImageIcon rescaleImage(ImageIcon image,int width,int hieght){
+        Image img = image.getImage();
+        Image newImg = img.getScaledInstance(width, hieght, Image.SCALE_SMOOTH);
+        ImageIcon imageToSend = new ImageIcon(newImg);
+        return imageToSend;
+    }
     /**
      * @param args the command line arguments
      */
