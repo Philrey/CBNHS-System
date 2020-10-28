@@ -1786,7 +1786,7 @@ public class dashBoard extends javax.swing.JFrame {
             }
         }
     }
-//<editor-fold desc="Custom Functions"> 
+    //<editor-fold desc="Custom Functions"> 
     JDialog dialog;
     JDialog seconDaryDialog;
     

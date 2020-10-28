@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mahPackage4;
+package mahPackage5;
 
 import java.awt.Color;
 import java.awt.ComponentOrientation;
@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Phil Rey
+ * @author Phil Rey Paderogao
  */
 public class login extends javax.swing.JFrame {
     myFunctions my;
@@ -74,8 +74,8 @@ public class login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Welcome to Grading System");
-        setIconImage(my.getImgIcn(myVariables.getGradingWindowIcon()).getImage()
+        setTitle("Welcome to Book Keeping System");
+        setIconImage(my.getImgIcn(myVariables.getBookKeepingWindowIcon()).getImage()
         );
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -105,7 +105,7 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_login_16px.png"))); // NOI18N
+        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_login_16px.png"))); // NOI18N
         btnLogin.setText("Login");
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -117,11 +117,11 @@ public class login extends javax.swing.JFrame {
         jCheckBox1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(22, 66, 33));
         jCheckBox1.setText("Remember Me");
-        jCheckBox1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        jCheckBox1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
         jCheckBox1.setIconTextGap(10);
         jCheckBox1.setOpaque(false);
-        jCheckBox1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_tick_box_20px.png"))); // NOI18N
-        jCheckBox1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+        jCheckBox1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_tick_box_20px.png"))); // NOI18N
+        jCheckBox1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -130,11 +130,11 @@ public class login extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextField1)
                     .addComponent(jPasswordField1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 199, Short.MAX_VALUE)
                         .addComponent(jCheckBox1)))
                 .addContainerGap())
         );
@@ -157,7 +157,7 @@ public class login extends javax.swing.JFrame {
         jPanel2.setOpaque(false);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/depeduseplogo.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/depeduseplogo.png"))); // NOI18N
 
         jScrollPane1.setBorder(null);
 
@@ -165,7 +165,7 @@ public class login extends javax.swing.JFrame {
         jTextArea1.setColumns(10);
         jTextArea1.setFont(new java.awt.Font("Segoe UI", 2, 13)); // NOI18N
         jTextArea1.setLineWrap(true);
-        jTextArea1.setText("This system was developed in collaboration with the Department of Education (DepED), University of Southeastern Philippines (USeP) and Crossing Bayabas National High School (CBNHS) intended to automate the grading process.");
+        jTextArea1.setText("This system was developed in collaboration with the Department of Education (DepED), University of Southeastern Philippines (USeP) and Crossing Bayabas National High School (CBNHS) intended to automate the book distribution process.");
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTextArea1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -198,13 +198,13 @@ public class login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(22, 66, 33));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("GRADING SYSTEM");
+        jLabel1.setText("BOOK KEEPING SYSTEM");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 360, 98));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/Login Screen 2.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/Login Screen 2.png"))); // NOI18N
         jLabel2.setMaximumSize(new java.awt.Dimension(9999, 9999));
         jLabel2.setMinimumSize(new java.awt.Dimension(1025, 500));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 500));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
 
         pack();
         setLocationRelativeTo(null);
@@ -242,9 +242,6 @@ public class login extends javax.swing.JFrame {
             }
         }
     }
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Windows look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
