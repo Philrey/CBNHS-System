@@ -313,6 +313,11 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnSaveBook1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_save_16px.png"))); // NOI18N
         btnSaveBook1.setText("Save Changes");
+        btnSaveBook1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveBook1ActionPerformed(evt);
+            }
+        });
 
         jPanel9.setBackground(new java.awt.Color(22, 66, 33));
 
@@ -839,6 +844,33 @@ public class dashBoard extends javax.swing.JFrame {
 
     private void booksTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booksTableMouseClicked
         if(evt.getClickCount() == 2){
+            int row = booksTable.getSelectedRow();
+            String bookId = booksTable.getValueAt(row, 0).toString();
+            String code = booksTable.getValueAt(row, 1).toString();
+            String name = booksTable.getValueAt(row, 2).toString();
+            
+            int gradeLevel = Integer.parseInt(booksTable.getValueAt(row, 3).toString());
+            
+            lbBookId.setText(bookId);
+            tfBookCode1.setText(code);
+            tfBookName1.setText(name);
+            
+            switch(gradeLevel){
+                case 7:{
+                    jcbBookGradeLevel1.setSelectedIndex(0);
+                    break;
+                }case 8:{
+                    jcbBookGradeLevel1.setSelectedIndex(1);
+                    break;
+                }case 9:{
+                    jcbBookGradeLevel1.setSelectedIndex(2);
+                    break;
+                }case 10:{
+                    jcbBookGradeLevel1.setSelectedIndex(3);
+                    break;
+                }
+            }
+            
             showCustomDialog("Edit Book Selected", editBookDialog, true, 250, 350, false);
         }else{
             
@@ -883,7 +915,7 @@ public class dashBoard extends javax.swing.JFrame {
 
     private void searchBookHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBookHandler
         String toSearch = tfSearchBook.getText().trim();
-        
+        clearAddBookFields();
         my.searchItem("", booksTable, 8, null, null, false, true, lbSearchResult1, tfSearchBook, true);
     }//GEN-LAST:event_searchBookHandler
 
@@ -891,6 +923,11 @@ public class dashBoard extends javax.swing.JFrame {
         String code = my.convertEscapeCharacters(tfBookCode.getText().trim());
         String name = my.convertEscapeCharacters(tfBookName.getText().trim());
         String gradeLevel = "";
+        
+        if(code.length()<=0 || name.length()<=0){
+            my.showMessage("Please fill-up all fields.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
         switch (jcbBookGradeLevel.getSelectedIndex()){
             case 0:{
@@ -913,16 +950,58 @@ public class dashBoard extends javax.swing.JFrame {
         };
         if(my.add_values("books", "id,bookCode,bookName,gradeLevel", values)){
             my.showMessage("Addedd Succesfully.", JOptionPane.INFORMATION_MESSAGE);
-            closeCustomDialog();
             searchBookHandler(my.getButtonPressedEvent(evt.getSource()));
         }else{
             my.showMessage("Adding Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSaveBookActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnSaveBook1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveBook1ActionPerformed
+        String bookId = lbBookId.getText();
+        String code = my.convertEscapeCharacters(tfBookCode1.getText().trim());
+        String name = my.convertEscapeCharacters(tfBookName1.getText().trim());
+        String gradeLevel = "";
+        
+        if(code.length()<=0 || name.length()<=0){
+            my.showMessage("Please fill-up all fields.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        switch (jcbBookGradeLevel1.getSelectedIndex()){
+            case 0:{
+                gradeLevel = "7";
+                break;
+            }case 1:{
+                gradeLevel = "8";
+                break;
+            }case 2:{
+                gradeLevel = "9";
+                break;
+            }case 3:{
+                gradeLevel = "10";
+                break;
+            }
+        }
+        
+        String [] sets = {
+            "bookCode='"+code+"'",
+            "bookName='"+name+"'",
+            "gradeLevel='"+gradeLevel+"'",
+        };
+        
+        if(my.update_values("books", sets, "id='"+bookId+"'")){
+            my.showMessage("Update Successful.", JOptionPane.INFORMATION_MESSAGE);
+            closeCustomDialog();
+            searchBookHandler(my.getButtonPressedEvent(evt.getSource()));
+        }else{
+            my.showMessage("Update Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSaveBook1ActionPerformed
+
+    private void clearAddBookFields(){
+        tfBookCode.setText("");
+        tfBookName.setText("");
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1053,10 +1132,10 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadTabIcons(){
         Icon tabIcons [] = {
+            my.getImgIcn(myVariables.getBooksIcon()),
+            my.getImgIcn(myVariables.getBookTemplatesIcon()),
             my.getImgIcn(myVariables.getSectionsIcon()),
-            my.getImgIcn(myVariables.getSectionsIcon()),
-            my.getImgIcn(myVariables.getSectionsIcon()),
-            my.getImgIcn(myVariables.getSectionsIcon()),
+            my.getImgIcn(myVariables.getViewStudentsIcon()),
         };
         
         for(int n=0;n<tabIcons.length;n++){

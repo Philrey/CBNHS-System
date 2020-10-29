@@ -92,6 +92,8 @@ public class myVariables {
     private static final String formsIcon = "Imagez/Icons/icons8_microsoft_excel_2019_25px.png";
     private static final String enrollmentIcon = "icons/icons8_user_groups_skin_type_7_20px_1.png";
     private static final String assignSubjectTeacherIcon = "icons/icons8_audit_20px.png";
+    private static final String booksIcon = "icons/icons8_books_20px.png";
+    private static final String bookTemplatesIcon = "icons/icons8_book_shelf_20px.png";
     
     private static final String sectionsIcon = "icons/icons8_page_20px.png";
     private static final String viewStudentsIcon = "icons/icons8_read_online_20px.png";
@@ -318,9 +320,16 @@ public class myVariables {
         return confirmUrlIcon;
     }
     //</editor-fold>
-
-    //<editor-fold desc="Getters & Setters">
     
+    //<editor-fold desc="Getters & Setters">
+    public static String getBooksIcon() {
+        return booksIcon;
+    }
+    
+    public static String getBookTemplatesIcon() {    
+        return bookTemplatesIcon;
+    }
+
     public static String getBookKeepingWindowIcon() {
         return bookKeepingWindowIcon;
     }
