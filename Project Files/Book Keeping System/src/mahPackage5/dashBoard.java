@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -32,7 +33,21 @@ public class dashBoard extends javax.swing.JFrame {
         my = new myFunctions();
         initComponents();
         
-        lbSchoolName.setText(myVariables.getSchoolName() + " Grading System");
+        lbLoggedInUser.setText("Welcome "+myVariables.getUserLoggedInName()+" ("+myVariables.getAccessLevelName(-1)+")");
+        
+        loadTabs();
+        loadTabIcons();
+        
+        loadColoredButtons();
+        loadLabels();
+        
+        loadTextFields();
+        sortTables();
+        
+        setScrollSpeeds();
+        loadYearDropDowns(12);
+        
+        lbSchoolName.setText(myVariables.getSchoolName() + " Book Keeping System");
         lbSchoolAddress.setText(myVariables.getSchoolAddress());
     }
 
@@ -45,6 +60,56 @@ public class dashBoard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        manageBooksTab = new javax.swing.JPanel();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        left = new javax.swing.JPanel();
+        lbSearchResult1 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        booksTable = new javax.swing.JTable();
+        btnSearchBook = new javax.swing.JButton();
+        tfSearchBook = new javax.swing.JTextField();
+        right = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        tfBookName = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jcbBookGradeLevel = new javax.swing.JComboBox<>();
+        btnSaveBook = new javax.swing.JButton();
+        tfBookCode = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        editBookDialog = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        tfBookName1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jcbBookGradeLevel1 = new javax.swing.JComboBox<>();
+        btnSaveBook1 = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lbBookId = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        tfBookCode1 = new javax.swing.JTextField();
+        manageBookTemplatesTab = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        selectSectionTab = new javax.swing.JPanel();
+        lbSearchResult = new javax.swing.JLabel();
+        tfSearchTeacherLoad = new javax.swing.JTextField();
+        btnSearchSection = new javax.swing.JButton();
+        jcbSchoolYear1 = new javax.swing.JComboBox<>();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        assignedTeacherTable = new javax.swing.JTable();
+        distributeReturnBooksTab = new javax.swing.JPanel();
+        jSplitPane2 = new javax.swing.JSplitPane();
+        left1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        enrolledStudentsTable = new javax.swing.JTable();
+        lbSearchResult2 = new javax.swing.JLabel();
+        tfSearchEnrolledStudent = new javax.swing.JTextField();
+        btnSearchEnrolledStudent = new javax.swing.JButton();
+        right1 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel36 = new javax.swing.JLabel();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -52,8 +117,524 @@ public class dashBoard extends javax.swing.JFrame {
         lbLoggedInUser = new javax.swing.JLabel();
         mainTab = new javax.swing.JTabbedPane();
 
+        jSplitPane1.setBorder(null);
+        jSplitPane1.setDividerLocation(700);
+
+        left.setBackground(new java.awt.Color(11, 102, 35));
+
+        lbSearchResult1.setForeground(new java.awt.Color(255, 255, 255));
+        lbSearchResult1.setText("Search using the search bar...");
+
+        booksTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Code", "Book Name", "Grade Level"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        booksTable.getTableHeader().setReorderingAllowed(false);
+        booksTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                booksTableMouseClicked(evt);
+            }
+        });
+        jScrollPane9.setViewportView(booksTable);
+
+        btnSearchBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_search_property_16px.png"))); // NOI18N
+        btnSearchBook.setText("Search");
+        btnSearchBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBookHandler(evt);
+            }
+        });
+
+        tfSearchBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBookHandler(evt);
+            }
+        });
+
+        javax.swing.GroupLayout leftLayout = new javax.swing.GroupLayout(left);
+        left.setLayout(leftLayout);
+        leftLayout.setHorizontalGroup(
+            leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(leftLayout.createSequentialGroup()
+                        .addComponent(lbSearchResult1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(59, 59, 59)
+                        .addComponent(tfSearchBook, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearchBook)))
+                .addContainerGap())
+        );
+        leftLayout.setVerticalGroup(
+            leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbSearchResult1)
+                    .addComponent(tfSearchBook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchBook))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jSplitPane1.setLeftComponent(left);
+
+        right.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel7.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel35.setText("Add New Book");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel35)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel35)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel1.setText("Book Name");
+
+        jLabel2.setText("Grade Level");
+
+        jcbBookGradeLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grade 7", "Grade 8", "Grade 9", "Grade 10" }));
+
+        btnSaveBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_save_16px.png"))); // NOI18N
+        btnSaveBook.setText("Save");
+        btnSaveBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveBookActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Book Code");
+
+        javax.swing.GroupLayout rightLayout = new javax.swing.GroupLayout(right);
+        right.setLayout(rightLayout);
+        rightLayout.setHorizontalGroup(
+            rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rightLayout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(rightLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfBookCode)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfBookName)
+                    .addComponent(btnSaveBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(rightLayout.createSequentialGroup()
+                        .addGroup(rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jcbBookGradeLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        rightLayout.setVerticalGroup(
+            rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rightLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfBookCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfBookName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcbBookGradeLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSaveBook)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jSplitPane1.setRightComponent(right);
+
+        javax.swing.GroupLayout manageBooksTabLayout = new javax.swing.GroupLayout(manageBooksTab);
+        manageBooksTab.setLayout(manageBooksTabLayout);
+        manageBooksTabLayout.setHorizontalGroup(
+            manageBooksTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
+        );
+        manageBooksTabLayout.setVerticalGroup(
+            manageBooksTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane1)
+        );
+
+        editBookDialog.setBackground(new java.awt.Color(255, 255, 204));
+
+        jLabel3.setText("Name");
+
+        jLabel4.setText("Grade Level");
+
+        jcbBookGradeLevel1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grade 7", "Grade 8", "Grade 9", "Grade 10" }));
+
+        btnSaveBook1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_save_16px.png"))); // NOI18N
+        btnSaveBook1.setText("Save Changes");
+
+        jPanel9.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel37.setText("Edit Book");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel37)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel37)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel5.setText("Record ID:");
+
+        lbBookId.setText("0");
+
+        jLabel7.setText("Book Code");
+
+        javax.swing.GroupLayout editBookDialogLayout = new javax.swing.GroupLayout(editBookDialog);
+        editBookDialog.setLayout(editBookDialogLayout);
+        editBookDialogLayout.setHorizontalGroup(
+            editBookDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editBookDialogLayout.createSequentialGroup()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(editBookDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(editBookDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfBookName1)
+                    .addComponent(btnSaveBook1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                    .addGroup(editBookDialogLayout.createSequentialGroup()
+                        .addGroup(editBookDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jcbBookGradeLevel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(editBookDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbBookId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfBookCode1))
+                .addContainerGap())
+        );
+        editBookDialogLayout.setVerticalGroup(
+            editBookDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editBookDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfBookCode1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfBookName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcbBookGradeLevel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSaveBook1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(editBookDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(lbBookId))
+                .addContainerGap())
+        );
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout manageBookTemplatesTabLayout = new javax.swing.GroupLayout(manageBookTemplatesTab);
+        manageBookTemplatesTab.setLayout(manageBookTemplatesTabLayout);
+        manageBookTemplatesTabLayout.setHorizontalGroup(
+            manageBookTemplatesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageBookTemplatesTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+        manageBookTemplatesTabLayout.setVerticalGroup(
+            manageBookTemplatesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageBookTemplatesTabLayout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
+        );
+
+        selectSectionTab.setBackground(new java.awt.Color(11, 102, 35));
+
+        lbSearchResult.setForeground(new java.awt.Color(255, 255, 255));
+        lbSearchResult.setText("Search using the search bar...");
+
+        tfSearchTeacherLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfSearchTeacherLoadsearchManagedSections(evt);
+            }
+        });
+
+        btnSearchSection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_search_property_16px.png"))); // NOI18N
+        btnSearchSection.setText("Search");
+        btnSearchSection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchSectionsearchManagedSections(evt);
+            }
+        });
+
+        jcbSchoolYear1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020" }));
+
+        assignedTeacherTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Section ID", "Section Name", "Adv ID", "Name", "Gender", "Subject ID", "Code", "Description", "Grade", "School Year"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        assignedTeacherTable.getTableHeader().setReorderingAllowed(false);
+        assignedTeacherTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                assignedTeacherTableMouseClicked(evt);
+            }
+        });
+        jScrollPane8.setViewportView(assignedTeacherTable);
+
+        javax.swing.GroupLayout selectSectionTabLayout = new javax.swing.GroupLayout(selectSectionTab);
+        selectSectionTab.setLayout(selectSectionTabLayout);
+        selectSectionTabLayout.setHorizontalGroup(
+            selectSectionTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(selectSectionTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(selectSectionTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                    .addGroup(selectSectionTabLayout.createSequentialGroup()
+                        .addComponent(lbSearchResult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcbSchoolYear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfSearchTeacherLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearchSection)))
+                .addContainerGap())
+        );
+        selectSectionTabLayout.setVerticalGroup(
+            selectSectionTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(selectSectionTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(selectSectionTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbSearchResult)
+                    .addComponent(tfSearchTeacherLoad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchSection)
+                    .addComponent(jcbSchoolYear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jSplitPane2.setBorder(null);
+        jSplitPane2.setDividerLocation(700);
+
+        left1.setBackground(new java.awt.Color(11, 102, 35));
+
+        enrolledStudentsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        enrolledStudentsTable.getTableHeader().setReorderingAllowed(false);
+        enrolledStudentsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                enrolledStudentsTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(enrolledStudentsTable);
+
+        lbSearchResult2.setForeground(new java.awt.Color(255, 255, 255));
+        lbSearchResult2.setText("Search using the search bar...");
+
+        tfSearchEnrolledStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfSearchEnrolledStudentsearchEnrolledStudentsHandler(evt);
+            }
+        });
+
+        btnSearchEnrolledStudent.setText("Search");
+        btnSearchEnrolledStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchEnrolledStudentsearchEnrolledStudentsHandler(evt);
+            }
+        });
+
+        javax.swing.GroupLayout left1Layout = new javax.swing.GroupLayout(left1);
+        left1.setLayout(left1Layout);
+        left1Layout.setHorizontalGroup(
+            left1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(left1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(left1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(left1Layout.createSequentialGroup()
+                        .addComponent(lbSearchResult2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfSearchEnrolledStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearchEnrolledStudent)))
+                .addContainerGap())
+        );
+        left1Layout.setVerticalGroup(
+            left1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(left1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(left1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbSearchResult2)
+                    .addComponent(tfSearchEnrolledStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchEnrolledStudent))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jSplitPane2.setLeftComponent(left1);
+
+        jPanel8.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel36.setText("Add New Book");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel36)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel36)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout right1Layout = new javax.swing.GroupLayout(right1);
+        right1.setLayout(right1Layout);
+        right1Layout.setHorizontalGroup(
+            right1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(right1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        right1Layout.setVerticalGroup(
+            right1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(right1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(413, Short.MAX_VALUE))
+        );
+
+        jSplitPane2.setRightComponent(right1);
+
+        javax.swing.GroupLayout distributeReturnBooksTabLayout = new javax.swing.GroupLayout(distributeReturnBooksTab);
+        distributeReturnBooksTab.setLayout(distributeReturnBooksTabLayout);
+        distributeReturnBooksTabLayout.setHorizontalGroup(
+            distributeReturnBooksTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
+        );
+        distributeReturnBooksTabLayout.setVerticalGroup(
+            distributeReturnBooksTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane2)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(983, 551));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -69,7 +650,7 @@ public class dashBoard extends javax.swing.JFrame {
         lbSchoolName.setBackground(new java.awt.Color(255, 255, 255));
         lbSchoolName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbSchoolName.setForeground(new java.awt.Color(255, 255, 255));
-        lbSchoolName.setText("SCHOOL_NAME Grading System");
+        lbSchoolName.setText("SCHOOL_NAME Book Keeping System");
 
         lbSchoolAddress.setBackground(new java.awt.Color(255, 255, 255));
         lbSchoolAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -124,18 +705,18 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE))
+                .addComponent(mainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 862, Short.MAX_VALUE)
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
         );
 
         pack();
@@ -145,6 +726,199 @@ public class dashBoard extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         my.openWindow(this, new login());
     }//GEN-LAST:event_formWindowClosed
+
+    private void tfSearchTeacherLoadsearchManagedSections(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchTeacherLoadsearchManagedSections
+        String toSearch = tfSearchTeacherLoad.getText();
+        String schoolYear = jcbSchoolYear1.getSelectedItem().toString();
+
+        my.remove_multiple_tabs(mainTab, new int [] {1,2});
+
+        String where = "WHERE subjectCode NOT LIKE 'ADV%'";
+
+        if(myVariables.getAccessLevel() < 5){
+            where += " AND teacherId='"+myVariables.getUserLoggedInId()+"'";
+        }
+
+        if(jcbSchoolYear1.getSelectedIndex() != 0){
+            where +=" AND schoolYear='"+schoolYear+"'";
+        }
+
+        if(toSearch.length() > 0){
+            where +=" AND sectionName LIKE '%"+toSearch+"%'";
+        }
+
+        String [] result = my.return_values("*", "v_managedsubjects", where, myVariables.getManagedSubjectsViewOrder());
+
+        my.clear_table_rows(assignedTeacherTable);
+        if(result == null){
+            lbSearchResult.setText("Showing 0 results for '"+toSearch+"'.");
+            return;
+        }else{
+            if(result.length > 1){
+                lbSearchResult.setText("Showing "+result.length+" results for '"+toSearch+"'.");
+            }else{
+                lbSearchResult.setText("Showing "+result.length+" result for '"+toSearch+"'.");
+            }
+        }
+
+        for(String row : result){
+            row = my.toNameFormat(row, new int [] {4,5,6});
+
+            //System.err.println(my.getValueAtColumn(row, 3));
+            if(my.getValueAtColumn(row, 3).contains("-1")){
+                row = my.setValueAtColumn(row, 4, "None");
+            }
+            my.add_table_row(row, assignedTeacherTable);
+        }
+    }//GEN-LAST:event_tfSearchTeacherLoadsearchManagedSections
+
+    private void btnSearchSectionsearchManagedSections(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchSectionsearchManagedSections
+        String toSearch = tfSearchTeacherLoad.getText();
+        String schoolYear = jcbSchoolYear1.getSelectedItem().toString();
+
+        //my.remove_multiple_tabs(mainTab, new int [] {1,2});
+
+        String where = "WHERE subjectCode NOT LIKE 'ADV%'";
+
+        //Filter search based on Access Level
+        switch (myVariables.getAccessLevel()){
+            case 1:{    //Teacher or Subject Teacher
+                where += " AND teacherId='"+myVariables.getUserLoggedInId()+"'";
+                break;
+            }case 2:{   //Department Head
+                
+                break;
+            }case 4:{
+                where += " AND teacherId!='-1'";
+                break;
+            }case 5:{
+                break;
+            }
+        }
+
+        if(jcbSchoolYear1.getSelectedIndex() != 0){
+            where +=" AND schoolYear='"+schoolYear+"'";
+        }
+
+        if(toSearch.length() > 0){
+            where +=" AND sectionName LIKE '%"+toSearch+"%'";
+        }
+
+        String [] result = my.return_values("*", "v_managedsubjects", where, myVariables.getManagedSubjectsViewOrder());
+
+        my.clear_table_rows(assignedTeacherTable);
+        if(result == null){
+            lbSearchResult.setText("Showing 0 results for '"+toSearch+"'.");
+            return;
+        }else{
+            if(result.length > 1){
+                lbSearchResult.setText("Showing "+result.length+" results for '"+toSearch+"'.");
+            }else{
+                lbSearchResult.setText("Showing "+result.length+" result for '"+toSearch+"'.");
+            }
+        }
+
+        for(String row : result){
+            row = my.toNameFormat(row, new int [] {4,5,6});
+
+            //System.err.println(my.getValueAtColumn(row, 3));
+            if(my.getValueAtColumn(row, 3).contains("-1")){
+                row = my.setValueAtColumn(row, 4, "None");
+            }
+            my.add_table_row(row, assignedTeacherTable);
+        }
+    }//GEN-LAST:event_btnSearchSectionsearchManagedSections
+
+    private void assignedTeacherTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assignedTeacherTableMouseClicked
+        if(evt.getClickCount() == 2){
+            
+        }else{
+            //my.remove_multiple_tabs(mainTab, new int [] {1,2});
+        }
+    }//GEN-LAST:event_assignedTeacherTableMouseClicked
+
+    private void booksTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booksTableMouseClicked
+        if(evt.getClickCount() == 2){
+            showCustomDialog("Edit Book Selected", editBookDialog, true, 250, 350, false);
+        }else{
+            
+        }
+    }//GEN-LAST:event_booksTableMouseClicked
+
+    private void enrolledStudentsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enrolledStudentsTableMouseClicked
+        
+    }//GEN-LAST:event_enrolledStudentsTableMouseClicked
+
+    private void tfSearchEnrolledStudentsearchEnrolledStudentsHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchEnrolledStudentsearchEnrolledStudentsHandler
+        //DUPLICATED SEARCH
+        int row = assignedTeacherTable.getSelectedRow();
+
+        if(row == -1){
+            my.showMessage("Please select a section first.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
+        String toSearch = tfSearchEnrolledStudent.getText();
+
+        String where = "WHERE sectionId='"+sectionId+"' AND (lrn='"+toSearch+"' OR lName LIKE '%"+toSearch+"%')";
+        my.searchItem(where, enrolledStudentsTable, 6, null, new int [] {3,4,5}, true, true, lbSearchResult1, tfSearchEnrolledStudent, true);
+    }//GEN-LAST:event_tfSearchEnrolledStudentsearchEnrolledStudentsHandler
+
+    private void btnSearchEnrolledStudentsearchEnrolledStudentsHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchEnrolledStudentsearchEnrolledStudentsHandler
+        //DUPLICATED SEARCH
+        int row = assignedTeacherTable.getSelectedRow();
+
+        if(row == -1){
+            my.showMessage("Please select a section first.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
+        String toSearch = tfSearchEnrolledStudent.getText();
+
+        String where = "WHERE sectionId='"+sectionId+"' AND (lrn='"+toSearch+"' OR lName LIKE '%"+toSearch+"%')";
+        my.searchItem(where, enrolledStudentsTable, 6, null, new int [] {3,4,5}, true, true, lbSearchResult1, tfSearchEnrolledStudent, true);
+    }//GEN-LAST:event_btnSearchEnrolledStudentsearchEnrolledStudentsHandler
+
+    private void searchBookHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBookHandler
+        String toSearch = tfSearchBook.getText().trim();
+        
+        my.searchItem("", booksTable, 8, null, null, false, true, lbSearchResult1, tfSearchBook, true);
+    }//GEN-LAST:event_searchBookHandler
+
+    private void btnSaveBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveBookActionPerformed
+        String code = my.convertEscapeCharacters(tfBookCode.getText().trim());
+        String name = my.convertEscapeCharacters(tfBookName.getText().trim());
+        String gradeLevel = "";
+        
+        switch (jcbBookGradeLevel.getSelectedIndex()){
+            case 0:{
+                gradeLevel = "7";
+                break;
+            }case 1:{
+                gradeLevel = "8";
+                break;
+            }case 2:{
+                gradeLevel = "9";
+                break;
+            }case 3:{
+                gradeLevel = "10";
+                break;
+            }
+        }
+        
+        String [] values = {
+            "null,'"+code+"','"+name+"','"+gradeLevel+"'",
+        };
+        if(my.add_values("books", "id,bookCode,bookName,gradeLevel", values)){
+            my.showMessage("Addedd Succesfully.", JOptionPane.INFORMATION_MESSAGE);
+            closeCustomDialog();
+            searchBookHandler(my.getButtonPressedEvent(evt.getSource()));
+        }else{
+            my.showMessage("Adding Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSaveBookActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,12 +1014,14 @@ public class dashBoard extends javax.swing.JFrame {
                 
         //Hide Table Columns
         if(!myVariables.isDebugModeOn()){
-            //my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6});
+            my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6});
+            my.hideColumns(booksTable, new int [] {0});
         }
         
         //Set table fonts
         JTable tables [] = {
-            //assignedTeacherTable,
+            assignedTeacherTable,
+            booksTable,
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
         //customHeaders(sf1SectionTable, new int []{0,1,2,3}, Color.RED, Color.WHITE, new Font("Comic Sans MS", Font.BOLD, 12), true);
@@ -268,24 +1044,31 @@ public class dashBoard extends javax.swing.JFrame {
         
     }
     private void loadTabs(){
-        //mainTab.add("Select Managed Section",selectSectionTab);
+        mainTab.add("Manage Books",manageBooksTab);
+        mainTab.add("Manage Book Templates",manageBookTemplatesTab);
+        mainTab.add("Select Managed Section",selectSectionTab);
+        mainTab.add("Distribute/Return Books",distributeReturnBooksTab);
         
         mainTab.setFont(myVariables.TAB_HEADER_FONT);
     }
     private void loadTabIcons(){
         Icon tabIcons [] = {
-            
+            my.getImgIcn(myVariables.getSectionsIcon()),
+            my.getImgIcn(myVariables.getSectionsIcon()),
+            my.getImgIcn(myVariables.getSectionsIcon()),
+            my.getImgIcn(myVariables.getSectionsIcon()),
         };
         
         for(int n=0;n<tabIcons.length;n++){
             mainTab.setIconAt(n,tabIcons[n]);
         }
         
-        my.remove_multiple_tabs(mainTab, new int [] {1,2});
+        //my.remove_multiple_tabs(mainTab, new int [] {1,2});
     }
     private void loadColoredButtons(){
         JButton buttons [] = {
-            
+            btnSearchSection,btnSearchEnrolledStudent,btnSearchBook,
+            btnSaveBook,btnSaveBook1,
         };
         
         JButton lightButtons [] = {
@@ -319,14 +1102,14 @@ public class dashBoard extends javax.swing.JFrame {
             //jLabel35,jLabel36,jLabel37,
         };
         JLabel labels [] = {
-            //lbSearchResult,lbSearchResult1,
+            lbSearchResult,lbSearchResult1,lbSearchResult2,
         };
         
         JLabel formsHeaderLabels [] = {
-            //jLabel2,jLabel3,jLabel12,jLabel13,jLabel14
+            
         };
         JLabel textFieldHeaderLabels [] = {
-            //lbDateUpdated,lbGradeStatus,jLabel5,jLabel6,jLabel7,jLabel8,jLabel9,lbSubjectName,
+            jLabel1,jLabel2,jLabel6,jLabel3,jLabel4,jLabel7,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -358,10 +1141,10 @@ public class dashBoard extends javax.swing.JFrame {
         };
         
         JTextField searchFields [] = {
-            //tfSearchTeacherLoad,tfSearchEnrolledStudent,
+            tfSearchTeacherLoad,tfSearchBook,
         };
         JTextField forms [] = {
-            //tfFirstQ,tfSecondQ,tfThirdQ,tfFourthQ,tfGeneralWeighedAverage,
+            tfBookName,tfBookName1,tfBookCode,tfBookCode1,
         };
         for(JSpinner n : spinners){
             n.setFont(myVariables.TEXTFIELD_FONT);
@@ -383,10 +1166,10 @@ public class dashBoard extends javax.swing.JFrame {
         };
         
         JComboBox [] yearDropDownsWithAllOption = {
-            //jcbSchoolYear1,
+            jcbSchoolYear1,
         };
         JComboBox [] dropDowns = {
-            //jcbMeridan,
+            jcbBookGradeLevel,jcbBookGradeLevel1,
         };
         int startingYear = 2019;
         
@@ -411,11 +1194,61 @@ public class dashBoard extends javax.swing.JFrame {
     }
     //</editor-fold>
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable assignedTeacherTable;
+    private javax.swing.JTable booksTable;
+    private javax.swing.JButton btnSaveBook;
+    private javax.swing.JButton btnSaveBook1;
+    private javax.swing.JButton btnSearchBook;
+    private javax.swing.JButton btnSearchEnrolledStudent;
+    private javax.swing.JButton btnSearchSection;
+    private javax.swing.JPanel distributeReturnBooksTab;
+    private javax.swing.JPanel editBookDialog;
+    private javax.swing.JTable enrolledStudentsTable;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane jSplitPane2;
+    private javax.swing.JComboBox<String> jcbBookGradeLevel;
+    private javax.swing.JComboBox<String> jcbBookGradeLevel1;
+    private javax.swing.JComboBox<String> jcbSchoolYear1;
     private keeptoo.KGradientPanel kGradientPanel1;
+    private javax.swing.JLabel lbBookId;
     private javax.swing.JLabel lbLoggedInUser;
     private javax.swing.JLabel lbSchoolAddress;
     private javax.swing.JLabel lbSchoolName;
+    private javax.swing.JLabel lbSearchResult;
+    private javax.swing.JLabel lbSearchResult1;
+    private javax.swing.JLabel lbSearchResult2;
+    private javax.swing.JPanel left;
+    private javax.swing.JPanel left1;
     private javax.swing.JTabbedPane mainTab;
+    private javax.swing.JPanel manageBookTemplatesTab;
+    private javax.swing.JPanel manageBooksTab;
+    private javax.swing.JPanel right;
+    private javax.swing.JPanel right1;
+    private javax.swing.JPanel selectSectionTab;
+    private javax.swing.JTextField tfBookCode;
+    private javax.swing.JTextField tfBookCode1;
+    private javax.swing.JTextField tfBookName;
+    private javax.swing.JTextField tfBookName1;
+    private javax.swing.JTextField tfSearchBook;
+    private javax.swing.JTextField tfSearchEnrolledStudent;
+    private javax.swing.JTextField tfSearchTeacherLoad;
     // End of variables declaration//GEN-END:variables
 }

@@ -80,7 +80,7 @@ public class myVariables {
     private static final int [] sf2StudentListViewOrderRev2 = new int [] {4,5,0,2,6,1,3,7};
     private static final int [] attendanceOrder = new int [] {2,0,3,4,6,5,1};
     private static final int [] subjectOrder = new int[] {2,3,1,0};
-    private static final int [] booksViewOrder = new int [] {14,21,8,0,4,23,1,3,9,12,7,5,19,24,2,17,26,20,16,18,25,13,22,6,15,10,11};
+    private static final int [] booksViewOrder = new int [] {2,0,3,1};
     
     //Icons
     private static final String studentsIcon = "icons/icons8_user_groups_skin_type_7_20px_1.png";
