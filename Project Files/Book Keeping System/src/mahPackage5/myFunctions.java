@@ -151,10 +151,14 @@ public class myFunctions {
                 break;
             }case 8:{
                 from = "books";
-                order = myVariables.getBooksViewOrder();
+                order = myVariables.getBooksOrder();
+                break;
+            }case 9:{
+                from = "booktemplates";
+                order = myVariables.getBooksTemplatesOrder();
                 break;
             }default:{
-                System.err.println("View table index out of bounds. Please check your index selected.");
+                System.err.println("View table index out of bounds. Please check your index selected @ myFunctions.java");
                 return;
             }
         }

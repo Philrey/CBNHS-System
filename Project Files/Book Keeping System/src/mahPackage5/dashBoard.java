@@ -106,7 +106,7 @@ public class dashBoard extends javax.swing.JFrame {
         tfTemplateName = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         btnAddBookTemplate = new javax.swing.JButton();
-        editBookTemplate = new javax.swing.JPanel();
+        editBookTemplateDialog = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
         jSplitPane4 = new javax.swing.JSplitPane();
@@ -116,6 +116,7 @@ public class dashBoard extends javax.swing.JFrame {
         tfSearchBook1 = new javax.swing.JTextField();
         btnSearchBook1 = new javax.swing.JButton();
         btnAddBookToList = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
         right3 = new javax.swing.JPanel();
         jScrollPane12 = new javax.swing.JScrollPane();
         booksTable2 = new javax.swing.JTable();
@@ -125,7 +126,10 @@ public class dashBoard extends javax.swing.JFrame {
         tfTemplateName1 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jcbTemplateGradeLevel1 = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
         btnSaveBookTemplateChanges = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        lbTemplateID = new javax.swing.JLabel();
         selectSectionTab = new javax.swing.JPanel();
         lbSearchResult = new javax.swing.JLabel();
         tfSearchTeacherLoad = new javax.swing.JTextField();
@@ -555,6 +559,11 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnAddBookTemplate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_save_16px.png"))); // NOI18N
         btnAddBookTemplate.setText("Save");
+        btnAddBookTemplate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddBookTemplateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout right2Layout = new javax.swing.GroupLayout(right2);
         right2.setLayout(right2Layout);
@@ -568,21 +577,15 @@ public class dashBoard extends javax.swing.JFrame {
                         .addComponent(jcbTemplateGradeLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(right2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(right2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(right2Layout.createSequentialGroup()
                         .addGroup(right2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(right2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel8))
-                            .addGroup(right2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel9)))
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(right2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(right2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfTemplateName)
-                            .addComponent(btnAddBookTemplate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(tfTemplateName)
+                    .addComponent(btnAddBookTemplate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         right2Layout.setVerticalGroup(
@@ -616,7 +619,7 @@ public class dashBoard extends javax.swing.JFrame {
             .addComponent(jSplitPane3)
         );
 
-        editBookTemplate.setBackground(new java.awt.Color(255, 255, 204));
+        editBookTemplateDialog.setBackground(new java.awt.Color(255, 255, 204));
 
         jPanel11.setBackground(new java.awt.Color(22, 66, 33));
 
@@ -682,7 +685,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         tfSearchBook1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfSearchBook1searchBookHandler(evt);
+                searchBookToAddHandler(evt);
             }
         });
 
@@ -690,12 +693,20 @@ public class dashBoard extends javax.swing.JFrame {
         btnSearchBook1.setText("Search");
         btnSearchBook1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchBook1searchBookHandler(evt);
+                searchBookToAddHandler(evt);
             }
         });
 
         btnAddBookToList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_add_16px.png"))); // NOI18N
         btnAddBookToList.setText("Add Books To List");
+        btnAddBookToList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddBookToListActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Select Books To Add");
 
         javax.swing.GroupLayout left3Layout = new javax.swing.GroupLayout(left3);
         left3.setLayout(left3Layout);
@@ -704,9 +715,10 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(left3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(left3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, left3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 34, Short.MAX_VALUE)
                         .addGroup(left3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, left3Layout.createSequentialGroup()
                                 .addComponent(tfSearchBook1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -719,12 +731,14 @@ public class dashBoard extends javax.swing.JFrame {
             left3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(left3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(left3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfSearchBook1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearchBook1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAddBookToList)
                 .addContainerGap())
         );
@@ -770,6 +784,11 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnRemobeBookFromList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_delete_bin_16px.png"))); // NOI18N
         btnRemobeBookFromList.setText("Remove Selected Books");
+        btnRemobeBookFromList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemobeBookFromListActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Books Contained");
 
@@ -778,6 +797,14 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel12.setText("Grade Level");
 
         jcbTemplateGradeLevel1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grade 7", "Grade 8", "Grade 9", "Grade 10" }));
+        jcbTemplateGradeLevel1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbTemplateGradeLevel1ItemStateChanged(evt);
+            }
+        });
+
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Template Details");
 
         javax.swing.GroupLayout right3Layout = new javax.swing.GroupLayout(right3);
         right3.setLayout(right3Layout);
@@ -789,21 +816,24 @@ public class dashBoard extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, right3Layout.createSequentialGroup()
                         .addGap(0, 114, Short.MAX_VALUE)
                         .addComponent(btnRemobeBookFromList))
-                    .addGroup(right3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jcbTemplateGradeLevel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11)
-                        .addComponent(jLabel12))
+                    .addComponent(tfTemplateName1)
                     .addGroup(right3Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
+                        .addGroup(right3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcbTemplateGradeLevel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel10))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(tfTemplateName1))
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         right3Layout.setVerticalGroup(
             right3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(right3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfTemplateName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -814,8 +844,8 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRemobeBookFromList)
                 .addContainerGap())
         );
@@ -824,29 +854,46 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnSaveBookTemplateChanges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_save_16px.png"))); // NOI18N
         btnSaveBookTemplateChanges.setText("Save Changes");
+        btnSaveBookTemplateChanges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveBookTemplateChangesActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout editBookTemplateLayout = new javax.swing.GroupLayout(editBookTemplate);
-        editBookTemplate.setLayout(editBookTemplateLayout);
-        editBookTemplateLayout.setHorizontalGroup(
-            editBookTemplateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(editBookTemplateLayout.createSequentialGroup()
+        jLabel15.setText("Record ID: ");
+
+        lbTemplateID.setText("0");
+
+        javax.swing.GroupLayout editBookTemplateDialogLayout = new javax.swing.GroupLayout(editBookTemplateDialog);
+        editBookTemplateDialog.setLayout(editBookTemplateDialogLayout);
+        editBookTemplateDialogLayout.setHorizontalGroup(
+            editBookTemplateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editBookTemplateDialogLayout.createSequentialGroup()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(editBookTemplateLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(editBookTemplateDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbTemplateID)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSaveBookTemplateChanges)
                 .addContainerGap())
             .addComponent(jSplitPane4)
         );
-        editBookTemplateLayout.setVerticalGroup(
-            editBookTemplateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(editBookTemplateLayout.createSequentialGroup()
+        editBookTemplateDialogLayout.setVerticalGroup(
+            editBookTemplateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editBookTemplateDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSplitPane4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSaveBookTemplateChanges)
+                .addGroup(editBookTemplateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSaveBookTemplateChanges)
+                    .addGroup(editBookTemplateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel15)
+                        .addComponent(lbTemplateID)))
                 .addContainerGap())
         );
 
@@ -1433,32 +1480,221 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveBook1ActionPerformed
 
     private void bookTemplatesTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookTemplatesTableMouseClicked
-        // TODO add your handling code here:
+        if(evt.getClickCount() == 2){
+            int row = bookTemplatesTable.getSelectedRow();
+            String templateId = bookTemplatesTable.getValueAt(row, 0).toString();
+            String name = bookTemplatesTable.getValueAt(row, 1).toString();
+            String booksContained = "";
+            try {
+                booksContained = bookTemplatesTable.getValueAt(row, 3).toString().replace(":", ",");
+            } catch (Exception e) {
+                System.err.println("Null Books Contained");
+            }
+            
+            int gradeLevel = Integer.parseInt(bookTemplatesTable.getValueAt(row, 2).toString());
+            
+            lbTemplateID.setText(templateId);
+            tfTemplateName1.setText(name);
+            switch(gradeLevel){
+                case 7:{
+                    jcbTemplateGradeLevel1.setSelectedIndex(0);
+                    break;
+                }case 8:{
+                    jcbTemplateGradeLevel1.setSelectedIndex(1);
+                    break;
+                }case 9:{
+                    jcbTemplateGradeLevel1.setSelectedIndex(2);
+                    break;
+                }case 10:{
+                    jcbTemplateGradeLevel1.setSelectedIndex(3);
+                    break;
+                }
+            }
+            my.clear_table_rows(booksTable2);
+            
+            if(booksContained.length() > 0){
+                booksContained = booksContained.substring(0, booksContained.length()-1);
+                
+                String [] result = my.return_values("*", "books", "WHERE id IN("+booksContained+")", myVariables.getBooksOrder());
+                if(result != null){
+                    for(String n : result){
+                        my.add_table_row(n, booksTable2);
+                    }
+                }else{
+                    my.showMessage("Ooops! These books might have been Deleted Just Now. Please contact your administraror.", JOptionPane.ERROR_MESSAGE);
+                }
+                
+            }else{
+                System.err.println("No books contained.");
+            }
+            
+            showCustomDialog("Edit Template Selected", editBookTemplateDialog, true, 600, 500, true);
+        }
     }//GEN-LAST:event_bookTemplatesTableMouseClicked
 
     private void searchBookTemplateHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBookTemplateHandler
-        // TODO add your handling code here:
+        String toSearch = my.convertEscapeCharacters(tfSearchBookTemplate.getText().trim());
+        
+        my.searchItem("", bookTemplatesTable, 9, null, null, false, true, lbSearchResult2, tfSearchBookTemplate, true);
+        clearAddBookTemplateFields();
     }//GEN-LAST:event_searchBookTemplateHandler
 
     private void booksTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booksTable1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_booksTable1MouseClicked
 
-    private void tfSearchBook1searchBookHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchBook1searchBookHandler
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfSearchBook1searchBookHandler
-
-    private void btnSearchBook1searchBookHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchBook1searchBookHandler
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSearchBook1searchBookHandler
-
     private void booksTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booksTable2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_booksTable2MouseClicked
 
+    private void btnAddBookTemplateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBookTemplateActionPerformed
+        String name = my.convertEscapeCharacters(tfTemplateName.getText().trim());
+        String gradeLevel = "";
+        
+        if(name.length()<=0){
+            my.showMessage("Please fill-up all fields.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        switch (jcbTemplateGradeLevel.getSelectedIndex()){
+            case 0:{
+                gradeLevel = "7";
+                break;
+            }case 1:{
+                gradeLevel = "8";
+                break;
+            }case 2:{
+                gradeLevel = "9";
+                break;
+            }case 3:{
+                gradeLevel = "10";
+                break;
+            }
+        }
+        
+        String [] values = {
+            "null,'"+name+"','"+gradeLevel+"',''",
+        };
+        
+        if(my.add_values("booktemplates", "id,templateName,gradeLevel,booksContained", values)){
+            my.showMessage("Added Successfully. Please select your newly added template to edit it.", JOptionPane.INFORMATION_MESSAGE);
+            searchBookTemplateHandler(my.getButtonPressedEvent(evt.getSource()));
+        }else{
+            my.showMessage("Adding Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAddBookTemplateActionPerformed
+
+    private void btnSaveBookTemplateChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveBookTemplateChangesActionPerformed
+        String id = lbTemplateID.getText();
+        String name = my.convertEscapeCharacters(tfTemplateName1.getText().trim());
+        String gradeLevel = jcbTemplateGradeLevel1.getSelectedItem().toString().split(" ")[1];
+        
+        String booksContained="";
+        for(int n=0;n<booksTable2.getRowCount();n++){
+            String bookId = booksTable2.getValueAt(n, 0).toString();
+            booksContained+=bookId+":";
+        }
+        String [] sets = {
+            "templateName='"+name+"'",
+            "gradeLevel='"+gradeLevel+"'",
+            "booksContained='"+booksContained+"'",
+        };
+        
+        if(my.update_values("booktemplates", sets, "id='"+id+"'")){
+            my.showMessage("Update Successful.", JOptionPane.INFORMATION_MESSAGE);
+            closeCustomDialog();
+            searchBookTemplateHandler(my.getButtonPressedEvent(evt.getSource()));
+        }else{
+            my.showMessage("Update Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSaveBookTemplateChangesActionPerformed
+
+    private void searchBookToAddHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBookToAddHandler
+        String toSearch = my.convertEscapeCharacters(tfSearchBook1.getText().trim());
+        String gradeLevel = "";
+        switch (jcbTemplateGradeLevel1.getSelectedIndex()){
+            case 0:{
+                gradeLevel = "7";
+                break;
+            }case 1:{
+                gradeLevel = "8";
+                break;
+            }case 2:{
+                gradeLevel = "9";
+                break;
+            }case 3:{
+                gradeLevel = "10";
+                break;
+            }
+        }
+        String where = "WHERE bookName LIKE '%"+toSearch+"%' AND gradeLevel='"+gradeLevel+"' ORDER BY bookCode ASC, bookName ASC";
+        my.searchItem(where, booksTable1, 8, null, null, false, true, null, tfSearchBook1, true);
+    }//GEN-LAST:event_searchBookToAddHandler
+
+    private void jcbTemplateGradeLevel1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbTemplateGradeLevel1ItemStateChanged
+        System.err.println("Item State Changed");
+        clearEditBookTemplateTables();
+    }//GEN-LAST:event_jcbTemplateGradeLevel1ItemStateChanged
+
+    private void btnAddBookToListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBookToListActionPerformed
+        if(booksTable1.getSelectedRowCount() > 0){
+            //Skip duplicates
+            int selectedId=0,currentId=0,maxBooks = 10;
+            int [] selectedRows = booksTable1.getSelectedRows();
+            boolean matchFound;
+            for(int n=0;n<selectedRows.length;n++){
+                selectedId = Integer.parseInt(booksTable1.getValueAt(selectedRows[n], 0).toString());
+                matchFound = false;
+                
+                for(int x=0;x<booksTable2.getRowCount();x++){
+                    currentId = Integer.parseInt(booksTable2.getValueAt(x, 0).toString());
+                    //Check for duplicates
+                    if(selectedId == currentId){
+                        matchFound = true;
+                        break;
+                    }
+                }
+                
+                if(!matchFound){
+                    if(booksTable2.getRowCount()+1 <= maxBooks){
+                        String code = booksTable1.getValueAt(selectedRows[n], 1).toString();
+                        String name = booksTable1.getValueAt(selectedRows[n], 2).toString();
+                        String gradeLevel = booksTable1.getValueAt(selectedRows[n], 3).toString();
+
+                        my.add_table_row(selectedId+"@@"+code+"@@"+name+"@@"+gradeLevel+"@@", booksTable2);
+                    }else{
+                        my.showMessage("Maximum of '"+maxBooks+"' are only allowed.", JOptionPane.ERROR_MESSAGE);
+                        break;
+                    }
+                }
+            }
+        }else{
+            my.showMessage("Please select at least 1 book to add.", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAddBookToListActionPerformed
+
+    private void btnRemobeBookFromListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemobeBookFromListActionPerformed
+        if(booksTable2.getSelectedRowCount() > 0){
+            int [] selectedRows = booksTable2.getSelectedRows();
+            
+            for(int n=selectedRows.length-1;n>=0;n--){
+                my.remove_table_row(booksTable2, selectedRows[n]);
+            }
+        }else{
+            my.showMessage("Please select at least 1 Book to remove.", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRemobeBookFromListActionPerformed
+
     private void clearAddBookFields(){
         tfBookCode.setText("");
         tfBookName.setText("");
+    }
+    private void clearAddBookTemplateFields(){
+        tfTemplateName.setText("");
+    }
+    private void clearEditBookTemplateTables(){
+        my.clear_table_rows(booksTable1);
+        my.clear_table_rows(booksTable2);
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1611,7 +1847,7 @@ public class dashBoard extends javax.swing.JFrame {
             btnSaveBook,btnSaveBook1,
             
             btnSearchBook1,btnAddBookToList,btnRemobeBookFromList,
-            btnSearchBookTemplate,btnAddBookTemplate,
+            btnSearchBookTemplate,btnAddBookTemplate,btnSaveBookTemplateChanges,
         };
         
         JButton lightButtons [] = {
@@ -1649,10 +1885,11 @@ public class dashBoard extends javax.swing.JFrame {
         };
         
         JLabel formsHeaderLabels [] = {
-            
+            jLabel13,jLabel14,
         };
         JLabel textFieldHeaderLabels [] = {
             jLabel1,jLabel2,jLabel6,jLabel3,jLabel4,jLabel7,jLabel8,jLabel9,
+            jLabel10,jLabel11,jLabel12,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -1755,13 +1992,16 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnSearchSection;
     private javax.swing.JPanel distributeReturnBooksTab;
     private javax.swing.JPanel editBookDialog;
-    private javax.swing.JPanel editBookTemplate;
+    private javax.swing.JPanel editBookTemplateDialog;
     private javax.swing.JTable enrolledStudentsTable;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel35;
@@ -1804,6 +2044,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel lbSearchResult1;
     private javax.swing.JLabel lbSearchResult2;
     private javax.swing.JLabel lbSearchResult3;
+    private javax.swing.JLabel lbTemplateID;
     private javax.swing.JPanel left;
     private javax.swing.JPanel left1;
     private javax.swing.JPanel left2;

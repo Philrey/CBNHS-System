@@ -68,6 +68,8 @@ public class myVariables {
     private static final int [] studentsPersonalInfoOrder = new int[] {14,10,12,16,8,17,4,11,3,5,6,0,9,15,2,7,13,1};
     private static final int [] subjectLoadsOrder = new int [] {0,3,2,1};
     private static final int [] sectionsOrder = new int [] {9,0,4,6,5,10,1,2,11,7,8,3};
+    private static final int [] booksTemplatesOrder = new int [] {2,1,0,3};
+    private static final int [] booksOrder = new int [] {2,0,3,1};
     
     private static final int [] enrollmentViewOrder = new int [] {15,7,3,0,9,16,1,5,8,11,4,2,17,10,6,12,13,14};
     private static final int [] enrollmentViewMinimalOrder = new int [] {5,0,4,1,2,7,3,6};
@@ -80,7 +82,6 @@ public class myVariables {
     private static final int [] sf2StudentListViewOrderRev2 = new int [] {4,5,0,2,6,1,3,7};
     private static final int [] attendanceOrder = new int [] {2,0,3,4,6,5,1};
     private static final int [] subjectOrder = new int[] {2,3,1,0};
-    private static final int [] booksViewOrder = new int [] {2,0,3,1};
     
     //Icons
     private static final String studentsIcon = "icons/icons8_user_groups_skin_type_7_20px_1.png";
@@ -154,8 +155,8 @@ public class myVariables {
         return COLUMN_FONT;
     }
     
-    public static int[] getBooksViewOrder() {
-        return booksViewOrder;
+    public static int[] getBooksOrder() {
+        return booksOrder;
     }
 
     public static String getSectionSelectedName() {
@@ -322,6 +323,11 @@ public class myVariables {
     //</editor-fold>
     
     //<editor-fold desc="Getters & Setters">
+
+    public static int[] getBooksTemplatesOrder() {
+        return booksTemplatesOrder;
+    }
+        
     public static String getBooksIcon() {
         return booksIcon;
     }
