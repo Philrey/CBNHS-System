@@ -1027,6 +1027,11 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnSaveTemplateSelected.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_save_16px.png"))); // NOI18N
         btnSaveTemplateSelected.setText("Save");
+        btnSaveTemplateSelected.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveTemplateSelectedActionPerformed(evt);
+            }
+        });
 
         jSplitPane5.setDividerLocation(350);
 
@@ -1205,7 +1210,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnSaveTemplateSelected)
                 .addContainerGap())
-            .addComponent(jSplitPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+            .addComponent(jSplitPane5)
         );
         selectBookTemplateDialogLayout.setVerticalGroup(
             selectBookTemplateDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1260,6 +1265,7 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
 
+        btnSearchEnrolledStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_find_user_male_16px.png"))); // NOI18N
         btnSearchEnrolledStudent.setText("Search");
         btnSearchEnrolledStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1292,7 +1298,7 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(tfSearchEnrolledStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearchEnrolledStudent))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1527,6 +1533,12 @@ public class dashBoard extends javax.swing.JFrame {
         String [] result = my.return_values("*", "v_managedsubjects_wbooktemplate", where, myVariables.getManagedSubjectsWTemplateViewOrder());
 
         my.clear_table_rows(assignedTeacherTable);
+        
+        if(myVariables.getAccessLevel() == 1){
+            my.remove_multiple_tabs(mainTab, new int [] {1});
+        }else{
+            my.remove_multiple_tabs(mainTab, new int [] {3});
+        }
         if(result == null){
             lbSearchResult.setText("Showing 0 results for '"+toSearch+"'.");
             return;
@@ -1555,7 +1567,13 @@ public class dashBoard extends javax.swing.JFrame {
             int templateId = Integer.parseInt(assignedTeacherTable.getValueAt(row, 11).toString());
             
             if(templateId != -1){
-                
+                mainTab.addTab("Distribute/Return Books", my.getImgIcn(myVariables.getViewStudentsIcon()), distributeReturnBooksTab);
+                if(myVariables.getAccessLevel() == 1){
+                    mainTab.setSelectedIndex(1);
+                }else{
+                    mainTab.setSelectedIndex(3);
+                }
+                //my.showMessage("Loading", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 if(myVariables.getAccessLevel() != 4 && myVariables.getAccessLevel() != 5){
                     my.showMessage("This Section has no Book Template Assigned yet.\nPlease contact a "+
@@ -1564,14 +1582,15 @@ public class dashBoard extends javax.swing.JFrame {
                 }
                 
                 if(my.getConfirmation("This Section has no Book Template Assigned yet. Assign One now?")){
+                    clearSelectBookTemplateFields(false, true, true);
                     showCustomDialog("Select a template for this Section", selectBookTemplateDialog, true, 600, 500, true);
                 }
             }
         }else{
-            if(myVariables.getAccessLevel() != 4 && myVariables.getAccessLevel() != 5){
+            if(myVariables.getAccessLevel() == 1){
                 my.remove_multiple_tabs(mainTab, new int [] {1});
             }else{
-                //my.remove_multiple_tabs(mainTab, new int [] {3});
+                my.remove_multiple_tabs(mainTab, new int [] {3});
             }
         }
     }//GEN-LAST:event_assignedTeacherTableMouseClicked
@@ -1939,48 +1958,91 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemobeBookFromListActionPerformed
 
     private void bookTemplatesTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookTemplatesTable1MouseClicked
-        int row = bookTemplatesTable1.getSelectedRow();
-        String templateId = bookTemplatesTable1.getValueAt(row, 0).toString();
-        String name = bookTemplatesTable1.getValueAt(row, 1).toString();
-        String booksContained = "";
-        try {
-            booksContained = bookTemplatesTable1.getValueAt(row, 3).toString().replace(":", ",");
-        } catch (Exception e) {
-            System.err.println("Null Books Contained");
-        }
-
-        int gradeLevel = Integer.parseInt(bookTemplatesTable1.getValueAt(row, 2).toString());
-        //tfTemplateName1.setText(name);
-        my.clear_table_rows(booksTable3);
-
-        if(booksContained.length() > 0){
-            booksContained = booksContained.substring(0, booksContained.length()-1);
-
-            String [] result = my.return_values("*", "books", "WHERE id IN("+booksContained+")", myVariables.getBooksOrder());
-            if(result != null){
-                for(String n : result){
-                    my.add_table_row(n, booksTable3);
-                }
-            }else{
-                my.showMessage("Ooops! These books might have been Deleted Just Now. Please contact your administraror.", JOptionPane.ERROR_MESSAGE);
+        if(evt.getClickCount() == 2){
+            int row = bookTemplatesTable1.getSelectedRow();
+            String templateId = bookTemplatesTable1.getValueAt(row, 0).toString();
+            String name = bookTemplatesTable1.getValueAt(row, 1).toString();
+            String booksContained = "";
+            try {
+                booksContained = bookTemplatesTable1.getValueAt(row, 3).toString().replace(":", ",");
+            } catch (Exception e) {
+                System.err.println("Null Books Contained");
             }
 
+            int gradeLevel = Integer.parseInt(bookTemplatesTable1.getValueAt(row, 2).toString());
+            //tfTemplateName1.setText(name);
+            my.clear_table_rows(booksTable3);
+
+            if(booksContained.length() > 0){
+                booksContained = booksContained.substring(0, booksContained.length()-1);
+
+                String [] result = my.return_values("*", "books", "WHERE id IN("+booksContained+")", myVariables.getBooksOrder());
+                if(result != null){
+                    for(String n : result){
+                        my.add_table_row(n, booksTable3);
+                    }
+                }else{
+                    my.showMessage("Ooops! These books might have been Deleted Just Now. Please contact your administraror.", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }else{
+                System.err.println("No books contained.");
+            }
         }else{
-            System.err.println("No books contained.");
+            clearSelectBookTemplateFields(false,false,true);
         }
     }//GEN-LAST:event_bookTemplatesTable1MouseClicked
 
     private void searchBookTemplateToUseHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBookTemplateToUseHandler
         String toSearch = my.convertEscapeCharacters(tfSearchBookTemplate1.getText().trim());
+        int row = assignedTeacherTable.getSelectedRow();
         
-        my.searchItem("", bookTemplatesTable1, 9, null, null, false, true, null, tfSearchBookTemplate1, true);
-        clearAddBookTemplateFields();
+        if(row == -1){
+            my.showMessage("Please select a section.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String gradeLevel = assignedTeacherTable.getValueAt(row, 9).toString();
+        
+        String where = "WHERE gradeLevel='"+gradeLevel+"' AND (templateName LIKE'%"+toSearch+"%') ORDER BY templateName ASC";
+        
+        clearSelectBookTemplateFields(false, false, true);
+        my.searchItem(where, bookTemplatesTable1, 9, null, null, false, true, null, tfSearchBookTemplate1, true);
     }//GEN-LAST:event_searchBookTemplateToUseHandler
 
     private void booksTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booksTable3MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_booksTable3MouseClicked
 
+    private void btnSaveTemplateSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveTemplateSelectedActionPerformed
+        int row = assignedTeacherTable.getSelectedRow();
+        int rowTemplate = bookTemplatesTable1.getSelectedRow();
+        
+        if(rowTemplate == -1){
+            my.showMessage("Please select a template.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
+        String templateId = bookTemplatesTable1.getValueAt(rowTemplate, 0).toString();
+        
+        String [] sets = {
+            "bookTemplateId='"+templateId+"'",
+        };
+        if(my.update_values("sections", sets, "id='"+sectionId+"'")){
+            my.showMessage("Update Successful. Please select the section again.", JOptionPane.INFORMATION_MESSAGE);
+            closeCustomDialog();
+        }else{
+            my.showMessage("Update failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSaveTemplateSelectedActionPerformed
+    private void clearSelectBookTemplateFields(boolean clearSearchField,boolean clearTemplatesTable,boolean clearBooksTable){
+        if(clearSearchField)
+            tfSearchBookTemplate1.setText("");
+        if(clearTemplatesTable)
+            my.clear_table_rows(bookTemplatesTable1);
+        if(clearBooksTable)
+            my.clear_table_rows(booksTable3);
+    }
     private void clearAddBookFields(){
         tfBookCode.setText("");
         tfBookName.setText("");
@@ -2090,13 +2152,14 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(booksTable3, new int [] {0});
             my.hideColumns(bookTemplatesTable, new int [] {0,3});
             my.hideColumns(bookTemplatesTable1, new int [] {0,3});
+            my.hideColumns(enrolledStudentsTable, new int [] {0,1,5});
         }
         
         //Set table fonts
         JTable tables [] = {
             assignedTeacherTable,
             booksTable,bookTemplatesTable,booksTable1,booksTable2,
-            bookTemplatesTable1,booksTable3,
+            bookTemplatesTable1,booksTable3,enrolledStudentsTable,
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
         //customHeaders(sf1SectionTable, new int []{0,1,2,3}, Color.RED, Color.WHITE, new Font("Comic Sans MS", Font.BOLD, 12), true);
@@ -2139,9 +2202,9 @@ public class dashBoard extends javax.swing.JFrame {
         }
         
         if(myVariables.getAccessLevel() == 1){
-            my.remove_multiple_tabs(mainTab, new int [] {0,1});
+            my.remove_multiple_tabs(mainTab, new int [] {0,1,3});
         }else{
-            
+            my.remove_multiple_tabs(mainTab, new int [] {3});
         }
     }
     private void loadColoredButtons(){
@@ -2227,6 +2290,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         JTextField searchFields [] = {
             tfSearchTeacherLoad,tfSearchBook,tfSearchBook1,tfSearchBookTemplate,tfSearchBookTemplate1,
+            tfSearchEnrolledStudent,
         };
         JTextField forms [] = {
             tfBookName,tfBookName1,tfBookCode,tfBookCode1,tfTemplateName,tfTemplateName1,

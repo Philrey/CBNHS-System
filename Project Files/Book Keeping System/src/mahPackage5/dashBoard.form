@@ -1413,7 +1413,7 @@
                   <Component id="btnSaveTemplateSelected" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Component id="jSplitPane5" alignment="0" pref="635" max="32767" attributes="0"/>
+              <Component id="jSplitPane5" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -1479,6 +1479,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Save"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveTemplateSelectedActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JSplitPane" name="jSplitPane5">
           <Properties>
@@ -1805,7 +1808,7 @@
                               <Component id="btnSearchEnrolledStudent" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="420" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="418" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1856,6 +1859,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnSearchEnrolledStudent">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/mahPackage5/icons/icons8_find_user_male_16px.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Search"/>
                   </Properties>
                   <Events>
