@@ -75,7 +75,7 @@ public class myVariables {
     private static final int [] enrollmentViewMinimalOrder = new int [] {5,0,4,1,2,7,3,6};
     private static final int [] teacherLoadsViewOrder = new int [] {6,7,1,4,3,8,2,10,9,5,0};
     private static final int [] managedSubjectsViewOrder = new int [] {10,4,6,8,2,1,11,0,5,12,3,7,9};
-    private static final int [] managedSubjectsWTemplateViewOrder = new int [] {12,5,7,9,3,2,13,1,6,14,4,8,11,0,10};
+    private static final int [] managedSubjectsWTemplateViewOrder = new int [] {13,5,8,10,3,2,14,1,7,15,4,9,12,0,11,6};
     
     private static final int [] sectionViewRev3Order = new int [] {8,0,2,4,5,6,3,1,7};
     private static final int [] jhsf1Order= new int [] {18,11,5,20,0,9,12,1,8,21,13,23,4,10,3,7,17,14,2,15,6,19,16,22};

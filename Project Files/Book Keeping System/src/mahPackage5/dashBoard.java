@@ -163,6 +163,23 @@ public class dashBoard extends javax.swing.JFrame {
         right1 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        booksUsedTable = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
+        dateChooserDialog = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel42 = new javax.swing.JLabel();
+        jcbDateSelected = new com.toedter.calendar.JDateChooser();
+        rbDate = new javax.swing.JRadioButton();
+        rbFm = new javax.swing.JRadioButton();
+        rbNeg = new javax.swing.JRadioButton();
+        rbTdo = new javax.swing.JRadioButton();
+        rbNone = new javax.swing.JRadioButton();
+        cbLLTR = new javax.swing.JCheckBox();
+        cbPTL = new javax.swing.JCheckBox();
+        cbTLTR = new javax.swing.JCheckBox();
+        btnSetStatus = new javax.swing.JButton();
+        chooseDateGroup = new javax.swing.ButtonGroup();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -935,25 +952,25 @@ public class dashBoard extends javax.swing.JFrame {
 
         assignedTeacherTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Section ID", "Section Name", "Adv ID", "Name", "Gender", "Subject ID", "Code", "Description", "Grade", "School Year", "templateId", "templateName"
+                "ID", "Section ID", "Section Name", "Adv ID", "Name", "Gender", "Subject ID", "Code", "Description", "Grade", "School Year", "Template ID", "Template Name", "Books Cotained"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1225,7 +1242,7 @@ public class dashBoard extends javax.swing.JFrame {
         );
 
         jSplitPane2.setBorder(null);
-        jSplitPane2.setDividerLocation(700);
+        jSplitPane2.setDividerLocation(500);
 
         left1.setBackground(new java.awt.Color(11, 102, 35));
 
@@ -1298,17 +1315,19 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(tfSearchEnrolledStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearchEnrolledStudent))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jSplitPane2.setLeftComponent(left1);
 
+        right1.setBackground(new java.awt.Color(255, 255, 204));
+
         jPanel8.setBackground(new java.awt.Color(22, 66, 33));
 
         jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel36.setText("Add New Book");
+        jLabel36.setText("View Student Details");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1327,21 +1346,61 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        booksUsedTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Book ID", "Code", "Name", "Grade Level", "Date ID", "Date Issued", "Date Returned"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        booksUsedTable.getTableHeader().setReorderingAllowed(false);
+        booksUsedTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                booksUsedTableMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(booksUsedTable);
+
+        jButton2.setText("Save");
+
         javax.swing.GroupLayout right1Layout = new javax.swing.GroupLayout(right1);
         right1.setLayout(right1Layout);
         right1Layout.setHorizontalGroup(
             right1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(right1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(right1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(right1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, right1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
+                .addContainerGap())
         );
         right1Layout.setVerticalGroup(
             right1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(right1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(413, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
 
         jSplitPane2.setRightComponent(right1);
@@ -1355,6 +1414,175 @@ public class dashBoard extends javax.swing.JFrame {
         distributeReturnBooksTabLayout.setVerticalGroup(
             distributeReturnBooksTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSplitPane2)
+        );
+
+        dateChooserDialog.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel14.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel42.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel42.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel42.setText("Choose Status");
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel42)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel42)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        chooseDateGroup.add(rbDate);
+        rbDate.setFont(myVariables.TEXTFIELD_FONT);
+        rbDate.setSelected(true);
+        rbDate.setText("Date");
+        rbDate.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        rbDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_round_20px.png"))); // NOI18N
+        rbDate.setIconTextGap(10);
+        rbDate.setOpaque(false);
+        rbDate.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_ok_20px.png"))); // NOI18N
+
+        chooseDateGroup.add(rbFm);
+        rbFm.setFont(myVariables.TEXTFIELD_FONT);
+        rbFm.setText("(FM) Force Majeure");
+        rbFm.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        rbFm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_round_20px.png"))); // NOI18N
+        rbFm.setIconTextGap(10);
+        rbFm.setOpaque(false);
+        rbFm.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_ok_20px.png"))); // NOI18N
+
+        chooseDateGroup.add(rbNeg);
+        rbNeg.setFont(myVariables.TEXTFIELD_FONT);
+        rbNeg.setText("(NEG) Negligence");
+        rbNeg.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        rbNeg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_round_20px.png"))); // NOI18N
+        rbNeg.setIconTextGap(10);
+        rbNeg.setOpaque(false);
+        rbNeg.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_ok_20px.png"))); // NOI18N
+
+        chooseDateGroup.add(rbTdo);
+        rbTdo.setFont(myVariables.TEXTFIELD_FONT);
+        rbTdo.setText("(TDO) Transferred/ Dropped Out");
+        rbTdo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        rbTdo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_round_20px.png"))); // NOI18N
+        rbTdo.setIconTextGap(10);
+        rbTdo.setOpaque(false);
+        rbTdo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_ok_20px.png"))); // NOI18N
+        rbTdo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbTdoActionPerformed(evt);
+            }
+        });
+
+        chooseDateGroup.add(rbNone);
+        rbNone.setFont(myVariables.TEXTFIELD_FONT);
+        rbNone.setText("None");
+        rbNone.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        rbNone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_round_20px.png"))); // NOI18N
+        rbNone.setIconTextGap(10);
+        rbNone.setOpaque(false);
+        rbNone.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_ok_20px.png"))); // NOI18N
+        rbNone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbNoneActionPerformed(evt);
+            }
+        });
+
+        cbLLTR.setFont(myVariables.TEXTFIELD_FONT);
+        cbLLTR.setText("LLTR");
+        cbLLTR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        cbLLTR.setIconTextGap(10);
+        cbLLTR.setOpaque(false);
+        cbLLTR.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_tick_box_20px.png"))); // NOI18N
+        cbLLTR.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+
+        cbPTL.setFont(myVariables.TEXTFIELD_FONT);
+        cbPTL.setText("PTL");
+        cbPTL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        cbPTL.setIconTextGap(10);
+        cbPTL.setOpaque(false);
+        cbPTL.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_tick_box_20px.png"))); // NOI18N
+        cbPTL.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+
+        cbTLTR.setFont(myVariables.TEXTFIELD_FONT);
+        cbTLTR.setText("TLTR");
+        cbTLTR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        cbTLTR.setIconTextGap(10);
+        cbTLTR.setOpaque(false);
+        cbTLTR.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_tick_box_20px.png"))); // NOI18N
+        cbTLTR.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+
+        btnSetStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_ok_16px.png"))); // NOI18N
+        btnSetStatus.setText("OK");
+        btnSetStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSetStatusActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dateChooserDialogLayout = new javax.swing.GroupLayout(dateChooserDialog);
+        dateChooserDialog.setLayout(dateChooserDialogLayout);
+        dateChooserDialogLayout.setHorizontalGroup(
+            dateChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dateChooserDialogLayout.createSequentialGroup()
+                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(dateChooserDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dateChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSetStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dateChooserDialogLayout.createSequentialGroup()
+                        .addComponent(rbDate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jcbDateSelected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dateChooserDialogLayout.createSequentialGroup()
+                        .addGroup(dateChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(rbNone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbTdo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbNeg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbFm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(dateChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbLLTR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbPTL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbTLTR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+        dateChooserDialogLayout.setVerticalGroup(
+            dateChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dateChooserDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(dateChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbDate)
+                    .addComponent(jcbDateSelected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(dateChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbFm)
+                    .addComponent(cbLLTR))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(dateChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbNeg)
+                    .addComponent(cbPTL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(dateChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbTdo)
+                    .addComponent(cbTLTR))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbNone)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSetStatus)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -1573,6 +1801,8 @@ public class dashBoard extends javax.swing.JFrame {
                 }else{
                     mainTab.setSelectedIndex(3);
                 }
+                
+                loadBookTemplatesToTable();
                 //my.showMessage("Loading", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 if(myVariables.getAccessLevel() != 4 && myVariables.getAccessLevel() != 5){
@@ -1647,7 +1877,7 @@ public class dashBoard extends javax.swing.JFrame {
         String toSearch = tfSearchEnrolledStudent.getText();
 
         String where = "WHERE sectionId='"+sectionId+"' AND (lrn='"+toSearch+"' OR lName LIKE '%"+toSearch+"%')";
-        my.searchItem(where, enrolledStudentsTable, 6, null, new int [] {3,4,5}, true, true, lbSearchResult1, tfSearchEnrolledStudent, true);
+        my.searchItem(where, enrolledStudentsTable, 6, null, new int [] {3,4,5}, true, true, lbSearchResult2, tfSearchEnrolledStudent, true);
     }//GEN-LAST:event_tfSearchEnrolledStudentsearchEnrolledStudentsHandler
 
     private void btnSearchEnrolledStudentsearchEnrolledStudentsHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchEnrolledStudentsearchEnrolledStudentsHandler
@@ -1663,7 +1893,7 @@ public class dashBoard extends javax.swing.JFrame {
         String toSearch = tfSearchEnrolledStudent.getText();
 
         String where = "WHERE sectionId='"+sectionId+"' AND (lrn='"+toSearch+"' OR lName LIKE '%"+toSearch+"%')";
-        my.searchItem(where, enrolledStudentsTable, 6, null, new int [] {3,4,5}, true, true, lbSearchResult1, tfSearchEnrolledStudent, true);
+        my.searchItem(where, enrolledStudentsTable, 6, null, new int [] {3,4,5}, true, true, lbSearchResult2, tfSearchEnrolledStudent, true);
     }//GEN-LAST:event_btnSearchEnrolledStudentsearchEnrolledStudentsHandler
 
     private void searchBookHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBookHandler
@@ -2035,6 +2265,86 @@ public class dashBoard extends javax.swing.JFrame {
             my.showMessage("Update failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSaveTemplateSelectedActionPerformed
+ 
+    private void booksUsedTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booksUsedTableMouseClicked
+        int studentRow = enrolledStudentsTable.getSelectedRow();
+        int row = booksUsedTable.getSelectedRow();
+        int col = booksUsedTable.getSelectedColumn();
+        
+        if(studentRow == -1){
+            my.showMessage("Please Select a Student.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if(row != -1 && col != -1){
+            switch (col){
+                case 5:{
+                    loadSelectStatusOptions(true);
+                    showCustomDialog("Set Book Status", dateChooserDialog, true, 400, 350, false);
+                    break;
+                }case 6:{
+                    loadSelectStatusOptions(false);
+                    showCustomDialog("Set Book Status", dateChooserDialog, true, 400, 350, false);
+                    break;
+                }
+            }
+        }
+    }//GEN-LAST:event_booksUsedTableMouseClicked
+
+    private void rbTdoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTdoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbTdoActionPerformed
+
+    private void rbNoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbNoneActionPerformed
+
+    private void btnSetStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetStatusActionPerformed
+        int row = booksUsedTable.getSelectedRow();
+        int col = booksUsedTable.getSelectedColumn();
+        
+        
+        closeCustomDialog();
+    }//GEN-LAST:event_btnSetStatusActionPerformed
+    private void loadBookTemplatesToTable(){
+        int row = assignedTeacherTable.getSelectedRow();
+        String booksContained = assignedTeacherTable.getValueAt(row, 13).toString();
+        
+        if(booksContained.contains("None")){
+            System.err.println("Don't Load. Empty Books");
+        }else{
+            booksContained = booksContained.replace(":", ",");
+            booksContained = booksContained.substring(0,booksContained.length()-1);
+            String [] result = my.return_values("*", "books", "WHERE id IN ("+booksContained+")",myVariables.getBooksOrder());
+            
+            my.clear_table_rows(booksUsedTable);
+            if(result != null){
+                for(String n : result){
+                    my.add_table_row(n+"@@@@@@", booksUsedTable);
+                }
+            }
+        }
+    }
+    private void loadSelectStatusOptions(boolean isDateIssued){
+        if(isDateIssued){
+            rbFm.setEnabled(false);
+            rbNeg.setEnabled(false);
+            rbTdo.setEnabled(false);
+            
+            cbLLTR.setEnabled(false);
+            cbPTL.setEnabled(false);
+            cbTLTR.setEnabled(false);
+        }else{
+            rbFm.setEnabled(true);
+            rbNeg.setEnabled(true);
+            rbTdo.setEnabled(true);
+            
+            cbLLTR.setEnabled(true);
+            cbPTL.setEnabled(true);
+            cbTLTR.setEnabled(true);
+        }
+    }
+    
     private void clearSelectBookTemplateFields(boolean clearSearchField,boolean clearTemplatesTable,boolean clearBooksTable){
         if(clearSearchField)
             tfSearchBookTemplate1.setText("");
@@ -2145,7 +2455,7 @@ public class dashBoard extends javax.swing.JFrame {
                 
         //Hide Table Columns
         if(!myVariables.isDebugModeOn()){
-            my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6,11});
+            my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6,11,13});
             my.hideColumns(booksTable, new int [] {0});
             my.hideColumns(booksTable1, new int [] {0});
             my.hideColumns(booksTable2, new int [] {0});
@@ -2153,6 +2463,7 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(bookTemplatesTable, new int [] {0,3});
             my.hideColumns(bookTemplatesTable1, new int [] {0,3});
             my.hideColumns(enrolledStudentsTable, new int [] {0,1,5});
+            my.hideColumns(booksUsedTable, new int [] {0,3});
         }
         
         //Set table fonts
@@ -2160,6 +2471,7 @@ public class dashBoard extends javax.swing.JFrame {
             assignedTeacherTable,
             booksTable,bookTemplatesTable,booksTable1,booksTable2,
             bookTemplatesTable1,booksTable3,enrolledStudentsTable,
+            booksUsedTable,
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
         //customHeaders(sf1SectionTable, new int []{0,1,2,3}, Color.RED, Color.WHITE, new Font("Comic Sans MS", Font.BOLD, 12), true);
@@ -2216,6 +2528,8 @@ public class dashBoard extends javax.swing.JFrame {
             btnSearchBookTemplate,btnAddBookTemplate,btnSaveBookTemplateChanges,
             
             btnSearchBookTemplate1,btnSaveTemplateSelected,
+            
+            btnSetStatus,
         };
         
         JButton lightButtons [] = {
@@ -2246,7 +2560,7 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
-            jLabel35,jLabel36,jLabel37,jLabel38,jLabel39,jLabel40,jLabel41,
+            jLabel35,jLabel36,jLabel37,jLabel38,jLabel39,jLabel40,jLabel41,jLabel42,
         };
         JLabel labels [] = {
             lbSearchResult,lbSearchResult1,lbSearchResult2,lbSearchResult3,
@@ -2282,7 +2596,7 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadTextFields(){
         JDateChooser dateChoosers [] = {
-            //jdcDate,jdcCustomDate,
+            jcbDateSelected,
         };
         JSpinner spinners [] = {
             //jsHours,jsMinutes
@@ -2350,6 +2664,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTable booksTable1;
     private javax.swing.JTable booksTable2;
     private javax.swing.JTable booksTable3;
+    private javax.swing.JTable booksUsedTable;
     private javax.swing.JButton btnAddBookTemplate;
     private javax.swing.JButton btnAddBookToList;
     private javax.swing.JButton btnRemobeBookFromList;
@@ -2363,11 +2678,18 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnSearchBookTemplate1;
     private javax.swing.JButton btnSearchEnrolledStudent;
     private javax.swing.JButton btnSearchSection;
+    private javax.swing.JButton btnSetStatus;
+    private javax.swing.JCheckBox cbLLTR;
+    private javax.swing.JCheckBox cbPTL;
+    private javax.swing.JCheckBox cbTLTR;
+    private javax.swing.ButtonGroup chooseDateGroup;
+    private javax.swing.JPanel dateChooserDialog;
     private javax.swing.JPanel distributeReturnBooksTab;
     private javax.swing.JPanel editBookDialog;
     private javax.swing.JPanel editBookTemplateDialog;
     private javax.swing.JTable enrolledStudentsTable;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2385,6 +2707,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2394,6 +2717,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
@@ -2403,6 +2727,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSplitPane jSplitPane1;
@@ -2412,6 +2737,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane5;
     private javax.swing.JComboBox<String> jcbBookGradeLevel;
     private javax.swing.JComboBox<String> jcbBookGradeLevel1;
+    private com.toedter.calendar.JDateChooser jcbDateSelected;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
     private javax.swing.JComboBox<String> jcbTemplateGradeLevel;
     private javax.swing.JComboBox<String> jcbTemplateGradeLevel1;
@@ -2433,6 +2759,11 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTabbedPane mainTab;
     private javax.swing.JPanel manageBookTemplatesTab;
     private javax.swing.JPanel manageBooksTab;
+    private javax.swing.JRadioButton rbDate;
+    private javax.swing.JRadioButton rbFm;
+    private javax.swing.JRadioButton rbNeg;
+    private javax.swing.JRadioButton rbNone;
+    private javax.swing.JRadioButton rbTdo;
     private javax.swing.JPanel right;
     private javax.swing.JPanel right1;
     private javax.swing.JPanel right2;
