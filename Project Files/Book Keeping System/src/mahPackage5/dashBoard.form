@@ -2062,11 +2062,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnSetStatus" max="32767" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="rbDate" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jcbDateSelected" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="rbDate" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="rbNone" alignment="0" max="32767" attributes="0"/>
@@ -2081,6 +2077,10 @@
                               <Component id="cbTLTR" alignment="1" min="-2" pref="76" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jcbDateSelected" min="-2" pref="166" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -2092,11 +2092,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="rbDate" min="-2" max="-2" attributes="0"/>
-                      <Component id="jcbDateSelected" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="rbDate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jcbDateSelected" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="rbFm" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cbLLTR" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2173,7 +2172,7 @@
               <Connection code="myVariables.TEXTFIELD_FONT" type="code"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
-            <Property name="text" type="java.lang.String" value="Date"/>
+            <Property name="text" type="java.lang.String" value="Custom Date"/>
             <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/mahPackage5/icons/icons8_unchecked_radio_button_20px.png"/>
             </Property>

@@ -1444,7 +1444,7 @@ public class dashBoard extends javax.swing.JFrame {
         chooseDateGroup.add(rbDate);
         rbDate.setFont(myVariables.TEXTFIELD_FONT);
         rbDate.setSelected(true);
-        rbDate.setText("Date");
+        rbDate.setText("Custom Date");
         rbDate.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         rbDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_round_20px.png"))); // NOI18N
         rbDate.setIconTextGap(10);
@@ -1540,10 +1540,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(dateChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSetStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dateChooserDialogLayout.createSequentialGroup()
-                        .addComponent(rbDate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcbDateSelected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(rbDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dateChooserDialogLayout.createSequentialGroup()
                         .addGroup(dateChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(rbNone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1554,7 +1551,10 @@ public class dashBoard extends javax.swing.JFrame {
                         .addGroup(dateChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbLLTR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbPTL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbTLTR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cbTLTR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(dateChooserDialogLayout.createSequentialGroup()
+                        .addComponent(jcbDateSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         dateChooserDialogLayout.setVerticalGroup(
@@ -1563,10 +1563,10 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(dateChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbDate)
-                    .addComponent(jcbDateSelected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(rbDate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcbDateSelected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addGroup(dateChooserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbFm)
                     .addComponent(cbLLTR))
@@ -2279,11 +2279,11 @@ public class dashBoard extends javax.swing.JFrame {
         if(row != -1 && col != -1){
             switch (col){
                 case 5:{
-                    loadSelectStatusOptions(true);
+                    loadSelectStatusOptions(true,true);
                     showCustomDialog("Set Book Status", dateChooserDialog, true, 400, 350, false);
                     break;
                 }case 6:{
-                    loadSelectStatusOptions(false);
+                    loadSelectStatusOptions(false,true);
                     showCustomDialog("Set Book Status", dateChooserDialog, true, 400, 350, false);
                     break;
                 }
@@ -2325,7 +2325,7 @@ public class dashBoard extends javax.swing.JFrame {
             }
         }
     }
-    private void loadSelectStatusOptions(boolean isDateIssued){
+    private void loadSelectStatusOptions(boolean isDateIssued,boolean resetSelection){
         if(isDateIssued){
             rbFm.setEnabled(false);
             rbNeg.setEnabled(false);
@@ -2342,6 +2342,14 @@ public class dashBoard extends javax.swing.JFrame {
             cbLLTR.setEnabled(true);
             cbPTL.setEnabled(true);
             cbTLTR.setEnabled(true);
+        }
+        
+        if(resetSelection){
+            rbDate.setSelected(true);
+            
+            cbLLTR.setSelected(false);
+            cbPTL.setSelected(false);
+            cbTLTR.setSelected(false);
         }
     }
     
