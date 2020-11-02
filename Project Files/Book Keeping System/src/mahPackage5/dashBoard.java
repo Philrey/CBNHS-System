@@ -2471,7 +2471,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         if(my.update_multiple_values("booksissuedreturned", "id,sectionId,studentId,bookId,dateIssued,dateReturned,dateUpdated", "dateIssued=VALUES(dateIssued),dateReturned=VALUES(dateReturned),dateUpdated=VALUES(dateUpdated)", values)){
             my.showMessage("Updated Successfully.", JOptionPane.INFORMATION_MESSAGE);
-            //clearBooksIssuedTable();
+            clearBooksIssuedTable();
         }else{
             my.showMessage("Updated Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
         }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2020 at 12:53 PM
+-- Generation Time: Nov 02, 2020 at 12:24 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -85,21 +85,6 @@ INSERT INTO `attendance` (`id`, `studentId`, `sectionId`, `subjectId`, `status`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bookissuedreturned`
---
-
-CREATE TABLE `bookissuedreturned` (
-  `id` int(11) NOT NULL,
-  `sectionId` int(11) NOT NULL,
-  `studentId` int(11) NOT NULL,
-  `bookId` int(11) NOT NULL,
-  `dateIssued` varchar(30) NOT NULL,
-  `dateReturned` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `books`
 --
 
@@ -117,7 +102,41 @@ CREATE TABLE `books` (
 INSERT INTO `books` (`id`, `bookCode`, `bookName`, `gradeLevel`) VALUES
 (1, 'ENG32', 'English For You And Me 7', 7),
 (2, 'MATH32', 'Mathematics in our Daily Lives', 8),
-(3, 'FILIPINO-69', 'Wikang Sariling Atin', 7);
+(3, 'FILIPINO-69', 'Wikang Sariling Atin', 7),
+(4, 'MATH31', 'Algebra', 7),
+(5, 'AP20', 'Araling Panlipunan', 7),
+(6, 'ENG31', 'English For Younglings', 8),
+(7, 'AP21', 'Philippine History', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booksissuedreturned`
+--
+
+CREATE TABLE `booksissuedreturned` (
+  `id` int(11) NOT NULL,
+  `sectionId` int(11) NOT NULL,
+  `studentId` int(11) NOT NULL,
+  `bookId` int(11) NOT NULL,
+  `dateIssued` varchar(30) NOT NULL,
+  `dateReturned` varchar(30) NOT NULL,
+  `dateUpdated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `booksissuedreturned`
+--
+
+INSERT INTO `booksissuedreturned` (`id`, `sectionId`, `studentId`, `bookId`, `dateIssued`, `dateReturned`, `dateUpdated`) VALUES
+(1, 7, 1, 1, '2020-11-02', 'FM:LLTR', '2020-11-02 19:23:08'),
+(2, 7, 1, 3, '2020-11-02', 'NEG', '2020-11-02 19:23:08'),
+(3, 7, 1, 4, '2020-11-02', 'NEG:PTL', '2020-11-02 19:23:08'),
+(4, 7, 1, 5, '2020-11-02', ' ', '2020-11-02 19:23:08'),
+(5, 7, 3, 1, ' ', ' ', '2020-11-02 19:22:31'),
+(6, 7, 3, 3, ' ', ' ', '2020-11-02 19:22:31'),
+(7, 7, 3, 4, ' ', ' ', '2020-11-02 19:22:31'),
+(8, 7, 3, 5, ' ', ' ', '2020-11-02 19:22:31');
 
 -- --------------------------------------------------------
 
@@ -137,7 +156,9 @@ CREATE TABLE `booktemplates` (
 --
 
 INSERT INTO `booktemplates` (`id`, `templateName`, `gradeLevel`, `booksContained`) VALUES
-(1, 'Grade 7 Template', 7, '1:3:');
+(1, 'Grade 7 Template', 7, '1:3:5:4:'),
+(2, 'Grade 8 Template', 8, '7:6:2:'),
+(3, 'Grade 9 Template', 9, '');
 
 -- --------------------------------------------------------
 
@@ -369,7 +390,7 @@ INSERT INTO `sections` (`id`, `sectionName`, `adviserId`, `loadId`, `bookTemplat
 (7, 'Grade 7 - Fidelity', 2, 8, 1, 2019),
 (8, 'Grade 8 - Cashew', 2, 9, -1, 2020),
 (9, 'Grade 7 Rizal', 1, 8, -1, 2020),
-(10, 'Grade 9 - Mabini', 2, 10, -1, 2020),
+(10, 'Grade 9 - Mabini', 2, 10, 3, 2020),
 (11, 'Grade 10 - Strawberry', 3, 11, -1, 2019),
 (12, 'Grade 9 - Integrity', 3, 8, -1, 2019),
 (13, 'Grade 10 - Unity', 2, 11, -1, 2019),
@@ -852,15 +873,15 @@ ALTER TABLE `attendance`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `bookissuedreturned`
---
-ALTER TABLE `bookissuedreturned`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `books`
 --
 ALTER TABLE `books`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `booksissuedreturned`
+--
+ALTER TABLE `booksissuedreturned`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -940,22 +961,22 @@ ALTER TABLE `attendance`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
--- AUTO_INCREMENT for table `bookissuedreturned`
---
-ALTER TABLE `bookissuedreturned`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `booksissuedreturned`
+--
+ALTER TABLE `booksissuedreturned`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `booktemplates`
 --
 ALTER TABLE `booktemplates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `enrollment`
