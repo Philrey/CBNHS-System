@@ -9,6 +9,7 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Cursor;
+import java.util.Date;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -165,7 +166,7 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         booksUsedTable = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        btnSaveStatusChanges = new javax.swing.JButton();
         dateChooserDialog = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jLabel42 = new javax.swing.JLabel();
@@ -1348,17 +1349,17 @@ public class dashBoard extends javax.swing.JFrame {
 
         booksUsedTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Book ID", "Code", "Name", "Grade Level", "Date ID", "Date Issued", "Date Returned"
+                "Book ID", "Code", "Name", "Grade", "Date ID", "Issued", "Returned", "Updated"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1372,8 +1373,20 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(booksUsedTable);
+        if (booksUsedTable.getColumnModel().getColumnCount() > 0) {
+            booksUsedTable.getColumnModel().getColumn(5).setPreferredWidth(70);
+            booksUsedTable.getColumnModel().getColumn(5).setMaxWidth(70);
+            booksUsedTable.getColumnModel().getColumn(6).setPreferredWidth(70);
+            booksUsedTable.getColumnModel().getColumn(6).setMaxWidth(70);
+        }
 
-        jButton2.setText("Save");
+        btnSaveStatusChanges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_save_16px.png"))); // NOI18N
+        btnSaveStatusChanges.setText("Save");
+        btnSaveStatusChanges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveStatusChangesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout right1Layout = new javax.swing.GroupLayout(right1);
         right1.setLayout(right1Layout);
@@ -1388,7 +1401,7 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, right1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addComponent(btnSaveStatusChanges)))
                 .addContainerGap())
         );
         right1Layout.setVerticalGroup(
@@ -1397,9 +1410,9 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(btnSaveStatusChanges)
                 .addContainerGap())
         );
 
@@ -1796,13 +1809,6 @@ public class dashBoard extends javax.swing.JFrame {
             int templateId = Integer.parseInt(assignedTeacherTable.getValueAt(row, 11).toString());
             
             if(templateId != -1){
-                mainTab.addTab("Distribute/Return Books", my.getImgIcn(myVariables.getViewStudentsIcon()), distributeReturnBooksTab);
-                if(myVariables.getAccessLevel() == 1){
-                    mainTab.setSelectedIndex(1);
-                }else{
-                    mainTab.setSelectedIndex(3);
-                }
-                
                 loadBookTemplatesToTable();
                 //my.showMessage("Loading", JOptionPane.INFORMATION_MESSAGE);
             }else{
@@ -1862,7 +1868,105 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_booksTableMouseClicked
 
     private void enrolledStudentsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enrolledStudentsTableMouseClicked
+        if(evt.getClickCount() != 2){
+            clearBooksIssuedTable();
+            return;
+        }
+
+        //Load Data from booksIssued/Returned Table
+        int row = enrolledStudentsTable.getSelectedRow();
         
+        String sectionId = enrolledStudentsTable.getValueAt(row, 5).toString();
+        String studentId = enrolledStudentsTable.getValueAt(row, 1).toString();
+        
+        int bookCount = booksUsedTable.getRowCount();
+        
+        String bookIds = "";
+        for(int n=0;n<bookCount;n++){
+            bookIds+=booksUsedTable.getValueAt(n, 0).toString();
+            if(n<bookCount-1){
+                bookIds+=",";
+            }
+        }
+        String where = "WHERE sectionId='"+sectionId+"' AND studentId='"+studentId+"' AND bookId IN("+bookIds+")";
+        
+        String [] result = my.return_values("*", "booksissuedreturned", where, myVariables.getBooksIssuedReturnedOrder());
+        
+        if(result == null){
+            if(my.getConfirmation("This student has no records for this template.\nAdd them all now?")){
+                String [] values = new String[bookCount];
+                for(int n=0;n<bookCount;n++){
+                    values[n] = "null,'"+sectionId+"','"+studentId+"','"+booksUsedTable.getValueAt(n, 0).toString()+"',' ',' ',now()";
+                    if(n<bookCount-1){
+                        bookIds+=",";
+                    }
+                }
+                if(my.add_multiple_values("booksissuedreturned", "id,sectionId,studentId,bookId,dateIssued,dateReturned,dateUpdated", values)){
+                    my.showMessage("Adding Success. Please select the student again.", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    my.showMessage("Adding Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+                }
+                clearBooksIssuedTable();
+            }else{
+                clearBooksIssuedTable();
+                enrolledStudentsTable.clearSelection();
+            }
+        }else{
+            //Check for missing book records
+            bookIds = "";
+            boolean matchFound;
+            int currentId=0,resultId=0;
+            //match book IDS
+            for(int n=0;n<bookCount;n++){
+                matchFound = false;
+                currentId = Integer.parseInt(booksUsedTable.getValueAt(n, 0).toString());
+                for(int x=0;x<result.length;x++){
+                    resultId = Integer.parseInt(my.getValueAtColumn(result[x], 3));
+                    if(currentId == resultId){
+                        String bookId = my.getValueAtColumn(result[x], 3);
+                        String dateIssued = my.getValueAtColumn(result[x], 4);
+                        String dateReturned = my.getValueAtColumn(result[x], 5);
+                        String dateUpdated = my.getValueAtColumn(result[x], 6);
+                        
+                        booksUsedTable.setValueAt(bookId, n, 4);
+                        booksUsedTable.setValueAt(dateIssued, n, 5);
+                        booksUsedTable.setValueAt(dateReturned, n, 6);
+                        booksUsedTable.setValueAt(dateUpdated, n, 7);
+                        
+                        matchFound = true;
+                        break;
+                    }
+                }
+                if(!matchFound){
+                    bookIds+=currentId+",";
+                }
+            }
+            
+            if(bookIds.length()>0){
+                if(my.getConfirmation("This student has missing records on other Books.\nWould you like to them now?"
+                        + "\n\nPossible Reasons: \n-Registrar added/removed a Book to the Template.\n-Administrator forcibly deleted that record.")){
+                    String [] missingIds = bookIds.split(",");
+                    String [] values = new String[missingIds.length];
+                    
+                    for(int n=0;n<values.length;n++){
+                        values[n] = "null,'"+sectionId+"','"+studentId+"','"+missingIds[n]+"',' ',' ',now()";
+                    }
+                    
+                    if(my.add_multiple_values("booksissuedreturned", "id,sectionId,studentId,bookId,dateIssued,dateReturned,dateUpdated", values)){
+                        my.showMessage("Adding Success. Please select the student again.", JOptionPane.INFORMATION_MESSAGE);
+                    }else{
+                        my.showMessage("Adding Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+                    }
+                    clearBooksIssuedTable();
+                }else{
+                    clearBooksIssuedTable();
+                    enrolledStudentsTable.clearSelection();
+                }
+            }else{
+                booksUsedTable.setEnabled(true);
+                btnSaveStatusChanges.setEnabled(true);
+            }
+        }
     }//GEN-LAST:event_enrolledStudentsTableMouseClicked
 
     private void tfSearchEnrolledStudentsearchEnrolledStudentsHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchEnrolledStudentsearchEnrolledStudentsHandler
@@ -1879,6 +1983,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         String where = "WHERE sectionId='"+sectionId+"' AND (lrn='"+toSearch+"' OR lName LIKE '%"+toSearch+"%')";
         my.searchItem(where, enrolledStudentsTable, 6, null, new int [] {3,4,5}, true, true, lbSearchResult2, tfSearchEnrolledStudent, true);
+        clearBooksIssuedTable();
     }//GEN-LAST:event_tfSearchEnrolledStudentsearchEnrolledStudentsHandler
 
     private void btnSearchEnrolledStudentsearchEnrolledStudentsHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchEnrolledStudentsearchEnrolledStudentsHandler
@@ -1895,6 +2000,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         String where = "WHERE sectionId='"+sectionId+"' AND (lrn='"+toSearch+"' OR lName LIKE '%"+toSearch+"%')";
         my.searchItem(where, enrolledStudentsTable, 6, null, new int [] {3,4,5}, true, true, lbSearchResult2, tfSearchEnrolledStudent, true);
+        clearBooksIssuedTable();
     }//GEN-LAST:event_btnSearchEnrolledStudentsearchEnrolledStudentsHandler
 
     private void searchBookHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBookHandler
@@ -2272,6 +2378,14 @@ public class dashBoard extends javax.swing.JFrame {
         int row = booksUsedTable.getSelectedRow();
         int col = booksUsedTable.getSelectedColumn();
         
+        int dateId = 0;
+        try {
+            dateId = Integer.parseInt(booksUsedTable.getValueAt(row, 4).toString());
+        } catch (Exception e) {return;}
+        if(dateId == -1){
+            return;
+        }
+        
         if(studentRow == -1){
             my.showMessage("Please Select a Student.", JOptionPane.WARNING_MESSAGE);
             return;
@@ -2280,11 +2394,11 @@ public class dashBoard extends javax.swing.JFrame {
         if(row != -1 && col != -1){
             switch (col){
                 case 5:{
-                    loadSelectStatusOptions(true,true);
+                    loadSelectStatusOptions(true,row,col);
                     showCustomDialog("Set Book Status", dateChooserDialog, true, 400, 350, false);
                     break;
                 }case 6:{
-                    loadSelectStatusOptions(false,true);
+                    loadSelectStatusOptions(false,row,col);
                     showCustomDialog("Set Book Status", dateChooserDialog, true, 400, 350, false);
                     break;
                 }
@@ -2304,16 +2418,51 @@ public class dashBoard extends javax.swing.JFrame {
         int row = booksUsedTable.getSelectedRow();
         int col = booksUsedTable.getSelectedColumn();
         
+        String newStatus = "";
+        if(rbDate.isSelected()){
+            try {
+                newStatus = my.jCalendarToNumberDate(jcbDateSelected.getDate().toString(), false);
+            } catch (Exception e) {
+                my.showMessage("No Date selected.", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        }
+        if(rbFm.isSelected()){
+            newStatus = cbLLTR.isSelected()? "FM:LLTR" : "FM";
+        }
+        if(rbNeg.isSelected()){
+            newStatus = cbPTL.isSelected()? "NEG:PTL" : "NEG";
+        }
+        if(rbTdo.isSelected()){
+            newStatus = cbTLTR.isSelected()? "TDO:TLTR" : "TDO";
+        }
         
+        booksUsedTable.setValueAt(newStatus, row, col);
         closeCustomDialog();
     }//GEN-LAST:event_btnSetStatusActionPerformed
+
+    private void btnSaveStatusChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStatusChangesActionPerformed
+        
+    }//GEN-LAST:event_btnSaveStatusChangesActionPerformed
     private void loadBookTemplatesToTable(){
         int row = assignedTeacherTable.getSelectedRow();
-        String booksContained = assignedTeacherTable.getValueAt(row, 13).toString();
+        String booksContained = "None";
+        try {
+            booksContained = assignedTeacherTable.getValueAt(row, 13).toString();
+        } catch (Exception e) {System.err.println("Null books");}  
         
         if(booksContained.contains("None")){
             System.err.println("Don't Load. Empty Books");
+            my.showMessage("The TEMPLATE used by this section seems to have no Books in it.\nPlease contact a "+myVariables.getAccessLevelName(4)+" User for this error.", JOptionPane.ERROR_MESSAGE);
+            return;
         }else{
+            mainTab.addTab("Distribute/Return Books", my.getImgIcn(myVariables.getViewStudentsIcon()), distributeReturnBooksTab);
+            if(myVariables.getAccessLevel() == 1){
+                mainTab.setSelectedIndex(1);
+            }else{
+                mainTab.setSelectedIndex(3);
+            }
+            
             booksContained = booksContained.replace(":", ",");
             booksContained = booksContained.substring(0,booksContained.length()-1);
             String [] result = my.return_values("*", "books", "WHERE id IN ("+booksContained+")",myVariables.getBooksOrder());
@@ -2326,7 +2475,28 @@ public class dashBoard extends javax.swing.JFrame {
             }
         }
     }
-    private void loadSelectStatusOptions(boolean isDateIssued,boolean resetSelection){
+    private void loadSelectStatusOptions(boolean isDateIssued,int row,int col){
+        //Clear Selections
+        rbFm.setSelected(false);
+        rbNeg.setSelected(false);
+        rbTdo.setSelected(false);
+        
+        cbLLTR.setSelected(false);
+        cbPTL.setSelected(false);
+        cbTLTR.setSelected(false);
+        
+        //Load Selected Status
+        String status = booksUsedTable.getValueAt(row, col).toString();
+        if(status.length() == 1){
+            rbNone.setSelected(true);
+        }
+        if(status.contains("-")){
+            String [] date = status.split("-");
+            int year =Integer.parseInt(date[0]),month=Integer.parseInt(date[1]),day = Integer.parseInt(date[2]);
+            rbDate.setSelected(true);
+            jcbDateSelected.setDate(new Date(year-1900, month-1, day));
+        }
+        
         if(isDateIssued){
             rbFm.setEnabled(false);
             rbNeg.setEnabled(false);
@@ -2343,14 +2513,19 @@ public class dashBoard extends javax.swing.JFrame {
             cbLLTR.setEnabled(true);
             cbPTL.setEnabled(true);
             cbTLTR.setEnabled(true);
-        }
-        
-        if(resetSelection){
-            rbDate.setSelected(true);
             
-            cbLLTR.setSelected(false);
-            cbPTL.setSelected(false);
-            cbTLTR.setSelected(false);
+            if(status.contains("FM")){
+                rbFm.setSelected(true);
+                cbLLTR.setSelected(status.contains("LLTR")?true:false);return;
+            }
+            if(status.contains("NEG")){
+                rbNeg.setSelected(true);
+                cbPTL.setSelected(status.contains("PTL")?true:false);return;
+            }
+            if(status.contains("TDO")){
+                rbTdo.setSelected(true);
+                cbTLTR.setSelected(status.contains("TLTR")?true:false);
+            }
         }
     }
     
@@ -2372,6 +2547,18 @@ public class dashBoard extends javax.swing.JFrame {
     private void clearEditBookTemplateTables(){
         my.clear_table_rows(booksTable1);
         my.clear_table_rows(booksTable2);
+    }
+    private void clearBooksIssuedTable(){
+        for(int n=0;n<booksUsedTable.getRowCount();n++){
+            booksUsedTable.setValueAt("-1", n, 4);
+            booksUsedTable.setValueAt(" ", n, 5);
+            booksUsedTable.setValueAt(" ", n, 6);
+            booksUsedTable.setValueAt("", n, 7);
+        }
+        booksUsedTable.setEnabled(false);
+        booksUsedTable.clearSelection();
+        
+        btnSaveStatusChanges.setEnabled(false);
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -2472,7 +2659,7 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(bookTemplatesTable, new int [] {0,3});
             my.hideColumns(bookTemplatesTable1, new int [] {0,3});
             my.hideColumns(enrolledStudentsTable, new int [] {0,1,5});
-            my.hideColumns(booksUsedTable, new int [] {0,3});
+            my.hideColumns(booksUsedTable, new int [] {0,3,4});
         }
         
         //Set table fonts
@@ -2680,6 +2867,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnSaveBook;
     private javax.swing.JButton btnSaveBook1;
     private javax.swing.JButton btnSaveBookTemplateChanges;
+    private javax.swing.JButton btnSaveStatusChanges;
     private javax.swing.JButton btnSaveTemplateSelected;
     private javax.swing.JButton btnSearchBook;
     private javax.swing.JButton btnSearchBook1;
@@ -2698,7 +2886,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel editBookTemplateDialog;
     private javax.swing.JTable enrolledStudentsTable;
     private javax.swing.JPanel headerPanel;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

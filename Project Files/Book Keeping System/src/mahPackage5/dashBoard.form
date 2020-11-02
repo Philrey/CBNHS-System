@@ -1901,7 +1901,7 @@
                               <Component id="jScrollPane2" alignment="0" pref="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnSaveStatusChanges" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1914,9 +1914,9 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" pref="373" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" pref="371" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSaveStatusChanges" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1974,14 +1974,15 @@
                     <Component class="javax.swing.JTable" name="booksUsedTable">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="7" rowCount="4">
+                          <Table columnCount="8" rowCount="4">
                             <Column editable="false" title="Book ID" type="java.lang.Object"/>
                             <Column editable="false" title="Code" type="java.lang.Object"/>
                             <Column editable="false" title="Name" type="java.lang.Object"/>
-                            <Column editable="false" title="Grade Level" type="java.lang.Object"/>
+                            <Column editable="false" title="Grade" type="java.lang.Object"/>
                             <Column editable="false" title="Date ID" type="java.lang.Object"/>
-                            <Column editable="false" title="Date Issued" type="java.lang.Object"/>
-                            <Column editable="false" title="Date Returned" type="java.lang.Object"/>
+                            <Column editable="false" title="Issued" type="java.lang.Object"/>
+                            <Column editable="false" title="Returned" type="java.lang.Object"/>
+                            <Column editable="false" title="Updated" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -2011,7 +2012,12 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="70" minWidth="-1" prefWidth="70" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="70" minWidth="-1" prefWidth="70" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -2033,10 +2039,16 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="jButton2">
+                <Component class="javax.swing.JButton" name="btnSaveStatusChanges">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/mahPackage5/icons/icons8_save_16px.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Save"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveStatusChangesActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
