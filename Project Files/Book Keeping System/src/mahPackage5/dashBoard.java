@@ -1923,12 +1923,14 @@ public class dashBoard extends javax.swing.JFrame {
                 for(int x=0;x<result.length;x++){
                     resultId = Integer.parseInt(my.getValueAtColumn(result[x], 3));
                     if(currentId == resultId){
-                        String bookId = my.getValueAtColumn(result[x], 3);
-                        String dateIssued = my.getValueAtColumn(result[x], 4);
-                        String dateReturned = my.getValueAtColumn(result[x], 5);
-                        String dateUpdated = my.getValueAtColumn(result[x], 6);
+                        System.err.println(result[x]);
+                        String values [] = result[x].split("@@");
+                        String dateId = values[0];
+                        String dateIssued = values[4];
+                        String dateReturned = values[5];
+                        String dateUpdated = values[6];
                         
-                        booksUsedTable.setValueAt(bookId, n, 4);
+                        booksUsedTable.setValueAt(dateId, n, 4);
                         booksUsedTable.setValueAt(dateIssued, n, 5);
                         booksUsedTable.setValueAt(dateReturned, n, 6);
                         booksUsedTable.setValueAt(dateUpdated, n, 7);
@@ -2436,13 +2438,43 @@ public class dashBoard extends javax.swing.JFrame {
         if(rbTdo.isSelected()){
             newStatus = cbTLTR.isSelected()? "TDO:TLTR" : "TDO";
         }
+        if(rbNone.isSelected()){
+            newStatus = " ";
+        }
         
         booksUsedTable.setValueAt(newStatus, row, col);
         closeCustomDialog();
     }//GEN-LAST:event_btnSetStatusActionPerformed
 
     private void btnSaveStatusChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStatusChangesActionPerformed
+        int studentRow = enrolledStudentsTable.getSelectedRow();
+        int booksCount = booksUsedTable.getRowCount();
         
+        String sectionId = enrolledStudentsTable.getValueAt(studentRow, 5).toString();
+        String studentId = enrolledStudentsTable.getValueAt(studentRow, 1).toString();
+        
+        String bookId,dateId,dateIssued,dateReturned;
+        String [] values = new String[booksCount];
+        for(int n=0;n<booksCount;n++){
+            try {
+                dateId = booksUsedTable.getValueAt(n, 4).toString();
+                bookId = booksUsedTable.getValueAt(n, 0).toString();
+                dateIssued = booksUsedTable.getValueAt(n, 5).toString();
+                dateReturned = booksUsedTable.getValueAt(n, 6).toString();
+                
+                values[n] = dateId+","+sectionId+","+studentId+","+bookId+",'"+dateIssued+"','"+dateReturned+"',now()";
+                System.err.println(values[n]);
+            } catch (Exception e) {
+                System.err.println("Skipped a Subject @ row "+n);
+            }
+        }
+        
+        if(my.update_multiple_values("booksissuedreturned", "id,sectionId,studentId,bookId,dateIssued,dateReturned,dateUpdated", "dateIssued=VALUES(dateIssued),dateReturned=VALUES(dateReturned),dateUpdated=VALUES(dateUpdated)", values)){
+            my.showMessage("Updated Successfully.", JOptionPane.INFORMATION_MESSAGE);
+            //clearBooksIssuedTable();
+        }else{
+            my.showMessage("Updated Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnSaveStatusChangesActionPerformed
     private void loadBookTemplatesToTable(){
         int row = assignedTeacherTable.getSelectedRow();
@@ -2725,7 +2757,7 @@ public class dashBoard extends javax.swing.JFrame {
             
             btnSearchBookTemplate1,btnSaveTemplateSelected,
             
-            btnSetStatus,
+            btnSetStatus,btnSaveStatusChanges,
         };
         
         JButton lightButtons [] = {

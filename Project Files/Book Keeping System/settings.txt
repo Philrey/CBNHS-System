@@ -9,4 +9,4 @@
 [8] auto_login=false
 [9] saved_userName=username
 [10] saved_password=password
-[11] debug_mode=false
+[11] debug_mode=true
