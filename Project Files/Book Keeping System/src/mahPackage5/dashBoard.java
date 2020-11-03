@@ -937,7 +937,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         tfSearchTeacherLoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfSearchTeacherLoadsearchManagedSections(evt);
+                searchSectionHandler(evt);
             }
         });
 
@@ -945,7 +945,7 @@ public class dashBoard extends javax.swing.JFrame {
         btnSearchSection.setText("Search");
         btnSearchSection.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchSectionsearchManagedSections(evt);
+                searchSectionHandler(evt);
             }
         });
 
@@ -1695,114 +1695,6 @@ public class dashBoard extends javax.swing.JFrame {
         my.openWindow(this, new login());
     }//GEN-LAST:event_formWindowClosed
 
-    private void tfSearchTeacherLoadsearchManagedSections(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchTeacherLoadsearchManagedSections
-        String toSearch = tfSearchTeacherLoad.getText();
-        String schoolYear = jcbSchoolYear1.getSelectedItem().toString();
-
-        my.remove_multiple_tabs(mainTab, new int [] {1,2});
-
-        String where = "WHERE subjectCode NOT LIKE 'ADV%'";
-
-        if(myVariables.getAccessLevel() < 5){
-            where += " AND teacherId='"+myVariables.getUserLoggedInId()+"'";
-        }
-
-        if(jcbSchoolYear1.getSelectedIndex() != 0){
-            where +=" AND schoolYear='"+schoolYear+"'";
-        }
-
-        if(toSearch.length() > 0){
-            where +=" AND sectionName LIKE '%"+toSearch+"%'";
-        }
-
-        String [] result = my.return_values("*", "v_managedsubjects", where, myVariables.getManagedSubjectsViewOrder());
-
-        my.clear_table_rows(assignedTeacherTable);
-        if(result == null){
-            lbSearchResult.setText("Showing 0 results for '"+toSearch+"'.");
-            return;
-        }else{
-            if(result.length > 1){
-                lbSearchResult.setText("Showing "+result.length+" results for '"+toSearch+"'.");
-            }else{
-                lbSearchResult.setText("Showing "+result.length+" result for '"+toSearch+"'.");
-            }
-        }
-
-        for(String row : result){
-            row = my.toNameFormat(row, new int [] {4,5,6});
-
-            //System.err.println(my.getValueAtColumn(row, 3));
-            if(my.getValueAtColumn(row, 3).contains("-1")){
-                row = my.setValueAtColumn(row, 4, "None");
-            }
-            my.add_table_row(row, assignedTeacherTable);
-        }
-    }//GEN-LAST:event_tfSearchTeacherLoadsearchManagedSections
-
-    private void btnSearchSectionsearchManagedSections(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchSectionsearchManagedSections
-        String toSearch = tfSearchTeacherLoad.getText();
-        String schoolYear = jcbSchoolYear1.getSelectedItem().toString();
-
-        //my.remove_multiple_tabs(mainTab, new int [] {1,2});
-
-        String where = "WHERE subjectCode LIKE 'ADV%'";
-
-        //Filter search based on Access Level
-        switch (myVariables.getAccessLevel()){
-            case 1:{    //Teacher or Subject Teacher
-                where += " AND teacherId='"+myVariables.getUserLoggedInId()+"'";
-                break;
-            }case 2:{   //Department Head
-                
-                break;
-            }case 4:{
-                where += " AND teacherId!='-1'";
-                break;
-            }case 5:{
-                break;
-            }
-        }
-
-        if(jcbSchoolYear1.getSelectedIndex() != 0){
-            where +=" AND schoolYear='"+schoolYear+"'";
-        }
-
-        if(toSearch.length() > 0){
-            where +=" AND sectionName LIKE '%"+toSearch+"%'";
-        }
-
-        String [] result = my.return_values("*", "v_managedsubjects_wbooktemplate", where, myVariables.getManagedSubjectsWTemplateViewOrder());
-
-        my.clear_table_rows(assignedTeacherTable);
-        
-        if(myVariables.getAccessLevel() == 1){
-            my.remove_multiple_tabs(mainTab, new int [] {1});
-        }else{
-            my.remove_multiple_tabs(mainTab, new int [] {3});
-        }
-        if(result == null){
-            lbSearchResult.setText("Showing 0 results for '"+toSearch+"'.");
-            return;
-        }else{
-            if(result.length > 1){
-                lbSearchResult.setText("Showing "+result.length+" results for '"+toSearch+"'.");
-            }else{
-                lbSearchResult.setText("Showing "+result.length+" result for '"+toSearch+"'.");
-            }
-        }
-
-        for(String row : result){
-            row = my.toNameFormat(row, new int [] {4,5,6});
-
-            //System.err.println(my.getValueAtColumn(row, 3));
-            if(my.getValueAtColumn(row, 3).contains("-1")){
-                row = my.setValueAtColumn(row, 4, "None");
-            }
-            my.add_table_row(row, assignedTeacherTable);
-        }
-    }//GEN-LAST:event_btnSearchSectionsearchManagedSections
-
     private void assignedTeacherTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assignedTeacherTableMouseClicked
         if(evt.getClickCount() == 2){
             int row = assignedTeacherTable.getSelectedRow();
@@ -1923,7 +1815,7 @@ public class dashBoard extends javax.swing.JFrame {
                 for(int x=0;x<result.length;x++){
                     resultId = Integer.parseInt(my.getValueAtColumn(result[x], 3));
                     if(currentId == resultId){
-                        System.err.println(result[x]);
+                        //System.err.println(result[x]);
                         String values [] = result[x].split("@@");
                         String dateId = values[0];
                         String dateIssued = values[4];
@@ -2000,15 +1892,16 @@ public class dashBoard extends javax.swing.JFrame {
         String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
         String toSearch = tfSearchEnrolledStudent.getText();
 
-        String where = "WHERE sectionId='"+sectionId+"' AND (lrn='"+toSearch+"' OR lName LIKE '%"+toSearch+"%')";
+        String where = "WHERE sectionId='"+sectionId+"' AND (lrn='"+toSearch+"' OR lName LIKE '%"+toSearch+"%' OR fName LIKE '%"+toSearch+"%')";
         my.searchItem(where, enrolledStudentsTable, 6, null, new int [] {3,4,5}, true, true, lbSearchResult2, tfSearchEnrolledStudent, true);
         clearBooksIssuedTable();
     }//GEN-LAST:event_btnSearchEnrolledStudentsearchEnrolledStudentsHandler
 
     private void searchBookHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBookHandler
-        String toSearch = tfSearchBook.getText().trim();
+        String toSearch = my.convertEscapeCharacters(tfSearchBook.getText().trim());
         clearAddBookFields();
-        my.searchItem("", booksTable, 8, null, null, false, true, lbSearchResult1, tfSearchBook, true);
+        String where = "WHERE bookName LIKE'%"+toSearch+"%' OR bookCode LIKE'%"+toSearch+"%' ORDER BY gradeLevel ASC,bookName ASC,bookCode ASC";
+        my.searchItem(where, booksTable, 8, null, null, false, true, lbSearchResult1, tfSearchBook, true);
     }//GEN-LAST:event_searchBookHandler
 
     private void btnSaveBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveBookActionPerformed
@@ -2145,8 +2038,8 @@ public class dashBoard extends javax.swing.JFrame {
 
     private void searchBookTemplateHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBookTemplateHandler
         String toSearch = my.convertEscapeCharacters(tfSearchBookTemplate.getText().trim());
-        
-        my.searchItem("", bookTemplatesTable, 9, null, null, false, true, lbSearchResult2, tfSearchBookTemplate, true);
+        String where = "WHERE templateName LIKE'%"+toSearch+"%' ORDER BY gradeLevel ASC, templateName ASC";
+        my.searchItem(where, bookTemplatesTable, 9, null, null, false, true, lbSearchResult2, tfSearchBookTemplate, true);
         clearAddBookTemplateFields();
     }//GEN-LAST:event_searchBookTemplateHandler
 
@@ -2463,7 +2356,7 @@ public class dashBoard extends javax.swing.JFrame {
                 dateReturned = booksUsedTable.getValueAt(n, 6).toString();
                 
                 values[n] = dateId+","+sectionId+","+studentId+","+bookId+",'"+dateIssued+"','"+dateReturned+"',now()";
-                System.err.println(values[n]);
+                //System.err.println(values[n]);
             } catch (Exception e) {
                 System.err.println("Skipped a Subject @ row "+n);
             }
@@ -2476,6 +2369,69 @@ public class dashBoard extends javax.swing.JFrame {
             my.showMessage("Updated Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSaveStatusChangesActionPerformed
+
+    private void searchSectionHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSectionHandler
+        String toSearch = my.convertEscapeCharacters(tfSearchTeacherLoad.getText().trim());
+        String schoolYear = jcbSchoolYear1.getSelectedItem().toString();
+
+        //my.remove_multiple_tabs(mainTab, new int [] {1,2});
+
+        String where = "WHERE subjectCode LIKE 'ADV%'";
+
+        //Filter search based on Access Level
+        switch (myVariables.getAccessLevel()){
+            case 1:{    //Teacher or Subject Teacher
+                where += " AND teacherId='"+myVariables.getUserLoggedInId()+"'";
+                break;
+            }case 2:{   //Department Head
+                
+                break;
+            }case 4:{
+                where += " AND teacherId!='-1'";
+                break;
+            }case 5:{
+                break;
+            }
+        }
+
+        if(jcbSchoolYear1.getSelectedIndex() != 0){
+            where +=" AND schoolYear='"+schoolYear+"'";
+        }
+
+        if(toSearch.length() > 0){
+            where +=" AND sectionName LIKE '%"+toSearch+"%'";
+        }
+
+        String [] result = my.return_values("*", "v_managedsubjects_wbooktemplate", where, myVariables.getManagedSubjectsWTemplateViewOrder());
+
+        my.clear_table_rows(assignedTeacherTable);
+        
+        if(myVariables.getAccessLevel() == 1){
+            my.remove_multiple_tabs(mainTab, new int [] {1});
+        }else{
+            my.remove_multiple_tabs(mainTab, new int [] {3});
+        }
+        if(result == null){
+            lbSearchResult.setText("Showing 0 results for '"+toSearch+"'.");
+            return;
+        }else{
+            if(result.length > 1){
+                lbSearchResult.setText("Showing "+result.length+" results for '"+toSearch+"'.");
+            }else{
+                lbSearchResult.setText("Showing "+result.length+" result for '"+toSearch+"'.");
+            }
+        }
+
+        for(String row : result){
+            row = my.toNameFormat(row, new int [] {4,5,6});
+
+            //System.err.println(my.getValueAtColumn(row, 3));
+            if(my.getValueAtColumn(row, 3).contains("-1")){
+                row = my.setValueAtColumn(row, 4, "None");
+            }
+            my.add_table_row(row, assignedTeacherTable);
+        }
+    }//GEN-LAST:event_searchSectionHandler
     private void loadBookTemplatesToTable(){
         int row = assignedTeacherTable.getSelectedRow();
         String booksContained = "None";
