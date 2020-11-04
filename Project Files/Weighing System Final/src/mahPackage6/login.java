@@ -48,6 +48,8 @@ public class login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Welcome to Weighing System");
+        setIconImage(my.getImgIcn(myVariables.getWeighingWindowIcon()).getImage()
+        );
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setOpaque(false);

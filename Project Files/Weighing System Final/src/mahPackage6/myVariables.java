@@ -107,6 +107,7 @@ public class myVariables {
     private static final String formsWindowIcon = "Imagez/Window Icons/forms.png";
     private static final String gradingWindowIcon = "icons/gradingIcon.png";
     private static final String bookKeepingWindowIcon = "icons/bookIcon.png";
+    private static final String weighingWindowIcon = "icons/weighingIcon.png";
     
     //Dropdown Icons
     private static final String maleIcon = "icons/icons8_male_16px.png";
@@ -343,6 +344,10 @@ public class myVariables {
     
     //<editor-fold desc="Getters & Setters">
     
+    public static String getWeighingWindowIcon() {
+        return weighingWindowIcon;
+    }
+
     public static int[] getBooksIssuedReturnedOrder() {
         return booksIssuedReturnedOrder;
     }
