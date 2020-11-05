@@ -1085,6 +1085,23 @@ public class myFunctions {
     }
     
     //</editor-fold>
+    //<editor-fold desc="Nutritional Status Functions">
+    public String getAgeInYearsMonths(String dateConducted,String dateOfBirth){
+        String dateCon [] = dateConducted.split("-");
+        String dateOfBrth [] = dateOfBirth.split("-");
+        
+        int yearConducted = Integer.parseInt(dateCon[0]);
+        int monthConducted = Integer.parseInt(dateCon[1]);
+        int yearBday = Integer.parseInt(dateOfBrth[0]);
+        int monthBday = Integer.parseInt(dateOfBrth[1]);
+        
+        if(monthConducted<monthBday){
+            return (yearConducted-yearBday-1)+": "+((12+monthConducted)-monthBday);
+        }else{
+            return (yearConducted-yearBday)+": "+(monthConducted-monthBday);
+        }
+    }
+    //</editor-fold>
     public ImageIcon getImgIcn(String url){
         return new ImageIcon(getClass().getResource(url));
     }
