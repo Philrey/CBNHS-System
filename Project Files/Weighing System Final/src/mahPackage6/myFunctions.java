@@ -154,6 +154,10 @@ public class myFunctions {
                 from = "attendance";
                 order = myVariables.getAttendanceOrder();
                 break;
+            }case 8:{
+                from = "v_enrollment_mini_wbdate";
+                order = myVariables.getEnrollmentViewMinWBdateOrder();
+                break;
             }default:{
                 System.err.println("View table index out of bounds. Please check your index selected.");
                 return;
