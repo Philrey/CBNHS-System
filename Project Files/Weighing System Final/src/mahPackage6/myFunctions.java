@@ -6,24 +6,30 @@
 package mahPackage6;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JViewport;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -250,7 +256,21 @@ public class myFunctions {
             columnModel.getColumn(columnIndex[n]).setMaxWidth(0);
         }
     }
-    
+    protected void showSelectedRow(JTable tableName,int row){
+        tableName.scrollRectToVisible(tableName.getCellRect(row, 0, true));
+    }
+    protected void showSelectedItemInsideScrollPane(Component component, JScrollPane scrollPane,int adjustment){
+        scrollPane.getVerticalScrollBar().setValue(component.getY()-adjustment);
+        /*
+        
+        if(topBottom){
+            scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMinimum());
+        }else{
+            scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
+        }
+        */
+        
+    }
     //</editor-fold>
     //<editor-fold desc="CRUD METHODS">
     //C= Create Method //
@@ -1086,6 +1106,67 @@ public class myFunctions {
     
     //</editor-fold>
     //<editor-fold desc="Nutritional Status Functions">
+    public String getHeightForAge(String heightM,String age,String gender,boolean includeId){
+        String where = "WHERE yearMonth='"+age+"'";
+        String table = gender.contains("Female") ? "hfachart_female":"hfachart_male";
+        String result [] = return_values("*", table, where, myVariables.getHfaOrder());
+        
+        if(result != null){
+            float height = Float.parseFloat(heightM)*100;
+            
+            String values [] = result[0].split("@@");
+            float severelyStunted = Float.parseFloat(String.valueOf(values[3]));
+            float stunted = Float.parseFloat(String.valueOf(values[4]));
+            float normal = Float.parseFloat(String.valueOf(values[5]));
+            float tall = Float.parseFloat(String.valueOf(values[6]));
+            
+            if(height <= severelyStunted){
+                return "Severely Stunted";
+            }if(height > severelyStunted && height <= stunted){
+                return "Stunted";
+            }if(height > stunted && height <= normal){
+                return "Normal";
+            }if(height > normal /*&& height <= stunted*/){
+                return "Tall";
+            }
+            
+            return "Invalid Height!";
+        }else{
+            return "Age out Of Range!";
+        }
+    }
+    public String getHeightSquared(String heightM){
+        DecimalFormat df = new DecimalFormat("#.####");
+        //df.setRoundingMode(RoundingMode.DOWN);
+        float height = Float.parseFloat(heightM);
+        float heightSq = height*height;
+        
+        System.err.println("Raw Height Squared: "+heightSq);
+        String finalString = df.format(heightSq);
+        
+        //add missing decimal places
+        String decimal[] = finalString.split("\\.");
+        if(decimal.length == 2){
+            //check length
+            for(int n=0;n<4-decimal[1].length();n++){
+                finalString+="0";
+            }
+        }else{
+            //System.err.println("No Decimal Places :"+decimal[0]);
+            
+            finalString+=".0000";
+        }
+        //System.err.println("Final Height: "+finalString);
+        return finalString;
+    }
+    public String getBmi(String weight,String heightSq){
+        DecimalFormat df = new DecimalFormat("#.#");
+        df.setRoundingMode(RoundingMode.DOWN);
+        float bmi = Float.parseFloat(weight)/Float.parseFloat(heightSq);
+        System.err.println("raw BMI :"+bmi);
+        
+        return df.format(bmi);
+    }
     public String getAgeInYearsMonths(String dateConducted,String dateOfBirth){
         String dateCon [] = dateConducted.split("-");
         String dateOfBrth [] = dateOfBirth.split("-");

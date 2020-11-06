@@ -95,7 +95,7 @@ public class dashBoard extends javax.swing.JFrame {
     
     private void setScrollSpeeds(){
         JScrollPane scrollpanes [] = {
-            jScrollPane2,jScrollPane7,
+            jScrollPane2,jScrollPane7,jScrollPane9,
         };
         
         int scrollSpeed = 15;
@@ -123,7 +123,7 @@ public class dashBoard extends javax.swing.JFrame {
             assignedTeacherTable,
             enrolledStudentsTable,
             bmiChartMaleTable,bmiChartFemaleTable,
-            hfaChartMaleTable,hfaChartFemalteTable,
+            hfaChartMaleTable,hfaChartFemaleTable,
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
         //customHeaders(sf1SectionTable, new int []{0,1,2,3}, Color.RED, Color.WHITE, new Font("Comic Sans MS", Font.BOLD, 12), true);
@@ -171,6 +171,7 @@ public class dashBoard extends javax.swing.JFrame {
             btnSearchEnrolledStudent,btnEvaluate,
             btnSaveEvaluationChanges,
             btnEvaluateTest,
+            btnRefreshBmi,btnRefreshHfa,
         };
         
         JButton lightButtons [] = {
@@ -208,7 +209,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         
         JLabel formsHeaderLabels [] = {
-            jLabel14,jLabel16,jLabel18,jLabel1,jLabel2,jLabel3,jLabel4,
+            jLabel14,jLabel16,jLabel18,jLabel1,jLabel2,jLabel3,jLabel4,jLabel28,
         };
         JLabel textFieldHeaderLabels [] = {
             jLabel10,jLabel12,jLabel23,jLabel15,jLabel17,jLabel22,jLabel24,jLabel19,
@@ -353,11 +354,15 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         jSplitPane2 = new javax.swing.JSplitPane();
         left1 = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        bmiChartFemaleTable = new javax.swing.JTable();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         bmiChartMaleTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        bmiChartFemaleTable = new javax.swing.JTable();
+        btnRefreshBmi = new javax.swing.JButton();
         right1 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         tfTestHeightSq = new javax.swing.JTextField();
@@ -388,7 +393,8 @@ public class dashBoard extends javax.swing.JFrame {
         hfaChartMaleTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        hfaChartFemalteTable = new javax.swing.JTable();
+        hfaChartFemaleTable = new javax.swing.JTable();
+        btnRefreshHfa = new javax.swing.JButton();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -807,65 +813,109 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        left1.setBackground(new java.awt.Color(255, 255, 204));
+        jSplitPane2.setDividerLocation(460);
 
-        bmiChartFemaleTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Severely Wasted", "<", ""},
-                {"Wasted", "13.5", "18.4"},
-                {"Normal", "18.5", "24.9"},
-                {"Overweight", "25", "29.9"},
-                {"Obese", "30", ">"}
-            },
-            new String [] {
-                "Status", "BMI From", "BMI To"
-            }
-        ));
-        bmiChartFemaleTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane6.setViewportView(bmiChartFemaleTable);
+        jScrollPane9.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 204));
+
+        jLabel1.setText("Nutritional Status (Boys)");
 
         bmiChartMaleTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Severely Wasted", "<", ""},
-                {"Wasted", "13.5", "18.4"},
-                {"Normal", "18.5", "24.9"},
-                {"Overweight", "25", "29.9"},
-                {"Obese", "30", ">"}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Status", "BMI From", "BMI To"
+                "ID", "Age", "Months", "SVR Wasted", "Wasted", "Normal", "Overweight", "Obese"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         bmiChartMaleTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(bmiChartMaleTable);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Nutritional Status");
+        jLabel28.setText("Nutritional Status (Girls)");
+
+        bmiChartFemaleTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Age", "Months", "SVR Wasted", "Wasted", "Normal", "Overweight", "Obese"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        bmiChartFemaleTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane6.setViewportView(bmiChartFemaleTable);
+
+        btnRefreshBmi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage6/icons/icons8_sync_16px.png"))); // NOI18N
+        btnRefreshBmi.setText("Refresh");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRefreshBmi)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRefreshBmi)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jScrollPane9.setViewportView(jPanel3);
 
         javax.swing.GroupLayout left1Layout = new javax.swing.GroupLayout(left1);
         left1.setLayout(left1Layout);
         left1Layout.setHorizontalGroup(
             left1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(left1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(left1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(left1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane9)
         );
         left1Layout.setVerticalGroup(
             left1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(left1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(left1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
         );
 
         jSplitPane2.setLeftComponent(left1);
@@ -875,8 +925,10 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel25.setText("Height^2");
 
         tfTestHeightSq.setEditable(false);
+        tfTestHeightSq.setFocusable(false);
 
         tfTestAge.setEditable(false);
+        tfTestAge.setFocusable(false);
 
         jLabel26.setText("Age");
 
@@ -890,7 +942,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         jLabel9.setText("Nutritional Status :");
 
-        lbNutritionalStatus.setText("SEVERELY STUNTED");
+        lbNutritionalStatus.setText("RESULT");
 
         jLabel11.setText("Height-For-Age :");
 
@@ -912,6 +964,7 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel8.setText("Height (m)");
 
         tfTestBmi.setEditable(false);
+        tfTestBmi.setFocusable(false);
 
         jLabel27.setText("BMI");
 
@@ -1030,23 +1083,22 @@ public class dashBoard extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Height-For-Age (Boys)");
 
         hfaChartMaleTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Age", "Months", "SS From", "SS To", "ST From", "ST To", "NRM From", "NRM To", "Tall From", "Tall To"
+                "ID", "Age", "Months", "SVR Stunted", "Stunted", "Normal", "Tall"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1056,31 +1108,38 @@ public class dashBoard extends javax.swing.JFrame {
         hfaChartMaleTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(hfaChartMaleTable);
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Height-For-Age (Girls)");
 
-        hfaChartFemalteTable.setModel(new javax.swing.table.DefaultTableModel(
+        hfaChartFemaleTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Age", "Months", "SS From", "SS To", "ST From", "ST To", "NRM From", "NRM To", "Tall From", "Tall To"
+                "ID", "Age", "Months", "SVR Stunted", "Stunted", "Normal", "Tall"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        hfaChartFemalteTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane5.setViewportView(hfaChartFemalteTable);
+        hfaChartFemaleTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane5.setViewportView(hfaChartFemaleTable);
+
+        btnRefreshHfa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage6/icons/icons8_sync_16px.png"))); // NOI18N
+        btnRefreshHfa.setText("Refresh");
+        btnRefreshHfa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshHfaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1089,20 +1148,25 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRefreshHfa)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRefreshHfa)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1119,7 +1183,7 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(referenceChartsDialogLayout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jScrollPane7)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
         );
         referenceChartsDialogLayout.setVerticalGroup(
             referenceChartsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1136,7 +1200,6 @@ public class dashBoard extends javax.swing.JFrame {
         setTitle("Dashboard");
         setIconImage(my.getImgIcn(myVariables.getWeighingWindowIcon()).getImage()
         );
-        setPreferredSize(new java.awt.Dimension(983, 551));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 logOutHandler(evt);
@@ -1384,21 +1447,80 @@ public class dashBoard extends javax.swing.JFrame {
     private void btnEvaluateTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluateTestActionPerformed
         String dateConducted = "";
         String dateOfBirth = "";
+        String weight = tfTestWeight.getText().trim();
+        String height = tfTestHeight.getText().trim();
+        String heightSquared = "";
+        String bmi = "";
+        int gender = jcbTestGender.getSelectedIndex();
+        
         try {
             dateConducted = my.jCalendarToNumberDate(jdcTestDateOfMeasurement.getDate().toString(), false);
             dateOfBirth = my.jCalendarToNumberDate(jdcTestDateOfBirt.getDate().toString(), false);
-        } catch (Exception e) {
-            my.showMessage("Invalid Date.", JOptionPane.WARNING_MESSAGE);return;
-        }
+        } catch (Exception e) {my.showMessage("Invalid Date.", JOptionPane.WARNING_MESSAGE);return;}
+        try {
+            Integer.parseInt(weight);
+            Float.parseFloat(height);
+        } catch (Exception e) {my.showMessage("Invalid Weight/Height.", JOptionPane.WARNING_MESSAGE);return;}
         
-        
-         
-        
+        heightSquared = my.getHeightSquared(height);
+        bmi = my.getBmi(weight, heightSquared);
         String ageInYearMonth = my.getAgeInYearsMonths(dateConducted, dateOfBirth);
+        String hfa = my.getHeightForAge(height, ageInYearMonth, gender==0?"Male":"Female", false);
+        
+        tfTestHeightSq.setText(heightSquared);
+        tfTestBmi.setText(bmi);
         tfTestAge.setText(ageInYearMonth);
+        lbHeightForAge.setText(hfa);
+        
+        //Search for age in Table OPTIONAL
+        hfaChartMaleTable.clearSelection();
+        hfaChartFemaleTable.clearSelection();
+        if(gender == 0){
+            if(hfaChartMaleTable.getRowCount() > 0){
+                for(int n=0;n<hfaChartMaleTable.getRowCount();n++){
+                    String currentAge = hfaChartMaleTable.getValueAt(n, 1).toString();
+                    if(currentAge.equals(ageInYearMonth)){
+                        my.showSelectedRow(hfaChartMaleTable, n);
+                        my.showSelectedItemInsideScrollPane(jLabel2,jScrollPane7,10);
+                        hfaChartMaleTable.setRowSelectionInterval(n, n);
+                    }
+                }
+            }
+        }else{
+            if(hfaChartFemaleTable.getRowCount() > 0){
+                for(int n=0;n<hfaChartFemaleTable.getRowCount();n++){
+                    String currentAge = hfaChartFemaleTable.getValueAt(n, 1).toString();
+                    if(currentAge.equals(ageInYearMonth)){
+                        my.showSelectedRow(hfaChartFemaleTable, n);
+                        my.showSelectedItemInsideScrollPane(jLabel3,jScrollPane7,0);
+                        hfaChartFemaleTable.setRowSelectionInterval(n, n);
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_btnEvaluateTestActionPerformed
 
-    
+    private void btnRefreshHfaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshHfaActionPerformed
+        refreshHfaChart();
+    }//GEN-LAST:event_btnRefreshHfaActionPerformed
+
+    private void refreshHfaChart(){
+        String [] result = my.return_values("*", "hfachart_male", "", myVariables.getHfaOrder());
+        String [] result2 = my.return_values("*", "hfachart_female", "", myVariables.getHfaOrder());
+        
+        my.clear_table_rows(hfaChartMaleTable);
+        my.clear_table_rows(hfaChartFemaleTable);
+        
+        if(result != null){
+            for(String n: result){
+                my.add_table_row(n, hfaChartMaleTable);
+            }
+        }if(result2 != null){
+            for(String n: result2){
+                my.add_table_row(n, hfaChartFemaleTable);
+            }
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1438,12 +1560,14 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnEvaluate;
     private javax.swing.JButton btnEvaluateTest;
     private javax.swing.JButton btnMyManagedSubjects;
+    private javax.swing.JButton btnRefreshBmi;
+    private javax.swing.JButton btnRefreshHfa;
     private javax.swing.JButton btnSaveEvaluationChanges;
     private javax.swing.JButton btnSearchEnrolledStudent;
     private javax.swing.JButton btnSearchSection;
     private javax.swing.JTable enrolledStudentsTable;
     private javax.swing.JPanel headerPanel;
-    private javax.swing.JTable hfaChartFemalteTable;
+    private javax.swing.JTable hfaChartFemaleTable;
     private javax.swing.JTable hfaChartMaleTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1465,6 +1589,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
@@ -1476,6 +1601,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1486,6 +1612,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
