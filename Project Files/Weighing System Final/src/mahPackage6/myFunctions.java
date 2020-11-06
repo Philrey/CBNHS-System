@@ -1106,10 +1106,42 @@ public class myFunctions {
     
     //</editor-fold>
     //<editor-fold desc="Nutritional Status Functions">
+    public String getNutritionalStatus(String bmiString,String age,String gender){
+        String where = "WHERE yearMonth='"+age+"'";
+        String table = gender.contains("Female") ? "bmichart_female":"bmichart_male";
+        String result [] = return_values("*", table, where, myVariables.getBmiChartOrder());
+        
+        if(result != null){
+            float bmi = Float.parseFloat(bmiString);
+            
+            String values [] = result[0].split("@@");
+            float severelyWasted = Float.parseFloat(String.valueOf(values[3]));
+            float wasted = Float.parseFloat(String.valueOf(values[4]));
+            float normal = Float.parseFloat(String.valueOf(values[5]));
+            float overWeight = Float.parseFloat(String.valueOf(values[6]));
+            //System.err.println("Result: "+result[0]+"\nBMI for Nut Status: "+bmi);
+            
+            if(bmi <= severelyWasted){
+                return "Severely Wasted";
+            }if(bmi > severelyWasted && bmi <=wasted){
+                return "Wasted";
+            }if(bmi > wasted && bmi <=normal){
+                return "Normal";
+            }if(bmi > normal && bmi <=overWeight){
+                return "Overweight";
+            }if(bmi > overWeight){
+                return "Obese";
+            }
+            
+            return "Invalid BMI!";
+        }else{
+            return "Age out Of Range!";
+        }
+    }
     public String getHeightForAge(String heightM,String age,String gender,boolean includeId){
         String where = "WHERE yearMonth='"+age+"'";
         String table = gender.contains("Female") ? "hfachart_female":"hfachart_male";
-        String result [] = return_values("*", table, where, myVariables.getHfaOrder());
+        String result [] = return_values("*", table, where, myVariables.getHfaChartOrder());
         
         if(result != null){
             float height = Float.parseFloat(heightM)*100;

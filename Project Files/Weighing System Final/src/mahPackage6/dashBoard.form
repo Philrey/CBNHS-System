@@ -841,7 +841,7 @@
                                       <Renderer/>
                                     </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                      <Title/>
+                                      <Title value="Obese"/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
@@ -918,7 +918,7 @@
                                       <Renderer/>
                                     </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                      <Title/>
+                                      <Title value="Obese"/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
@@ -938,6 +938,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Refresh"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRefreshBmiActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>

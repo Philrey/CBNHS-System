@@ -844,6 +844,9 @@ public class dashBoard extends javax.swing.JFrame {
         });
         bmiChartMaleTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(bmiChartMaleTable);
+        if (bmiChartMaleTable.getColumnModel().getColumnCount() > 0) {
+            bmiChartMaleTable.getColumnModel().getColumn(7).setHeaderValue("Obese");
+        }
 
         jLabel28.setText("Nutritional Status (Girls)");
 
@@ -869,9 +872,17 @@ public class dashBoard extends javax.swing.JFrame {
         });
         bmiChartFemaleTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane6.setViewportView(bmiChartFemaleTable);
+        if (bmiChartFemaleTable.getColumnModel().getColumnCount() > 0) {
+            bmiChartFemaleTable.getColumnModel().getColumn(7).setHeaderValue("Obese");
+        }
 
         btnRefreshBmi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage6/icons/icons8_sync_16px.png"))); // NOI18N
         btnRefreshBmi.setText("Refresh");
+        btnRefreshBmi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshBmiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1148,7 +1159,7 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -1466,15 +1477,19 @@ public class dashBoard extends javax.swing.JFrame {
         bmi = my.getBmi(weight, heightSquared);
         String ageInYearMonth = my.getAgeInYearsMonths(dateConducted, dateOfBirth);
         String hfa = my.getHeightForAge(height, ageInYearMonth, gender==0?"Male":"Female", false);
+        String nutritionalStatus = my.getNutritionalStatus(bmi, ageInYearMonth, gender==0?"Male":"Female");
         
         tfTestHeightSq.setText(heightSquared);
         tfTestBmi.setText(bmi);
         tfTestAge.setText(ageInYearMonth);
         lbHeightForAge.setText(hfa);
+        lbNutritionalStatus.setText(nutritionalStatus);
         
         //Search for age in Table OPTIONAL
         hfaChartMaleTable.clearSelection();
         hfaChartFemaleTable.clearSelection();
+        bmiChartMaleTable.clearSelection();
+        bmiChartFemaleTable.clearSelection();
         if(gender == 0){
             if(hfaChartMaleTable.getRowCount() > 0){
                 for(int n=0;n<hfaChartMaleTable.getRowCount();n++){
@@ -1483,6 +1498,16 @@ public class dashBoard extends javax.swing.JFrame {
                         my.showSelectedRow(hfaChartMaleTable, n);
                         my.showSelectedItemInsideScrollPane(jLabel2,jScrollPane7,10);
                         hfaChartMaleTable.setRowSelectionInterval(n, n);
+                    }
+                }
+            }
+            if(bmiChartMaleTable.getRowCount() > 0){
+                for(int n=0;n<bmiChartMaleTable.getRowCount();n++){
+                    String currentAge = bmiChartMaleTable.getValueAt(n, 1).toString();
+                    if(currentAge.equals(ageInYearMonth)){
+                        my.showSelectedRow(bmiChartMaleTable, n);
+                        my.showSelectedItemInsideScrollPane(jLabel1,jScrollPane9,10);
+                        bmiChartMaleTable.setRowSelectionInterval(n, n);
                     }
                 }
             }
@@ -1497,6 +1522,16 @@ public class dashBoard extends javax.swing.JFrame {
                     }
                 }
             }
+            if(bmiChartFemaleTable.getRowCount() > 0){
+                for(int n=0;n<bmiChartFemaleTable.getRowCount();n++){
+                    String currentAge = bmiChartFemaleTable.getValueAt(n, 1).toString();
+                    if(currentAge.equals(ageInYearMonth)){
+                        my.showSelectedRow(bmiChartFemaleTable, n);
+                        my.showSelectedItemInsideScrollPane(jLabel28,jScrollPane9,0);
+                        bmiChartFemaleTable.setRowSelectionInterval(n, n);
+                    }
+                }
+            }
         }
     }//GEN-LAST:event_btnEvaluateTestActionPerformed
 
@@ -1504,9 +1539,29 @@ public class dashBoard extends javax.swing.JFrame {
         refreshHfaChart();
     }//GEN-LAST:event_btnRefreshHfaActionPerformed
 
+    private void btnRefreshBmiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshBmiActionPerformed
+        refreshBmiChart();
+    }//GEN-LAST:event_btnRefreshBmiActionPerformed
+    private void refreshBmiChart(){
+        String [] result = my.return_values("*", "bmichart_male", "", myVariables.getBmiChartOrder());
+        String [] result2 = my.return_values("*", "bmichart_female", "", myVariables.getBmiChartOrder());
+        
+        my.clear_table_rows(bmiChartMaleTable);
+        my.clear_table_rows(bmiChartFemaleTable);
+        
+        if(result != null){
+            for(String n: result){
+                my.add_table_row(n+"Above@@", bmiChartMaleTable);
+            }
+        }if(result2 != null){
+            for(String n: result2){
+                my.add_table_row(n+"Above@@", bmiChartFemaleTable);
+            }
+        }
+    }
     private void refreshHfaChart(){
-        String [] result = my.return_values("*", "hfachart_male", "", myVariables.getHfaOrder());
-        String [] result2 = my.return_values("*", "hfachart_female", "", myVariables.getHfaOrder());
+        String [] result = my.return_values("*", "hfachart_male", "", myVariables.getHfaChartOrder());
+        String [] result2 = my.return_values("*", "hfachart_female", "", myVariables.getHfaChartOrder());
         
         my.clear_table_rows(hfaChartMaleTable);
         my.clear_table_rows(hfaChartFemaleTable);
