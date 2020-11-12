@@ -26,6 +26,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -101,6 +102,7 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="TABLE FUNCTIONS">
+    
     /**
     * By: <b>Phil Rey E. Paderogao</b>
     * <p>

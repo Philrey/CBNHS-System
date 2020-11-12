@@ -5,6 +5,9 @@
  */
 package mahPackage7;
 import java.awt.Font;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 
 /**
  *
@@ -57,7 +60,10 @@ public class myVariables {
     private static boolean includingWeekends;
     
     private static String yearSelected,monthSelected,daySelected;
-    
+    //Loading Dialog
+    private static JProgressBar progressBar;
+    private static JLabel lbLoadingMessage;
+    private static JPanel loadingPanel;
     
     //Table Orders
     private static final int [] usersOrder = new int [] {6,4,3,7,1,2,0,5};
@@ -347,8 +353,31 @@ public class myVariables {
     }
     //</editor-fold>
     
+    public static JProgressBar getProgressBar() {
+        return progressBar;
+    }
+
+    public static void setProgressBar(JProgressBar progressBar) {
+        myVariables.progressBar = progressBar;
+    }
+
+    public static JLabel getLbLoadingMessage() {
+        return lbLoadingMessage;
+    }
+
+    public static void setLbLoadingMessage(JLabel lbLoadingMessage) {
+        myVariables.lbLoadingMessage = lbLoadingMessage;
+    }
+
+    public static JPanel getLoadingPanel() {
+        return loadingPanel;
+    }
+
     //<editor-fold desc="Getters & Setters">
-    
+    public static void setLoadingPanel(JPanel loadingPanel) {    
+        myVariables.loadingPanel = loadingPanel;
+    }
+
     public static int[] getBmiOrder() {
         return bmiOrder;
     }

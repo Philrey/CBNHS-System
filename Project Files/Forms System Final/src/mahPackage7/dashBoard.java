@@ -48,10 +48,12 @@ public class dashBoard extends javax.swing.JFrame {
         setScrollSpeeds();
         loadYearDropDowns(12);
         
-        lbSchoolName.setText(myVariables.getSchoolName() + " Weighing System");
+        lbSchoolName.setText(myVariables.getSchoolName() + " Forms System");
         lbSchoolAddress.setText(myVariables.getSchoolAddress());
+        
+        setLoadingVariables();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,11 +65,18 @@ public class dashBoard extends javax.swing.JFrame {
 
         selectFormPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        selectSectionTab = new javax.swing.JPanel();
+        lbSearchResult = new javax.swing.JLabel();
+        tfSearchTeacherLoad = new javax.swing.JTextField();
+        btnSearchSection = new javax.swing.JButton();
+        jcbSchoolYear1 = new javax.swing.JComboBox<>();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        assignedTeacherTable = new javax.swing.JTable();
         loadingDialog = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
-        jButton2 = new javax.swing.JButton();
+        jpbProgressBar = new javax.swing.JProgressBar();
+        lbLoadingMessage = new javax.swing.JLabel();
+        btnCancelLoading = new javax.swing.JButton();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -99,15 +108,109 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap(325, Short.MAX_VALUE))
         );
 
+        selectSectionTab.setBackground(new java.awt.Color(11, 102, 35));
+
+        lbSearchResult.setForeground(new java.awt.Color(255, 255, 255));
+        lbSearchResult.setText("Search using the search bar...");
+
+        tfSearchTeacherLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfSearchTeacherLoadsearchSectionHandler(evt);
+            }
+        });
+
+        btnSearchSection.setText("Search");
+        btnSearchSection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchSectionsearchSectionHandler(evt);
+            }
+        });
+
+        jcbSchoolYear1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020" }));
+
+        assignedTeacherTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Section ID", "Section Name", "Adv ID", "Name", "Gender", "Subject ID", "Code", "Description", "Grade", "School Year"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        assignedTeacherTable.getTableHeader().setReorderingAllowed(false);
+        assignedTeacherTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                assignedTeacherTableMouseClicked(evt);
+            }
+        });
+        jScrollPane8.setViewportView(assignedTeacherTable);
+
+        javax.swing.GroupLayout selectSectionTabLayout = new javax.swing.GroupLayout(selectSectionTab);
+        selectSectionTab.setLayout(selectSectionTabLayout);
+        selectSectionTabLayout.setHorizontalGroup(
+            selectSectionTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(selectSectionTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(selectSectionTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                    .addGroup(selectSectionTabLayout.createSequentialGroup()
+                        .addComponent(lbSearchResult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcbSchoolYear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfSearchTeacherLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearchSection)))
+                .addContainerGap())
+        );
+        selectSectionTabLayout.setVerticalGroup(
+            selectSectionTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(selectSectionTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(selectSectionTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbSearchResult)
+                    .addComponent(tfSearchTeacherLoad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchSection)
+                    .addComponent(jcbSchoolYear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         loadingDialog.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/Double Ring 50px.gif"))); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/Double Ring 100px.gif"))); // NOI18N
 
-        jLabel2.setText("Loading...Please Wait");
+        jpbProgressBar.setValue(50);
 
-        jProgressBar1.setValue(50);
+        lbLoadingMessage.setText("Loading");
 
-        jButton2.setText("Close");
+        btnCancelLoading.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_cancel_20px.png"))); // NOI18N
+        btnCancelLoading.setText("Cancel");
+        btnCancelLoading.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelLoadingActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout loadingDialogLayout = new javax.swing.GroupLayout(loadingDialog);
         loadingDialog.setLayout(loadingDialogLayout);
@@ -116,35 +219,37 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(loadingDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(loadingDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(loadingDialogLayout.createSequentialGroup()
-                        .addGroup(loadingDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(loadingDialogLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpbProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                    .addComponent(lbLoadingMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loadingDialogLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addComponent(btnCancelLoading)))
                 .addContainerGap())
         );
         loadingDialogLayout.setVerticalGroup(
             loadingDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loadingDialogLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(loadingDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(jpbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(lbLoadingMessage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCancelLoading)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(983, 551));
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -242,6 +347,105 @@ public class dashBoard extends javax.swing.JFrame {
         showCustomDialog("Loading", loadingDialog, true, 200, 150, false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void tfSearchTeacherLoadsearchSectionHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchTeacherLoadsearchSectionHandler
+        searchSections();
+    }//GEN-LAST:event_tfSearchTeacherLoadsearchSectionHandler
+
+    private void btnSearchSectionsearchSectionHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchSectionsearchSectionHandler
+        searchSections();
+    }//GEN-LAST:event_btnSearchSectionsearchSectionHandler
+
+    private void assignedTeacherTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assignedTeacherTableMouseClicked
+        
+    }//GEN-LAST:event_assignedTeacherTableMouseClicked
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        System.err.println("Window gained focus");
+        my.interrupMainThread();
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void btnCancelLoadingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelLoadingActionPerformed
+        my.interrupMainThread();
+    }//GEN-LAST:event_btnCancelLoadingActionPerformed
+    private void setLoadingVariables(){
+        myVariables.setProgressBar(jpbProgressBar);
+        myVariables.setLbLoadingMessage(lbLoadingMessage);
+        myVariables.setLoadingPanel(loadingDialog);
+    }
+    private void searchSections(){
+        String toSearch = my.convertEscapeCharacters(tfSearchTeacherLoad.getText().trim());
+        String schoolYear = jcbSchoolYear1.getSelectedItem().toString();
+
+        //my.remove_multiple_tabs(mainTab, new int [] {1,2});
+
+        String where = "WHERE subjectCode LIKE 'ADV%'";
+
+        //Filter search based on Access Level
+        switch (myVariables.getAccessLevel()){
+            case 1:{    //Teacher or MAPEH Teacher
+                where += " AND teacherId='"+myVariables.getUserLoggedInId()+"'";
+                break;
+            }case 2:{   //Department Head
+                /*String managedSubjects = "";
+
+                for(int n=0;n<assignedSubjectsTable.getRowCount();n++){
+                    managedSubjects += assignedSubjectsTable.getValueAt(n, 0).toString();
+                    if(n < assignedSubjectsTable.getRowCount()-1){
+                        managedSubjects+=",";
+                    }
+                }
+                if(managedSubjects.length() > 0){
+                    where += " AND subjectId IN ("+managedSubjects+")";
+                }else{
+                    my.showMessage("You have no subjects assigned to you. Try refreshing again.\nIf the problem persists, please consult your Curruculum Head if you think this is an error.", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                where += " AND teacherId!='-1'";*/
+                break;
+            }case 4:{
+                where += " AND teacherId!='-1'";
+                break;
+            }case 5:{
+                break;
+            }
+        }
+
+        if(jcbSchoolYear1.getSelectedIndex() != 0){
+            where +=" AND schoolYear='"+schoolYear+"'";
+        }
+
+        if(toSearch.length() > 0){
+            where +=" AND sectionName LIKE '%"+toSearch+"%'";
+        }
+        my.searchItemThread(toSearch,where, assignedTeacherTable, 9, new int [] {4,5,6}, true, lbSearchResult, this);
+        
+        //String [] result = my.return_values("*", "v_managedsubjects", where, myVariables.getManagedSubjectsViewOrder());
+
+        /*
+        my.clear_table_rows(assignedTeacherTable);
+        if(result == null){
+            lbSearchResult.setText("Showing 0 results for '"+toSearch+"'.");
+            return;
+        }else{
+            if(result.length > 1){
+                lbSearchResult.setText("Showing "+result.length+" results for '"+toSearch+"'.");
+            }else{
+                lbSearchResult.setText("Showing "+result.length+" result for '"+toSearch+"'.");
+            }
+        }
+
+        for(String row : result){
+            row = my.toNameFormat(row, new int [] {4,5,6});
+
+            //System.err.println(my.getValueAtColumn(row, 3));
+            if(my.getValueAtColumn(row, 3).contains("-1")){
+                row = my.setValueAtColumn(row, 4, "None");
+            }
+            my.add_table_row(row, assignedTeacherTable);
+        }
+        */
+    }
     //<editor-fold desc="Custom Functions"> 
     JDialog dialog;
     JDialog seconDaryDialog;
@@ -334,11 +538,13 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadTabs(){
         mainTab.add("Select Form",selectFormPanel);
+        mainTab.add("Select Section",selectSectionTab);
         
         mainTab.setFont(myVariables.TAB_HEADER_FONT);
     }
     private void loadTabIcons(){
         Icon tabIcons [] = {
+            my.getImgIcn(myVariables.getSectionsIcon()),
             my.getImgIcn(myVariables.getSectionsIcon()),
         };
         
@@ -510,18 +716,25 @@ public class dashBoard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable assignedTeacherTable;
+    private javax.swing.JButton btnCancelLoading;
+    private javax.swing.JButton btnSearchSection;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JComboBox<String> jcbSchoolYear1;
+    private javax.swing.JProgressBar jpbProgressBar;
     private keeptoo.KGradientPanel kGradientPanel1;
+    private javax.swing.JLabel lbLoadingMessage;
     private javax.swing.JLabel lbLoggedInUser;
     private javax.swing.JLabel lbSchoolAddress;
     private javax.swing.JLabel lbSchoolName;
+    private javax.swing.JLabel lbSearchResult;
     private javax.swing.JPanel loadingDialog;
     private javax.swing.JTabbedPane mainTab;
     private javax.swing.JPanel selectFormPanel;
+    private javax.swing.JPanel selectSectionTab;
+    private javax.swing.JTextField tfSearchTeacherLoad;
     // End of variables declaration//GEN-END:variables
 }

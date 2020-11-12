@@ -25,6 +25,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -37,6 +38,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class myFunctions {
+    private static Thread mainThead;
     public myFunctions(){
         try {
             loadSettings();
@@ -100,6 +102,77 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="TABLE FUNCTIONS">
+    public void searchItemThread(String toSearch,String where,JTable resultTable,int viewTableIndex,int [] combineColumns,boolean toNameFormat,JLabel resultText,JFrame frameName){
+        String from="";
+        int [] order = null;
+        switch(viewTableIndex){
+            case 0:{
+                from = "students";
+                order = myVariables.getStudentsOrder();
+                break;
+            }case 1:{
+                from = "subjects";
+                order = myVariables.getSubjectOrder();
+                break;
+            }case 2:{
+                from = "loads";
+                order = myVariables.getSubjectLoadsOrder();
+                break;
+            }case 3:{
+                from = "users";
+                order = myVariables.getUsersOrder();
+                break;
+            }case 4:{
+                from = "v_sections";
+                order = myVariables.getSectionsOrder();
+                break;
+            }case 5:{
+                from = "v_teacherloads";
+                order = myVariables.getTeacherLoadsViewOrder();
+                break;
+            }case 6:{
+                from = "v_enrollment_minimal";
+                order = myVariables.getEnrollmentViewMinimalOrder();
+                break;
+            }case 7:{
+                from = "attendance";
+                order = myVariables.getAttendanceOrder();
+                break;
+            }case 8:{
+                from = "v_enrollment_mini_wbdate";
+                order = myVariables.getEnrollmentViewMinWBdateOrder();
+                break;
+            }case 9:{
+                from = "v_managedsubjects";
+                order = myVariables.getManagedSubjectsViewOrder();
+                break;
+            }default:{
+                System.err.println("View table index out of bounds. Please check your index selected.");
+                return;
+            }
+        }
+        
+        thread_return_values trv = new thread_return_values(
+                toSearch,"*", from, where, order, resultTable, frameName,
+                myVariables.getLoadingPanel(), myVariables.getLbLoadingMessage(),
+                myVariables.getProgressBar(),combineColumns,toNameFormat,resultText
+        );
+        System.err.println("Starting Thread");
+        if(mainThead == null){
+            mainThead = new Thread(trv);
+            mainThead.start();
+        }else{
+            if(mainThead.isAlive()){
+                mainThead.interrupt();
+                mainThead = new Thread(trv);
+                mainThead.start();
+            }else{
+                mainThead = new Thread(trv);
+                mainThead.start();
+            }
+        }
+        
+    }
     /**
     * By: <b>Phil Rey E. Paderogao</b>
     * <p>
@@ -674,6 +747,19 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
+    public void interrupMainThread(){
+        if(mainThead != null){
+            if(mainThead.isAlive()){
+                System.err.println("Stopping Threads");
+                mainThead.interrupt();
+                return;
+            }else{
+                System.err.println("Mainthread is not running.");
+            }
+        }else{
+            
+        }
+    }
     public String getDateNow(boolean includeTime){
         String result [] = return_values("now() AS 'dateNow'", "", "", new int [] {0});
         if(result != null){
@@ -1113,7 +1199,22 @@ public class myFunctions {
             return y+"-"+m+"-"+d;
         }        
     }
-    
+    public String convertEscapeCharacters(String toConvert){
+        //This function is primarily used for user input with possible escape characters being typed.
+        //Usually on SEARCH FIELDS and INPUT FIELDS during add_values and/or update_values
+        
+        if(toConvert.contains("\\")){
+            toConvert = toConvert.replace("\\", "\\\\");
+        }
+        if(toConvert.contains("\"")){
+            toConvert = toConvert.replace("\"", "\\\"");
+        }
+        if(toConvert.contains("\'")){
+            toConvert = toConvert.replace("\'", "\\\'");
+        }
+        
+        return toConvert;
+    }
     //</editor-fold>
     //<editor-fold desc="Nutritional Status Functions">
     public String getNutritionalStatus(String bmiString,String age,String gender){
