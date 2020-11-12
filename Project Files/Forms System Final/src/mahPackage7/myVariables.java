@@ -115,11 +115,10 @@ public class myVariables {
     private static final String attendanceWindowIcon = "icons/attendanceIcon.png";
     private static final String registrationWindowIcon = "icons/registerIcon.png";
     private static final String enrollmentWindowIcon = "icons/enrollmentIcon.png";
-    private static final String formsWindowIcon = "Imagez/Window Icons/forms.png";
+    private static final String formsWindowIcon = "icons/formsIcon.png";
     private static final String gradingWindowIcon = "icons/gradingIcon.png";
     private static final String bookKeepingWindowIcon = "icons/bookIcon.png";
     private static final String weighingWindowIcon = "icons/weighingIcon.png";
-    
     //Dropdown Icons
     private static final String maleIcon = "icons/icons8_male_16px.png";
     private static final String femaleIcon = "icons/icons8_female_16px.png";

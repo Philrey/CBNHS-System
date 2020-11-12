@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2020 at 03:50 PM
+-- Generation Time: Nov 12, 2020 at 03:49 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -77,7 +77,7 @@ INSERT INTO `attendance` (`id`, `studentId`, `sectionId`, `subjectId`, `status`,
 (60, 5, 7, 52, 'Present', '2020-02-13 16:23:42', 'Notes'),
 (61, 8, 7, 52, 'Absent', '2020-02-13 16:23:42', 'Notes'),
 (62, 7, 7, 52, 'Present', '2020-02-13 16:23:42', 'Notes'),
-(78, 1, 7, 52, 'Late', '2020-10-13 08:15:00', 'Trololol hahahaha'),
+(78, 1, 7, 52, 'Present', '2020-10-13 08:15:00', 'Cutting Classes'),
 (79, 3, 7, 52, 'Present', '2020-10-13 08:15:00', 'Gave Excuse Letter'),
 (80, 1, 7, 52, 'Present', '2020-10-12 17:39:55', ' '),
 (81, 3, 7, 52, 'Late', '2020-10-12 17:39:55', 'Hay nako...Mata pud ug sayo oi..hahahaha');
@@ -95,12 +95,19 @@ CREATE TABLE `bmi` (
   `age` varchar(10) NOT NULL DEFAULT 'Unmeasured',
   `weight` int(11) NOT NULL DEFAULT '0',
   `height` double NOT NULL DEFAULT '0',
-  `heighSq` double NOT NULL DEFAULT '0',
+  `heightSq` varchar(20) NOT NULL DEFAULT '0',
   `bmi` float NOT NULL DEFAULT '0',
   `bmiForAge` varchar(20) NOT NULL DEFAULT 'Unmeasured',
   `heightForAge` varchar(20) NOT NULL DEFAULT 'Unmeasured',
   `dateExamined` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bmi`
+--
+
+INSERT INTO `bmi` (`id`, `studentId`, `sectionId`, `age`, `weight`, `height`, `heightSq`, `bmi`, `bmiForAge`, `heightForAge`, `dateExamined`) VALUES
+(1, 1, 7, '15: 10', 40, 1.5, '2.2500', 17.7, 'Normal', 'Stunted', '2020-01-29 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -414,7 +421,7 @@ CREATE TABLE `booktemplates` (
 --
 
 INSERT INTO `booktemplates` (`id`, `templateName`, `gradeLevel`, `booksContained`) VALUES
-(1, 'Grade 7 Template', 7, '1:3:5:4:'),
+(1, 'Grade 7 Template', 7, '5:1:3:4:'),
 (2, 'Grade 8 Template', 8, '7:6:2:'),
 (3, 'Grade 9 Template', 9, '');
 
@@ -442,6 +449,38 @@ INSERT INTO `enrollment` (`id`, `studentId`, `sectionId`, `dateEnrolled`) VALUES
 (17, 1, 7, '2020-09-19 12:00:58'),
 (18, 3, 14, '2020-11-03 10:24:59'),
 (19, 3, 9, '2020-11-03 10:26:08');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `form_sf1_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `form_sf1_view` (
+`id` int(11)
+,`studentId` int(11)
+,`sectionId` int(11)
+,`lrn` varchar(12)
+,`lName` varchar(100)
+,`fName` varchar(100)
+,`mName` varchar(100)
+,`sex` varchar(10)
+,`bDate` date
+,`age` int(11)
+,`mTongue` varchar(500)
+,`ip` varchar(500)
+,`rlgn` varchar(500)
+,`houseN` varchar(1000)
+,`brgy` varchar(200)
+,`mncpl` varchar(200)
+,`prvnce` varchar(200)
+,`fathersName` varchar(500)
+,`mothersName` varchar(500)
+,`gName` varchar(500)
+,`rltnshp` varchar(100)
+,`contact` varchar(20)
+,`remarks` varchar(1)
+);
 
 -- --------------------------------------------------------
 
@@ -562,7 +601,8 @@ INSERT INTO `grades` (`id`, `studentId`, `sectionId`, `subjectId`, `firstQuarter
 (92, 1, 8, 22, '99', '99', '99', '99', '99', 'Open:Open:Open:Open:', '2020-10-18 13:00:30'),
 (93, 4, 8, 22, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:', '2020-10-18 13:00:30'),
 (94, 1, 8, 27, '83', '-1', '-1', '-1', '21', 'Open:Open:Open:Open:', '2020-10-18 13:00:30'),
-(95, 1, 7, 9, '80', '99', '89', '79', '86', 'Submitted:Submitted:Submitted:Submitted:', '2020-10-20 10:57:00');
+(95, 1, 7, 9, '80', '99', '89', '79', '86', 'Submitted:Submitted:Submitted:Submitted:', '2020-11-08 16:30:06'),
+(96, 3, 9, 8, '-1', '-1', '-1', '-1', '-1', 'OPEN', '2020-11-08 16:29:26');
 
 -- --------------------------------------------------------
 
@@ -855,8 +895,8 @@ CREATE TABLE `personalinfo` (
 --
 
 INSERT INTO `personalinfo` (`id`, `stdId`, `bDate`, `age`, `bPlace`, `mTongue`, `ip`, `rlgn`, `houseN`, `brgy`, `mncpl`, `prvnce`, `fName`, `mName`, `gName`, `rltnshp`, `contact`, `date`) VALUES
-(1, 1, '1999-03-01', 20, 'Manay, Davao Oriental', 'Mandaya', 'Mandaya', 'Roman Catholic', 'Purok 18, Bato St.', 'Central', 'Manay', 'Davao Oriental', 'Enrique C. Paderogao', 'Jocelyn E. Paderogao', 'Joerick E. Paderogao', 'Brother', '09483428056', '2020-10-21 19:31:33'),
-(3, 2, '1999-03-01', 20, 'Manay, Davao Oriental', 'Mandaya', 'Mandaya', 'Roman Catholic', 'Purok 18, Bato St.', 'Central', 'Manay', 'Davao Oriental', 'Enrique C. Paderogao', 'Jocelyn E. Paderogao', 'Joerick E. Paderogao', 'Brother', '09483428056', '2020-09-09 18:37:23'),
+(1, 1, '2004-03-01', 20, 'Manay, Davao Oriental', 'Mandaya', 'Mandaya', 'Roman Catholic', 'Purok 18, Bato St.', 'Central', 'Manay', 'Davao Oriental', 'Enrique C. Paderogao', 'Jocelyn E. Paderogao', 'Joerick E. Paderogao', 'Brother', '09483428056', '2020-10-21 19:31:33'),
+(3, 2, '2004-03-01', 20, 'Manay, Davao Oriental', 'Mandaya', 'Mandaya', 'Roman Catholic', 'Purok 18, Bato St.', 'Central', 'Manay', 'Davao Oriental', 'Enrique C. Paderogao', 'Jocelyn E. Paderogao', 'Joerick E. Paderogao', 'Brother', '09483428056', '2020-09-09 18:37:23'),
 (5, 3, '0000-00-00', 0, 'LOCATION', 'LANGUAGE', 'INDIGENOUS PEOPLE', 'RELIGION', 'HOUSE NUM', 'BRGY', 'MUNICIPAL', 'PROVINCE', 'FATHER NAME', 'MOTHER NAME', 'GUARDIAN NAME', 'RELATIONSHIP', 'CONTACT', '2020-09-05 17:05:12');
 
 -- --------------------------------------------------------
@@ -901,20 +941,21 @@ CREATE TABLE `students` (
   `lrn` varchar(12) NOT NULL,
   `lName` varchar(100) NOT NULL,
   `fName` varchar(100) NOT NULL,
-  `mName` varchar(100) NOT NULL,
+  `mName` varchar(100) NOT NULL DEFAULT ' ',
   `sex` varchar(10) NOT NULL,
-  `inGr` float NOT NULL,
-  `curGrLvl` int(11) NOT NULL
+  `inGr` float NOT NULL DEFAULT '0',
+  `curGrLvl` int(11) NOT NULL DEFAULT '0',
+  `remarks` varchar(500) NOT NULL DEFAULT ' '
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `lrn`, `lName`, `fName`, `mName`, `sex`, `inGr`, `curGrLvl`) VALUES
-(1, '123543457474', 'Paderogao', 'Phil Rey', 'Estrella', 'Male', 90.1, 7),
-(2, '123456789012', 'Kerby', 'Estrella', 'Paderogao', 'Female', 90.2, 0),
-(3, '123456789023', 'Rizal', 'Jose', 'Protacio', 'Male', 99, 7);
+INSERT INTO `students` (`id`, `lrn`, `lName`, `fName`, `mName`, `sex`, `inGr`, `curGrLvl`, `remarks`) VALUES
+(1, '123543457474', 'Paderogao', 'Phil Rey', 'Estrella', 'Male', 90.1, 7, ' '),
+(2, '123456789012', 'Kerby', 'Estrella', 'Paderogao', 'Female', 90.2, 0, ' '),
+(3, '123456789023', 'Rizal', 'Jose', 'Protacio', 'Male', 99, 7, ' ');
 
 -- --------------------------------------------------------
 
@@ -1321,6 +1362,15 @@ CREATE TABLE `v_teacherloads` (
 -- --------------------------------------------------------
 
 --
+-- Structure for view `form_sf1_view`
+--
+DROP TABLE IF EXISTS `form_sf1_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf1_view`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`enrollment`.`sectionId` AS `sectionId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`personalinfo`.`bDate` AS `bDate`,`personalinfo`.`age` AS `age`,`personalinfo`.`mTongue` AS `mTongue`,`personalinfo`.`ip` AS `ip`,`personalinfo`.`rlgn` AS `rlgn`,`personalinfo`.`houseN` AS `houseN`,`personalinfo`.`brgy` AS `brgy`,`personalinfo`.`mncpl` AS `mncpl`,`personalinfo`.`prvnce` AS `prvnce`,`personalinfo`.`fName` AS `fathersName`,`personalinfo`.`mName` AS `mothersName`,`personalinfo`.`gName` AS `gName`,`personalinfo`.`rltnshp` AS `rltnshp`,`personalinfo`.`contact` AS `contact`,' ' AS `remarks` from ((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `personalinfo` on((`enrollment`.`studentId` = `personalinfo`.`stdId`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName` ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `v_enrollment`
 --
 DROP TABLE IF EXISTS `v_enrollment`;
@@ -1513,7 +1563,7 @@ ALTER TABLE `attendance`
 -- AUTO_INCREMENT for table `bmi`
 --
 ALTER TABLE `bmi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bmichart_female`
@@ -1555,7 +1605,7 @@ ALTER TABLE `enrollment`
 -- AUTO_INCREMENT for table `grades`
 --
 ALTER TABLE `grades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `hfachart_female`

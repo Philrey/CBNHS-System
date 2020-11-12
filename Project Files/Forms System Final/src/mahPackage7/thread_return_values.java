@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -67,7 +68,7 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
     protected Integer doInBackground(){
         try {
             tableName.setEnabled(false);
-            showCustomDialog("Searching...", dialogPanel, true, 320, 200, false);
+            showCustomDialog("Searching...", dialogPanel, true, 320, 220, false);
             System.err.println("Starting Background THread");
             //dialogPanel.updateUI();
             //initialize dialog values
@@ -82,16 +83,18 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
             //Start search
             lbLoadingMessage.setText("Retrieving from Database...");
             String [] result = return_values();
-
+            clear_table_rows(tableName);
+            
             Thread.sleep(1000);
             if(result != null){
                 lbLoadingMessage.setText("Processing Result...");
-                clear_table_rows(tableName);
-                if(result.length > 1){
-                    resultText.setText("Showing "+result.length+" results for '"+toSearch+"'.");
-                }else{
-                    resultText.setText("Showing "+result.length+" result for '"+toSearch+"'.");
-                }            
+                if(resultText != null){
+                    if(result.length > 1){
+                        resultText.setText("Showing "+result.length+" results for '"+toSearch+"'.");
+                    }else{
+                        resultText.setText("Showing "+result.length+" result for '"+toSearch+"'.");
+                    }
+                }
                 progressBar.setMaximum(result.length);
                 Thread.sleep(threadDelay);
 
@@ -113,7 +116,9 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
                     Thread.sleep(threadDelay);
                 }
             }else{
-                resultText.setText("Showing 0 results for '"+toSearch+"'.");
+                if(resultText != null){
+                    resultText.setText("Showing 0 results for '"+toSearch+"'.");
+                }
                 return -1;
             }
         } catch (Exception e) {
@@ -287,6 +292,7 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
             }
         } catch (Exception e) {
             System.err.println("Exception Found "+e.getLocalizedMessage());
+            showMessage("Lost Connection to Database.\n\nMessage: "+e.getLocalizedMessage(),JOptionPane.ERROR_MESSAGE);
         }
         return null;
     }
@@ -310,4 +316,57 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
             System.err.println("Dialog is null...skipping");
         }
     }
+    
+    //<editor-fold desc="Show Message Functions">
+    public void showMessage(String message,int messageType){
+        JFrame frem = new JFrame();
+        frem.setAlwaysOnTop(true);
+        ImageIcon ic = null;
+        try {
+            switch(messageType){
+                case JOptionPane.PLAIN_MESSAGE:{
+                    ic = getImageIcon(myVariables.getMsgUrlIcon());break;
+                }case JOptionPane.INFORMATION_MESSAGE:{
+                    ic = getImageIcon(myVariables.getMsgUrlIconSuccess());break;
+                }case JOptionPane.ERROR_MESSAGE:{
+                    ic = getImageIcon(myVariables.getMsgUrlIconFailed());break;
+                }case JOptionPane.WARNING_MESSAGE:{
+                    ic = getImageIcon(myVariables.getMsgUrlIconWarning());break;
+                }
+            }
+            JOptionPane.showMessageDialog(frem, message, "Message",messageType,ic);
+        } catch (Exception e) {
+            System.err.println("No Icon found.");
+            JOptionPane.showMessageDialog(frem, message, "Message", messageType);
+        }
+    }
+    protected boolean getConfirmation(String message){
+        JFrame frem = new JFrame();
+        frem.setAlwaysOnTop(true);
+        int choice = -1;
+        try {
+            choice = JOptionPane.showConfirmDialog(
+                    frem,
+                    message,
+                    "Confirm Choice",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    getImageIcon(myVariables.getConfirmUrlIcon())
+            );
+        } catch (Exception e) {
+            System.err.println("No Icons found.");
+            choice = JOptionPane.showConfirmDialog(frem, message, "Confirm Choice", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        }
+        System.err.println("Choice: "+choice);
+        if(choice == JOptionPane.YES_OPTION){
+            return true;
+        }
+        return false;
+    }
+    private ImageIcon getImageIcon(String fileDir){
+        ImageIcon ii= new ImageIcon(getClass().getResource(fileDir));
+        
+        return ii;
+    }
+    //</editor-fold>
 }
