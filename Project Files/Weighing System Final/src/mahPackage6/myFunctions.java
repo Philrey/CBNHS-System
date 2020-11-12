@@ -19,6 +19,7 @@ import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -1050,6 +1051,16 @@ public class myFunctions {
             finalDate+=" "+temp[1];
         }
         return finalDate;
+    }
+    public Date dateTimeTojCalendarDateFormat(String dateOrDateTime){
+        String values [] = dateOrDateTime.split(" ");
+        
+        String dates [] = values[0].split("-");
+        
+        int year = Integer.parseInt(dates[0]);
+        int month = Integer.parseInt(dates[1]);
+        int date = Integer.parseInt(dates[2]);
+        return new Date(year-1900, month-1, date);
     }
     public String jCalendarToNumberDate(String jCalendarDateString,boolean includeTime){
         String [] temp = jCalendarDateString.split(" ");

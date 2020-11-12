@@ -116,6 +116,11 @@ public class dashBoard extends javax.swing.JFrame {
         if(!myVariables.isDebugModeOn()){
             my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6});
             my.hideColumns(enrolledStudentsTable, new int [] {0,1,6});
+            
+            my.hideColumns(bmiChartMaleTable, new int [] {0});
+            my.hideColumns(bmiChartFemaleTable, new int [] {0});
+            my.hideColumns(hfaChartMaleTable, new int [] {0});
+            my.hideColumns(hfaChartFemaleTable, new int [] {0});
         }
         
         //Set table fonts
@@ -212,7 +217,7 @@ public class dashBoard extends javax.swing.JFrame {
             jLabel14,jLabel16,jLabel18,jLabel1,jLabel2,jLabel3,jLabel4,jLabel28,
         };
         JLabel textFieldHeaderLabels [] = {
-            jLabel10,jLabel12,jLabel23,jLabel15,jLabel17,jLabel22,jLabel24,jLabel19,
+            jLabel12,jLabel23,jLabel15,jLabel17,jLabel22,jLabel24,jLabel19,
             jLabel20,jLabel5,jLabel6,jLabel7,jLabel8,jLabel13,jLabel25,jLabel26,
             jLabel9,jLabel11,lbNutritionalStatus,lbHeightForAge,jLabel27,
         };
@@ -249,7 +254,7 @@ public class dashBoard extends javax.swing.JFrame {
             tfSearchTeacherLoad,tfSearchEnrolledStudent,
         };
         JTextField forms [] = {
-            tfBdate,tfAge,tfWeight,tfHeight,tfBmi,tfHeightSquared,tfBmiForAge,
+            tfAge,tfWeight,tfHeight,tfBmi,tfHeightSquared,tfBmiForAge,
             tfHeightForAge,tfTestAge,tfTestHeight,tfTestHeightSq,tfTestWeight,
             tfTestBmi,
         };
@@ -324,8 +329,6 @@ public class dashBoard extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel35 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        tfBdate = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         tfAge = new javax.swing.JTextField();
@@ -597,10 +600,6 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel10.setText("Birth Date");
-
-        tfBdate.setEditable(false);
-
         jLabel12.setText("Age (years, months)");
 
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -611,7 +610,7 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel15.setText("Weight (kg)");
 
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("Nutrional Status Properties (Required)");
+        jLabel16.setText("Nutrional Status Properties");
 
         jLabel17.setText("Height (m)");
 
@@ -646,7 +645,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         lbBmiRecordId.setText("0");
 
-        jLabel23.setText("Date of Measurement (Required)");
+        jLabel23.setText("Date of Measurement");
 
         tfHeightSquared.setEditable(false);
 
@@ -666,21 +665,20 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEvaluate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbBmiRecordId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSaveEvaluationChanges, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEvaluate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tfBmiForAge)
                     .addComponent(tfHeightForAge)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -691,15 +689,14 @@ public class dashBoard extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(tfHeightSquared)
-                                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))
-                            .addComponent(tfBmi, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfBmi, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(tfAge, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfBdate, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jdcDateOfMeasurement, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel19)
                             .addComponent(jLabel20))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnSaveEvaluationChanges, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -713,10 +710,6 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(lbBmiRecordId))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfBdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -726,11 +719,17 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jdcDateOfMeasurement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfBmi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -741,11 +740,7 @@ public class dashBoard extends javax.swing.JFrame {
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfHeightSquared, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel24)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfBmi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEvaluate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel18)
@@ -757,7 +752,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfHeightForAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(btnSaveEvaluationChanges)
                 .addContainerGap())
         );
@@ -1332,9 +1327,56 @@ public class dashBoard extends javax.swing.JFrame {
 
     private void enrolledStudentsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enrolledStudentsTableMouseClicked
         if(evt.getClickCount() == 2){
+            int row = enrolledStudentsTable.getSelectedRow();
+            String studentId = enrolledStudentsTable.getValueAt(row, 1).toString();
+            String sectionId = enrolledStudentsTable.getValueAt(row, 6).toString();
             
+            String where = "WHERE studentId='"+studentId+"' AND sectionId='"+sectionId+"'";
+            
+            String result [] = my.return_values("*", "bmi", where, myVariables.getBmiOrder());
+            
+            if(result != null){
+                String values [] = result[0].split("@@");
+                String recordId = values[0];
+                String age = values[3];
+                
+                String weight = values[4];
+                String height = values[5];
+                String heightSquared = values[6];
+                
+                String bmi = values[7];
+                String bmiForAge = values[8];
+                String heightForAge = values[9];
+                String dateMeasured = values[10];
+                
+                lbBmiRecordId.setText(recordId);
+                tfAge.setText(age);
+                
+                tfWeight.setText(weight);
+                tfHeight.setText(height);
+                tfHeightSquared.setText(heightSquared);
+                
+                tfBmi.setText(bmi);
+                tfBmiForAge.setText(bmiForAge);
+                tfHeightForAge.setText(heightForAge);
+                
+                jdcDateOfMeasurement.setDate(my.dateTimeTojCalendarDateFormat(dateMeasured));
+                clearBmiFields(false, true, false);
+            }else{
+                if(my.getConfirmation("This student has no records yet.\nAdd one now?")){
+                    String [] values = {
+                        "null,'"+studentId+"','"+sectionId+"'",
+                    };
+                    
+                    if(my.add_values("bmi", "id,studentId,sectionId", values)){
+                        my.showMessage("Added Successfully. Please select the student again.", JOptionPane.INFORMATION_MESSAGE);
+                    }else{
+                        my.showMessage("Adding Failed! Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
         }else{
-            
+            clearBmiFields(true, false, false);
         }
     }//GEN-LAST:event_enrolledStudentsTableMouseClicked
 
@@ -1415,7 +1457,36 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_searchSectionHandler
 
     private void btnSaveEvaluationChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveEvaluationChangesActionPerformed
-        // TODO add your handling code here:
+        //Get Values & Update
+        String recordId = lbBmiRecordId.getText();
+        String age = tfAge.getText();
+        String dateOfMeasurement = my.jCalendarToNumberDate(jdcDateOfMeasurement.getDate().toString(), true);
+        
+        String weight = tfWeight.getText();;
+        String height = tfHeight.getText();;
+        String heightSquared = tfHeightSquared.getText();;
+        
+        String bmi = tfBmi.getText();;
+        String bmiForAge = tfBmiForAge.getText();;
+        String heightForAge = tfHeightForAge.getText();
+        
+        String sets [] = {
+            "age='"+age+"'",
+            "weight='"+weight+"'",
+            "height='"+height+"'",
+            "heightSq='"+heightSquared+"'",
+            "bmi='"+bmi+"'",
+            "bmiForAge='"+bmiForAge+"'",
+            "heightForAge='"+heightForAge+"'",
+            "dateExamined='"+dateOfMeasurement+"'"
+        };
+        
+        if(my.update_values("bmi", sets, "id='"+recordId+"'")){
+            my.showMessage("Update Successful.", JOptionPane.INFORMATION_MESSAGE);
+            searchEnrolledStudentHandler(my.getButtonPressedEvent(evt.getSource()));
+        }else{
+            my.showMessage("Update Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnSaveEvaluationChangesActionPerformed
 
     private void searchEnrolledStudentHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchEnrolledStudentHandler
@@ -1431,6 +1502,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         String where = "WHERE sectionId='"+sectionId+"' AND (lrn='"+toSearch+"' OR lName LIKE '%"+toSearch+"%')";
         my.searchItem(where, enrolledStudentsTable, 8, null, new int [] {3,4,5}, true, true, lbSearchResult1, tfSearchEnrolledStudent, true);
+        clearBmiFields(true, false, false);
     }//GEN-LAST:event_searchEnrolledStudentHandler
 
     private void btnEvaluateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluateActionPerformed
@@ -1441,18 +1513,35 @@ public class dashBoard extends javax.swing.JFrame {
         }
         
         String dateConducted = "";
+        String dateOfBirth = "";
+        String weight = tfWeight.getText().trim();
+        String height = tfHeight.getText().trim();
+        String heightSquared = "";
+        String bmi = "";
+        String gender = enrolledStudentsTable.getValueAt(row, 4).toString();
+        
         try {
             dateConducted = my.jCalendarToNumberDate(jdcDateOfMeasurement.getDate().toString(), false);
-        } catch (Exception e) {
-            my.showMessage("Invalid Date.", JOptionPane.WARNING_MESSAGE);return;
-        }
+            dateOfBirth = enrolledStudentsTable.getValueAt(row, 5).toString();
+        } catch (Exception e) {my.showMessage("Invalid Date.", JOptionPane.WARNING_MESSAGE);return;}
+        try {
+            Integer.parseInt(weight);
+            Float.parseFloat(height);
+        } catch (Exception e) {my.showMessage("Invalid Weight/Height.", JOptionPane.WARNING_MESSAGE);return;}
         
-        
-        String dateOfBirth = enrolledStudentsTable.getValueAt(row, 5).toString();
-        
+        heightSquared = my.getHeightSquared(height);
+        bmi = my.getBmi(weight, heightSquared);
         String ageInYearMonth = my.getAgeInYearsMonths(dateConducted, dateOfBirth);
-        tfAge.setText(ageInYearMonth);
+        String hfa = my.getHeightForAge(height, ageInYearMonth, gender, false);
+        String nutritionalStatus = my.getNutritionalStatus(bmi, ageInYearMonth, gender);
         
+        tfHeightSquared.setText(heightSquared);
+        tfBmi.setText(bmi);
+        tfAge.setText(ageInYearMonth);
+        tfHeightForAge.setText(hfa);
+        tfBmiForAge.setText(nutritionalStatus);
+        
+        clearBmiFields(false, true, true);
     }//GEN-LAST:event_btnEvaluateActionPerformed
 
     private void btnEvaluateTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluateTestActionPerformed
@@ -1542,6 +1631,22 @@ public class dashBoard extends javax.swing.JFrame {
     private void btnRefreshBmiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshBmiActionPerformed
         refreshBmiChart();
     }//GEN-LAST:event_btnRefreshBmiActionPerformed
+    private void clearBmiFields(boolean clearFields,boolean enableDisableEvaluateBtn,boolean enableDisableSaveBtn){
+        if(clearFields){
+            lbBmiRecordId.setText("--Please Select A Student--");
+            tfAge.setText("");
+
+            tfWeight.setText("");
+            tfHeight.setText("");
+            tfHeightSquared.setText("");
+
+            tfBmi.setText("");
+            tfBmiForAge.setText("--Please Select A Student--");
+            tfHeightForAge.setText("--Please Select A Student--");
+        }
+        btnEvaluate.setEnabled(enableDisableEvaluateBtn);
+        btnSaveEvaluationChanges.setEnabled(enableDisableSaveBtn);
+    }
     private void refreshBmiChart(){
         String [] result = my.return_values("*", "bmichart_male", "", myVariables.getBmiChartOrder());
         String [] result2 = my.return_values("*", "bmichart_female", "", myVariables.getBmiChartOrder());
@@ -1625,7 +1730,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTable hfaChartFemaleTable;
     private javax.swing.JTable hfaChartMaleTable;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1692,7 +1796,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel right1;
     private javax.swing.JPanel selectSectionTab;
     private javax.swing.JTextField tfAge;
-    private javax.swing.JTextField tfBdate;
     private javax.swing.JTextField tfBmi;
     private javax.swing.JTextField tfBmiForAge;
     private javax.swing.JTextField tfHeight;

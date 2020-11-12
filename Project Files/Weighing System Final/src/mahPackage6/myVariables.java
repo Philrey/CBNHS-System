@@ -70,6 +70,7 @@ public class myVariables {
     private static final int [] booksTemplatesOrder = new int [] {2,1,0,3};
     private static final int [] booksOrder = new int [] {2,0,3,1};
     private static final int [] booksIssuedReturnedOrder = new int [] {2,3,0,5,1,4,6};
+    private static final int [] bmiOrder = new int [] {5,0,6,8,4,9,7,10,1,2,3};
     private static final int [] hfaChartOrder = new int [] {5,2,0,6,4,3,1};
     private static final int [] bmiChartOrder = new int [] {6,2,1,5,0,3,4};
     
@@ -348,6 +349,10 @@ public class myVariables {
     
     //<editor-fold desc="Getters & Setters">
     
+    public static int[] getBmiOrder() {
+        return bmiOrder;
+    }
+
     public static int[] getBmiChartOrder() {
         return bmiChartOrder;
     }

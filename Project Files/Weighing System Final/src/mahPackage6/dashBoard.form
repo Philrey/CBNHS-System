@@ -330,7 +330,6 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnEvaluate" max="32767" attributes="0"/>
                                       <Component id="jLabel14" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
@@ -338,14 +337,14 @@
                                           <Component id="lbBmiRecordId" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jLabel16" alignment="0" pref="258" max="32767" attributes="0"/>
-                                      <Component id="jLabel18" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jLabel23" max="32767" attributes="0"/>
+                                      <Component id="btnSaveEvaluationChanges" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="btnEvaluate" max="32767" attributes="0"/>
+                                      <Component id="jLabel18" alignment="0" max="32767" attributes="0"/>
                                       <Component id="tfBmiForAge" alignment="0" max="32767" attributes="0"/>
                                       <Component id="tfHeightForAge" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel10" min="-2" pref="99" max="-2" attributes="0"/>
-                                              <Component id="jLabel24" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
                                               <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -357,19 +356,18 @@
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                       <Component id="tfHeightSquared" max="32767" attributes="0"/>
-                                                      <Component id="jLabel22" pref="124" max="32767" attributes="0"/>
+                                                      <Component id="jLabel22" max="32767" attributes="0"/>
+                                                      <Component id="jLabel24" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
+                                                      <Component id="tfBmi" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <Component id="tfBmi" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
                                               <Component id="tfAge" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
-                                              <Component id="tfBdate" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
                                               <Component id="jdcDateOfMeasurement" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                                               <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="btnSaveEvaluationChanges" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -387,10 +385,6 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfBdate" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -400,11 +394,20 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jdcDateOfMeasurement" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfWeight" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="tfWeight" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="tfBmi" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
@@ -418,11 +421,7 @@
                                           <Component id="tfHeightSquared" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfBmi" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="btnEvaluate" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
@@ -434,7 +433,7 @@
                                   <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="tfHeightForAge" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="112" max="32767" attributes="0"/>
                                   <Component id="btnSaveEvaluationChanges" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -483,16 +482,6 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Component class="javax.swing.JLabel" name="jLabel10">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Birth Date"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="tfBdate">
-                          <Properties>
-                            <Property name="editable" type="boolean" value="false"/>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JLabel" name="jLabel12">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Age (years, months)"/>
@@ -517,7 +506,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel16">
                           <Properties>
                             <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="Nutrional Status Properties (Required)"/>
+                            <Property name="text" type="java.lang.String" value="Nutrional Status Properties"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="tfWeight">
@@ -589,7 +578,7 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel23">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Date of Measurement (Required)"/>
+                            <Property name="text" type="java.lang.String" value="Date of Measurement"/>
                           </Properties>
                         </Component>
                         <Component class="com.toedter.calendar.JDateChooser" name="jdcDateOfMeasurement">
