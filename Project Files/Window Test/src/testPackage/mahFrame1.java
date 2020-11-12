@@ -19,6 +19,7 @@ public class mahFrame1 extends javax.swing.JFrame {
     public mahFrame1() {
         anim = new AnimationClass();
         initComponents();
+        new YeetController();
     }
 
     /**
