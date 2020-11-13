@@ -962,16 +962,14 @@
                                       <Component id="jLabel32" alignment="1" max="32767" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jLabel36" alignment="0" max="32767" attributes="0"/>
                                               <Component id="tfBirthPlace" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jScrollPane6" alignment="0" pref="0" max="32767" attributes="0"/>
                                               <Component id="jLabel28" alignment="0" max="32767" attributes="0"/>
                                               <Component id="tfAge" alignment="0" max="32767" attributes="0"/>
                                               <Component id="tfBdate" alignment="0" max="32767" attributes="0"/>
                                               <Component id="btnSaveChanges1" alignment="0" max="32767" attributes="0"/>
                                               <Component id="btnEdit" alignment="0" max="32767" attributes="0"/>
                                               <Component id="tfContactNumber" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jLabel35" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel35" alignment="0" pref="191" max="32767" attributes="0"/>
                                               <Component id="tfRelationship" alignment="0" max="32767" attributes="0"/>
                                               <Component id="tfGuardiansName" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jLabel33" alignment="0" max="32767" attributes="0"/>
@@ -1074,10 +1072,6 @@
                                   <Component id="btnEdit" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnSaveChanges1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane6" min="-2" pref="125" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -1323,63 +1317,6 @@
                             <Property name="text" type="java.lang.String" value="Contact number of Parent or Guardian"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel36">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Segoe UI" size="14" style="1"/>
-                            </Property>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="Remarks"/>
-                          </Properties>
-                        </Component>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane6">
-                          <AuxValues>
-                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                          </AuxValues>
-
-                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                          <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable1">
-                              <Properties>
-                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="4" rowCount="4">
-                                    <Column editable="false" title="ID" type="java.lang.Object"/>
-                                    <Column editable="false" title="Student ID" type="java.lang.Object"/>
-                                    <Column editable="false" title="Grade Level" type="java.lang.Object"/>
-                                    <Column editable="false" title="Date Recorded" type="java.lang.Object"/>
-                                  </Table>
-                                </Property>
-                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                                  <TableColumnModel selectionModel="0">
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="5" resizable="true">
-                                      <Title/>
-                                      <Editor/>
-                                      <Renderer/>
-                                    </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="5" resizable="true">
-                                      <Title/>
-                                      <Editor/>
-                                      <Renderer/>
-                                    </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="5" resizable="true">
-                                      <Title/>
-                                      <Editor/>
-                                      <Renderer/>
-                                    </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                      <Title/>
-                                      <Editor/>
-                                      <Renderer/>
-                                    </Column>
-                                  </TableColumnModel>
-                                </Property>
-                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
-                                </Property>
-                              </Properties>
-                            </Component>
-                          </SubComponents>
-                        </Container>
                         <Component class="javax.swing.JLabel" name="jLabel38">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Birth Place"/>

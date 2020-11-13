@@ -150,9 +150,6 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel38 = new javax.swing.JLabel();
         tfBirthPlace = new javax.swing.JTextField();
         manageSubjectsTab = new javax.swing.JPanel();
@@ -1040,37 +1037,6 @@ public class dashBoard extends javax.swing.JFrame {
 
         jLabel35.setText("Contact number of Parent or Guardian");
 
-        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel36.setText("Remarks");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID", "Student ID", "Grade Level", "Date Recorded"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane6.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(5);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(5);
-        }
-
         jLabel38.setText("Birth Place");
 
         tfBirthPlace.addActionListener(new java.awt.event.ActionListener() {
@@ -1102,16 +1068,14 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tfBirthPlace, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tfAge, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfBdate, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnSaveChanges1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tfContactNumber, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                             .addComponent(tfRelationship, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfGuardiansName, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1208,10 +1172,6 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(btnEdit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSaveChanges1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel36)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -3090,7 +3050,7 @@ public class dashBoard extends javax.swing.JFrame {
         String [] fields = {
             "null",
             my.convertEscapeCharacters(tfFname.getText().trim()),
-            my.convertEscapeCharacters(tfMname.getText().trim()),
+            my.convertEscapeCharacters(tfMname.getText().trim()).length() > 0 ?my.convertEscapeCharacters(tfMname.getText().trim()) : " ",
             my.convertEscapeCharacters(tfLName.getText().trim()),
             tfStudentLrn.getText(),
             rbMale.isSelected()?"Male":"Female",
@@ -3100,7 +3060,6 @@ public class dashBoard extends javax.swing.JFrame {
         
         //Validate Fields
         for(int n=0;n<fields.length;n++){
-            fields[n] = fields[n].trim();   //Remove spaces from start and end
             if(fields[n].length() <=0){
                 my.showMessage("Please Fill-up all fields.", JOptionPane.WARNING_MESSAGE);
                 return;
@@ -3145,7 +3104,7 @@ public class dashBoard extends javax.swing.JFrame {
             return;
         }
         //Add
-        if(my.add_values("students", "id,lName,fName,mName,lrn,sex,inGr,curGrLvl", fields)){
+        if(my.add_values("students", "id,fName,mName,lName,lrn,sex,inGr,curGrLvl", fields)){
             my.showMessage("Student added successfully", JOptionPane.INFORMATION_MESSAGE);
         }else{
             my.showMessage("Adding Failed. Make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
@@ -3814,9 +3773,9 @@ public class dashBoard extends javax.swing.JFrame {
         String studentId = studentTable.getValueAt(studentTable.getSelectedRow(), 0).toString();
         
         String [] fields = {
-            my.convertEscapeCharacters(tfLastName1.getText()),
-            my.convertEscapeCharacters(tfFirstName1.getText()),
-            my.convertEscapeCharacters(tfMiddleName1.getText()),
+            my.convertEscapeCharacters(tfLastName1.getText().trim()),
+            my.convertEscapeCharacters(tfFirstName1.getText().trim()),
+            my.convertEscapeCharacters(tfMiddleName1.getText().trim()).length() > 0 ? my.convertEscapeCharacters(tfMiddleName1.getText().trim()) : " ",
             tfStudentLrn1.getText(),
             rbMale1.isSelected()?"Male":"Female",
             tfInitialGrade1.getText(),
@@ -3824,7 +3783,6 @@ public class dashBoard extends javax.swing.JFrame {
         
         //Validate Fields
         for(int n=0;n<fields.length;n++){
-            fields[n] = fields[n].trim();   //Remove spaces from start and end
             if(fields[n].length() <=0){
                 my.showMessage("Please Fill-up all fields.", JOptionPane.WARNING_MESSAGE);
                 return;
@@ -4654,7 +4612,7 @@ public class dashBoard extends javax.swing.JFrame {
         JLabel labels [] = {};
         
         JLabel formsHeaderLabels [] = {
-            jLabel27,jLabel28,jLabel30,jLabel33,jLabel36,jLabel54,jLabel57,jLabel58,jLabel72,jLabel73,
+            jLabel27,jLabel28,jLabel30,jLabel33,jLabel54,jLabel57,jLabel58,jLabel72,jLabel73,
             jLabel74,jLabel75,jLabel88,jLabel89,jLabel97,
         };
         JLabel textFieldHeaderLabels [] = {
@@ -4789,7 +4747,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel40;
@@ -4875,7 +4832,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSplitPane jSplitPane1;
@@ -4884,7 +4840,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane4;
     private javax.swing.JSplitPane jSplitPane5;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JComboBox<String> jcbAccessLevel;
     private javax.swing.JComboBox<String> jcbAccessLevel1;
     private javax.swing.JComboBox<String> jcbGender1;

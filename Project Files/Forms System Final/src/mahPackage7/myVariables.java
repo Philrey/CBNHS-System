@@ -5,6 +5,7 @@
  */
 package mahPackage7;
 import java.awt.Font;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -64,6 +65,9 @@ public class myVariables {
     private static JProgressBar progressBar;
     private static JLabel lbLoadingMessage;
     private static JPanel loadingPanel;
+    private static JFrame currentLoadingFrame;
+    
+    private static String [] return_values_result;
     
     //Table Orders
     private static final int [] usersOrder = new int [] {6,4,3,7,1,2,0,5};
@@ -88,12 +92,14 @@ public class myVariables {
     private static final int [] managedSubjectsWTemplateViewOrder = new int [] {13,5,8,10,3,2,14,1,7,15,4,9,12,0,11,6};
     
     private static final int [] sectionViewRev3Order = new int [] {8,0,2,4,5,6,3,1,7};
-    private static final int [] jhsf1Order= new int [] {18,11,5,20,0,9,12,1,8,21,13,23,4,10,3,7,17,14,2,15,6,19,16,22};
     private static final int [] sf2StudentListViewOrder = new int [] {4,5,0,2,6,1,3};
     private static final int [] sf2StudentListViewOrderRev2 = new int [] {4,5,0,2,6,1,3,7};
     
     private static final int [] attendanceOrder = new int [] {2,0,3,4,6,5,1};
     private static final int [] subjectOrder = new int[] {2,3,1,0};
+    
+    //School Form Views
+    private static final int [] jhsf1Order= new int [] {18,12,8,7,1,13,19,5,15,20,22,6,14,4,9,10,0,3,16,2,11,17,21};
     
     //Icons
     private static final String studentsIcon = "icons/icons8_user_groups_skin_type_7_20px_1.png";
@@ -352,6 +358,7 @@ public class myVariables {
     }
     //</editor-fold>
     
+    //<editor-fold desc="Getters & Setters">
     public static JProgressBar getProgressBar() {
         return progressBar;
     }
@@ -371,8 +378,23 @@ public class myVariables {
     public static JPanel getLoadingPanel() {
         return loadingPanel;
     }
+    public static String[] getReturn_values_result() {
+        return return_values_result;
+    }
 
-    //<editor-fold desc="Getters & Setters">
+    public static void setReturn_values_result(String[] return_values_result) {    
+        myVariables.return_values_result = return_values_result;
+    }
+
+    public static JFrame getCurrentLoadingFrame() {
+        return currentLoadingFrame;
+    }
+
+    public static void setCurrentLoadingFrame(JFrame currentLoadingFrame) {
+        myVariables.currentLoadingFrame = currentLoadingFrame;
+    }
+    
+    
     public static void setLoadingPanel(JPanel loadingPanel) {    
         myVariables.loadingPanel = loadingPanel;
     }

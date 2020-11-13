@@ -38,7 +38,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class myFunctions {
-    private static Thread mainThead;
+    private static Thread mainThead,secondThread;
+    
     public myFunctions(){
         try {
             loadSettings();
@@ -102,7 +103,7 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="TABLE FUNCTIONS">
-    public void searchItemThread(String toSearch,String where,JTable resultTable,int viewTableIndex,int [] combineColumns,boolean toNameFormat,JLabel resultText,JFrame frameName){
+    public void searchItemThread(String toSearch,String where,JTable resultTable,int viewTableIndex,int [] combineColumns,boolean toNameFormat,JLabel resultText){
         String from="";
         int [] order = null;
         switch(viewTableIndex){
@@ -146,16 +147,18 @@ public class myFunctions {
                 from = "v_managedsubjects";
                 order = myVariables.getManagedSubjectsViewOrder();
                 break;
+            }case 10:{
+                from = "form_sf1_view";
+                order = myVariables.getJhsf1Order();
+                break;
             }default:{
-                System.err.println("View table index out of bounds. Please check your index selected.");
+                System.err.println("View table index out of bounds. Please check your index selected @ myFunctions.java");
                 return;
             }
         }
         
         thread_return_values trv = new thread_return_values(
-                toSearch,"*", from, where, order, resultTable, frameName,
-                myVariables.getLoadingPanel(), myVariables.getLbLoadingMessage(),
-                myVariables.getProgressBar(),combineColumns,toNameFormat,resultText
+                toSearch,"*", from, where, order, resultTable,combineColumns,toNameFormat,resultText
         );
         System.err.println("Starting Thread");
         if(mainThead == null){
@@ -747,6 +750,32 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
+    public void runSecondaryThread(int threadIndex,boolean waitForMainThreadToFinish,JTable tableName,String value1,String value2){
+        Thread toLoad = null;
+        switch (threadIndex){
+            case 0:{
+                thread_calculate_age tca = new thread_calculate_age(tableName, 6, value1, true);
+                toLoad = new Thread(tca);
+                break;
+            }case 1:{
+                break;
+            }case 2:{
+                break;
+            }case 3:{
+                break;
+            }default:{
+                System.err.println("No proper thread selected.");
+                return;
+            }
+        }
+        if(secondThread != null){
+            if(secondThread.isAlive()){
+                interrupSecondThread();
+            }
+        }
+        secondThread = toLoad;
+        secondThread.start();
+    }
     public void interrupMainThread(){
         if(mainThead != null){
             if(mainThead.isAlive()){
@@ -754,10 +783,19 @@ public class myFunctions {
                 mainThead.interrupt();
                 return;
             }else{
-                System.err.println("Mainthread is not running.");
+                //System.err.println("Mainthread is not running.");
             }
-        }else{
-            
+        }
+    }
+    public void interrupSecondThread(){
+        if(secondThread != null){
+            if(secondThread.isAlive()){
+                System.err.println("Stopping Second Thread");
+                secondThread.interrupt();
+                return;
+            }else{
+                //System.err.println("Second Thread is not running.");
+            }
         }
     }
     public String getDateNow(boolean includeTime){
@@ -1310,7 +1348,7 @@ public class myFunctions {
         
         return df.format(bmi);
     }
-    public String getAgeInYearsMonths(String dateConducted,String dateOfBirth){
+    public String getAgeInYearsMonths(String dateConducted,String dateOfBirth,boolean includeMonths){
         String dateCon [] = dateConducted.split("-");
         String dateOfBrth [] = dateOfBirth.split("-");
         
@@ -1319,11 +1357,13 @@ public class myFunctions {
         int yearBday = Integer.parseInt(dateOfBrth[0]);
         int monthBday = Integer.parseInt(dateOfBrth[1]);
         
+        String finalAge = "";
         if(monthConducted<monthBday){
-            return (yearConducted-yearBday-1)+": "+((12+monthConducted)-monthBday);
+            finalAge = includeMonths?(yearConducted-yearBday-1)+": "+((12+monthConducted)-monthBday) : String.valueOf(yearConducted-yearBday-1);
         }else{
-            return (yearConducted-yearBday)+": "+(monthConducted-monthBday);
+            finalAge = includeMonths?(yearConducted-yearBday)+": "+(monthConducted-monthBday) : String.valueOf(yearConducted-yearBday);
         }
+        return finalAge;
     }
     //</editor-fold>
     public ImageIcon getImgIcn(String url){
@@ -1333,4 +1373,13 @@ public class myFunctions {
     public Image getImage(String url){
         return new ImageIcon(getClass().getResource(url)).getImage();
     }
+
+    public static Thread getMainThead() {
+        return mainThead;
+    }
+
+    public static Thread getSecondThread() {
+        return secondThread;
+    }
+    
 }

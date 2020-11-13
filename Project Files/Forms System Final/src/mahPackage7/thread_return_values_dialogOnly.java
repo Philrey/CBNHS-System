@@ -10,9 +10,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -30,121 +27,92 @@ import org.json.JSONObject;
  *
  * @author Phil Rey Paderogao
  */
-public class thread_return_values extends SwingWorker<Integer, Object>{
-    long threadDelay = 100;
-    int batchCount = 10;
-    //Main Properties
-    private String toSearch;
-    private String select,from,where;
-    private int [] order;
-    private JTable tableName;
-    private int [] combineColumns;
-    private boolean toNameFormat;
-    private JLabel resultText;
-    //Dialog Properties
-    JDialog dialog;
-    JFrame jFrameName;
-    
-    JPanel dialogPanel;
-    JLabel lbLoadingMessage;
-    JProgressBar progressBar;
+public class thread_return_values_dialogOnly extends SwingWorker<String[], Object>{
+    //<editor-fold desc="Variables">
+        private long  threadDelay = 100;
+        //Main Properties
+        private String select,from,where;
+        private int [] order;
+        private int [] combineColumns;
+        private boolean toNameFormat;
+        private boolean isModal;
+        
+        //Dialog Properties
+        JDialog dialog;
+        JFrame jFrameName;
 
-    public thread_return_values(String toSearch,String select, String from, String where, int[] order, JTable tableName,int [] combineColumns,boolean toNameFormat,JLabel resultText) {
+        JPanel dialogPanel;
+        JLabel lbLoadingMessage;
+        JProgressBar progressBar;
+    //</editor-fold>
+
+    public thread_return_values_dialogOnly(String select, String from, String where, int[] order, int[] combineColumns, boolean toNameFormat,boolean isModal) {
         this.select = select;
         this.from = from;
         this.where = where;
         this.order = order;
-        this.tableName = tableName;
-        this.jFrameName = myVariables.getCurrentLoadingFrame();
-        this.dialogPanel = myVariables.getLoadingPanel();
-        this.lbLoadingMessage = myVariables.getLbLoadingMessage();
-        this.progressBar = myVariables.getProgressBar();
         this.combineColumns = combineColumns;
         this.toNameFormat = toNameFormat;
-        this.resultText = resultText;
-        this.toSearch = toSearch;
+        this.isModal = isModal;
+        
+        jFrameName = myVariables.getCurrentLoadingFrame();
+        dialogPanel = myVariables.getLoadingPanel();
+        lbLoadingMessage = myVariables.getLbLoadingMessage();
+        progressBar = myVariables.getProgressBar();
     }
     
-    @Override
-    protected Integer doInBackground(){
-        try {
-            tableName.setEnabled(false);
-            showCustomDialog("Searching...", dialogPanel, true, 320, 220, false);
-            System.err.println("Starting Background THread");
-            //dialogPanel.updateUI();
-            //initialize dialog values
-            
-            //set variables displayed
-            lbLoadingMessage.setText("Starting Thread...");
-            progressBar.setMinimum(0);
-            progressBar.setMaximum(100);
-            progressBar.setValue(0);
-            Thread.sleep(1000);
-
-            //Start search
-            lbLoadingMessage.setText("Retrieving from Database...");
-            String [] result = return_values();
-            clear_table_rows(tableName);
-            
-            Thread.sleep(1000);
-            if(result != null){
-                lbLoadingMessage.setText("Processing Result...");
-                if(resultText != null){
-                    if(result.length > 1){
-                        resultText.setText("Showing "+result.length+" results for '"+toSearch+"'.");
-                    }else{
-                        resultText.setText("Showing "+result.length+" result for '"+toSearch+"'.");
-                    }
-                }
-                progressBar.setMaximum(result.length);
-                Thread.sleep(threadDelay);
-
-                for(int n=0;n<result.length;n++){
-                    lbLoadingMessage.setText("Processing Result..."+(n+1)+" of "+result.length);
-                    progressBar.setValue(n+1);
-
-                    if(combineColumns != null){
-                        if(toNameFormat){
-                            result[n] = toNameFormat(result[n], combineColumns);
-                        }else{
-                            result[n] = combineColumns(result[n], combineColumns);
-                        }
-                        add_table_row(result[n], tableName);
-                    }else{
-                        add_table_row(result[n], tableName);
-                    }
-                    
-                    if(n%batchCount==0 && n!=0){
-                        Thread.sleep(500); //Hold the process for the CPU to rest.
-                        System.err.println("Thread resting.");
-                    }else{
-                        Thread.sleep(threadDelay);
-                    }
-                }
-            }else{
-                if(resultText != null){
-                    resultText.setText("Showing 0 results for '"+toSearch+"'.");
-                }
-                return -1;
-            }
-        } catch (Exception e) {
-            System.err.println("Error: "+e.getMessage());
-            return -1;
-        }
         
-        return 0;
+    @Override
+    protected String[] doInBackground() throws Exception {
+        showCustomDialog("Searching...", dialogPanel, isModal, 320, 220, false);
+        
+        //set variables displayed
+        lbLoadingMessage.setText("Starting Thread...");
+        progressBar.setMinimum(0);
+        progressBar.setMaximum(100);
+        progressBar.setValue(0);
+        Thread.sleep(1000);
+        
+        //Start search
+        lbLoadingMessage.setText("Retrieving from Database...");
+        String [] result = return_values();
+        
+        Thread.sleep(1000);
+        if(result != null){
+            lbLoadingMessage.setText("Processing Result...");
+            progressBar.setMaximum(result.length);
+            Thread.sleep(threadDelay);
+
+            for(int n=0;n<result.length;n++){
+                lbLoadingMessage.setText("Processing Result..."+(n+1)+" of "+result.length);
+                progressBar.setValue(n+1);
+
+                if(combineColumns != null){
+                    if(toNameFormat){
+                        result[n] = toNameFormat(result[n], combineColumns);
+                    }else{
+                        result[n] = combineColumns(result[n], combineColumns);
+                    }
+                }
+                Thread.sleep(threadDelay);
+            }
+            return result;
+        }else{
+            return null;
+        }
     }
 
     @Override
     protected void done() {
-        System.out.println("Background Task Done");
-        tableName.setEnabled(true);
-        closeCustomDialog();
+        try {
+            myVariables.setReturn_values_result(get());
+        } catch (Exception e) {
+            myVariables.setReturn_values_result(null);
+        }
         super.done();
     }
     
-    
-    //Custom Functions
+    //<editor-fold desc="Custom Functions">
     public void clear_table_rows(JTable table_nameTable){
         DefaultTableModel model=(DefaultTableModel) table_nameTable.getModel();
         model.setRowCount(0);
@@ -200,18 +168,16 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
                 if(!isLast){
                     finalString+=temp[n]+", ";
                 }else{
-                    if(temp[n].length() > 1){
-                        finalString+=temp[n].substring(0, 1)+".";
-                    }else{
-                        //Remove comma
-                        finalString = finalString.substring(0, finalString.length()-2);
-                    }
+                    finalString+=temp[n].substring(0, 1)+".";
                 }
                 if(isLast){
                     finalString+="@@";
                 }
             }
+            
+            
         }
+        
         return finalString;
     }
     public boolean add_table_row(String line,JTable tableName){
@@ -324,7 +290,7 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
             System.err.println("Dialog is null...skipping");
         }
     }
-    
+    //</editor-fold>
     //<editor-fold desc="Show Message Functions">
     public void showMessage(String message,int messageType){
         JFrame frem = new JFrame();
