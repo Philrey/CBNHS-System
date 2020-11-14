@@ -41,8 +41,8 @@ public class thread_loadSf1Details extends SwingWorker<String, Object>{
     private JLabel lbLoadingMessage;
     private JProgressBar progressBar;
 
-    public thread_loadSf1Details(JTable tableName, int birthdateTableColumnIndex, String [] stringsToUse,JTextField [] textFieldsToUse, JButton [] buttonsToUse, boolean waitForMainThreadToFinish) {
-        this.tableName = tableName;
+    public thread_loadSf1Details(JTable [] tablesToUse, int birthdateTableColumnIndex, String [] stringsToUse,JTextField [] textFieldsToUse, JButton [] buttonsToUse, boolean waitForMainThreadToFinish) {
+        this.tableName = tablesToUse[0];
         this.birthdateTableColumnIndex = birthdateTableColumnIndex;
         this.waitForMainThreadToFinish = waitForMainThreadToFinish;
         this.firstFridayOfJuneDate = stringsToUse[0];

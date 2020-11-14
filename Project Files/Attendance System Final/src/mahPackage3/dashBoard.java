@@ -410,6 +410,8 @@ public class dashBoard extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jtaLeaveNotes = new javax.swing.JTextArea();
         btnSaveNotes = new javax.swing.JButton();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
         recheckAttendanceDialog = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
@@ -1230,7 +1232,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel38.setText("Leave a Note for this Student. (Optional)");
+        jLabel38.setText("Leave a Note for this Student");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -1262,6 +1264,12 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
 
+        jTextArea3.setColumns(20);
+        jTextArea3.setFont(myVariables.TEXTFIELD_FONT);
+        jTextArea3.setRows(5);
+        jTextArea3.setText("Guidelines:\n   If tardy, type CODE:MESSAGE.\n   -LC Late Commer\n   -CC Cutting Classes\n    (e.g. LC:15 minutes late)");
+        jScrollPane12.setViewportView(jTextArea3);
+
         javax.swing.GroupLayout addNotesDialogLayout = new javax.swing.GroupLayout(addNotesDialog);
         addNotesDialog.setLayout(addNotesDialogLayout);
         addNotesDialogLayout.setHorizontalGroup(
@@ -1275,7 +1283,8 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(jScrollPane6)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addNotesDialogLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSaveNotes)))
+                        .addComponent(btnSaveNotes))
+                    .addComponent(jScrollPane12))
                 .addContainerGap())
         );
         addNotesDialogLayout.setVerticalGroup(
@@ -1284,7 +1293,9 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane6)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSaveNotes)
                 .addContainerGap())
@@ -1734,7 +1745,7 @@ public class dashBoard extends javax.swing.JFrame {
             }if(checkAttendanceTable.getValueAt(n, 9).toString().contains("O")){
                 status = "Late";
             }
-            notes = checkAttendanceTable.getValueAt(n, 10).toString();
+            notes = my.convertEscapeCharacters(checkAttendanceTable.getValueAt(n, 10).toString());
             
             //id,studentId,sectionId,subjectId,status,dateAdded,notes
             if(rbToday.isSelected()){
@@ -1925,7 +1936,7 @@ public class dashBoard extends javax.swing.JFrame {
     private void btnSaveChangesToAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesToAttendanceActionPerformed
         String id = lbAttendanceID.getText();
         String status = "";
-        String notes = jtaNotes.getText();
+        String notes = jtaNotes.getText().trim().length()>0? jtaNotes.getText().trim() : " ";
         
         if(rbPresent.isSelected())
             status = "Present";
@@ -1936,7 +1947,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         String [] sets = {
             "status='"+status+"'",
-            "notes='"+notes+"'",
+            "notes='"+my.convertEscapeCharacters(notes)+"'",
         };
         
         if(my.update_values("attendance", sets, "id='"+id+"'")){
@@ -2388,6 +2399,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2400,6 +2412,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JComboBox<String> jcbMeridan;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
     private com.toedter.calendar.JDateChooser jdcCustomDate;

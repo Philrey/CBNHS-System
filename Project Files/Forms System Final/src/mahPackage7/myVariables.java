@@ -110,7 +110,8 @@ public class myVariables {
     private static final String subjeLoadsIcon = "icons/icons8_books_20px.png";
     private static final String usersIcon = "icons/icons8_teacher_20px.png";
     private static final String usersPrsnlInfIcon = "icons/icons8_name_tag_20px.png";
-    private static final String formsIcon = "Imagez/Icons/icons8_microsoft_excel_2019_25px.png";
+    private static final String formsIcon = "icons/icons8_microsoft_excel_2019_20px.png";
+    private static final String selectFormsIcon = "icons/icons8_google_forms_20px.png";
     private static final String enrollmentIcon = "icons/icons8_user_groups_skin_type_7_20px_1.png";
     private static final String assignSubjectTeacherIcon = "icons/icons8_audit_20px.png";
     private static final String booksIcon = "icons/icons8_books_20px.png";
@@ -361,6 +362,11 @@ public class myVariables {
     //</editor-fold>
     
     //<editor-fold desc="Getters & Setters">
+    
+    public static String getSelectFormsIcon() {
+        return selectFormsIcon;
+    }
+
     public static int getFormSelected() {
         return formSelected;
     }

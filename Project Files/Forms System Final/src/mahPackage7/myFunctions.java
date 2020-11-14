@@ -751,14 +751,16 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
-    public void runSecondaryThread(int threadIndex,boolean waitForMainThreadToFinish,JTable tableName,String [] valuesToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse){
+    public void runSecondaryThread(int threadIndex,boolean waitForMainThreadToFinish,JTable [] tablesToUse,String [] valuesToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse){
         Thread toLoad = null;
         switch (threadIndex){
             case 0:{
-                thread_loadSf1Details tca = new thread_loadSf1Details(tableName, 6, valuesToUse,textFieldsToUse,buttonsToUse, true);
+                thread_loadSf1Details tca = new thread_loadSf1Details(tablesToUse, 6, valuesToUse,textFieldsToUse,buttonsToUse, true);
                 toLoad = new Thread(tca);
                 break;
             }case 1:{
+                thread_loadSf2Details ls2d = new thread_loadSf2Details(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, true);
+                toLoad = new Thread(ls2d);
                 break;
             }case 2:{
                 break;
