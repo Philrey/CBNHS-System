@@ -92,16 +92,13 @@ public class myVariables {
     private static final int [] teacherLoadsViewOrder = new int [] {6,7,1,4,3,8,2,10,9,5,0};
     private static final int [] managedSubjectsViewOrder = new int [] {10,4,6,8,2,1,11,0,5,12,3,7,9};
     private static final int [] managedSubjectsWTemplateViewOrder = new int [] {13,5,8,10,3,2,14,1,7,15,4,9,12,0,11,6};
-    
-    private static final int [] sectionViewRev3Order = new int [] {8,0,2,4,5,6,3,1,7};
-    private static final int [] sf2StudentListViewOrder = new int [] {4,5,0,2,6,1,3};
-    private static final int [] sf2StudentListViewOrderRev2 = new int [] {4,5,0,2,6,1,3,7};
-    
+        
     private static final int [] attendanceOrder = new int [] {2,0,3,4,6,5,1};
     private static final int [] subjectOrder = new int[] {2,3,1,0};
     
     //School Form Views
     private static final int [] jhsf1Order= new int [] {18,12,8,7,1,13,19,5,15,20,22,6,14,4,9,10,0,3,16,2,11,17,21};
+    private static final int [] jhsf2Order= new int [] {0,1,2,3,4,5,6,7,8};
     
     //Icons
     private static final String studentsIcon = "icons/icons8_user_groups_skin_type_7_20px_1.png";
@@ -116,6 +113,8 @@ public class myVariables {
     private static final String assignSubjectTeacherIcon = "icons/icons8_audit_20px.png";
     private static final String booksIcon = "icons/icons8_books_20px.png";
     private static final String bookTemplatesIcon = "icons/icons8_book_shelf_20px.png";
+    private static final String dailyIcon = "icons/icons8_haze_16px.png";
+    private static final String monthlyIcon = "icons/icons8_calendar_16px.png";
     
     private static final String sectionsIcon = "icons/icons8_page_20px.png";
     private static final String viewStudentsIcon = "icons/icons8_read_online_20px.png";
@@ -166,10 +165,6 @@ public class myVariables {
 
     public static void setSf4GradeLevelSelected(int sf4GradeLevelSelected) {
         myVariables.sf4GradeLevelSelected = sf4GradeLevelSelected;
-    }
-    
-    public static int[] getSf2StudentListViewOrderRev2() {
-        return sf2StudentListViewOrderRev2;
     }
     
     public static Font getColFont() {
@@ -260,20 +255,12 @@ public class myVariables {
         return formsWindowIcon;
     }
     
-    public static int[] getSf2StudentListViewOrder() {
-        return sf2StudentListViewOrder;
-    }
-    
     public static void setSectionSelected(int sectionSelected) {
         myVariables.sectionSelected = sectionSelected;
     }
 
     public static int[] getJhsf1Order() {
         return jhsf1Order;
-    }
-    
-    public static int[] getSectionViewRev3Order() {
-        return sectionViewRev3Order;
     }
     
     public static int[] getUsersOrder() {
@@ -363,6 +350,18 @@ public class myVariables {
     
     //<editor-fold desc="Getters & Setters">
     
+    public static int[] getJhsf2Order() {
+        return jhsf2Order;
+    }
+
+    public static String getDailyIcon() {
+        return dailyIcon;
+    }
+    
+    public static String getMonthlyIcon() {    
+        return monthlyIcon;
+    }
+
     public static String getSelectFormsIcon() {
         return selectFormsIcon;
     }

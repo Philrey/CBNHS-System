@@ -611,19 +611,20 @@ public class dashBoard extends javax.swing.JFrame {
 
         left2.setBackground(new java.awt.Color(11, 102, 35));
 
+        jSplitPane3.setBorder(null);
         jSplitPane3.setDividerLocation(80);
         jSplitPane3.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         weekDaysOfTheMonthTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Student ID", "Section ID", "Student LRN", "Name", "Gender", "Birth Date", "Remarks", "Mon1", "Tue", "Wed", "Thu", "Fri", "Mon2", "Tue", "Wed", "Thu", "Fri", "Mon3", "Tue", "Wed", "Thu", "Fri", "Mon4", "Tue", "Wed", "Thu", "Fri", "Absent", "Tardy"
+                "ID", "Section ID", "Student ID", "Name", "Gender", "Date Enrolled", "Remarks", "Mon1", "Tue", "Wed", "Thu", "Fri", "Mon2", "Tue", "Wed", "Thu", "Fri", "Mon3", "Tue", "Wed", "Thu", "Fri", "Mon4", "Tue", "Wed", "Thu", "Fri", "Absent", "Tardy"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -634,7 +635,9 @@ public class dashBoard extends javax.swing.JFrame {
         weekDaysOfTheMonthTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane6.setViewportView(weekDaysOfTheMonthTable1);
         if (weekDaysOfTheMonthTable1.getColumnModel().getColumnCount() > 0) {
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(4).setPreferredWidth(200);
+            weekDaysOfTheMonthTable1.getColumnModel().getColumn(3).setPreferredWidth(200);
+            weekDaysOfTheMonthTable1.getColumnModel().getColumn(7).setResizable(false);
+            weekDaysOfTheMonthTable1.getColumnModel().getColumn(7).setPreferredWidth(45);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(8).setResizable(false);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(8).setPreferredWidth(40);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(9).setResizable(false);
@@ -644,7 +647,7 @@ public class dashBoard extends javax.swing.JFrame {
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(11).setResizable(false);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(11).setPreferredWidth(40);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(12).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(12).setPreferredWidth(40);
+            weekDaysOfTheMonthTable1.getColumnModel().getColumn(12).setPreferredWidth(45);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(13).setResizable(false);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(13).setPreferredWidth(40);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(14).setResizable(false);
@@ -654,7 +657,7 @@ public class dashBoard extends javax.swing.JFrame {
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(16).setResizable(false);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(16).setPreferredWidth(40);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(17).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(17).setPreferredWidth(40);
+            weekDaysOfTheMonthTable1.getColumnModel().getColumn(17).setPreferredWidth(45);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(18).setResizable(false);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(18).setPreferredWidth(40);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(19).setResizable(false);
@@ -664,7 +667,7 @@ public class dashBoard extends javax.swing.JFrame {
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(21).setResizable(false);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(21).setPreferredWidth(40);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(22).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(22).setPreferredWidth(40);
+            weekDaysOfTheMonthTable1.getColumnModel().getColumn(22).setPreferredWidth(45);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(23).setResizable(false);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(23).setPreferredWidth(40);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(24).setResizable(false);
@@ -674,26 +677,24 @@ public class dashBoard extends javax.swing.JFrame {
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(26).setResizable(false);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(26).setPreferredWidth(40);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(27).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(27).setPreferredWidth(40);
             weekDaysOfTheMonthTable1.getColumnModel().getColumn(28).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(29).setResizable(false);
         }
 
         jSplitPane3.setLeftComponent(jScrollPane6);
 
         sf2Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Student ID", "Section ID", "Student LRN", "Name", "Gender", "Birth Date", "Remarks", "Mon1", "Tue", "Wed", "Thu", "Fri", "Mon2", "Tue", "Wed", "Thu", "Fri", "Mon3", "Tue", "Wed", "Thu", "Fri", "Mon4", "Tue", "Wed", "Thu", "Fri", "Absent", "Tardy"
+                "ID", "Section ID", "Student ID", "Name", "Gender", "Date Enrolled", "Remarks", "Mon1", "Tue", "Wed", "Thu", "Fri", "Mon2", "Tue", "Wed", "Thu", "Fri", "Mon3", "Tue", "Wed", "Thu", "Fri", "Mon4", "Tue", "Wed", "Thu", "Fri", "Absent", "Tardy"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -704,18 +705,20 @@ public class dashBoard extends javax.swing.JFrame {
         sf2Table.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(sf2Table);
         if (sf2Table.getColumnModel().getColumnCount() > 0) {
-            sf2Table.getColumnModel().getColumn(2).setResizable(false);
-            sf2Table.getColumnModel().getColumn(4).setPreferredWidth(200);
+            sf2Table.getColumnModel().getColumn(1).setResizable(false);
+            sf2Table.getColumnModel().getColumn(3).setPreferredWidth(200);
+            sf2Table.getColumnModel().getColumn(6).setResizable(false);
             sf2Table.getColumnModel().getColumn(7).setResizable(false);
+            sf2Table.getColumnModel().getColumn(7).setPreferredWidth(45);
             sf2Table.getColumnModel().getColumn(8).setResizable(false);
             sf2Table.getColumnModel().getColumn(8).setPreferredWidth(40);
             sf2Table.getColumnModel().getColumn(9).setResizable(false);
             sf2Table.getColumnModel().getColumn(9).setPreferredWidth(40);
             sf2Table.getColumnModel().getColumn(10).setResizable(false);
             sf2Table.getColumnModel().getColumn(10).setPreferredWidth(40);
-            sf2Table.getColumnModel().getColumn(11).setResizable(false);
             sf2Table.getColumnModel().getColumn(11).setPreferredWidth(40);
-            sf2Table.getColumnModel().getColumn(12).setPreferredWidth(40);
+            sf2Table.getColumnModel().getColumn(12).setResizable(false);
+            sf2Table.getColumnModel().getColumn(12).setPreferredWidth(45);
             sf2Table.getColumnModel().getColumn(13).setResizable(false);
             sf2Table.getColumnModel().getColumn(13).setPreferredWidth(40);
             sf2Table.getColumnModel().getColumn(14).setResizable(false);
@@ -725,7 +728,7 @@ public class dashBoard extends javax.swing.JFrame {
             sf2Table.getColumnModel().getColumn(16).setResizable(false);
             sf2Table.getColumnModel().getColumn(16).setPreferredWidth(40);
             sf2Table.getColumnModel().getColumn(17).setResizable(false);
-            sf2Table.getColumnModel().getColumn(17).setPreferredWidth(40);
+            sf2Table.getColumnModel().getColumn(17).setPreferredWidth(45);
             sf2Table.getColumnModel().getColumn(18).setResizable(false);
             sf2Table.getColumnModel().getColumn(18).setPreferredWidth(40);
             sf2Table.getColumnModel().getColumn(19).setResizable(false);
@@ -735,7 +738,7 @@ public class dashBoard extends javax.swing.JFrame {
             sf2Table.getColumnModel().getColumn(21).setResizable(false);
             sf2Table.getColumnModel().getColumn(21).setPreferredWidth(40);
             sf2Table.getColumnModel().getColumn(22).setResizable(false);
-            sf2Table.getColumnModel().getColumn(22).setPreferredWidth(40);
+            sf2Table.getColumnModel().getColumn(22).setPreferredWidth(45);
             sf2Table.getColumnModel().getColumn(23).setResizable(false);
             sf2Table.getColumnModel().getColumn(23).setPreferredWidth(40);
             sf2Table.getColumnModel().getColumn(24).setResizable(false);
@@ -745,9 +748,7 @@ public class dashBoard extends javax.swing.JFrame {
             sf2Table.getColumnModel().getColumn(26).setResizable(false);
             sf2Table.getColumnModel().getColumn(26).setPreferredWidth(40);
             sf2Table.getColumnModel().getColumn(27).setResizable(false);
-            sf2Table.getColumnModel().getColumn(27).setPreferredWidth(40);
             sf2Table.getColumnModel().getColumn(28).setResizable(false);
-            sf2Table.getColumnModel().getColumn(29).setResizable(false);
         }
 
         jSplitPane3.setRightComponent(jScrollPane5);
@@ -1054,6 +1055,7 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSf2ActionPerformed
     private void selectFormToExport(int formIndexExact){
         myVariables.setFormSelected(formIndexExact);
+        my.select_tab(mainTab, 1);
         switch(formIndexExact){
             case 1:{
                 break;
@@ -1225,8 +1227,8 @@ public class dashBoard extends javax.swing.JFrame {
         if(!myVariables.isDebugModeOn()){
             my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6});
             my.hideColumns(sf1StudentsTable, new int [] {0,1,2});
-            my.hideColumns(sf2Table, new int [] {0,1,2,3,6});
-            my.hideColumns(weekDaysOfTheMonthTable1, new int [] {0,1,2,3,6});
+            my.hideColumns(sf2Table, new int [] {0,1,2,5,6});
+            my.hideColumns(weekDaysOfTheMonthTable1, new int [] {0,1,2,5,6});
         }
         
         //Set table fonts
@@ -1271,10 +1273,18 @@ public class dashBoard extends javax.swing.JFrame {
             my.getImgIcn(myVariables.getFormsIcon()),
         };
         
+        Icon sf2sf4Icons [] = {
+            my.getImgIcn(myVariables.getDailyIcon()),
+            my.getImgIcn(myVariables.getMonthlyIcon()),
+        };
+        
         for(int n=0;n<tabIcons.length;n++){
             mainTab.setIconAt(n,tabIcons[n]);
         }
         
+        for(int n=0;n<sf2sf4Icons.length;n++){
+            tpSf2Sf4TabbedPane.setIconAt(n,sf2sf4Icons[n]);
+        }
         //my.remove_multiple_tabs(mainTab, new int [] {1,2});
     }
     private void loadColoredButtons(){
