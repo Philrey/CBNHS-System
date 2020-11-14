@@ -875,16 +875,18 @@ public class myFunctions {
                 if(!isLast){
                     finalString+=temp[n]+", ";
                 }else{
-                    finalString+=temp[n].substring(0, 1)+".";
+                    if(temp[n].length() > 1){
+                        finalString+=temp[n].substring(0, 1)+".";
+                    }else{
+                        //Remove comma
+                        finalString = finalString.substring(0, finalString.length()-2);
+                    }
                 }
                 if(isLast){
                     finalString+="@@";
                 }
             }
-            
-            
         }
-        
         return finalString;
     }
     protected String toNameFormatFull(String line,int [] columnIndex){
