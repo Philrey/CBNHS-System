@@ -7,6 +7,7 @@ package mahPackage7;
 
 import java.awt.Dialog;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,20 +15,25 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
 /**
  *
  * @author Phil Rey Paderogao
  */
-public class thread_calculate_age extends SwingWorker<String, Object>{
-    long threadDelay = 500;
+public class thread_loadSf1Details extends SwingWorker<String, Object>{
+    long threadDelay = 100;
+    long pauseDelay = 500;
     
     //Main Variables
+    private int males,females,total;
     private JTable tableName;
     private int birthdateTableColumnIndex;
     private String firstFridayOfJuneDate;
     private boolean waitForMainThreadToFinish;
+    
+    private JTextField tfMale,tfFemale,tfTotal;
     //Dialog Properties
     private JDialog dialog;
     private JFrame jFrameName;
@@ -35,16 +41,20 @@ public class thread_calculate_age extends SwingWorker<String, Object>{
     private JLabel lbLoadingMessage;
     private JProgressBar progressBar;
 
-    public thread_calculate_age(JTable tableName, int birthdateTableColumnIndex, String firstFridayOfJuneDate, boolean waitForMainThreadToFinish) {
+    public thread_loadSf1Details(JTable tableName, int birthdateTableColumnIndex, String [] stringsToUse,JTextField [] textFieldsToUse, JButton [] buttonsToUse, boolean waitForMainThreadToFinish) {
         this.tableName = tableName;
         this.birthdateTableColumnIndex = birthdateTableColumnIndex;
         this.waitForMainThreadToFinish = waitForMainThreadToFinish;
-        this.firstFridayOfJuneDate = firstFridayOfJuneDate;
+        this.firstFridayOfJuneDate = stringsToUse[0];
         
         jFrameName = myVariables.getCurrentLoadingFrame();
         dialogPanel = myVariables.getLoadingPanel();
         lbLoadingMessage = myVariables.getLbLoadingMessage();
         progressBar = myVariables.getProgressBar();
+        
+        tfMale = textFieldsToUse[0];
+        tfFemale = textFieldsToUse[1];
+        tfTotal = textFieldsToUse[2];
     }
     
     @Override
@@ -66,20 +76,38 @@ public class thread_calculate_age extends SwingWorker<String, Object>{
         System.err.println("Starting Second THread");
         
         //set variables displayed
+        males=0;
+        females=0;
+        total=0;
         lbLoadingMessage.setText("Starting Thread...");
         progressBar.setMinimum(0);
         progressBar.setMaximum(100);
         progressBar.setValue(0);
-        Thread.sleep(1000);
+        tfMale.setText(String.valueOf(males));
+        tfFemale.setText(String.valueOf(females));
+        tfTotal.setText(String.valueOf(total));
+        Thread.sleep(pauseDelay);
         int rowCount = tableName.getRowCount();
         for(int n=0;n<rowCount;n++){
-            lbLoadingMessage.setText("Processing Age of Student "+(n+1)+" of "+rowCount);
+            lbLoadingMessage.setText("Processing Records of Student "+(n+1)+" of "+rowCount);
             String birthDate = tableName.getValueAt(n, birthdateTableColumnIndex).toString();
             String age = getAgeInYearsMonths(firstFridayOfJuneDate, birthDate, false);
+            String remarksString = tableName.getValueAt(n, 20).toString();
+            String gender = tableName.getValueAt(n, 5).toString();
             
+            if(gender.contains("female")){
+                females++;
+            }else{
+                males++;
+            }
+            total++;
+            
+            tableName.setValueAt(gender.substring(0, 1), n, 5);
             tableName.setValueAt(age, n, birthdateTableColumnIndex+1);
-            
-            
+            tableName.setValueAt(translateRemarks(remarksString, 1), n, 20);
+            tfMale.setText(String.valueOf(males));
+            tfFemale.setText(String.valueOf(females));
+            tfTotal.setText(String.valueOf(total));
             Thread.sleep(threadDelay);
         }
         
@@ -91,8 +119,18 @@ public class thread_calculate_age extends SwingWorker<String, Object>{
         closeCustomDialog();
         super.done(); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public String getAgeInYearsMonths(String dateConducted,String dateOfBirth,boolean includeMonths){
+    private String translateRemarks(String remarksString,int schoolFormIndexExact){
+        String remarks [] = remarksString.split("!");
+        switch (schoolFormIndexExact){  //School Form 1-10
+            case 1:{
+                return remarks[0];
+            }case 2:{
+                return remarks[1];
+            }
+        }
+        return null;
+    }
+    private String getAgeInYearsMonths(String dateConducted,String dateOfBirth,boolean includeMonths){
         String dateCon [] = dateConducted.split("-");
         String dateOfBrth [] = dateOfBirth.split("-");
         

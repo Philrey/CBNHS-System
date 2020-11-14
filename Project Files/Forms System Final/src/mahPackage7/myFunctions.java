@@ -21,6 +21,7 @@ import java.text.DecimalFormat;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -750,11 +751,11 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
-    public void runSecondaryThread(int threadIndex,boolean waitForMainThreadToFinish,JTable tableName,String value1,String value2){
+    public void runSecondaryThread(int threadIndex,boolean waitForMainThreadToFinish,JTable tableName,String [] valuesToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse){
         Thread toLoad = null;
         switch (threadIndex){
             case 0:{
-                thread_calculate_age tca = new thread_calculate_age(tableName, 6, value1, true);
+                thread_loadSf1Details tca = new thread_loadSf1Details(tableName, 6, valuesToUse,textFieldsToUse,buttonsToUse, true);
                 toLoad = new Thread(tca);
                 break;
             }case 1:{

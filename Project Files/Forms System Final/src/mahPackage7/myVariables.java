@@ -49,6 +49,8 @@ public class myVariables {
     private static int accessLevel;
     
     //Selected Variables
+    private static int formSelected;
+    
     private static int adviserIdSelected;
     private static String adviserNameSeleced;
     private static int sectionSelected;
@@ -359,6 +361,13 @@ public class myVariables {
     //</editor-fold>
     
     //<editor-fold desc="Getters & Setters">
+    public static int getFormSelected() {
+        return formSelected;
+    }
+    public static void setFormSelected(int formSelected) {    
+        myVariables.formSelected = formSelected;
+    }
+
     public static JProgressBar getProgressBar() {
         return progressBar;
     }

@@ -32,6 +32,7 @@ import org.json.JSONObject;
  */
 public class thread_return_values extends SwingWorker<Integer, Object>{
     long threadDelay = 100;
+    long pauseDelay = 500;
     int batchCount = 10;
     //Main Properties
     private String toSearch;
@@ -79,14 +80,14 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
             progressBar.setMinimum(0);
             progressBar.setMaximum(100);
             progressBar.setValue(0);
-            Thread.sleep(1000);
+            Thread.sleep(pauseDelay);
 
             //Start search
             lbLoadingMessage.setText("Retrieving from Database...");
             String [] result = return_values();
             clear_table_rows(tableName);
             
-            Thread.sleep(1000);
+            Thread.sleep(pauseDelay);
             if(result != null){
                 lbLoadingMessage.setText("Processing Result...");
                 if(resultText != null){
@@ -115,7 +116,7 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
                     }
                     
                     if(n%batchCount==0 && n!=0){
-                        Thread.sleep(500); //Hold the process for the CPU to rest.
+                        Thread.sleep(pauseDelay); //Hold the process for the CPU to rest.
                         System.err.println("Thread resting.");
                     }else{
                         Thread.sleep(threadDelay);
