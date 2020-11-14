@@ -339,11 +339,11 @@ public class dashBoard extends javax.swing.JFrame {
         jScrollPane2.setViewportView(sf1StudentsTable);
         if (sf1StudentsTable.getColumnModel().getColumnCount() > 0) {
             sf1StudentsTable.getColumnModel().getColumn(3).setPreferredWidth(100);
-            sf1StudentsTable.getColumnModel().getColumn(4).setPreferredWidth(150);
+            sf1StudentsTable.getColumnModel().getColumn(4).setPreferredWidth(200);
             sf1StudentsTable.getColumnModel().getColumn(5).setPreferredWidth(70);
-            sf1StudentsTable.getColumnModel().getColumn(6).setPreferredWidth(70);
+            sf1StudentsTable.getColumnModel().getColumn(6).setPreferredWidth(100);
             sf1StudentsTable.getColumnModel().getColumn(7).setPreferredWidth(50);
-            sf1StudentsTable.getColumnModel().getColumn(8).setPreferredWidth(100);
+            sf1StudentsTable.getColumnModel().getColumn(8).setPreferredWidth(150);
             sf1StudentsTable.getColumnModel().getColumn(9).setPreferredWidth(120);
             sf1StudentsTable.getColumnModel().getColumn(10).setPreferredWidth(150);
             sf1StudentsTable.getColumnModel().getColumn(11).setPreferredWidth(100);
@@ -438,6 +438,11 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnExportSf1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_print_16px.png"))); // NOI18N
         btnExportSf1.setText("Export");
+        btnExportSf1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportSf1ActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Male");
 
@@ -505,6 +510,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfAdviserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -535,7 +541,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(btnLoadStudents)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExportSf1)
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
 
         jScrollPane3.setViewportView(jPanel3);
@@ -767,6 +773,10 @@ public class dashBoard extends javax.swing.JFrame {
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         System.err.println("Frame mouse clicked");
     }//GEN-LAST:event_formMouseClicked
+
+    private void btnExportSf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExportSf1ActionPerformed
     private void setLoadingVariables(){
         myVariables.setProgressBar(jpbProgressBar);
         myVariables.setLbLoadingMessage(lbLoadingMessage);

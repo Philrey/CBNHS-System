@@ -287,17 +287,23 @@
                     <Component class="javax.swing.JTable" name="enrolledStudentsTable">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="6" rowCount="4">
+                          <Table columnCount="7" rowCount="4">
                             <Column editable="false" title="ID" type="java.lang.Object"/>
                             <Column editable="false" title="Student ID" type="java.lang.Object"/>
                             <Column editable="false" title="LRN" type="java.lang.Object"/>
                             <Column editable="false" title="Name" type="java.lang.Object"/>
                             <Column editable="false" title="Gender" type="java.lang.Object"/>
                             <Column editable="false" title="Section ID" type="java.lang.Object"/>
+                            <Column editable="false" title="Remarks" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
@@ -402,6 +408,13 @@
                                       <Component id="btnCheckAttendance" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                                       <Component id="lbAttendanceCount" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLabel9" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tfSf1RemarksDisplay" max="32767" attributes="0"/>
+                                      <Component id="jLabel12" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tfSf2RemarksDisplay" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLabel13" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="btnEditRemarks" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="btnSaveRemarks" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -424,7 +437,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lbAttendanceCount" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane10" pref="325" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane10" min="-2" pref="195" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -433,7 +446,21 @@
                                   <Component id="btnRecheckAttendance" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnCheckAttendance" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfSf1RemarksDisplay" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfSf2RemarksDisplay" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnEditRemarks" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnSaveRemarks" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="23" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -623,6 +650,54 @@
                             <Property name="text" type="java.lang.String" value="Present: 0  Absent: 0  Tardy: 0   Total: 0"/>
                           </Properties>
                         </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel9">
+                          <Properties>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="text" type="java.lang.String" value="Remarks"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel12">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="For SF1"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="tfSf1RemarksDisplay">
+                          <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel13">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="For SF2"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="tfSf2RemarksDisplay">
+                          <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="btnEditRemarks">
+                          <Properties>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/mahPackage3/icons/icons8_edit_16px.png"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Edit"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditRemarksActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="btnSaveRemarks">
+                          <Properties>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/mahPackage3/icons/icons8_save_16px.png"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Save Remarks"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveRemarksActionPerformed"/>
+                          </Events>
+                        </Component>
                       </SubComponents>
                     </Container>
                   </SubComponents>
@@ -701,13 +776,14 @@
                     <Component class="javax.swing.JTable" name="checkAttendanceTable">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="10" rowCount="4">
+                          <Table columnCount="11" rowCount="4">
                             <Column editable="false" title="ID" type="java.lang.Object"/>
                             <Column editable="false" title="Student ID" type="java.lang.Object"/>
                             <Column editable="false" title="LRN" type="java.lang.Object"/>
                             <Column editable="false" title="Name" type="java.lang.Object"/>
                             <Column editable="false" title="Gender" type="java.lang.Object"/>
                             <Column editable="false" title="Section ID" type="java.lang.Object"/>
+                            <Column editable="false" title="Remarks" type="java.lang.Object"/>
                             <Column editable="false" title="Present" type="java.lang.Object"/>
                             <Column editable="false" title="Absent" type="java.lang.Object"/>
                             <Column editable="false" title="Tardy" type="java.lang.Object"/>
@@ -737,6 +813,11 @@
                               <Renderer/>
                             </Column>
                             <Column maxWidth="60" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -1545,13 +1626,14 @@
             <Component class="javax.swing.JTable" name="recheckAttendanceTable">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="11" rowCount="4">
+                  <Table columnCount="12" rowCount="4">
                     <Column editable="false" title="ID" type="java.lang.Object"/>
                     <Column editable="false" title="Student ID" type="java.lang.Object"/>
                     <Column editable="false" title="LRN" type="java.lang.Object"/>
                     <Column editable="false" title="Name" type="java.lang.Object"/>
                     <Column editable="false" title="Gender" type="java.lang.Object"/>
                     <Column editable="false" title="Section ID" type="java.lang.Object"/>
+                    <Column editable="false" title="Remarks" type="java.lang.Object"/>
                     <Column editable="false" title="Present" type="java.lang.Object"/>
                     <Column editable="false" title="Absent" type="java.lang.Object"/>
                     <Column editable="false" title="Tardy" type="java.lang.Object"/>
@@ -1582,6 +1664,11 @@
                       <Renderer/>
                     </Column>
                     <Column maxWidth="60" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -1642,6 +1729,171 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveRecheckAttendanceChangesActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="setSf1Sf2RemarkDialog">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="tfSf1Remarks" max="32767" attributes="0"/>
+                      <Component id="jScrollPane9" max="32767" attributes="0"/>
+                      <Component id="jLabel15" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tfSf2Remarks" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jScrollPane11" alignment="0" pref="268" max="32767" attributes="0"/>
+                      <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnSetRemarks" alignment="1" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="tfSf1Remarks" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane9" min="-2" pref="169" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="tfSf2Remarks" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane11" min="-2" pref="169" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btnSetRemarks" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jPanel12">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="21" green="42" red="16" type="rgb"/>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel40">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Set Remarks"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JTextField" name="tfSf1Remarks">
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane9">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="jTextArea1">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="myVariables.TEXTFIELD_FONT" type="code"/>
+                </Property>
+                <Property name="rows" type="int" value="5"/>
+                <Property name="text" type="java.lang.String" value="Guidelines:&#xa;T/O - Transferred Out&#xa;T/I - Transferred In&#xa;DRP - Dropped&#xa;LE - Late Enrollment&#xa;CCT - CCT Receipient&#xa;B/A - Balik Aral&#xa;LWD - Learner With Disability&#xa;ACL - Accelerated"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JLabel" name="jLabel15">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Remarks For SF1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel16">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Remarks For SF2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfSf2Remarks">
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane11">
+          <Properties>
+            <Property name="autoscrolls" type="boolean" value="true"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="jTextArea2">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="myVariables.TEXTFIELD_FONT" type="code"/>
+                </Property>
+                <Property name="rows" type="int" value="5"/>
+                <Property name="text" type="java.lang.String" value="Guidelines:&#xa;1. Transferred Out With Name of School&#xa;2. Transferred In With Name of School&#xa;3. Dropped Out&#xa;    Reasons For Dropping Out&#xa;&#xa;     a. Domestic-Related&#xa;&#xa;     a.1. Had to take care of siblings&#xa;     a.2. Early marriage/pregnancy&#xa;     a.3. Parent&apos;s attitude towards schooling&#xa;     a.4. Family Problems&#xa;&#xa;     b. Individual-Related&#xa;&#xa;     b.1. Illness&#xa;     b.2. Overage&#xa;     b.3. Death&#xa;     b.4. Drug Abuse&#xa;     b.5. Poor Academic Performance&#xa;     b.6. Lack of Interest/Distracktions&#xa;     b.7. Hunger/Malnutrition&#xa;&#xa;     c. School Related&#xa;&#xa;     c.1. Teacher Factor&#xa;     c.2. Physical condition of classroom&#xa;     c.3. Peer Influence&#xa;&#xa;     d. Geographic/Environmental&#xa;&#xa;     d.1. Distance between home and school&#xa;     d.2. Armed Conflict&#xa;     d.3. Calamities/Disasters&#xa;&#xa;     e. Financial Related&#xa;&#xa;     e.1. Child labor, work&#xa;&#xa;     f. Others"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JButton" name="btnSetRemarks">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/mahPackage3/icons/icons8_ok_16px.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Okay"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSetRemarksActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

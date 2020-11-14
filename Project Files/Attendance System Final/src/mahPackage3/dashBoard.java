@@ -122,10 +122,10 @@ public class dashBoard extends javax.swing.JFrame {
         //Hide Table Columns
         if(!myVariables.isDebugModeOn()){
             my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6});
-            my.hideColumns(enrolledStudentsTable, new int [] {0,1,5});
+            my.hideColumns(enrolledStudentsTable, new int [] {0,1,5,6});
             my.hideColumns(attendanceTable, new int [] {0,1,2,3});
-            my.hideColumns(checkAttendanceTable, new int [] {0,1,5});
-            my.hideColumns(recheckAttendanceTable, new int [] {0,1,5,10});
+            my.hideColumns(checkAttendanceTable, new int [] {0,1,5,6});
+            my.hideColumns(recheckAttendanceTable, new int [] {0,1,5,6,11});
         }
         
         //Set table fonts
@@ -195,6 +195,8 @@ public class dashBoard extends javax.swing.JFrame {
                 btnSaveNotes,
             //Recheck Attendance
             btnSaveRecheckAttendanceChanges,
+            //Remarks
+            btnEditRemarks,btnSaveRemarks,btnSetRemarks,
         };
         
         JButton lightButtons [] = {
@@ -225,17 +227,18 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
-            jLabel35,jLabel36,jLabel37,jLabel38,jLabel39,
+            jLabel35,jLabel36,jLabel37,jLabel38,jLabel39,jLabel40,
         };
         JLabel labels [] = {
             lbSearchResult,lbSearchResult1,
         };
         
         JLabel formsHeaderLabels [] = {
-            jLabel1,jLabel2,jLabel3,jLabel4,jLabel8,
+            jLabel1,jLabel2,jLabel3,jLabel4,jLabel8,jLabel9,
         };
         JLabel textFieldHeaderLabels [] = {
             lbAttendanceCount,jLabel7,jLabel5,lbDateAdded,jLabel10,jLabel11,lbDateToRecheck,
+            jLabel12,jLabel13,jLabel15,jLabel16
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -270,7 +273,7 @@ public class dashBoard extends javax.swing.JFrame {
             tfSearchTeacherLoad,tfSearchEnrolledStudent,
         };
         JTextField forms [] = {
-            
+            tfSf1Remarks,tfSf1RemarksDisplay,tfSf2Remarks,tfSf2RemarksDisplay
         };
         for(JSpinner n : spinners){
             n.setFont(myVariables.TEXTFIELD_FONT);
@@ -355,6 +358,13 @@ public class dashBoard extends javax.swing.JFrame {
         btnCheckAttendance = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         lbAttendanceCount = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        tfSf1RemarksDisplay = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        tfSf2RemarksDisplay = new javax.swing.JTextField();
+        btnEditRemarks = new javax.swing.JButton();
+        btnSaveRemarks = new javax.swing.JButton();
         checkAttendanceTab = new javax.swing.JPanel();
         jSplitPane2 = new javax.swing.JSplitPane();
         left1 = new javax.swing.JPanel();
@@ -407,6 +417,18 @@ public class dashBoard extends javax.swing.JFrame {
         recheckAttendanceTable = new javax.swing.JTable();
         lbDateToRecheck = new javax.swing.JLabel();
         btnSaveRecheckAttendanceChanges = new javax.swing.JButton();
+        setSf1Sf2RemarkDialog = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel40 = new javax.swing.JLabel();
+        tfSf1Remarks = new javax.swing.JTextField();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        tfSf2Remarks = new javax.swing.JTextField();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        btnSetRemarks = new javax.swing.JButton();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -527,17 +549,17 @@ public class dashBoard extends javax.swing.JFrame {
 
         enrolledStudentsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID"
+                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID", "Remarks"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -685,6 +707,33 @@ public class dashBoard extends javax.swing.JFrame {
         lbAttendanceCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbAttendanceCount.setText("Present: 0  Absent: 0  Tardy: 0   Total: 0");
 
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Remarks");
+
+        jLabel12.setText("For SF1");
+
+        tfSf1RemarksDisplay.setEditable(false);
+
+        jLabel13.setText("For SF2");
+
+        tfSf2RemarksDisplay.setEditable(false);
+
+        btnEditRemarks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_edit_16px.png"))); // NOI18N
+        btnEditRemarks.setText("Edit");
+        btnEditRemarks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditRemarksActionPerformed(evt);
+            }
+        });
+
+        btnSaveRemarks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_save_16px.png"))); // NOI18N
+        btnSaveRemarks.setText("Save Remarks");
+        btnSaveRemarks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveRemarksActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -706,7 +755,14 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(btnRecheckAttendance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCheckAttendance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbAttendanceCount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbAttendanceCount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfSf1RemarksDisplay)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfSf2RemarksDisplay)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditRemarks, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSaveRemarks, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -725,7 +781,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbAttendanceCount)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -734,7 +790,21 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(btnRecheckAttendance)
                 .addGap(18, 18, 18)
                 .addComponent(btnCheckAttendance)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfSf1RemarksDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfSf2RemarksDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEditRemarks)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSaveRemarks)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel1);
@@ -770,17 +840,17 @@ public class dashBoard extends javax.swing.JFrame {
 
         checkAttendanceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID", "Present", "Absent", "Tardy", "Notes"
+                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID", "Remarks", "Present", "Absent", "Tardy", "Notes"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -798,14 +868,14 @@ public class dashBoard extends javax.swing.JFrame {
             checkAttendanceTable.getColumnModel().getColumn(2).setPreferredWidth(100);
             checkAttendanceTable.getColumnModel().getColumn(2).setMaxWidth(100);
             checkAttendanceTable.getColumnModel().getColumn(4).setMaxWidth(60);
-            checkAttendanceTable.getColumnModel().getColumn(6).setPreferredWidth(60);
-            checkAttendanceTable.getColumnModel().getColumn(6).setMaxWidth(60);
             checkAttendanceTable.getColumnModel().getColumn(7).setPreferredWidth(60);
             checkAttendanceTable.getColumnModel().getColumn(7).setMaxWidth(60);
             checkAttendanceTable.getColumnModel().getColumn(8).setPreferredWidth(60);
             checkAttendanceTable.getColumnModel().getColumn(8).setMaxWidth(60);
-            checkAttendanceTable.getColumnModel().getColumn(9).setPreferredWidth(50);
-            checkAttendanceTable.getColumnModel().getColumn(9).setMaxWidth(50);
+            checkAttendanceTable.getColumnModel().getColumn(9).setPreferredWidth(60);
+            checkAttendanceTable.getColumnModel().getColumn(9).setMaxWidth(60);
+            checkAttendanceTable.getColumnModel().getColumn(10).setPreferredWidth(50);
+            checkAttendanceTable.getColumnModel().getColumn(10).setMaxWidth(50);
         }
 
         javax.swing.GroupLayout left1Layout = new javax.swing.GroupLayout(left1);
@@ -1247,17 +1317,17 @@ public class dashBoard extends javax.swing.JFrame {
 
         recheckAttendanceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID", "Present", "Absent", "Tardy", "Notes", "Attendance ID"
+                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID", "Remarks", "Present", "Absent", "Tardy", "Notes", "Attendance ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1275,14 +1345,14 @@ public class dashBoard extends javax.swing.JFrame {
             recheckAttendanceTable.getColumnModel().getColumn(2).setPreferredWidth(100);
             recheckAttendanceTable.getColumnModel().getColumn(2).setMaxWidth(100);
             recheckAttendanceTable.getColumnModel().getColumn(4).setMaxWidth(60);
-            recheckAttendanceTable.getColumnModel().getColumn(6).setPreferredWidth(60);
-            recheckAttendanceTable.getColumnModel().getColumn(6).setMaxWidth(60);
             recheckAttendanceTable.getColumnModel().getColumn(7).setPreferredWidth(60);
             recheckAttendanceTable.getColumnModel().getColumn(7).setMaxWidth(60);
             recheckAttendanceTable.getColumnModel().getColumn(8).setPreferredWidth(60);
             recheckAttendanceTable.getColumnModel().getColumn(8).setMaxWidth(60);
-            recheckAttendanceTable.getColumnModel().getColumn(9).setPreferredWidth(50);
-            recheckAttendanceTable.getColumnModel().getColumn(9).setMaxWidth(50);
+            recheckAttendanceTable.getColumnModel().getColumn(9).setPreferredWidth(60);
+            recheckAttendanceTable.getColumnModel().getColumn(9).setMaxWidth(60);
+            recheckAttendanceTable.getColumnModel().getColumn(10).setPreferredWidth(50);
+            recheckAttendanceTable.getColumnModel().getColumn(10).setMaxWidth(50);
         }
 
         lbDateToRecheck.setText("Selected Date to Change: DATE_SELECTED");
@@ -1325,6 +1395,100 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSaveRecheckAttendanceChanges)
+                .addContainerGap())
+        );
+
+        setSf1Sf2RemarkDialog.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel12.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel40.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel40.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel40.setText("Set Remarks");
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel40)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel40)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(myVariables.TEXTFIELD_FONT);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Guidelines:\nT/O - Transferred Out\nT/I - Transferred In\nDRP - Dropped\nLE - Late Enrollment\nCCT - CCT Receipient\nB/A - Balik Aral\nLWD - Learner With Disability\nACL - Accelerated");
+        jScrollPane9.setViewportView(jTextArea1);
+
+        jLabel15.setText("Remarks For SF1");
+
+        jLabel16.setText("Remarks For SF2");
+
+        jScrollPane11.setAutoscrolls(true);
+
+        jTextArea2.setEditable(false);
+        jTextArea2.setColumns(20);
+        jTextArea2.setFont(myVariables.TEXTFIELD_FONT);
+        jTextArea2.setRows(5);
+        jTextArea2.setText("Guidelines:\n1. Transferred Out With Name of School\n2. Transferred In With Name of School\n3. Dropped Out\n    Reasons For Dropping Out\n\n     a. Domestic-Related\n\n     a.1. Had to take care of siblings\n     a.2. Early marriage/pregnancy\n     a.3. Parent's attitude towards schooling\n     a.4. Family Problems\n\n     b. Individual-Related\n\n     b.1. Illness\n     b.2. Overage\n     b.3. Death\n     b.4. Drug Abuse\n     b.5. Poor Academic Performance\n     b.6. Lack of Interest/Distracktions\n     b.7. Hunger/Malnutrition\n\n     c. School Related\n\n     c.1. Teacher Factor\n     c.2. Physical condition of classroom\n     c.3. Peer Influence\n\n     d. Geographic/Environmental\n\n     d.1. Distance between home and school\n     d.2. Armed Conflict\n     d.3. Calamities/Disasters\n\n     e. Financial Related\n\n     e.1. Child labor, work\n\n     f. Others");
+        jScrollPane11.setViewportView(jTextArea2);
+
+        btnSetRemarks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_ok_16px.png"))); // NOI18N
+        btnSetRemarks.setText("Okay");
+        btnSetRemarks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSetRemarksActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout setSf1Sf2RemarkDialogLayout = new javax.swing.GroupLayout(setSf1Sf2RemarkDialog);
+        setSf1Sf2RemarkDialog.setLayout(setSf1Sf2RemarkDialogLayout);
+        setSf1Sf2RemarkDialogLayout.setHorizontalGroup(
+            setSf1Sf2RemarkDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(setSf1Sf2RemarkDialogLayout.createSequentialGroup()
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(setSf1Sf2RemarkDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(setSf1Sf2RemarkDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfSf1Remarks)
+                    .addComponent(jScrollPane9)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfSf2Remarks)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSetRemarks, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        setSf1Sf2RemarkDialogLayout.setVerticalGroup(
+            setSf1Sf2RemarkDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(setSf1Sf2RemarkDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfSf1Remarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfSf2Remarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSetRemarks)
                 .addContainerGap())
         );
 
@@ -1442,6 +1606,7 @@ public class dashBoard extends javax.swing.JFrame {
                 mainTab.addTab("View Students", my.getImgIcn(myVariables.getViewStudentsIcon()), viewStudentsTab);
                 mainTab.setSelectedIndex(1);
             }
+            enableDisableRemarks(false, false, false);
             resetViewStudentsTab(true, true, false);
             calculateAttendanceCount(lbAttendanceCount, attendanceTable);
         }else{
@@ -1502,6 +1667,7 @@ public class dashBoard extends javax.swing.JFrame {
             return;
         }
         resetViewStudentsTab(false, true, false);
+        enableDisableRemarks(false, false, false);
         
         String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
         String toSearch = tfSearchEnrolledStudent.getText();
@@ -1561,14 +1727,14 @@ public class dashBoard extends javax.swing.JFrame {
         for(int n=0;n<count;n++){
             studentId = checkAttendanceTable.getValueAt(n, 1).toString();
             
-            if(checkAttendanceTable.getValueAt(n, 6).toString().contains("O")){
+            if(checkAttendanceTable.getValueAt(n, 7).toString().contains("O")){
                 status = "Present";
-            }if(checkAttendanceTable.getValueAt(n, 7).toString().contains("O")){
-                status = "Absent";
             }if(checkAttendanceTable.getValueAt(n, 8).toString().contains("O")){
+                status = "Absent";
+            }if(checkAttendanceTable.getValueAt(n, 9).toString().contains("O")){
                 status = "Late";
             }
-            notes = checkAttendanceTable.getValueAt(n, 9).toString();
+            notes = checkAttendanceTable.getValueAt(n, 10).toString();
             
             //id,studentId,sectionId,subjectId,status,dateAdded,notes
             if(rbToday.isSelected()){
@@ -1627,8 +1793,15 @@ public class dashBoard extends javax.swing.JFrame {
             
             my.searchItem(where, attendanceTable, 7, null, null, false, true, null, null, true);
             
+            //Load Remarks
+            String remarks [] = enrolledStudentsTable.getValueAt(row, 6).toString().split("!");
+            tfSf1RemarksDisplay.setText(remarks[0]);
+            tfSf2RemarksDisplay.setText(remarks[1]);
+            
+            enableDisableRemarks(true, true, true);
             calculateAttendanceCount(lbAttendanceCount,attendanceTable);
         }else{
+            enableDisableRemarks(false, false, false);
             resetViewStudentsTab(false, true, false);
             calculateAttendanceCount(lbAttendanceCount, attendanceTable);
         }
@@ -1779,16 +1952,16 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveChangesToAttendanceActionPerformed
 
     private void btnSaveNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveNotesActionPerformed
-        String notes = jtaLeaveNotes.getText();
+        String notes = jtaLeaveNotes.getText().trim();
         String title = dialog.getTitle();
         
         if(title.contains("Check Attendance")){
             int row = checkAttendanceTable.getSelectedRow();
         
             if(notes.length() > 1){
-                checkAttendanceTable.setValueAt(notes, row, 9);
+                checkAttendanceTable.setValueAt(notes, row, 10);
             }else{
-                checkAttendanceTable.setValueAt(" ", row, 9);
+                checkAttendanceTable.setValueAt(" ", row, 10);
             }
             closeCustomDialog();
         }
@@ -1796,9 +1969,9 @@ public class dashBoard extends javax.swing.JFrame {
             int row = recheckAttendanceTable.getSelectedRow();
         
             if(notes.length() > 1){
-                recheckAttendanceTable.setValueAt(notes, row, 9);
+                recheckAttendanceTable.setValueAt(notes, row, 10);
             }else{
-                recheckAttendanceTable.setValueAt(" ", row, 9);
+                recheckAttendanceTable.setValueAt(" ", row, 10);
             }
             closeSecondaryCustomDialog();
         }
@@ -1809,25 +1982,25 @@ public class dashBoard extends javax.swing.JFrame {
             int row = checkAttendanceTable.getSelectedRow();
             int column = checkAttendanceTable.getSelectedColumn();
 
-            //columns 6,7,8 & 9
+            //columns 7,8,9 & 10
             switch (column){
-                case 6:{
-                    checkAttendanceTable.setValueAt("O", row, 6);
-                    checkAttendanceTable.setValueAt(" ", row, 7);
-                    checkAttendanceTable.setValueAt(" ", row, 8);
-                    break;
-                }case 7:{
-                    checkAttendanceTable.setValueAt(" ", row, 6);
+                case 7:{
                     checkAttendanceTable.setValueAt("O", row, 7);
                     checkAttendanceTable.setValueAt(" ", row, 8);
+                    checkAttendanceTable.setValueAt(" ", row, 9);
                     break;
                 }case 8:{
-                    checkAttendanceTable.setValueAt(" ", row, 6);
                     checkAttendanceTable.setValueAt(" ", row, 7);
                     checkAttendanceTable.setValueAt("O", row, 8);
+                    checkAttendanceTable.setValueAt(" ", row, 9);
                     break;
                 }case 9:{
-                    String notes = checkAttendanceTable.getValueAt(row, 9).toString();
+                    checkAttendanceTable.setValueAt(" ", row, 7);
+                    checkAttendanceTable.setValueAt(" ", row, 8);
+                    checkAttendanceTable.setValueAt("O", row, 9);
+                    break;
+                }case 10:{
+                    String notes = checkAttendanceTable.getValueAt(row, 10).toString();
                     if(notes.length() > 1){
                         jtaLeaveNotes.setText(notes);
                     }else{
@@ -1847,23 +2020,23 @@ public class dashBoard extends javax.swing.JFrame {
 
             //columns 6,7,8 & 9
             switch (column){
-                case 6:{
-                    recheckAttendanceTable.setValueAt("O", row, 6);
-                    recheckAttendanceTable.setValueAt(" ", row, 7);
-                    recheckAttendanceTable.setValueAt(" ", row, 8);
-                    break;
-                }case 7:{
-                    recheckAttendanceTable.setValueAt(" ", row, 6);
+                case 7:{
                     recheckAttendanceTable.setValueAt("O", row, 7);
                     recheckAttendanceTable.setValueAt(" ", row, 8);
+                    recheckAttendanceTable.setValueAt(" ", row, 9);
                     break;
                 }case 8:{
-                    recheckAttendanceTable.setValueAt(" ", row, 6);
                     recheckAttendanceTable.setValueAt(" ", row, 7);
                     recheckAttendanceTable.setValueAt("O", row, 8);
+                    recheckAttendanceTable.setValueAt(" ", row, 9);
                     break;
                 }case 9:{
-                    String notes = recheckAttendanceTable.getValueAt(row, 9).toString();
+                    recheckAttendanceTable.setValueAt(" ", row, 7);
+                    recheckAttendanceTable.setValueAt(" ", row, 8);
+                    recheckAttendanceTable.setValueAt("O", row, 9);
+                    break;
+                }case 10:{
+                    String notes = recheckAttendanceTable.getValueAt(row, 10).toString();
                     if(notes.length() > 1){
                         jtaLeaveNotes.setText(notes);
                     }else{
@@ -1891,19 +2064,19 @@ public class dashBoard extends javax.swing.JFrame {
         String attendanceId,studentId,status="",notes;
         
         for(int n=0;n<count;n++){
-            attendanceId = recheckAttendanceTable.getValueAt(n, 10).toString();
+            attendanceId = recheckAttendanceTable.getValueAt(n, 11).toString();
             attendanceId = attendanceId.contains("-1")? "null" : attendanceId;
             
             studentId = recheckAttendanceTable.getValueAt(n, 1).toString();
             
-            if(recheckAttendanceTable.getValueAt(n, 6).toString().contains("O")){
+            if(recheckAttendanceTable.getValueAt(n, 7).toString().contains("O")){
                 status = "Present";
-            }if(recheckAttendanceTable.getValueAt(n, 7).toString().contains("O")){
-                status = "Absent";
             }if(recheckAttendanceTable.getValueAt(n, 8).toString().contains("O")){
+                status = "Absent";
+            }if(recheckAttendanceTable.getValueAt(n, 9).toString().contains("O")){
                 status = "Late";
             }
-            notes = recheckAttendanceTable.getValueAt(n, 9).toString();
+            notes = recheckAttendanceTable.getValueAt(n, 10).toString();
             
             //id,studentId,sectionId,subjectId,status,dateAdded,notes
             sets[n] = attendanceId+","+studentId+","+sectionId+","+subjectId+",'"+status+"','"+dateSelected+"','"+notes+"'";
@@ -1914,7 +2087,9 @@ public class dashBoard extends javax.swing.JFrame {
             closeCustomDialog();
         }else{
             my.showMessage("Update Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+        //searchEnrolledStudentsHandler(my.getButtonPressedEvent(evt.getSource()));
     }//GEN-LAST:event_btnSaveRecheckAttendanceChangesActionPerformed
 
     private void btnRecheckAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecheckAttendanceActionPerformed
@@ -1988,25 +2163,25 @@ public class dashBoard extends javax.swing.JFrame {
                         //Set values
                         switch (status){
                             case "Present":{
-                                recheckAttendanceTable.setValueAt("O", r, 6);
-                                recheckAttendanceTable.setValueAt(" ", r, 7);
-                                recheckAttendanceTable.setValueAt(" ", r, 8);
-                                break;
-                            }case "Absent":{
-                                recheckAttendanceTable.setValueAt(" ", r, 6);
                                 recheckAttendanceTable.setValueAt("O", r, 7);
                                 recheckAttendanceTable.setValueAt(" ", r, 8);
+                                recheckAttendanceTable.setValueAt(" ", r, 9);
                                 break;
-                            }case "Late":{
-                                recheckAttendanceTable.setValueAt(" ", r, 6);
+                            }case "Absent":{
                                 recheckAttendanceTable.setValueAt(" ", r, 7);
                                 recheckAttendanceTable.setValueAt("O", r, 8);
+                                recheckAttendanceTable.setValueAt(" ", r, 9);
+                                break;
+                            }case "Late":{
+                                recheckAttendanceTable.setValueAt(" ", r, 7);
+                                recheckAttendanceTable.setValueAt(" ", r, 8);
+                                recheckAttendanceTable.setValueAt("O", r, 9);
                                 break;
                             }default:
                                 break;
                         }
-                        recheckAttendanceTable.setValueAt(notes, r, 9);
-                        recheckAttendanceTable.setValueAt(attendanceId, r, 10);
+                        recheckAttendanceTable.setValueAt(notes, r, 10);
+                        recheckAttendanceTable.setValueAt(attendanceId, r, 11);
                         break;
                     }
                 }
@@ -2019,6 +2194,57 @@ public class dashBoard extends javax.swing.JFrame {
         //Show dialog
         showCustomDialog("Re-check Attendance from selected Date", recheckAttendanceDialog, true, 600, 400, true);
     }//GEN-LAST:event_btnRecheckAttendanceActionPerformed
+
+    private void btnSetRemarksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetRemarksActionPerformed
+        String sf1 = tfSf1Remarks.getText().trim();
+        String sf2 = tfSf2Remarks.getText().trim();
+        
+        if(my.findReserveredCharacters(sf1, myVariables.getMyReservedCharacters())
+                || my.findReserveredCharacters(sf2, myVariables.getMyReservedCharacters())){
+            my.showMessage("Input must not contain \""+myVariables.getMyReservedCharactersString()+"\"", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int row = enrolledStudentsTable.getSelectedRow();
+        String studentId = enrolledStudentsTable.getValueAt(row, 1).toString();
+        
+        sf1 = my.convertEscapeCharacters(sf1.length() > 0 ? sf1 : " ");
+        sf2 = my.convertEscapeCharacters(sf2.length() > 0 ? sf2 : " ");
+        
+        tfSf1RemarksDisplay.setText(sf1);
+        tfSf2RemarksDisplay.setText(sf2);
+        closeCustomDialog();
+    }//GEN-LAST:event_btnSetRemarksActionPerformed
+
+    private void btnEditRemarksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditRemarksActionPerformed
+        String sf1 = tfSf1RemarksDisplay.getText();
+        String sf2 = tfSf2RemarksDisplay.getText();
+        
+        tfSf1Remarks.setText(sf1);
+        tfSf2Remarks.setText(sf2);
+        showCustomDialog("Edit Remarks", setSf1Sf2RemarkDialog, true, 320, 620, true);
+    }//GEN-LAST:event_btnEditRemarksActionPerformed
+
+    private void btnSaveRemarksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveRemarksActionPerformed
+        int row = enrolledStudentsTable.getSelectedRow();
+        
+        String studentId = enrolledStudentsTable.getValueAt(row, 1).toString();
+        
+        String sf1 = my.convertEscapeCharacters(tfSf1RemarksDisplay.getText());
+        String sf2 = my.convertEscapeCharacters(tfSf2RemarksDisplay.getText());
+        String remarks = sf1+"!"+sf2+"!";
+        String sets [] = {
+            "remarks='"+remarks+"'",
+        };
+        
+        if(my.update_values("students", sets, "id='"+studentId+"'")){
+            my.showMessage("Remarks Saved.", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            my.showMessage("Saving Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        searchEnrolledStudentsHandler(my.getButtonPressedEvent(evt.getSource()));
+    }//GEN-LAST:event_btnSaveRemarksActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2068,6 +2294,15 @@ public class dashBoard extends javax.swing.JFrame {
         btnEditAttendance.setEnabled(enableAttendanceButtons);
         btnRecheckAttendance.setEnabled(enableAttendanceButtons);
     }
+    private void enableDisableRemarks(boolean isEnabled,boolean editRemarks,boolean saveRemarks){
+        btnEditRemarks.setEnabled(editRemarks);
+        btnSaveRemarks.setEnabled(saveRemarks);
+        
+        if(!isEnabled){
+            tfSf1RemarksDisplay.setText("");
+            tfSf2RemarksDisplay.setText("");
+        }
+    }
     private void calculateAttendanceCount(JLabel attendanceCounter,JTable attendanceTable){
         int present = 0,absent = 0,tardy = 0;
         for(int n=0;n<attendanceTable.getRowCount();n++){
@@ -2104,14 +2339,17 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTable attendanceTable;
     private javax.swing.JButton btnCheckAttendance;
     private javax.swing.JButton btnEditAttendance;
+    private javax.swing.JButton btnEditRemarks;
     private javax.swing.JButton btnFinishAttendance;
     private javax.swing.JButton btnRecheckAttendance;
     private javax.swing.JButton btnSaveChangesToAttendance;
     private javax.swing.JButton btnSaveNotes;
     private javax.swing.JButton btnSaveRecheckAttendanceChanges;
+    private javax.swing.JButton btnSaveRemarks;
     private javax.swing.JButton btnSearchDate;
     private javax.swing.JButton btnSearchEnrolledStudent;
     private javax.swing.JButton btnSearchSection;
+    private javax.swing.JButton btnSetRemarks;
     private javax.swing.JPanel checkAttendanceTab;
     private javax.swing.JTable checkAttendanceTable;
     private javax.swing.JPanel editAttendanceDialog;
@@ -2121,6 +2359,10 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel35;
@@ -2129,19 +2371,23 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2149,8 +2395,11 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JComboBox<String> jcbMeridan;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
     private com.toedter.calendar.JDateChooser jdcCustomDate;
@@ -2184,10 +2433,15 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel right1;
     private javax.swing.JPanel selectSectionTab;
     private javax.swing.ButtonGroup setDateGroup;
+    private javax.swing.JPanel setSf1Sf2RemarkDialog;
     private javax.swing.ButtonGroup setStatusGroup;
     private javax.swing.JPanel testDialog;
     private javax.swing.JTextField tfSearchEnrolledStudent;
     private javax.swing.JTextField tfSearchTeacherLoad;
+    private javax.swing.JTextField tfSf1Remarks;
+    private javax.swing.JTextField tfSf1RemarksDisplay;
+    private javax.swing.JTextField tfSf2Remarks;
+    private javax.swing.JTextField tfSf2RemarksDisplay;
     private javax.swing.JPanel viewStudentsTab;
     // End of variables declaration//GEN-END:variables
 }

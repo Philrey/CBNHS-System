@@ -23,6 +23,7 @@ public class myVariables {
     private static String principal;
     private static String schoolAddress;
     
+    private static String [] myReservedCharacters = new String[] {"%25","%20","!","$","~","`","^","?","<",">","@","#"};
     //Fonts
     public static final Font COLUMN_HEADER_FONT = new Font("Arial",Font.BOLD,13);
     public static final Font COLUMN_FONT = new Font("Arial",Font.PLAIN,13);
@@ -69,7 +70,7 @@ public class myVariables {
     private static int [] sectionsOrder = new int [] {9,0,4,6,5,10,1,2,11,7,8,3};
     
     private static int [] enrollmentViewOrder = new int [] {15,7,3,0,9,16,1,5,8,11,4,2,17,10,6,12,13,14};
-    private static int [] enrollmentViewMinimalOrder = new int [] {5,0,4,1,2,7,3,6};
+    private static int [] enrollmentViewMinimalOrder = new int [] {5,0,4,1,2,7,3,6,8};
     private static int [] teacherLoadsViewOrder = new int [] {6,7,1,4,3,8,2,10,9,5,0};
     private static int [] managedSubjectsViewOrder = new int [] {10,4,6,8,2,1,11,0,5,12,3,7,9};
     
@@ -314,6 +315,22 @@ public class myVariables {
     //</editor-fold>
 
     //<editor-fold desc="Getters & Setters">
+    
+    public static String[] getMyReservedCharacters() {
+        return myReservedCharacters;
+    }
+    public static String getMyReservedCharactersString(){
+        String finalString="";
+        String [] reserved = getMyReservedCharacters();
+        int length = reserved.length;
+        for(int n=0;n<length;n++){
+            finalString += reserved[n];
+            if(n < length-1){
+                finalString+=", ";
+            }
+        }
+        return finalString;
+    }
 
     public static String getViewStudentsIcon() {
         return viewStudentsIcon;
