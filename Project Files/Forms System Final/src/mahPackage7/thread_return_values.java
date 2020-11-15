@@ -5,6 +5,7 @@
  */
 package mahPackage7;
 
+import java.awt.Color;
 import java.awt.Dialog;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -42,6 +43,9 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
     private int [] combineColumns;
     private boolean toNameFormat;
     private JLabel resultText;
+    
+    Color selectedColor;
+    int [] selectedColumnIndex;
     //Dialog Properties
     JDialog dialog;
     JFrame jFrameName;
@@ -50,7 +54,7 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
     JLabel lbLoadingMessage;
     JProgressBar progressBar;
 
-    public thread_return_values(String toSearch,String select, String from, String where, int[] order, JTable tableName,int [] combineColumns,boolean toNameFormat,JLabel resultText) {
+    public thread_return_values(String toSearch,String select, String from, String where, int[] order, JTable tableName,int [] combineColumns,boolean toNameFormat,JLabel resultText,int [] coloredColumnIndex,Color selectedColor) {
         this.select = select;
         this.from = from;
         this.where = where;
@@ -64,6 +68,9 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
         this.toNameFormat = toNameFormat;
         this.resultText = resultText;
         this.toSearch = toSearch;
+        
+        this.selectedColor = selectedColor;
+        this.selectedColumnIndex = coloredColumnIndex;
     }
     
     @Override
@@ -110,9 +117,19 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
                         }else{
                             result[n] = combineColumns(result[n], combineColumns);
                         }
-                        add_table_row(result[n], tableName);
+                        
+                        if(selectedColor == null){
+                            add_table_row(result[n], tableName);
+                        }else{
+                            add_table_row(result[n], tableName, selectedColumnIndex, selectedColor);
+                        }
+                        
                     }else{
-                        add_table_row(result[n], tableName);
+                        if(selectedColor == null){
+                            add_table_row(result[n], tableName);
+                        }else{
+                            add_table_row(result[n], tableName, selectedColumnIndex, selectedColor);
+                        }
                     }
                     
                     if(n%batchCount==0 && n!=0){
@@ -232,6 +249,39 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
         }
         
         DefaultTableModel model;
+        
+        model=(DefaultTableModel)tableName.getModel();
+        model.addRow(rows);
+        
+        return true;
+    }
+    public boolean add_table_row(String line,JTable tableName,int [] selectedColumns,Color foreground){
+        String [] row=line.split("@@");
+        Object [] rows = new Object[row.length];
+        
+        if(row[0].length() < 1){
+            return false;
+        }
+        for(int n=0;n<row.length;n++){
+            if(row[n].contains("null")){
+                rows[n] = "";
+            }else{
+                rows[n] = row[n];
+            }
+            
+        }
+        
+        DefaultTableModel model;
+        
+        CustomCellRenderer cellRenderer = new CustomCellRenderer(tableName.getBackground(), foreground, tableName.getFont(),tableName.getSelectionForeground(),tableName.getSelectionBackground());
+        cellRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for(int n=0;n<tableName.getColumnCount();n++){
+            for(int x=0;x<selectedColumns.length;x++){
+                if(n == selectedColumns[x]){
+                    tableName.getColumnModel().getColumn(n).setCellRenderer(cellRenderer);
+                }
+            }
+        }
         
         model=(DefaultTableModel)tableName.getModel();
         model.addRow(rows);

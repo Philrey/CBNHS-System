@@ -1147,7 +1147,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         setStatusGroup.add(rbTardy);
         rbTardy.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        rbTardy.setText("Late");
+        rbTardy.setText("Tardy");
         rbTardy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
         rbTardy.setIconTextGap(5);
         rbTardy.setOpaque(false);
@@ -1743,7 +1743,7 @@ public class dashBoard extends javax.swing.JFrame {
             }if(checkAttendanceTable.getValueAt(n, 8).toString().contains("O")){
                 status = "Absent";
             }if(checkAttendanceTable.getValueAt(n, 9).toString().contains("O")){
-                status = "Late";
+                status = "Tardy";
             }
             notes = my.convertEscapeCharacters(checkAttendanceTable.getValueAt(n, 10).toString());
             
@@ -1919,7 +1919,7 @@ public class dashBoard extends javax.swing.JFrame {
             }case "Absent":{
                 rbAbsent.setSelected(true);
                 break;
-            }case "Late":{
+            }case "Tardy":{
                 rbTardy.setSelected(true);
                 break;
             }default:{
@@ -1943,7 +1943,7 @@ public class dashBoard extends javax.swing.JFrame {
         if(rbAbsent.isSelected())
             status = "Absent";
         if(rbTardy.isSelected())
-            status = "Late";
+            status = "Tardy";
         
         String [] sets = {
             "status='"+status+"'",
@@ -2085,7 +2085,7 @@ public class dashBoard extends javax.swing.JFrame {
             }if(recheckAttendanceTable.getValueAt(n, 8).toString().contains("O")){
                 status = "Absent";
             }if(recheckAttendanceTable.getValueAt(n, 9).toString().contains("O")){
-                status = "Late";
+                status = "Tardy";
             }
             notes = recheckAttendanceTable.getValueAt(n, 10).toString();
             
@@ -2183,7 +2183,7 @@ public class dashBoard extends javax.swing.JFrame {
                                 recheckAttendanceTable.setValueAt("O", r, 8);
                                 recheckAttendanceTable.setValueAt(" ", r, 9);
                                 break;
-                            }case "Late":{
+                            }case "Tardy":{
                                 recheckAttendanceTable.setValueAt(" ", r, 7);
                                 recheckAttendanceTable.setValueAt(" ", r, 8);
                                 recheckAttendanceTable.setValueAt("O", r, 9);
@@ -2323,7 +2323,7 @@ public class dashBoard extends javax.swing.JFrame {
                 present++;
             if(status.contains("Absent") || status.contains("absent"))
                 absent++;
-            if(status.contains("Late") || status.contains("late"))
+            if(status.contains("Tardy") || status.contains("late"))
                 tardy++;
         }
         

@@ -121,11 +121,31 @@ public class dashBoard extends javax.swing.JFrame {
         sf2Tab = new javax.swing.JPanel();
         jSplitPane3 = new javax.swing.JSplitPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        weekDaysOfTheMonthTable1 = new javax.swing.JTable();
+        weekDaysOfTheMonthTable = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         sf2Table = new javax.swing.JTable();
         sf4Tab = new javax.swing.JPanel();
         right2 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        tfSectionName1 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        tfAdviserName1 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        tfGradeLevel1 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        tfSchoolYear1 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jdcFirstDayOfMonth = new com.toedter.calendar.JDateChooser();
+        btnLoadStudents1 = new javax.swing.JButton();
+        btnExportSf2 = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        summarySf2 = new javax.swing.JTable();
         loadingDialog = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jpbProgressBar = new javax.swing.JProgressBar();
@@ -607,94 +627,105 @@ public class dashBoard extends javax.swing.JFrame {
         );
 
         jSplitPane2.setBorder(null);
-        jSplitPane2.setDividerLocation(600);
+        jSplitPane2.setDividerLocation(745);
 
         left2.setBackground(new java.awt.Color(11, 102, 35));
 
         jSplitPane3.setBorder(null);
-        jSplitPane3.setDividerLocation(80);
+        jSplitPane3.setDividerLocation(65);
         jSplitPane3.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        weekDaysOfTheMonthTable1.setModel(new javax.swing.table.DefaultTableModel(
+        weekDaysOfTheMonthTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Section ID", "Student ID", "Name", "Gender", "Date Enrolled", "Remarks", "Mon1", "Tue", "Wed", "Thu", "Fri", "Mon2", "Tue", "Wed", "Thu", "Fri", "Mon3", "Tue", "Wed", "Thu", "Fri", "Mon4", "Tue", "Wed", "Thu", "Fri", "Absent", "Tardy"
+                "ID", "Section ID", "Student ID", "Name", "Gender", "Date Enrolled", "Remarks", "Mon1", "Tue", "Wed", "Thu", "Fri", "Mon2", "Tue", "Wed", "Thu", "Fri", "Mon3", "Tue", "Wed", "Thu", "Fri", "Mon4", "Tue", "Wed", "Thu", "Fri", "Mon5", "Tue", "Wed", "Thu", "Fri", "Absent", "Tardy"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        weekDaysOfTheMonthTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        weekDaysOfTheMonthTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane6.setViewportView(weekDaysOfTheMonthTable1);
-        if (weekDaysOfTheMonthTable1.getColumnModel().getColumnCount() > 0) {
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(3).setPreferredWidth(200);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(7).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(7).setPreferredWidth(45);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(8).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(8).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(9).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(9).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(10).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(10).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(11).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(11).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(12).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(12).setPreferredWidth(45);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(13).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(13).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(14).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(14).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(15).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(15).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(16).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(16).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(17).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(17).setPreferredWidth(45);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(18).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(18).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(19).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(19).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(20).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(20).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(21).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(21).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(22).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(22).setPreferredWidth(45);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(23).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(23).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(24).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(24).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(25).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(25).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(26).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(26).setPreferredWidth(40);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(27).setResizable(false);
-            weekDaysOfTheMonthTable1.getColumnModel().getColumn(28).setResizable(false);
+        weekDaysOfTheMonthTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        weekDaysOfTheMonthTable.setEnabled(false);
+        weekDaysOfTheMonthTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane6.setViewportView(weekDaysOfTheMonthTable);
+        if (weekDaysOfTheMonthTable.getColumnModel().getColumnCount() > 0) {
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(3).setPreferredWidth(200);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(7).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(7).setPreferredWidth(45);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(8).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(8).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(9).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(9).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(10).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(10).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(11).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(11).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(12).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(12).setPreferredWidth(45);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(13).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(13).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(14).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(14).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(15).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(15).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(16).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(16).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(17).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(17).setPreferredWidth(45);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(18).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(18).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(19).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(19).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(20).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(20).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(21).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(21).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(22).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(22).setPreferredWidth(45);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(23).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(23).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(24).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(24).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(25).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(25).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(26).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(26).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(27).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(27).setPreferredWidth(45);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(28).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(28).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(29).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(29).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(30).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(30).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(31).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(31).setPreferredWidth(40);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(32).setResizable(false);
+            weekDaysOfTheMonthTable.getColumnModel().getColumn(33).setResizable(false);
         }
 
         jSplitPane3.setLeftComponent(jScrollPane6);
 
         sf2Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Section ID", "Student ID", "Name", "Gender", "Date Enrolled", "Remarks", "Mon1", "Tue", "Wed", "Thu", "Fri", "Mon2", "Tue", "Wed", "Thu", "Fri", "Mon3", "Tue", "Wed", "Thu", "Fri", "Mon4", "Tue", "Wed", "Thu", "Fri", "Absent", "Tardy"
+                "ID", "Section ID", "Student ID", "Name", "Gender", "Date Enrolled", "Remarks", "Mon1", "Tue", "Wed", "Thu", "Fri", "Mon2", "Tue", "Wed", "Thu", "Fri", "Mon3", "Tue", "Wed", "Thu", "Fri", "Mon4", "Tue", "Wed", "Thu", "Fri", "Mon5", "Tue", "Wed", "Thu", "Fri", "Absent", "Tardy"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -748,7 +779,17 @@ public class dashBoard extends javax.swing.JFrame {
             sf2Table.getColumnModel().getColumn(26).setResizable(false);
             sf2Table.getColumnModel().getColumn(26).setPreferredWidth(40);
             sf2Table.getColumnModel().getColumn(27).setResizable(false);
+            sf2Table.getColumnModel().getColumn(27).setPreferredWidth(45);
             sf2Table.getColumnModel().getColumn(28).setResizable(false);
+            sf2Table.getColumnModel().getColumn(28).setPreferredWidth(40);
+            sf2Table.getColumnModel().getColumn(29).setResizable(false);
+            sf2Table.getColumnModel().getColumn(29).setPreferredWidth(40);
+            sf2Table.getColumnModel().getColumn(30).setResizable(false);
+            sf2Table.getColumnModel().getColumn(30).setPreferredWidth(40);
+            sf2Table.getColumnModel().getColumn(31).setResizable(false);
+            sf2Table.getColumnModel().getColumn(31).setPreferredWidth(40);
+            sf2Table.getColumnModel().getColumn(32).setResizable(false);
+            sf2Table.getColumnModel().getColumn(33).setResizable(false);
         }
 
         jSplitPane3.setRightComponent(jScrollPane5);
@@ -757,7 +798,7 @@ public class dashBoard extends javax.swing.JFrame {
         sf2Tab.setLayout(sf2TabLayout);
         sf2TabLayout.setHorizontalGroup(
             sf2TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+            .addComponent(jSplitPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
         );
         sf2TabLayout.setVerticalGroup(
             sf2TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -770,7 +811,7 @@ public class dashBoard extends javax.swing.JFrame {
         sf4Tab.setLayout(sf4TabLayout);
         sf4TabLayout.setHorizontalGroup(
             sf4TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGap(0, 740, Short.MAX_VALUE)
         );
         sf4TabLayout.setVerticalGroup(
             sf4TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -783,7 +824,7 @@ public class dashBoard extends javax.swing.JFrame {
         left2.setLayout(left2Layout);
         left2Layout.setHorizontalGroup(
             left2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpSf2Sf4TabbedPane)
+            .addComponent(tpSf2Sf4TabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
         );
         left2Layout.setVerticalGroup(
             left2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -792,15 +833,195 @@ public class dashBoard extends javax.swing.JFrame {
 
         jSplitPane2.setLeftComponent(left2);
 
+        jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel6.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Section Details");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addContainerGap())
+        );
+
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Basic");
+
+        jLabel15.setText("Section Name");
+
+        tfSectionName1.setEditable(false);
+
+        jLabel16.setText("Adviser Name");
+
+        tfAdviserName1.setEditable(false);
+
+        jLabel17.setText("Grade Level");
+
+        tfGradeLevel1.setEditable(false);
+        tfGradeLevel1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel18.setText("School Year");
+
+        tfSchoolYear1.setEditable(false);
+        tfSchoolYear1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("Export Options");
+
+        jLabel20.setText("Choose1st Day of Desired Month");
+
+        btnLoadStudents1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_sync_16px.png"))); // NOI18N
+        btnLoadStudents1.setText("Load Students");
+        btnLoadStudents1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadStudents1ActionPerformed(evt);
+            }
+        });
+
+        btnExportSf2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_print_16px.png"))); // NOI18N
+        btnExportSf2.setText("Export");
+        btnExportSf2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportSf2ActionPerformed(evt);
+            }
+        });
+
+        summarySf2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Name", "M", "F", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        summarySf2.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        summarySf2.setEnabled(false);
+        summarySf2.getTableHeader().setReorderingAllowed(false);
+        jScrollPane7.setViewportView(summarySf2);
+        if (summarySf2.getColumnModel().getColumnCount() > 0) {
+            summarySf2.getColumnModel().getColumn(0).setPreferredWidth(200);
+            summarySf2.getColumnModel().getColumn(1).setResizable(false);
+            summarySf2.getColumnModel().getColumn(1).setPreferredWidth(40);
+            summarySf2.getColumnModel().getColumn(2).setResizable(false);
+            summarySf2.getColumnModel().getColumn(2).setPreferredWidth(40);
+            summarySf2.getColumnModel().getColumn(3).setResizable(false);
+            summarySf2.getColumnModel().getColumn(3).setPreferredWidth(45);
+        }
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jdcFirstDayOfMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnExportSf2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLoadStudents1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfSectionName1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfAdviserName1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfGradeLevel1, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfSchoolYear1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfSectionName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfAdviserName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfGradeLevel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel18)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGap(20, 20, 20)
+                            .addComponent(tfSchoolYear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jdcFirstDayOfMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLoadStudents1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExportSf2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jScrollPane4.setViewportView(jPanel5);
+
         javax.swing.GroupLayout right2Layout = new javax.swing.GroupLayout(right2);
         right2.setLayout(right2Layout);
         right2Layout.setHorizontalGroup(
             right2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 355, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
         right2Layout.setVerticalGroup(
             right2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 594, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
         );
 
         jSplitPane2.setRightComponent(right2);
@@ -993,8 +1214,16 @@ public class dashBoard extends javax.swing.JFrame {
                     tfAdviserName.setText(adviserName);
                     tfGradeLevel.setText("Grade "+gradeLevel);
                     tfSchoolYear.setText(schoolYear+"-"+String.valueOf(schoolYear+1));
+                    
+                    my.select_tab(mainTab, 2);
                     break;
                 }case 2:{
+                    tfSectionName1.setText(sectionName);
+                    tfAdviserName1.setText(adviserName);
+                    tfGradeLevel1.setText("Grade "+gradeLevel);
+                    tfSchoolYear1.setText(schoolYear+"-"+String.valueOf(schoolYear+1));
+                    
+                    my.select_tab(mainTab, 3);
                     break;
                 }case 3:{
                     break;
@@ -1034,7 +1263,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
         
-        my.searchItemThread("", "WHERE sectionId='"+sectionId+"'", sf1StudentsTable, 10, new int [] {4,5,6}, true, null);
+        my.searchItemThread("", "WHERE sectionId='"+sectionId+"'", sf1StudentsTable, 10, new int [] {4,5,6}, true, null,null,null);
         my.runSecondaryThread(0, true, new JTable[]{sf1StudentsTable}, new String[]{firstFridayDate}, new JTextField[]{tfMaleCount,tfFemaleCount,tfTotalCount}, new JButton[]{});
     }//GEN-LAST:event_btnLoadStudentsActionPerformed
 
@@ -1053,6 +1282,31 @@ public class dashBoard extends javax.swing.JFrame {
     private void btnSf2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf2ActionPerformed
         selectFormToExport(2);
     }//GEN-LAST:event_btnSf2ActionPerformed
+
+    private void btnLoadStudents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudents1ActionPerformed
+        String firstDayOfMonth = "";
+        try {
+            firstDayOfMonth = my.jCalendarToNumberDate(jdcFirstDayOfMonth.getDate().toString(), false);
+        } catch (Exception e) {
+            my.showMessage("Invalid Date.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int row = assignedTeacherTable.getSelectedRow();
+        if(row == -1){
+            my.showMessage("No Section Selected.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
+        String subjectId = assignedTeacherTable.getValueAt(row, 6).toString();
+        
+        my.searchItemThread("", "WHERE sectionId='"+sectionId+"'", sf2Table, 11, new int [] {3,4,5}, true, null,new int[]{7,12,17,22},Color.RED);
+        my.runSecondaryThread(1, true, new JTable[]{weekDaysOfTheMonthTable,sf2Table}, new String[]{sectionId,firstDayOfMonth,subjectId}, new JTextField[]{}, null);
+    }//GEN-LAST:event_btnLoadStudents1ActionPerformed
+
+    private void btnExportSf2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExportSf2ActionPerformed
     private void selectFormToExport(int formIndexExact){
         myVariables.setFormSelected(formIndexExact);
         my.select_tab(mainTab, 1);
@@ -1134,7 +1388,7 @@ public class dashBoard extends javax.swing.JFrame {
         if(toSearch.length() > 0){
             where +=" AND sectionName LIKE '%"+toSearch+"%'";
         }
-        my.searchItemThread(toSearch,where, assignedTeacherTable, 9, new int [] {4,5,6}, true, lbSearchResult);
+        my.searchItemThread(toSearch,where, assignedTeacherTable, 9, new int [] {4,5,6}, true, lbSearchResult,null,null);
         
         //String [] result = my.return_values("*", "v_managedsubjects", where, myVariables.getManagedSubjectsViewOrder());
 
@@ -1206,7 +1460,7 @@ public class dashBoard extends javax.swing.JFrame {
     
     private void setScrollSpeeds(){
         JScrollPane scrollpanes [] = {
-            jScrollPane1,jScrollPane3,
+            jScrollPane1,jScrollPane3,jScrollPane4,
         };
         
         int scrollSpeed = 15;
@@ -1228,13 +1482,15 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6});
             my.hideColumns(sf1StudentsTable, new int [] {0,1,2});
             my.hideColumns(sf2Table, new int [] {0,1,2,5,6});
-            my.hideColumns(weekDaysOfTheMonthTable1, new int [] {0,1,2,5,6});
+            my.hideColumns(weekDaysOfTheMonthTable, new int [] {0,1,2,5,6});
         }
+        my.customHeaders(weekDaysOfTheMonthTable,new int [] {7,12,17,22,27},Color.RED,Color.BLACK,myVariables.COLUMN_HEADER_FONT,true);
+        my.customHeaders(sf2Table,new int [] {7,12,17,22,27},Color.RED,Color.BLACK,myVariables.COLUMN_HEADER_FONT,true);
         
         //Set table fonts
         JTable tables [] = {
-            assignedTeacherTable,sf1StudentsTable,weekDaysOfTheMonthTable1,
-            sf2Table,
+            assignedTeacherTable,sf1StudentsTable,weekDaysOfTheMonthTable,
+            sf2Table,summarySf2,
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
         //customHeaders(sf1SectionTable, new int []{0,1,2,3}, Color.RED, Color.WHITE, new Font("Comic Sans MS", Font.BOLD, 12), true);
@@ -1290,6 +1546,7 @@ public class dashBoard extends javax.swing.JFrame {
     private void loadColoredButtons(){
         JButton buttons [] = {
             btnSearchSection,btnCancelLoading,btnLoadStudents,btnExportSf1,
+            btnLoadStudents1,btnExportSf2,
         };
         
         JButton lightButtons [] = {
@@ -1320,18 +1577,18 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
-            jLabel2,
+            jLabel2,jLabel13,
         };
         JLabel labels [] = {
             lbSearchResult,
         };
         
         JLabel formsHeaderLabels [] = {
-            jLabel3,jLabel8,
+            jLabel3,jLabel8,jLabel14,jLabel19,
         };
         JLabel textFieldHeaderLabels [] = {
             lbLoadingMessage,jLabel4,jLabel5,jLabel6,jLabel7,jLabel9,jLabel10,
-            jLabel11,jLabel12,
+            jLabel11,jLabel12,jLabel15,jLabel16,jLabel17,jLabel18,jLabel20,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -1356,20 +1613,20 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadTextFields(){
         JDateChooser dateChoosers [] = {
-            jdcFirstDayOfFridate,
+            jdcFirstDayOfFridate,jdcFirstDayOfMonth,
         };
         JSpinner spinners [] = {
             //jsHours,jsMinutes
         };
         
         JTextField searchFields [] = {
-            tfSearchTeacherLoad,tfAdviserName,tfGradeLevel,tfSchoolYear,tfSectionName,
-            tfMaleCount,tfFemaleCount,tfTotalCount,
+            
         };
         JTextField forms [] = {
-            //tfAge,tfWeight,tfHeight,tfBmi,tfHeightSquared,tfBmiForAge,
-            //tfHeightForAge,tfTestAge,tfTestHeight,tfTestHeightSq,tfTestWeight,
-            //tfTestBmi,
+            tfSearchTeacherLoad,tfAdviserName,tfGradeLevel,tfSchoolYear,tfSectionName,
+            tfMaleCount,tfFemaleCount,tfTotalCount,
+            
+            tfSectionName1,tfAdviserName1,tfGradeLevel1,tfSchoolYear1,
         };
         for(JSpinner n : spinners){
             n.setFont(myVariables.TEXTFIELD_FONT);
@@ -1454,7 +1711,9 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTable assignedTeacherTable;
     private javax.swing.JButton btnCancelLoading;
     private javax.swing.JButton btnExportSf1;
+    private javax.swing.JButton btnExportSf2;
     private javax.swing.JButton btnLoadStudents;
+    private javax.swing.JButton btnLoadStudents1;
     private javax.swing.JButton btnSearchSection;
     private javax.swing.JButton btnSf1;
     private javax.swing.JButton btnSf10;
@@ -1471,7 +1730,15 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1482,17 +1749,22 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
     private com.toedter.calendar.JDateChooser jdcFirstDayOfFridate;
+    private com.toedter.calendar.JDateChooser jdcFirstDayOfMonth;
     private javax.swing.JProgressBar jpbProgressBar;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel lbLoadingMessage;
@@ -1514,15 +1786,20 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel sf2Tab;
     private javax.swing.JTable sf2Table;
     private javax.swing.JPanel sf4Tab;
+    private javax.swing.JTable summarySf2;
     private javax.swing.JTextField tfAdviserName;
+    private javax.swing.JTextField tfAdviserName1;
     private javax.swing.JTextField tfFemaleCount;
     private javax.swing.JTextField tfGradeLevel;
+    private javax.swing.JTextField tfGradeLevel1;
     private javax.swing.JTextField tfMaleCount;
     private javax.swing.JTextField tfSchoolYear;
+    private javax.swing.JTextField tfSchoolYear1;
     private javax.swing.JTextField tfSearchTeacherLoad;
     private javax.swing.JTextField tfSectionName;
+    private javax.swing.JTextField tfSectionName1;
     private javax.swing.JTextField tfTotalCount;
     private javax.swing.JTabbedPane tpSf2Sf4TabbedPane;
-    private javax.swing.JTable weekDaysOfTheMonthTable1;
+    private javax.swing.JTable weekDaysOfTheMonthTable;
     // End of variables declaration//GEN-END:variables
 }

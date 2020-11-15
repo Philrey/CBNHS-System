@@ -5,6 +5,7 @@
  */
 package mahPackage7;
 
+import java.awt.Color;
 import java.awt.Dialog;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -21,6 +22,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
+import javax.swing.table.DefaultTableModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -38,6 +40,10 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
     private JTable tableName;
     private String sectionId;
     private String dateSelected;
+    private String subjectId;
+    
+    private String startingDate;
+    private String endingDate;
     
     private boolean waitForMainThreadToFinish;
     
@@ -54,6 +60,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         tableName = tablesToUse[1];
         sectionId = stringsToUse[0];
         dateSelected = stringsToUse[1];
+        subjectId = stringsToUse[2];
         
         this.waitForMainThreadToFinish = waitForMainThreadToFinish;
         jFrameName = myVariables.getCurrentLoadingFrame();
@@ -81,20 +88,113 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         System.err.println("Starting Second THread");
         //Load Dates
         lbLoadingMessage.setText("Determining Days...");
-        String dateLine = "-@@-@@-@@-@@-@@-@@-@@-@@"+getStartAndEndDates(dateSelected, false);
+        String dateLine = "-@@-@@-@@-@@-@@-@@-@@"+getStartAndEndDates(dateSelected, false);
+        clear_table_rows(dateTable);
+        add_table_row(dateLine, dateTable, new int []{7,12,17,22}, Color.RED);
+        
         Thread.sleep(pauseDelay);
-        //Get Attendance PerStudent
-        //Match attendance date with day columns
-        //COunt Present Absent & Tardy
+        //<editor-fold desc="Load Attendances">
+            lbLoadingMessage.setText("Processing...");
+            
+            int studCount = tableName.getRowCount(),attendanceCount=0;
+            int currentDateSelected=0,dateResultFound;
+            String studentId = "";
+            
+            progressBar.setMinimum(0);
+            progressBar.setMaximum(studCount);
+            Thread.sleep(threadDelay);
+            
+            for(int n=0;n<studCount;n++){   //Loop student table
+                lbLoadingMessage.setText("Processing Student "+(n+1)+" of "+studCount);
+                progressBar.setValue(n+1);
+                studentId = tableName.getValueAt(n, 2).toString();
+                Thread.sleep(pauseDelay);
+                //Get attendaces of student from database
+                String where = "WHERE studentId='"+studentId+"' AND "
+                        + "sectionId='"+sectionId+"' AND "
+                        + "subjectId='"+subjectId+"' AND "
+                        + "dateAdded>='"+startingDate+"' AND "
+                        + "dateAdded <='"+endingDate+"' "
+                        + "ORDER BY sectionId DESC,studentId DESC,subjectId DESC, dateAdded ASC";
+                Thread.sleep(threadDelay);
+                lbLoadingMessage.setText("Connecting to Database...");
+                
+                String [] attendanceResults = return_values("*", "attendance", where, myVariables.getAttendanceOrder());
+                
+                Thread.sleep(pauseDelay);
+                lbLoadingMessage.setText("Loading Attendance...");
+                
+                boolean matchFound;
+                if(attendanceResults != null){
+                    for(int x=7;x<32;x++){  //Loop Dates
+                        lbLoadingMessage.setText("Processing Student "+(n+1)+" of "+studCount+". Date "+(x-6)+" of 25");
+                        try {
+                            currentDateSelected = Integer.parseInt(dateTable.getValueAt(0, x).toString());
+                        } catch (Exception e) {
+                            tableName.setValueAt(myVariables.isDebugModeOn()? "ND" : " ", n, x);
+                            continue;
+                        }
+                        //Match attendance dates with day columns
+                        attendanceCount = attendanceResults.length;
+                        matchFound = false;
+                        for(int y=0;y<attendanceCount;y++){ //Loop Attendances
+                            String cLine [] = attendanceResults[y].split("@@"); //{29,3,7,52,Present,2020-02-10 17:52:45,Notes}
+                            String dateTime [] = cLine[5].split(" ");   //{2020-03-25,10:00:00}
+                            String dates [] = dateTime[0].split("-");   //{2020,03,25}
+                            
+                            dateResultFound = Integer.parseInt(dates[2]);
+                            //System.err.println("CD:"+currentDateSelected+" RD:"+dateTime[0]);
+                            if(dateResultFound == currentDateSelected){
+                                //System.err.println("Match Found");
+                                //Process attendance
+                                if(cLine[4].contains("Present")){
+                                    tableName.setValueAt("P", n, x);
+                                }if(cLine[4].contains("Absent")){
+                                    tableName.setValueAt("A", n, x);
+                                }if(cLine[4].contains("Tardy") || cLine[4].contains("Late")){
+                                    try {
+                                        //Check notes for codes
+                                        String codes [] = cLine[6].split(":");
+                                        tableName.setValueAt("T"+codes[0], n, x);
+                                    } catch (Exception e) {
+                                        tableName.setValueAt("T", n, x);
+                                    }
+                                }
+                                matchFound = true;
+                                break;
+                            }
+                        }
+                        if(!matchFound){
+                            tableName.setValueAt(myVariables.isDebugModeOn()? "NAF" : " ", n, x);  //No attendance found for this day
+                        }
+                        Thread.sleep(threadDelay);
+                    }
+                }else{
+                    for(int x=7;x<32;x++){  //Loop Dates
+                        try {
+                            currentDateSelected = Integer.parseInt(dateTable.getValueAt(0, x).toString());
+                        } catch (Exception e) {
+                            tableName.setValueAt(myVariables.isDebugModeOn()? "ND" : " ", n, x);
+                            continue;
+                        }
+                        tableName.setValueAt(myVariables.isDebugModeOn()? "NAF" : " ", n, x);  //No attendance found for this day
+                    }
+                }
+            }
+            //Get Attendance PerStudent
+            
+            //COunt Present Absent & Tardy
+        //</editor-fold>
         
         return null;
     }
 
     @Override
     protected void done() {
-        
+        closeCustomDialog();
         super.done(); //To change body of generated methods, choose Tools | Templates.
     }
+    //<editor-fold desc="Custom Functions">
     private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable){
         dialog = new JDialog(jFrameName);
         dialog.setTitle(title);
@@ -115,6 +215,66 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             System.err.println("Dialog is null...skipping");
         }
     }
+    public boolean add_table_row(String line,JTable tableName){
+        String [] row=line.split("@@");
+        Object [] rows = new Object[row.length];
+        
+        if(row[0].length() < 1){
+            return false;
+        }
+        for(int n=0;n<row.length;n++){
+            if(row[n].contains("null")){
+                rows[n] = "";
+            }else{
+                rows[n] = row[n];
+            }
+            
+        }
+        
+        DefaultTableModel model;
+        
+        model=(DefaultTableModel)tableName.getModel();
+        model.addRow(rows);
+        
+        return true;
+    }
+    public boolean add_table_row(String line,JTable tableName,int [] selectedColumns,Color foreground){
+        String [] row=line.split("@@");
+        Object [] rows = new Object[row.length];
+        
+        if(row[0].length() < 1){
+            return false;
+        }
+        for(int n=0;n<row.length;n++){
+            if(row[n].contains("null")){
+                rows[n] = "";
+            }else{
+                rows[n] = row[n];
+            }
+            
+        }
+        
+        DefaultTableModel model;
+        
+        CustomCellRenderer cellRenderer = new CustomCellRenderer(tableName.getBackground(), foreground, tableName.getFont(),tableName.getSelectionForeground(),tableName.getSelectionBackground());
+        cellRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for(int n=0;n<tableName.getColumnCount();n++){
+            for(int x=0;x<selectedColumns.length;x++){
+                if(n == selectedColumns[x]){
+                    tableName.getColumnModel().getColumn(n).setCellRenderer(cellRenderer);
+                }
+            }
+        }
+        
+        model=(DefaultTableModel)tableName.getModel();
+        model.addRow(rows);
+        
+        return true;
+    }
+    public void clear_table_rows(JTable table_nameTable){
+        DefaultTableModel model=(DefaultTableModel) table_nameTable.getModel();
+        model.setRowCount(0);
+    }
     public String getStartAndEndDates(String dateT,boolean includeWeekends){
         /*
         //Function Query for getting dates
@@ -127,35 +287,39 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
 
         FROM functionsoutput
         */
-        String [] result = return_values("functionsoutput.id,functionsoutput.name,getStartingDay('"+dateT+"') as 'startingDay',getLastDay('"+dateT+"') as 'lastDay'", "functionsoutput", "", new int [] {3,1,2,0});
+        lbLoadingMessage.setText("Determining Days...Connecting to Database");
+        
+        String [] result = return_values("getStartingDay('"+dateT+"+') as 'startingDay',getLastDay('"+dateT+"') as 'getLastDay'", "", "", new int [] {0,1});
         String [] dateStrings = null;
         if(result != null){
             //Convert day name to number
             String [] dates = result[0].split("@@");
-            if(dates[2].contains("Monday")){
-                dates[2] = "1";
+            startingDate = dateT;
+            endingDate = dates[1];
+            if(dates[0].contains("Monday")){
+                dates[0] = "1";
             }
-            if(dates[2].contains("Tuesday")){
-                dates[2] = "2";
+            if(dates[0].contains("Tuesday")){
+                dates[0] = "2";
             }
-            if(dates[2].contains("Wednesday")){
-                dates[2] = "3";
+            if(dates[0].contains("Wednesday")){
+                dates[0] = "3";
             }
-            if(dates[2].contains("Thursday")){
-                dates[2] = "4";
+            if(dates[0].contains("Thursday")){
+                dates[0] = "4";
             }
-            if(dates[2].contains("Friday")){
-                dates[2] = "5";
+            if(dates[0].contains("Friday")){
+                dates[0] = "5";
             }
-            if(dates[2].contains("Saturday")){
-                dates[2] = "6";
+            if(dates[0].contains("Saturday")){
+                dates[0] = "6";
             }
-            if(dates[2].contains("Sunday")){
-                dates[2] = "0";
+            if(dates[0].contains("Sunday")){
+                dates[0] = "0";
             }
             
             //return new String[] {dates[2],dates[3]};
-            dateStrings = new String[] {dates[2],dates[3]};
+            dateStrings = new String[] {dates[0],dates[1]};
             
             System.out.println(dateStrings[0]+" "+dateStrings[1]);
             String [] lastDay = dateStrings[1].split("-");
@@ -167,9 +331,12 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             String finalString = "";
             
             //Add spaces at beginning based on starting day
-            for(int n=0;n<Integer.parseInt(dateStrings[0]);n++){
-                finalString+=" @@";
+            if(!dateStrings[0].contains("0")){  //add spaces if day is not Sunday
+                for(int n=0;n<Integer.parseInt(dateStrings[0])-1;n++){
+                    finalString+=" @@";
+                }
             }
+            
             
             for(int n=0;n<Integer.parseInt(lastDay[2]);n++){
                 if(includeWeekends){
@@ -178,7 +345,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
                     if(currDay != 0 && currDay != 6){
                         finalString+=(n+1)+"@@";
                     }else{
-                        finalString+=" "+"@@";
+                        //finalString+=" "+"@@";
                         System.out.println("It's sat/sun. skipping");
                     }
                 }
@@ -274,6 +441,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         
         return null;
     }
+    //</editor-fold>
     //<editor-fold desc="Show Message Functions">
     public void showMessage(String message,int messageType){
         JFrame frem = new JFrame();

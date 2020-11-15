@@ -6,6 +6,7 @@
 package mahPackage7;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -104,7 +105,7 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="TABLE FUNCTIONS">
-    public void searchItemThread(String toSearch,String where,JTable resultTable,int viewTableIndex,int [] combineColumns,boolean toNameFormat,JLabel resultText){
+    public void searchItemThread(String toSearch,String where,JTable resultTable,int viewTableIndex,int [] combineColumns,boolean toNameFormat,JLabel resultText,int [] coloredColumnIndex,Color selectedColor){
         String from="";
         int [] order = null;
         switch(viewTableIndex){
@@ -152,6 +153,10 @@ public class myFunctions {
                 from = "form_sf1_view";
                 order = myVariables.getJhsf1Order();
                 break;
+            }case 11:{
+                from = "form_sf2_view";
+                order = myVariables.getJhsf2Order();
+                break;
             }default:{
                 System.err.println("View table index out of bounds. Please check your index selected @ myFunctions.java");
                 return;
@@ -159,7 +164,7 @@ public class myFunctions {
         }
         
         thread_return_values trv = new thread_return_values(
-                toSearch,"*", from, where, order, resultTable,combineColumns,toNameFormat,resultText
+                toSearch,"*", from, where, order, resultTable,combineColumns,toNameFormat,resultText,coloredColumnIndex,selectedColor
         );
         System.err.println("Starting Thread");
         if(mainThead == null){
@@ -323,6 +328,21 @@ public class myFunctions {
     private void centerHeaders(JTable tableName){
         DefaultTableCellRenderer cellRenderer = (DefaultTableCellRenderer) tableName.getTableHeader().getDefaultRenderer();
         cellRenderer.setHorizontalAlignment(JLabel.CENTER);
+    }
+    public void customHeaders(JTable tableName,int [] selectedColumns,Color foreground,Color background,Font font,boolean centerHeaders){
+        CustomHeaderRenderer customHeaderRenderer = new CustomHeaderRenderer(background, foreground, font);
+        if(centerHeaders){
+            customHeaderRenderer.setHorizontalAlignment(JLabel.CENTER);
+        }
+        
+        for(int n=0;n<tableName.getColumnCount();n++){
+            for(int selectedColumn : selectedColumns){
+                if(selectedColumn == n){
+                    tableName.getTableHeader().getColumnModel().getColumn(n).setHeaderRenderer(customHeaderRenderer);
+                    break;
+                }
+            }
+        }
     }
     protected void hideColumns(JTable tableName,int [] columnIndex){
         TableColumnModel columnModel = tableName.getColumnModel();
