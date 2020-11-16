@@ -33,6 +33,7 @@ import org.json.JSONObject;
  * @author Phil Rey Paderogao
  */
 public class thread_loadSf2Details extends SwingWorker<String, Object>{
+    //<editor-fold desc="Variables">
     long threadDelay = 100;
     long pauseDelay = 500;
     
@@ -63,7 +64,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
     private JPanel dialogPanel;
     private JLabel lbLoadingMessage;
     private JProgressBar progressBar;
-
+    //</editor-fold>
     public thread_loadSf2Details(JTable [] tablesToUse,String [] stringsToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean waitForMainThreadToFinish) {
         dateTable = tablesToUse[0];
         tableName = tablesToUse[1];
@@ -84,7 +85,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
     }
     @Override
     protected String doInBackground() throws Exception {
-        //Wait For Students to Load
+        //<editor-fold desc="Wait For Students to Load">
         if(waitForMainThreadToFinish){
             System.err.println("Waiting for mainThread to Finish first...");
             while (true) {                
@@ -97,11 +98,14 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
                 }
             }
         }
+        //</editor-fold>
+        //<editor-fold desc="Initialize Variables">
         tableName.setEnabled(false);
         showCustomDialog("Loading Attendances...", dialogPanel, false, 420, 220, false);
         loadSummary();
         loadSchoolDaysIndex();
         translateRemarks();
+        evaluateRemarks();
         System.err.println("Starting Second THread");
         //Load Dates
         lbLoadingMessage.setText("Determining Days...");
@@ -110,6 +114,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         add_table_row(dateLine, dateTable, new int []{7,12,17,22}, Color.RED);
         
         Thread.sleep(pauseDelay);
+        //</editor-fold>
         //<editor-fold desc="Load Attendances">
             lbLoadingMessage.setText("Processing...");
             
@@ -217,7 +222,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
                 }
             }
         //</editor-fold>
-        //Load Summary
+        //<editor-fold desc="Load Summary">
         tfSchoolDays.setText(String.valueOf(numberOfSchoolDays));
         resetSchoolDaysIndex();
         fillUpMissingRecords();
@@ -226,7 +231,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         loadAttendanceCounts();
         loadAverageAttendance();
         calculatePercentageOfAttendance();
-        
+        //</editor-fold>
         for(int a : schoolDaysColumnIndex){
             System.out.print(a+",");
         }
@@ -239,6 +244,73 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         closeCustomDialog();
         super.done(); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    private void evaluateRemarks(){
+        int studCOunt = tableName.getRowCount();
+        int transferredIn=0,transferredOut=0,dropped=0;
+        try {
+            for(int n=0;n<studCOunt;n++){
+                lbLoadingMessage.setText("Evaluating Remarks of Student "+(n+1)+" of "+studCOunt);
+                String gender = tableName.getValueAt(n, 4).toString();
+                String remarks = tableName.getValueAt(n, 6).toString();
+
+                if(remarks.trim().length() > 0){
+                    try {
+                        String remarkParts [] = remarks.split(":");
+                        if(remarkParts.length == 2){    //It has the correct format
+                            System.err.println("Valide Remarks Found: "+remarkParts[0]);
+                            if(remarkParts[0].contains("T/I")){
+                                transferredIn++;
+                            }if(remarkParts[0].contains("T/O")){
+                                transferredOut++;
+                            }if(remarkParts[0].contains("DRP")){
+                                dropped++;
+                            }
+                        }
+                    } catch (Exception e) {
+                        System.err.println("Invalid remarks. Ignoring Count");
+                    }
+                }
+                //Update counts
+                int maleDrp = Integer.parseInt(summaryTable.getValueAt(7, 1).toString());
+                int femaleDrp = Integer.parseInt(summaryTable.getValueAt(7, 2).toString());
+
+                int maleTo = Integer.parseInt(summaryTable.getValueAt(8, 1).toString());
+                int femaleTo = Integer.parseInt(summaryTable.getValueAt(8, 2).toString());
+
+                int maleTi = Integer.parseInt(summaryTable.getValueAt(9, 1).toString());
+                int femaleTi = Integer.parseInt(summaryTable.getValueAt(9, 2).toString());
+
+                //Add count based on gender
+                if(gender.contains("Female")){
+                    femaleDrp += dropped;
+                    femaleTo += transferredOut;
+                    femaleTi += transferredIn;
+                }else{
+                    maleDrp += dropped;
+                    maleTo += transferredOut;
+                    maleTi += transferredIn;
+                }
+                summaryTable.setValueAt(maleDrp, 7, 1);
+                summaryTable.setValueAt(femaleDrp, 7, 2);
+                summaryTable.setValueAt(maleDrp+femaleDrp, 7, 3);
+
+                summaryTable.setValueAt(maleTo, 8, 1);
+                summaryTable.setValueAt(femaleTo, 8, 2);
+                summaryTable.setValueAt(maleTo+femaleTo, 8, 3);
+
+                summaryTable.setValueAt(maleTi, 9, 1);
+                summaryTable.setValueAt(femaleTi, 9, 2);
+                summaryTable.setValueAt(maleTi+femaleTi, 9, 3);
+                
+                Thread.sleep(threadDelay);
+            }
+        } catch (Exception e) {
+            System.err.println("Error Occured @ evaluateRemarks()");
+            e.printStackTrace();
+        }
+    }
+    //<editor-fold desc="Summary Functions">
     private void checkForFiveConsecutiveAbsences(){
         int studCount = tableName.getRowCount();
         int consecutiveAbsences;
@@ -599,7 +671,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             System.err.println("Error found @ loadAttendanceCounts()"+e.getMessage());
         }
     }
-    
+    //</editor-fold>
     //<editor-fold desc="Custom Functions">
     private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable){
         dialog = new JDialog(jFrameName);
