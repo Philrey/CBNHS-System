@@ -9,8 +9,10 @@ import java.awt.Color;
 import java.awt.Dialog;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -34,20 +36,27 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
     long threadDelay = 100;
     long pauseDelay = 500;
     
+    //Summary Variables
+    private int male,female,numberOfSchoolDays;
+    private int absent,tardy;
+    private int schoolDaysColumnIndex [];
+    
     //Main Variables
     private int males,females,total;
     private JTable dateTable;
     private JTable tableName;
+    private JTable summaryTable;
     private String sectionId;
     private String dateSelected;
+    private String lastDayOfEnrollment;
     private String subjectId;
+    private String missingValuesSubstitute;
     
     private String startingDate;
     private String endingDate;
     
+    private JTextField tfSchoolDays;
     private boolean waitForMainThreadToFinish;
-    
-    private JTextField tfMale,tfFemale,tfTotal;
     //Dialog Properties
     private JDialog dialog;
     private JFrame jFrameName;
@@ -58,9 +67,14 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
     public thread_loadSf2Details(JTable [] tablesToUse,String [] stringsToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean waitForMainThreadToFinish) {
         dateTable = tablesToUse[0];
         tableName = tablesToUse[1];
+        summaryTable = tablesToUse[2];
         sectionId = stringsToUse[0];
         dateSelected = stringsToUse[1];
         subjectId = stringsToUse[2];
+        lastDayOfEnrollment = stringsToUse[3];
+        missingValuesSubstitute = stringsToUse[4];
+        
+        tfSchoolDays = textFieldsToUse[0];
         
         this.waitForMainThreadToFinish = waitForMainThreadToFinish;
         jFrameName = myVariables.getCurrentLoadingFrame();
@@ -84,7 +98,10 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             }
         }
         tableName.setEnabled(false);
-        showCustomDialog("Loading Attendances...", dialogPanel, false, 320, 220, false);
+        showCustomDialog("Loading Attendances...", dialogPanel, false, 420, 220, false);
+        loadSummary();
+        loadSchoolDaysIndex();
+        translateRemarks();
         System.err.println("Starting Second THread");
         //Load Dates
         lbLoadingMessage.setText("Determining Days...");
@@ -98,7 +115,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             
             int studCount = tableName.getRowCount(),attendanceCount=0;
             int currentDateSelected=0,dateResultFound;
-            String studentId = "";
+            String studentId = "",gender="",dateEnrolled="";
             
             progressBar.setMinimum(0);
             progressBar.setMaximum(studCount);
@@ -108,7 +125,13 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
                 lbLoadingMessage.setText("Processing Student "+(n+1)+" of "+studCount);
                 progressBar.setValue(n+1);
                 studentId = tableName.getValueAt(n, 2).toString();
+                
+                gender = tableName.getValueAt(n, 4).toString();
+                dateEnrolled = tableName.getValueAt(n, 5).toString();
+                checkEnrollmentType(gender, dateEnrolled);
+                
                 Thread.sleep(pauseDelay);
+                
                 //Get attendaces of student from database
                 String where = "WHERE studentId='"+studentId+"' AND "
                         + "sectionId='"+sectionId+"' AND "
@@ -125,6 +148,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
                 lbLoadingMessage.setText("Loading Attendance...");
                 
                 boolean matchFound;
+                int currentSchoolDays = 0;
                 if(attendanceResults != null){
                     for(int x=7;x<32;x++){  //Loop Dates
                         lbLoadingMessage.setText("Processing Student "+(n+1)+" of "+studCount+". Date "+(x-6)+" of 25");
@@ -137,6 +161,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
                         //Match attendance dates with day columns
                         attendanceCount = attendanceResults.length;
                         matchFound = false;
+                        
                         for(int y=0;y<attendanceCount;y++){ //Loop Attendances
                             String cLine [] = attendanceResults[y].split("@@"); //{29,3,7,52,Present,2020-02-10 17:52:45,Notes}
                             String dateTime [] = cLine[5].split(" ");   //{2020-03-25,10:00:00}
@@ -161,11 +186,17 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
                                     }
                                 }
                                 matchFound = true;
+                                currentSchoolDays++;
+                                try {
+                                    schoolDaysColumnIndex[x-7] = x;
+                                } catch (Exception e) {
+                                    System.err.println("Column Indexing Error");
+                                }
                                 break;
                             }
                         }
                         if(!matchFound){
-                            tableName.setValueAt(myVariables.isDebugModeOn()? "NAF" : " ", n, x);  //No attendance found for this day
+                            tableName.setValueAt(myVariables.isDebugModeOn()? "NAFIR" : " ", n, x);  //No attendance found for this day
                         }
                         Thread.sleep(threadDelay);
                     }
@@ -180,11 +211,25 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
                         tableName.setValueAt(myVariables.isDebugModeOn()? "NAF" : " ", n, x);  //No attendance found for this day
                     }
                 }
+                //Compare School Days
+                if(currentSchoolDays > numberOfSchoolDays){
+                    numberOfSchoolDays = currentSchoolDays;
+                }
             }
-            //Get Attendance PerStudent
-            
-            //COunt Present Absent & Tardy
         //</editor-fold>
+        //Load Summary
+        tfSchoolDays.setText(String.valueOf(numberOfSchoolDays));
+        resetSchoolDaysIndex();
+        fillUpMissingRecords();
+        checkForFiveConsecutiveAbsences();
+        getEnrollmentPercentage();
+        loadAttendanceCounts();
+        loadAverageAttendance();
+        calculatePercentageOfAttendance();
+        
+        for(int a : schoolDaysColumnIndex){
+            System.out.print(a+",");
+        }
         
         return null;
     }
@@ -194,6 +239,367 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         closeCustomDialog();
         super.done(); //To change body of generated methods, choose Tools | Templates.
     }
+    private void checkForFiveConsecutiveAbsences(){
+        int studCount = tableName.getRowCount();
+        int consecutiveAbsences;
+        
+        for(int n=0;n<studCount;n++){   //Counters have not been added at the last 3 rows
+            String gender = tableName.getValueAt(n, 4).toString();
+            consecutiveAbsences = 0;
+            
+            for(int x=0;x<schoolDaysColumnIndex.length;x++){
+                
+                String status = tableName.getValueAt(n, schoolDaysColumnIndex[x]).toString();
+                //Check for consecutive absences by increasing by one if the next attendance is ABSENT and resetting to 0 otherwise
+                if(status.length() == 1 && status.contains("P")){
+                    consecutiveAbsences = 0;
+                    continue;
+                }if(status.length() == 1 && status.contains("A")){
+                    consecutiveAbsences++;
+                    continue;
+                }if(status.contains("T")){
+                    consecutiveAbsences = 0;
+                }
+            }
+            int currMale = Integer.parseInt(summaryTable.getValueAt(6, 1).toString());
+            int currFemale = Integer.parseInt(summaryTable.getValueAt(6, 2).toString());
+            
+            System.err.println("Consecutive Absences: "+consecutiveAbsences);
+            if(consecutiveAbsences >= 5){
+                if(gender.contains("Female")){
+                    currFemale++;
+                }else{
+                    currMale++;
+                }
+            }
+            
+            summaryTable.setValueAt(currMale, 6, 1);
+            summaryTable.setValueAt(currFemale, 6, 2);
+            summaryTable.setValueAt(currMale+currFemale, 6, 3);
+        }
+    }
+    private void translateRemarks(){
+        int studCount = tableName.getRowCount();
+        
+        for(int n=0;n<studCount;n++){
+            String remarksString = tableName.getValueAt(n, 6).toString();
+            String remarks [] = remarksString.split("!");
+            
+            tableName.setValueAt(remarks[1], n, 6);
+        }
+    }
+    private void loadAverageAttendance(){
+        try {
+            lbLoadingMessage.setText("Calculating Average Daily Attendance...");
+            int maleTotalPresent=0,femaleTotalPresent=0;
+            int studentCount = tableName.getRowCount();
+            DecimalFormat df = new DecimalFormat("#.#");
+            df.setRoundingMode(RoundingMode.DOWN);
+            
+            for(int n=0;n<schoolDaysColumnIndex.length;n++){
+                int currTotalMalePresent = Integer.parseInt(tableName.getValueAt(studentCount-3, schoolDaysColumnIndex[n]).toString());
+                int currTotalFemalePresent = Integer.parseInt(tableName.getValueAt(studentCount-2, schoolDaysColumnIndex[n]).toString());
+                
+                maleTotalPresent += currTotalMalePresent;
+                femaleTotalPresent += currTotalFemalePresent;
+            }
+            //Set Values in summary
+            String aveMale = df.format((float)maleTotalPresent/(float)numberOfSchoolDays);
+            String aveFemale = df.format((float)femaleTotalPresent/(float)numberOfSchoolDays);
+            String aveTotal = df.format(((float)maleTotalPresent+(float)femaleTotalPresent)/(float)numberOfSchoolDays);
+            
+            summaryTable.setValueAt(!aveMale.contains("NaN")? aveMale : "0", 4, 1);
+            summaryTable.setValueAt(!aveFemale.contains("NaN")? aveFemale : "0", 4, 2);
+            summaryTable.setValueAt(!aveTotal.contains("NaN")? aveMale : "0", 4, 3);
+            
+            Thread.sleep(pauseDelay);
+        } catch (Exception e) {
+            System.err.println("Error found @ loadAverageAttendances()");
+            e.printStackTrace();
+        }
+    }
+    private void calculatePercentageOfAttendance(){
+        try {
+            lbLoadingMessage.setText("Calculating Pecentage of Attendance...");
+            DecimalFormat df = new DecimalFormat("#.#");
+            df.setRoundingMode(RoundingMode.DOWN);
+
+            float maleADA = Float.parseFloat(summaryTable.getValueAt(4, 1).toString());
+            float femaleADA = Float.parseFloat(summaryTable.getValueAt(4, 2).toString());
+
+            float maleRegistered = Float.parseFloat(summaryTable.getValueAt(2, 1).toString());
+            float femaleRegistered = Float.parseFloat(summaryTable.getValueAt(2, 2).toString());
+
+            String percentMale = df.format((maleADA/maleRegistered) * 100);
+            String percentFemale = df.format((femaleADA/femaleRegistered) * 100);
+            String percentTotal = df.format(((maleADA+femaleADA)/(maleRegistered+femaleRegistered)) * 100);
+
+            summaryTable.setValueAt(!percentMale.contains("NaN")?percentMale:"0", 5, 1);
+            summaryTable.setValueAt(!percentFemale.contains("NaN")?percentMale:"0", 5, 2);
+            summaryTable.setValueAt(!percentTotal.contains("NaN")?percentMale:"0", 5, 3);
+            Thread.sleep(pauseDelay);
+        } catch (Exception e) {
+        }
+    }
+    private void fillUpMissingRecords(){
+        
+        int count = tableName.getRowCount();
+        lbLoadingMessage.setText("Filling-up Missing Records...");
+        progressBar.setMaximum(count);
+        progressBar.setValue(0);
+        
+        try {
+            for(int n=0;n<count;n++){   //Loop Students
+                lbLoadingMessage.setText("Filling-up Missing Records...Student "+(n+1)+" of "+count);
+                progressBar.setValue(n+1);
+                for(int x=0;x<schoolDaysColumnIndex.length;x++){  //Loop Date Indeces
+                    lbLoadingMessage.setText("Filling-up Missing Records...Student "+(n+1)+" of "+count+", "+(x+1)+"/"+schoolDaysColumnIndex.length+" Days Processed");
+                    String currentValue = tableName.getValueAt(n, schoolDaysColumnIndex[x]).toString();
+                    if(currentValue.trim().length() <= 0){
+                        tableName.setValueAt(missingValuesSubstitute, n, schoolDaysColumnIndex[x]);
+                    }
+                    Thread.sleep(threadDelay);
+                }
+                Thread.sleep(pauseDelay);
+            }
+        } catch (Exception e) {
+            System.err.println("Filling-up failed @ fillingUpMissingRecords()");
+        }
+    }
+    private void loadSchoolDaysIndex(){
+        schoolDaysColumnIndex = new int[25];
+        for(int n=0;n<25;n++){
+            schoolDaysColumnIndex[n] = -1;
+        }
+    }
+    private void resetSchoolDaysIndex(){
+        int temp [];
+        int tempCount = 0;
+        for(int n : schoolDaysColumnIndex){
+            if(n != -1){
+                tempCount++;
+            }
+        }
+        temp = new int [tempCount];
+        int index = 0;
+        for(int n=0;n<25;n++){
+            if(schoolDaysColumnIndex[n] != -1){
+                temp[index] = schoolDaysColumnIndex[n];
+                index++;
+            }
+        }
+        schoolDaysColumnIndex = temp;
+    }
+    private void checkEnrollmentType(String gender,String dateEnrolled){
+        
+        boolean isEnrolledOnTime = true;
+        String dtEnrld [] = dateEnrolled.split(" ")[0].split("-");
+        String ctOff [] = lastDayOfEnrollment.split("-");
+        
+        int eYr = Integer.parseInt(dtEnrld[0]);
+        int eM = Integer.parseInt(dtEnrld[1]);
+        int eD = Integer.parseInt(dtEnrld[2]);
+        int cYr = Integer.parseInt(ctOff[0]);
+        int cM = Integer.parseInt(ctOff[1]);
+        int cD = Integer.parseInt(ctOff[2]);
+        
+        //Check if enrolled on time or late
+        if(eYr != cYr){
+            isEnrolledOnTime = eYr < cYr ? true : false;
+        }else{
+            if(eM != cM){
+                isEnrolledOnTime = eM < cM ? true : false;
+            }else{
+                if(eD != cD){
+                    isEnrolledOnTime = eD < cD ? true : false;
+                }
+            }
+        }
+        System.err.println("Checking Enrollment Type: "+(isEnrolledOnTime?"Enrolled":"Late"));
+        
+        //Put result to summary
+        int crEnrMale = Integer.parseInt(summaryTable.getValueAt(0, 1).toString());
+        int crEnrFemale = Integer.parseInt(summaryTable.getValueAt(0, 2).toString());
+        
+        int lateMale = Integer.parseInt(summaryTable.getValueAt(1, 1).toString());
+        int lateFemale = Integer.parseInt(summaryTable.getValueAt(1, 2).toString());
+        
+        if(isEnrolledOnTime){
+            if(gender.contains("Female")){
+                crEnrFemale++;
+            }else{
+                crEnrMale++;
+            }
+        }else{
+            if(gender.contains("Female")){
+                lateFemale++;
+            }else{
+                lateMale++;
+            }
+        }
+        summaryTable.setValueAt(crEnrMale, 0, 1);
+        summaryTable.setValueAt(crEnrFemale, 0, 2);
+        summaryTable.setValueAt(crEnrMale+crEnrFemale, 0, 3);
+        
+        summaryTable.setValueAt(lateMale, 1, 1);
+        summaryTable.setValueAt(lateFemale, 1, 2);
+        summaryTable.setValueAt(lateMale+lateFemale, 1, 3);
+        
+        summaryTable.setValueAt(crEnrMale+lateMale, 2, 1);
+        summaryTable.setValueAt(crEnrFemale+lateFemale, 2, 2);
+        summaryTable.setValueAt(crEnrMale+lateMale+crEnrFemale+lateFemale, 2, 3);
+    }
+    private void getEnrollmentPercentage(){
+        int rgMale = Integer.parseInt(summaryTable.getValueAt(2, 1).toString());
+        int rgFemale = Integer.parseInt(summaryTable.getValueAt(2, 2).toString());
+        
+        int enMale = Integer.parseInt(summaryTable.getValueAt(0, 1).toString());
+        int enFemale = Integer.parseInt(summaryTable.getValueAt(0, 2).toString());
+        
+        summaryTable.setValueAt(calculatePercentageOfEnrollment(rgMale, enMale), 3, 1);
+        summaryTable.setValueAt(calculatePercentageOfEnrollment(rgFemale, enFemale), 3, 2);
+        summaryTable.setValueAt(calculatePercentageOfEnrollment(rgMale+rgFemale, enMale+enFemale), 3, 3);
+    }
+    private String calculatePercentageOfEnrollment(float registeredLearners,float enrolledStudentsOnTime){
+        DecimalFormat df = new DecimalFormat("#.#");
+        df.setRoundingMode(RoundingMode.DOWN);
+        
+        String result = df.format(((float)enrolledStudentsOnTime/(float)registeredLearners)*100f);
+        return result.contains("NaN")? "0" : result;
+    }
+    private void loadSummary(){
+        clear_table_rows(summaryTable);
+        String summary [] = {
+            "Enrollment (1st Fri of June)@@0@@0@@0@@",
+            "Late Enrollment@@0@@0@@0@@",
+            "Registered Learners (End of Month)@@0@@0@@0@@",
+            "Percentage of Enrollment@@0@@0@@0@@",
+            "Average Daily Attendance@@0@@0@@0@@",
+            "Percentage of Attendance@@0@@0@@0@@",
+            "5 Consecutive Absences@@0@@0@@0@@",
+            "Dropped Out@@0@@0@@0@@",
+            "Transferred Out@@0@@0@@0@@",
+            "Transferred In@@0@@0@@0@@",
+        };
+        
+        for(String n : summary){
+            add_table_row(n, summaryTable);
+        }
+    }
+    private void loadAttendanceCounts(){
+        int studentCount = tableName.getRowCount();
+        
+        try {
+            lbLoadingMessage.setText("Counting Attendance...");
+            progressBar.setMaximum(studentCount);
+            progressBar.setValue(0);
+            for(int n=0;n<studentCount;n++){    //Loop Students
+                lbLoadingMessage.setText("Counting attendance of Student "+(n+1)+" of "+studentCount);
+                progressBar.setValue(n+1);
+                
+                absent = 0;
+                tardy = 0;
+                for(int x=0;x<schoolDaysColumnIndex.length;x++){  //Loop School Days Indeces
+                    lbLoadingMessage.setText("Counting attendance of Student "+(n+1)+" of "+studentCount
+                            +", "+(x+1)+"/"+schoolDaysColumnIndex.length+" processed");
+                    
+                    String currentValue = tableName.getValueAt(n, schoolDaysColumnIndex[x]).toString();
+                    if(currentValue.length()==1 && currentValue.contains("P")){
+                        continue;
+                    }if(currentValue.length()==1 && currentValue.contains("A")){
+                        absent++;continue;
+                    }if(currentValue.contains("T")){
+                        if(currentValue.contains("TLC")){
+                            //Is it considered present?
+                            tardy++;
+                        }if(currentValue.contains("TCC")){
+                            tardy++;
+                        }
+                    }
+                    Thread.sleep(threadDelay);
+                }
+                //Put results to column
+                tableName.setValueAt(absent, n, 32);
+                tableName.setValueAt(tardy, n, 33);
+                
+                Thread.sleep(pauseDelay);
+            }
+        } catch (Exception e) {
+            System.err.println("Error found @ loadAttendanceCounts()"+e.getMessage());
+        }
+        
+        String attendanceCounters [] = {
+            "-@@-@@-@@<==Male Total Per Day==>@@-@@-@@-@@",
+            "-@@-@@-@@<==Female Total Per Day==>@@-@@-@@-@@",
+            "-@@-@@-@@<==Combined Total Per Day==>@@-@@-@@-@@",
+        };
+        
+        for(String n : attendanceCounters){
+            add_table_row(n, tableName,new int[]{7,17,22,27},Color.RED);
+        }
+        int malePresent,femalePresent;
+        try {
+            lbLoadingMessage.setText("Counting Present values...");
+            //Count present
+            for(int n=0;n<schoolDaysColumnIndex.length;n++){    //Loop Columns with attendance
+                malePresent = 0;femalePresent = 0;
+                for(int x=0;x<studentCount;x++){ //Length does not include the last 3 rows
+                    String gender = tableName.getValueAt(x, 4).toString();
+                    String attendanceStatus = tableName.getValueAt(x, schoolDaysColumnIndex[n]).toString();
+
+                    if(attendanceStatus.length() == 1 && attendanceStatus.contains("P")){
+                        if(gender.contains("Female")){
+                            femalePresent++;
+                        }else{
+                            malePresent++;
+                        }continue;
+                    }
+                }
+                //Assign Values to the counters
+                tableName.setValueAt(malePresent, studentCount, schoolDaysColumnIndex[n]);
+                tableName.setValueAt(femalePresent, studentCount+1, schoolDaysColumnIndex[n]);
+                tableName.setValueAt(malePresent+femalePresent, studentCount+2, schoolDaysColumnIndex[n]);
+                
+                Thread.sleep(pauseDelay);
+            }
+        } catch (Exception e) {
+            System.err.println("Error found @ loadAttendanceCounts()"+e.getMessage());
+        }
+        try {
+            lbLoadingMessage.setText("Counting Absent & Tardy values...");
+            //Add absent & tardy counts
+            int maleAbsent = 0,femaleAbsent = 0;
+            int maleTardy = 0,femaleTardy = 0;
+            for(int n=0;n<studentCount;n++){    //loop students
+                String gender = tableName.getValueAt(n, 4).toString();
+                int currentAbsent = Integer.parseInt(tableName.getValueAt(n, 32).toString());
+                int currentTardy = Integer.parseInt(tableName.getValueAt(n, 33).toString());
+
+                if(gender.contains("Female")){
+                    femaleAbsent += currentAbsent;
+                }else{
+                    maleAbsent += currentAbsent;
+                }
+                if(gender.contains("Female")){
+                    femaleTardy += currentTardy;
+                }else{
+                    maleTardy += currentTardy;
+                }
+            }
+            tableName.setValueAt(maleAbsent, studentCount, 32);
+            tableName.setValueAt(femaleAbsent, studentCount+1, 32);
+            tableName.setValueAt(maleAbsent+femaleAbsent, studentCount+2, 32);
+
+            tableName.setValueAt(maleTardy, studentCount, 33);
+            tableName.setValueAt(femaleTardy, studentCount+1, 33);
+            tableName.setValueAt(maleTardy+femaleTardy, studentCount+2, 33);
+            
+            Thread.sleep(pauseDelay);
+        } catch (Exception e) {
+            System.err.println("Error found @ loadAttendanceCounts()"+e.getMessage());
+        }
+    }
+    
     //<editor-fold desc="Custom Functions">
     private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable){
         dialog = new JDialog(jFrameName);

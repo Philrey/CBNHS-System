@@ -912,7 +912,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
-            <Property name="dividerLocation" type="int" value="745"/>
+            <Property name="dividerLocation" type="int" value="610"/>
           </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
@@ -932,7 +932,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tpSf2Sf4TabbedPane" alignment="0" pref="745" max="32767" attributes="0"/>
+                      <Component id="tpSf2Sf4TabbedPane" alignment="0" pref="610" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -958,7 +958,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jSplitPane3" alignment="0" pref="740" max="32767" attributes="0"/>
+                              <Component id="jSplitPane3" alignment="0" pref="605" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -1464,7 +1464,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="740" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="605" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -1488,7 +1488,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane4" alignment="0" pref="210" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" alignment="0" pref="345" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -1515,21 +1515,39 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel22" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel19" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jLabel20" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jdcFirstDayOfMonth" min="-2" pref="117" max="-2" attributes="0"/>
+                                      <Component id="jLabel21" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jdcFirstDayOfMonth" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                                              <Component id="jdcCutOffDate" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                                          </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="tfGradeLevel1" alignment="0" pref="94" max="32767" attributes="0"/>
+                                                      <Component id="jLabel17" alignment="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="tfSchoolYear1" pref="94" max="32767" attributes="0"/>
+                                                      <Component id="jLabel18" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="tfSchoolDays" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="jLabel23" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              </Group>
                                               <Component id="btnExportSf2" alignment="0" max="32767" attributes="0"/>
                                               <Component id="btnLoadStudents1" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jScrollPane7" alignment="0" pref="0" max="32767" attributes="0"/>
@@ -1538,21 +1556,21 @@
                                               <Component id="tfSectionName1" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
                                               <Component id="tfAdviserName1" alignment="0" max="32767" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="tfGradeLevel1" alignment="0" pref="94" max="32767" attributes="0"/>
-                                                      <Component id="jLabel17" alignment="0" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="tfSchoolYear1" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
-                                                      <Component id="jLabel18" alignment="0" max="32767" attributes="0"/>
-                                                  </Group>
-                                              </Group>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="jLabel24" alignment="0" max="32767" attributes="0"/>
                                   </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jcbMissingValues" min="-2" pref="116" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1572,21 +1590,29 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="tfAdviserName1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfGradeLevel1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                          <Component id="tfSchoolYear1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tfSchoolDays" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                              <Component id="tfSchoolYear1" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="tfGradeLevel1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jScrollPane7" min="-2" pref="229" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
@@ -1594,6 +1620,14 @@
                                   <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jdcFirstDayOfMonth" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jdcCutOffDate" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jcbMissingValues" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="btnLoadStudents1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1701,7 +1735,7 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel20">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Choose1st Day of Desired Month"/>
+                            <Property name="text" type="java.lang.String" value="1st Day of Desired Month"/>
                           </Properties>
                         </Component>
                         <Component class="com.toedter.calendar.JDateChooser" name="jdcFirstDayOfMonth">
@@ -1778,6 +1812,50 @@
                             </Component>
                           </SubComponents>
                         </Container>
+                        <Component class="javax.swing.JLabel" name="jLabel21">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Enrollment Cut-off Date"/>
+                          </Properties>
+                        </Component>
+                        <Component class="com.toedter.calendar.JDateChooser" name="jdcCutOffDate">
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel22">
+                          <Properties>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="text" type="java.lang.String" value="Summary"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="tfSchoolDays">
+                          <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel23">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="School Days"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel24">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Values For Missing Records"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JComboBox" name="jcbMissingValues">
+                          <Properties>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="4">
+                                <StringItem index="0" value="None (Default)"/>
+                                <StringItem index="1" value="Present"/>
+                                <StringItem index="2" value="Absent"/>
+                                <StringItem index="3" value="Dashed (--)"/>
+                              </StringArray>
+                            </Property>
+                          </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                          </AuxValues>
+                        </Component>
                       </SubComponents>
                     </Container>
                   </SubComponents>
