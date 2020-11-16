@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2020 at 03:49 PM
+-- Generation Time: Nov 16, 2020 at 02:56 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -22,6 +22,16 @@ SET time_zone = "+00:00";
 -- Database: `final_cbnhs_db`
 --
 
+DELIMITER $$
+--
+-- Functions
+--
+CREATE DEFINER=`root`@`localhost` FUNCTION `getLastDay` (`dateEntered` DATE) RETURNS VARCHAR(25) CHARSET latin1 RETURN LAST_DAY(dateEntered)$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `getStartingDay` (`dateEntered` DATE) RETURNS VARCHAR(25) CHARSET latin1 RETURN DAYNAME(dateEntered)$$
+
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -35,7 +45,7 @@ CREATE TABLE `attendance` (
   `subjectId` int(11) NOT NULL DEFAULT '0',
   `status` varchar(10) NOT NULL DEFAULT 'Present',
   `dateAdded` datetime NOT NULL,
-  `notes` varchar(1000) NOT NULL
+  `notes` varchar(1000) NOT NULL DEFAULT ' '
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -60,10 +70,10 @@ INSERT INTO `attendance` (`id`, `studentId`, `sectionId`, `subjectId`, `status`,
 (43, 7, 7, 13, 'Present', '2020-02-12 15:30:12', 'Notes'),
 (44, 6, 8, 53, 'Present', '2020-02-14 10:41:00', 'Notes'),
 (45, 4, 8, 53, 'Absent', '2020-02-14 10:41:00', 'Notes'),
-(46, 1, 8, 53, 'Late', '2020-02-14 10:41:00', 'Arrived 20 minutes Late'),
-(47, 6, 7, 52, 'Late', '2020-02-10 07:31:00', 'Notes'),
-(48, 6, 7, 52, 'Late', '2020-02-11 10:51:38', 'Notes'),
-(49, 3, 7, 52, 'Late', '2020-02-11 10:51:38', 'Late by 20 minutes from the sound of the bell. Lol Hahaha'),
+(46, 1, 8, 53, 'Tardy', '2020-02-14 10:41:00', 'Arrived 20 minutes Late'),
+(47, 6, 7, 52, 'Tardy', '2020-02-10 07:31:00', 'Notes'),
+(48, 6, 7, 52, 'Tardy', '2020-02-11 10:51:38', 'Notes'),
+(49, 3, 7, 52, 'Tardy', '2020-02-11 10:51:38', 'LC:Late by 20 minutes from the sound of the bell. Lol Hahaha'),
 (50, 5, 7, 52, 'Absent', '2020-02-11 10:51:38', 'Notes'),
 (51, 8, 7, 52, 'Present', '2020-02-11 10:51:38', 'Notes'),
 (52, 7, 7, 52, 'Absent', '2020-02-11 10:51:38', 'Notes'),
@@ -80,7 +90,13 @@ INSERT INTO `attendance` (`id`, `studentId`, `sectionId`, `subjectId`, `status`,
 (78, 1, 7, 52, 'Present', '2020-10-13 08:15:00', 'Cutting Classes'),
 (79, 3, 7, 52, 'Present', '2020-10-13 08:15:00', 'Gave Excuse Letter'),
 (80, 1, 7, 52, 'Present', '2020-10-12 17:39:55', ' '),
-(81, 3, 7, 52, 'Late', '2020-10-12 17:39:55', 'Hay nako...Mata pud ug sayo oi..hahahaha');
+(81, 3, 7, 52, 'Tardy', '2020-10-12 17:39:55', 'LC:Hay nako...Mata pud ug sayo oi..hahahaha'),
+(82, 1, 7, 52, 'Present', '2020-11-13 08:30:43', 'Tardy'),
+(83, 3, 7, 52, 'Absent', '2020-11-13 08:30:43', 'Tards'),
+(84, 1, 7, 52, 'Absent', '2020-11-16 19:00:41', ' '),
+(85, 3, 7, 52, 'Present', '2020-11-16 19:00:41', ' '),
+(86, 1, 7, 52, 'Absent', '2020-02-17 08:00:00', ' '),
+(87, 3, 7, 52, 'Present', '2020-02-17 08:00:00', ' ');
 
 -- --------------------------------------------------------
 
@@ -479,7 +495,25 @@ CREATE TABLE `form_sf1_view` (
 ,`gName` varchar(500)
 ,`rltnshp` varchar(100)
 ,`contact` varchar(20)
-,`remarks` varchar(1)
+,`remarks` varchar(1000)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `form_sf2_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `form_sf2_view` (
+`id` int(11)
+,`sectionId` int(11)
+,`studentId` int(11)
+,`lName` varchar(100)
+,`fName` varchar(100)
+,`mName` varchar(100)
+,`sex` varchar(10)
+,`dateEnrolled` datetime
+,`remarks` varchar(1000)
 );
 
 -- --------------------------------------------------------
@@ -895,9 +929,9 @@ CREATE TABLE `personalinfo` (
 --
 
 INSERT INTO `personalinfo` (`id`, `stdId`, `bDate`, `age`, `bPlace`, `mTongue`, `ip`, `rlgn`, `houseN`, `brgy`, `mncpl`, `prvnce`, `fName`, `mName`, `gName`, `rltnshp`, `contact`, `date`) VALUES
-(1, 1, '2004-03-01', 20, 'Manay, Davao Oriental', 'Mandaya', 'Mandaya', 'Roman Catholic', 'Purok 18, Bato St.', 'Central', 'Manay', 'Davao Oriental', 'Enrique C. Paderogao', 'Jocelyn E. Paderogao', 'Joerick E. Paderogao', 'Brother', '09483428056', '2020-10-21 19:31:33'),
-(3, 2, '2004-03-01', 20, 'Manay, Davao Oriental', 'Mandaya', 'Mandaya', 'Roman Catholic', 'Purok 18, Bato St.', 'Central', 'Manay', 'Davao Oriental', 'Enrique C. Paderogao', 'Jocelyn E. Paderogao', 'Joerick E. Paderogao', 'Brother', '09483428056', '2020-09-09 18:37:23'),
-(5, 3, '0000-00-00', 0, 'LOCATION', 'LANGUAGE', 'INDIGENOUS PEOPLE', 'RELIGION', 'HOUSE NUM', 'BRGY', 'MUNICIPAL', 'PROVINCE', 'FATHER NAME', 'MOTHER NAME', 'GUARDIAN NAME', 'RELATIONSHIP', 'CONTACT', '2020-09-05 17:05:12');
+(1, 1, '2006-12-11', 20, 'Manay, Davao Oriental', 'Mandaya', '', 'Roman Catholic', 'Purok 18, Bato St.', 'Central', 'Manay', 'Davao Oriental', 'Enrique C. Paderogao', 'Jocelyn E. Paderogao', '', '', '09483428056', '2020-11-13 12:56:17'),
+(3, 2, '2006-12-11', 20, 'Manay, Davao Oriental', 'Mandaya', 'Mandaya', 'Roman Catholic', 'Purok 18, Bato St.', 'Central', 'Manay', 'Davao Oriental', 'Enrique C. Paderogao', 'Jocelyn E. Paderogao', 'Joerick E. Paderogao', 'Brother', '09483428056', '2020-09-09 18:37:23'),
+(5, 3, '2006-05-13', 0, 'LOCATION', 'LANGUAGE', 'INDIGENOUS PEOPLE', 'RELIGION', 'HOUSE NUM', 'BRGY', 'MUNICIPAL', 'PROVINCE', 'FATHER NAME', 'MOTHER NAME', 'GUARDIAN NAME', 'RELATIONSHIP', 'CONTACT', '2020-09-05 17:05:12');
 
 -- --------------------------------------------------------
 
@@ -945,7 +979,7 @@ CREATE TABLE `students` (
   `sex` varchar(10) NOT NULL,
   `inGr` float NOT NULL DEFAULT '0',
   `curGrLvl` int(11) NOT NULL DEFAULT '0',
-  `remarks` varchar(500) NOT NULL DEFAULT ' '
+  `remarks` varchar(1000) NOT NULL DEFAULT ' '
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -953,9 +987,11 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `lrn`, `lName`, `fName`, `mName`, `sex`, `inGr`, `curGrLvl`, `remarks`) VALUES
-(1, '123543457474', 'Paderogao', 'Phil Rey', 'Estrella', 'Male', 90.1, 7, ' '),
-(2, '123456789012', 'Kerby', 'Estrella', 'Paderogao', 'Female', 90.2, 0, ' '),
-(3, '123456789023', 'Rizal', 'Jose', 'Protacio', 'Male', 99, 7, ' ');
+(1, '123543457474', 'Paderogao', 'Phil Rey', 'Estrella', 'Male', 90.1, 7, ' ! !'),
+(2, '123456789012', 'Kerby', 'Estrella', 'Paderogao', 'Female', 90.2, 0, 'N/A!N/A!'),
+(3, '123456789023', 'Rizal', 'Jose', 'Protacio', 'Male', 99, 7, 'Yolo!T/I: 2020-02-01!'),
+(4, '129493120101', 'Cabillon', 'Jesthony', ' ', 'Male', 80, 0, 'N/A!N/A!'),
+(5, '129679130184', 'Antiga', 'Ariel', 'Socorro', 'Male', 80, 0, 'N/A!N/A!');
 
 -- --------------------------------------------------------
 
@@ -1251,6 +1287,7 @@ CREATE TABLE `v_enrollment_minimal` (
 ,`mName` varchar(100)
 ,`sex` varchar(10)
 ,`sectionId` int(11)
+,`remarks` varchar(1000)
 );
 
 -- --------------------------------------------------------
@@ -1366,7 +1403,16 @@ CREATE TABLE `v_teacherloads` (
 --
 DROP TABLE IF EXISTS `form_sf1_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf1_view`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`enrollment`.`sectionId` AS `sectionId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`personalinfo`.`bDate` AS `bDate`,`personalinfo`.`age` AS `age`,`personalinfo`.`mTongue` AS `mTongue`,`personalinfo`.`ip` AS `ip`,`personalinfo`.`rlgn` AS `rlgn`,`personalinfo`.`houseN` AS `houseN`,`personalinfo`.`brgy` AS `brgy`,`personalinfo`.`mncpl` AS `mncpl`,`personalinfo`.`prvnce` AS `prvnce`,`personalinfo`.`fName` AS `fathersName`,`personalinfo`.`mName` AS `mothersName`,`personalinfo`.`gName` AS `gName`,`personalinfo`.`rltnshp` AS `rltnshp`,`personalinfo`.`contact` AS `contact`,' ' AS `remarks` from ((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `personalinfo` on((`enrollment`.`studentId` = `personalinfo`.`stdId`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf1_view`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`enrollment`.`sectionId` AS `sectionId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`personalinfo`.`bDate` AS `bDate`,`personalinfo`.`age` AS `age`,`personalinfo`.`mTongue` AS `mTongue`,`personalinfo`.`ip` AS `ip`,`personalinfo`.`rlgn` AS `rlgn`,`personalinfo`.`houseN` AS `houseN`,`personalinfo`.`brgy` AS `brgy`,`personalinfo`.`mncpl` AS `mncpl`,`personalinfo`.`prvnce` AS `prvnce`,`personalinfo`.`fName` AS `fathersName`,`personalinfo`.`mName` AS `mothersName`,`personalinfo`.`gName` AS `gName`,`personalinfo`.`rltnshp` AS `rltnshp`,`personalinfo`.`contact` AS `contact`,`students`.`remarks` AS `remarks` from ((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `personalinfo` on((`enrollment`.`studentId` = `personalinfo`.`stdId`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `form_sf2_view`
+--
+DROP TABLE IF EXISTS `form_sf2_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf2_view`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`sectionId` AS `sectionId`,`enrollment`.`studentId` AS `studentId`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`dateEnrolled` AS `dateEnrolled`,`students`.`remarks` AS `remarks` from (`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
 
 -- --------------------------------------------------------
 
@@ -1384,7 +1430,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_enrollment_minimal`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_enrollment_minimal`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`sectionId` AS `sectionId` from (`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_enrollment_minimal`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`sectionId` AS `sectionId`,`students`.`remarks` AS `remarks` from (`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
 
 -- --------------------------------------------------------
 
@@ -1557,7 +1603,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `bmi`
@@ -1641,7 +1687,7 @@ ALTER TABLE `sections`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `subjects`
