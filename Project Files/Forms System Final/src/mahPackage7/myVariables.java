@@ -50,6 +50,7 @@ public class myVariables {
     
     //Selected Variables
     private static int formSelected;
+    private static int [] sectionsSelectedRowIds;
     
     private static int adviserIdSelected;
     private static String adviserNameSeleced;
@@ -130,6 +131,7 @@ public class myVariables {
     //Dropdown Icons
     private static final String maleIcon = "icons/icons8_male_16px.png";
     private static final String femaleIcon = "icons/icons8_female_16px.png";
+    private static final String infoIcon = "icons/icons8_info_16px.png";
     
     //<editor-fold desc="showMessage & getConfirmation Variables">
     private static String msgUrlIcon = "icons/icons8_info_50px.png";
@@ -350,6 +352,18 @@ public class myVariables {
     
     //<editor-fold desc="Getters & Setters">
     
+    public static String getInfoIcon() {
+        return infoIcon;
+    }
+
+    public static void setSectionsSelectedRowIds(int[] sectionsSelectedRowIds) {
+        myVariables.sectionsSelectedRowIds = sectionsSelectedRowIds;
+    }
+
+    public static int[] getSectionsSelectedRowIds() {
+        return sectionsSelectedRowIds;
+    }
+
     public static int[] getJhsf2Order() {
         return jhsf2Order;
     }
