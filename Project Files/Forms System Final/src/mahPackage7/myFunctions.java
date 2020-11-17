@@ -42,9 +42,9 @@ import org.json.JSONObject;
 public class myFunctions {
     private static Thread mainThead,secondThread;
     
-    public myFunctions(){
+    public myFunctions(boolean skipLoadingSettings){
         try {
-            loadSettings();
+            loadSettings(skipLoadingSettings);
         } catch (Exception e) {
             System.err.println("Error Loading Settings");
         }
@@ -54,7 +54,10 @@ public class myFunctions {
         currentWindow.dispose();
         targetWindow.setVisible(true);
     }
-    public void loadSettings() throws IOException{
+    public void loadSettings(boolean skipLoadingSettings) throws IOException{
+        if(skipLoadingSettings){
+            return;
+        }
         try {
             File file = new File("settings.txt");
             BufferedReader br = new BufferedReader(new FileReader(file));

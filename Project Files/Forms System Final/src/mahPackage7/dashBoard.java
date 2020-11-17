@@ -32,7 +32,7 @@ public class dashBoard extends javax.swing.JFrame {
      * Creates new form dashBoard
      */
     public dashBoard() {
-        my = new myFunctions();
+        my = new myFunctions(false);
         initComponents();
         
         lbLoggedInUser.setText("Welcome "+myVariables.getUserLoggedInName()+" ("+myVariables.getAccessLevelName(-1)+")");
@@ -1438,6 +1438,7 @@ public class dashBoard extends javax.swing.JFrame {
         setTitle("Dashboard");
         setIconImage(my.getImgIcn(myVariables.getFormsWindowIcon()).getImage()
         );
+        setPreferredSize(new java.awt.Dimension(983, 551));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -1461,6 +1462,7 @@ public class dashBoard extends javax.swing.JFrame {
         kGradientPanel1.setPreferredSize(new java.awt.Dimension(1003, 600));
 
         headerPanel.setBackground(new java.awt.Color(22, 66, 33));
+        headerPanel.setPreferredSize(new java.awt.Dimension(862, 75));
 
         lbSchoolName.setBackground(new java.awt.Color(255, 255, 255));
         lbSchoolName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -1484,10 +1486,12 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(headerPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbSchoolAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(headerPanelLayout.createSequentialGroup()
+                        .addComponent(lbSchoolAddress)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(headerPanelLayout.createSequentialGroup()
                         .addComponent(lbSchoolName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbLoggedInUser)))
                 .addContainerGap())
         );
@@ -1500,7 +1504,7 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(lbLoggedInUser))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbSchoolAddress)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         mainTab.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -1513,7 +1517,7 @@ public class dashBoard extends javax.swing.JFrame {
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE)
             .addComponent(mainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE)
         );
         kGradientPanel1Layout.setVerticalGroup(
@@ -1521,7 +1525,7 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
+                .addComponent(mainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1675,7 +1679,7 @@ public class dashBoard extends javax.swing.JFrame {
         }
         
         my.searchItemThread("", "WHERE sectionId='"+sectionId+"'", sf2Table, 11, new int [] {3,4,5}, true, null,new int[]{7,12,17,22},Color.RED);
-        my.runSecondaryThread(1, true, new JTable[]{weekDaysOfTheMonthTable,sf2Table,summarySf2}, new String[]{sectionId,firstDayOfMonth,subjectId,cutOffDate,substituteValue}, new JTextField[]{tfSchoolDays}, null);
+        my.runSecondaryThread(1, true, new JTable[]{weekDaysOfTheMonthTable,sf2Table,summarySf2,null}, new String[]{sectionId,firstDayOfMonth,subjectId,cutOffDate,substituteValue}, new JTextField[]{tfSchoolDays}, null);
     }//GEN-LAST:event_btnLoadStudents1ActionPerformed
 
     private void btnExportSf2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf2ActionPerformed
@@ -1695,16 +1699,36 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSf4ActionPerformed
 
     private void btnSelectAllSectionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectAllSectionsActionPerformed
-        
+        if(assignedTeacherTable.getRowCount() <= 0){
+            my.showMessage("No Sections Found.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(jcbSchoolYear1.getSelectedIndex() == 0){
+            my.showMessage("Please select only ONE School Year.", JOptionPane.ERROR_MESSAGE);
+            my.clear_table_rows(assignedTeacherTable);
+            return;
+        }
+        myVariables.setSelectAllSectionsForSf4(true);
+        mainTab.setSelectedIndex(3);
     }//GEN-LAST:event_btnSelectAllSectionsActionPerformed
 
     private void btnOnlySelectedSectionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOnlySelectedSectionsActionPerformed
+        if(assignedTeacherTable.getRowCount() <= 0){
+            my.showMessage("No Sections Found.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(jcbSchoolYear1.getSelectedIndex() == 0){
+            my.showMessage("Please select only ONE School Year.", JOptionPane.ERROR_MESSAGE);
+            my.clear_table_rows(assignedTeacherTable);
+            return;
+        }
         int selectedRows [] = assignedTeacherTable.getSelectedRows();
         
-        if(selectedRows != null){
-            
+        if(selectedRows != null && selectedRows.length > 0){
+            myVariables.setSelectAllSectionsForSf4(false);
+            mainTab.setSelectedIndex(3);
         }else{
-            
+            my.showMessage("No Section(s) Selected.", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnOnlySelectedSectionsActionPerformed
     private void selectFormToExport(int formIndexExact){
@@ -1715,11 +1739,13 @@ public class dashBoard extends javax.swing.JFrame {
                 break;
             }case 2:{
                 my.select_tab(mainTab, 1);
+                tpSelectSectionInstructions.setSelectedIndex(0);
                 break;
             }case 3:{
                 break;
             }case 4:{
                 my.select_tab(mainTab, 1);
+                tpSelectSectionInstructions.setSelectedIndex(1);
                 break;
             }case 5:{
                 break;

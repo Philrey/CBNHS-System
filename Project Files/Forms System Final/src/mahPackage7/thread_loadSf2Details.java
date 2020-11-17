@@ -41,6 +41,8 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
     private int male,female,numberOfSchoolDays;
     private int absent,tardy;
     private int schoolDaysColumnIndex [];
+    //Sf4 Variables (Optional)
+    private JTable sf4Table;
     
     //Main Variables
     private int males,females,total;
@@ -69,6 +71,8 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         dateTable = tablesToUse[0];
         tableName = tablesToUse[1];
         summaryTable = tablesToUse[2];
+        sf4Table = tablesToUse[3];
+        
         sectionId = stringsToUse[0];
         dateSelected = stringsToUse[1];
         subjectId = stringsToUse[2];
@@ -232,15 +236,22 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         loadAverageAttendance();
         calculatePercentageOfAttendance();
         //</editor-fold>
-        for(int a : schoolDaysColumnIndex){
-            System.out.print(a+",");
+        //Load Put Summary on Sf4 Table (Optional)
+        if(sf4Table != null){
+            System.err.println("Putting summary to sf4 table.");
         }
         
-        return null;
+        return "Success";
     }
 
     @Override
     protected void done() {
+        try {
+            String result = get();
+            System.err.println("Sf2 Thread Finished Successfully: "+result);
+        } catch (Exception e) {
+            System.err.println("Sf2 Thread Failed.");
+        }
         closeCustomDialog();
         super.done(); //To change body of generated methods, choose Tools | Templates.
     }

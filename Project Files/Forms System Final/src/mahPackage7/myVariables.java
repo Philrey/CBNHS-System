@@ -50,7 +50,7 @@ public class myVariables {
     
     //Selected Variables
     private static int formSelected;
-    private static int [] sectionsSelectedRowIds;
+    private static boolean selectAllSectionsForSf4;
     
     private static int adviserIdSelected;
     private static String adviserNameSeleced;
@@ -351,17 +351,16 @@ public class myVariables {
     //</editor-fold>
     
     //<editor-fold desc="Getters & Setters">
+    public static boolean isSelectAllSectionsForSf4() {
+        return selectAllSectionsForSf4;
+    }
     
+    public static void setSelectAllSectionsForSf4(boolean selectAllSectionsForSf4) {    
+        myVariables.selectAllSectionsForSf4 = selectAllSectionsForSf4;
+    }
+
     public static String getInfoIcon() {
         return infoIcon;
-    }
-
-    public static void setSectionsSelectedRowIds(int[] sectionsSelectedRowIds) {
-        myVariables.sectionsSelectedRowIds = sectionsSelectedRowIds;
-    }
-
-    public static int[] getSectionsSelectedRowIds() {
-        return sectionsSelectedRowIds;
     }
 
     public static int[] getJhsf2Order() {

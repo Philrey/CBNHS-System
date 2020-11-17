@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 public class formsLogin extends javax.swing.JFrame {
     myFunctions my;
     public formsLogin() {
-        my = new myFunctions();
+        my = new myFunctions(false);
         initComponents();
         loadColoredButtons();
     }
