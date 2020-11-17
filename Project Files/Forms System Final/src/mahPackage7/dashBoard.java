@@ -140,6 +140,8 @@ public class dashBoard extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         sf2Table = new javax.swing.JTable();
         sf4Tab = new javax.swing.JPanel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        sf4Table = new javax.swing.JTable();
         right2 = new javax.swing.JPanel();
         tpSf2Sf4DetailsPane = new javax.swing.JTabbedPane();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -1012,15 +1014,34 @@ public class dashBoard extends javax.swing.JFrame {
 
         tpSf2Sf4TabbedPane.addTab("SF2 Daily Attendance Report", sf2Tab);
 
+        sf4Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane12.setViewportView(sf4Table);
+
         javax.swing.GroupLayout sf4TabLayout = new javax.swing.GroupLayout(sf4Tab);
         sf4Tab.setLayout(sf4TabLayout);
         sf4TabLayout.setHorizontalGroup(
             sf4TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 605, Short.MAX_VALUE)
+            .addGroup(sf4TabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
+                .addContainerGap())
         );
         sf4TabLayout.setVerticalGroup(
             sf4TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 566, Short.MAX_VALUE)
+            .addGroup(sf4TabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         tpSf2Sf4TabbedPane.addTab("SF4 Monthly Attendance Report", sf4Tab);
@@ -1359,7 +1380,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(btnLoadStudents2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExportSf4)
-                .addContainerGap(264, Short.MAX_VALUE))
+                .addContainerGap(451, Short.MAX_VALUE))
         );
 
         jScrollPane9.setViewportView(jPanel2);
@@ -1593,15 +1614,25 @@ public class dashBoard extends javax.swing.JFrame {
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         //System.err.println("Window gained focus. Source: "+evt.paramString());
-        my.interrupMainThread();
         if(evt.getSource() == btnCancelLoading || evt.getComponent().isVisible()){
+            my.interrupMainThread();
             my.interrupSecondThread();
+            my.interruptThirdThread();
+            return;
+        }
+        if(!evt.getComponent().isVisible()){
+            if(myFunctions.getThirdThread().isAlive()){
+                //Don't interrupt anything
+            }else{
+                //my.interrupMainThread();
+            }
         }
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void btnCancelLoadingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelLoadingActionPerformed
         my.interrupMainThread();
         my.interrupSecondThread();
+        my.interruptThirdThread();
     }//GEN-LAST:event_btnCancelLoadingActionPerformed
 
     private void btnLoadStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudentsActionPerformed
@@ -1687,7 +1718,41 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExportSf2ActionPerformed
 
     private void btnLoadStudents2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudents2ActionPerformed
-        // TODO add your handling code here:
+        String firstDayOfMonth = "";
+        String cutOffDate = "";
+        try {
+            firstDayOfMonth = my.jCalendarToNumberDate(jdcFirstDayOfMonth1.getDate().toString(), false);
+            cutOffDate = my.jCalendarToNumberDate(jdcCutOffDate1.getDate().toString(), false);
+        } catch (Exception e) {
+            my.showMessage("Invalid Date.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String substituteValue = "";
+        
+        switch(jcbMissingValues.getSelectedIndex()){
+            case 0:{
+                substituteValue=" ";
+                break;
+            }case 1:{
+                substituteValue="P";
+                break;
+            }case 2:{
+                substituteValue="A";
+                break;
+            }case 3:{
+                substituteValue="--";
+                break;
+            }default:{
+                break;
+            }
+        }
+        
+        my.runThirdThread(0, true, 
+                new JTable[]{weekDaysOfTheMonthTable,sf2Table,summarySf2,sf4Table,assignedTeacherTable},
+                new String[]{null,firstDayOfMonth,null,cutOffDate,substituteValue}, 
+                new JTextField[]{tfSchoolDays,tfSectionName1,tfAdviserName1,tfGradeLevel1,tfSchoolYear1},
+                null
+        );
     }//GEN-LAST:event_btnLoadStudents2ActionPerformed
 
     private void btnExportSf4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf4ActionPerformed
@@ -2214,6 +2279,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2260,6 +2326,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTable sf2Table;
     private javax.swing.JPanel sf4InstructionsPanel;
     private javax.swing.JPanel sf4Tab;
+    private javax.swing.JTable sf4Table;
     private javax.swing.JTable summarySf2;
     private javax.swing.JTextField tfAdviserName;
     private javax.swing.JTextField tfAdviserName1;

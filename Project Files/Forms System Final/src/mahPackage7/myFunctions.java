@@ -40,7 +40,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class myFunctions {
-    private static Thread mainThead,secondThread;
+    private static Thread mainThead,secondThread,thirdThread;
     
     public myFunctions(boolean skipLoadingSettings){
         try {
@@ -170,20 +170,13 @@ public class myFunctions {
                 toSearch,"*", from, where, order, resultTable,combineColumns,toNameFormat,resultText,coloredColumnIndex,selectedColor
         );
         System.err.println("Starting Thread");
-        if(mainThead == null){
-            mainThead = new Thread(trv);
-            mainThead.start();
-        }else{
+        if(mainThead != null){
             if(mainThead.isAlive()){
-                mainThead.interrupt();
-                mainThead = new Thread(trv);
-                mainThead.start();
-            }else{
-                mainThead = new Thread(trv);
-                mainThead.start();
+                interrupMainThread();
             }
         }
-        
+        mainThead = new Thread(trv);
+        mainThead.start();
     }
     /**
     * By: <b>Phil Rey E. Paderogao</b>
@@ -802,6 +795,32 @@ public class myFunctions {
         secondThread = toLoad;
         secondThread.start();
     }
+    public void runThirdThread(int threadIndex,boolean waitForMainThreadToFinish,JTable [] tablesToUse,String [] valuesToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse){
+        Thread toLoad = null;
+        switch (threadIndex){
+            case 0:{
+                thread_loadSf4Details tld = new thread_loadSf4Details(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, new boolean[]{true,true,true});
+                toLoad = new Thread(tld);
+                break;
+            }case 1:{
+                break;
+            }case 2:{
+                break;
+            }case 3:{
+                break;
+            }default:{
+                System.err.println("No proper thread selected.");
+                return;
+            }
+        }
+        if(thirdThread != null){
+            if(thirdThread.isAlive()){
+                interruptThirdThread();
+            }
+        }
+        thirdThread = toLoad;
+        thirdThread.start();
+    }
     public void interrupMainThread(){
         if(mainThead != null){
             if(mainThead.isAlive()){
@@ -818,6 +837,17 @@ public class myFunctions {
             if(secondThread.isAlive()){
                 System.err.println("Stopping Second Thread");
                 secondThread.interrupt();
+                return;
+            }else{
+                //System.err.println("Second Thread is not running.");
+            }
+        }
+    }
+    public void interruptThirdThread(){
+        if(thirdThread != null){
+            if(thirdThread.isAlive()){
+                System.err.println("Stopping Third Thread");
+                thirdThread.interrupt();
                 return;
             }else{
                 //System.err.println("Second Thread is not running.");
@@ -1409,5 +1439,8 @@ public class myFunctions {
     public static Thread getSecondThread() {
         return secondThread;
     }
-    
+
+    public static Thread getThirdThread() {
+        return thirdThread;
+    }
 }

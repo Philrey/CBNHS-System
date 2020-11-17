@@ -147,6 +147,7 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
             }
         } catch (Exception e) {
             System.err.println("Error: "+e.getMessage());
+            //e.printStackTrace();
             return -1;
         }
         

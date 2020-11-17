@@ -38,14 +38,13 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
     long pauseDelay = 500;
     
     //Summary Variables
-    private int male,female,numberOfSchoolDays;
+    private int numberOfSchoolDays;
     private int absent,tardy;
     private int schoolDaysColumnIndex [];
     //Sf4 Variables (Optional)
     private JTable sf4Table;
     
     //Main Variables
-    private int males,females,total;
     private JTable dateTable;
     private JTable tableName;
     private JTable summaryTable;
@@ -88,154 +87,160 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         progressBar = myVariables.getProgressBar();
     }
     @Override
-    protected String doInBackground() throws Exception {
-        //<editor-fold desc="Wait For Students to Load">
-        if(waitForMainThreadToFinish){
-            System.err.println("Waiting for mainThread to Finish first...");
-            while (true) {                
-                if(myFunctions.getMainThead() == null){
-                    break;
-                }else{
-                    if(!myFunctions.getMainThead().isAlive()){
+    protected String doInBackground(){
+        try {
+            //<editor-fold desc="Wait For Students to Load">
+            if(waitForMainThreadToFinish){
+                System.err.println("Waiting for mainThread to Finish first...");
+                while (true) {                
+                    if(myFunctions.getMainThead() == null){
                         break;
+                    }else{
+                        if(!myFunctions.getMainThead().isAlive()){
+                            break;
+                        }
                     }
                 }
             }
-        }
-        //</editor-fold>
-        //<editor-fold desc="Initialize Variables">
-        tableName.setEnabled(false);
-        showCustomDialog("Loading Attendances...", dialogPanel, false, 420, 220, false);
-        loadSummary();
-        loadSchoolDaysIndex();
-        translateRemarks();
-        evaluateRemarks();
-        System.err.println("Starting Second THread");
-        //Load Dates
-        lbLoadingMessage.setText("Determining Days...");
-        String dateLine = "-@@-@@-@@-@@-@@-@@-@@"+getStartAndEndDates(dateSelected, false);
-        clear_table_rows(dateTable);
-        add_table_row(dateLine, dateTable, new int []{7,12,17,22}, Color.RED);
-        
-        Thread.sleep(pauseDelay);
-        //</editor-fold>
-        //<editor-fold desc="Load Attendances">
-            lbLoadingMessage.setText("Processing...");
-            
-            int studCount = tableName.getRowCount(),attendanceCount=0;
-            int currentDateSelected=0,dateResultFound;
-            String studentId = "",gender="",dateEnrolled="";
-            
-            progressBar.setMinimum(0);
-            progressBar.setMaximum(studCount);
-            Thread.sleep(threadDelay);
-            
-            for(int n=0;n<studCount;n++){   //Loop student table
-                lbLoadingMessage.setText("Processing Student "+(n+1)+" of "+studCount);
-                progressBar.setValue(n+1);
-                studentId = tableName.getValueAt(n, 2).toString();
-                
-                gender = tableName.getValueAt(n, 4).toString();
-                dateEnrolled = tableName.getValueAt(n, 5).toString();
-                checkEnrollmentType(gender, dateEnrolled);
-                
-                Thread.sleep(pauseDelay);
-                
-                //Get attendaces of student from database
-                String where = "WHERE studentId='"+studentId+"' AND "
-                        + "sectionId='"+sectionId+"' AND "
-                        + "subjectId='"+subjectId+"' AND "
-                        + "dateAdded>='"+startingDate+"' AND "
-                        + "dateAdded <='"+endingDate+"' "
-                        + "ORDER BY sectionId DESC,studentId DESC,subjectId DESC, dateAdded ASC";
+            //</editor-fold>
+            //<editor-fold desc="Initialize Variables">
+            tableName.setEnabled(false);
+            showCustomDialog("Loading Attendances...", dialogPanel, false, 420, 220, false);
+            loadSummary();
+            loadSchoolDaysIndex();
+            translateRemarks();
+            evaluateRemarks();
+            System.err.println("Starting Second THread");
+            //Load Dates
+            lbLoadingMessage.setText("Determining Days...");
+            String dateLine = "-@@-@@-@@-@@-@@-@@-@@"+getStartAndEndDates(dateSelected, false);
+            clear_table_rows(dateTable);
+            add_table_row(dateLine, dateTable, new int []{7,12,17,22}, Color.RED);
+
+            Thread.sleep(pauseDelay);
+            //</editor-fold>
+            //<editor-fold desc="Load Attendances">
+                lbLoadingMessage.setText("Processing...");
+
+                int studCount = tableName.getRowCount(),attendanceCount=0;
+                int currentDateSelected=0,dateResultFound;
+                String studentId = "",gender="",dateEnrolled="";
+
+                progressBar.setMinimum(0);
+                progressBar.setMaximum(studCount);
                 Thread.sleep(threadDelay);
-                lbLoadingMessage.setText("Connecting to Database...");
-                
-                String [] attendanceResults = return_values("*", "attendance", where, myVariables.getAttendanceOrder());
-                
-                Thread.sleep(pauseDelay);
-                lbLoadingMessage.setText("Loading Attendance...");
-                
-                boolean matchFound;
-                int currentSchoolDays = 0;
-                if(attendanceResults != null){
-                    for(int x=7;x<32;x++){  //Loop Dates
-                        lbLoadingMessage.setText("Processing Student "+(n+1)+" of "+studCount+". Date "+(x-6)+" of 25");
-                        try {
-                            currentDateSelected = Integer.parseInt(dateTable.getValueAt(0, x).toString());
-                        } catch (Exception e) {
-                            tableName.setValueAt(myVariables.isDebugModeOn()? "ND" : " ", n, x);
-                            continue;
-                        }
-                        //Match attendance dates with day columns
-                        attendanceCount = attendanceResults.length;
-                        matchFound = false;
-                        
-                        for(int y=0;y<attendanceCount;y++){ //Loop Attendances
-                            String cLine [] = attendanceResults[y].split("@@"); //{29,3,7,52,Present,2020-02-10 17:52:45,Notes}
-                            String dateTime [] = cLine[5].split(" ");   //{2020-03-25,10:00:00}
-                            String dates [] = dateTime[0].split("-");   //{2020,03,25}
-                            
-                            dateResultFound = Integer.parseInt(dates[2]);
-                            //System.err.println("CD:"+currentDateSelected+" RD:"+dateTime[0]);
-                            if(dateResultFound == currentDateSelected){
-                                //System.err.println("Match Found");
-                                //Process attendance
-                                if(cLine[4].contains("Present")){
-                                    tableName.setValueAt("P", n, x);
-                                }if(cLine[4].contains("Absent")){
-                                    tableName.setValueAt("A", n, x);
-                                }if(cLine[4].contains("Tardy") || cLine[4].contains("Late")){
-                                    try {
-                                        //Check notes for codes
-                                        String codes [] = cLine[6].split(":");
-                                        tableName.setValueAt("T"+codes[0], n, x);
-                                    } catch (Exception e) {
-                                        tableName.setValueAt("T", n, x);
-                                    }
-                                }
-                                matchFound = true;
-                                currentSchoolDays++;
-                                try {
-                                    schoolDaysColumnIndex[x-7] = x;
-                                } catch (Exception e) {
-                                    System.err.println("Column Indexing Error");
-                                }
-                                break;
+
+                for(int n=0;n<studCount;n++){   //Loop student table
+                    lbLoadingMessage.setText("Processing Student "+(n+1)+" of "+studCount);
+                    progressBar.setValue(n+1);
+                    studentId = tableName.getValueAt(n, 2).toString();
+
+                    gender = tableName.getValueAt(n, 4).toString();
+                    dateEnrolled = tableName.getValueAt(n, 5).toString();
+                    checkEnrollmentType(gender, dateEnrolled);
+
+                    Thread.sleep(pauseDelay);
+
+                    //Get attendaces of student from database
+                    String where = "WHERE studentId='"+studentId+"' AND "
+                            + "sectionId='"+sectionId+"' AND "
+                            + "subjectId='"+subjectId+"' AND "
+                            + "dateAdded>='"+startingDate+"' AND "
+                            + "dateAdded <='"+endingDate+"' "
+                            + "ORDER BY sectionId DESC,studentId DESC,subjectId DESC, dateAdded ASC";
+                    Thread.sleep(threadDelay);
+                    lbLoadingMessage.setText("Connecting to Database...");
+
+                    String [] attendanceResults = return_values("*", "attendance", where, myVariables.getAttendanceOrder());
+
+                    Thread.sleep(pauseDelay);
+                    lbLoadingMessage.setText("Loading Attendance...");
+
+                    boolean matchFound;
+                    int currentSchoolDays = 0;
+                    if(attendanceResults != null){
+                        for(int x=7;x<32;x++){  //Loop Dates
+                            lbLoadingMessage.setText("Processing Student "+(n+1)+" of "+studCount+". Date "+(x-6)+" of 25");
+                            try {
+                                currentDateSelected = Integer.parseInt(dateTable.getValueAt(0, x).toString());
+                            } catch (Exception e) {
+                                tableName.setValueAt(myVariables.isDebugModeOn()? "ND" : " ", n, x);
+                                continue;
                             }
+                            //Match attendance dates with day columns
+                            attendanceCount = attendanceResults.length;
+                            matchFound = false;
+
+                            for(int y=0;y<attendanceCount;y++){ //Loop Attendances
+                                String cLine [] = attendanceResults[y].split("@@"); //{29,3,7,52,Present,2020-02-10 17:52:45,Notes}
+                                String dateTime [] = cLine[5].split(" ");   //{2020-03-25,10:00:00}
+                                String dates [] = dateTime[0].split("-");   //{2020,03,25}
+
+                                dateResultFound = Integer.parseInt(dates[2]);
+                                //System.err.println("CD:"+currentDateSelected+" RD:"+dateTime[0]);
+                                if(dateResultFound == currentDateSelected){
+                                    //System.err.println("Match Found");
+                                    //Process attendance
+                                    if(cLine[4].contains("Present")){
+                                        tableName.setValueAt("P", n, x);
+                                    }if(cLine[4].contains("Absent")){
+                                        tableName.setValueAt("A", n, x);
+                                    }if(cLine[4].contains("Tardy") || cLine[4].contains("Late")){
+                                        try {
+                                            //Check notes for codes
+                                            String codes [] = cLine[6].split(":");
+                                            tableName.setValueAt("T"+codes[0], n, x);
+                                        } catch (Exception e) {
+                                            tableName.setValueAt("T", n, x);
+                                        }
+                                    }
+                                    matchFound = true;
+                                    currentSchoolDays++;
+                                    try {
+                                        schoolDaysColumnIndex[x-7] = x;
+                                    } catch (Exception e) {
+                                        System.err.println("Column Indexing Error");
+                                    }
+                                    break;
+                                }
+                            }
+                            if(!matchFound){
+                                tableName.setValueAt(myVariables.isDebugModeOn()? "NAFIR" : " ", n, x);  //No attendance found for this day
+                            }
+                            Thread.sleep(threadDelay);
                         }
-                        if(!matchFound){
-                            tableName.setValueAt(myVariables.isDebugModeOn()? "NAFIR" : " ", n, x);  //No attendance found for this day
+                    }else{
+                        for(int x=7;x<32;x++){  //Loop Dates
+                            try {
+                                currentDateSelected = Integer.parseInt(dateTable.getValueAt(0, x).toString());
+                            } catch (Exception e) {
+                                tableName.setValueAt(myVariables.isDebugModeOn()? "ND" : " ", n, x);
+                                continue;
+                            }
+                            tableName.setValueAt(myVariables.isDebugModeOn()? "NAF" : " ", n, x);  //No attendance found for this day
                         }
-                        Thread.sleep(threadDelay);
                     }
-                }else{
-                    for(int x=7;x<32;x++){  //Loop Dates
-                        try {
-                            currentDateSelected = Integer.parseInt(dateTable.getValueAt(0, x).toString());
-                        } catch (Exception e) {
-                            tableName.setValueAt(myVariables.isDebugModeOn()? "ND" : " ", n, x);
-                            continue;
-                        }
-                        tableName.setValueAt(myVariables.isDebugModeOn()? "NAF" : " ", n, x);  //No attendance found for this day
+                    //Compare School Days
+                    if(currentSchoolDays > numberOfSchoolDays){
+                        numberOfSchoolDays = currentSchoolDays;
                     }
                 }
-                //Compare School Days
-                if(currentSchoolDays > numberOfSchoolDays){
-                    numberOfSchoolDays = currentSchoolDays;
-                }
-            }
-        //</editor-fold>
-        //<editor-fold desc="Load Summary">
-        tfSchoolDays.setText(String.valueOf(numberOfSchoolDays));
-        resetSchoolDaysIndex();
-        fillUpMissingRecords();
-        checkForFiveConsecutiveAbsences();
-        getEnrollmentPercentage();
-        loadAttendanceCounts();
-        loadAverageAttendance();
-        calculatePercentageOfAttendance();
-        //</editor-fold>
+            //</editor-fold>
+            //<editor-fold desc="Load Summary">
+            tfSchoolDays.setText(String.valueOf(numberOfSchoolDays));
+            resetSchoolDaysIndex();
+            fillUpMissingRecords();
+            checkForFiveConsecutiveAbsences();
+            getEnrollmentPercentage();
+            loadAttendanceCounts();
+            loadAverageAttendance();
+            calculatePercentageOfAttendance();
+            //</editor-fold>
+        } catch (Exception e) {
+            System.err.println("Error Occured @ loadSf2Details");
+            //e.printStackTrace();
+            return "Failed";
+        }
         //Load Put Summary on Sf4 Table (Optional)
         if(sf4Table != null){
             System.err.println("Putting summary to sf4 table.");
@@ -368,7 +373,12 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             String remarksString = tableName.getValueAt(n, 6).toString();
             String remarks [] = remarksString.split("!");
             
-            tableName.setValueAt(remarks[1], n, 6);
+            try {
+                tableName.setValueAt(remarks[1], n, 6);
+            } catch (Exception e) {
+                System.err.println("Error Occure @ translateRemarks: "+e.getMessage());
+                e.printStackTrace();
+            }
         }
     }
     private void loadAverageAttendance(){
