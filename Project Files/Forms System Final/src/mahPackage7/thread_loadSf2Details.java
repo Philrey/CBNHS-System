@@ -43,6 +43,10 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
     private int schoolDaysColumnIndex [];
     //Sf4 Variables (Optional)
     private JTable sf4Table;
+    private JTextField tfSectionName;
+    private JTextField tfAdviserName;
+    private JTextField tfGradeLevel;
+    private JTextField tfSchoolYear;
     
     //Main Variables
     private JTable dateTable;
@@ -79,6 +83,12 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         missingValuesSubstitute = stringsToUse[4];
         
         tfSchoolDays = textFieldsToUse[0];
+        if(textFieldsToUse.length>1){
+            tfSectionName = textFieldsToUse[1];
+            tfAdviserName = textFieldsToUse[2];
+            tfGradeLevel = textFieldsToUse[3];
+            tfSchoolYear = textFieldsToUse[4];
+        }
         
         this.waitForMainThreadToFinish = waitForMainThreadToFinish;
         jFrameName = myVariables.getCurrentLoadingFrame();
@@ -108,6 +118,15 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             showCustomDialog("Loading Attendances...", dialogPanel, false, 420, 220, false);
             loadSummary();
             loadSchoolDaysIndex();
+            //Check if there are students
+            if(tableName.getRowCount() <= 0){
+                System.err.println("No students found. SKipping");
+                tfSchoolDays.setText("0");
+                try {
+                    throw new InterruptedException("Ended");
+                } catch (Exception e) {System.err.println("Can't Interrut anymore");}
+            }
+            
             translateRemarks();
             evaluateRemarks();
             System.err.println("Starting Second THread");
@@ -237,18 +256,13 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             calculatePercentageOfAttendance();
             //</editor-fold>
         } catch (Exception e) {
-            System.err.println("Error Occured @ loadSf2Details");
-            //e.printStackTrace();
+            System.err.println("Error Occured @ loadSf2Details : "+e.getMessage());
+            e.printStackTrace();
             return "Failed";
         }
-        //Load Put Summary on Sf4 Table (Optional)
-        if(sf4Table != null){
-            System.err.println("Putting summary to sf4 table.");
-        }
-        
         return "Success";
     }
-
+    
     @Override
     protected void done() {
         try {
@@ -258,9 +272,33 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             System.err.println("Sf2 Thread Failed.");
         }
         closeCustomDialog();
+        if(sf4Table != null){
+            sendSummaryToSf4Table();
+        }
         super.done(); //To change body of generated methods, choose Tools | Templates.
     }
-    
+    private void sendSummaryToSf4Table(){
+        try {
+            String sectionName = tfSectionName.getText();
+            String adviserName = tfAdviserName.getText();
+            String gradeLevel = tfGradeLevel.getText();
+            String schoolYear = tfSchoolYear.getText();
+
+            String cLine = gradeLevel+"@@"+sectionName+"@@"+adviserName+"@@"
+                    +summaryTable.getValueAt(2, 1)+"@@"+summaryTable.getValueAt(2, 2)+"@@"+summaryTable.getValueAt(2, 3)+"@@"
+                    +summaryTable.getValueAt(4, 1)+"@@"+summaryTable.getValueAt(4, 2)+"@@"+summaryTable.getValueAt(4, 3)+"@@"
+                    +summaryTable.getValueAt(5, 1)+"@@"+summaryTable.getValueAt(5, 2)+"@@"+summaryTable.getValueAt(5, 3)+"@@"
+                    
+                    +summaryTable.getValueAt(7, 1)+"@@"+summaryTable.getValueAt(7, 2)+"@@"+summaryTable.getValueAt(7, 3)+"@@"
+                    +summaryTable.getValueAt(8, 1)+"@@"+summaryTable.getValueAt(8, 2)+"@@"+summaryTable.getValueAt(8, 3)+"@@"
+                    +summaryTable.getValueAt(9, 1)+"@@"+summaryTable.getValueAt(9, 2)+"@@"+summaryTable.getValueAt(9, 3)+"@@";
+            
+            add_table_row(cLine, sf4Table);
+        } catch (Exception e) {
+            System.err.println("Error sending statistics to Sf4 @ sendSummaryToSf4Table: "+e.getMessage());
+            //e.printStackTrace();
+        }
+    }
     private void evaluateRemarks(){
         int studCOunt = tableName.getRowCount();
         int transferredIn=0,transferredOut=0,dropped=0;

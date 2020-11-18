@@ -826,6 +826,7 @@ public class myFunctions {
             if(mainThead.isAlive()){
                 System.err.println("Stopping Threads");
                 mainThead.interrupt();
+                mainThead = null;
                 return;
             }else{
                 //System.err.println("Mainthread is not running.");
@@ -837,6 +838,7 @@ public class myFunctions {
             if(secondThread.isAlive()){
                 System.err.println("Stopping Second Thread");
                 secondThread.interrupt();
+                secondThread = null;
                 return;
             }else{
                 //System.err.println("Second Thread is not running.");
@@ -848,6 +850,7 @@ public class myFunctions {
             if(thirdThread.isAlive()){
                 System.err.println("Stopping Third Thread");
                 thirdThread.interrupt();
+                thirdThread = null;
                 return;
             }else{
                 //System.err.println("Second Thread is not running.");

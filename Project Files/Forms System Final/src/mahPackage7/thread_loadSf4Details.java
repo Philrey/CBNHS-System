@@ -96,12 +96,17 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
                 sectionCount = selectedSections.length;
             }
             System.err.println("Section Length :"+sectionCount);
+            my.clear_table_rows(sf4Table);
+            
             for(int n=0;n<sectionCount;n++){
+                System.err.println("Loading section "+(n+1)+" of "+sectionCount);
                 //<editor-fold desc="Show Loading Dialog">
-                showCustomDialog("Loading Sections...", dialogPanel, false, 320, 220, false,true);
-                progressBar.setMaximum(sectionCount);
-                progressBar.setValue(n+1);
-                lbLoadingMessage.setText("Loading Sections..."+(n+1)+" of "+sectionCount);//</editor-fold>
+                    showCustomDialog("Loading Sections...", dialogPanel, false, 320, 220, false);
+                    progressBar.setMaximum(sectionCount);
+                    progressBar.setValue(n+1);
+                    lbLoadingMessage.setText("Loading Sections..."+(n+1)+" of "+sectionCount);
+                //</editor-fold>
+                Thread.sleep(pauseDelay);
                 //<editor-fold desc="load variables for next threads">
                 sectionId = sectionsTable.getValueAt(allSectionSelected? n : selectedSections[n], 1).toString();
                 String subjectId = sectionsTable.getValueAt(allSectionSelected? n : selectedSections[n], 6).toString();
@@ -116,9 +121,35 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
                 tfGradeLevel.setText(gradeLevel);
                 tfSchoolYear.setText(schoolYear+"-"+String.valueOf(schoolYear+1));                
                 //</editor-fold>
-                Thread.sleep(pauseDelay);
+                //Check if threads are still running before initializing
+                while(true){
+                    if(myFunctions.getMainThead()== null && myFunctions.getSecondThread() == null){
+                        break;
+                    }else{
+                        if(myFunctions.getMainThead() == null && myFunctions.getSecondThread() != null){
+                            if(!myFunctions.getSecondThread().isAlive()){
+                                break;
+                            }
+                        }
+                        if(myFunctions.getMainThead() != null && myFunctions.getSecondThread() == null){
+                            if(!myFunctions.getMainThead().isAlive()){
+                                break;
+                            }
+                        }
+                        if(myFunctions.getMainThead() != null && myFunctions.getSecondThread() != null){
+                            if(!myFunctions.getMainThead().isAlive() && !myFunctions.getSecondThread().isAlive()){
+                                break;
+                            }
+                        }
+                    }
+                }
                 my.searchItemThread("", "WHERE sectionId='"+sectionId+"'", tablesToUse[1], 11, new int [] {3,4,5}, true, null,new int[]{7,12,17,22},Color.RED);
-                my.runSecondaryThread(1, waitForThreadsToFinish[1], new JTable[]{tablesToUse[0],tablesToUse[1],tablesToUse[2],sf4Table}, new String[]{sectionId,stringsToUse[1],subjectId,stringsToUse[3],stringsToUse[4]}, new JTextField[]{textFieldsToUse[0]}, null);
+                my.runSecondaryThread(1, waitForThreadsToFinish[1], 
+                        new JTable[]{tablesToUse[0],tablesToUse[1],tablesToUse[2],tablesToUse[3]}, 
+                        new String[]{sectionId,stringsToUse[1],subjectId,stringsToUse[3],stringsToUse[4]}, 
+                        new JTextField[]{textFieldsToUse[0],tfSectionName,tfAdviserName,tfGradeLevel,tfSchoolYear},
+                        null
+                );
                 //<editor-fold desc="Wait For SF2 to Finish Before moving to the next section">
                 if(waitForSecondThreadToFinish){
                     System.err.println("Waiting for SecondThread to Finish first...");
@@ -132,19 +163,37 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
                         }
                     }
                 }
-                showCustomDialog("Loading Sections...", dialogPanel, false, 320, 220, false,false);
                 //</editor-fold>
             }
+            //Check if threads are still running before initializing
+            System.err.println("Waiting for other threads to finish...");
+            while(true){
+                if(myFunctions.getMainThead()== null && myFunctions.getSecondThread() == null){
+                    break;
+                }else{
+                    if(myFunctions.getMainThead() == null && myFunctions.getSecondThread() != null){
+                        if(!myFunctions.getSecondThread().isAlive()){
+                            break;
+                        }
+                    }
+                    if(myFunctions.getMainThead() != null && myFunctions.getSecondThread() == null){
+                        if(!myFunctions.getMainThead().isAlive()){
+                            break;
+                        }
+                    }
+                    if(myFunctions.getMainThead() != null && myFunctions.getSecondThread() != null){
+                        if(!myFunctions.getMainThead().isAlive() && !myFunctions.getSecondThread().isAlive()){
+                            break;
+                        }
+                    }
+                }
+            }
+            System.err.println("Finalizing Sf4");
         } catch (Exception e) {
-            System.err.println("Error Occured at loadSf4Details");
-            //e.printStackTrace();
+            System.err.println("Error Occured at loadSf4Details :"+e.getLocalizedMessage());
+            e.printStackTrace();
             return "Failed";
         }
-        
-        
-        
-        
-        
         return "Success";
     }
 
@@ -156,10 +205,14 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
     }
     
     //<editor-fold desc="Custom Functions">
-    private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable,boolean isNew){
-        if(isNew){
-            dialog = new JDialog(jFrameName);
+    private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable){
+        if(dialog != null && dialog.isVisible()){
+            dialog.setTitle(title);
+            dialog.add(customPanel);
+            System.err.println("Sf4 Dialog is already visible. Skipping...");
+            return;
         }
+        dialog = new JDialog(jFrameName);
         dialog.setTitle(title);
         dialog.add(customPanel);
         dialog.setModal(isModal);
