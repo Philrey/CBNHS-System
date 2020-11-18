@@ -160,6 +160,14 @@ public class myFunctions {
                 from = "form_sf2_view";
                 order = myVariables.getJhsf2Order();
                 break;
+            }case 12:{
+                from = "v_managedsubjects_wbooktemplate";
+                order = myVariables.getManagedSubjectsWTemplateViewOrder();
+                break;
+            }case 13:{
+                from = "form_sf3_view";
+                order = myVariables.getJhsf3Order();
+                break;
             }default:{
                 System.err.println("View table index out of bounds. Please check your index selected @ myFunctions.java");
                 return;
