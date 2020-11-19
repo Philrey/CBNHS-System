@@ -100,7 +100,7 @@ public class myVariables {
     //School Form Views
     private static final int [] jhsf1Order= new int [] {18,12,8,7,1,13,19,5,15,20,22,6,14,4,9,10,0,3,16,2,11,17,21};
     private static final int [] jhsf2Order= new int [] {5,6,0,1,2,7,3,4,8};
-    private static final int [] jhsf3Order= new int [] {0,1,2,3,4,5,6};
+    private static final int [] jhsf3Order= new int [] {4,5,0,1,2,6,3};
     
     //Icons
     private static final String studentsIcon = "icons/icons8_user_groups_skin_type_7_20px_1.png";

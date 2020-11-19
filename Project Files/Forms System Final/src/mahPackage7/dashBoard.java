@@ -186,8 +186,6 @@ public class dashBoard extends javax.swing.JFrame {
         jdcCutOffDate1 = new com.toedter.calendar.JDateChooser();
         sf3Tab = new javax.swing.JPanel();
         jSplitPane5 = new javax.swing.JSplitPane();
-        jScrollPane13 = new javax.swing.JScrollPane();
-        sf3Table = new javax.swing.JTable();
         jScrollPane14 = new javax.swing.JScrollPane();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
@@ -198,6 +196,18 @@ public class dashBoard extends javax.swing.JFrame {
         btnLoadStudents3 = new javax.swing.JButton();
         btnExportSf3 = new javax.swing.JButton();
         jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        tfSchoolYear2 = new javax.swing.JTextField();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        tfSectionName2 = new javax.swing.JTextField();
+        jLabel38 = new javax.swing.JLabel();
+        tfAdviserName2 = new javax.swing.JTextField();
+        jLabel39 = new javax.swing.JLabel();
+        tfGradeLevel2 = new javax.swing.JTextField();
+        jPanel12 = new javax.swing.JPanel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        sf3Table = new javax.swing.JTable();
         loadingDialog = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jpbProgressBar = new javax.swing.JProgressBar();
@@ -1453,57 +1463,6 @@ public class dashBoard extends javax.swing.JFrame {
 
         jSplitPane5.setDividerLocation(600);
 
-        sf3Table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Section ID", "Student ID", "Name", "Gender", "B1 Issued", "B1 Returned", "B2 Issued", "B2 Returned", "B3 Issued", "B3 Returned", "B4 Issued", "B4 Returned", "B5 Issued", "B5 Returned", "B6 Issued", "B6 Returned", "B7 Issued", "B8 Returned", "B8 Issued", "B8 Returned", "B9 Issued", "B9 Returned", "B10 Issued", "B10 Returned", "Remarks"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        sf3Table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        sf3Table.getTableHeader().setReorderingAllowed(false);
-        jScrollPane13.setViewportView(sf3Table);
-        if (sf3Table.getColumnModel().getColumnCount() > 0) {
-            sf3Table.getColumnModel().getColumn(3).setPreferredWidth(200);
-            sf3Table.getColumnModel().getColumn(4).setResizable(false);
-            sf3Table.getColumnModel().getColumn(4).setPreferredWidth(70);
-            sf3Table.getColumnModel().getColumn(5).setResizable(false);
-            sf3Table.getColumnModel().getColumn(6).setResizable(false);
-            sf3Table.getColumnModel().getColumn(7).setResizable(false);
-            sf3Table.getColumnModel().getColumn(8).setResizable(false);
-            sf3Table.getColumnModel().getColumn(9).setResizable(false);
-            sf3Table.getColumnModel().getColumn(10).setResizable(false);
-            sf3Table.getColumnModel().getColumn(11).setResizable(false);
-            sf3Table.getColumnModel().getColumn(12).setResizable(false);
-            sf3Table.getColumnModel().getColumn(13).setResizable(false);
-            sf3Table.getColumnModel().getColumn(14).setResizable(false);
-            sf3Table.getColumnModel().getColumn(15).setResizable(false);
-            sf3Table.getColumnModel().getColumn(16).setResizable(false);
-            sf3Table.getColumnModel().getColumn(17).setResizable(false);
-            sf3Table.getColumnModel().getColumn(18).setResizable(false);
-            sf3Table.getColumnModel().getColumn(19).setResizable(false);
-            sf3Table.getColumnModel().getColumn(20).setResizable(false);
-            sf3Table.getColumnModel().getColumn(21).setResizable(false);
-            sf3Table.getColumnModel().getColumn(22).setResizable(false);
-            sf3Table.getColumnModel().getColumn(23).setResizable(false);
-            sf3Table.getColumnModel().getColumn(24).setResizable(false);
-            sf3Table.getColumnModel().getColumn(25).setResizable(false);
-        }
-
-        jSplitPane5.setLeftComponent(jScrollPane13);
-
         jScrollPane14.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 204));
@@ -1575,6 +1534,27 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel34.setText("Export Options");
 
+        jLabel35.setText("School Year");
+
+        tfSchoolYear2.setEditable(false);
+        tfSchoolYear2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel36.setText("Basic");
+
+        jLabel37.setText("Section Name");
+
+        tfSectionName2.setEditable(false);
+
+        jLabel38.setText("Adviser Name");
+
+        tfAdviserName2.setEditable(false);
+
+        jLabel39.setText("Grade Level");
+
+        tfGradeLevel2.setEditable(false);
+        tfGradeLevel2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -1589,7 +1569,20 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnExportSf3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLoadStudents3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfSectionName2)
+                    .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfAdviserName2)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfGradeLevel2)
+                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfSchoolYear2)
+                            .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -1598,12 +1591,31 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfSectionName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfAdviserName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfSchoolYear2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel39)
+                            .addComponent(jLabel35))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfGradeLevel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel33)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel34)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLoadStudents3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExportSf3)
@@ -1613,6 +1625,81 @@ public class dashBoard extends javax.swing.JFrame {
         jScrollPane14.setViewportView(jPanel9);
 
         jSplitPane5.setRightComponent(jScrollPane14);
+
+        jPanel12.setBackground(new java.awt.Color(11, 102, 35));
+
+        sf3Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Section ID", "Student ID", "Name", "Gender", "B1 Issued", "B1 Returned", "B2 Issued", "B2 Returned", "B3 Issued", "B3 Returned", "B4 Issued", "B4 Returned", "B5 Issued", "B5 Returned", "B6 Issued", "B6 Returned", "B7 Issued", "B8 Returned", "B8 Issued", "B8 Returned", "B9 Issued", "B9 Returned", "B10 Issued", "B10 Returned", "Remarks"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        sf3Table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        sf3Table.getTableHeader().setReorderingAllowed(false);
+        sf3Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sf3TableMouseClicked(evt);
+            }
+        });
+        jScrollPane13.setViewportView(sf3Table);
+        if (sf3Table.getColumnModel().getColumnCount() > 0) {
+            sf3Table.getColumnModel().getColumn(3).setPreferredWidth(200);
+            sf3Table.getColumnModel().getColumn(4).setResizable(false);
+            sf3Table.getColumnModel().getColumn(4).setPreferredWidth(70);
+            sf3Table.getColumnModel().getColumn(5).setResizable(false);
+            sf3Table.getColumnModel().getColumn(6).setResizable(false);
+            sf3Table.getColumnModel().getColumn(7).setResizable(false);
+            sf3Table.getColumnModel().getColumn(8).setResizable(false);
+            sf3Table.getColumnModel().getColumn(9).setResizable(false);
+            sf3Table.getColumnModel().getColumn(10).setResizable(false);
+            sf3Table.getColumnModel().getColumn(11).setResizable(false);
+            sf3Table.getColumnModel().getColumn(12).setResizable(false);
+            sf3Table.getColumnModel().getColumn(13).setResizable(false);
+            sf3Table.getColumnModel().getColumn(14).setResizable(false);
+            sf3Table.getColumnModel().getColumn(15).setResizable(false);
+            sf3Table.getColumnModel().getColumn(16).setResizable(false);
+            sf3Table.getColumnModel().getColumn(17).setResizable(false);
+            sf3Table.getColumnModel().getColumn(18).setResizable(false);
+            sf3Table.getColumnModel().getColumn(19).setResizable(false);
+            sf3Table.getColumnModel().getColumn(20).setResizable(false);
+            sf3Table.getColumnModel().getColumn(21).setResizable(false);
+            sf3Table.getColumnModel().getColumn(22).setResizable(false);
+            sf3Table.getColumnModel().getColumn(23).setResizable(false);
+            sf3Table.getColumnModel().getColumn(24).setResizable(false);
+            sf3Table.getColumnModel().getColumn(25).setResizable(false);
+        }
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane13)
+                .addContainerGap())
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jSplitPane5.setLeftComponent(jPanel12);
 
         javax.swing.GroupLayout sf3TabLayout = new javax.swing.GroupLayout(sf3Tab);
         sf3Tab.setLayout(sf3TabLayout);
@@ -1819,6 +1906,11 @@ public class dashBoard extends javax.swing.JFrame {
                     my.select_tab(tpSf2Sf4DetailsPane, 0);
                     break;
                 }case 3:{
+                    tfSectionName2.setText(sectionName);
+                    tfAdviserName2.setText(adviserName);
+                    tfGradeLevel2.setText("Grade "+gradeLevel);
+                    tfSchoolYear2.setText(schoolYear+"-"+String.valueOf(schoolYear+1));
+                    
                     my.select_tab(mainTab, 4);
                     break;
                 }
@@ -1829,27 +1921,12 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_assignedTeacherTableMouseClicked
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        if(evt.getSource() == btnCancelLoading || evt.getComponent().isVisible()){
-            //my.interruptThirdThread();
-            my.interrupSecondThread();
-            my.interrupMainThread();
-            return;
-        }
-        System.err.println("Window gained focus. Source: "+evt.paramString());
-        if(!evt.getComponent().isVisible()){
-            if(myFunctions.getThirdThread().isAlive() && !myFunctions.getThirdThread().isInterrupted()){
-                System.err.println("Third Thread is Still Alive");
-                //Don't interrupt anything
-            }else{
-                
-            }
-        }
+        
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void btnCancelLoadingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelLoadingActionPerformed
         my.interrupMainThread();
         my.interrupSecondThread();
-        my.interruptThirdThread();
     }//GEN-LAST:event_btnCancelLoadingActionPerformed
 
     private void btnLoadStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudentsActionPerformed
@@ -2036,12 +2113,89 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSf3ActionPerformed
 
     private void btnLoadStudents3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudents3ActionPerformed
-        // TODO add your handling code here:
+        int row = assignedTeacherTable.getSelectedRow();
+        if(row == -1){
+            my.showMessage("No Section Selected.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
+        String subjectId = assignedTeacherTable.getValueAt(row, 6).toString();
+        String substituteValue = "--";
+        String booksContained = assignedTeacherTable.getValueAt(row, 13).toString();
+        
+        /*switch(jcbMissingValues.getSelectedIndex()){
+            case 0:{
+                substituteValue=" ";
+                break;
+            }case 1:{
+                substituteValue="P";
+                break;
+            }case 2:{
+                substituteValue="A";
+                break;
+            }case 3:{
+                substituteValue="--";
+                break;
+            }default:{
+                break;
+            }
+        }*/
+        my.runSecondaryThread(2, true,
+                new JTable[]{sf3Table,sf3BooksTable},
+                new String[]{sectionId,subjectId,substituteValue,booksContained}, 
+                new JTextField[]{tfSectionName2,tfAdviserName2,tfGradeLevel2,tfSchoolYear2}, 
+                null
+        );
     }//GEN-LAST:event_btnLoadStudents3ActionPerformed
 
     private void btnExportSf3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExportSf3ActionPerformed
+
+    private void sf3TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sf3TableMouseClicked
+        int row = sf3Table.getSelectedRow();
+        int col = sf3Table.getSelectedColumn();
+        
+        if(col >= 5 && col < 25){
+            sf3BooksTable.clearSelection();
+            int index = 0;
+            if(col%2==0){
+                index = col-1;
+            }else{
+                index = col;
+            }
+            try {
+                switch(index){
+                    case 5:{
+                        sf3BooksTable.setRowSelectionInterval(0, 0);break;
+                    }case 7:{
+                        sf3BooksTable.setRowSelectionInterval(1, 1);break;
+                    }case 9:{
+                        sf3BooksTable.setRowSelectionInterval(2, 2);break;
+                    }case 11:{
+                        sf3BooksTable.setRowSelectionInterval(3, 3);break;
+                    }case 13:{
+                        sf3BooksTable.setRowSelectionInterval(4, 4);break;
+                    }case 15:{
+                        sf3BooksTable.setRowSelectionInterval(5, 5);break;
+                    }case 17:{
+                        sf3BooksTable.setRowSelectionInterval(6, 6);break;
+                    }case 19:{
+                        sf3BooksTable.setRowSelectionInterval(7, 7);break;
+                    }case 21:{
+                        sf3BooksTable.setRowSelectionInterval(8, 8);break;
+                    }case 23:{
+                        sf3BooksTable.setRowSelectionInterval(9, 9);break;
+                    }
+                }
+            } catch (Exception e) {
+                sf3BooksTable.clearSelection();
+            }
+        }else{
+            sf3BooksTable.clearSelection();
+        }
+    }//GEN-LAST:event_sf3TableMouseClicked
     private void selectFormToExport(int formIndexExact){
         myVariables.setFormSelected(formIndexExact);
         switch(formIndexExact){
@@ -2532,6 +2686,11 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2541,6 +2700,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2610,16 +2770,20 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTable summarySf2;
     private javax.swing.JTextField tfAdviserName;
     private javax.swing.JTextField tfAdviserName1;
+    private javax.swing.JTextField tfAdviserName2;
     private javax.swing.JTextField tfFemaleCount;
     private javax.swing.JTextField tfGradeLevel;
     private javax.swing.JTextField tfGradeLevel1;
+    private javax.swing.JTextField tfGradeLevel2;
     private javax.swing.JTextField tfMaleCount;
     private javax.swing.JTextField tfSchoolDays;
     private javax.swing.JTextField tfSchoolYear;
     private javax.swing.JTextField tfSchoolYear1;
+    private javax.swing.JTextField tfSchoolYear2;
     private javax.swing.JTextField tfSearchTeacherLoad;
     private javax.swing.JTextField tfSectionName;
     private javax.swing.JTextField tfSectionName1;
+    private javax.swing.JTextField tfSectionName2;
     private javax.swing.JTextField tfTotalCount;
     private javax.swing.JTabbedPane tpSelectSectionInstructions;
     private javax.swing.JTabbedPane tpSf2Sf4DetailsPane;

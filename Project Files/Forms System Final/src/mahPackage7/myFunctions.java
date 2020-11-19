@@ -40,7 +40,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class myFunctions {
-    private static Thread mainThead,secondThread,thirdThread;
+    private static Thread mainThead,secondThread,thirdThread,stopThread;
+    
     
     public myFunctions(boolean skipLoadingSettings){
         try {
@@ -787,6 +788,8 @@ public class myFunctions {
                 toLoad = new Thread(ls2d);
                 break;
             }case 2:{
+                thread_loadSf3Details ls3d = new thread_loadSf3Details(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, new boolean[]{true,true});
+                toLoad = new Thread(ls3d);
                 break;
             }case 3:{
                 break;
@@ -864,6 +867,30 @@ public class myFunctions {
                 //System.err.println("Second Thread is not running.");
             }
         }
+    }
+    public void interruptStopThread(){
+        if(stopThread != null){
+            if(stopThread.isAlive()){
+                System.err.println("Stopping Stop Thread");
+                stopThread.interrupt();
+                stopThread = null;
+                return;
+            }else{
+                //System.err.println("Second Thread is not running.");
+            }
+        }
+    }
+    public void stopAllThreads(){
+        Thread toLoad = null;
+        thread_stopAllThreads sat = new thread_stopAllThreads();
+        if(stopThread != null){
+            if(stopThread.isAlive()){
+                interruptStopThread();
+            }
+        }
+        toLoad = new Thread(sat);
+        stopThread = toLoad;
+        stopThread.start();
     }
     public String getDateNow(boolean includeTime){
         String result [] = return_values("now() AS 'dateNow'", "", "", new int [] {0});

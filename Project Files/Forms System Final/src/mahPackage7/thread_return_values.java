@@ -145,8 +145,8 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
                 }
                 return -1;
             }
-        } catch (Exception e) {
-            System.err.println("Error: "+e.getMessage());
+        } catch (InterruptedException e) {
+            System.err.println("Main Thread Interrupted: "+e.getMessage());
             //e.printStackTrace();
             return -1;
         }
