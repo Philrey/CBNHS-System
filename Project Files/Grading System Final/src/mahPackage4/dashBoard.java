@@ -1718,10 +1718,18 @@ public class dashBoard extends javax.swing.JFrame {
                     radioButtonsInOrder[3].setEnabled(true);    //Closed
                     break;
                 }case 2:{
-                    radioButtonsInOrder[0].setEnabled(true);
-                    radioButtonsInOrder[1].setEnabled(true);
-                    radioButtonsInOrder[2].setEnabled(true);
-                    radioButtonsInOrder[3].setEnabled(false);
+                    if(status.contains("Closed")){
+                        //Disable all
+                        radioButtonsInOrder[0].setEnabled(false);
+                        radioButtonsInOrder[1].setEnabled(false);
+                        radioButtonsInOrder[2].setEnabled(false);
+                        radioButtonsInOrder[3].setEnabled(false);
+                    }else{
+                        radioButtonsInOrder[0].setEnabled(true);
+                        radioButtonsInOrder[1].setEnabled(true);
+                        radioButtonsInOrder[2].setEnabled(true);
+                        radioButtonsInOrder[3].setEnabled(false);
+                    }
                     break;
                 }case 1:{
                     for(JRadioButton n : radioButtonsInOrder){
