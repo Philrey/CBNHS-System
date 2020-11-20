@@ -22,32 +22,16 @@ public class thread_stopAllThreads extends SwingWorker<String, Object>{
     @Override
     protected String doInBackground() throws Exception {
         boolean mainDone=false,secondDone=false,thirdDone=false;
-        while (true) {
-            if(myFunctions.getThirdThread() != null){
-                if(!myFunctions.getThirdThread().isInterrupted() || myFunctions.getThirdThread().isAlive()){
-                    my.interruptThirdThread();
-                }else{
-                    thirdDone = true;
-                }
-            }else{thirdDone = true;}
+        while (true) {            
+            for(int n=0;n<10;n++){
+                my.interrupMainThread();
+                my.interrupSecondThread();
+                my.interruptThirdThread();
+                System.out.println("Stopping Threads "+(n+1));
+                Thread.sleep(100);
+            }
             
-            if(myFunctions.getSecondThread() != null  || myFunctions.getSecondThread().isAlive()){
-                if(!myFunctions.getSecondThread().isInterrupted()){
-                    my.interrupSecondThread();
-                }else{
-                    secondDone = true;
-                }
-            }else{secondDone = true;}
-            
-            if(myFunctions.getMainThead() != null  || myFunctions.getMainThead().isAlive()){
-                if(!myFunctions.getMainThead().isInterrupted()){
-                    my.interrupMainThread();
-                }else{
-                    mainDone = true;
-                }
-            }else{mainDone = true;}
-            
-            if(mainDone && secondDone && thirdDone){
+            if(!myFunctions.getMainThead().isAlive() && !myFunctions.getSecondThread().isAlive() && !myFunctions.getThirdThread().isAlive()){
                 break;
             }
         }

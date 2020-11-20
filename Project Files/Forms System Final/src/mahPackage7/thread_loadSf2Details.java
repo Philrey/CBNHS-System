@@ -97,7 +97,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         progressBar = myVariables.getProgressBar();
     }
     @Override
-    protected String doInBackground(){
+    protected String doInBackground() throws Exception{
         try {
             //<editor-fold desc="Wait For Students to Load">
             if(waitForMainThreadToFinish){
@@ -116,19 +116,23 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             //<editor-fold desc="Initialize Variables">
             tableName.setEnabled(false);
             showCustomDialog("Loading Attendances...", dialogPanel, false, 420, 220, false);
-            loadSummary();
+            if(!loadSummary()){
+                throw new InterruptedException("Interrupted @ Load Summary");
+            }
             loadSchoolDaysIndex();
             //Check if there are students
             if(tableName.getRowCount() <= 0){
                 System.err.println("No students found. SKipping");
                 tfSchoolDays.setText("0");
-                try {
-                    throw new InterruptedException("Ended");
-                } catch (Exception e) {System.err.println("Can't Interrut anymore");}
+                throw new InterruptedException("Ended");
             }
             
-            translateRemarks();
-            evaluateRemarks();
+            if(!translateRemarks()){
+                throw new InterruptedException("Interrupted @ Translate Remarks");
+            }
+            if(!evaluateRemarks()){
+                throw new InterruptedException("Interrupted @ Evaluate Remarks");
+            }
             System.err.println("Starting Second THread");
             //Load Dates
             lbLoadingMessage.setText("Determining Days...");
@@ -257,8 +261,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             //</editor-fold>
         } catch (Exception e) {
             System.err.println("Error Occured @ loadSf2Details : "+e.getMessage());
-            e.printStackTrace();
-            return "Failed";
+            throw new InterruptedException("Interrupted by USer");
         }
         return "Success";
     }
@@ -277,6 +280,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         }
         super.done(); //To change body of generated methods, choose Tools | Templates.
     }
+    
     private void sendSummaryToSf4Table(){
         try {
             String sectionName = tfSectionName.getText();
@@ -299,7 +303,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             //e.printStackTrace();
         }
     }
-    private void evaluateRemarks(){
+    private boolean evaluateRemarks(){
         int studCOunt = tableName.getRowCount();
         int transferredIn=0,transferredOut=0,dropped=0;
         try {
@@ -359,9 +363,9 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
                 
                 Thread.sleep(threadDelay);
             }
+            return true;
         } catch (Exception e) {
-            System.err.println("Error Occured @ evaluateRemarks()");
-            e.printStackTrace();
+            return false;
         }
     }
     //<editor-fold desc="Summary Functions">
@@ -404,19 +408,24 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             summaryTable.setValueAt(currMale+currFemale, 6, 3);
         }
     }
-    private void translateRemarks(){
+    private boolean translateRemarks(){
         int studCount = tableName.getRowCount();
         
-        for(int n=0;n<studCount;n++){
-            String remarksString = tableName.getValueAt(n, 6).toString();
-            String remarks [] = remarksString.split("!");
-            
-            try {
-                tableName.setValueAt(remarks[1], n, 6);
-            } catch (Exception e) {
-                System.err.println("Error Occure @ translateRemarks: "+e.getMessage());
-                e.printStackTrace();
+        try {
+            for(int n=0;n<studCount;n++){
+                String remarksString = tableName.getValueAt(n, 6).toString();
+                String remarks [] = remarksString.split("!");
+
+                try {
+                    tableName.setValueAt(remarks[1], n, 6);
+                } catch (Exception e) {
+                    System.err.println("Error Occure @ translateRemarks: "+e.getMessage());
+                    e.printStackTrace();
+                }
             }
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
     private void loadAverageAttendance(){
@@ -598,23 +607,28 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         String result = df.format(((float)enrolledStudentsOnTime/(float)registeredLearners)*100f);
         return result.contains("NaN")? "0" : result;
     }
-    private void loadSummary(){
-        clear_table_rows(summaryTable);
-        String summary [] = {
-            "Enrollment (1st Fri of June)@@0@@0@@0@@",
-            "Late Enrollment@@0@@0@@0@@",
-            "Registered Learners (End of Month)@@0@@0@@0@@",
-            "Percentage of Enrollment@@0@@0@@0@@",
-            "Average Daily Attendance@@0@@0@@0@@",
-            "Percentage of Attendance@@0@@0@@0@@",
-            "5 Consecutive Absences@@0@@0@@0@@",
-            "Dropped Out@@0@@0@@0@@",
-            "Transferred Out@@0@@0@@0@@",
-            "Transferred In@@0@@0@@0@@",
-        };
-        
-        for(String n : summary){
-            add_table_row(n, summaryTable);
+    private boolean loadSummary(){
+        try {
+            clear_table_rows(summaryTable);
+            String summary [] = {
+                "Enrollment (1st Fri of June)@@0@@0@@0@@",
+                "Late Enrollment@@0@@0@@0@@",
+                "Registered Learners (End of Month)@@0@@0@@0@@",
+                "Percentage of Enrollment@@0@@0@@0@@",
+                "Average Daily Attendance@@0@@0@@0@@",
+                "Percentage of Attendance@@0@@0@@0@@",
+                "5 Consecutive Absences@@0@@0@@0@@",
+                "Dropped Out@@0@@0@@0@@",
+                "Transferred Out@@0@@0@@0@@",
+                "Transferred In@@0@@0@@0@@",
+            };
+
+            for(String n : summary){
+                add_table_row(n, summaryTable);
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
     private void loadAttendanceCounts(){

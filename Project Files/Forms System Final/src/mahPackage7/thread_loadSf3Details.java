@@ -105,8 +105,9 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
                 showCustomDialog("Loading Books...", dialogPanel, waitForMainThreadToFinish, 320, 220, false);
                 Thread.sleep(pauseDelay);
                 loadEmptyCounters();
-                loadStudentBooks();
                 //Load student's book records
+                loadStudentBooks();
+                translateColumns();
 
             }else{
                 loadEmptyCounters();
@@ -130,6 +131,91 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
         closeCustomDialog();
         super.done(); //To change body of generated methods, choose Tools | Templates.
     }
+    private String [] getBookDetails(int columnIndex){
+        int bookIndex = 0;
+        int sf3BooksIndex = -1;
+        if(columnIndex%2==1){   //issued
+            bookIndex = columnIndex;
+        }else{                  //returned
+            bookIndex = columnIndex-1;
+        }
+        switch(bookIndex){
+            case 5:{
+                sf3BooksIndex = 0;break;
+            }case 7:{
+                sf3BooksIndex = 1;break;
+            }case 9:{
+                sf3BooksIndex = 2;break;
+            }case 11:{
+                sf3BooksIndex = 3;break;
+            }case 13:{
+                sf3BooksIndex = 4;break;
+            }case 15:{
+                sf3BooksIndex = 5;break;
+            }case 17:{
+                sf3BooksIndex = 6;break;
+            }case 19:{
+                sf3BooksIndex = 7;break;
+            }case 21:{
+                sf3BooksIndex = 8;break;
+            }case 23:{
+                sf3BooksIndex = 9;break;
+            }
+        }
+        System.err.println("bookIndex="+bookIndex+" sf3BIndex="+sf3BooksIndex);
+        try {
+            String result = my.get_table_row_values(sf3BooksIndex, sf3BooksTable);
+            return result.split("@@");
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    private void translateColumns(){
+        try {
+            int studentCount = sf3Table.getRowCount()-3;
+            String currentValue="",remarks="";
+            for(int rows=0;rows<studentCount;rows++){
+                try {
+                    remarks = sf3Table.getValueAt(rows, 25).toString();
+                } catch (Exception e) {
+                    remarks=" ";
+                }
+                for(int col=5;col<25;col++){
+                    String [] currentBookDetails = getBookDetails(col);
+                    try {
+                        currentValue = sf3Table.getValueAt(rows, col).toString();
+                        
+                        if(col%2==1){   //issued column
+                            
+                        }else{  //returned column
+                            if(currentValue.contains(":")){
+                                String codes [] = currentValue.split(":");
+                                if(codes.length == 2){
+                                    sf3Table.setValueAt(codes[0], rows, col);
+                                    if(remarks.trim().length() <= 0){
+                                        remarks = currentBookDetails[4]+":"+codes[1];
+                                    }else{
+                                        remarks +=", "+currentBookDetails[4]+":"+codes[1];
+                                    }
+                                }else{
+                                    //Rejoin index 1 onwards into one string
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        sf3Table.setValueAt(missingValuesSubstitute, rows, col);
+                    }
+                }
+                
+                //set remarks
+                sf3Table.setValueAt(remarks, rows, 25);
+            }
+            
+        } catch (Exception e) {
+            System.err.println("Interrupted @ Translate Columns");
+            e.printStackTrace();
+        }
+    }
     private void loadStudentBooks(){
         int studCount = sf3Table.getRowCount();
         progressBar.setMaximum(studCount-3);
@@ -146,7 +232,7 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
                 int booksLength = booksIsdRtn.length;
                 if(booksIsdRtn != null){
                     for(int x=0;x<booksLength;x++){
-                        lbLoadingMessage.setText("Processing Record "+(n+1)+" of "+booksLength);
+                        lbLoadingMessage.setText("Processing Record "+(x+1)+" of "+booksLength);
                         putValuesToBookColumn(n, booksIsdRtn[x]);
                         Thread.sleep(threadDelay);
                     }

@@ -82,22 +82,22 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
     }
 
     @Override
-    protected String doInBackground(){
-        try {
-            sf4Table.setEnabled(false);
-            int sectionCount = 0;
-            int selectedSections [];
+    protected String doInBackground() throws Exception{
+        sf4Table.setEnabled(false);
+        int sectionCount = 0;
+        int selectedSections [];
 
-            if(allSectionSelected){
-                selectedSections = null;
-                sectionCount = sectionsTable.getRowCount();
-            }else{
-                selectedSections = sectionsTable.getSelectedRows();
-                sectionCount = selectedSections.length;
-            }
-            System.err.println("Section Length :"+sectionCount);
-            my.clear_table_rows(sf4Table);
-            
+        if(allSectionSelected){
+            selectedSections = null;
+            sectionCount = sectionsTable.getRowCount();
+        }else{
+            selectedSections = sectionsTable.getSelectedRows();
+            sectionCount = selectedSections.length;
+        }
+        System.err.println("Section Length :"+sectionCount);
+        my.clear_table_rows(sf4Table);
+
+        try {
             for(int n=0;n<sectionCount;n++){
                 System.err.println("Loading section "+(n+1)+" of "+sectionCount);
                 //<editor-fold desc="Show Loading Dialog">
@@ -114,14 +114,14 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
                 adviserName = sectionsTable.getValueAt(allSectionSelected? n : selectedSections[n], 4).toString();
                 gradeLevel = sectionsTable.getValueAt(allSectionSelected? n : selectedSections[n], 9).toString();
                 int schoolYear = Integer.parseInt(sectionsTable.getValueAt(allSectionSelected? n : selectedSections[n], 10).toString());
-                
+
                 //Assign Texfields Values
                 tfSectionName.setText(sectionName);
                 tfAdviserName.setText(adviserName);
                 tfGradeLevel.setText(gradeLevel);
                 tfSchoolYear.setText(schoolYear+"-"+String.valueOf(schoolYear+1));                
                 //</editor-fold>
-                //Check if threads are still running before initializing
+                //<editor-fold desc="Check if threads are still running before initializing">
                 while(true){
                     if(myFunctions.getMainThead()== null && myFunctions.getSecondThread() == null){
                         break;
@@ -142,7 +142,7 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
                             }
                         }
                     }
-                }
+                }//</editor-fold>
                 my.searchItemThread("", "WHERE sectionId='"+sectionId+"'", tablesToUse[1], 11, new int [] {3,4,5}, true, null,new int[]{7,12,17,22},Color.RED);
                 my.runSecondaryThread(1, waitForThreadsToFinish[1], 
                         new JTable[]{tablesToUse[0],tablesToUse[1],tablesToUse[2],tablesToUse[3]}, 
@@ -165,34 +165,8 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
                 }
                 //</editor-fold>
             }
-            //Check if threads are still running before initializing
-            System.err.println("Waiting for other threads to finish...");
-            while(true){
-                if(myFunctions.getMainThead()== null && myFunctions.getSecondThread() == null){
-                    break;
-                }else{
-                    if(myFunctions.getMainThead() == null && myFunctions.getSecondThread() != null){
-                        if(!myFunctions.getSecondThread().isAlive()){
-                            break;
-                        }
-                    }
-                    if(myFunctions.getMainThead() != null && myFunctions.getSecondThread() == null){
-                        if(!myFunctions.getMainThead().isAlive()){
-                            break;
-                        }
-                    }
-                    if(myFunctions.getMainThead() != null && myFunctions.getSecondThread() != null){
-                        if(!myFunctions.getMainThead().isAlive() && !myFunctions.getSecondThread().isAlive()){
-                            break;
-                        }
-                    }
-                }
-            }
-            System.err.println("Finalizing Sf4");
-        } catch (Exception e) {
-            System.err.println("Error Occured at loadSf4Details :"+e.getLocalizedMessage());
-            e.printStackTrace();
-            return "Failed";
+        } catch (InterruptedException e) {
+            throw new InterruptedException("Sf4 Interrupted By User.");
         }
         return "Success";
     }
