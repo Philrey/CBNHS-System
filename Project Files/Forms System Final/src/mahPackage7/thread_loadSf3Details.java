@@ -106,9 +106,15 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
                 Thread.sleep(pauseDelay);
                 loadEmptyCounters();
                 //Load student's book records
-                loadStudentBooks();
-                translateColumns();
-
+                if(!loadStudentBooks()){
+                    throw new InterruptedException("Interrupted by user.");
+                }
+                if(!translateColumns()){
+                    throw new InterruptedException("Interrupted by user.");
+                }
+                if(!countBooks()){
+                    throw new InterruptedException("Interrupted by user.");
+                }
             }else{
                 loadEmptyCounters();
                 return "No Students Found";
@@ -130,6 +136,96 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
         }
         closeCustomDialog();
         super.done(); //To change body of generated methods, choose Tools | Templates.
+    }
+    private boolean isInDateFormat(String cLine){
+        try {
+            String temp [] = cLine.split("-");
+            if(temp.length == 3){
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    private boolean countBooks(){
+        try {
+            int studCount = sf3Table.getRowCount()-3;
+            int columnCount = (sf3BooksTable.getRowCount()*2)+5;
+            int booksMale,booksFemale;
+            
+            for(int col = 5;col<columnCount;col++){
+                booksMale = 0;booksFemale = 0;
+                for(int row=0;row<studCount;row++){
+                    String gender = sf3Table.getValueAt(row, 4).toString();
+                    
+                    
+                    if(isInDateFormat(sf3Table.getValueAt(row, col).toString())){
+                        if(gender.contains("Female")){
+                            booksFemale++;
+                        }else{
+                            booksMale++;
+                        }
+                    }
+                    Thread.sleep(threadDelay);
+                }
+                //Put result to counters
+                sf3Table.setValueAt(booksMale, studCount, col);
+                sf3Table.setValueAt(booksFemale, studCount+1, col);
+                sf3Table.setValueAt(booksMale+booksFemale, studCount+2, col);
+                
+                //Put values to summary
+                if(col%2==1){//Issued
+                    sf3BooksTable.setValueAt(booksMale+booksFemale, getSf3BooksRowIndex(col), 5);
+                }else{//Returned
+                    int currIssued = Integer.parseInt(sf3BooksTable.getValueAt(getSf3BooksRowIndex(col), 5).toString());
+                    sf3BooksTable.setValueAt(booksMale+booksFemale, getSf3BooksRowIndex(col), 6);
+                    sf3BooksTable.setValueAt(currIssued-(booksMale+booksFemale), getSf3BooksRowIndex(col), 7);
+                }
+                
+                
+                Thread.sleep(threadDelay);
+            }
+            
+            
+            return true;
+        } catch (InterruptedException e) {
+            System.err.println("Interrupted @ count books");
+            return false;
+        }
+    }
+    private int getSf3BooksRowIndex(int columnIndex){
+        int bookIndex = 0;
+        int sf3BooksIndex = -1;
+        if(columnIndex%2==1){   //issued
+            bookIndex = columnIndex;
+        }else{                  //returned
+            bookIndex = columnIndex-1;
+        }
+        switch(bookIndex){
+            case 5:{
+                sf3BooksIndex = 0;break;
+            }case 7:{
+                sf3BooksIndex = 1;break;
+            }case 9:{
+                sf3BooksIndex = 2;break;
+            }case 11:{
+                sf3BooksIndex = 3;break;
+            }case 13:{
+                sf3BooksIndex = 4;break;
+            }case 15:{
+                sf3BooksIndex = 5;break;
+            }case 17:{
+                sf3BooksIndex = 6;break;
+            }case 19:{
+                sf3BooksIndex = 7;break;
+            }case 21:{
+                sf3BooksIndex = 8;break;
+            }case 23:{
+                sf3BooksIndex = 9;break;
+            }
+        }
+        return sf3BooksIndex;
     }
     private String [] getBookDetails(int columnIndex){
         int bookIndex = 0;
@@ -162,7 +258,7 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
                 sf3BooksIndex = 9;break;
             }
         }
-        System.err.println("bookIndex="+bookIndex+" sf3BIndex="+sf3BooksIndex);
+        //System.err.println("bookIndex="+bookIndex+" sf3BIndex="+sf3BooksIndex);
         try {
             String result = my.get_table_row_values(sf3BooksIndex, sf3BooksTable);
             return result.split("@@");
@@ -170,17 +266,23 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
             return null;
         }
     }
-    private void translateColumns(){
+    private boolean translateColumns(){
         try {
             int studentCount = sf3Table.getRowCount()-3;
             String currentValue="",remarks="";
+            showCustomDialog("Loading Books...", dialogPanel, false, 420, 220, false);
+            progressBar.setMaximum(20*studentCount);
+            //progressBar.setMaximum(studentCount);
+            progressBar.setValue(0);
             for(int rows=0;rows<studentCount;rows++){
                 try {
                     remarks = sf3Table.getValueAt(rows, 25).toString();
                 } catch (Exception e) {
-                    remarks=" ";
+                    remarks=missingValuesSubstitute;
                 }
                 for(int col=5;col<25;col++){
+                    lbLoadingMessage.setText("Interpreting Remarks of Student "+(rows+1)+" of "+studentCount+". "+(col-4)+"/"+(20)+" processed.");
+                    progressBar.setValue((col-4)+(rows*20));
                     String [] currentBookDetails = getBookDetails(col);
                     try {
                         currentValue = sf3Table.getValueAt(rows, col).toString();
@@ -192,31 +294,48 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
                                 String codes [] = currentValue.split(":");
                                 if(codes.length == 2){
                                     sf3Table.setValueAt(codes[0], rows, col);
-                                    if(remarks.trim().length() <= 0){
+                                    if(remarks.trim().length() <= 0 || (remarks.length()==2 && remarks.contains("--"))){
                                         remarks = currentBookDetails[4]+":"+codes[1];
                                     }else{
                                         remarks +=", "+currentBookDetails[4]+":"+codes[1];
+                                    }
+                                    System.err.println("Code for Remark: "+codes[1]);
+                                    //Add to counter based on CODE
+                                    if(codes[1].contains("PTL")){
+                                        int currCount = Integer.parseInt(sf3BooksTable.getValueAt(getSf3BooksRowIndex(col), 8).toString());
+                                        sf3BooksTable.setValueAt(currCount+1, getSf3BooksRowIndex(col), 8);
+                                    }if(codes[1].contains("TDO")){
+                                        int currCount = Integer.parseInt(sf3BooksTable.getValueAt(getSf3BooksRowIndex(col), 9).toString());
+                                        sf3BooksTable.setValueAt(currCount+1, getSf3BooksRowIndex(col), 9);
+                                    }if(codes[1].contains("LLTR")){
+                                        int currCount = Integer.parseInt(sf3BooksTable.getValueAt(getSf3BooksRowIndex(col), 10).toString());
+                                        sf3BooksTable.setValueAt(currCount+1, getSf3BooksRowIndex(col), 10);
                                     }
                                 }else{
                                     //Rejoin index 1 onwards into one string
                                 }
                             }
                         }
-                    } catch (Exception e) {
+                        Thread.sleep(threadDelay);
+                    } catch (InterruptedException in){
+                        return false;
+                    } catch (NullPointerException e) {
                         sf3Table.setValueAt(missingValuesSubstitute, rows, col);
-                    }
+                        Thread.sleep(threadDelay);
+                    } 
+                    
                 }
-                
                 //set remarks
                 sf3Table.setValueAt(remarks, rows, 25);
+                Thread.sleep(pauseDelay);
             }
-            
+            return true;
         } catch (Exception e) {
             System.err.println("Interrupted @ Translate Columns");
-            e.printStackTrace();
+            return false;
         }
     }
-    private void loadStudentBooks(){
+    private boolean loadStudentBooks(){
         int studCount = sf3Table.getRowCount();
         progressBar.setMaximum(studCount-3);
         progressBar.setValue(0);
@@ -246,9 +365,10 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
                 }
                 Thread.sleep(pauseDelay);
             }
+            return true;
         } catch (Exception e) {
             System.err.println("Interrupted @ Load Student Books");
-            return;
+            return false;
         }
     }
     private void putValuesToBookColumn(int row,String cLine){
@@ -276,13 +396,17 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
         sf3Table.setValueAt(dateIssued, row, indexSaved);
         sf3Table.setValueAt(dateReturned, row, indexSaved+1);
     }
-    private void loadEmptyCounters(){
+    private boolean loadEmptyCounters(){
         try {
             lbLoadingMessage.setText("Loading Counters...");
+            String extraFields="";
+            for(int n=0;n<21;n++){
+                extraFields+=missingValuesSubstitute+"@@";
+            }
             String counters [] = {
-                "--@@--@@--@@<== Total For Male ==>@@--@@",
-                "--@@--@@--@@<== Total For Female ==>@@--@@",
-                "--@@--@@--@@<== Total Learners==>@@--@@",
+                "--@@--@@--@@<== Total For Male ==>@@--@@"+extraFields,
+                "--@@--@@--@@<== Total For Female ==>@@--@@"+extraFields,
+                "--@@--@@--@@<== Total Learners==>@@--@@"+extraFields,
             };
 
             for(int n=0;n<counters.length;n++){
@@ -290,9 +414,10 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
                 Thread.sleep(threadDelay);
             }
             Thread.sleep(pauseDelay);
+            return true;
         } catch (Exception e) {
             System.err.println("Interrupted @ Load Empty Counters");
-            return;
+            return false;
         }
     }
     
@@ -313,7 +438,7 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
                     resultId = Integer.parseInt(my.getValueAtColumn(result[x], 0));
 
                     if(currentId == resultId){
-                        my.add_table_row(result[x]+"--@@", sf3BooksTable);
+                        my.add_table_row(result[x]+"--@@0@@0@@0@@0@@0@@0@@", sf3BooksTable);
                         break;
                     }
                 }
@@ -336,8 +461,10 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
     
     private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable){
         if(dialog != null && dialog.isVisible()){
+            dialog.setSize(width, height);
             dialog.setTitle(title);
             dialog.add(customPanel);
+            dialog.setLocationRelativeTo(jFrameName);
             System.err.println("Sf4 Dialog is already visible. Skipping...");
             return;
         }

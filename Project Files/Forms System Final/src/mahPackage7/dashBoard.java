@@ -1497,25 +1497,43 @@ public class dashBoard extends javax.swing.JFrame {
 
         sf3BooksTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Code", "Book Name", "Grade Level", "Index"
+                "ID", "Code", "Book Name", "Grade Level", "Index", "Issued", "Returned", "Unreturned", "PTL", "TDO", "LLTR"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        sf3BooksTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         sf3BooksTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane15.setViewportView(sf3BooksTable);
+        if (sf3BooksTable.getColumnModel().getColumnCount() > 0) {
+            sf3BooksTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+            sf3BooksTable.getColumnModel().getColumn(2).setPreferredWidth(200);
+            sf3BooksTable.getColumnModel().getColumn(4).setResizable(false);
+            sf3BooksTable.getColumnModel().getColumn(5).setResizable(false);
+            sf3BooksTable.getColumnModel().getColumn(5).setPreferredWidth(90);
+            sf3BooksTable.getColumnModel().getColumn(6).setResizable(false);
+            sf3BooksTable.getColumnModel().getColumn(6).setPreferredWidth(90);
+            sf3BooksTable.getColumnModel().getColumn(7).setResizable(false);
+            sf3BooksTable.getColumnModel().getColumn(7).setPreferredWidth(90);
+            sf3BooksTable.getColumnModel().getColumn(8).setResizable(false);
+            sf3BooksTable.getColumnModel().getColumn(8).setPreferredWidth(90);
+            sf3BooksTable.getColumnModel().getColumn(9).setResizable(false);
+            sf3BooksTable.getColumnModel().getColumn(9).setPreferredWidth(90);
+            sf3BooksTable.getColumnModel().getColumn(10).setResizable(false);
+            sf3BooksTable.getColumnModel().getColumn(10).setPreferredWidth(90);
+        }
 
         btnLoadStudents3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_sync_16px.png"))); // NOI18N
         btnLoadStudents3.setText("Load Students");
@@ -2225,6 +2243,16 @@ public class dashBoard extends javax.swing.JFrame {
                 sf3BooksTable.clearSelection();
             }
         }else{
+            if(col == 25){
+                try {
+                    String remarks = sf3Table.getValueAt(row, 25).toString().trim();
+                    if(remarks.trim().length() > 0){
+                        my.showMessage("Remarks:\n\n"+remarks, JOptionPane.PLAIN_MESSAGE);
+                    }
+                    
+                } catch (Exception e) {
+                }
+            }
             sf3BooksTable.clearSelection();
         }
     }//GEN-LAST:event_sf3TableMouseClicked
@@ -2371,7 +2399,7 @@ public class dashBoard extends javax.swing.JFrame {
     
     private void setScrollSpeeds(){
         JScrollPane scrollpanes [] = {
-            jScrollPane1,jScrollPane3,jScrollPane4,jScrollPane9,
+            jScrollPane1,jScrollPane3,jScrollPane4,jScrollPane9,jScrollPane14,
         };
         
         int scrollSpeed = 15;
@@ -2394,6 +2422,9 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(sf1StudentsTable, new int [] {0,1,2});
             my.hideColumns(sf2Table, new int [] {0,1,2,5});
             my.hideColumns(weekDaysOfTheMonthTable, new int [] {0,1,2,5});
+            
+            my.hideColumns(sf3Table, new int [] {0,1,2});
+            my.hideColumns(sf3BooksTable, new int [] {0,3});
         }
         my.customHeaders(weekDaysOfTheMonthTable,new int [] {7,12,17,22,27},Color.RED,Color.BLACK,myVariables.COLUMN_HEADER_FONT,true);
         my.customHeaders(sf2Table,new int [] {7,12,17,22,27},Color.RED,Color.BLACK,myVariables.COLUMN_HEADER_FONT,true);
