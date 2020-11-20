@@ -708,6 +708,8 @@
                                   <Component id="cbAllowDecimalValues" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="tfEditGwa" min="-2" pref="76" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfEvaluation" min="-2" pref="115" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -791,6 +793,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="tfEditGwa" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="cbAllowDecimalValues" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfEvaluation" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="6" max="32767" attributes="0"/>
                           <Component id="btnSaveGradeChanges" min="-2" max="-2" attributes="0"/>
@@ -1565,6 +1568,16 @@
                       <Image iconType="3" name="/mahPackage4/icons/icons8_ok_20px.png"/>
                     </Property>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfEvaluation">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="90"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfEvaluationActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

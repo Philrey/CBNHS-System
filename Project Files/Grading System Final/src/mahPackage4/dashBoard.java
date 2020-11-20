@@ -138,6 +138,7 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton14 = new javax.swing.JRadioButton();
         jRadioButton15 = new javax.swing.JRadioButton();
         jRadioButton16 = new javax.swing.JRadioButton();
+        tfEvaluation = new javax.swing.JTextField();
         computationOptionGroup = new javax.swing.ButtonGroup();
         q1StatusGroup = new javax.swing.ButtonGroup();
         q2StatusGroup = new javax.swing.ButtonGroup();
@@ -884,6 +885,15 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton16.setOpaque(false);
         jRadioButton16.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
 
+        tfEvaluation.setEditable(false);
+        tfEvaluation.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfEvaluation.setText("90");
+        tfEvaluation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfEvaluationActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout contentsPanelLayout = new javax.swing.GroupLayout(contentsPanel);
         contentsPanel.setLayout(contentsPanelLayout);
         contentsPanelLayout.setHorizontalGroup(
@@ -943,6 +953,8 @@ public class dashBoard extends javax.swing.JFrame {
                         .addComponent(cbAllowDecimalValues)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfEditGwa, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfEvaluation, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, contentsPanelLayout.createSequentialGroup()
                         .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -1014,7 +1026,8 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(contentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfEditGwa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbAllowDecimalValues))
+                    .addComponent(cbAllowDecimalValues)
+                    .addComponent(tfEvaluation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                 .addComponent(btnSaveGradeChanges)
                 .addContainerGap())
@@ -1441,7 +1454,7 @@ public class dashBoard extends javax.swing.JFrame {
             }else{
                 if(my.getConfirmation("This student has no record yet. Add one now?")){
                     String [] toSend = {
-                        "null,'"+studentId+"','"+sectionId+"','"+subjectId+"','OPEN',now()",
+                        "null,'"+studentId+"','"+sectionId+"','"+subjectId+"','Open:Open:Open:Open:Incomplete:',now()",
                     };
                     
                     if(my.add_values("grades", "id,studentId,sectionId,subjectId,status,dateUpdated", toSend)){
@@ -1485,6 +1498,10 @@ public class dashBoard extends javax.swing.JFrame {
             new JRadioButton[] {jRadioButton13,jRadioButton14,jRadioButton15,jRadioButton16},
         };
         for(int n=0;n<statuses.length;n++){
+            if(n==4){
+                tfEvaluation.setText(statuses[n]);
+                break;
+            }
             loadStatuses(quarterFields[n], statuses[n], radioSets[n], myVariables.getAccessLevel()!=5? true:false);
         }
         enableDisableSaveButtonViaStatus();
@@ -1550,6 +1567,10 @@ public class dashBoard extends javax.swing.JFrame {
         refreshAssignedSubjects(true);
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void tfEvaluationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEvaluationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfEvaluationActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1602,12 +1623,25 @@ public class dashBoard extends javax.swing.JFrame {
         
         btnEditGrades.setEnabled(enableEditBtn);
     }
+    private String getEvaluation(double gwa){
+        //Check if all fields have values
+        if(tfEditFirstQuarter.getText().length() == 0 || tfEditSecondQuarter.getText().length() == 0 
+                || tfEditThirdQuarter.getText().length() == 0 || tfEditFourthQuarter.getText().length() == 0)
+            return "Incomplete";
+        if(gwa<75f){
+            return "Failed";
+        }else{
+            return "Passed";
+        }
+    }
     private void checkCalculationMethod(boolean calculateGwa,boolean allowDecimalValues){
         if(rbAutomatic.isSelected()){
             tfEditGwa.setEditable(false);
+            tfEvaluation.setEditable(false);
         }
         if(rbManual.isSelected()){
             tfEditGwa.setEditable(true);
+            tfEvaluation.setEditable(true);
             return;
         }
         
@@ -1625,6 +1659,7 @@ public class dashBoard extends javax.swing.JFrame {
                     gwa = (q1+q2+q3+q4)/4;
 
                     tfEditGwa.setText(String.valueOf(df.format(gwa)));
+                    tfEvaluation.setText(getEvaluation(gwa));
                 } catch (Exception e) {
                     System.err.println("Invalid Values entered");
                     tfEditGwa.setText("NaN");
@@ -1640,6 +1675,7 @@ public class dashBoard extends javax.swing.JFrame {
                     gwa = (q1+q2+q3+q4)/4;
 
                     tfEditGwa.setText(String.valueOf(gwa));
+                    tfEvaluation.setText(getEvaluation(gwa));
                 } catch (Exception e) {
                     System.err.println("Invalid Values entered");
                     tfEditGwa.setText("NaN");
@@ -1732,7 +1768,7 @@ public class dashBoard extends javax.swing.JFrame {
                 status[n] = "Closed";
             }
         }
-        String finalStatus = status[0]+":"+status[1]+":"+status[2]+":"+status[3]+":";
+        String finalStatus = status[0]+":"+status[1]+":"+status[2]+":"+status[3]+":"+tfEvaluation.getText()+":";
         System.err.println(finalStatus);
         
         return finalStatus;
@@ -1988,7 +2024,7 @@ public class dashBoard extends javax.swing.JFrame {
             tfFirstQ,tfSecondQ,tfThirdQ,tfFourthQ,tfGeneralWeighedAverage,
             //Edit Grades Dialog
             tfEditFirstQuarter,tfEditSecondQuarter,tfEditThirdQuarter,tfEditFourthQuarter,
-            tfEditGwa,
+            tfEditGwa,tfEvaluation,
         };
         for(JSpinner n : spinners){
             n.setFont(myVariables.TEXTFIELD_FONT);
@@ -2126,6 +2162,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTextField tfEditGwa;
     private javax.swing.JTextField tfEditSecondQuarter;
     private javax.swing.JTextField tfEditThirdQuarter;
+    private javax.swing.JTextField tfEvaluation;
     private javax.swing.JTextField tfFirstQ;
     private javax.swing.JTextField tfFourthQ;
     private javax.swing.JTextField tfGeneralWeighedAverage;
