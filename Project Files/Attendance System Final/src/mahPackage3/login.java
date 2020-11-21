@@ -21,7 +21,7 @@ public class login extends javax.swing.JFrame {
     myFunctions my;
     
     public login() {
-        my = new myFunctions();
+        my = new myFunctions(false);
         initComponents();
         loadColoredButtons();
     }

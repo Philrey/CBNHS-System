@@ -3372,7 +3372,7 @@ public class dashBoard extends javax.swing.JFrame {
                         System.err.println("Comma found...deleting");
                     }
                     
-                    my.searchItem("WHERE id IN ("+subjectsContained+")", selectedSubjectTable, 1, null, null, false, true, null, tfSearchSubject2, true);
+                    my.searchItem("WHERE id IN ("+subjectsContained+") ORDER BY FIELD(id,"+subjectsContained+")", selectedSubjectTable, 1, null, null, false, true, null, tfSearchSubject2, true);
                 }else{
                     my.clear_table_rows(selectedSubjectTable);
                 }

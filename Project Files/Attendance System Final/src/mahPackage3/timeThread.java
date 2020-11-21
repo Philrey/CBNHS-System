@@ -9,7 +9,7 @@ public class timeThread extends SwingWorker<String, String>{
 
     public timeThread(JLabel textArea) {
         this.textArea = textArea;
-        my = new myFunctions();
+        my = new myFunctions(true);
     }
 
     @Override

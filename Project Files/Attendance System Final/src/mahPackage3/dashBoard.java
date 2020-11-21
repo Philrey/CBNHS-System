@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
@@ -35,7 +36,7 @@ public class dashBoard extends javax.swing.JFrame {
     timeThread tr;
     public dashBoard() {
         
-        my = new myFunctions();
+        my = new myFunctions(false);
         initComponents();
         
         tr = new timeThread(lbDateTime);
@@ -54,10 +55,17 @@ public class dashBoard extends javax.swing.JFrame {
         setScrollSpeeds();
         loadYearDropDowns(12);
         
+        setLoadingVariables();
+        
         lbSchoolName.setText(myVariables.getSchoolName() + " Attendance System");
         lbSchoolAddress.setText(myVariables.getSchoolAddress());
     }
-    
+    private void setLoadingVariables(){
+        myVariables.setProgressBar(jpbProgressBar);
+        myVariables.setLbLoadingMessage(lbLoadingMessage);
+        myVariables.setLoadingPanel(loadingDialog);
+        myVariables.setCurrentLoadingFrame(this);
+    }
     //<editor-fold desc="Custom Functions"> 
     JDialog dialog;
     JDialog seconDaryDialog;
@@ -126,6 +134,8 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(attendanceTable, new int [] {0,1,2,3});
             my.hideColumns(checkAttendanceTable, new int [] {0,1,5,6});
             my.hideColumns(recheckAttendanceTable, new int [] {0,1,5,6,11});
+            
+            my.hideColumns(gradesTable, new int [] {0,1,2,3,6,9});
         }
         
         //Set table fonts
@@ -135,6 +145,7 @@ public class dashBoard extends javax.swing.JFrame {
             enrolledStudentsTable,
             checkAttendanceTable,
             recheckAttendanceTable,
+            gradesTable,
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
         //customHeaders(sf1SectionTable, new int []{0,1,2,3}, Color.RED, Color.WHITE, new Font("Comic Sans MS", Font.BOLD, 12), true);
@@ -375,18 +386,20 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel41 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane14 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        gradesTable = new javax.swing.JTable();
         btnLoadGrades = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         tfGeneralAverage = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        rbPassed = new javax.swing.JRadioButton();
-        rbPassed1 = new javax.swing.JRadioButton();
-        rbPassed2 = new javax.swing.JRadioButton();
-        rbPassed3 = new javax.swing.JRadioButton();
+        lbFinalGradeId = new javax.swing.JLabel();
+        rbPromoted = new javax.swing.JRadioButton();
+        rbRetained = new javax.swing.JRadioButton();
+        rbConditional = new javax.swing.JRadioButton();
+        rbIncomplete = new javax.swing.JRadioButton();
         btnSaveEvaluation = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        tfFailedSubjects = new javax.swing.JTextField();
         checkAttendanceTab = new javax.swing.JPanel();
         jSplitPane2 = new javax.swing.JSplitPane();
         left1 = new javax.swing.JPanel();
@@ -454,6 +467,11 @@ public class dashBoard extends javax.swing.JFrame {
         jScrollPane11 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         btnSetRemarks = new javax.swing.JButton();
+        loadingDialog = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jpbProgressBar = new javax.swing.JProgressBar();
+        lbLoadingMessage = new javax.swing.JLabel();
+        btnCancelLoading = new javax.swing.JButton();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -867,7 +885,7 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Grade Details");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        gradesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -886,85 +904,119 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane14.setViewportView(jTable1);
+        gradesTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        gradesTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane14.setViewportView(gradesTable);
+        if (gradesTable.getColumnModel().getColumnCount() > 0) {
+            gradesTable.getColumnModel().getColumn(4).setPreferredWidth(200);
+            gradesTable.getColumnModel().getColumn(5).setResizable(false);
+            gradesTable.getColumnModel().getColumn(5).setPreferredWidth(100);
+            gradesTable.getColumnModel().getColumn(6).setResizable(false);
+            gradesTable.getColumnModel().getColumn(7).setResizable(false);
+            gradesTable.getColumnModel().getColumn(7).setPreferredWidth(100);
+            gradesTable.getColumnModel().getColumn(8).setPreferredWidth(200);
+            gradesTable.getColumnModel().getColumn(9).setResizable(false);
+            gradesTable.getColumnModel().getColumn(10).setResizable(false);
+            gradesTable.getColumnModel().getColumn(10).setPreferredWidth(100);
+            gradesTable.getColumnModel().getColumn(11).setResizable(false);
+            gradesTable.getColumnModel().getColumn(11).setPreferredWidth(120);
+            gradesTable.getColumnModel().getColumn(12).setResizable(false);
+            gradesTable.getColumnModel().getColumn(12).setPreferredWidth(150);
+        }
 
         btnLoadGrades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_sync_16px.png"))); // NOI18N
         btnLoadGrades.setText("Load Grades");
+        btnLoadGrades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadGradesActionPerformed(evt);
+            }
+        });
 
         jLabel17.setText("General Average");
+
+        tfGeneralAverage.setEditable(false);
+        tfGeneralAverage.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel18.setText("Remarks");
 
         jLabel19.setText("Record ID:");
 
-        jLabel20.setText("0");
+        lbFinalGradeId.setText("0");
 
-        setRemarksGroup.add(rbPassed);
-        rbPassed.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        rbPassed.setText("Promoted");
-        rbPassed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_round_20px.png"))); // NOI18N
-        rbPassed.setOpaque(false);
-        rbPassed.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_ok_20px.png"))); // NOI18N
+        setRemarksGroup.add(rbPromoted);
+        rbPromoted.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        rbPromoted.setText("Promoted");
+        rbPromoted.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_round_20px.png"))); // NOI18N
+        rbPromoted.setOpaque(false);
+        rbPromoted.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_ok_20px.png"))); // NOI18N
 
-        setRemarksGroup.add(rbPassed1);
-        rbPassed1.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        rbPassed1.setText("Retained");
-        rbPassed1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_round_20px.png"))); // NOI18N
-        rbPassed1.setOpaque(false);
-        rbPassed1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_ok_20px.png"))); // NOI18N
+        setRemarksGroup.add(rbRetained);
+        rbRetained.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        rbRetained.setText("Retained");
+        rbRetained.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_round_20px.png"))); // NOI18N
+        rbRetained.setOpaque(false);
+        rbRetained.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_ok_20px.png"))); // NOI18N
 
-        setRemarksGroup.add(rbPassed2);
-        rbPassed2.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        rbPassed2.setText("Conditional");
-        rbPassed2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_round_20px.png"))); // NOI18N
-        rbPassed2.setOpaque(false);
-        rbPassed2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_ok_20px.png"))); // NOI18N
+        setRemarksGroup.add(rbConditional);
+        rbConditional.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        rbConditional.setText("Conditional");
+        rbConditional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_round_20px.png"))); // NOI18N
+        rbConditional.setOpaque(false);
+        rbConditional.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_ok_20px.png"))); // NOI18N
 
-        setRemarksGroup.add(rbPassed3);
-        rbPassed3.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        rbPassed3.setSelected(true);
-        rbPassed3.setText("Incomplete");
-        rbPassed3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_round_20px.png"))); // NOI18N
-        rbPassed3.setOpaque(false);
-        rbPassed3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_ok_20px.png"))); // NOI18N
+        setRemarksGroup.add(rbIncomplete);
+        rbIncomplete.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        rbIncomplete.setSelected(true);
+        rbIncomplete.setText("Incomplete");
+        rbIncomplete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_round_20px.png"))); // NOI18N
+        rbIncomplete.setOpaque(false);
+        rbIncomplete.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_ok_20px.png"))); // NOI18N
 
+        btnSaveEvaluation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_save_16px.png"))); // NOI18N
         btnSaveEvaluation.setText("Save Evaluation");
+
+        jLabel20.setText("Failed Subjects");
+
+        tfFailedSubjects.setEditable(false);
+        tfFailedSubjects.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSaveEvaluation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbFinalGradeId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLoadGrades))
-                            .addComponent(btnSaveEvaluation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfFailedSubjects)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(tfGeneralAverage))
-                                    .addComponent(jLabel18))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(rbPassed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rbPassed2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rbPassed1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rbPassed3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addComponent(jLabel18)
+                                            .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(rbPromoted, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(rbConditional, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                                        .addComponent(rbRetained, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(rbIncomplete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(tfGeneralAverage, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -977,28 +1029,32 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLoadGrades)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLoadGrades)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel19)
+                        .addComponent(lbFinalGradeId)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfGeneralAverage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfFailedSubjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbPassed)
+                .addComponent(rbPromoted)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbPassed2)
+                .addComponent(rbConditional)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbPassed1)
+                .addComponent(rbRetained)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbPassed3)
+                .addComponent(rbIncomplete)
                 .addGap(18, 18, 18)
                 .addComponent(btnSaveEvaluation)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jScrollPane13.setViewportView(jPanel3);
@@ -1022,7 +1078,7 @@ public class dashBoard extends javax.swing.JFrame {
         viewStudentsTab.setLayout(viewStudentsTabLayout);
         viewStudentsTabLayout.setHorizontalGroup(
             viewStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
         viewStudentsTabLayout.setVerticalGroup(
             viewStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1324,29 +1380,26 @@ public class dashBoard extends javax.swing.JFrame {
         setStatusGroup.add(rbPresent);
         rbPresent.setFont(myVariables.TEXTFIELD_HEADER_FONT);
         rbPresent.setText("Present");
-        rbPresent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        rbPresent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_round_20px.png"))); // NOI18N
         rbPresent.setIconTextGap(5);
         rbPresent.setOpaque(false);
-        rbPresent.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_tick_box_20px.png"))); // NOI18N
-        rbPresent.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+        rbPresent.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_ok_20px.png"))); // NOI18N
 
         setStatusGroup.add(rbAbsent);
         rbAbsent.setFont(myVariables.TEXTFIELD_HEADER_FONT);
         rbAbsent.setText("Absent");
-        rbAbsent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        rbAbsent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_round_20px.png"))); // NOI18N
         rbAbsent.setIconTextGap(5);
         rbAbsent.setOpaque(false);
-        rbAbsent.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_tick_box_20px.png"))); // NOI18N
-        rbAbsent.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+        rbAbsent.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_ok_20px.png"))); // NOI18N
 
         setStatusGroup.add(rbTardy);
         rbTardy.setFont(myVariables.TEXTFIELD_HEADER_FONT);
         rbTardy.setText("Tardy");
-        rbTardy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        rbTardy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_round_20px.png"))); // NOI18N
         rbTardy.setIconTextGap(5);
         rbTardy.setOpaque(false);
-        rbTardy.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_tick_box_20px.png"))); // NOI18N
-        rbTardy.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+        rbTardy.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_ok_20px.png"))); // NOI18N
 
         jLabel11.setText("Notes (Optional)");
 
@@ -1694,6 +1747,49 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSetRemarks)
+                .addContainerGap())
+        );
+
+        loadingDialog.setBackground(new java.awt.Color(255, 255, 204));
+
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/Double Ring 100px.gif"))); // NOI18N
+
+        jpbProgressBar.setValue(50);
+
+        lbLoadingMessage.setText("Loading");
+
+        btnCancelLoading.setText("Cancel");
+        btnCancelLoading.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelLoadingActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout loadingDialogLayout = new javax.swing.GroupLayout(loadingDialog);
+        loadingDialog.setLayout(loadingDialogLayout);
+        loadingDialogLayout.setHorizontalGroup(
+            loadingDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loadingDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(loadingDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpbProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                    .addComponent(lbLoadingMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCancelLoading, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        loadingDialogLayout.setVerticalGroup(
+            loadingDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loadingDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbLoadingMessage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelLoading)
                 .addContainerGap())
         );
 
@@ -2451,6 +2547,91 @@ public class dashBoard extends javax.swing.JFrame {
         searchEnrolledStudentsHandler(my.getButtonPressedEvent(evt.getSource()));
     }//GEN-LAST:event_btnSaveRemarksActionPerformed
 
+    private void btnCancelLoadingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelLoadingActionPerformed
+        //my.stopAllThreads();
+        my.interrupMainThread();
+        my.interrupSecondThread();
+        my.interruptThirdThread();
+    }//GEN-LAST:event_btnCancelLoadingActionPerformed
+
+    private void btnLoadGradesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadGradesActionPerformed
+        int sectionRow = assignedTeacherTable.getSelectedRow();
+        int studentRow = enrolledStudentsTable.getSelectedRow();
+        
+        if(sectionRow == -1){
+            my.showMessage("Please Select a Section.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }if(studentRow == -1){
+            my.showMessage("Please Select a Student.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String sectionId = assignedTeacherTable.getValueAt(sectionRow, 1).toString();
+        String studentId = enrolledStudentsTable.getValueAt(studentRow, 1).toString();
+        int recordId = Integer.parseInt(lbFinalGradeId.getText());
+        if(recordId <= 0){
+            String where = "WHERE sectionId='"+sectionId+"' AND studentId='"+studentId+"'";
+            //Load student's final grades first.
+            if(my.checkForDuplicates("finalgrades",where, myVariables.getFinalGradesOrder())){
+                //Load
+                String result [] = my.return_values("*", "finalgrades",where, myVariables.getFinalGradesOrder());
+                String id = my.getValueAtColumn(result[0], 0);
+                String gwa = my.getValueAtColumn(result[0], 3);
+                String evaluation = my.getValueAtColumn(result[0], 4);
+                String failedSubjects = my.getValueAtColumn(result[0], 5);
+                String dateUpdated = my.getValueAtColumn(result[0], 6);
+                
+                lbFinalGradeId.setText(id);
+                tfGeneralAverage.setText(gwa);
+                switch(evaluation){
+                    case "Promoted":{
+                        rbPromoted.setSelected(true);break;
+                    }case "Conditional":{
+                        rbConditional.setSelected(true);break;
+                    }case "Retained":{
+                        rbRetained.setSelected(true);break;
+                    }case "Incomplete":{
+                        rbIncomplete.setSelected(true);break;
+                    }
+                }
+                tfFailedSubjects.setText(failedSubjects);
+                btnSaveEvaluation.setEnabled(true);
+                return;
+            }else{
+                //Ask to add new record
+                if(my.getConfirmation("This student has no records yet. Add one now?")){
+                    String [] values = {
+                        "null,'"+sectionId+"','"+studentId+"'",
+                    };
+                    if(my.add_values("finalgrades", "id,sectionId,studentId", values)){
+                        my.showMessage("Adding Successful. Please reload this student.", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }else{
+                        my.showMessage("Adding Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                }else{
+                    return;
+                }
+            }
+        }
+        
+        
+        String subjectsContained = assignedTeacherTable.getValueAt(sectionRow, 13).toString();
+        
+        if(subjectsContained.trim().length()<2){
+            my.showMessage("No Subjects are assigned to this Section's Load.\nPlease contact your Curriculumn Head to add one.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        my.runMainThread(0, 
+                new JTable[]{enrolledStudentsTable,gradesTable}, 
+                new String[]{sectionId,studentId,subjectsContained}, 
+                new JTextField[]{tfGeneralAverage,tfFailedSubjects}, 
+                new JButton[]{btnLoadGrades}, 
+                new JRadioButton[]{rbPromoted,rbConditional,rbRetained,rbIncomplete}
+        );
+    }//GEN-LAST:event_btnLoadGradesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2493,7 +2674,13 @@ public class dashBoard extends javax.swing.JFrame {
         }
         if(clearAttendanceTable){
             jdcDate.setDate(null);
+            lbFinalGradeId.setText("0");
+            tfGeneralAverage.setText("");
+            tfFailedSubjects.setText("");
+            btnSaveEvaluation.setEnabled(false);
+            
             my.clear_table_rows(attendanceTable);
+            my.clear_table_rows(gradesTable);
         }
         
         btnEditAttendance.setEnabled(enableAttendanceButtons);
@@ -2542,6 +2729,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel addNotesDialog;
     private javax.swing.JTable assignedTeacherTable;
     private javax.swing.JTable attendanceTable;
+    private javax.swing.JButton btnCancelLoading;
     private javax.swing.JButton btnCheckAttendance;
     private javax.swing.JButton btnEditAttendance;
     private javax.swing.JButton btnEditRemarks;
@@ -2561,6 +2749,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTable checkAttendanceTable;
     private javax.swing.JPanel editAttendanceDialog;
     private javax.swing.JTable enrolledStudentsTable;
+    private javax.swing.JTable gradesTable;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -2576,6 +2765,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
@@ -2617,7 +2807,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
@@ -2625,6 +2814,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbSchoolYear1;
     private com.toedter.calendar.JDateChooser jdcCustomDate;
     private com.toedter.calendar.JDateChooser jdcDate;
+    private javax.swing.JProgressBar jpbProgressBar;
     private javax.swing.JSpinner jsHours;
     private javax.swing.JSpinner jsMinutes;
     private javax.swing.JTextArea jtaLeaveNotes;
@@ -2635,6 +2825,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel lbDateAdded;
     private javax.swing.JLabel lbDateTime;
     private javax.swing.JLabel lbDateToRecheck;
+    private javax.swing.JLabel lbFinalGradeId;
+    private javax.swing.JLabel lbLoadingMessage;
     private javax.swing.JLabel lbLoggedInUser;
     private javax.swing.JLabel lbSchoolAddress;
     private javax.swing.JLabel lbSchoolName;
@@ -2642,14 +2834,15 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel lbSearchResult1;
     private javax.swing.JPanel left;
     private javax.swing.JPanel left1;
+    private javax.swing.JPanel loadingDialog;
     private javax.swing.JTabbedPane mainTab;
     private javax.swing.JRadioButton rbAbsent;
+    private javax.swing.JRadioButton rbConditional;
     private javax.swing.JRadioButton rbCustomDate;
-    private javax.swing.JRadioButton rbPassed;
-    private javax.swing.JRadioButton rbPassed1;
-    private javax.swing.JRadioButton rbPassed2;
-    private javax.swing.JRadioButton rbPassed3;
+    private javax.swing.JRadioButton rbIncomplete;
     private javax.swing.JRadioButton rbPresent;
+    private javax.swing.JRadioButton rbPromoted;
+    private javax.swing.JRadioButton rbRetained;
     private javax.swing.JRadioButton rbTardy;
     private javax.swing.JRadioButton rbToday;
     private javax.swing.JPanel recheckAttendanceDialog;
@@ -2662,6 +2855,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel setSf1Sf2RemarkDialog;
     private javax.swing.ButtonGroup setStatusGroup;
     private javax.swing.JPanel testDialog;
+    private javax.swing.JTextField tfFailedSubjects;
     private javax.swing.JTextField tfGeneralAverage;
     private javax.swing.JTextField tfSearchEnrolledStudent;
     private javax.swing.JTextField tfSearchTeacherLoad;

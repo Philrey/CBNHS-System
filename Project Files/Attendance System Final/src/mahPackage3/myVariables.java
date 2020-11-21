@@ -6,6 +6,10 @@
 package mahPackage3;
 
 import java.awt.Font;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 
 /**
  *
@@ -60,6 +64,11 @@ public class myVariables {
     
     private static String yearSelected,monthSelected,daySelected;
     
+    //Loading Dialog
+    private static JProgressBar progressBar;
+    private static JLabel lbLoadingMessage;
+    private static JPanel loadingPanel;
+    private static JFrame currentLoadingFrame;
     
     //Table Orders
     private static int [] usersOrder = new int [] {6,4,3,7,1,2,0,5};
@@ -68,12 +77,14 @@ public class myVariables {
     private static int [] studentsPersonalInfoOrder = new int[] {14,10,12,16,8,17,4,11,3,5,6,0,9,15,2,7,13,1};
     private static int [] subjectLoadsOrder = new int [] {0,3,2,1};
     private static int [] sectionsOrder = new int [] {9,0,4,6,5,10,1,2,11,7,8,3};
+    private static int [] finalGradesOrder = new int [] {3,4,0,1,2,5,6};
     
     private static int [] enrollmentViewOrder = new int [] {15,7,3,0,9,16,1,5,8,11,4,2,17,10,6,12,13,14};
     private static int [] enrollmentViewMinimalOrder = new int [] {5,0,4,1,2,7,3,6,8};
     private static int [] teacherLoadsViewOrder = new int [] {6,7,1,4,3,8,2,10,9,5,0};
     private static int [] managedSubjectsViewOrder = new int [] {10,4,6,8,2,1,11,0,5,12,3,7,9};
     private static int [] managedSubjectsWSubjectsContainedViewOrder = new int [] {13,5,8,10,3,1,14,0,6,15,4,9,12,11,7,2};
+    private static int [] gradesViewOrder = new int []{11,4,7,10,2,1,12,0,5,13,3,9,8,14,6};
     
     private static int [] sectionViewRev3Order = new int [] {8,0,2,4,5,6,3,1,7};
     private static int [] jhsf1Order= new int [] {18,11,5,20,0,9,12,1,8,21,13,23,4,10,3,7,17,14,2,15,6,19,16,22};
@@ -317,10 +328,46 @@ public class myVariables {
 
     //<editor-fold desc="Getters & Setters">
     
+    public static int[] getFinalGradesOrder() {
+        return finalGradesOrder;
+    }
+
     public static int[] getManagedSubjectsWSubjectsContainedViewOrder() {
         return managedSubjectsWSubjectsContainedViewOrder;
     }
 
+    public static JProgressBar getProgressBar() {
+        return progressBar;
+    }
+
+    public static void setProgressBar(JProgressBar progressBar) {
+        myVariables.progressBar = progressBar;
+    }
+
+    public static JLabel getLbLoadingMessage() {
+        return lbLoadingMessage;
+    }
+
+    public static void setLbLoadingMessage(JLabel lbLoadingMessage) {
+        myVariables.lbLoadingMessage = lbLoadingMessage;
+    }
+
+    public static JPanel getLoadingPanel() {
+        return loadingPanel;
+    }
+
+    public static void setLoadingPanel(JPanel loadingPanel) {
+        myVariables.loadingPanel = loadingPanel;
+    }
+
+    public static JFrame getCurrentLoadingFrame() {
+        return currentLoadingFrame;
+    }
+
+    public static void setCurrentLoadingFrame(JFrame currentLoadingFrame) {
+        myVariables.currentLoadingFrame = currentLoadingFrame;
+    }
+    
     public static String[] getMyReservedCharacters() {
         return myReservedCharacters;
     }
@@ -512,5 +559,10 @@ public class myVariables {
     public static String getUsersPrsnlInfIcon() {
         return usersPrsnlInfIcon;
     }
+    
     //</editor-fold>
+
+    public static int[] getGradesViewOrder() {
+        return gradesViewOrder;
+    }
 }

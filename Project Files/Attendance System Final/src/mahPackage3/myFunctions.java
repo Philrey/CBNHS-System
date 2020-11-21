@@ -12,10 +12,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -26,9 +28,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class myFunctions {
-    public myFunctions(){
+    private static Thread mainThead,secondThread,thirdThread,stopThread;
+    
+    public myFunctions(boolean skipLoadingSettings){
         try {
-            loadSettings();
+            if(!skipLoadingSettings){
+                loadSettings();
+            }
         } catch (Exception e) {
             System.err.println("Error Loading Settings");
         }
@@ -1171,6 +1177,80 @@ public class myFunctions {
     }
     
     //</editor-fold>
+    public void runMainThread(int index,JTable [] tablesToUse,String [] stringsToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,JRadioButton [] radioButtonsToUse){
+        Thread toLoad =null;
+        
+        switch(index){
+            case 0:{
+                thread_loadGrades tlg = new thread_loadGrades(tablesToUse, stringsToUse, textFieldsToUse, buttonsToUse, radioButtonsToUse);
+                toLoad =  new Thread(tlg);
+                break;
+            }default:{
+                return;
+            }
+        }
+        
+        if(mainThead!= null){
+            if(mainThead.isAlive()){
+                interrupMainThread();
+            }
+        }
+        mainThead = toLoad;
+        mainThead.start();
+    }
+    public void interrupMainThread(){
+        if(mainThead != null){
+            if(mainThead.isAlive()){
+                System.err.println("Stopping Threads");
+                mainThead.interrupt();
+                mainThead = null;
+                return;
+            }else{
+                //System.err.println("Mainthread is not running.");
+            }
+        }
+    }
+    public void interrupSecondThread(){
+        if(secondThread != null){
+            if(secondThread.isAlive()){
+                System.err.println("Stopping Second Thread");
+                secondThread.interrupt();
+                secondThread = null;
+                return;
+            }else{
+                //System.err.println("Second Thread is not running.");
+            }
+        }
+    }
+    public void interruptThirdThread(){
+        if(thirdThread != null){
+            if(thirdThread.isAlive()){
+                System.err.println("Stopping Third Thread");
+                thirdThread.interrupt();
+                thirdThread = null;
+                return;
+            }else{
+                //System.err.println("Second Thread is not running.");
+            }
+        }
+    }
+    public static Thread getMainThead() {
+        return mainThead;
+    }
+
+    public static Thread getSecondThread() {
+        return secondThread;
+    }
+
+    public static Thread getThirdThread() {
+        return thirdThread;
+    }
+
+    public static Thread getStopThread() {
+        return stopThread;
+    }
+    
+    
     public ImageIcon getImgIcn(String url){
         return new ImageIcon(getClass().getResource(url));
     }

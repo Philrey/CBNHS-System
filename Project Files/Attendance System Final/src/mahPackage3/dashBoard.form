@@ -203,7 +203,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jSplitPane1" alignment="0" pref="509" max="32767" attributes="0"/>
+              <Component id="jSplitPane1" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -758,40 +758,45 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="btnSaveEvaluation" alignment="1" max="32767" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
-                                          <Group type="102" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel14" max="32767" attributes="0"/>
                                                   <Component id="jScrollPane14" pref="0" max="32767" attributes="0"/>
                                                   <Group type="102" alignment="1" attributes="0">
-                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="lbFinalGradeId" max="32767" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="btnLoadGrades" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="btnSaveEvaluation" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="tfFailedSubjects" max="32767" attributes="0"/>
                                                   <Group type="102" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                              <Component id="jLabel17" max="32767" attributes="0"/>
-                                                              <Component id="tfGeneralAverage" max="32767" attributes="0"/>
+                                                              <Component id="jLabel20" max="32767" attributes="0"/>
+                                                              <Group type="102" alignment="0" attributes="0">
+                                                                  <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                              </Group>
+                                                              <Component id="rbPromoted" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="rbConditional" alignment="0" pref="129" max="32767" attributes="0"/>
+                                                              <Component id="rbRetained" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="rbIncomplete" alignment="0" max="32767" attributes="0"/>
                                                           </Group>
-                                                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                              <Component id="tfGeneralAverage" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="jLabel17" alignment="0" max="32767" attributes="0"/>
+                                                          </Group>
                                                       </Group>
                                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="rbPassed" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="rbPassed2" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="rbPassed1" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="rbPassed3" alignment="0" max="32767" attributes="0"/>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="jLabel20" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -810,29 +815,34 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jScrollPane14" min="-2" pref="276" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnLoadGrades" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="btnLoadGrades" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbFinalGradeId" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="tfGeneralAverage" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="tfFailedSubjects" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="rbPassed" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbPromoted" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="rbPassed2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbConditional" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="rbPassed1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbRetained" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="rbPassed3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbIncomplete" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnSaveEvaluation" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="31" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -892,7 +902,7 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTable" name="jTable1">
+                                <Component class="javax.swing.JTable" name="gradesTable">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                       <Table columnCount="13" rowCount="4">
@@ -934,47 +944,47 @@
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
                                           <Title/>
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
                                           <Title/>
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                                           <Title/>
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
                                           <Title/>
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
                                           <Title/>
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                                           <Title/>
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
                                           <Title/>
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="false">
                                           <Title/>
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="false">
                                           <Title/>
                                           <Editor/>
                                           <Renderer/>
@@ -995,6 +1005,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Load Grades"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoadGradesActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel17">
                               <Properties>
@@ -1002,6 +1015,10 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="tfGeneralAverage">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
+                              </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel18">
                               <Properties>
@@ -1013,12 +1030,12 @@
                                 <Property name="text" type="java.lang.String" value="Record ID:"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="jLabel20">
+                            <Component class="javax.swing.JLabel" name="lbFinalGradeId">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="0"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JRadioButton" name="rbPassed">
+                            <Component class="javax.swing.JRadioButton" name="rbPromoted">
                               <Properties>
                                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                   <ComponentRef name="setRemarksGroup"/>
@@ -1036,7 +1053,7 @@
                                 </Property>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JRadioButton" name="rbPassed1">
+                            <Component class="javax.swing.JRadioButton" name="rbRetained">
                               <Properties>
                                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                   <ComponentRef name="setRemarksGroup"/>
@@ -1054,7 +1071,7 @@
                                 </Property>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JRadioButton" name="rbPassed2">
+                            <Component class="javax.swing.JRadioButton" name="rbConditional">
                               <Properties>
                                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                   <ComponentRef name="setRemarksGroup"/>
@@ -1072,7 +1089,7 @@
                                 </Property>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JRadioButton" name="rbPassed3">
+                            <Component class="javax.swing.JRadioButton" name="rbIncomplete">
                               <Properties>
                                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                   <ComponentRef name="setRemarksGroup"/>
@@ -1093,7 +1110,21 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="btnSaveEvaluation">
                               <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/mahPackage3/icons/icons8_save_16px.png"/>
+                                </Property>
                                 <Property name="text" type="java.lang.String" value="Save Evaluation"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel20">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Failed Subjects"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="tfFailedSubjects">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -1731,15 +1762,12 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Present"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_unchecked_checkbox_20px.png"/>
+              <Image iconType="3" name="/mahPackage3/icons/icons8_round_20px.png"/>
             </Property>
             <Property name="iconTextGap" type="int" value="5"/>
             <Property name="opaque" type="boolean" value="false"/>
-            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_tick_box_20px.png"/>
-            </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_checked_checkbox_20px.png"/>
+              <Image iconType="3" name="/mahPackage3/icons/icons8_ok_20px.png"/>
             </Property>
           </Properties>
         </Component>
@@ -1753,15 +1781,12 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Absent"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_unchecked_checkbox_20px.png"/>
+              <Image iconType="3" name="/mahPackage3/icons/icons8_round_20px.png"/>
             </Property>
             <Property name="iconTextGap" type="int" value="5"/>
             <Property name="opaque" type="boolean" value="false"/>
-            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_tick_box_20px.png"/>
-            </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_checked_checkbox_20px.png"/>
+              <Image iconType="3" name="/mahPackage3/icons/icons8_ok_20px.png"/>
             </Property>
           </Properties>
         </Component>
@@ -1775,15 +1800,12 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Tardy"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_unchecked_checkbox_20px.png"/>
+              <Image iconType="3" name="/mahPackage3/icons/icons8_round_20px.png"/>
             </Property>
             <Property name="iconTextGap" type="int" value="5"/>
             <Property name="opaque" type="boolean" value="false"/>
-            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_tick_box_20px.png"/>
-            </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_checked_checkbox_20px.png"/>
+              <Image iconType="3" name="/mahPackage3/icons/icons8_ok_20px.png"/>
             </Property>
           </Properties>
         </Component>
@@ -2318,6 +2340,73 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSetRemarksActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="loadingDialog">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel21" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jpbProgressBar" alignment="0" pref="282" max="32767" attributes="0"/>
+                      <Component id="lbLoadingMessage" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnCancelLoading" alignment="1" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jpbProgressBar" min="-2" pref="22" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lbLoadingMessage" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btnCancelLoading" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel21">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/mahPackage3/icons/Double Ring 100px.gif"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JProgressBar" name="jpbProgressBar">
+          <Properties>
+            <Property name="value" type="int" value="50"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbLoadingMessage">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Loading"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnCancelLoading">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cancel"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelLoadingActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

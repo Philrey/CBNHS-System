@@ -376,7 +376,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jTabbedPane1" alignment="0" pref="89" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -732,6 +732,12 @@
                       </SubComponents>
                     </Container>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane13">
+                      <Properties>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="null"/>
+                        </Property>
+                        <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+                      </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                           <JTabbedPaneConstraints tabName="Grade Details">
@@ -752,9 +758,50 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="134" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="btnSaveEvaluation" alignment="1" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel14" max="32767" attributes="0"/>
+                                                  <Component id="jScrollPane14" pref="0" max="32767" attributes="0"/>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="lbFinalGradeId" max="32767" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="btnLoadGrades" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="tfFailedSubjects" max="32767" attributes="0"/>
+                                                  <Group type="102" attributes="0">
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                              <Component id="jLabel20" max="32767" attributes="0"/>
+                                                              <Group type="102" alignment="0" attributes="0">
+                                                                  <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                              </Group>
+                                                              <Component id="rbPromoted" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="rbConditional" alignment="0" pref="129" max="32767" attributes="0"/>
+                                                              <Component id="rbRetained" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="rbIncomplete" alignment="0" max="32767" attributes="0"/>
+                                                          </Group>
+                                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                              <Component id="tfGeneralAverage" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="jLabel17" alignment="0" max="32767" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -763,7 +810,39 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="445" max="32767" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jScrollPane14" min="-2" pref="276" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="btnLoadGrades" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbFinalGradeId" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="tfGeneralAverage" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="tfFailedSubjects" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="rbPromoted" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="rbConditional" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="rbRetained" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="rbIncomplete" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnSaveEvaluation" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace pref="31" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -810,6 +889,244 @@
                                 </Component>
                               </SubComponents>
                             </Container>
+                            <Component class="javax.swing.JLabel" name="jLabel14">
+                              <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
+                                <Property name="text" type="java.lang.String" value="Grade Details"/>
+                              </Properties>
+                            </Component>
+                            <Container class="javax.swing.JScrollPane" name="jScrollPane14">
+                              <AuxValues>
+                                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                              </AuxValues>
+
+                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                              <SubComponents>
+                                <Component class="javax.swing.JTable" name="gradesTable">
+                                  <Properties>
+                                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                      <Table columnCount="13" rowCount="4">
+                                        <Column editable="false" title="Grade ID" type="java.lang.Object"/>
+                                        <Column editable="false" title="Section ID" type="java.lang.Object"/>
+                                        <Column editable="false" title="Student ID" type="java.lang.Object"/>
+                                        <Column editable="false" title="Teacher ID" type="java.lang.Object"/>
+                                        <Column editable="false" title="Subject Teacher" type="java.lang.Object"/>
+                                        <Column editable="false" title="Gender" type="java.lang.Object"/>
+                                        <Column editable="false" title="Subject ID" type="java.lang.Object"/>
+                                        <Column editable="false" title="Code" type="java.lang.Object"/>
+                                        <Column editable="false" title="Description" type="java.lang.Object"/>
+                                        <Column editable="false" title="Grade Level" type="java.lang.Object"/>
+                                        <Column editable="false" title="GWA" type="java.lang.Object"/>
+                                        <Column editable="false" title="Status" type="java.lang.Object"/>
+                                        <Column editable="false" title="Date Updated" type="java.lang.Object"/>
+                                      </Table>
+                                    </Property>
+                                    <Property name="autoResizeMode" type="int" value="0"/>
+                                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                      <TableColumnModel selectionModel="0">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="false">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="false">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                      </TableColumnModel>
+                                    </Property>
+                                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                      <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                    </Property>
+                                  </Properties>
+                                </Component>
+                              </SubComponents>
+                            </Container>
+                            <Component class="javax.swing.JButton" name="btnLoadGrades">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/mahPackage3/icons/icons8_sync_16px.png"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Load Grades"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoadGradesActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel17">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="General Average"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="tfGeneralAverage">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel18">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Remarks"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel19">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Record ID:"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="lbFinalGradeId">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="0"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JRadioButton" name="rbPromoted">
+                              <Properties>
+                                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                                  <ComponentRef name="setRemarksGroup"/>
+                                </Property>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                  <Connection code="myVariables.TEXTFIELD_HEADER_FONT" type="code"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Promoted"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/mahPackage3/icons/icons8_round_20px.png"/>
+                                </Property>
+                                <Property name="opaque" type="boolean" value="false"/>
+                                <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/mahPackage3/icons/icons8_ok_20px.png"/>
+                                </Property>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JRadioButton" name="rbRetained">
+                              <Properties>
+                                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                                  <ComponentRef name="setRemarksGroup"/>
+                                </Property>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                  <Connection code="myVariables.TEXTFIELD_HEADER_FONT" type="code"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Retained"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/mahPackage3/icons/icons8_round_20px.png"/>
+                                </Property>
+                                <Property name="opaque" type="boolean" value="false"/>
+                                <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/mahPackage3/icons/icons8_ok_20px.png"/>
+                                </Property>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JRadioButton" name="rbConditional">
+                              <Properties>
+                                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                                  <ComponentRef name="setRemarksGroup"/>
+                                </Property>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                  <Connection code="myVariables.TEXTFIELD_HEADER_FONT" type="code"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Conditional"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/mahPackage3/icons/icons8_round_20px.png"/>
+                                </Property>
+                                <Property name="opaque" type="boolean" value="false"/>
+                                <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/mahPackage3/icons/icons8_ok_20px.png"/>
+                                </Property>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JRadioButton" name="rbIncomplete">
+                              <Properties>
+                                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                                  <ComponentRef name="setRemarksGroup"/>
+                                </Property>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                  <Connection code="myVariables.TEXTFIELD_HEADER_FONT" type="code"/>
+                                </Property>
+                                <Property name="selected" type="boolean" value="true"/>
+                                <Property name="text" type="java.lang.String" value="Incomplete"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/mahPackage3/icons/icons8_round_20px.png"/>
+                                </Property>
+                                <Property name="opaque" type="boolean" value="false"/>
+                                <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/mahPackage3/icons/icons8_ok_20px.png"/>
+                                </Property>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="btnSaveEvaluation">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/mahPackage3/icons/icons8_save_16px.png"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Save Evaluation"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel20">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Failed Subjects"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="tfFailedSubjects">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
+                              </Properties>
+                            </Component>
                           </SubComponents>
                         </Container>
                       </SubComponents>
@@ -1237,6 +1554,8 @@
     </Component>
     <Component class="javax.swing.ButtonGroup" name="setStatusGroup">
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="setRemarksGroup">
+    </Component>
     <Container class="javax.swing.JPanel" name="testDialog">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1443,15 +1762,12 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Present"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_unchecked_checkbox_20px.png"/>
+              <Image iconType="3" name="/mahPackage3/icons/icons8_round_20px.png"/>
             </Property>
             <Property name="iconTextGap" type="int" value="5"/>
             <Property name="opaque" type="boolean" value="false"/>
-            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_tick_box_20px.png"/>
-            </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_checked_checkbox_20px.png"/>
+              <Image iconType="3" name="/mahPackage3/icons/icons8_ok_20px.png"/>
             </Property>
           </Properties>
         </Component>
@@ -1465,15 +1781,12 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Absent"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_unchecked_checkbox_20px.png"/>
+              <Image iconType="3" name="/mahPackage3/icons/icons8_round_20px.png"/>
             </Property>
             <Property name="iconTextGap" type="int" value="5"/>
             <Property name="opaque" type="boolean" value="false"/>
-            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_tick_box_20px.png"/>
-            </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_checked_checkbox_20px.png"/>
+              <Image iconType="3" name="/mahPackage3/icons/icons8_ok_20px.png"/>
             </Property>
           </Properties>
         </Component>
@@ -1487,15 +1800,12 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Tardy"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_unchecked_checkbox_20px.png"/>
+              <Image iconType="3" name="/mahPackage3/icons/icons8_round_20px.png"/>
             </Property>
             <Property name="iconTextGap" type="int" value="5"/>
             <Property name="opaque" type="boolean" value="false"/>
-            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_tick_box_20px.png"/>
-            </Property>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/mahPackage3/icons/icons8_checked_checkbox_20px.png"/>
+              <Image iconType="3" name="/mahPackage3/icons/icons8_ok_20px.png"/>
             </Property>
           </Properties>
         </Component>
@@ -2030,6 +2340,73 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSetRemarksActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="loadingDialog">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel21" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jpbProgressBar" alignment="0" pref="282" max="32767" attributes="0"/>
+                      <Component id="lbLoadingMessage" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnCancelLoading" alignment="1" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jpbProgressBar" min="-2" pref="22" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lbLoadingMessage" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btnCancelLoading" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel21">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/mahPackage3/icons/Double Ring 100px.gif"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JProgressBar" name="jpbProgressBar">
+          <Properties>
+            <Property name="value" type="int" value="50"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbLoadingMessage">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Loading"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnCancelLoading">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cancel"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelLoadingActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
