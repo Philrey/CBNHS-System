@@ -73,6 +73,7 @@ public class myVariables {
     private static int [] enrollmentViewMinimalOrder = new int [] {5,0,4,1,2,7,3,6,8};
     private static int [] teacherLoadsViewOrder = new int [] {6,7,1,4,3,8,2,10,9,5,0};
     private static int [] managedSubjectsViewOrder = new int [] {10,4,6,8,2,1,11,0,5,12,3,7,9};
+    private static int [] managedSubjectsWSubjectsContainedViewOrder = new int [] {13,5,8,10,3,1,14,0,6,15,4,9,12,11,7,2};
     
     private static int [] sectionViewRev3Order = new int [] {8,0,2,4,5,6,3,1,7};
     private static int [] jhsf1Order= new int [] {18,11,5,20,0,9,12,1,8,21,13,23,4,10,3,7,17,14,2,15,6,19,16,22};
@@ -316,6 +317,10 @@ public class myVariables {
 
     //<editor-fold desc="Getters & Setters">
     
+    public static int[] getManagedSubjectsWSubjectsContainedViewOrder() {
+        return managedSubjectsWSubjectsContainedViewOrder;
+    }
+
     public static String[] getMyReservedCharacters() {
         return myReservedCharacters;
     }

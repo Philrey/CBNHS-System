@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2020 at 04:34 PM
+-- Generation Time: Nov 21, 2020 at 10:17 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -469,6 +469,22 @@ INSERT INTO `enrollment` (`id`, `studentId`, `sectionId`, `dateEnrolled`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `finalgrades`
+--
+
+CREATE TABLE `finalgrades` (
+  `id` int(11) NOT NULL,
+  `sectionId` int(11) NOT NULL,
+  `studentId` int(11) NOT NULL,
+  `generalAverage` double NOT NULL DEFAULT '0',
+  `actionTaken` varchar(30) NOT NULL DEFAULT ' ',
+  `failedSubjects` varchar(1000) NOT NULL DEFAULT ' ',
+  `dateUpdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `form_sf1_view`
 -- (See below for the actual view)
 --
@@ -530,6 +546,25 @@ CREATE TABLE `form_sf3_view` (
 ,`fName` varchar(100)
 ,`mName` varchar(100)
 ,`sex` varchar(10)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `form_sf5_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `form_sf5_view` (
+`id` int(11)
+,`sectionId` int(11)
+,`gradeLevel` int(11)
+,`studentId` int(11)
+,`lrn` varchar(12)
+,`lName` varchar(100)
+,`fName` varchar(100)
+,`mName` varchar(100)
+,`sex` varchar(10)
+,`remarks` varchar(1000)
 );
 
 -- --------------------------------------------------------
@@ -651,8 +686,8 @@ INSERT INTO `grades` (`id`, `studentId`, `sectionId`, `subjectId`, `firstQuarter
 (92, 1, 8, 22, '99', '99', '99', '99', '99', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (93, 4, 8, 22, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (94, 1, 8, 27, '83', '-1', '-1', '-1', '21', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(95, 1, 7, 9, '80', '99', '89', '79', '86', 'Open:Open:Open:Open:Passed:', '2020-11-20 23:24:50'),
-(96, 3, 9, 8, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-08 16:29:26');
+(95, 1, 7, 9, '80', '99', '89', '79', '86', 'Open:Open:Open:Open:Passed:', '2020-11-20 23:36:35'),
+(96, 3, 9, 8, '80', '85', '-1', '-1', '41', 'Closed:Submitted:Open:Open:Incomplete:', '2020-11-20 23:45:03');
 
 -- --------------------------------------------------------
 
@@ -1374,6 +1409,31 @@ CREATE TABLE `v_managedsubjects_wbooktemplate` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `v_managedsubjects_wsubjectscontained`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_managedsubjects_wsubjectscontained` (
+`id` int(11)
+,`sectionId` int(11)
+,`sectionName` varchar(50)
+,`teacherId` int(11)
+,`user_Lname` varchar(200)
+,`user_Fname` varchar(200)
+,`user_Mname` varchar(200)
+,`gender` varchar(12)
+,`subjectId` int(11)
+,`subjectCode` varchar(200)
+,`description` varchar(500)
+,`gradeLevel` int(11)
+,`schoolYear` int(11)
+,`loadId` int(11)
+,`loadName` varchar(200)
+,`subjectsContained` varchar(500)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `v_sections`
 -- (See below for the actual view)
 --
@@ -1442,6 +1502,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `form_sf5_view`
+--
+DROP TABLE IF EXISTS `form_sf5_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf5_view`  AS  select `enrollment`.`id` AS `id`,`sections`.`id` AS `sectionId`,`loads`.`c_gradeLevel` AS `gradeLevel`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`students`.`remarks` AS `remarks` from (((`enrollment` left join `sections` on((`enrollment`.`sectionId` = `sections`.`id`))) left join `loads` on((`sections`.`loadId` = `loads`.`a_id`))) left join `students` on((`enrollment`.`studentId` = `students`.`id`))) order by `loads`.`c_gradeLevel`,`enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `v_enrollment`
 --
 DROP TABLE IF EXISTS `v_enrollment`;
@@ -1483,6 +1552,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `v_managedsubjects_wbooktemplate`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_managedsubjects_wbooktemplate`  AS  select `teacherloads`.`id` AS `id`,`teacherloads`.`sectionId` AS `sectionId`,`sections`.`sectionName` AS `sectionName`,`teacherloads`.`teacherId` AS `teacherId`,ifnull(`users`.`user_Lname`,'None') AS `user_Lname`,ifnull(`users`.`user_Fname`,'None') AS `user_Fname`,ifnull(`users`.`user_Mname`,'None') AS `user_Mname`,ifnull(`users`.`gender`,'None') AS `gender`,`teacherloads`.`subjectId` AS `subjectId`,`subjects`.`subjectCode` AS `subjectCode`,`subjects`.`description` AS `description`,`subjects`.`gradeLevel` AS `gradeLevel`,`sections`.`schoolYear` AS `schoolYear`,`sections`.`bookTemplateId` AS `bookTemplateId`,ifnull(`booktemplates`.`templateName`,'None') AS `templateName`,ifnull(`booktemplates`.`booksContained`,'None') AS `booksContained` from ((((`teacherloads` left join `sections` on((`teacherloads`.`sectionId` = `sections`.`id`))) left join `users` on((`teacherloads`.`teacherId` = `users`.`id`))) left join `subjects` on((`teacherloads`.`subjectId` = `subjects`.`id`))) left join `booktemplates` on((`sections`.`bookTemplateId` = `booktemplates`.`id`))) order by `sections`.`schoolYear` desc,`subjects`.`gradeLevel`,`sections`.`sectionName`,`users`.`user_Lname`,`users`.`user_Fname` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_managedsubjects_wsubjectscontained`
+--
+DROP TABLE IF EXISTS `v_managedsubjects_wsubjectscontained`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_managedsubjects_wsubjectscontained`  AS  select `teacherloads`.`id` AS `id`,`teacherloads`.`sectionId` AS `sectionId`,`sections`.`sectionName` AS `sectionName`,`teacherloads`.`teacherId` AS `teacherId`,ifnull(`users`.`user_Lname`,'None') AS `user_Lname`,ifnull(`users`.`user_Fname`,'None') AS `user_Fname`,ifnull(`users`.`user_Mname`,'None') AS `user_Mname`,ifnull(`users`.`gender`,'None') AS `gender`,`teacherloads`.`subjectId` AS `subjectId`,`subjects`.`subjectCode` AS `subjectCode`,`subjects`.`description` AS `description`,`subjects`.`gradeLevel` AS `gradeLevel`,`sections`.`schoolYear` AS `schoolYear`,`loads`.`a_id` AS `loadId`,`loads`.`b_loadName` AS `loadName`,`loads`.`d_subjectsContained` AS `subjectsContained` from ((((`teacherloads` left join `sections` on((`teacherloads`.`sectionId` = `sections`.`id`))) left join `users` on((`teacherloads`.`teacherId` = `users`.`id`))) left join `subjects` on((`teacherloads`.`subjectId` = `subjects`.`id`))) left join `loads` on((`sections`.`loadId` = `loads`.`a_id`))) order by `sections`.`schoolYear` desc,`subjects`.`gradeLevel`,`sections`.`sectionName`,`users`.`user_Lname`,`users`.`user_Fname` ;
 
 -- --------------------------------------------------------
 
@@ -1552,6 +1630,12 @@ ALTER TABLE `booktemplates`
 -- Indexes for table `enrollment`
 --
 ALTER TABLE `enrollment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `finalgrades`
+--
+ALTER TABLE `finalgrades`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1671,6 +1755,12 @@ ALTER TABLE `booktemplates`
 --
 ALTER TABLE `enrollment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `finalgrades`
+--
+ALTER TABLE `finalgrades`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `grades`
