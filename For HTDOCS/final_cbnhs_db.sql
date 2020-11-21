@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2020 at 10:17 AM
+-- Generation Time: Nov 21, 2020 at 05:53 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -477,10 +477,19 @@ CREATE TABLE `finalgrades` (
   `sectionId` int(11) NOT NULL,
   `studentId` int(11) NOT NULL,
   `generalAverage` double NOT NULL DEFAULT '0',
-  `actionTaken` varchar(30) NOT NULL DEFAULT ' ',
+  `actionTaken` varchar(30) NOT NULL DEFAULT 'Incomplete',
   `failedSubjects` varchar(1000) NOT NULL DEFAULT ' ',
   `dateUpdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `finalgrades`
+--
+
+INSERT INTO `finalgrades` (`id`, `sectionId`, `studentId`, `generalAverage`, `actionTaken`, `failedSubjects`, `dateUpdated`) VALUES
+(1, 7, 1, 0, 'Incomplete', ' ', '2020-11-21 22:43:07'),
+(2, 9, 3, 0, 'Incomplete', ' ', '2020-11-22 00:33:46'),
+(3, 7, 3, 0, 'Incomplete', ' ', '2020-11-22 00:34:00');
 
 -- --------------------------------------------------------
 
@@ -687,7 +696,15 @@ INSERT INTO `grades` (`id`, `studentId`, `sectionId`, `subjectId`, `firstQuarter
 (93, 4, 8, 22, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (94, 1, 8, 27, '83', '-1', '-1', '-1', '21', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (95, 1, 7, 9, '80', '99', '89', '79', '86', 'Open:Open:Open:Open:Passed:', '2020-11-20 23:36:35'),
-(96, 3, 9, 8, '80', '85', '-1', '-1', '41', 'Closed:Submitted:Open:Open:Incomplete:', '2020-11-20 23:45:03');
+(96, 3, 9, 8, '80', '85', '-1', '-1', '41', 'Closed:Submitted:Open:Open:Incomplete:', '2020-11-20 23:45:03'),
+(97, 1, 7, 12, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:03'),
+(98, 1, 7, 16, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:08'),
+(99, 1, 7, 13, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:13'),
+(100, 1, 7, 17, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:18'),
+(101, 1, 7, 14, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:23'),
+(102, 1, 7, 18, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:29'),
+(103, 1, 7, 11, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:37'),
+(104, 1, 7, 15, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:42');
 
 -- --------------------------------------------------------
 
@@ -939,7 +956,7 @@ CREATE TABLE `loads` (
 --
 
 INSERT INTO `loads` (`a_id`, `b_loadName`, `c_gradeLevel`, `d_subjectsContained`) VALUES
-(8, 'Grade 7', 7, '8:9:10:11:12:13:14:15:16:17:18:52:60:'),
+(8, 'Grade 7', 7, '9:10:11:8:12:13:14:60:15:16:17:18:52:'),
 (9, 'Grade 8', 8, '19:20:21:22:23:24:25:26:27:28:29:61:53:'),
 (10, 'Grade 9', 9, '30:31:32:33:34:35:36:37:38:39:40:62:54:'),
 (11, 'Grade 10', 10, '41:42:43:44:45:46:47:48:49:50:51:63:55:'),
@@ -1198,16 +1215,16 @@ INSERT INTO `teacherloads` (`id`, `sectionId`, `teacherId`, `subjectId`) VALUES
 (59, 13, -1, 50),
 (60, 13, -1, 51),
 (61, 13, -1, 55),
-(62, 7, -1, 8),
-(63, 7, -1, 10),
-(64, 7, -1, 11),
-(65, 7, -1, 12),
-(66, 7, -1, 13),
-(67, 7, -1, 14),
-(68, 7, -1, 15),
-(69, 7, -1, 16),
-(70, 7, -1, 17),
-(71, 7, -1, 18),
+(62, 7, 1, 8),
+(63, 7, 3, 10),
+(64, 7, 2, 11),
+(65, 7, 2, 12),
+(66, 7, 2, 13),
+(67, 7, 2, 14),
+(68, 7, 2, 15),
+(69, 7, 2, 16),
+(70, 7, 2, 17),
+(71, 7, 2, 18),
 (72, 7, 2, 52),
 (73, 9, -1, 60),
 (86, 8, -1, 61),
@@ -1357,6 +1374,30 @@ CREATE TABLE `v_enrollment_mini_wbdate` (
 ,`sex` varchar(10)
 ,`bDate` date
 ,`sectionId` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_grades`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_grades` (
+`id` int(11)
+,`sectionId` int(11)
+,`studentId` int(11)
+,`teacherId` int(11)
+,`user_Lname` varchar(200)
+,`user_Fname` varchar(200)
+,`user_Mname` varchar(200)
+,`gender` varchar(12)
+,`subjectId` int(11)
+,`subjectCode` varchar(200)
+,`description` varchar(500)
+,`gradeLevel` int(11)
+,`gwa` varchar(11)
+,`status` varchar(100)
+,`dateUpdated` datetime
 );
 
 -- --------------------------------------------------------
@@ -1534,6 +1575,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `v_enrollment_mini_wbdate`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_enrollment_mini_wbdate`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`personalinfo`.`bDate` AS `bDate`,`enrollment`.`sectionId` AS `sectionId` from ((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `personalinfo` on((`enrollment`.`studentId` = `personalinfo`.`stdId`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_grades`
+--
+DROP TABLE IF EXISTS `v_grades`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_grades`  AS  select `grades`.`id` AS `id`,`grades`.`sectionId` AS `sectionId`,`grades`.`studentId` AS `studentId`,`teacherloads`.`teacherId` AS `teacherId`,ifnull(`users`.`user_Lname`,'None') AS `user_Lname`,ifnull(`users`.`user_Fname`,'None') AS `user_Fname`,ifnull(`users`.`user_Mname`,'None') AS `user_Mname`,ifnull(`users`.`gender`,'None') AS `gender`,`grades`.`subjectId` AS `subjectId`,`subjects`.`subjectCode` AS `subjectCode`,`subjects`.`description` AS `description`,`subjects`.`gradeLevel` AS `gradeLevel`,`grades`.`gwa` AS `gwa`,`grades`.`status` AS `status`,`grades`.`dateUpdated` AS `dateUpdated` from (((`grades` left join `teacherloads` on((`grades`.`subjectId` = `teacherloads`.`subjectId`))) left join `users` on((`teacherloads`.`teacherId` = `users`.`id`))) left join `subjects` on((`subjects`.`id` = `grades`.`subjectId`))) group by `grades`.`id` order by `grades`.`sectionId`,`grades`.`subjectId`,`grades`.`studentId` ;
 
 -- --------------------------------------------------------
 
@@ -1760,13 +1810,13 @@ ALTER TABLE `enrollment`
 -- AUTO_INCREMENT for table `finalgrades`
 --
 ALTER TABLE `finalgrades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `grades`
 --
 ALTER TABLE `grades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `hfachart_female`
