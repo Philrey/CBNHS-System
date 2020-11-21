@@ -152,9 +152,14 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
         try {
             int studCount = sf3Table.getRowCount()-3;
             int columnCount = (sf3BooksTable.getRowCount()*2)+5;
+            int booksTableCount = sf3BooksTable.getRowCount();
             int booksMale,booksFemale;
             
+            progressBar.setMaximum(booksTableCount);
+            progressBar.setValue(0);
             for(int col = 5;col<columnCount;col++){
+                lbLoadingMessage.setText("Counting Books Issued & Returned...Book "+(getSf3BooksRowIndex(col)+1)+" of "+booksTableCount);
+                progressBar.setValue(getSf3BooksRowIndex(col)+1);
                 booksMale = 0;booksFemale = 0;
                 for(int row=0;row<studCount;row++){
                     String gender = sf3Table.getValueAt(row, 4).toString();

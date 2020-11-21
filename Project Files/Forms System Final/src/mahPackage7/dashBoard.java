@@ -210,6 +210,15 @@ public class dashBoard extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         jScrollPane13 = new javax.swing.JScrollPane();
         sf3Table = new javax.swing.JTable();
+        sf5Sf6Tab = new javax.swing.JPanel();
+        jSplitPane6 = new javax.swing.JSplitPane();
+        left = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        right = new javax.swing.JPanel();
         loadingDialog = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jpbProgressBar = new javax.swing.JProgressBar();
@@ -1766,6 +1775,78 @@ public class dashBoard extends javax.swing.JFrame {
             .addComponent(jSplitPane5)
         );
 
+        jSplitPane6.setBorder(null);
+        jSplitPane6.setDividerLocation(500);
+
+        left.setBackground(new java.awt.Color(11, 102, 35));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane16.setViewportView(jTable1);
+
+        jTabbedPane1.addTab("SF5", jScrollPane16);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane17.setViewportView(jTable2);
+
+        jTabbedPane1.addTab("SF6", jScrollPane17);
+
+        javax.swing.GroupLayout leftLayout = new javax.swing.GroupLayout(left);
+        left.setLayout(leftLayout);
+        leftLayout.setHorizontalGroup(
+            leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+        );
+        leftLayout.setVerticalGroup(
+            leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+        );
+
+        jSplitPane6.setLeftComponent(left);
+
+        javax.swing.GroupLayout rightLayout = new javax.swing.GroupLayout(right);
+        right.setLayout(rightLayout);
+        rightLayout.setHorizontalGroup(
+            rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 626, Short.MAX_VALUE)
+        );
+        rightLayout.setVerticalGroup(
+            rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 577, Short.MAX_VALUE)
+        );
+
+        jSplitPane6.setRightComponent(right);
+
+        javax.swing.GroupLayout sf5Sf6TabLayout = new javax.swing.GroupLayout(sf5Sf6Tab);
+        sf5Sf6Tab.setLayout(sf5Sf6TabLayout);
+        sf5Sf6TabLayout.setHorizontalGroup(
+            sf5Sf6TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
+        );
+        sf5Sf6TabLayout.setVerticalGroup(
+            sf5Sf6TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane6)
+        );
+
         loadingDialog.setBackground(new java.awt.Color(255, 255, 204));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -2755,6 +2836,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2768,6 +2851,10 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane3;
     private javax.swing.JSplitPane jSplitPane4;
     private javax.swing.JSplitPane jSplitPane5;
+    private javax.swing.JSplitPane jSplitPane6;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JComboBox<String> jcbMissingValues;
@@ -2786,11 +2873,13 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel lbSchoolAddress;
     private javax.swing.JLabel lbSchoolName;
     private javax.swing.JLabel lbSearchResult;
+    private javax.swing.JPanel left;
     private javax.swing.JPanel left1;
     private javax.swing.JPanel left2;
     private javax.swing.JPanel left3;
     private javax.swing.JPanel loadingDialog;
     private javax.swing.JTabbedPane mainTab;
+    private javax.swing.JPanel right;
     private javax.swing.JPanel right1;
     private javax.swing.JPanel right2;
     private javax.swing.JPanel selectFormPanel;
@@ -2807,6 +2896,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel sf4InstructionsPanel;
     private javax.swing.JPanel sf4Tab;
     private javax.swing.JTable sf4Table;
+    private javax.swing.JPanel sf5Sf6Tab;
     private javax.swing.JTable summarySf2;
     private javax.swing.JTextField tfAdviserName;
     private javax.swing.JTextField tfAdviserName1;
