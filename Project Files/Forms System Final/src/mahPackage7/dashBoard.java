@@ -213,12 +213,21 @@ public class dashBoard extends javax.swing.JFrame {
         sf5Sf6Tab = new javax.swing.JPanel();
         jSplitPane6 = new javax.swing.JSplitPane();
         left = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tpSf5Sf6Pane = new javax.swing.JTabbedPane();
         jScrollPane16 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        sf5Table = new javax.swing.JTable();
         jScrollPane17 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        sf6Table = new javax.swing.JTable();
         right = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        jPanel13 = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel41 = new javax.swing.JLabel();
+        jScrollPane19 = new javax.swing.JScrollPane();
+        jPanel14 = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel42 = new javax.swing.JLabel();
         loadingDialog = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jpbProgressBar = new javax.swing.JProgressBar();
@@ -229,6 +238,7 @@ public class dashBoard extends javax.swing.JFrame {
         lbSchoolName = new javax.swing.JLabel();
         lbSchoolAddress = new javax.swing.JLabel();
         lbLoggedInUser = new javax.swing.JLabel();
+        btnShowRankings = new javax.swing.JButton();
         mainTab = new javax.swing.JTabbedPane();
 
         selectFormPanel.setBackground(new java.awt.Color(11, 102, 35));
@@ -1776,11 +1786,51 @@ public class dashBoard extends javax.swing.JFrame {
         );
 
         jSplitPane6.setBorder(null);
-        jSplitPane6.setDividerLocation(500);
+        jSplitPane6.setDividerLocation(650);
 
         left.setBackground(new java.awt.Color(11, 102, 35));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        sf5Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Section ID", "Grade Level", "Student ID", "LRN", "Name", "Gender", "Remarks", "General Average", "Action Taken", "Did Not Meet expectations On"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        sf5Table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        sf5Table.getTableHeader().setReorderingAllowed(false);
+        jScrollPane16.setViewportView(sf5Table);
+        if (sf5Table.getColumnModel().getColumnCount() > 0) {
+            sf5Table.getColumnModel().getColumn(4).setResizable(false);
+            sf5Table.getColumnModel().getColumn(4).setPreferredWidth(100);
+            sf5Table.getColumnModel().getColumn(5).setResizable(false);
+            sf5Table.getColumnModel().getColumn(5).setPreferredWidth(250);
+            sf5Table.getColumnModel().getColumn(6).setResizable(false);
+            sf5Table.getColumnModel().getColumn(6).setPreferredWidth(100);
+            sf5Table.getColumnModel().getColumn(7).setPreferredWidth(150);
+            sf5Table.getColumnModel().getColumn(8).setResizable(false);
+            sf5Table.getColumnModel().getColumn(8).setPreferredWidth(100);
+            sf5Table.getColumnModel().getColumn(9).setResizable(false);
+            sf5Table.getColumnModel().getColumn(9).setPreferredWidth(100);
+            sf5Table.getColumnModel().getColumn(10).setResizable(false);
+            sf5Table.getColumnModel().getColumn(10).setPreferredWidth(500);
+        }
+
+        tpSf5Sf6Pane.addTab("SF5 Promotion & Level of Proficiency", jScrollPane16);
+
+        sf6Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1791,47 +1841,120 @@ public class dashBoard extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane16.setViewportView(jTable1);
+        jScrollPane17.setViewportView(sf6Table);
 
-        jTabbedPane1.addTab("SF5", jScrollPane16);
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane17.setViewportView(jTable2);
-
-        jTabbedPane1.addTab("SF6", jScrollPane17);
+        tpSf5Sf6Pane.addTab("SF6 Summary of Promotion & Learning Progress", jScrollPane17);
 
         javax.swing.GroupLayout leftLayout = new javax.swing.GroupLayout(left);
         left.setLayout(leftLayout);
         leftLayout.setHorizontalGroup(
             leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+            .addComponent(tpSf5Sf6Pane, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
         leftLayout.setVerticalGroup(
             leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+            .addComponent(tpSf5Sf6Pane, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
         );
 
         jSplitPane6.setLeftComponent(left);
+
+        right.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel13.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel15.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel41.setText("SF5 Export Options");
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel41)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel41)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(489, Short.MAX_VALUE))
+        );
+
+        jScrollPane18.setViewportView(jPanel13);
+
+        jTabbedPane1.addTab("SF5 Details", jScrollPane18);
+
+        jPanel14.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel16.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel42.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel42.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel42.setText("SF6 Export Options");
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel42)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel42)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(489, Short.MAX_VALUE))
+        );
+
+        jScrollPane19.setViewportView(jPanel14);
+
+        jTabbedPane1.addTab("SF6 Details", jScrollPane19);
 
         javax.swing.GroupLayout rightLayout = new javax.swing.GroupLayout(right);
         right.setLayout(rightLayout);
         rightLayout.setHorizontalGroup(
             rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 626, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         rightLayout.setVerticalGroup(
             rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         jSplitPane6.setRightComponent(right);
@@ -1840,7 +1963,7 @@ public class dashBoard extends javax.swing.JFrame {
         sf5Sf6Tab.setLayout(sf5Sf6TabLayout);
         sf5Sf6TabLayout.setHorizontalGroup(
             sf5Sf6TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
+            .addComponent(jSplitPane6)
         );
         sf5Sf6TabLayout.setVerticalGroup(
             sf5Sf6TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1935,6 +2058,9 @@ public class dashBoard extends javax.swing.JFrame {
         lbLoggedInUser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbLoggedInUser.setText("Welcome USER_NAME, ACCESS_LEVEL");
 
+        btnShowRankings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_prize_16px.png"))); // NOI18N
+        btnShowRankings.setText("Ranking System");
+
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
@@ -1944,7 +2070,8 @@ public class dashBoard extends javax.swing.JFrame {
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(headerPanelLayout.createSequentialGroup()
                         .addComponent(lbSchoolAddress)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnShowRankings))
                     .addGroup(headerPanelLayout.createSequentialGroup()
                         .addComponent(lbSchoolName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1959,8 +2086,10 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(lbSchoolName)
                     .addComponent(lbLoggedInUser))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbSchoolAddress)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbSchoolAddress)
+                    .addComponent(btnShowRankings))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainTab.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -2513,7 +2642,7 @@ public class dashBoard extends javax.swing.JFrame {
         //Set table fonts
         JTable tables [] = {
             assignedTeacherTable,sf1StudentsTable,weekDaysOfTheMonthTable,
-            sf2Table,summarySf2,sf4Table,sf3Table,sf3BooksTable,
+            sf2Table,summarySf2,sf4Table,sf3Table,sf3BooksTable,sf5Table,sf6Table,
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
         //customHeaders(sf1SectionTable, new int []{0,1,2,3}, Color.RED, Color.WHITE, new Font("Comic Sans MS", Font.BOLD, 12), true);
@@ -2541,16 +2670,21 @@ public class dashBoard extends javax.swing.JFrame {
         mainTab.add("School Form 1",sf1Tab);
         mainTab.add("School Form 2 & 4",sf2Sf4Tab);
         mainTab.add("School Form 3",sf3Tab);
+        mainTab.add("School Form 5 & 6",sf5Sf6Tab);
         
         mainTab.setFont(myVariables.TAB_HEADER_FONT);
         tpSf2Sf4TabbedPane.setFont(myVariables.TEXTFIELD_HEADER_FONT);
         tpSf2Sf4DetailsPane.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        
+        tpSf5Sf6Pane.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        
         tpSelectSectionInstructions.setFont(myVariables.TEXTFIELD_HEADER_FONT);
     }
     private void loadTabIcons(){
         Icon tabIcons [] = {
             my.getImgIcn(myVariables.getSelectFormsIcon()),
             my.getImgIcn(myVariables.getSectionsIcon()),
+            my.getImgIcn(myVariables.getFormsIcon()),
             my.getImgIcn(myVariables.getFormsIcon()),
             my.getImgIcn(myVariables.getFormsIcon()),
             my.getImgIcn(myVariables.getFormsIcon()),
@@ -2589,6 +2723,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         JButton lightButtons [] = {
             btnSf1,btnSf2,btnSf3,btnSf4,btnSf5,btnSf6,btnSf7,btnSf8,btnSf9,btnSf10,
+            btnShowRankings,
         };
         Cursor tempC;
         for(int n=0;n<buttons.length;n++){
@@ -2776,6 +2911,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnSf7;
     private javax.swing.JButton btnSf8;
     private javax.swing.JButton btnSf9;
+    private javax.swing.JButton btnShowRankings;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2812,6 +2948,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2821,6 +2959,10 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2838,6 +2980,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane18;
+    private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2853,8 +2997,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane5;
     private javax.swing.JSplitPane jSplitPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JComboBox<String> jcbMissingValues;
@@ -2897,6 +3039,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel sf4Tab;
     private javax.swing.JTable sf4Table;
     private javax.swing.JPanel sf5Sf6Tab;
+    private javax.swing.JTable sf5Table;
+    private javax.swing.JTable sf6Table;
     private javax.swing.JTable summarySf2;
     private javax.swing.JTextField tfAdviserName;
     private javax.swing.JTextField tfAdviserName1;
@@ -2918,6 +3062,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tpSelectSectionInstructions;
     private javax.swing.JTabbedPane tpSf2Sf4DetailsPane;
     private javax.swing.JTabbedPane tpSf2Sf4TabbedPane;
+    private javax.swing.JTabbedPane tpSf5Sf6Pane;
     private javax.swing.JTable weekDaysOfTheMonthTable;
     // End of variables declaration//GEN-END:variables
 }
