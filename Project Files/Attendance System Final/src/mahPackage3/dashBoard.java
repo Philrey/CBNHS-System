@@ -253,7 +253,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         JLabel textFieldHeaderLabels [] = {
             lbAttendanceCount,jLabel7,jLabel5,lbDateAdded,jLabel10,jLabel11,lbDateToRecheck,
-            jLabel12,jLabel13,jLabel15,jLabel16,jLabel17,jLabel18,lbLoadingMessage,
+            jLabel12,jLabel13,jLabel15,jLabel16,jLabel17,jLabel18,lbLoadingMessage,jLabel20,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -289,7 +289,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         JTextField forms [] = {
             tfSf1Remarks,tfSf1RemarksDisplay,tfSf2Remarks,tfSf2RemarksDisplay,
-            tfGeneralAverage,
+            tfGeneralAverage,tfFailedSubjects,
         };
         for(JSpinner n : spinners){
             n.setFont(myVariables.TEXTFIELD_FONT);
@@ -976,8 +976,13 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnSaveEvaluation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_save_16px.png"))); // NOI18N
         btnSaveEvaluation.setText("Save Evaluation");
+        btnSaveEvaluation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveEvaluationActionPerformed(evt);
+            }
+        });
 
-        jLabel20.setText("Failed Subjects");
+        jLabel20.setText("Did Not Meet Expectations On");
 
         tfFailedSubjects.setEditable(false);
         tfFailedSubjects.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -1003,7 +1008,7 @@ public class dashBoard extends javax.swing.JFrame {
                                 .addComponent(lbFinalGradeId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLoadGrades))
-                            .addComponent(tfFailedSubjects)
+                            .addComponent(tfFailedSubjects, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1012,7 +1017,7 @@ public class dashBoard extends javax.swing.JFrame {
                                             .addComponent(jLabel18)
                                             .addGap(0, 0, Short.MAX_VALUE))
                                         .addComponent(rbPromoted, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(rbConditional, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                                        .addComponent(rbConditional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(rbRetained, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(rbIncomplete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -2629,10 +2634,55 @@ public class dashBoard extends javax.swing.JFrame {
                 new JTable[]{enrolledStudentsTable,gradesTable}, 
                 new String[]{sectionId,studentId,subjectsContained}, 
                 new JTextField[]{tfGeneralAverage,tfFailedSubjects}, 
-                new JButton[]{btnLoadGrades}, 
+                new JButton[]{btnLoadGrades,btnSaveEvaluation}, 
                 new JRadioButton[]{rbPromoted,rbConditional,rbRetained,rbIncomplete}
         );
     }//GEN-LAST:event_btnLoadGradesActionPerformed
+
+    private void btnSaveEvaluationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveEvaluationActionPerformed
+        String recordId = lbFinalGradeId.getText();
+        String generalAverage = tfGeneralAverage.getText();
+        String failedSubjects = tfFailedSubjects.getText();
+        String evaluation = "";
+        
+        if(generalAverage.contains("NaN")){
+            my.showMessage("Invalid Grade.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(rbPromoted.isSelected()){
+            evaluation = "Promoted";
+        }
+        if(rbConditional.isSelected()){
+            evaluation = "Conditional";
+        }
+        if(rbRetained.isSelected()){
+            evaluation = "Retained";
+        }
+        if(rbIncomplete.isSelected()){
+            evaluation = "Incomplete";
+            
+            if(my.getConfirmation("This student's reacords are still Incomplete."
+                    + "\nYou are still allowed to save this evaluation,\n"
+                    + " but this student will not appear on your list\nwhen exporting SF5 & SF6.\n\nContinue?")){
+                
+            }else{
+                return;
+            }
+        }
+        
+        String [] sets = {
+            "generalAverage='"+generalAverage+"'",
+            "actionTaken='"+evaluation+"'",
+            "failedSubjects='"+failedSubjects+"'",
+            "dateUpdated=now()",
+        };
+        
+        if(my.update_values("finalgrades", sets, "id='"+recordId+"'")){
+            my.showMessage("Updated Successfully.", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            my.showMessage("Update Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSaveEvaluationActionPerformed
 
     /**
      * @param args the command line arguments

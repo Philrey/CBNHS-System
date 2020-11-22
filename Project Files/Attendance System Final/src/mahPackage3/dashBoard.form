@@ -777,7 +777,7 @@
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="btnLoadGrades" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="tfFailedSubjects" max="32767" attributes="0"/>
+                                                  <Component id="tfFailedSubjects" pref="0" max="32767" attributes="0"/>
                                                   <Group type="102" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -787,7 +787,7 @@
                                                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                                               </Group>
                                                               <Component id="rbPromoted" alignment="0" max="32767" attributes="0"/>
-                                                              <Component id="rbConditional" alignment="0" pref="129" max="32767" attributes="0"/>
+                                                              <Component id="rbConditional" alignment="0" max="32767" attributes="0"/>
                                                               <Component id="rbRetained" alignment="0" max="32767" attributes="0"/>
                                                               <Component id="rbIncomplete" alignment="0" max="32767" attributes="0"/>
                                                           </Group>
@@ -1115,10 +1115,13 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Save Evaluation"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveEvaluationActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel20">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="Failed Subjects"/>
+                                <Property name="text" type="java.lang.String" value="Did Not Meet Expectations On"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="tfFailedSubjects">
