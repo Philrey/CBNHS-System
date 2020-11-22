@@ -73,30 +73,89 @@ public class thread_loadGrades extends SwingWorker<String, Object>{
     protected String doInBackground() throws Exception {
         try {
             showCustomDialog("Loading", dialogPanel, false, 420, 220, false);
-            lbLoadingMessage.setText("Connecting to Database...");
             String subjectIds = subjectsContained.replace(":", ",");
-            String where = "WHERE sectionId='"+sectionId+"' AND studentId='"+studentId+"' AND subjectId IN("+subjectIds+") ORDER BY FIELD(subjectID,"+subjectIds+")";
-            System.err.println(where);
+            
+            //Get Teachers assigned to this section
+            progressBar.setMaximum(2);
+            lbLoadingMessage.setText("Connecting to Database...1/2");
+            progressBar.setValue(1);
+            String assignedTeachers [] = my.return_values("*", "v_teacherloads", "WHERE sectionId='"+sectionId+"' AND subjectId IN("+subjectIds+") AND subjectCode NOT LIKE'ADV%'ORDER BY FIELD(subjectId,"+subjectIds+")", myVariables.getTeacherLoadsViewOrder());
+            Thread.sleep(pauseDelay);
+            //Load subjects based on teacherId,studentId,subjectId
+            lbLoadingMessage.setText("Connecting to Database...2/2");
+            progressBar.setValue(2);
+            String teacherIds = "";
+            for(int n=0;n<assignedTeachers.length;n++){
+                if(teacherIds.length() == 0){
+                    teacherIds = my.getValueAtColumn(assignedTeachers[n], 2);
+                }else{
+                    teacherIds+=","+my.getValueAtColumn(assignedTeachers[n], 2);
+                }
+            }
+            String where = "WHERE sectionId='"+sectionId+"' AND studentId='"+studentId+"' AND subjectId IN("+subjectIds+") ORDER BY FIELD(subjectId,"+subjectIds+")";
             String result [] = my.return_values("*", "v_grades", where, myVariables.getGradesViewOrder());
+            Thread.sleep(pauseDelay);
+            
             my.clear_table_rows(gradesTable);
             if(result != null){
                 //Load Grades
                 int subjectCount = result.length;
-                progressBar.setValue(0);
-                progressBar.setMaximum(subjectCount);
+                String subjectsOrder [] = subjectsContained.split(":");
+                String userIds [] = teacherIds.split(",");
                 
-                for(int n=0;n<result.length;n++){
-                    lbLoadingMessage.setText("Loading Subject "+(n+1)+" of "+subjectCount);
+                int resultCount = result.length;
+                int teacherCount = assignedTeachers.length;
+                
+                progressBar.setMaximum(teacherCount);
+                progressBar.setValue(0);
+                boolean matchFound;
+                System.err.println("Teachers: "+assignedTeachers.length+" Result: "+resultCount);
+                //Match ids
+                
+                for(int n=0;n<teacherCount;n++){
+                    lbLoadingMessage.setText("Loading Grades..."+(n+1)+" of "+teacherCount);
                     progressBar.setValue(n+1);
                     
-                    System.err.println(my.getValueAtColumn(result[n], 13));
-                    String statuses [] = my.getValueAtColumn(result[n], 13).split(":");
-                    String remarks = statuses[4];
+                    int curUserId = Integer.parseInt(my.getValueAtColumn(assignedTeachers[n], 2));
+                    int curSubjectId = Integer.parseInt(my.getValueAtColumn(assignedTeachers[n], 7));
+                    String subjectCode = my.getValueAtColumn(assignedTeachers[n], 8);
+                    /*
+                    String subjectCode = my.getValueAtColumn(assignedTeachers[n], 8);
                     
+                    //Add empty if its a mapeh subjec
+                    if(subjectCode.startsWith("MPH")){
+                        my.add_table_row(" @@"+sectionId+"@@"+studentId+"@@"+curUserId+"@@ @@ @@"+curSubjectId+"@@"+subjectCode+"@@"+my.getValueAtColumn(assignedTeachers[n], 9)+"@@",
+                                gradesTable);
+                    }
+                    */
                     
-                    result[n] = my.setValueAtColumn(result[n], 13, remarks);
-                    result[n] = my.toNameFormat(result[n], new int [] {4,5,6});
-                    my.add_table_row(result[n], gradesTable);
+                    System.err.println("To Search: "+curUserId+","+curSubjectId);
+                    //Find ids inside results
+                    matchFound = false;
+                    for(int x=0;x<resultCount;x++){
+                        int resultUserId = Integer.parseInt(my.getValueAtColumn(result[x], 3));
+                        int resultSubjectId = Integer.parseInt(my.getValueAtColumn(result[x], 8));
+                        
+                        System.err.println("Result: "+resultUserId+","+resultSubjectId);
+                        
+                        if(curUserId == resultUserId && curSubjectId == resultSubjectId){
+                            String status = my.getValueAtColumn(result[x], 13);
+                            String statuses [] = status.split(":");
+                            
+                            my.add_table_row(my.setValueAtColumn(my.toNameFormat(result[x], new int []{4,5,6}), 11, statuses[4]), gradesTable);
+                            matchFound = true;
+                            break;
+                        }
+                    }
+                    if(!matchFound && !subjectCode.startsWith("ADV")){
+                        
+                        my.add_table_row("-1@@"+sectionId+"@@"+studentId+"@@"+curUserId+"@@Missing@@Missing@@"+
+                                curSubjectId+"@@"+subjectCode+"@@"+my.getValueAtColumn(assignedTeachers[n], 9)+"@@"+
+                                my.getValueAtColumn(assignedTeachers[n], 10)+"@@Missing@@Incomplete@@Missing@@",
+                                gradesTable
+                        );
+                    }
+                    
                     Thread.sleep(threadDelay);
                 }
             }
@@ -107,6 +166,8 @@ public class thread_loadGrades extends SwingWorker<String, Object>{
         } catch (NullPointerException x){
             x.printStackTrace();
             return "Error FOund: "+x.getMessage();
+        } catch (Exception y){
+            y.printStackTrace();
         }
         
         return "Completed Successfully";

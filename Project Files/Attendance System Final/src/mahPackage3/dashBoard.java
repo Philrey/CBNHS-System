@@ -210,6 +210,8 @@ public class dashBoard extends javax.swing.JFrame {
             btnSaveRecheckAttendanceChanges,
             //Remarks
             btnEditRemarks,btnSaveRemarks,btnSetRemarks,
+            //Loading
+            btnCancelLoading,
         };
         
         JButton lightButtons [] = {
@@ -251,7 +253,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         JLabel textFieldHeaderLabels [] = {
             lbAttendanceCount,jLabel7,jLabel5,lbDateAdded,jLabel10,jLabel11,lbDateToRecheck,
-            jLabel12,jLabel13,jLabel15,jLabel16,jLabel17,jLabel18,
+            jLabel12,jLabel13,jLabel15,jLabel16,jLabel17,jLabel18,lbLoadingMessage,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -1029,11 +1031,11 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLoadGrades)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel19)
-                        .addComponent(lbFinalGradeId)))
+                        .addComponent(lbFinalGradeId))
+                    .addComponent(btnLoadGrades))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
