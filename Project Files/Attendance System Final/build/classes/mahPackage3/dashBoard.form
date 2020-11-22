@@ -758,18 +758,18 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="btnSaveEvaluation" alignment="1" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabel14" max="32767" attributes="0"/>
-                                                  <Component id="jScrollPane14" pref="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel14" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jScrollPane14" alignment="0" pref="0" max="32767" attributes="0"/>
+                                                  <Component id="btnSaveEvaluation" alignment="1" max="32767" attributes="0"/>
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
@@ -777,10 +777,10 @@
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="btnLoadGrades" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="tfFailedSubjects" pref="0" max="32767" attributes="0"/>
-                                                  <Group type="102" attributes="0">
+                                                  <Component id="tfFailedSubjects" alignment="0" pref="0" max="32767" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                                               <Component id="jLabel20" max="32767" attributes="0"/>
                                                               <Group type="102" alignment="0" attributes="0">
                                                                   <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
@@ -789,11 +789,11 @@
                                                               <Component id="rbPromoted" alignment="0" max="32767" attributes="0"/>
                                                               <Component id="rbConditional" alignment="0" max="32767" attributes="0"/>
                                                               <Component id="rbRetained" alignment="0" max="32767" attributes="0"/>
-                                                              <Component id="rbIncomplete" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="rbIncomplete" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
                                                           </Group>
                                                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                                               <Component id="tfGeneralAverage" alignment="0" max="32767" attributes="0"/>
-                                                              <Component id="jLabel17" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
                                                           </Group>
                                                       </Group>
                                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -813,8 +813,8 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane14" min="-2" pref="276" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jScrollPane14" min="-2" pref="300" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                               <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -842,7 +842,7 @@
                                       <Component id="rbIncomplete" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnSaveEvaluation" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="31" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>

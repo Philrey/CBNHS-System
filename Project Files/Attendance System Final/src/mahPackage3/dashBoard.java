@@ -129,7 +129,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         //Hide Table Columns
         if(!myVariables.isDebugModeOn()){
-            my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6});
+            my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6,11,12,13});
             my.hideColumns(enrolledStudentsTable, new int [] {0,1,5,6});
             my.hideColumns(attendanceTable, new int [] {0,1,2,3});
             my.hideColumns(checkAttendanceTable, new int [] {0,1,5,6});
@@ -991,17 +991,17 @@ public class dashBoard extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSaveEvaluation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(btnSaveEvaluation, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel19)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1019,10 +1019,10 @@ public class dashBoard extends javax.swing.JFrame {
                                         .addComponent(rbPromoted, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(rbConditional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(rbRetained, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(rbIncomplete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(rbIncomplete, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(tfGeneralAverage, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -1034,8 +1034,8 @@ public class dashBoard extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel19)
@@ -1061,7 +1061,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(rbIncomplete)
                 .addGap(18, 18, 18)
                 .addComponent(btnSaveEvaluation)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jScrollPane13.setViewportView(jPanel3);
@@ -1931,7 +1931,11 @@ public class dashBoard extends javax.swing.JFrame {
         String where = "WHERE subjectCode LIKE 'ADV%'";
         
         if(myVariables.getAccessLevel() < 5){
-            where += " AND teacherId='"+myVariables.getUserLoggedInId()+"'";
+            if(myVariables.getAccessLevel() == 4){
+                where += " AND teacherId!='-1'";
+            }else{
+                where += " AND teacherId='"+myVariables.getUserLoggedInId()+"'";
+            }
         }
         
         if(jcbSchoolYear1.getSelectedIndex() != 0){
@@ -2661,7 +2665,7 @@ public class dashBoard extends javax.swing.JFrame {
         if(rbIncomplete.isSelected()){
             evaluation = "Incomplete";
             
-            if(my.getConfirmation("This student's reacords are still Incomplete."
+            if(my.getConfirmation("This student's records are still incomplete!"
                     + "\nYou are still allowed to save this evaluation,\n"
                     + " but this student will not appear on your list\nwhen exporting SF5 & SF6.\n\nContinue?")){
                 
