@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2020 at 05:53 PM
+-- Generation Time: Nov 22, 2020 at 03:23 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -487,7 +487,7 @@ CREATE TABLE `finalgrades` (
 --
 
 INSERT INTO `finalgrades` (`id`, `sectionId`, `studentId`, `generalAverage`, `actionTaken`, `failedSubjects`, `dateUpdated`) VALUES
-(1, 7, 1, 0, 'Incomplete', ' ', '2020-11-21 22:43:07'),
+(1, 7, 1, 7.166, 'Incomplete', 'MATH7 ,SCI7 ,FIL7 ,AP7 ,ESP7 ,TLE7 ,MPH7 ,MUS7 ,ART7 ,PE7 ,HLT7', '2020-11-22 17:35:56'),
 (2, 9, 3, 0, 'Incomplete', ' ', '2020-11-22 00:33:46'),
 (3, 7, 3, 0, 'Incomplete', ' ', '2020-11-22 00:34:00');
 
@@ -560,10 +560,38 @@ CREATE TABLE `form_sf3_view` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `form_sf5_view`
+-- Stand-in structure for view `form_sf5_viewfull`
 -- (See below for the actual view)
 --
-CREATE TABLE `form_sf5_view` (
+CREATE TABLE `form_sf5_viewfull` (
+`id` int(11)
+,`sectionId` int(11)
+,`sectionName` varchar(50)
+,`adviserId` int(11)
+,`user_Lname` varchar(200)
+,`user_Fname` varchar(200)
+,`user_Mname` varchar(200)
+,`gradeLevel` int(11)
+,`studentId` int(11)
+,`lrn` varchar(12)
+,`lName` varchar(100)
+,`fName` varchar(100)
+,`mName` varchar(100)
+,`sex` varchar(10)
+,`remarks` varchar(1000)
+,`generalAverage` double
+,`actionTaken` varchar(30)
+,`failedSubjects` varchar(1000)
+,`dateUpdated` datetime
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `form_sf5_viewminimal`
+-- (See below for the actual view)
+--
+CREATE TABLE `form_sf5_viewminimal` (
 `id` int(11)
 ,`sectionId` int(11)
 ,`gradeLevel` int(11)
@@ -574,6 +602,10 @@ CREATE TABLE `form_sf5_view` (
 ,`mName` varchar(100)
 ,`sex` varchar(10)
 ,`remarks` varchar(1000)
+,`generalAverage` double
+,`actionTaken` varchar(30)
+,`failedSubjects` varchar(1000)
+,`dateUpdated` datetime
 );
 
 -- --------------------------------------------------------
@@ -591,7 +623,7 @@ CREATE TABLE `grades` (
   `secondQuarter` varchar(11) NOT NULL DEFAULT '-1',
   `thirdQuarter` varchar(11) NOT NULL DEFAULT '-1',
   `fourthQuarter` varchar(11) NOT NULL DEFAULT '-1',
-  `gwa` varchar(11) NOT NULL DEFAULT '-1',
+  `gwa` varchar(11) NOT NULL DEFAULT '0',
   `status` varchar(100) NOT NULL DEFAULT 'Open:Open:Open:Open:',
   `dateUpdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -666,20 +698,20 @@ INSERT INTO `grades` (`id`, `studentId`, `sectionId`, `subjectId`, `firstQuarter
 (63, 8, 7, 12, '80', '96', '84', '87', '87', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (64, 7, 7, 16, '79', '78', '99', '76', '83', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (65, 5, 7, 16, '78', '79', '90', '78', '81', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(66, 3, 7, 16, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(67, 8, 7, 16, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(68, 7, 7, 18, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(69, 5, 7, 18, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(70, 3, 7, 18, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(71, 8, 7, 18, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(72, 7, 7, 13, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(73, 5, 7, 13, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(66, 3, 7, 16, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(67, 8, 7, 16, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(68, 7, 7, 18, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(69, 5, 7, 18, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(70, 3, 7, 18, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(71, 8, 7, 18, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(72, 7, 7, 13, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(73, 5, 7, 13, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (74, 3, 7, 13, '77', '77', '77', '77', '77', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (75, 8, 7, 13, '80', '-1', '-1', '-1', '20', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(76, 7, 7, 15, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(77, 5, 7, 15, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(78, 3, 7, 15, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(79, 8, 7, 15, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(76, 7, 7, 15, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(77, 5, 7, 15, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(78, 3, 7, 15, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(79, 8, 7, 15, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (80, 6, 10, 32, '90', '90', '90', '90', '90', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (81, 6, 10, 36, '80', '88', '89', '78', '84', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (82, 6, 10, 38, '80', '90', '88', '90', '87', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
@@ -693,18 +725,20 @@ INSERT INTO `grades` (`id`, `studentId`, `sectionId`, `subjectId`, `firstQuarter
 (90, 6, 10, 39, '88', '77', '99', '88', '88', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (91, 6, 10, 40, '90', '80', '90', '80', '85', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (92, 1, 8, 22, '99', '99', '99', '99', '99', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(93, 4, 8, 22, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(93, 4, 8, 22, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (94, 1, 8, 27, '83', '-1', '-1', '-1', '21', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (95, 1, 7, 9, '80', '99', '89', '79', '86', 'Open:Open:Open:Open:Passed:', '2020-11-20 23:36:35'),
 (96, 3, 9, 8, '80', '85', '-1', '-1', '41', 'Closed:Submitted:Open:Open:Incomplete:', '2020-11-20 23:45:03'),
-(97, 1, 7, 12, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:03'),
-(98, 1, 7, 16, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:08'),
-(99, 1, 7, 13, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:13'),
-(100, 1, 7, 17, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:18'),
-(101, 1, 7, 14, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:23'),
-(102, 1, 7, 18, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:29'),
-(103, 1, 7, 11, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:37'),
-(104, 1, 7, 15, '-1', '-1', '-1', '-1', '-1', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:42');
+(97, 1, 7, 12, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:03'),
+(98, 1, 7, 16, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:08'),
+(99, 1, 7, 13, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:13'),
+(100, 1, 7, 17, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:18'),
+(101, 1, 7, 14, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:23'),
+(102, 1, 7, 18, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:29'),
+(103, 1, 7, 11, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:37'),
+(104, 1, 7, 15, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:42'),
+(105, 1, 7, 10, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 09:02:42'),
+(106, 1, 7, 8, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 09:02:48');
 
 -- --------------------------------------------------------
 
@@ -1057,7 +1091,7 @@ CREATE TABLE `students` (
 INSERT INTO `students` (`id`, `lrn`, `lName`, `fName`, `mName`, `sex`, `inGr`, `curGrLvl`, `remarks`) VALUES
 (1, '123543457474', 'Paderogao', 'Phil Rey', 'Estrella', 'Male', 90.1, 7, ' ! !'),
 (2, '123456789012', 'Kerby', 'Estrella', 'Paderogao', 'Female', 90.2, 0, 'N/A!N/A!'),
-(3, '123456789023', 'Rizal', 'Jose', 'Protacio', 'Male', 99, 7, 'Yolo!T/I: 2020-02-01!'),
+(3, '123456789023', 'Rizal', 'Jose', ' ', 'Male', 99, 7, 'Yolo!T/I: 2020-02-01!'),
 (4, '129493120101', 'Cabillon', 'Jesthony', ' ', 'Male', 80, 0, 'N/A!N/A!'),
 (5, '129679130184', 'Antiga', 'Ariel', 'Socorro', 'Male', 80, 0, 'N/A!N/A!');
 
@@ -1229,7 +1263,7 @@ INSERT INTO `teacherloads` (`id`, `sectionId`, `teacherId`, `subjectId`) VALUES
 (73, 9, -1, 60),
 (86, 8, -1, 61),
 (99, 10, -1, 62),
-(112, 7, -1, 60),
+(112, 7, 2, 60),
 (125, 14, -1, 8),
 (126, 14, -1, 9),
 (127, 14, -1, 10),
@@ -1543,11 +1577,20 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `form_sf5_view`
+-- Structure for view `form_sf5_viewfull`
 --
-DROP TABLE IF EXISTS `form_sf5_view`;
+DROP TABLE IF EXISTS `form_sf5_viewfull`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf5_view`  AS  select `enrollment`.`id` AS `id`,`sections`.`id` AS `sectionId`,`loads`.`c_gradeLevel` AS `gradeLevel`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`students`.`remarks` AS `remarks` from (((`enrollment` left join `sections` on((`enrollment`.`sectionId` = `sections`.`id`))) left join `loads` on((`sections`.`loadId` = `loads`.`a_id`))) left join `students` on((`enrollment`.`studentId` = `students`.`id`))) order by `loads`.`c_gradeLevel`,`enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf5_viewfull`  AS  select `finalgrades`.`id` AS `id`,`finalgrades`.`sectionId` AS `sectionId`,`sections`.`sectionName` AS `sectionName`,`sections`.`adviserId` AS `adviserId`,`users`.`user_Lname` AS `user_Lname`,`users`.`user_Fname` AS `user_Fname`,`users`.`user_Mname` AS `user_Mname`,`loads`.`c_gradeLevel` AS `gradeLevel`,`finalgrades`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`students`.`remarks` AS `remarks`,`finalgrades`.`generalAverage` AS `generalAverage`,`finalgrades`.`actionTaken` AS `actionTaken`,`finalgrades`.`failedSubjects` AS `failedSubjects`,`finalgrades`.`dateUpdated` AS `dateUpdated` from ((((`finalgrades` left join `sections` on((`finalgrades`.`sectionId` = `sections`.`id`))) left join `users` on((`sections`.`adviserId` = `users`.`id`))) left join `loads` on((`sections`.`loadId` = `loads`.`a_id`))) left join `students` on((`finalgrades`.`studentId` = `students`.`id`))) order by `loads`.`c_gradeLevel`,`finalgrades`.`sectionId`,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `form_sf5_viewminimal`
+--
+DROP TABLE IF EXISTS `form_sf5_viewminimal`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf5_viewminimal`  AS  select `finalgrades`.`id` AS `id`,`sections`.`id` AS `sectionId`,`loads`.`c_gradeLevel` AS `gradeLevel`,`finalgrades`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`students`.`remarks` AS `remarks`,`finalgrades`.`generalAverage` AS `generalAverage`,`finalgrades`.`actionTaken` AS `actionTaken`,`finalgrades`.`failedSubjects` AS `failedSubjects`,`finalgrades`.`dateUpdated` AS `dateUpdated` from (((`finalgrades` left join `sections` on((`finalgrades`.`sectionId` = `sections`.`id`))) left join `loads` on((`sections`.`loadId` = `loads`.`a_id`))) left join `students` on((`finalgrades`.`studentId` = `students`.`id`))) order by `loads`.`c_gradeLevel`,`finalgrades`.`sectionId`,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
 
 -- --------------------------------------------------------
 
@@ -1583,7 +1626,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_grades`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_grades`  AS  select `grades`.`id` AS `id`,`grades`.`sectionId` AS `sectionId`,`grades`.`studentId` AS `studentId`,`teacherloads`.`teacherId` AS `teacherId`,ifnull(`users`.`user_Lname`,'None') AS `user_Lname`,ifnull(`users`.`user_Fname`,'None') AS `user_Fname`,ifnull(`users`.`user_Mname`,'None') AS `user_Mname`,ifnull(`users`.`gender`,'None') AS `gender`,`grades`.`subjectId` AS `subjectId`,`subjects`.`subjectCode` AS `subjectCode`,`subjects`.`description` AS `description`,`subjects`.`gradeLevel` AS `gradeLevel`,`grades`.`gwa` AS `gwa`,`grades`.`status` AS `status`,`grades`.`dateUpdated` AS `dateUpdated` from (((`grades` left join `teacherloads` on((`grades`.`subjectId` = `teacherloads`.`subjectId`))) left join `users` on((`teacherloads`.`teacherId` = `users`.`id`))) left join `subjects` on((`subjects`.`id` = `grades`.`subjectId`))) group by `grades`.`id` order by `grades`.`sectionId`,`grades`.`subjectId`,`grades`.`studentId` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_grades`  AS  select `grades`.`id` AS `id`,`grades`.`sectionId` AS `sectionId`,`grades`.`studentId` AS `studentId`,`teacherloads`.`teacherId` AS `teacherId`,ifnull(`users`.`user_Lname`,'None') AS `user_Lname`,ifnull(`users`.`user_Fname`,'None') AS `user_Fname`,ifnull(`users`.`user_Mname`,'None') AS `user_Mname`,ifnull(`users`.`gender`,'None') AS `gender`,`grades`.`subjectId` AS `subjectId`,`subjects`.`subjectCode` AS `subjectCode`,`subjects`.`description` AS `description`,`subjects`.`gradeLevel` AS `gradeLevel`,`grades`.`gwa` AS `gwa`,`grades`.`status` AS `status`,`grades`.`dateUpdated` AS `dateUpdated` from (((`grades` left join `teacherloads` on((`grades`.`subjectId` = `teacherloads`.`subjectId`))) left join `users` on((`teacherloads`.`teacherId` = `users`.`id`))) left join `subjects` on((`subjects`.`id` = `grades`.`subjectId`))) order by `grades`.`sectionId`,`grades`.`subjectId`,`grades`.`studentId` ;
 
 -- --------------------------------------------------------
 
@@ -1816,7 +1859,7 @@ ALTER TABLE `finalgrades`
 -- AUTO_INCREMENT for table `grades`
 --
 ALTER TABLE `grades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT for table `hfachart_female`
