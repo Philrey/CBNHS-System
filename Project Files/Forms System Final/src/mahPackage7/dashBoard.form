@@ -149,6 +149,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="School Form 5"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSf5ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnSf6">
                   <Properties>
@@ -3149,7 +3152,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tpSf5Sf6Pane" alignment="0" pref="725" max="32767" attributes="0"/>
+                      <Component id="tpSf5Sf6Pane" alignment="0" pref="860" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -3159,6 +3162,11 @@
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
                   <SubComponents>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane16">
+                      <Properties>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="null"/>
+                        </Property>
+                      </Properties>
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                       </AuxValues>
@@ -3175,7 +3183,7 @@
                         <Component class="javax.swing.JTable" name="sf5Table">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="11" rowCount="4">
+                              <Table columnCount="12" rowCount="4">
                                 <Column editable="false" title="ID" type="java.lang.Object"/>
                                 <Column editable="false" title="Section ID" type="java.lang.Object"/>
                                 <Column editable="false" title="Grade Level" type="java.lang.Object"/>
@@ -3187,6 +3195,7 @@
                                 <Column editable="false" title="General Average" type="java.lang.Object"/>
                                 <Column editable="false" title="Action Taken" type="java.lang.Object"/>
                                 <Column editable="false" title="Did Not Meet expectations On" type="java.lang.Object"/>
+                                <Column editable="false" title="Date Updated" type="java.lang.Object"/>
                               </Table>
                             </Property>
                             <Property name="autoResizeMode" type="int" value="0"/>
@@ -3217,12 +3226,12 @@
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="250" resizable="false">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="250" resizable="true">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="70" resizable="false">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
@@ -3232,7 +3241,7 @@
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="false">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
@@ -3242,7 +3251,12 @@
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="500" resizable="false">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="false">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
@@ -3253,10 +3267,18 @@
                               <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sf5TableMouseClicked"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane17">
+                      <Properties>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="null"/>
+                        </Property>
+                      </Properties>
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                       </AuxValues>
@@ -3280,6 +3302,33 @@
                                 <Column editable="true" title="Title 4" type="java.lang.Object"/>
                               </Table>
                             </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                              </TableColumnModel>
+                            </Property>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                            </Property>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -3289,11 +3338,6 @@
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="right">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="cc" green="ff" red="ff" type="rgb"/>
-                </Property>
-              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
                   <JSplitPaneConstraints position="right"/>
@@ -3356,15 +3400,15 @@
                                                   <Component id="jLabel43" max="32767" attributes="0"/>
                                                   <Component id="jScrollPane20" alignment="0" pref="0" max="32767" attributes="0"/>
                                                   <Component id="jLabel44" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jScrollPane21" alignment="0" pref="0" max="32767" attributes="0"/>
-                                                  <Component id="jLabel45" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="btnExportSf5" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="tfSectionName3" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="jLabel47" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="jLabel46" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="jLabel48" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="tfAdviserName3" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jScrollPane21" alignment="0" pref="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel45" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="btnExportSf5" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="btnLoadStudents4" alignment="0" max="32767" attributes="0"/>
                                                   <Group type="102" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Group type="102" attributes="0">
@@ -3376,6 +3420,10 @@
                                                               <Component id="jLabel49" min="-2" pref="94" max="-2" attributes="0"/>
                                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                               <Component id="jLabel50" min="-2" pref="94" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                                              <Component id="cbShowIncompleteStudents" max="32767" attributes="0"/>
+                                                              <Component id="cbCompareToRankings" alignment="0" min="-2" pref="233" max="-2" attributes="0"/>
                                                           </Group>
                                                       </Group>
                                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -3415,15 +3463,19 @@
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jLabel43" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane20" min="-2" pref="105" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane20" min="-2" pref="88" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel44" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane21" min="-2" pref="280" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jScrollPane21" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jLabel45" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="cbShowIncompleteStudents" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="cbCompareToRankings" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnLoadStudents4" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="btnExportSf5" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
@@ -3489,7 +3541,7 @@
                                 <Component class="javax.swing.JTable" name="sf5SummaryTable">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="4" rowCount="4">
+                                      <Table columnCount="4" rowCount="3">
                                         <Column editable="false" title="Status" type="java.lang.Object"/>
                                         <Column editable="false" title="Male" type="java.lang.Object"/>
                                         <Column editable="false" title="Female" type="java.lang.Object"/>
@@ -3595,13 +3647,16 @@
                                 <Property name="text" type="java.lang.String" value="Export"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JButton" name="jButton2">
+                            <Component class="javax.swing.JButton" name="btnLoadStudents4">
                               <Properties>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/mahPackage7/icons/icons8_sync_16px.png"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Load Students"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoadStudents4ActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel46">
                               <Properties>
@@ -3651,11 +3706,47 @@
                                 <Property name="text" type="java.lang.String" value="School Year"/>
                               </Properties>
                             </Component>
+                            <Component class="javax.swing.JCheckBox" name="cbShowIncompleteStudents">
+                              <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                  <Connection code="myVariables.TEXTFIELD_HEADER_FONT" type="code"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Show Students With Incomplete Records?"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/mahPackage7/icons/icons8_unchecked_checkbox_20px.png"/>
+                                </Property>
+                                <Property name="opaque" type="boolean" value="false"/>
+                                <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/mahPackage7/icons/icons8_checked_checkbox_20px.png"/>
+                                </Property>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JCheckBox" name="cbCompareToRankings">
+                              <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                  <Connection code="myVariables.TEXTFIELD_HEADER_FONT" type="code"/>
+                                </Property>
+                                <Property name="selected" type="boolean" value="true"/>
+                                <Property name="text" type="java.lang.String" value="Search for Honor Students?"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/mahPackage7/icons/icons8_unchecked_checkbox_20px.png"/>
+                                </Property>
+                                <Property name="opaque" type="boolean" value="false"/>
+                                <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/mahPackage7/icons/icons8_checked_checkbox_20px.png"/>
+                                </Property>
+                              </Properties>
+                            </Component>
                           </SubComponents>
                         </Container>
                       </SubComponents>
                     </Container>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane19">
+                      <Properties>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="null"/>
+                        </Property>
+                      </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                           <JTabbedPaneConstraints tabName="SF6 Details">
@@ -3684,7 +3775,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="637" max="32767" attributes="0"/>
+                                      <EmptySpace pref="774" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>

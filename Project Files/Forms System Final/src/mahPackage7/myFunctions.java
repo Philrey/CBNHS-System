@@ -776,7 +776,7 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
-    public void runSecondaryThread(int threadIndex,boolean waitForMainThreadToFinish,JTable [] tablesToUse,String [] valuesToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse){
+    public void runSecondaryThread(int threadIndex,boolean waitForMainThreadToFinish,JTable [] tablesToUse,String [] valuesToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean  [] booleansToUse){
         Thread toLoad = null;
         switch (threadIndex){
             case 0:{
@@ -792,6 +792,8 @@ public class myFunctions {
                 toLoad = new Thread(ls3d);
                 break;
             }case 3:{
+                thread_loadSf5Details ls5d = new thread_loadSf5Details(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
+                toLoad = new Thread(ls5d);
                 break;
             }default:{
                 System.err.println("No proper thread selected.");

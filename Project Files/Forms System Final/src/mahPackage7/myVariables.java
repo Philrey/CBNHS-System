@@ -101,6 +101,7 @@ public class myVariables {
     private static final int [] jhsf1Order= new int [] {18,12,8,7,1,13,19,5,15,20,22,6,14,4,9,10,0,3,16,2,11,17,21};
     private static final int [] jhsf2Order= new int [] {5,6,0,1,2,7,3,4,8};
     private static final int [] jhsf3Order= new int [] {4,5,0,1,2,6,3};
+    private static final int [] jhsf5MinimalOrder=new int [] {11,4,8,7,3,0,9,12,2,13,1,10,5,6};
     
     //Icons
     private static final String studentsIcon = "icons/icons8_user_groups_skin_type_7_20px_1.png";
@@ -653,6 +654,10 @@ public class myVariables {
         return usersIcon;
     }
 
+    public static int[] getJhsf5MinimalOrder() {
+        return jhsf5MinimalOrder;
+    }
+    
     public static String getUsersPrsnlInfIcon() {
         return usersPrsnlInfIcon;
     }
