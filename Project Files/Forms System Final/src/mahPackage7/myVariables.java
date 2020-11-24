@@ -118,6 +118,8 @@ public class myVariables {
     private static final String bookTemplatesIcon = "icons/icons8_book_shelf_20px.png";
     private static final String dailyIcon = "icons/icons8_haze_16px.png";
     private static final String monthlyIcon = "icons/icons8_calendar_16px.png";
+    private static final String promotionIcon = "icons/icons8_graduate_20px.png";
+    private static final String summaryOfPromotionIcon = "icons/icons8_combo_chart_20px.png";
     
     private static final String sectionsIcon = "icons/icons8_page_20px.png";
     private static final String viewStudentsIcon = "icons/icons8_read_online_20px.png";
@@ -657,9 +659,18 @@ public class myVariables {
     public static int[] getJhsf5MinimalOrder() {
         return jhsf5MinimalOrder;
     }
+
+    public static String getPromotionIcon() {
+        return promotionIcon;
+    }
+
+    public static String getSummaryOfPromotionIcon() {
+        return summaryOfPromotionIcon;
+    }
     
     public static String getUsersPrsnlInfIcon() {
         return usersPrsnlInfIcon;
     }
+    
     //</editor-fold>
 }

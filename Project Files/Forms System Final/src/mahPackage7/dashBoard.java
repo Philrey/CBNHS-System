@@ -253,6 +253,21 @@ public class dashBoard extends javax.swing.JFrame {
         jpbProgressBar = new javax.swing.JProgressBar();
         lbLoadingMessage = new javax.swing.JLabel();
         btnCancelLoading = new javax.swing.JButton();
+        rankingsDialog = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
+        jLabel51 = new javax.swing.JLabel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jScrollPane22 = new javax.swing.JScrollPane();
+        grade7RankingTable = new javax.swing.JTable();
+        jScrollPane26 = new javax.swing.JScrollPane();
+        grade8RankingTable = new javax.swing.JTable();
+        jScrollPane27 = new javax.swing.JScrollPane();
+        grade9RankingTable = new javax.swing.JTable();
+        jScrollPane28 = new javax.swing.JScrollPane();
+        grade10RankingTable = new javax.swing.JTable();
+        btnRefreshRankings = new javax.swing.JButton();
+        jcbRankingSchoolYear = new javax.swing.JComboBox<>();
+        jcbRankingNumberOfStudents = new javax.swing.JComboBox<>();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -262,6 +277,8 @@ public class dashBoard extends javax.swing.JFrame {
         mainTab = new javax.swing.JTabbedPane();
 
         selectFormPanel.setBackground(new java.awt.Color(11, 102, 35));
+
+        jScrollPane1.setBorder(null);
 
         jPanel1.setBackground(new java.awt.Color(11, 102, 35));
 
@@ -386,6 +403,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         selectSectionTab.setBackground(new java.awt.Color(11, 102, 35));
 
+        jSplitPane4.setBorder(null);
         jSplitPane4.setDividerLocation(700);
 
         left3.setBackground(new java.awt.Color(11, 102, 35));
@@ -1507,6 +1525,7 @@ public class dashBoard extends javax.swing.JFrame {
             .addComponent(jSplitPane2)
         );
 
+        jSplitPane5.setBorder(null);
         jSplitPane5.setDividerLocation(600);
 
         jScrollPane14.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -1636,7 +1655,7 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnExportSf3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLoadStudents3, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                    .addComponent(btnLoadStudents3, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
                     .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1793,7 +1812,7 @@ public class dashBoard extends javax.swing.JFrame {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2218,6 +2237,223 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        rankingsDialog.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel17.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel51.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel51.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel51.setText("Student Rankings");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel51)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel51)
+                .addContainerGap())
+        );
+
+        grade7RankingTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Section ID", "Section Name", "School Year", "Grade", "Adviser ID", "Adviser Name", "Student ID", "LRN", "Student Name", "Gender", "Remarks", "General Average", "Action Taken", "Date Updated", "Rank"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        grade7RankingTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        grade7RankingTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane22.setViewportView(grade7RankingTable);
+        if (grade7RankingTable.getColumnModel().getColumnCount() > 0) {
+            grade7RankingTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+            grade7RankingTable.getColumnModel().getColumn(3).setResizable(false);
+            grade7RankingTable.getColumnModel().getColumn(4).setResizable(false);
+            grade7RankingTable.getColumnModel().getColumn(6).setPreferredWidth(200);
+            grade7RankingTable.getColumnModel().getColumn(9).setPreferredWidth(200);
+            grade7RankingTable.getColumnModel().getColumn(12).setResizable(false);
+            grade7RankingTable.getColumnModel().getColumn(12).setPreferredWidth(150);
+            grade7RankingTable.getColumnModel().getColumn(13).setPreferredWidth(120);
+            grade7RankingTable.getColumnModel().getColumn(14).setResizable(false);
+            grade7RankingTable.getColumnModel().getColumn(14).setPreferredWidth(150);
+            grade7RankingTable.getColumnModel().getColumn(15).setResizable(false);
+        }
+
+        jTabbedPane2.addTab("Grade 7", jScrollPane22);
+
+        grade8RankingTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Section ID", "Section Name", "School Year", "Grade", "Adviser ID", "Adviser Name", "Student ID", "LRN", "Student Name", "Gender", "Remarks", "General Average", "Action Taken", "Date Updated", "Rank"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        grade8RankingTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        grade8RankingTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane26.setViewportView(grade8RankingTable);
+        if (grade8RankingTable.getColumnModel().getColumnCount() > 0) {
+            grade8RankingTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+            grade8RankingTable.getColumnModel().getColumn(3).setResizable(false);
+            grade8RankingTable.getColumnModel().getColumn(4).setResizable(false);
+            grade8RankingTable.getColumnModel().getColumn(6).setPreferredWidth(200);
+            grade8RankingTable.getColumnModel().getColumn(9).setPreferredWidth(200);
+            grade8RankingTable.getColumnModel().getColumn(12).setResizable(false);
+            grade8RankingTable.getColumnModel().getColumn(12).setPreferredWidth(150);
+            grade8RankingTable.getColumnModel().getColumn(13).setPreferredWidth(120);
+            grade8RankingTable.getColumnModel().getColumn(14).setResizable(false);
+            grade8RankingTable.getColumnModel().getColumn(14).setPreferredWidth(150);
+            grade8RankingTable.getColumnModel().getColumn(15).setResizable(false);
+        }
+
+        jTabbedPane2.addTab("Grade 8", jScrollPane26);
+
+        grade9RankingTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Section ID", "Section Name", "School Year", "Grade", "Adviser ID", "Adviser Name", "Student ID", "LRN", "Student Name", "Gender", "Remarks", "General Average", "Action Taken", "Date Updated", "Rank"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        grade9RankingTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        grade9RankingTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane27.setViewportView(grade9RankingTable);
+        if (grade9RankingTable.getColumnModel().getColumnCount() > 0) {
+            grade9RankingTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+            grade9RankingTable.getColumnModel().getColumn(3).setResizable(false);
+            grade9RankingTable.getColumnModel().getColumn(4).setResizable(false);
+            grade9RankingTable.getColumnModel().getColumn(6).setPreferredWidth(200);
+            grade9RankingTable.getColumnModel().getColumn(9).setPreferredWidth(200);
+            grade9RankingTable.getColumnModel().getColumn(12).setResizable(false);
+            grade9RankingTable.getColumnModel().getColumn(12).setPreferredWidth(150);
+            grade9RankingTable.getColumnModel().getColumn(13).setPreferredWidth(120);
+            grade9RankingTable.getColumnModel().getColumn(14).setResizable(false);
+            grade9RankingTable.getColumnModel().getColumn(14).setPreferredWidth(150);
+            grade9RankingTable.getColumnModel().getColumn(15).setResizable(false);
+        }
+
+        jTabbedPane2.addTab("Grade 9", jScrollPane27);
+
+        grade10RankingTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Section ID", "Section Name", "School Year", "Grade", "Adviser ID", "Adviser Name", "Student ID", "LRN", "Student Name", "Gender", "Remarks", "General Average", "Action Taken", "Date Updated", "Rank"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        grade10RankingTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        grade10RankingTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane28.setViewportView(grade10RankingTable);
+        if (grade10RankingTable.getColumnModel().getColumnCount() > 0) {
+            grade10RankingTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+            grade10RankingTable.getColumnModel().getColumn(3).setResizable(false);
+            grade10RankingTable.getColumnModel().getColumn(4).setResizable(false);
+            grade10RankingTable.getColumnModel().getColumn(6).setPreferredWidth(200);
+            grade10RankingTable.getColumnModel().getColumn(9).setPreferredWidth(200);
+            grade10RankingTable.getColumnModel().getColumn(12).setResizable(false);
+            grade10RankingTable.getColumnModel().getColumn(12).setPreferredWidth(150);
+            grade10RankingTable.getColumnModel().getColumn(13).setPreferredWidth(120);
+            grade10RankingTable.getColumnModel().getColumn(14).setResizable(false);
+            grade10RankingTable.getColumnModel().getColumn(14).setPreferredWidth(150);
+            grade10RankingTable.getColumnModel().getColumn(15).setResizable(false);
+        }
+
+        jTabbedPane2.addTab("Grade 10", jScrollPane28);
+
+        btnRefreshRankings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_sync_16px.png"))); // NOI18N
+        btnRefreshRankings.setText("Refresh");
+
+        jcbRankingSchoolYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020", "2021" }));
+
+        jcbRankingNumberOfStudents.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Top 10", "Top 20" }));
+
+        javax.swing.GroupLayout rankingsDialogLayout = new javax.swing.GroupLayout(rankingsDialog);
+        rankingsDialog.setLayout(rankingsDialogLayout);
+        rankingsDialogLayout.setHorizontalGroup(
+            rankingsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rankingsDialogLayout.createSequentialGroup()
+                .addGroup(rankingsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rankingsDialogLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jcbRankingNumberOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcbRankingSchoolYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRefreshRankings))
+                    .addGroup(rankingsDialogLayout.createSequentialGroup()
+                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
+        );
+        rankingsDialogLayout.setVerticalGroup(
+            rankingsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rankingsDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(rankingsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRefreshRankings)
+                    .addComponent(jcbRankingSchoolYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbRankingNumberOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Dashboard");
         setIconImage(my.getImgIcn(myVariables.getFormsWindowIcon()).getImage()
@@ -2264,6 +2500,11 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnShowRankings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_prize_16px.png"))); // NOI18N
         btnShowRankings.setText("Ranking System");
+        btnShowRankings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowRankingsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
@@ -2731,6 +2972,10 @@ public class dashBoard extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_sf5TableMouseClicked
+
+    private void btnShowRankingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowRankingsActionPerformed
+        showCustomDialog("View the list of Student Rankings", rankingsDialog, true, 500, 400, true);
+    }//GEN-LAST:event_btnShowRankingsActionPerformed
     private void selectFormToExport(int formIndexExact){
         if(myVariables.getFormSelected() != formIndexExact){
             my.clear_table_rows(assignedTeacherTable);
@@ -2915,6 +3160,7 @@ public class dashBoard extends javax.swing.JFrame {
             assignedTeacherTable,sf1StudentsTable,weekDaysOfTheMonthTable,
             sf2Table,summarySf2,sf4Table,sf3Table,sf3BooksTable,sf5Table,sf6Table,
             sf5SummaryTable,sf5LevelOfProgress,
+            grade7RankingTable,grade8RankingTable,grade9RankingTable,grade10RankingTable,
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
         //customHeaders(sf1SectionTable, new int []{0,1,2,3}, Color.RED, Color.WHITE, new Font("Comic Sans MS", Font.BOLD, 12), true);
@@ -2968,8 +3214,8 @@ public class dashBoard extends javax.swing.JFrame {
         };
         
         Icon sf5sf6Icons [] = {
-            my.getImgIcn(myVariables.getDailyIcon()),
-            my.getImgIcn(myVariables.getMonthlyIcon()),
+            my.getImgIcn(myVariables.getPromotionIcon()),
+            my.getImgIcn(myVariables.getSummaryOfPromotionIcon()),
         };
         
         Icon instructionsIcons [] = {
@@ -3000,7 +3246,7 @@ public class dashBoard extends javax.swing.JFrame {
             btnSearchSection,btnCancelLoading,btnLoadStudents,btnExportSf1,
             btnLoadStudents1,btnExportSf2,btnOnlySelectedSections,btnSelectAllSections,
             btnLoadStudents2,btnExportSf4,btnLoadStudents3,btnExportSf3,
-            btnLoadStudents4,btnExportSf5,
+            btnLoadStudents4,btnExportSf5,btnRefreshRankings,
         };
         
         JButton lightButtons [] = {
@@ -3032,7 +3278,7 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
-            jLabel2,jLabel13,jLabel25,jLabel26,jLabel29,jLabel32,jLabel41,
+            jLabel2,jLabel13,jLabel25,jLabel26,jLabel29,jLabel32,jLabel41,jLabel51,
         };
         JLabel labels [] = {
             lbSearchResult,
@@ -3107,14 +3353,14 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadYearDropDowns(int numberOfYears){
         JComboBox [] yearDropDowns = {
-            
+            jcbRankingSchoolYear,
         };
         
         JComboBox [] yearDropDownsWithAllOption = {
             jcbSchoolYear1,
         };
         JComboBox [] dropDowns = {
-            jcbMissingValues,jcbMissingValues1,jcbMissingValues2,
+            jcbMissingValues,jcbMissingValues1,jcbMissingValues2,jcbRankingNumberOfStudents,
         };
         int startingYear = 2019;
         
@@ -3187,6 +3433,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnLoadStudents3;
     private javax.swing.JButton btnLoadStudents4;
     private javax.swing.JButton btnOnlySelectedSections;
+    private javax.swing.JButton btnRefreshRankings;
     private javax.swing.JButton btnSearchSection;
     private javax.swing.JButton btnSelectAllSections;
     private javax.swing.JButton btnSf1;
@@ -3202,6 +3449,10 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnShowRankings;
     private javax.swing.JCheckBox cbCompareToRankings;
     private javax.swing.JCheckBox cbShowIncompleteStudents;
+    private javax.swing.JTable grade10RankingTable;
+    private javax.swing.JTable grade7RankingTable;
+    private javax.swing.JTable grade8RankingTable;
+    private javax.swing.JTable grade9RankingTable;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -3249,6 +3500,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -3261,6 +3513,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -3283,6 +3536,10 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
     private javax.swing.JScrollPane jScrollPane21;
+    private javax.swing.JScrollPane jScrollPane22;
+    private javax.swing.JScrollPane jScrollPane26;
+    private javax.swing.JScrollPane jScrollPane27;
+    private javax.swing.JScrollPane jScrollPane28;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -3297,11 +3554,14 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane5;
     private javax.swing.JSplitPane jSplitPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JComboBox<String> jcbMissingValues;
     private javax.swing.JComboBox<String> jcbMissingValues1;
     private javax.swing.JComboBox<String> jcbMissingValues2;
+    private javax.swing.JComboBox<String> jcbRankingNumberOfStudents;
+    private javax.swing.JComboBox<String> jcbRankingSchoolYear;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
     private com.toedter.calendar.JDateChooser jdcCutOffDate;
     private com.toedter.calendar.JDateChooser jdcCutOffDate1;
@@ -3321,6 +3581,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel left3;
     private javax.swing.JPanel loadingDialog;
     private javax.swing.JTabbedPane mainTab;
+    private javax.swing.JPanel rankingsDialog;
     private javax.swing.JPanel right;
     private javax.swing.JPanel right1;
     private javax.swing.JPanel right2;
