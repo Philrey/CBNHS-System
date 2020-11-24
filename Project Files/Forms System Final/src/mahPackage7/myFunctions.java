@@ -795,6 +795,10 @@ public class myFunctions {
                 thread_loadSf5Details ls5d = new thread_loadSf5Details(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
                 toLoad = new Thread(ls5d);
                 break;
+            }case 4:{
+                thread_loadRankings lR= new thread_loadRankings(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
+                toLoad = new Thread(lR);
+                break;
             }default:{
                 System.err.println("No proper thread selected.");
                 return;

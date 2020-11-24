@@ -2416,8 +2416,18 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnRefreshRankings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_sync_16px.png"))); // NOI18N
         btnRefreshRankings.setText("Refresh");
+        btnRefreshRankings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshRankingsActionPerformed(evt);
+            }
+        });
 
         jcbRankingSchoolYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020", "2021" }));
+        jcbRankingSchoolYear.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbRankingSchoolYearItemStateChanged(evt);
+            }
+        });
 
         jcbRankingNumberOfStudents.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Top 10", "Top 20" }));
 
@@ -2974,8 +2984,34 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_sf5TableMouseClicked
 
     private void btnShowRankingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowRankingsActionPerformed
-        showCustomDialog("View the list of Student Rankings", rankingsDialog, true, 500, 400, true);
+        showCustomDialog("View the list of Student Rankings", rankingsDialog, false, 500, 400, true);
     }//GEN-LAST:event_btnShowRankingsActionPerformed
+
+    private void btnRefreshRankingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshRankingsActionPerformed
+        String numberOfStudentsToShow="";
+        switch(jcbRankingNumberOfStudents.getSelectedIndex()){
+            case 0:{
+                numberOfStudentsToShow = "10";
+                break;
+            }case 1:{
+                numberOfStudentsToShow = "20";
+                break;
+            }
+        }
+        String schoolYear = jcbRankingSchoolYear.getSelectedItem().toString();
+        
+        my.runSecondaryThread(4, true, 
+                new JTable[]{grade7RankingTable,grade8RankingTable,grade9RankingTable,grade10RankingTable},
+                new String []{numberOfStudentsToShow,schoolYear},
+                new JTextField[]{},
+                new JButton[]{btnRefreshRankings},
+                new boolean[]{}
+        );
+    }//GEN-LAST:event_btnRefreshRankingsActionPerformed
+
+    private void jcbRankingSchoolYearItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbRankingSchoolYearItemStateChanged
+        System.err.println("Item Changed");
+    }//GEN-LAST:event_jcbRankingSchoolYearItemStateChanged
     private void selectFormToExport(int formIndexExact){
         if(myVariables.getFormSelected() != formIndexExact){
             my.clear_table_rows(assignedTeacherTable);
