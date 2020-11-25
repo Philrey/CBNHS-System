@@ -1885,16 +1885,28 @@ public class dashBoard extends javax.swing.JFrame {
 
         sf6Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Summary Table", "Gr7 M", "Gr7 F", "Gr7 T", "Gr8 M", "Gr8 F", "Gr8 T", "Gr9 M", "Gr9 F", "Gr9 T", "Gr10 M", "Gr10 F", "Gr10 T", "Male", "Female", "Total"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        sf6Table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane17.setViewportView(sf6Table);
+        if (sf6Table.getColumnModel().getColumnCount() > 0) {
+            sf6Table.getColumnModel().getColumn(0).setPreferredWidth(150);
+        }
 
         tpSf5Sf6Pane.addTab("SF6 Summary of Promotion & Learning Progress", jScrollPane17);
 
