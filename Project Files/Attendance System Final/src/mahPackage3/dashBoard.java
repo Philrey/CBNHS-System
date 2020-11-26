@@ -2539,6 +2539,8 @@ public class dashBoard extends javax.swing.JFrame {
     private void btnSaveRemarksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveRemarksActionPerformed
         int row = enrolledStudentsTable.getSelectedRow();
         
+        
+        String enrollmentId = enrolledStudentsTable.getValueAt(row, 0).toString();
         String studentId = enrolledStudentsTable.getValueAt(row, 1).toString();
         
         String sf1 = my.convertEscapeCharacters(tfSf1RemarksDisplay.getText());
@@ -2548,7 +2550,7 @@ public class dashBoard extends javax.swing.JFrame {
             "remarks='"+remarks+"'",
         };
         
-        if(my.update_values("students", sets, "id='"+studentId+"'")){
+        if(my.update_values("enrollment", sets, "id='"+enrollmentId+"'")){
             my.showMessage("Remarks Saved.", JOptionPane.INFORMATION_MESSAGE);
         }else{
             my.showMessage("Saving Failed. Please make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);

@@ -63,7 +63,7 @@ public class myVariables {
     //Table Orders
     private static final int [] usersOrder = new int [] {6,4,3,7,1,2,0,5};
     private static final int [] usersPersonalInfoOrder = new int [] {5,7,8,9,6,3,4,1,2,0};
-    private static final int [] studentsOrder = new int [] {6,5,0,2,7,4,1,3,8};
+    private static final int [] studentsOrder = new int [] {8,6,0,2,9,4,1,3,5,10,7};
     private static final int [] gradesOrder = new int [] {4,0,5,8,1,6,3,7,2,9,10};
     private static final int [] studentsPersonalInfoOrder = new int[] {14,10,12,16,8,17,4,11,3,5,6,0,9,15,2,7,13,1};
     private static final int [] subjectLoadsOrder = new int [] {0,3,2,1};
@@ -276,19 +276,37 @@ public class myVariables {
     }
     public static String getAccessLevelName(int customLevel){
         //Use -1 if you want to get the access level of the current user logged in...put a value in custom otherwise.
-        switch(getAccessLevel()){
-            case 1:{
-                return "Teacher";
-            }case 2:{
-                return "Department Head";
-            }case 3:{
-                return "Curriculum Head";
-            }case 4:{
-                return "Registrar";
-            }case 5:{
-                return "Administrator";
-            }default:{
-                return "Guest";
+        if(customLevel != -1){
+            switch(customLevel){
+                case 1:{
+                    return "Teacher";
+                }case 2:{
+                    return "Department Head";
+                }case 3:{
+                    return "Curriculum Head";
+                }case 4:{
+                    return "Registrar";
+                }case 5:{
+                    return "Administrator";
+                }default:{
+                    return "Guest";
+                }
+            }
+        }else{
+            switch(getAccessLevel()){
+                case 1:{
+                    return "Teacher";
+                }case 2:{
+                    return "Department Head";
+                }case 3:{
+                    return "Curriculum Head";
+                }case 4:{
+                    return "Registrar";
+                }case 5:{
+                    return "Administrator";
+                }default:{
+                    return "Guest";
+                }
             }
         }
     }

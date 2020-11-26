@@ -31,7 +31,10 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
     JTable sf5SummaryTable;
     JTable sf5LevelOfProgress;
     JTable sf6Table;
-    JTable rankingTable;
+    JTable rankingTable7;
+    JTable rankingTable8;
+    JTable rankingTable9;
+    JTable rankingTable10;
     
     String sectionId;
     
@@ -53,6 +56,11 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
         sf5SummaryTable = tablesToUse[1];
         sf5LevelOfProgress = tablesToUse[2];
         sf6Table = tablesToUse[3];
+        
+        rankingTable7 = tablesToUse[4];
+        rankingTable8 = tablesToUse[5];
+        rankingTable9 = tablesToUse[6];
+        rankingTable10 = tablesToUse[7];
         
         sectionId = stringsToUse[0];
         
@@ -143,12 +151,9 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
             }
             if(!updateSummaryTable(promotedM, promotedF, conditionalM, conditionalF, retainedM, retainedF, incompleteM, incompleteF)){
                 throw new InterruptedException("Interrupted By User");
-            }
-            
-            if(!convertGenAverageToWholeNumbers()){
+            }if(!convertGenAverageToWholeNumbers()){
                 throw new InterruptedException("Interrupted By User");
-            }
-            if(!updateLevelLevelOfProgressTable()){
+            }if(!updateLevelLevelOfProgressTable()){
                 throw new InterruptedException("Interrupted By User");
             }
             btnExport.setEnabled(!showIncompleteRecords);
@@ -316,10 +321,14 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
                 lbLoadingMessage.setText("Processing Students..."+(n+1)+" of "+studCount);
                 progressBar.setValue(n+1);
                 
+                int gradeLevel = Integer.parseInt(sf5Table.getValueAt(n, 2).toString());
+                int studentId = Integer.parseInt(sf5Table.getValueAt(n, 3).toString());
                 float generalAverage = Float.parseFloat(sf5Table.getValueAt(n, 8).toString());
                 
                 if(compareToRankings){
-                    
+                    if(!compareToRankings(n,studentId, gradeLevel, generalAverage)){
+                        throw new InterruptedException("Interrupted By User @ compareToRankings");
+                    }
                 }else{
                     sf5Table.setValueAt(String.valueOf((int)generalAverage), n, 8);
                 }
@@ -328,6 +337,61 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
             Thread.sleep(pauseDelay);
             return true;
         } catch (InterruptedException e) {
+            return false;
+        } catch (Exception x){
+            x.printStackTrace();
+            return false;
+        }
+    }
+    private boolean compareToRankings(int rowIndex,int studentId,int gradeLevel,float generalAverage){
+        try {
+            lbLoadingMessage.setText("Comparing Student To Rankings...");
+            
+            JTable tableToUse = null;
+            switch(gradeLevel){
+                case 7:{
+                    tableToUse = rankingTable7;
+                    break;
+                }case 8:{
+                    tableToUse = rankingTable8;
+                    break;
+                }case 9:{
+                    tableToUse = rankingTable9;
+                    break;
+                }case 10:{
+                    tableToUse = rankingTable10;
+                    break;
+                }
+            }
+            if(generalAverage >= 75){
+                boolean matchFound = false;
+                if(tableToUse.getRowCount() > 0){
+                    for(int n=0;n<tableToUse.getRowCount();n++){
+                        int rankingStudentId = Integer.parseInt(tableToUse.getValueAt(n, 7).toString());
+                        if(studentId == rankingStudentId){
+                            matchFound = true;
+                            break;
+                        }
+                    }
+                }
+                
+                if(matchFound){
+                    sf5Table.setValueAt(String.valueOf(generalAverage), rowIndex, 8);
+                }else{
+                    sf5Table.setValueAt(String.valueOf((int)generalAverage), rowIndex, 8);
+                }
+            }else{
+                sf5Table.setValueAt(String.valueOf((int)generalAverage), rowIndex, 8);
+            }
+            
+            
+            Thread.sleep(pauseDelay);
+            return true;
+        } catch(InterruptedException x){
+            x.printStackTrace();
+            return false;
+        }catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }

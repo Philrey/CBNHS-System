@@ -2967,7 +2967,7 @@ public class dashBoard extends javax.swing.JFrame {
         boolean compareToRankings = cbCompareToRankings.isSelected();
         
         my.runSecondaryThread(3, false, 
-                new JTable[]{sf5Table,sf5SummaryTable,sf5LevelOfProgress,sf6Table}, 
+                new JTable[]{sf5Table,sf5SummaryTable,sf5LevelOfProgress,sf6Table,grade7RankingTable,grade8RankingTable,grade9RankingTable,grade10RankingTable}, 
                 new String[]{sectionId}, 
                 new JTextField[]{},
                 new JButton[]{btnLoadStudents4,btnExportSf5},
