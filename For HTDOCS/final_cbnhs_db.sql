@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2020 at 06:16 AM
+-- Generation Time: Nov 26, 2020 at 02:29 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -451,20 +451,21 @@ CREATE TABLE `enrollment` (
   `id` int(11) NOT NULL,
   `studentId` int(11) NOT NULL,
   `sectionId` int(11) NOT NULL,
-  `dateEnrolled` datetime NOT NULL
+  `dateEnrolled` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `remarks` varchar(1000) NOT NULL DEFAULT ' ! !'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `enrollment`
 --
 
-INSERT INTO `enrollment` (`id`, `studentId`, `sectionId`, `dateEnrolled`) VALUES
-(5, 3, 7, '2019-11-10 21:28:46'),
-(9, 1, 8, '2020-01-18 10:24:25'),
-(15, 1, 10, '2020-02-12 13:27:51'),
-(17, 1, 7, '2020-09-19 12:00:58'),
-(18, 3, 14, '2020-11-03 10:24:59'),
-(19, 3, 9, '2020-11-03 10:26:08');
+INSERT INTO `enrollment` (`id`, `studentId`, `sectionId`, `dateEnrolled`, `remarks`) VALUES
+(5, 3, 7, '2019-11-10 21:28:46', 'Yolo 3_7!T/I: 2020-02-01!'),
+(9, 1, 8, '2020-01-18 10:24:25', 'Yolo 1_8!T/I: 2020-02-01!'),
+(15, 1, 10, '2020-02-12 13:27:51', 'Yolo 1_10!T/I: 2020-02-01!'),
+(17, 1, 7, '2020-09-19 12:00:58', 'YoloNew 1_7!T/I: 2020-02-01!'),
+(18, 3, 14, '2020-11-03 10:24:59', 'Yolo 3_14!T/I: 2020-02-01!'),
+(19, 3, 9, '2020-11-03 10:26:08', 'Yolo 3_9!T/I: 2020-02-01!');
 
 -- --------------------------------------------------------
 
@@ -1081,19 +1082,22 @@ CREATE TABLE `students` (
   `sex` varchar(10) NOT NULL,
   `inGr` float NOT NULL DEFAULT '0',
   `curGrLvl` int(11) NOT NULL DEFAULT '0',
-  `remarks` varchar(1000) NOT NULL DEFAULT ' '
+  `schoolId` varchar(11) NOT NULL DEFAULT '000000',
+  `schoolName` varchar(1000) NOT NULL,
+  `schoolAddress` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `lrn`, `lName`, `fName`, `mName`, `sex`, `inGr`, `curGrLvl`, `remarks`) VALUES
-(1, '123543457474', 'Paderogao', 'Phil Rey', 'Estrella', 'Male', 90.1, 7, ' ! !'),
-(2, '123456789012', 'Kerby', 'Estrella', 'Paderogao', 'Female', 90.2, 0, 'N/A!N/A!'),
-(3, '123456789023', 'Rizal', 'Jose', ' ', 'Male', 99, 7, 'Yolo!T/I: 2020-02-01!'),
-(4, '129493120101', 'Cabillon', 'Jesthony', ' ', 'Male', 80, 0, 'N/A!N/A!'),
-(5, '129679130184', 'Antiga', 'Ariel', 'Socorro', 'Male', 80, 0, 'N/A!N/A!');
+INSERT INTO `students` (`id`, `lrn`, `lName`, `fName`, `mName`, `sex`, `inGr`, `curGrLvl`, `schoolId`, `schoolName`, `schoolAddress`) VALUES
+(1, '123543457474', 'Paderogao', 'Phil Rey', 'Estrella', 'Male', 90.1, 7, '000001', 'GMES-1', 'Manay, Davao Oriental'),
+(2, '123456789012', 'Kerby', 'Estrella', 'Paderogao', 'Female', 90.2, 0, '000000', 'GMES-1', 'Manay, Davao Oriental'),
+(3, '123456789023', 'Rizal', 'Jose', ' ', 'Male', 99, 7, '000000', 'Cuta Elementary School', 'Tarragona, Davao Oriental'),
+(4, '129493120101', 'Cabillon', 'Jesthony', ' ', 'Male', 80, 0, '000000', 'GMES-1', 'Manay, Davao Oriental'),
+(5, '129679130184', 'Antiga', 'Ariel', 'Socorro', 'Male', 80, 0, '000000', 'GMES-1', 'Manay, Davao Oriental'),
+(6, '123546789014', 'Masyedow', 'Marites', 'Supladae', 'Male', 89, 0, '123456', 'Chaka Elementary School', 'Dimakita City');
 
 -- --------------------------------------------------------
 
@@ -1554,7 +1558,7 @@ CREATE TABLE `v_teacherloads` (
 --
 DROP TABLE IF EXISTS `form_sf1_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf1_view`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`enrollment`.`sectionId` AS `sectionId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`personalinfo`.`bDate` AS `bDate`,`personalinfo`.`age` AS `age`,`personalinfo`.`mTongue` AS `mTongue`,`personalinfo`.`ip` AS `ip`,`personalinfo`.`rlgn` AS `rlgn`,`personalinfo`.`houseN` AS `houseN`,`personalinfo`.`brgy` AS `brgy`,`personalinfo`.`mncpl` AS `mncpl`,`personalinfo`.`prvnce` AS `prvnce`,`personalinfo`.`fName` AS `fathersName`,`personalinfo`.`mName` AS `mothersName`,`personalinfo`.`gName` AS `gName`,`personalinfo`.`rltnshp` AS `rltnshp`,`personalinfo`.`contact` AS `contact`,`students`.`remarks` AS `remarks` from ((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `personalinfo` on((`enrollment`.`studentId` = `personalinfo`.`stdId`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf1_view`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`enrollment`.`sectionId` AS `sectionId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`personalinfo`.`bDate` AS `bDate`,`personalinfo`.`age` AS `age`,`personalinfo`.`mTongue` AS `mTongue`,`personalinfo`.`ip` AS `ip`,`personalinfo`.`rlgn` AS `rlgn`,`personalinfo`.`houseN` AS `houseN`,`personalinfo`.`brgy` AS `brgy`,`personalinfo`.`mncpl` AS `mncpl`,`personalinfo`.`prvnce` AS `prvnce`,`personalinfo`.`fName` AS `fathersName`,`personalinfo`.`mName` AS `mothersName`,`personalinfo`.`gName` AS `gName`,`personalinfo`.`rltnshp` AS `rltnshp`,`personalinfo`.`contact` AS `contact`,`enrollment`.`remarks` AS `remarks` from ((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `personalinfo` on((`enrollment`.`studentId` = `personalinfo`.`stdId`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName` ;
 
 -- --------------------------------------------------------
 
@@ -1563,7 +1567,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `form_sf2_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf2_view`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`sectionId` AS `sectionId`,`enrollment`.`studentId` AS `studentId`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`dateEnrolled` AS `dateEnrolled`,`students`.`remarks` AS `remarks` from (`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf2_view`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`sectionId` AS `sectionId`,`enrollment`.`studentId` AS `studentId`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`dateEnrolled` AS `dateEnrolled`,`enrollment`.`remarks` AS `remarks` from (`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
 
 -- --------------------------------------------------------
 
@@ -1581,7 +1585,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `form_sf5_viewfull`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf5_viewfull`  AS  select `finalgrades`.`id` AS `id`,`finalgrades`.`sectionId` AS `sectionId`,`sections`.`sectionName` AS `sectionName`,`sections`.`schoolYear` AS `schoolYear`,`loads`.`c_gradeLevel` AS `gradeLevel`,`sections`.`adviserId` AS `adviserId`,`users`.`user_Lname` AS `user_Lname`,`users`.`user_Fname` AS `user_Fname`,`users`.`user_Mname` AS `user_Mname`,`finalgrades`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`students`.`remarks` AS `remarks`,`finalgrades`.`generalAverage` AS `generalAverage`,`finalgrades`.`actionTaken` AS `actionTaken`,`finalgrades`.`dateUpdated` AS `dateUpdated` from ((((`finalgrades` left join `sections` on((`finalgrades`.`sectionId` = `sections`.`id`))) left join `users` on((`sections`.`adviserId` = `users`.`id`))) left join `loads` on((`sections`.`loadId` = `loads`.`a_id`))) left join `students` on((`finalgrades`.`studentId` = `students`.`id`))) order by `loads`.`c_gradeLevel`,`finalgrades`.`sectionId`,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf5_viewfull`  AS  select `finalgrades`.`id` AS `id`,`finalgrades`.`sectionId` AS `sectionId`,`sections`.`sectionName` AS `sectionName`,`sections`.`schoolYear` AS `schoolYear`,`loads`.`c_gradeLevel` AS `gradeLevel`,`sections`.`adviserId` AS `adviserId`,`users`.`user_Lname` AS `user_Lname`,`users`.`user_Fname` AS `user_Fname`,`users`.`user_Mname` AS `user_Mname`,`finalgrades`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`remarks` AS `remarks`,`finalgrades`.`generalAverage` AS `generalAverage`,`finalgrades`.`actionTaken` AS `actionTaken`,`finalgrades`.`dateUpdated` AS `dateUpdated` from (((((`finalgrades` left join `sections` on((`finalgrades`.`sectionId` = `sections`.`id`))) left join `users` on((`sections`.`adviserId` = `users`.`id`))) left join `loads` on((`sections`.`loadId` = `loads`.`a_id`))) left join `students` on((`finalgrades`.`studentId` = `students`.`id`))) left join `enrollment` on(((`enrollment`.`studentId` = `finalgrades`.`studentId`) and (`enrollment`.`sectionId` = `finalgrades`.`sectionId`)))) order by `loads`.`c_gradeLevel`,`finalgrades`.`sectionId`,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
 
 -- --------------------------------------------------------
 
@@ -1590,7 +1594,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `form_sf5_viewminimal`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf5_viewminimal`  AS  select `finalgrades`.`id` AS `id`,`sections`.`id` AS `sectionId`,`loads`.`c_gradeLevel` AS `gradeLevel`,`finalgrades`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`students`.`remarks` AS `remarks`,`finalgrades`.`generalAverage` AS `generalAverage`,`finalgrades`.`actionTaken` AS `actionTaken`,`finalgrades`.`failedSubjects` AS `failedSubjects`,`finalgrades`.`dateUpdated` AS `dateUpdated` from (((`finalgrades` left join `sections` on((`finalgrades`.`sectionId` = `sections`.`id`))) left join `loads` on((`sections`.`loadId` = `loads`.`a_id`))) left join `students` on((`finalgrades`.`studentId` = `students`.`id`))) order by `loads`.`c_gradeLevel`,`finalgrades`.`sectionId`,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf5_viewminimal`  AS  select `finalgrades`.`id` AS `id`,`sections`.`id` AS `sectionId`,`loads`.`c_gradeLevel` AS `gradeLevel`,`finalgrades`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`remarks` AS `remarks`,`finalgrades`.`generalAverage` AS `generalAverage`,`finalgrades`.`actionTaken` AS `actionTaken`,`finalgrades`.`failedSubjects` AS `failedSubjects`,`finalgrades`.`dateUpdated` AS `dateUpdated` from ((((`finalgrades` left join `sections` on((`finalgrades`.`sectionId` = `sections`.`id`))) left join `loads` on((`sections`.`loadId` = `loads`.`a_id`))) left join `students` on((`finalgrades`.`studentId` = `students`.`id`))) left join `enrollment` on(((`enrollment`.`studentId` = `finalgrades`.`studentId`) and (`enrollment`.`sectionId` = `finalgrades`.`sectionId`)))) order by `loads`.`c_gradeLevel`,`finalgrades`.`sectionId`,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
 
 -- --------------------------------------------------------
 
@@ -1608,7 +1612,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_enrollment_minimal`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_enrollment_minimal`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`sectionId` AS `sectionId`,`students`.`remarks` AS `remarks` from (`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_enrollment_minimal`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`sectionId` AS `sectionId`,`enrollment`.`remarks` AS `remarks` from (`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
 
 -- --------------------------------------------------------
 
@@ -1895,7 +1899,7 @@ ALTER TABLE `sections`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `subjects`
