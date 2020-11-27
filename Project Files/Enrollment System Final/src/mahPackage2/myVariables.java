@@ -63,7 +63,7 @@ public class myVariables {
     //Table Orders
     private static int [] usersOrder = new int [] {6,4,3,7,1,2,0,5};
     private static int [] usersPersonalInfoOrder = new int [] {5,7,8,9,6,3,4,1,2,0};
-    private static int [] studentsOrder = new int [] {6,5,0,2,7,4,1,3,8};
+    private static final int [] studentsOrder = new int [] {8,6,0,2,9,4,1,3,5,10,7};
     private static int [] studentsPersonalInfoOrder = new int[] {14,10,12,16,8,17,4,11,3,5,6,0,9,15,2,7,13,1};
     private static int [] subjectLoadsOrder = new int [] {0,3,2,1};
     private static int [] sectionsOrder = new int [] {9,0,4,6,5,10,1,2,11,7,8,3};

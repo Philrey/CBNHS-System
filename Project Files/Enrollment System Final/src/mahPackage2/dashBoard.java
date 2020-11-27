@@ -210,7 +210,7 @@ public class dashBoard extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Section Name", "Adv ID", "Adviser", "Gender", "Lod ID", "Curriculum", "Level", "School Year"
+                "ID", "Section Name", "Adv ID", "Adviser", "Gender", "Lod ID", "Curriculum", "Grade Level", "School Year"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -221,6 +221,7 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        sectionsTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         sectionsTable.getTableHeader().setReorderingAllowed(false);
         sectionsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -229,11 +230,16 @@ public class dashBoard extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(sectionsTable);
         if (sectionsTable.getColumnModel().getColumnCount() > 0) {
-            sectionsTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-            sectionsTable.getColumnModel().getColumn(3).setPreferredWidth(150);
-            sectionsTable.getColumnModel().getColumn(4).setPreferredWidth(50);
-            sectionsTable.getColumnModel().getColumn(7).setPreferredWidth(50);
-            sectionsTable.getColumnModel().getColumn(8).setPreferredWidth(50);
+            sectionsTable.getColumnModel().getColumn(1).setResizable(false);
+            sectionsTable.getColumnModel().getColumn(1).setPreferredWidth(200);
+            sectionsTable.getColumnModel().getColumn(3).setPreferredWidth(200);
+            sectionsTable.getColumnModel().getColumn(4).setResizable(false);
+            sectionsTable.getColumnModel().getColumn(4).setPreferredWidth(80);
+            sectionsTable.getColumnModel().getColumn(6).setPreferredWidth(100);
+            sectionsTable.getColumnModel().getColumn(7).setResizable(false);
+            sectionsTable.getColumnModel().getColumn(7).setPreferredWidth(100);
+            sectionsTable.getColumnModel().getColumn(8).setResizable(false);
+            sectionsTable.getColumnModel().getColumn(8).setPreferredWidth(150);
         }
 
         jcbSchoolYear4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020" }));
@@ -328,10 +334,15 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        usersTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         usersTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane11.setViewportView(usersTable);
         if (usersTable.getColumnModel().getColumnCount() > 0) {
-            usersTable.getColumnModel().getColumn(3).setHeaderValue("Access Level");
+            usersTable.getColumnModel().getColumn(1).setPreferredWidth(200);
+            usersTable.getColumnModel().getColumn(2).setResizable(false);
+            usersTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+            usersTable.getColumnModel().getColumn(3).setResizable(false);
+            usersTable.getColumnModel().getColumn(3).setPreferredWidth(100);
         }
 
         btnSearchUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_find_user_male_16px.png"))); // NOI18N
@@ -384,8 +395,14 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        loadsTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         loadsTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane12.setViewportView(loadsTable);
+        if (loadsTable.getColumnModel().getColumnCount() > 0) {
+            loadsTable.getColumnModel().getColumn(1).setPreferredWidth(200);
+            loadsTable.getColumnModel().getColumn(2).setResizable(false);
+            loadsTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+        }
 
         btnAddNewSection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_add_16px.png"))); // NOI18N
         btnAddNewSection.setText("Add");
@@ -535,10 +552,16 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        usersTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         usersTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane13.setViewportView(usersTable1);
         if (usersTable1.getColumnModel().getColumnCount() > 0) {
-            usersTable1.getColumnModel().getColumn(3).setHeaderValue("Access Level");
+            usersTable1.getColumnModel().getColumn(1).setResizable(false);
+            usersTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
+            usersTable1.getColumnModel().getColumn(2).setResizable(false);
+            usersTable1.getColumnModel().getColumn(2).setPreferredWidth(100);
+            usersTable1.getColumnModel().getColumn(3).setResizable(false);
+            usersTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
         }
 
         btnSearchUser1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_find_user_male_16px.png"))); // NOI18N
@@ -591,8 +614,13 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        loadsTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         loadsTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane14.setViewportView(loadsTable1);
+        if (loadsTable1.getColumnModel().getColumnCount() > 0) {
+            loadsTable1.getColumnModel().getColumn(2).setResizable(false);
+            loadsTable1.getColumnModel().getColumn(2).setPreferredWidth(100);
+        }
 
         btnSaveSectionChanges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_save_16px.png"))); // NOI18N
         btnSaveSectionChanges.setText("Save Changes");
@@ -750,6 +778,7 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        enrollmentTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         enrollmentTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(enrollmentTable);
         if (enrollmentTable.getColumnModel().getColumnCount() > 0) {
@@ -877,6 +906,7 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        studentTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         studentTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane15.setViewportView(studentTable);
 
@@ -899,6 +929,7 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        sectionsTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         sectionsTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane16.setViewportView(sectionsTable1);
         if (sectionsTable1.getColumnModel().getColumnCount() > 0) {
@@ -988,7 +1019,7 @@ public class dashBoard extends javax.swing.JFrame {
         enrollStudentPanel.setLayout(enrollStudentPanelLayout);
         enrollStudentPanelLayout.setHorizontalGroup(
             enrollStudentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
         );
         enrollStudentPanelLayout.setVerticalGroup(
             enrollStudentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1014,7 +1045,7 @@ public class dashBoard extends javax.swing.JFrame {
         manageEnroleesTab.setLayout(manageEnroleesTabLayout);
         manageEnroleesTabLayout.setHorizontalGroup(
             manageEnroleesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2)
+            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
         );
         manageEnroleesTabLayout.setVerticalGroup(
             manageEnroleesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1049,6 +1080,7 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        sectionsTable2.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         sectionsTable2.getTableHeader().setReorderingAllowed(false);
         sectionsTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1169,6 +1201,7 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        assignedTeacherTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         assignedTeacherTable.getTableHeader().setReorderingAllowed(false);
         assignedTeacherTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1219,6 +1252,7 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        subjectTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         subjectTable.getTableHeader().setReorderingAllowed(false);
         subjectTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1365,6 +1399,7 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        usersTable2.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         usersTable2.getTableHeader().setReorderingAllowed(false);
         usersTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1580,22 +1615,66 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchSectionHandler
 
     private void searchUserHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserHandler
-        my.searchItem("", usersTable, 3, new int[]{5,6}, new int[]{1,2,3}, true, true, null, tfSearchUser, true);
+        String toSearch = my.convertEscapeCharacters(tfSearchUser.getText().trim());
+        String where = "WHERE user_level='1' ";
+        
+        if(toSearch.contains(",")){
+            String additionalQuery;
+            additionalQuery = my.multipleColumnSearch("user_Lname,user_Fname,user_Mname", "Last Name,First Name,Middle Name","LIKE,LIKE,LIKE",toSearch);
+            if(additionalQuery == null){
+                return;
+            }
+
+            where+="AND ("+additionalQuery+")";
+        }else{
+            where+="AND (user_Lname LIKE'%"+toSearch+"%' OR user_Fname LIKE'%"+toSearch+"%' OR user_Mname LIKE'%"+toSearch+"%')";
+        }
+        my.searchItem(where, usersTable, 3, new int[]{5,6}, new int[]{1,2,3}, true, true, null, tfSearchUser, true);
     }//GEN-LAST:event_searchUserHandler
 
     private void searchUserHandler1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserHandler1
-        my.searchItem("", usersTable1, 3, new int[]{5,6}, new int[]{1,2,3}, true, true, null, tfSearchUser1, true);
+        String toSearch = my.convertEscapeCharacters(tfSearchUser1.getText().trim());
+        String where = "WHERE user_level='1' ";
+        
+        if(toSearch.contains(",")){
+            String additionalQuery;
+            additionalQuery = my.multipleColumnSearch("user_Lname,user_Fname,user_Mname", "Last Name,First Name,Middle Name","LIKE,LIKE,LIKE",toSearch);
+            if(additionalQuery == null){
+                return;
+            }
+
+            where+="AND ("+additionalQuery+")";
+        }else{
+            where+="AND (user_Lname LIKE'%"+toSearch+"%' OR user_Fname LIKE'%"+toSearch+"%' OR user_Mname LIKE'%"+toSearch+"%')";
+        }
+        my.searchItem(where, usersTable1, 3, new int[]{5,6}, new int[]{1,2,3}, true, true, null, tfSearchUser1, true);
     }//GEN-LAST:event_searchUserHandler1
 
     private void searchLoadHandler1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchLoadHandler1
-        my.searchItem("ORDER BY c_gradeLevel ASC", loadsTable1, 2, null, null, false, true, null, tfSearchLoad1, true);
+        String toSearch = my.convertEscapeCharacters(tfSearchLoad1.getText().trim());
+        String where = "WHERE b_loadName LIKE '%"+toSearch+"%' ORDER BY c_gradeLevel ASC";
+        my.searchItem(where, loadsTable1, 2, null, null, false, true, null, tfSearchLoad1, true);
     }//GEN-LAST:event_searchLoadHandler1
 
     private void btnSearchStudentHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchStudentHandler
-        String toSearch = tfSearchStudent.getText();
         String yearFilter = jcbSchoolYear2.getSelectedItem().toString();
-        String where = "WHERE (lrn='"+toSearch+"' OR lName LIKE '%"+toSearch+"%' OR fName LIKE '%"+toSearch+"%' OR mName LIKE '%"+toSearch+"%') "+
-                (jcbSchoolYear2.getSelectedIndex()!=0?"AND schoolYear='"+yearFilter+"'":"");
+        
+        String toSearch = my.convertEscapeCharacters(tfSearchStudent.getText().trim());
+        String where = "WHERE ";
+        
+        if(toSearch.contains(",")){
+            String additionalQuery;
+            additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Middle Name","LIKE,LIKE,LIKE",toSearch);
+            if(additionalQuery == null){
+                return;
+            }
+
+            where+=" ("+additionalQuery+")";
+        }else{
+            where+=" (lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%')";
+        }
+        where +=(jcbSchoolYear2.getSelectedIndex()!=0?"AND schoolYear='"+yearFilter+"'":"");
+        
         String [] result = my.return_values("*", "v_enrollment", where, myVariables.getEnrollmentViewOrder());
         
         my.clear_table_rows(enrollmentTable);
@@ -1615,15 +1694,44 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchStudentHandler
 
     private void searchStudentToEnrollHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentToEnrollHandler
-        my.searchItem("", studentTable, 0, new int [] {6}, new int [] {2,3,4}, true, true, null, tfSearchStudent1, true);
+        String toSearch = my.convertEscapeCharacters(tfSearchStudent1.getText().trim());
+        String where = "";
+        
+        if(toSearch.contains(",")){
+            String additionalQuery;
+            additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Middle Name","LIKE,LIKE,LIKE",toSearch);
+            if(additionalQuery == null){
+                return;
+            }
+
+            where+="WHERE ("+additionalQuery+")";
+        }else{
+            where+="WHERE (lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%')";
+        }
+        
+        my.searchItem(where, studentTable, 0, new int [] {6}, new int [] {2,3,4}, true, true, null, tfSearchStudent1, true);
     }//GEN-LAST:event_searchStudentToEnrollHandler
 
     private void searchLoadHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchLoadHandler
-        my.searchItem("ORDER BY c_gradeLevel ASC", loadsTable, 2, null, null, false, true, null, tfSearchLoad, true);
+        String toSearch = my.convertEscapeCharacters(tfSearchLoad.getText().trim());
+        String where = "WHERE b_loadName LIKE '%"+toSearch+"%' ORDER BY c_gradeLevel ASC";
+        
+        my.searchItem(where, loadsTable, 2, null, null, false, true, null, tfSearchLoad, true);
     }//GEN-LAST:event_searchLoadHandler
 
     private void searchSectionToEnrollHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSectionToEnrollHandler
-        my.searchItem("", sectionsTable1, 4, new int [] {2,6,7,8}, new int [] {2,3,4}, true, true, null, tfSearchSection1, true);
+        String toSearch = tfSearchSection1.getText();
+        String schoolYear = jcbSchoolYear2.getSelectedItem().toString();
+        
+        String where = "";
+        
+        if(jcbSchoolYear4.getSelectedIndex() == 0){
+            where = "WHERE sectionName LIKE '%"+toSearch+"%'";
+        }else{
+            where = "WHERE sectionName LIKE '%"+toSearch+"%' AND schoolYear="+schoolYear;
+        }
+        
+        my.searchItem(where, sectionsTable1, 4, new int [] {2,6,7,8}, new int [] {2,3,4}, true, true, null, tfSearchSection1, true);
     }//GEN-LAST:event_searchSectionToEnrollHandler
 
     private void createNewSectionHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewSectionHandler
@@ -1752,6 +1860,13 @@ public class dashBoard extends javax.swing.JFrame {
                 
         //Check if student is already enrolled to the same section
         String duplicate [] = my.return_values("*", "enrollment", "WHERE studentId='"+studentId+"' AND sectionId ='"+sectionId+"'",new int [] {0,1,2,3});
+        String date [] = my.return_values("substr(now(),1,10) as 'dateNow'", "", "", new int [] {0});
+        String dateNow = "";
+        try {
+            dateNow = my.getValueAtColumn(date[0], 0);
+        } catch (Exception e) {
+            dateNow = " ";
+        }
         
         if(duplicate != null){
             my.showMessage("Student is already enrolled to this section.", JOptionPane.ERROR_MESSAGE);
@@ -1763,6 +1878,7 @@ public class dashBoard extends javax.swing.JFrame {
         //Check if section to enroll is appropriate. 
         int currentGradeLevel = Integer.parseInt(studentTable.getValueAt(studentRow, 4).toString());
         int sectionGradeLevel = Integer.parseInt(sectionsTable1.getValueAt(sectionRow, 3).toString());
+        String remarks = " ! !";
         
         if(currentGradeLevel == 0){
             if(sectionGradeLevel != 7){
@@ -1770,6 +1886,10 @@ public class dashBoard extends javax.swing.JFrame {
                     my.showMessage("Enrollment Cancelled.", JOptionPane.PLAIN_MESSAGE);
                     return;
                 }
+            }
+            if(my.getConfirmation("This is this Student's first time being enrolled.\n"
+                    + "Would you like to put a status of (TRANSFERRED IN) for this student?")){
+                remarks = "T/I: "+dateNow+"!T/I: "+dateNow+"!";
             }
         }else{
             if(currentGradeLevel+1 != sectionGradeLevel){
@@ -1786,10 +1906,10 @@ public class dashBoard extends javax.swing.JFrame {
         
         if(my.getConfirmation("Enroll this student? \n"+studentName+" to "+sectionName+"?")){
             String fields [] = {
-                "null",studentId,sectionId,"now()"
+                "null",studentId,sectionId,"now()",remarks
             };
             
-            if(my.add_values("enrollment", "id,studentId,sectionId,dateEnrolled", fields)){
+            if(my.add_values("enrollment", "id,studentId,sectionId,dateEnrolled,remarks", fields)){
                 //Update current grade level
                 String sets [] = {"curGrLvl='"+sectionGradeLevel+"'"};
                 if(my.update_values("students", sets, "id='"+studentId+"'")){
@@ -1992,7 +2112,7 @@ public class dashBoard extends javax.swing.JFrame {
             int selectedSubjectId = Integer.parseInt(assignedTeacherTable.getValueAt(row, 5).toString());
             
             //Filter if user is not an admin
-            if(myVariables.getAccessLevel() != 5){
+            if(myVariables.getAccessLevel() != 5 && myVariables.getAccessLevel() != 4){
                 boolean matchFound = false;
                 for(int n=0;n<subjectTable.getRowCount();n++){
                     int currentId = Integer.parseInt(subjectTable.getValueAt(n, 0).toString());
@@ -2030,7 +2150,21 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditSubjectTeacherActionPerformed
 
     private void searchUserHandler2(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserHandler2
-        my.searchItem("", usersTable2, 3, new int[]{5,6}, new int[]{1,2,3}, true, true, null, tfSearchUser2, true);
+        String toSearch = my.convertEscapeCharacters(tfSearchUser2.getText().trim());
+        String where = "WHERE user_level='1' ";
+        
+        if(toSearch.contains(",")){
+            String additionalQuery;
+            additionalQuery = my.multipleColumnSearch("user_Lname,user_Fname,user_Mname", "Last Name,First Name,Middle Name","LIKE,LIKE,LIKE",toSearch);
+            if(additionalQuery == null){
+                return;
+            }
+
+            where+="AND ("+additionalQuery+")";
+        }else{
+            where+="AND (user_Lname LIKE'%"+toSearch+"%' OR user_Fname LIKE'%"+toSearch+"%' OR user_Mname LIKE'%"+toSearch+"%')";
+        }
+        my.searchItem(where, usersTable2, 3, new int[]{5,6}, new int[]{1,2,3}, true, true, null, tfSearchUser2, true);
     }//GEN-LAST:event_searchUserHandler2
 
     private void assignTeacherHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assignTeacherHandler
@@ -2088,6 +2222,11 @@ public class dashBoard extends javax.swing.JFrame {
         
         if(result != null){
             String managedSubjects = my.getValueAtColumn(result[0], 9);
+            if(managedSubjects.contains("NONE")){
+                my.clear_table_rows(subjectTable);
+                return;
+            }
+            
             managedSubjects = managedSubjects.replace(':', ',');
             
             int length = managedSubjects.length();

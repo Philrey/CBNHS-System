@@ -786,12 +786,12 @@
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
                                                           <Component id="rbIncomplete" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                              <Component id="tfGeneralAverage" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
                                                       </Group>
                                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="tfGeneralAverage" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -944,7 +944,7 @@
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="false">
                                           <Title/>
                                           <Editor/>
                                           <Renderer/>
@@ -954,7 +954,7 @@
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="80" resizable="false">
                                           <Title/>
                                           <Editor/>
                                           <Renderer/>
@@ -969,12 +969,12 @@
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="false">
                                           <Title/>
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="false">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="80" resizable="false">
                                           <Title/>
                                           <Editor/>
                                           <Renderer/>

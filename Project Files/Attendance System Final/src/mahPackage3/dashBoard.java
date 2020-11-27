@@ -912,16 +912,16 @@ public class dashBoard extends javax.swing.JFrame {
         if (gradesTable.getColumnModel().getColumnCount() > 0) {
             gradesTable.getColumnModel().getColumn(4).setPreferredWidth(200);
             gradesTable.getColumnModel().getColumn(5).setResizable(false);
-            gradesTable.getColumnModel().getColumn(5).setPreferredWidth(100);
+            gradesTable.getColumnModel().getColumn(5).setPreferredWidth(60);
             gradesTable.getColumnModel().getColumn(6).setResizable(false);
             gradesTable.getColumnModel().getColumn(7).setResizable(false);
-            gradesTable.getColumnModel().getColumn(7).setPreferredWidth(100);
+            gradesTable.getColumnModel().getColumn(7).setPreferredWidth(80);
             gradesTable.getColumnModel().getColumn(8).setPreferredWidth(200);
             gradesTable.getColumnModel().getColumn(9).setResizable(false);
             gradesTable.getColumnModel().getColumn(10).setResizable(false);
-            gradesTable.getColumnModel().getColumn(10).setPreferredWidth(100);
+            gradesTable.getColumnModel().getColumn(10).setPreferredWidth(50);
             gradesTable.getColumnModel().getColumn(11).setResizable(false);
-            gradesTable.getColumnModel().getColumn(11).setPreferredWidth(120);
+            gradesTable.getColumnModel().getColumn(11).setPreferredWidth(80);
             gradesTable.getColumnModel().getColumn(12).setResizable(false);
             gradesTable.getColumnModel().getColumn(12).setPreferredWidth(150);
         }
@@ -1009,17 +1009,14 @@ public class dashBoard extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLoadGrades))
                             .addComponent(tfFailedSubjects, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbPromoted, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbConditional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbRetained, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addComponent(jLabel18)
-                                            .addGap(0, 0, Short.MAX_VALUE))
-                                        .addComponent(rbPromoted, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(rbConditional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(rbRetained, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(rbIncomplete, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel18)
+                                    .addComponent(rbIncomplete, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(tfGeneralAverage, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING)))

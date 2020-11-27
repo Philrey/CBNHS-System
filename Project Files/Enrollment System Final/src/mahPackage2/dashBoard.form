@@ -120,12 +120,38 @@
                             <Column editable="false" title="Gender" type="java.lang.Object"/>
                             <Column editable="false" title="Lod ID" type="java.lang.Object"/>
                             <Column editable="false" title="Curriculum" type="java.lang.Object"/>
-                            <Column editable="false" title="Level" type="java.lang.Object"/>
+                            <Column editable="false" title="Grade Level" type="java.lang.Object"/>
                             <Column editable="false" title="School Year" type="java.lang.Object"/>
                           </Table>
                         </Property>
+                        <Property name="autoResizeMode" type="int" value="0"/>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="80" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
@@ -136,37 +162,12 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="false">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -417,6 +418,7 @@
                                             <Column editable="false" title="Access Level" type="java.lang.Object"/>
                                           </Table>
                                         </Property>
+                                        <Property name="autoResizeMode" type="int" value="0"/>
                                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                           <TableColumnModel selectionModel="0">
                                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -424,18 +426,18 @@
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                              <Title value="Access Level"/>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
+                                              <Title/>
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
@@ -502,6 +504,7 @@
                                             <Column editable="false" title="Grade Level" type="java.lang.Object"/>
                                           </Table>
                                         </Property>
+                                        <Property name="autoResizeMode" type="int" value="0"/>
                                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                           <TableColumnModel selectionModel="0">
                                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -509,12 +512,12 @@
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
@@ -768,6 +771,7 @@
                                             <Column editable="false" title="Access Level" type="java.lang.Object"/>
                                           </Table>
                                         </Property>
+                                        <Property name="autoResizeMode" type="int" value="0"/>
                                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                           <TableColumnModel selectionModel="0">
                                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -775,18 +779,18 @@
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="false">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                              <Title value="Access Level"/>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
+                                              <Title/>
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
@@ -853,6 +857,7 @@
                                             <Column editable="false" title="Grade Level" type="java.lang.Object"/>
                                           </Table>
                                         </Property>
+                                        <Property name="autoResizeMode" type="int" value="0"/>
                                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                           <TableColumnModel selectionModel="0">
                                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -865,7 +870,7 @@
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
@@ -937,7 +942,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jSplitPane2" alignment="0" max="32767" attributes="0"/>
+              <Component id="jSplitPane2" alignment="0" pref="876" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -1049,6 +1054,7 @@
                             <Column editable="false" title="Date" type="java.lang.Object"/>
                           </Table>
                         </Property>
+                        <Property name="autoResizeMode" type="int" value="0"/>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -1177,7 +1183,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane5" alignment="0" pref="239" max="32767" attributes="0"/>
+                              <Component id="jScrollPane5" alignment="0" pref="166" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -1346,6 +1352,7 @@
                                             <Column editable="false" title="Curr. Grade" type="java.lang.Object"/>
                                           </Table>
                                         </Property>
+                                        <Property name="autoResizeMode" type="int" value="0"/>
                                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                           <TableColumnModel selectionModel="0">
                                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -1400,6 +1407,7 @@
                                             <Column editable="false" title="S.Y." type="java.lang.Object"/>
                                           </Table>
                                         </Property>
+                                        <Property name="autoResizeMode" type="int" value="0"/>
                                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                           <TableColumnModel selectionModel="0">
                                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -1602,6 +1610,7 @@
                             <Column editable="false" title="Subjects Contained" type="java.lang.Object"/>
                           </Table>
                         </Property>
+                        <Property name="autoResizeMode" type="int" value="0"/>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -1871,6 +1880,7 @@
                                             <Column editable="false" title="Grade" type="java.lang.Object"/>
                                           </Table>
                                         </Property>
+                                        <Property name="autoResizeMode" type="int" value="0"/>
                                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                           <TableColumnModel selectionModel="0">
                                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -1969,6 +1979,7 @@
                                             <Column editable="false" title="Grade" type="java.lang.Object"/>
                                           </Table>
                                         </Property>
+                                        <Property name="autoResizeMode" type="int" value="0"/>
                                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                           <TableColumnModel selectionModel="0">
                                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -2198,6 +2209,7 @@
                                             <Column editable="false" title="Access Level" type="java.lang.Object"/>
                                           </Table>
                                         </Property>
+                                        <Property name="autoResizeMode" type="int" value="0"/>
                                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                           <TableColumnModel selectionModel="0">
                                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">

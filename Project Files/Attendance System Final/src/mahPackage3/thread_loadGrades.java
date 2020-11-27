@@ -130,7 +130,7 @@ public class thread_loadGrades extends SwingWorker<String, Object>{
                 progressBar.setMaximum(teacherCount);
                 progressBar.setValue(0);
                 
-                System.err.println("Teachers: "+assignedTeachers.length+" Result: "+resultCount);
+                //System.err.println("Teachers: "+assignedTeachers.length+" Result: "+resultCount);
                 //<editor-fold desc="Match ids">
                 
                 for(int n=0;n<teacherCount;n++){
@@ -150,14 +150,14 @@ public class thread_loadGrades extends SwingWorker<String, Object>{
                     }
                     */
                     
-                    System.err.println("To Search: "+curUserId+","+curSubjectId);
+                    //System.err.println("To Search: "+curUserId+","+curSubjectId);
                     //Find ids inside results
                     matchFound = false;
                     for(int x=0;x<resultCount;x++){
                         int resultUserId = Integer.parseInt(my.getValueAtColumn(result[x], 3));
                         int resultSubjectId = Integer.parseInt(my.getValueAtColumn(result[x], 8));
                         
-                        System.err.println("Result: "+resultUserId+","+resultSubjectId);
+                        //System.err.println("Result: "+resultUserId+","+resultSubjectId);
                         
                         if(curUserId == resultUserId && curSubjectId == resultSubjectId){
                             String status = my.getValueAtColumn(result[x], 13);
