@@ -274,6 +274,8 @@ public class myFunctions {
             toSend = toSend.replace("&", "%26");
             url += toSend;
             url = url.replace(" ", "%20");
+            url = url.replace("Ñ", "%25C3%2591");
+            url = url.replace("ñ", "%25C3%25B1");
             
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -336,6 +338,8 @@ public class myFunctions {
             toSend = toSend.replace("&", "%26");
             url += toSend;
             url = url.replace(" ", "%20");
+            url = url.replace("Ñ", "%25C3%2591");
+            url = url.replace("ñ", "%25C3%25B1");
             
             System.out.println(url);
             
@@ -383,6 +387,9 @@ public class myFunctions {
             //System.out.println(url);
             url = url.replace("%", "%25");
             url = url.replace(" ", "%20");
+            url = url.replace("Ñ", "%25C3%2591");
+            url = url.replace("ñ", "%25C3%25B1");
+            
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             // optional default is GET
@@ -438,6 +445,9 @@ public class myFunctions {
                     }
                     cLine+=temp+"//";
                 }
+                cLine = cLine.replace("%C3%91", "Ñ");
+                cLine = cLine.replace("%C3%B1", "ñ");
+                
                 lines = cLine.split("//");
                 return lines;
             }else{
