@@ -827,7 +827,7 @@ public class myFunctions {
         secondThread = toLoad;
         secondThread.start();
     }
-    public void runThirdThread(int threadIndex,boolean waitForMainThreadToFinish,JTable [] tablesToUse,String [] valuesToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse){
+    public void runThirdThread(int threadIndex,boolean waitForMainThreadToFinish,JTable [] tablesToUse,String [] valuesToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean  [] booleansToUse){
         Thread toLoad = null;
         switch (threadIndex){
             case 0:{
@@ -835,6 +835,8 @@ public class myFunctions {
                 toLoad = new Thread(tld);
                 break;
             }case 1:{
+                thread_loadSf6Details tld = new thread_loadSf6Details(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
+                toLoad = new Thread(tld);
                 break;
             }case 2:{
                 break;

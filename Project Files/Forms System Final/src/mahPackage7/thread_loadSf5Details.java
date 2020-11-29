@@ -37,6 +37,7 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
     JTable rankingTable10;
     
     String sectionId;
+    String gradeLevel;
     
     JButton btnLoadStudents;
     JButton btnExport;
@@ -63,6 +64,7 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
         rankingTable10 = tablesToUse[7];
         
         sectionId = stringsToUse[0];
+        gradeLevel = stringsToUse[1];
         
         btnLoadStudents = buttonsToUse[0];
         btnExport = buttonsToUse[1];
@@ -80,16 +82,18 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
     @Override
     protected String doInBackground() throws Exception {
         try {
-            btnLoadStudents.setEnabled(false);
-            btnExport.setEnabled(false);
+            try {
+                btnLoadStudents.setEnabled(false);
+                btnExport.setEnabled(false);
+            } catch (Exception e) {
+                System.err.println("No Buttons");
+            }
             
             showCustomDialog("Loading Grades...", dialogPanel, false, 420, 220, false);
             my.clear_table_rows(sf5Table);
             my.clear_table_rows(sf5SummaryTable);
             my.clear_table_rows(sf5LevelOfProgress);
-            if(sf6Table != null){
-                my.clear_table_rows(sf6Table);
-            }
+            
             if(!loadEmptyCounters()){
                 throw new InterruptedException("Interrupted By User");
             }
@@ -99,7 +103,9 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
             String result [] = my.return_values("*", "form_sf5_viewminimal", "WHERE sectionId='"+sectionId+"'", myVariables.getJhsf5MinimalOrder());
             
             if(result==null){
-                my.showMessage("This section's students does not have grades submitted yet.", JOptionPane.ERROR_MESSAGE);
+                if(sf6Table == null){
+                    my.showMessage("This section's students does not have grades submitted yet.", JOptionPane.ERROR_MESSAGE);
+                }
                 throw new InterruptedException("No students found");
             }
             Thread.sleep(pauseDelay);
@@ -155,8 +161,16 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
                 throw new InterruptedException("Interrupted By User");
             }if(!updateLevelLevelOfProgressTable()){
                 throw new InterruptedException("Interrupted By User");
+            }if(sf6Table != null){
+                if(!sendStatisticsToSf6Table()){
+                    throw new InterruptedException("INterrupted By User");
+                }
             }
-            btnExport.setEnabled(!showIncompleteRecords);
+            try {
+                btnExport.setEnabled(!showIncompleteRecords);
+            } catch (Exception e) {
+                
+            }
             return "Completed Successfully";
         } catch (InterruptedException e) {
             return "Interrupted By User";
@@ -173,8 +187,118 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
         } catch (Exception e) {
         }
         closeCustomDialog();
-        btnLoadStudents.setEnabled(true);
+        try {
+            btnLoadStudents.setEnabled(true);
+        } catch (Exception e) {
+        }
         super.done(); //To change body of generated methods, choose Tools | Templates.
+    }
+    private boolean sendStatisticsToSf6Table(){
+        try {
+            lbLoadingMessage.setText("Updating SF6 Summary...");
+            //Get proper Indeces based on grade level
+            int countIndeces [] = null;
+            switch(Integer.parseInt(gradeLevel)){
+                case 7:{
+                    countIndeces = new int[]{1,2,3,13,14,15};break;
+                }case 8:{
+                    countIndeces = new int[]{4,5,6,13,14,15};break;
+                }case 9:{
+                    countIndeces = new int[]{7,8,9,13,14,15};break;
+                }case 10:{
+                    countIndeces = new int[]{10,11,12,13,14,15};break;
+                }
+            }
+            
+            //<editor-fold desc="Get Current Values from sf6">
+            int currPromotedM = Integer.parseInt(sf6Table.getValueAt(0, countIndeces[0]).toString());
+            int currPromotedF = Integer.parseInt(sf6Table.getValueAt(0, countIndeces[1]).toString());
+            int currConditionalM = Integer.parseInt(sf6Table.getValueAt(1, countIndeces[0]).toString());
+            int currConditionalF = Integer.parseInt(sf6Table.getValueAt(1, countIndeces[1]).toString());
+            int currRetainedM = Integer.parseInt(sf6Table.getValueAt(2, countIndeces[0]).toString());
+            int currRetainedF = Integer.parseInt(sf6Table.getValueAt(2, countIndeces[1]).toString());
+            
+            int curr74BelowM = Integer.parseInt(sf6Table.getValueAt(3, countIndeces[0]).toString());
+            int curr74BelowF = Integer.parseInt(sf6Table.getValueAt(3, countIndeces[1]).toString());
+            
+            int curr75to79M = Integer.parseInt(sf6Table.getValueAt(4, countIndeces[0]).toString());
+            int curr75to79F = Integer.parseInt(sf6Table.getValueAt(4, countIndeces[1]).toString());
+            
+            int curr80to84M = Integer.parseInt(sf6Table.getValueAt(5, countIndeces[0]).toString());
+            int curr80to84F = Integer.parseInt(sf6Table.getValueAt(5, countIndeces[1]).toString());
+            
+            int curr85to89M = Integer.parseInt(sf6Table.getValueAt(6, countIndeces[0]).toString());
+            int curr85to89F = Integer.parseInt(sf6Table.getValueAt(6, countIndeces[1]).toString());
+            
+            int curr90to100M = Integer.parseInt(sf6Table.getValueAt(7, countIndeces[0]).toString());
+            int curr90to100F = Integer.parseInt(sf6Table.getValueAt(7, countIndeces[1]).toString());
+            //</editor-fold>
+            //<editor-fold desc="Get values from Sf5 tables">
+            int sPromotedM = Integer.parseInt(sf5SummaryTable.getValueAt(0, 1).toString());
+            int sPromotedF = Integer.parseInt(sf5SummaryTable.getValueAt(0, 2).toString());
+            int sConditionalM = Integer.parseInt(sf5SummaryTable.getValueAt(1, 1).toString());
+            int sConditionalF = Integer.parseInt(sf5SummaryTable.getValueAt(1, 2).toString());
+            int sRetainedM = Integer.parseInt(sf5SummaryTable.getValueAt(2, 1).toString());
+            int sRetainedF = Integer.parseInt(sf5SummaryTable.getValueAt(2, 2).toString());
+            
+            int s74BelowM = Integer.parseInt(sf5LevelOfProgress.getValueAt(0, 1).toString());
+            int s74BelowF = Integer.parseInt(sf5LevelOfProgress.getValueAt(0, 2).toString());
+            
+            int s75to79M = Integer.parseInt(sf5LevelOfProgress.getValueAt(1, 1).toString());
+            int s75to79F = Integer.parseInt(sf5LevelOfProgress.getValueAt(1, 2).toString());
+            
+            int s80to84M = Integer.parseInt(sf5LevelOfProgress.getValueAt(2, 1).toString());
+            int s80to84F = Integer.parseInt(sf5LevelOfProgress.getValueAt(2, 2).toString());
+            
+            int s85to89M = Integer.parseInt(sf5LevelOfProgress.getValueAt(3, 1).toString());
+            int s85to89F = Integer.parseInt(sf5LevelOfProgress.getValueAt(3, 2).toString());
+            
+            int s90to100M = Integer.parseInt(sf5LevelOfProgress.getValueAt(4, 1).toString());
+            int s90to100F = Integer.parseInt(sf5LevelOfProgress.getValueAt(4, 2).toString());
+            //</editor-fold>
+            //<editor-fold desc="set new Values">
+            //Promoted
+            sf6Table.setValueAt(currPromotedM+sPromotedM, 0, countIndeces[0]);
+            sf6Table.setValueAt(currPromotedF+sPromotedF, 0, countIndeces[1]);
+            sf6Table.setValueAt(currPromotedM+sPromotedM+currPromotedF+sPromotedF, 0, countIndeces[2]);
+            //Conditional
+            sf6Table.setValueAt(currConditionalM+sConditionalM, 1, countIndeces[0]);
+            sf6Table.setValueAt(currConditionalF+sConditionalF, 1, countIndeces[1]);
+            sf6Table.setValueAt(currConditionalM+sConditionalM+currConditionalF+sConditionalF, 1, countIndeces[2]);
+            //Retained
+            sf6Table.setValueAt(currRetainedM+sRetainedM, 2, countIndeces[0]);
+            sf6Table.setValueAt(currRetainedF+sRetainedF, 2, countIndeces[1]);
+            sf6Table.setValueAt(currRetainedM+sRetainedM+currRetainedF+sRetainedF, 2, countIndeces[2]);
+            //Below 74
+            sf6Table.setValueAt(curr74BelowM+s74BelowM, 3, countIndeces[0]);
+            sf6Table.setValueAt(curr74BelowF+s74BelowF, 3, countIndeces[1]);
+            sf6Table.setValueAt(curr74BelowM+s74BelowM+curr74BelowF+s74BelowF, 3, countIndeces[2]);
+            //75 - 79
+            sf6Table.setValueAt(curr75to79M+s75to79M, 4, countIndeces[0]);
+            sf6Table.setValueAt(curr75to79F+s75to79F, 4, countIndeces[1]);
+            sf6Table.setValueAt(curr75to79M+s75to79M+curr75to79F+s75to79F, 4, countIndeces[2]);
+            //80 - 84
+            sf6Table.setValueAt(curr80to84M+s80to84M, 5, countIndeces[0]);
+            sf6Table.setValueAt(curr80to84F+s80to84F, 5, countIndeces[1]);
+            sf6Table.setValueAt(curr80to84M+s80to84M+curr80to84F+s80to84F, 5, countIndeces[2]);
+            //85 - 89
+            sf6Table.setValueAt(curr85to89M+s85to89M, 6, countIndeces[0]);
+            sf6Table.setValueAt(curr85to89F+s85to89F, 6, countIndeces[1]);
+            sf6Table.setValueAt(curr85to89M+s85to89M+curr85to89F+s85to89F, 6, countIndeces[2]);
+            //90 - 100
+            sf6Table.setValueAt(curr90to100M+s90to100M, 7, countIndeces[0]);
+            sf6Table.setValueAt(curr90to100F+s90to100F, 7, countIndeces[1]);
+            sf6Table.setValueAt(curr90to100M+s90to100M+curr90to100F+s90to100F, 7, countIndeces[2]);
+            //</editor-fold>
+            Thread.sleep(pauseDelay);
+            return true;
+        } catch(InterruptedException x){
+            System.err.println("Interrupted @ sendStatisticsToSf6Table");
+            return false;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
     private boolean updateLevelLevelOfProgressTable(){
         try {

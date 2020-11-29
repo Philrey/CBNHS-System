@@ -51,6 +51,7 @@ public class myVariables {
     //Selected Variables
     private static int formSelected;
     private static boolean selectAllSectionsForSf4;
+    private static boolean selectAllSectionsForSf6;
     
     private static int adviserIdSelected;
     private static String adviserNameSeleced;
@@ -673,7 +674,14 @@ public class myVariables {
         return usersPrsnlInfIcon;
     }
     
+    public static boolean isSelectAllSectionsForSf6() {
+        return selectAllSectionsForSf6;
+    }
+
     //</editor-fold>
+    public static void setSelectAllSectionsForSf6(boolean selectAllSectionsForSf6) {    
+        myVariables.selectAllSectionsForSf6 = selectAllSectionsForSf6;
+    }
 
     public static int[] getJhsf5FullOrder() {
         return jhsf5FullOrder;
