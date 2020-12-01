@@ -3372,7 +3372,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jSplitPane6" alignment="0" max="32767" attributes="0"/>
+              <Component id="jSplitPane6" alignment="0" pref="584" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -3407,7 +3407,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tpSf5Sf6Pane" alignment="0" pref="860" max="32767" attributes="0"/>
+                      <Component id="tpSf5Sf6Pane" alignment="0" pref="584" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -3680,7 +3680,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tpSf5Sf6DetailsPane" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tpSf5Sf6DetailsPane" alignment="0" pref="584" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>

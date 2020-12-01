@@ -2080,7 +2080,7 @@ public class dashBoard extends javax.swing.JFrame {
         );
         leftLayout.setVerticalGroup(
             leftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpSf5Sf6Pane, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
+            .addComponent(tpSf5Sf6Pane, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
         );
 
         jSplitPane6.setLeftComponent(left);
@@ -2411,7 +2411,7 @@ public class dashBoard extends javax.swing.JFrame {
         );
         rightLayout.setVerticalGroup(
             rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpSf5Sf6DetailsPane)
+            .addComponent(tpSf5Sf6DetailsPane, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
         );
 
         jSplitPane6.setRightComponent(right);
@@ -2424,7 +2424,7 @@ public class dashBoard extends javax.swing.JFrame {
         );
         sf5Sf6TabLayout.setVerticalGroup(
             sf5Sf6TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane6)
+            .addComponent(jSplitPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
         );
 
         loadingDialog.setBackground(new java.awt.Color(255, 255, 204));
@@ -3465,6 +3465,7 @@ public class dashBoard extends javax.swing.JFrame {
     private void setScrollSpeeds(){
         JScrollPane scrollpanes [] = {
             jScrollPane1,jScrollPane3,jScrollPane4,jScrollPane9,jScrollPane14,jScrollPane18,
+            jScrollPane19,
         };
         
         int scrollSpeed = 15;
@@ -3535,6 +3536,7 @@ public class dashBoard extends javax.swing.JFrame {
         tpSf2Sf4DetailsPane.setFont(myVariables.TEXTFIELD_HEADER_FONT);
         
         tpSf5Sf6Pane.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        tpSf5Sf6DetailsPane.setFont(myVariables.TEXTFIELD_HEADER_FONT);
         
         tpSelectSectionInstructions.setFont(myVariables.TEXTFIELD_HEADER_FONT);
     }
@@ -3561,6 +3563,8 @@ public class dashBoard extends javax.swing.JFrame {
         Icon instructionsIcons [] = {
             my.getImgIcn(myVariables.getInfoIcon()),
             my.getImgIcn(myVariables.getInfoIcon()),
+            my.getImgIcn(myVariables.getInfoIcon()),
+            my.getImgIcn(myVariables.getInfoIcon()),
         };
         
         for(int n=0;n<tabIcons.length;n++){
@@ -3577,7 +3581,8 @@ public class dashBoard extends javax.swing.JFrame {
         
         for(int n=0;n<instructionsIcons.length;n++){
             tpSelectSectionInstructions.setIconAt(n,instructionsIcons[n]);
-            tpSf2Sf4DetailsPane.setIconAt(n,instructionsIcons[n]);
+            try {tpSf2Sf4DetailsPane.setIconAt(n,instructionsIcons[n]);} catch (Exception e) {}
+            try {tpSf5Sf6DetailsPane.setIconAt(n,instructionsIcons[n]);} catch (Exception e) {}
         }
         //my.remove_multiple_tabs(mainTab, new int [] {1,2});
     }
@@ -3586,7 +3591,8 @@ public class dashBoard extends javax.swing.JFrame {
             btnSearchSection,btnCancelLoading,btnLoadStudents,btnExportSf1,
             btnLoadStudents1,btnExportSf2,btnOnlySelectedSections,btnSelectAllSections,
             btnLoadStudents2,btnExportSf4,btnLoadStudents3,btnExportSf3,
-            btnLoadStudents4,btnExportSf5,btnRefreshRankings,
+            btnLoadStudents4,btnExportSf5,btnRefreshRankings,btnLoadStudents5,btnExportSf6,
+            btnOnlySelectedSections1,btnSelectAllSections1,
         };
         
         JButton lightButtons [] = {
@@ -3618,7 +3624,8 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
-            jLabel2,jLabel13,jLabel25,jLabel26,jLabel29,jLabel32,jLabel41,jLabel51,
+            jLabel2,jLabel13,jLabel25,jLabel26,jLabel29,jLabel32,jLabel41,jLabel51,jLabel52,jLabel53,
+            jLabel42,
         };
         JLabel labels [] = {
             lbSearchResult,
@@ -3626,13 +3633,13 @@ public class dashBoard extends javax.swing.JFrame {
         
         JLabel formsHeaderLabels [] = {
             jLabel3,jLabel8,jLabel14,jLabel19,jLabel22,jLabel27,jLabel33,jLabel34,jLabel36,
-            jLabel43,jLabel44,jLabel45,jLabel46,
+            jLabel43,jLabel44,jLabel45,jLabel46,jLabel54,
         };
         JLabel textFieldHeaderLabels [] = {
             lbLoadingMessage,jLabel4,jLabel5,jLabel6,jLabel7,jLabel9,jLabel10,
             jLabel11,jLabel12,jLabel15,jLabel16,jLabel17,jLabel18,jLabel20,jLabel21,
             jLabel23,jLabel24,jLabel28,jLabel30,jLabel31,jLabel35,jLabel37,jLabel38,jLabel39,jLabel40,
-            jLabel47,jLabel48,jLabel49,jLabel50,
+            jLabel47,jLabel48,jLabel49,jLabel50,jLabel55,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -3674,7 +3681,7 @@ public class dashBoard extends javax.swing.JFrame {
             tfSectionName1,tfAdviserName1,tfGradeLevel1,tfSchoolYear1,tfSchoolDays,
             tfSectionName2,tfAdviserName2,tfGradeLevel2,tfSchoolYear2,
             
-            tfSectionName3,tfAdviserName3,tfGradeLevel3,tfSchoolYear3,
+            tfSectionName3,tfAdviserName3,tfGradeLevel3,tfSchoolYear3,tfSchoolYear4,
         };
         for(JSpinner n : spinners){
             n.setFont(myVariables.TEXTFIELD_FONT);

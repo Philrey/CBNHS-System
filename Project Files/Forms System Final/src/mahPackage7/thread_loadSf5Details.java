@@ -195,7 +195,8 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
     }
     private boolean sendStatisticsToSf6Table(){
         try {
-            lbLoadingMessage.setText("Updating SF6 Summary...");
+            progressBar.setMaximum(5);
+            progressBar.setValue(0);
             //Get proper Indeces based on grade level
             int countIndeces [] = null;
             switch(Integer.parseInt(gradeLevel)){
@@ -209,6 +210,9 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
                     countIndeces = new int[]{10,11,12,13,14,15};break;
                 }
             }
+            progressBar.setValue(1);
+            lbLoadingMessage.setText("Updating SF6 Summary... Step 1 of 5");
+            Thread.sleep(threadDelay);
             
             //<editor-fold desc="Get Current Values from sf6">
             int currPromotedM = Integer.parseInt(sf6Table.getValueAt(0, countIndeces[0]).toString());
@@ -232,6 +236,9 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
             
             int curr90to100M = Integer.parseInt(sf6Table.getValueAt(7, countIndeces[0]).toString());
             int curr90to100F = Integer.parseInt(sf6Table.getValueAt(7, countIndeces[1]).toString());
+            progressBar.setValue(2);
+            lbLoadingMessage.setText("Updating SF6 Summary... Step 2 of 5");
+            Thread.sleep(threadDelay);
             //</editor-fold>
             //<editor-fold desc="Get values from Sf5 tables">
             int sPromotedM = Integer.parseInt(sf5SummaryTable.getValueAt(0, 1).toString());
@@ -255,8 +262,12 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
             
             int s90to100M = Integer.parseInt(sf5LevelOfProgress.getValueAt(4, 1).toString());
             int s90to100F = Integer.parseInt(sf5LevelOfProgress.getValueAt(4, 2).toString());
+            
+            progressBar.setValue(3);
+            lbLoadingMessage.setText("Updating SF6 Summary... Step 3 of 5");
+            Thread.sleep(threadDelay);
             //</editor-fold>
-            //<editor-fold desc="set new Values">
+            //<editor-fold desc="Set new Values">
             //Promoted
             sf6Table.setValueAt(currPromotedM+sPromotedM, 0, countIndeces[0]);
             sf6Table.setValueAt(currPromotedF+sPromotedF, 0, countIndeces[1]);
@@ -289,7 +300,57 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
             sf6Table.setValueAt(curr90to100M+s90to100M, 7, countIndeces[0]);
             sf6Table.setValueAt(curr90to100F+s90to100F, 7, countIndeces[1]);
             sf6Table.setValueAt(curr90to100M+s90to100M+curr90to100F+s90to100F, 7, countIndeces[2]);
+            //Total
+            sf6Table.setValueAt(
+                    currPromotedM+sPromotedM+currConditionalM+sConditionalM+currRetainedM+sRetainedM,
+                    8, countIndeces[0]
+            );
+            sf6Table.setValueAt(
+                    currPromotedF+sPromotedF+currConditionalF+sConditionalF+currRetainedF+sRetainedF,
+                    8, countIndeces[1]
+            );
+            sf6Table.setValueAt(
+                    currPromotedM+sPromotedM+currPromotedF+sPromotedF+
+                    currConditionalM+sConditionalM+currConditionalF+sConditionalF+
+                    currRetainedM+sRetainedM+currRetainedF+sRetainedF,
+                    8, countIndeces[2]
+            );
+            progressBar.setValue(4);
+            lbLoadingMessage.setText("Updating SF6 Summary... Step 4 of 5");
+            Thread.sleep(threadDelay);
             //</editor-fold>
+            //<editor-fold desc="Add All Rows By Gender">
+            int male = 0,female = 0;
+            int currMale = 0, currFemale = 0;
+            int [] maleIndeces = {1,4,7,10};
+            int [] femaleIndeces = {2,5,8,11};
+            int [] totalIndeces = {3,6,9,12};
+            for(int n=0;n<9;n++){   //Loop Rows
+                male=0;female=0;
+                for(int x=0;x<sf6Table.getColumnCount();x++){   //Loop Columns
+                    for(int y=0;y<4;y++){   //Loop Indeces
+                        if(x==maleIndeces[y]){
+                            male+=Integer.parseInt(sf6Table.getValueAt(n, x).toString());
+                            break;
+                        }if(x==femaleIndeces[y]){
+                            female+=Integer.parseInt(sf6Table.getValueAt(n, x).toString());
+                            break;
+                        }
+                    }
+                }
+                //Update final counters
+                currMale = Integer.parseInt(sf6Table.getValueAt(n, 13).toString());
+                currFemale = Integer.parseInt(sf6Table.getValueAt(n, 14).toString());
+                
+                sf6Table.setValueAt(currMale+male, n, 13);
+                sf6Table.setValueAt(currFemale+female, n, 14);
+                sf6Table.setValueAt(currMale+male+currFemale+female, n, 15);
+            }
+            progressBar.setValue(5);
+            lbLoadingMessage.setText("Updating SF6 Summary... Step 5 of 5");
+            Thread.sleep(threadDelay);
+            //</editor-fold>
+            
             Thread.sleep(pauseDelay);
             return true;
         } catch(InterruptedException x){
