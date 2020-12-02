@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2020 at 02:29 PM
+-- Generation Time: Dec 02, 2020 at 09:44 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -96,7 +96,9 @@ INSERT INTO `attendance` (`id`, `studentId`, `sectionId`, `subjectId`, `status`,
 (84, 1, 7, 52, 'Absent', '2020-11-16 19:00:41', ' '),
 (85, 3, 7, 52, 'Present', '2020-11-16 19:00:41', ' '),
 (86, 1, 7, 52, 'Absent', '2020-02-17 08:00:00', ' '),
-(87, 3, 7, 52, 'Present', '2020-02-17 08:00:00', ' ');
+(87, 3, 7, 52, 'Present', '2020-02-17 08:00:00', ' '),
+(88, 1, 7, 52, 'Present', '2020-11-27 10:52:05', ' '),
+(89, 3, 7, 52, 'Tardy', '2020-11-27 10:52:05', 'LC: 20 mins late');
 
 -- --------------------------------------------------------
 
@@ -488,7 +490,7 @@ CREATE TABLE `finalgrades` (
 --
 
 INSERT INTO `finalgrades` (`id`, `sectionId`, `studentId`, `generalAverage`, `actionTaken`, `failedSubjects`, `dateUpdated`) VALUES
-(1, 7, 1, 7.166, 'Incomplete', 'MATH7 ,SCI7 ,FIL7 ,AP7 ,ESP7 ,TLE7 ,MPH7 ,MUS7 ,ART7 ,PE7 ,HLT7', '2020-11-22 17:35:56'),
+(1, 7, 1, 87.166, 'Promoted', ' ', '2020-11-27 13:10:58'),
 (2, 9, 3, 0, 'Incomplete', ' ', '2020-11-22 00:33:46'),
 (3, 7, 3, 55.583, 'Incomplete', 'All Subjects', '2020-11-23 17:09:19');
 
@@ -612,6 +614,32 @@ CREATE TABLE `form_sf5_viewminimal` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `form_sf8_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `form_sf8_view` (
+`id` int(11)
+,`studentId` int(11)
+,`sectionId` int(11)
+,`lName` varchar(100)
+,`fName` varchar(100)
+,`mName` varchar(100)
+,`bDate` varchar(10)
+,`bmiId` bigint(11)
+,`weight` bigint(11)
+,`height` varchar(22)
+,`sex` varchar(10)
+,`heightSq` varchar(20)
+,`age` varchar(10)
+,`bmi` varchar(12)
+,`bmiForAge` varchar(20)
+,`heightForAge` varchar(20)
+,`dateExamined` datetime
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `grades`
 --
 
@@ -699,15 +727,15 @@ INSERT INTO `grades` (`id`, `studentId`, `sectionId`, `subjectId`, `firstQuarter
 (63, 8, 7, 12, '80', '96', '84', '87', '87', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (64, 7, 7, 16, '79', '78', '99', '76', '83', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (65, 5, 7, 16, '78', '79', '90', '78', '81', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(66, 3, 7, 16, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(66, 3, 7, 16, '89', '88', '90', '76', '85', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-26 21:37:29'),
 (67, 8, 7, 16, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (68, 7, 7, 18, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (69, 5, 7, 18, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(70, 3, 7, 18, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(70, 3, 7, 18, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-27 13:16:15'),
 (71, 8, 7, 18, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (72, 7, 7, 13, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (73, 5, 7, 13, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(74, 3, 7, 13, '77', '77', '77', '77', '77', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(74, 3, 7, 13, '90', '77', '78', '80', '81', 'Open:Open:Open:Open:Passed:', '2020-11-26 21:38:44'),
 (75, 8, 7, 13, '80', '-1', '-1', '-1', '20', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (76, 7, 7, 15, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (77, 5, 7, 15, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
@@ -729,17 +757,19 @@ INSERT INTO `grades` (`id`, `studentId`, `sectionId`, `subjectId`, `firstQuarter
 (93, 4, 8, 22, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (94, 1, 8, 27, '83', '-1', '-1', '-1', '21', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (95, 1, 7, 9, '80', '99', '89', '79', '86', 'Open:Open:Open:Open:Passed:', '2020-11-20 23:36:35'),
-(96, 3, 9, 8, '80', '85', '-1', '-1', '41', 'Closed:Submitted:Open:Open:Incomplete:', '2020-11-20 23:45:03'),
-(97, 1, 7, 12, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:03'),
-(98, 1, 7, 16, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:08'),
-(99, 1, 7, 13, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:13'),
-(100, 1, 7, 17, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:18'),
-(101, 1, 7, 14, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:23'),
-(102, 1, 7, 18, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:29'),
-(103, 1, 7, 11, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:37'),
-(104, 1, 7, 15, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 00:42:42'),
-(105, 1, 7, 10, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 09:02:42'),
-(106, 1, 7, 8, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-22 09:02:48');
+(96, 3, 9, 8, '80', '85', '90', '85', '85', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-26 21:35:23'),
+(97, 1, 7, 12, '80', '80', '76', '95', '82', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-26 21:36:21'),
+(98, 1, 7, 16, '98', '90', '88', '89', '91', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-26 21:37:04'),
+(99, 1, 7, 13, '98', '89', '76', '90', '88', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-26 22:01:07'),
+(100, 1, 7, 17, '80', '88', '79', '90', '84', 'Open:Open:Open:Open:Passed:', '2020-11-27 13:06:21'),
+(101, 1, 7, 14, '88', '87', '90', '85', '87', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-27 13:04:57'),
+(102, 1, 7, 18, '90', '90', '95', '92', '91', 'Open:Open:Open:Open:Passed:', '2020-11-27 13:08:33'),
+(103, 1, 7, 11, '89', '86', '90', '88', '88', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-26 21:51:59'),
+(104, 1, 7, 15, '80', '88', '96', '80', '86', 'Open:Open:Open:Open:Passed:', '2020-11-27 13:05:53'),
+(105, 1, 7, 10, '89', '90', '96', '80', '88', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-26 21:51:00'),
+(106, 1, 7, 8, '89', '88', '86', '88', '87', 'Open:Open:Open:Open:Passed:', '2020-11-26 21:54:18'),
+(107, 1, 7, 60, '88', '88', '88', '88', '88', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-27 13:09:43'),
+(108, 3, 7, 60, '80', '97', '88', '82', '86', 'Open:Open:Open:Open:Passed:', '2020-11-27 13:09:59');
 
 -- --------------------------------------------------------
 
@@ -1063,7 +1093,7 @@ INSERT INTO `sections` (`id`, `sectionName`, `adviserId`, `loadId`, `bookTemplat
 (11, 'Grade 10 - Strawberry', 3, 11, -1, 2019),
 (12, 'Grade 9 - Integrity', 3, 8, -1, 2019),
 (13, 'Grade 10 - Unity', 2, 11, -1, 2019),
-(14, 'Grade 7 Oreo', 7, 8, -1, 2019),
+(14, 'Grade 7 Oreo', 3, 8, -1, 2019),
 (15, 'Grade 9 - Nikko', 8, 10, -1, 2019),
 (16, 'Grade 8 - Paderogao', 2, 12, -1, 2020);
 
@@ -1280,7 +1310,7 @@ INSERT INTO `teacherloads` (`id`, `sectionId`, `teacherId`, `subjectId`) VALUES
 (134, 14, -1, 17),
 (135, 14, -1, 18),
 (136, 14, -1, 60),
-(137, 14, -1, 52);
+(137, 14, 3, 52);
 
 -- --------------------------------------------------------
 
@@ -1339,7 +1369,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_Lname`, `user_Fname`, `user_Mname`, `gender`, `user_name`, `user_password`, `user_level`) VALUES
-(1, 'Paderogao', 'Phil Rey', 'Estrella', 'Male', 'admin', 'password', 5),
+(1, 'Paderogao', 'Phil Rey', 'Estrella%C3%91', 'Male', 'admin', 'password', 5),
 (2, 'Furahashi', 'Fumino', 'Ona', 'Female', 'benkyu', 'password', 1),
 (3, 'Paderogao', 'Kerby', 'Estrella', 'Female', 'kerbs', 'pass', 1),
 (4, 'Dela Cruz', 'Juan', 'Ponciano', 'Male', 'registrar', 'password', 4),
@@ -1599,6 +1629,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `form_sf8_view`
+--
+DROP TABLE IF EXISTS `form_sf8_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf8_view`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`enrollment`.`sectionId` AS `sectionId`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,date_format(`personalinfo`.`bDate`,'%m/%d/%Y') AS `bDate`,ifnull(`bmi`.`id`,-(1)) AS `bmiId`,ifnull(`bmi`.`weight`,0) AS `weight`,ifnull(`bmi`.`height`,'0.0') AS `height`,`students`.`sex` AS `sex`,ifnull(`bmi`.`heightSq`,'0.0000') AS `heightSq`,ifnull(`bmi`.`age`,'0: 0') AS `age`,ifnull(`bmi`.`bmi`,'0.0') AS `bmi`,ifnull(`bmi`.`bmiForAge`,'No Record') AS `bmiForAge`,ifnull(`bmi`.`heightForAge`,'No Record') AS `heightForAge`,ifnull(`bmi`.`dateExamined`,now()) AS `dateExamined` from (((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `personalinfo` on((`enrollment`.`studentId` = `personalinfo`.`stdId`))) left join `bmi` on(((`enrollment`.`studentId` = `bmi`.`studentId`) and (`enrollment`.`sectionId` = `bmi`.`sectionId`)))) order by `enrollment`.`sectionId`,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `v_enrollment`
 --
 DROP TABLE IF EXISTS `v_enrollment`;
@@ -1809,7 +1848,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `bmi`
@@ -1863,7 +1902,7 @@ ALTER TABLE `finalgrades`
 -- AUTO_INCREMENT for table `grades`
 --
 ALTER TABLE `grades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `hfachart_female`
