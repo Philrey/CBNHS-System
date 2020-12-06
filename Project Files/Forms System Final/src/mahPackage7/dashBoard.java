@@ -287,12 +287,12 @@ public class dashBoard extends javax.swing.JFrame {
         tfSchoolYear5 = new javax.swing.JTextField();
         jLabel62 = new javax.swing.JLabel();
         btnLoadStudents6 = new javax.swing.JButton();
-        btnExportSf7 = new javax.swing.JButton();
+        btnExportSf8 = new javax.swing.JButton();
         jScrollPane30 = new javax.swing.JScrollPane();
         sf8SummaryTable = new javax.swing.JTable();
         jLabel63 = new javax.swing.JLabel();
         cbShowIncompleteStudents2 = new javax.swing.JCheckBox();
-        cbShowIncompleteStudents3 = new javax.swing.JCheckBox();
+        cbIncludeMissingRecordsOnExport = new javax.swing.JCheckBox();
         loadingDialog = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jpbProgressBar = new javax.swing.JProgressBar();
@@ -380,6 +380,11 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnSf8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"))); // NOI18N
         btnSf8.setText("School Form 8");
+        btnSf8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSf8ActionPerformed(evt);
+            }
+        });
 
         btnSf9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"))); // NOI18N
         btnSf9.setText("School Form 9");
@@ -2552,11 +2557,11 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
 
-        btnExportSf7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_print_16px.png"))); // NOI18N
-        btnExportSf7.setText("Export");
-        btnExportSf7.addActionListener(new java.awt.event.ActionListener() {
+        btnExportSf8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_print_16px.png"))); // NOI18N
+        btnExportSf8.setText("Export");
+        btnExportSf8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportSf7ActionPerformed(evt);
+                btnExportSf8ActionPerformed(evt);
             }
         });
 
@@ -2585,16 +2590,17 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel63.setText("Summary Table");
 
         cbShowIncompleteStudents2.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        cbShowIncompleteStudents2.setSelected(true);
         cbShowIncompleteStudents2.setText("Show students with missing records?");
         cbShowIncompleteStudents2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
         cbShowIncompleteStudents2.setOpaque(false);
         cbShowIncompleteStudents2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
 
-        cbShowIncompleteStudents3.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        cbShowIncompleteStudents3.setText("Include students with missing records on Export?");
-        cbShowIncompleteStudents3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
-        cbShowIncompleteStudents3.setOpaque(false);
-        cbShowIncompleteStudents3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+        cbIncludeMissingRecordsOnExport.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        cbIncludeMissingRecordsOnExport.setText("Include students with missing records on Export?");
+        cbIncludeMissingRecordsOnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        cbIncludeMissingRecordsOnExport.setOpaque(false);
+        cbIncludeMissingRecordsOnExport.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
@@ -2606,7 +2612,7 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnExportSf7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExportSf8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel57, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel58, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tfSectionName4)
@@ -2625,7 +2631,7 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(jScrollPane30, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jLabel63, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbShowIncompleteStudents2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbShowIncompleteStudents3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cbIncludeMissingRecordsOnExport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel20Layout.setVerticalGroup(
@@ -2663,11 +2669,11 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbShowIncompleteStudents2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbShowIncompleteStudents3)
+                .addComponent(cbIncludeMissingRecordsOnExport)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLoadStudents6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnExportSf7)
+                .addComponent(btnExportSf8)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -3135,6 +3141,15 @@ public class dashBoard extends javax.swing.JFrame {
                     my.select_tab(tpSf5Sf6Pane, 0);
                     my.select_tab(tpSf5Sf6DetailsPane, 0);
                     break;
+                }case 8:{
+                    tfSectionName4.setText(sectionName);
+                    tfAdviserName4.setText(adviserName);
+                    tfGradeLevel4.setText("Grade "+gradeLevel);
+                    tfSchoolYear4.setText(schoolYear+"-"+String.valueOf(schoolYear+1));
+                    
+                    my.select_tab(mainTab, 7);
+                    
+                    break;
                 }
             }
         }else{
@@ -3574,12 +3589,30 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoadStudents5ActionPerformed
 
     private void btnLoadStudents6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudents6ActionPerformed
-        // TODO add your handling code here:
+        int row = assignedTeacherTable.getSelectedRow();
+        
+        if(myVariables.getFormSelected() != 8){my.showMessage("SF8 Form not Selected.", JOptionPane.WARNING_MESSAGE);return;}
+        if(row == -1){my.showMessage("No Section Selected.", JOptionPane.WARNING_MESSAGE);return;}
+        
+        String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
+        
+        
+        my.runSecondaryThread(5, true,
+                new JTable[]{sf8Table,sf8SummaryTable},
+                new String[]{sectionId},
+                new JTextField[]{},
+                new JButton[]{btnLoadStudents6,btnExportSf8},
+                new boolean[]{cbShowIncompleteStudents2.isSelected()}
+        );
     }//GEN-LAST:event_btnLoadStudents6ActionPerformed
 
-    private void btnExportSf7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf7ActionPerformed
+    private void btnExportSf8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnExportSf7ActionPerformed
+    }//GEN-LAST:event_btnExportSf8ActionPerformed
+
+    private void btnSf8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf8ActionPerformed
+        selectFormToExport(8);
+    }//GEN-LAST:event_btnSf8ActionPerformed
     private void selectFormToExport(int formIndexExact){
         if(myVariables.getFormSelected() != formIndexExact){
             my.clear_table_rows(assignedTeacherTable);
@@ -3611,6 +3644,8 @@ public class dashBoard extends javax.swing.JFrame {
             }case 7:{
                 break;
             }case 8:{
+                my.select_tab(mainTab, 1);
+                //tpSelectSectionInstructions.setSelectedIndex(3);
                 break;
             }case 9:{
                 break;
@@ -4046,7 +4081,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnExportSf4;
     private javax.swing.JButton btnExportSf5;
     private javax.swing.JButton btnExportSf6;
-    private javax.swing.JButton btnExportSf7;
+    private javax.swing.JButton btnExportSf8;
     private javax.swing.JButton btnLoadStudents;
     private javax.swing.JButton btnLoadStudents1;
     private javax.swing.JButton btnLoadStudents2;
@@ -4073,10 +4108,10 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnShowRankings;
     private javax.swing.JCheckBox cbCompareToRankings;
     private javax.swing.JCheckBox cbCompareToRankings1;
+    private javax.swing.JCheckBox cbIncludeMissingRecordsOnExport;
     private javax.swing.JCheckBox cbShowIncompleteStudents;
     private javax.swing.JCheckBox cbShowIncompleteStudents1;
     private javax.swing.JCheckBox cbShowIncompleteStudents2;
-    private javax.swing.JCheckBox cbShowIncompleteStudents3;
     private javax.swing.JTable grade10RankingTable;
     private javax.swing.JTable grade7RankingTable;
     private javax.swing.JTable grade8RankingTable;

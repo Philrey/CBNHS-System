@@ -814,6 +814,10 @@ public class myFunctions {
                 thread_loadRankings lR= new thread_loadRankings(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
                 toLoad = new Thread(lR);
                 break;
+            }case 5:{
+                thread_loadSf8Details lR = new thread_loadSf8Details(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
+                toLoad = new Thread(lR);
+                break;
             }default:{
                 System.err.println("No proper thread selected.");
                 return;

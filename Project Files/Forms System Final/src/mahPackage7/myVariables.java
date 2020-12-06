@@ -104,6 +104,7 @@ public class myVariables {
     private static final int [] jhsf3Order= new int [] {4,5,0,1,2,6,3};
     private static final int [] jhsf5MinimalOrder=new int [] {11,4,8,7,3,0,9,12,2,13,1,10,5,6};
     private static final int [] jhsf5FullOrder=new int [] {15,6,8,14,10,13,4,3,16,9,5,0,11,17,2,18,1,12,7};
+    private static final int [] jhsf8Order= new int [] {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
     
     //Icons
     private static final String studentsIcon = "icons/icons8_user_groups_skin_type_7_20px_1.png";
@@ -678,6 +679,10 @@ public class myVariables {
         return selectAllSectionsForSf6;
     }
 
+    public static int[] getJhsf8Order() {
+        return jhsf8Order;
+    }
+    
     //</editor-fold>
     public static void setSelectAllSectionsForSf6(boolean selectAllSectionsForSf6) {    
         myVariables.selectAllSectionsForSf6 = selectAllSectionsForSf6;
