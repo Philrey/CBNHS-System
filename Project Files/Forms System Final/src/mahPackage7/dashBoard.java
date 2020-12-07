@@ -270,8 +270,6 @@ public class dashBoard extends javax.swing.JFrame {
         sf7Tab = new javax.swing.JPanel();
         sf8Tab = new javax.swing.JPanel();
         jSplitPane7 = new javax.swing.JSplitPane();
-        jScrollPane25 = new javax.swing.JScrollPane();
-        sf8Table = new javax.swing.JTable();
         jScrollPane29 = new javax.swing.JScrollPane();
         jPanel20 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
@@ -293,6 +291,9 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel63 = new javax.swing.JLabel();
         cbShowIncompleteStudents2 = new javax.swing.JCheckBox();
         cbIncludeMissingRecordsOnExport = new javax.swing.JCheckBox();
+        jPanel22 = new javax.swing.JPanel();
+        jScrollPane25 = new javax.swing.JScrollPane();
+        sf8Table = new javax.swing.JTable();
         loadingDialog = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jpbProgressBar = new javax.swing.JProgressBar();
@@ -2471,32 +2472,7 @@ public class dashBoard extends javax.swing.JFrame {
             .addGap(0, 623, Short.MAX_VALUE)
         );
 
-        jSplitPane7.setDividerLocation(500);
-
-        sf8Table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Id", "Student ID", "Section ID", "Name", "Birth Date", "BMI ID", "Weight", "Height", "Gender", "Height^2", "Age", "BMI", "Nutritional Status", "Height-For-Age", "Date Recorded"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        sf8Table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        sf8Table.getTableHeader().setReorderingAllowed(false);
-        jScrollPane25.setViewportView(sf8Table);
-
-        jSplitPane7.setLeftComponent(jScrollPane25);
+        jSplitPane7.setDividerLocation(600);
 
         jScrollPane29.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -2681,6 +2657,56 @@ public class dashBoard extends javax.swing.JFrame {
 
         jSplitPane7.setRightComponent(jScrollPane29);
 
+        jPanel22.setBackground(new java.awt.Color(11, 102, 35));
+
+        sf8Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Id", "Student ID", "Section ID", "Name", "Birth Date", "BMI ID", "Weight", "Height", "Gender", "Height^2", "Age", "BMI", "Nutritional Status", "Height-For-Age", "Date Recorded"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        sf8Table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        sf8Table.getTableHeader().setReorderingAllowed(false);
+        jScrollPane25.setViewportView(sf8Table);
+        if (sf8Table.getColumnModel().getColumnCount() > 0) {
+            sf8Table.getColumnModel().getColumn(3).setPreferredWidth(200);
+            sf8Table.getColumnModel().getColumn(12).setPreferredWidth(150);
+            sf8Table.getColumnModel().getColumn(13).setPreferredWidth(150);
+            sf8Table.getColumnModel().getColumn(14).setPreferredWidth(150);
+        }
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane25, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane25, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jSplitPane7.setLeftComponent(jPanel22);
+
         javax.swing.GroupLayout sf8TabLayout = new javax.swing.GroupLayout(sf8Tab);
         sf8Tab.setLayout(sf8TabLayout);
         sf8TabLayout.setHorizontalGroup(
@@ -2689,7 +2715,7 @@ public class dashBoard extends javax.swing.JFrame {
         );
         sf8TabLayout.setVerticalGroup(
             sf8TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
+            .addComponent(jSplitPane7)
         );
 
         loadingDialog.setBackground(new java.awt.Color(255, 255, 204));
@@ -3145,7 +3171,7 @@ public class dashBoard extends javax.swing.JFrame {
                     tfSectionName4.setText(sectionName);
                     tfAdviserName4.setText(adviserName);
                     tfGradeLevel4.setText("Grade "+gradeLevel);
-                    tfSchoolYear4.setText(schoolYear+"-"+String.valueOf(schoolYear+1));
+                    tfSchoolYear5.setText(schoolYear+"-"+String.valueOf(schoolYear+1));
                     
                     my.select_tab(mainTab, 7);
                     
@@ -3767,7 +3793,7 @@ public class dashBoard extends javax.swing.JFrame {
     private void setScrollSpeeds(){
         JScrollPane scrollpanes [] = {
             jScrollPane1,jScrollPane3,jScrollPane4,jScrollPane9,jScrollPane14,jScrollPane18,
-            jScrollPane19,
+            jScrollPane19,jScrollPane29,
         };
         
         int scrollSpeed = 15;
@@ -3786,7 +3812,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         //Hide Table Columns
         if(!myVariables.isDebugModeOn()){
-            my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6});
+            my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6,11,12,13});
             my.hideColumns(sf1StudentsTable, new int [] {0,1,2});
             my.hideColumns(sf2Table, new int [] {0,1,2,5});
             my.hideColumns(weekDaysOfTheMonthTable, new int [] {0,1,2,5});
@@ -3794,6 +3820,7 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(sf3Table, new int [] {0,1,2});
             my.hideColumns(sf3BooksTable, new int [] {0,3});
             my.hideColumns(sf5Table, new int [] {0,1,2,3,7});
+            my.hideColumns(sf8Table, new int [] {0,1,2,5});
         }
         my.customHeaders(weekDaysOfTheMonthTable,new int [] {7,12,17,22,27},Color.RED,Color.BLACK,myVariables.COLUMN_HEADER_FONT,true);
         my.customHeaders(sf2Table,new int [] {7,12,17,22,27},Color.RED,Color.BLACK,myVariables.COLUMN_HEADER_FONT,true);
@@ -3804,6 +3831,7 @@ public class dashBoard extends javax.swing.JFrame {
             sf2Table,summarySf2,sf4Table,sf3Table,sf3BooksTable,sf5Table,sf6Table,
             sf5SummaryTable,sf5LevelOfProgress,
             grade7RankingTable,grade8RankingTable,grade9RankingTable,grade10RankingTable,
+            sf8Table,sf8SummaryTable,
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
         //customHeaders(sf1SectionTable, new int []{0,1,2,3}, Color.RED, Color.WHITE, new Font("Comic Sans MS", Font.BOLD, 12), true);
@@ -3898,7 +3926,7 @@ public class dashBoard extends javax.swing.JFrame {
             btnLoadStudents1,btnExportSf2,btnOnlySelectedSections,btnSelectAllSections,
             btnLoadStudents2,btnExportSf4,btnLoadStudents3,btnExportSf3,
             btnLoadStudents4,btnExportSf5,btnRefreshRankings,btnLoadStudents5,btnExportSf6,
-            btnOnlySelectedSections1,btnSelectAllSections1,
+            btnOnlySelectedSections1,btnSelectAllSections1,btnLoadStudents6,btnExportSf8,
         };
         
         JButton lightButtons [] = {
@@ -3931,7 +3959,7 @@ public class dashBoard extends javax.swing.JFrame {
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
             jLabel2,jLabel13,jLabel25,jLabel26,jLabel29,jLabel32,jLabel41,jLabel51,jLabel52,jLabel53,
-            jLabel42,
+            jLabel42,jLabel56,
         };
         JLabel labels [] = {
             lbSearchResult,
@@ -3939,13 +3967,14 @@ public class dashBoard extends javax.swing.JFrame {
         
         JLabel formsHeaderLabels [] = {
             jLabel3,jLabel8,jLabel14,jLabel19,jLabel22,jLabel27,jLabel33,jLabel34,jLabel36,
-            jLabel43,jLabel44,jLabel45,jLabel46,jLabel54,
+            jLabel43,jLabel44,jLabel45,jLabel46,jLabel54,jLabel57,jLabel62,jLabel63,
         };
         JLabel textFieldHeaderLabels [] = {
             lbLoadingMessage,jLabel4,jLabel5,jLabel6,jLabel7,jLabel9,jLabel10,
             jLabel11,jLabel12,jLabel15,jLabel16,jLabel17,jLabel18,jLabel20,jLabel21,
             jLabel23,jLabel24,jLabel28,jLabel30,jLabel31,jLabel35,jLabel37,jLabel38,jLabel39,jLabel40,
-            jLabel47,jLabel48,jLabel49,jLabel50,jLabel55,
+            jLabel47,jLabel48,jLabel49,jLabel50,jLabel55,jLabel58,jLabel59,jLabel60,jLabel61,
+            
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -3988,6 +4017,8 @@ public class dashBoard extends javax.swing.JFrame {
             tfSectionName2,tfAdviserName2,tfGradeLevel2,tfSchoolYear2,
             
             tfSectionName3,tfAdviserName3,tfGradeLevel3,tfSchoolYear3,tfSchoolYear4,
+            
+            tfSectionName4,tfAdviserName4,tfGradeLevel4,tfSchoolYear5,
         };
         for(JSpinner n : spinners){
             n.setFont(myVariables.TEXTFIELD_FONT);
@@ -4194,6 +4225,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
