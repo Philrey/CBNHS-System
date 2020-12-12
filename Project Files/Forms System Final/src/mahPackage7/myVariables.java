@@ -94,6 +94,7 @@ public class myVariables {
     private static final int [] teacherLoadsViewOrder = new int [] {6,7,1,4,3,8,2,10,9,5,0};
     private static final int [] managedSubjectsViewOrder = new int [] {10,4,6,8,2,1,11,0,5,12,3,7,9};
     private static final int [] managedSubjectsWTemplateViewOrder = new int [] {13,5,8,10,3,2,14,1,7,15,4,9,12,0,11,6};
+    private static final int [] managedSubjectsWSubjectsContainedViewOrder = new int [] {13,5,8,10,3,1,14,0,6,15,4,9,12,11,7,2};
         
     private static final int [] attendanceOrder = new int [] {2,0,3,4,6,5,1};
     private static final int [] subjectOrder = new int[] {2,3,1,0};
@@ -105,6 +106,8 @@ public class myVariables {
     private static final int [] jhsf5MinimalOrder=new int [] {11,4,8,7,3,0,9,12,2,13,1,10,5,6};
     private static final int [] jhsf5FullOrder=new int [] {15,6,8,14,10,13,4,3,16,9,5,0,11,17,2,18,1,12,7};
     private static final int [] jhsf8Order= new int [] {11,6,5,0,8,12,9,1,4,15,3,13,14,16,7,2,10};
+    private static int [] finalGradesOrder = new int [] {3,4,0,1,2,5,6};
+    private static int [] gradesViewOrder = new int []{11,4,7,10,2,1,12,0,5,13,3,9,8,14,6};
     
     //Icons
     private static final String studentsIcon = "icons/icons8_user_groups_skin_type_7_20px_1.png";
@@ -688,6 +691,18 @@ public class myVariables {
         myVariables.selectAllSectionsForSf6 = selectAllSectionsForSf6;
     }
 
+    public static int[] getManagedSubjectsWSubjectsContainedViewOrder() {
+        return managedSubjectsWSubjectsContainedViewOrder;
+    }
+    
+    public static int[] getGradesViewOrder() {
+        return gradesViewOrder;
+    }
+    
+    public static int[] getFinalGradesOrder() {
+        return finalGradesOrder;
+    }
+    
     public static int[] getJhsf5FullOrder() {
         return jhsf5FullOrder;
     }

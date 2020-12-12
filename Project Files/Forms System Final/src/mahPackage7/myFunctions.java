@@ -169,6 +169,10 @@ public class myFunctions {
                 from = "form_sf3_view";
                 order = myVariables.getJhsf3Order();
                 break;
+            }case 14:{
+                from = "v_managedsubjects_wsubjectscontained";
+                order = myVariables.getManagedSubjectsWSubjectsContainedViewOrder();
+                break;
             }default:{
                 System.err.println("View table index out of bounds. Please check your index selected @ myFunctions.java");
                 return;
@@ -816,6 +820,10 @@ public class myFunctions {
                 break;
             }case 5:{
                 thread_loadSf8Details lR = new thread_loadSf8Details(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
+                toLoad = new Thread(lR);
+                break;
+            }case 6:{
+                thread_loadSf9Details lR = new thread_loadSf9Details(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
                 toLoad = new Thread(lR);
                 break;
             }default:{
