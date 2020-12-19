@@ -25,6 +25,7 @@ public class thread_loadSf10EnrolledSections extends SwingWorker<String, Object>
     //Main Variables
     JTable sf10Table;
     String studentId;
+    JButton btnUseSelectedSections;
     
     //Functions Variables
     long threadDelay = 100;
@@ -41,7 +42,7 @@ public class thread_loadSf10EnrolledSections extends SwingWorker<String, Object>
         //Main Variables
         sf10Table = tablesToUse[0];
         studentId = stringsToUse[0];
-        
+        btnUseSelectedSections = buttonsToUse[0];
         //For Loading Screen & Functions
         
         my = new myFunctions(true);
@@ -54,6 +55,7 @@ public class thread_loadSf10EnrolledSections extends SwingWorker<String, Object>
     
     @Override
     protected String doInBackground() throws Exception {
+        btnUseSelectedSections.setEnabled(false);
         showCustomDialog("Loading Enrolled Sections...", dialogPanel, false, 420, 220, true);
         progressBar.setMaximum(1);
         progressBar.setValue(0);
@@ -85,6 +87,7 @@ public class thread_loadSf10EnrolledSections extends SwingWorker<String, Object>
                 Thread.sleep(threadDelay);
             }
             Thread.sleep(pauseDelay);
+            btnUseSelectedSections.setEnabled(true);
         }else{
             my.showMessage("This Student has no Records being enrolled yet.", JOptionPane.ERROR_MESSAGE);
         }

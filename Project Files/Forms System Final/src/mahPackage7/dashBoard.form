@@ -5144,15 +5144,15 @@
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="13" rowCount="4">
                                 <Column editable="false" title="Grade ID" type="java.lang.Object"/>
-                                <Column editable="false" title="Section ID" type="java.lang.Object"/>
                                 <Column editable="false" title="Student ID" type="java.lang.Object"/>
-                                <Column editable="false" title="Teacher ID" type="java.lang.Object"/>
-                                <Column editable="false" title="Subject Teacher" type="java.lang.Object"/>
-                                <Column editable="false" title="Gender" type="java.lang.Object"/>
+                                <Column editable="false" title="Section ID" type="java.lang.Object"/>
                                 <Column editable="false" title="Subject ID" type="java.lang.Object"/>
                                 <Column editable="false" title="Code" type="java.lang.Object"/>
                                 <Column editable="false" title="Description" type="java.lang.Object"/>
-                                <Column editable="false" title="Grade Level" type="java.lang.Object"/>
+                                <Column editable="false" title="Q1" type="java.lang.Object"/>
+                                <Column editable="false" title="Q2" type="java.lang.Object"/>
+                                <Column editable="false" title="Q3" type="java.lang.Object"/>
+                                <Column editable="false" title="Q4" type="java.lang.Object"/>
                                 <Column editable="false" title="GWA" type="java.lang.Object"/>
                                 <Column editable="false" title="Status" type="java.lang.Object"/>
                                 <Column editable="false" title="Date Updated" type="java.lang.Object"/>
@@ -5181,21 +5181,6 @@
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="false">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="80" resizable="false">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="80" resizable="true">
                                   <Title/>
                                   <Editor/>
@@ -5206,7 +5191,22 @@
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="false">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="false">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="false">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="false">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
@@ -5216,7 +5216,7 @@
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="80" resizable="false">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="false">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>

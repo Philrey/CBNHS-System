@@ -107,6 +107,7 @@ public class myVariables {
     private static final int [] jhsf5MinimalOrder=new int [] {11,4,8,7,3,0,9,12,2,13,1,10,5,6};
     private static final int [] jhsf5FullOrder=new int [] {15,6,8,14,10,13,4,3,16,9,5,0,11,17,2,18,1,12,7};
     private static final int [] jhsf8Order= new int [] {11,6,5,0,8,12,9,1,4,15,3,13,14,16,7,2,10};
+    private static final int [] jhsf9Order= new int [] {9,7,3,5,11,2,0,10,1,4,8,12,6};
     private static final int [] jhsf10Order= new int [] {17,9,5,0,12,18,2,7,10,14,6,3,19,1,13,8,11,4,15,20,16};
     private static int [] finalGradesOrder = new int [] {3,4,0,1,2,5,6};
     private static int [] gradesViewOrder = new int []{11,4,7,10,2,1,12,0,5,13,3,9,8,14,6};
@@ -711,5 +712,9 @@ public class myVariables {
 
     public static int[] getJhsf10Order() {
         return jhsf10Order;
+    }
+
+    public static int[] getJhsf9Order() {
+        return jhsf9Order;
     }
 }

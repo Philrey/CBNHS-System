@@ -2908,7 +2908,7 @@ public class dashBoard extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Grade ID", "Section ID", "Student ID", "Teacher ID", "Subject Teacher", "Gender", "Subject ID", "Code", "Description", "Grade Level", "GWA", "Status", "Date Updated"
+                "Grade ID", "Student ID", "Section ID", "Subject ID", "Code", "Description", "Q1", "Q2", "Q3", "Q4", "GWA", "Status", "Date Updated"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -2923,17 +2923,20 @@ public class dashBoard extends javax.swing.JFrame {
         gradesTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane33.setViewportView(gradesTable);
         if (gradesTable.getColumnModel().getColumnCount() > 0) {
-            gradesTable.getColumnModel().getColumn(4).setResizable(false);
-            gradesTable.getColumnModel().getColumn(4).setPreferredWidth(200);
-            gradesTable.getColumnModel().getColumn(5).setResizable(false);
-            gradesTable.getColumnModel().getColumn(5).setPreferredWidth(80);
-            gradesTable.getColumnModel().getColumn(7).setPreferredWidth(80);
-            gradesTable.getColumnModel().getColumn(8).setPreferredWidth(200);
-            gradesTable.getColumnModel().getColumn(9).setPreferredWidth(100);
+            gradesTable.getColumnModel().getColumn(4).setPreferredWidth(80);
+            gradesTable.getColumnModel().getColumn(5).setPreferredWidth(200);
+            gradesTable.getColumnModel().getColumn(6).setResizable(false);
+            gradesTable.getColumnModel().getColumn(6).setPreferredWidth(50);
+            gradesTable.getColumnModel().getColumn(7).setResizable(false);
+            gradesTable.getColumnModel().getColumn(7).setPreferredWidth(50);
+            gradesTable.getColumnModel().getColumn(8).setResizable(false);
+            gradesTable.getColumnModel().getColumn(8).setPreferredWidth(50);
+            gradesTable.getColumnModel().getColumn(9).setResizable(false);
+            gradesTable.getColumnModel().getColumn(9).setPreferredWidth(50);
             gradesTable.getColumnModel().getColumn(10).setResizable(false);
             gradesTable.getColumnModel().getColumn(10).setPreferredWidth(80);
             gradesTable.getColumnModel().getColumn(11).setResizable(false);
-            gradesTable.getColumnModel().getColumn(11).setPreferredWidth(80);
+            gradesTable.getColumnModel().getColumn(11).setPreferredWidth(120);
             gradesTable.getColumnModel().getColumn(12).setResizable(false);
             gradesTable.getColumnModel().getColumn(12).setPreferredWidth(150);
         }
@@ -4325,8 +4328,8 @@ public class dashBoard extends javax.swing.JFrame {
             return;
         }
         my.runSecondaryThread(6, true,
-                new JTable[]{enrolledStudentsTable,gradesTable},
-                new String[]{sectionId,studentId,subjectsContained},
+                new JTable[]{gradesTable},
+                new String[]{studentId,sectionId,subjectsContained},
                 new JTextField[]{tfGeneralAverage,tfFailedSubjects,tfEvaluation},
                 new JButton[]{btnLoadGrades,btnExportSf9},
                 null
@@ -4581,8 +4584,13 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(sf5Table, new int [] {0,1,2,3,7});
             my.hideColumns(sf8Table, new int [] {0,1,2,5});
             
+            my.hideColumns(grade7RankingTable, new int [] {0,1,3,4,5,7,11});
+            my.hideColumns(grade8RankingTable, new int [] {0,1,3,4,5,7,11});
+            my.hideColumns(grade9RankingTable, new int [] {0,1,3,4,5,7,11});
+            my.hideColumns(grade10RankingTable, new int [] {0,1,3,4,5,7,11});
+            
             my.hideColumns(enrolledStudentsTable, new int []{0,1,5,6});
-            my.hideColumns(gradesTable, new int [] {0,1,2,3,6,9});
+            my.hideColumns(gradesTable, new int [] {0,1,2,3});
         }
         my.customHeaders(weekDaysOfTheMonthTable,new int [] {7,12,17,22,27},Color.RED,Color.BLACK,myVariables.COLUMN_HEADER_FONT,true);
         my.customHeaders(sf2Table,new int [] {7,12,17,22,27},Color.RED,Color.BLACK,myVariables.COLUMN_HEADER_FONT,true);

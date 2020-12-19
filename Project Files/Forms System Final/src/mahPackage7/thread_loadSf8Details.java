@@ -24,23 +24,23 @@ public class thread_loadSf8Details extends SwingWorker<String, Object>{
     long threadDelay = 100;
     long pauseDelay = 500;
     
-    private myFunctions my;
+    private final myFunctions my;
     //Main Variables
-    private JTable sf8Table;
-    private JTable summaryTable;
+    private final JTable sf8Table;
+    private final JTable summaryTable;
     
-    private String sectionId;
+    private final String sectionId;
     
-    private boolean showStudentsWmissingRecords;
+    private final boolean showStudentsWmissingRecords;
     
-    private JButton btnLoadStudents;
-    private JButton btnExportSf8;
+    private final JButton btnLoadStudents;
+    private final JButton btnExportSf8;
     //Dialog Properties
     private JDialog dialog;
-    private JFrame jFrameName;
-    private JPanel dialogPanel;
-    private JLabel lbLoadingMessage;
-    private JProgressBar progressBar;
+    private final JFrame jFrameName;
+    private final JPanel dialogPanel;
+    private final JLabel lbLoadingMessage;
+    private final JProgressBar progressBar;
 
     public thread_loadSf8Details(JTable [] tablesToUse,String [] stringsToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean [] booleansToUse) {
         my = new myFunctions(true);
