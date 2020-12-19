@@ -329,6 +329,19 @@ public class dashBoard extends javax.swing.JFrame {
         tfGradeLevel5 = new javax.swing.JTextField();
         tfSchoolYear6 = new javax.swing.JTextField();
         jLabel74 = new javax.swing.JLabel();
+        sf10Tab = new javax.swing.JPanel();
+        tpSf10Pane = new javax.swing.JTabbedPane();
+        jPanel25 = new javax.swing.JPanel();
+        lbSearchResult2 = new javax.swing.JLabel();
+        jScrollPane35 = new javax.swing.JScrollPane();
+        enrolledStudentsTable1 = new javax.swing.JTable();
+        tfSearchEnrolledStudent1 = new javax.swing.JTextField();
+        btnSearchEnrolledStudent1 = new javax.swing.JButton();
+        jPanel26 = new javax.swing.JPanel();
+        jScrollPane36 = new javax.swing.JScrollPane();
+        sf10Table = new javax.swing.JTable();
+        btnUseSelectedSections = new javax.swing.JButton();
+        jLabel75 = new javax.swing.JLabel();
         loadingDialog = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jpbProgressBar = new javax.swing.JProgressBar();
@@ -432,6 +445,11 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnSf10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"))); // NOI18N
         btnSf10.setText("School Form 10");
+        btnSf10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSf10ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -3087,6 +3105,196 @@ public class dashBoard extends javax.swing.JFrame {
             .addComponent(jSplitPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
         );
 
+        sf10Tab.setBackground(new java.awt.Color(255, 255, 204));
+
+        tpSf10Pane.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel25.setBackground(new java.awt.Color(11, 102, 35));
+
+        lbSearchResult2.setForeground(new java.awt.Color(255, 255, 255));
+        lbSearchResult2.setText("Search using the search bar...");
+
+        enrolledStudentsTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "LRN", "Name", "Gender", "Initial Grade", "Current Grade", "School ID", "School Name", "School Address"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        enrolledStudentsTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        enrolledStudentsTable1.getTableHeader().setReorderingAllowed(false);
+        enrolledStudentsTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                enrolledStudentsTable1loadStudentsAttendanceHandler(evt);
+            }
+        });
+        jScrollPane35.setViewportView(enrolledStudentsTable1);
+        if (enrolledStudentsTable1.getColumnModel().getColumnCount() > 0) {
+            enrolledStudentsTable1.getColumnModel().getColumn(1).setResizable(false);
+            enrolledStudentsTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
+            enrolledStudentsTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
+            enrolledStudentsTable1.getColumnModel().getColumn(3).setResizable(false);
+            enrolledStudentsTable1.getColumnModel().getColumn(3).setPreferredWidth(50);
+            enrolledStudentsTable1.getColumnModel().getColumn(4).setResizable(false);
+            enrolledStudentsTable1.getColumnModel().getColumn(4).setPreferredWidth(120);
+            enrolledStudentsTable1.getColumnModel().getColumn(5).setResizable(false);
+            enrolledStudentsTable1.getColumnModel().getColumn(5).setPreferredWidth(120);
+            enrolledStudentsTable1.getColumnModel().getColumn(7).setPreferredWidth(200);
+            enrolledStudentsTable1.getColumnModel().getColumn(8).setPreferredWidth(200);
+        }
+
+        tfSearchEnrolledStudent1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchEnrolledStudent1searchEnrolledStudentsHandler(evt);
+            }
+        });
+
+        btnSearchEnrolledStudent1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_find_user_male_16px.png"))); // NOI18N
+        btnSearchEnrolledStudent1.setText("Search");
+        btnSearchEnrolledStudent1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchEnrolledStudent1searchEnrolledStudentsHandler(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane35, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel25Layout.createSequentialGroup()
+                        .addComponent(lbSearchResult2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfSearchEnrolledStudent1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearchEnrolledStudent1)))
+                .addContainerGap())
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbSearchResult2)
+                    .addComponent(tfSearchEnrolledStudent1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchEnrolledStudent1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane35, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        tpSf10Pane.addTab("Select Student", jPanel25);
+
+        jPanel26.setBackground(new java.awt.Color(11, 102, 35));
+
+        sf10Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID", "Section Name", "Adv ID", "Adviser Name", "Gender", "Load ID", "Load Name", "Grade", "Subjects Contained", "School Year", "Remarks", "Date Enrolled"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        sf10Table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        sf10Table.getTableHeader().setReorderingAllowed(false);
+        sf10Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sf10TableloadStudentsAttendanceHandler(evt);
+            }
+        });
+        jScrollPane36.setViewportView(sf10Table);
+        if (sf10Table.getColumnModel().getColumnCount() > 0) {
+            sf10Table.getColumnModel().getColumn(2).setResizable(false);
+            sf10Table.getColumnModel().getColumn(2).setPreferredWidth(100);
+            sf10Table.getColumnModel().getColumn(3).setPreferredWidth(200);
+            sf10Table.getColumnModel().getColumn(4).setResizable(false);
+            sf10Table.getColumnModel().getColumn(4).setPreferredWidth(80);
+            sf10Table.getColumnModel().getColumn(6).setPreferredWidth(200);
+            sf10Table.getColumnModel().getColumn(8).setPreferredWidth(200);
+            sf10Table.getColumnModel().getColumn(9).setResizable(false);
+            sf10Table.getColumnModel().getColumn(9).setPreferredWidth(80);
+            sf10Table.getColumnModel().getColumn(11).setPreferredWidth(150);
+            sf10Table.getColumnModel().getColumn(12).setResizable(false);
+            sf10Table.getColumnModel().getColumn(12).setPreferredWidth(100);
+            sf10Table.getColumnModel().getColumn(13).setPreferredWidth(200);
+            sf10Table.getColumnModel().getColumn(14).setResizable(false);
+            sf10Table.getColumnModel().getColumn(14).setPreferredWidth(100);
+            sf10Table.getColumnModel().getColumn(15).setPreferredWidth(200);
+            sf10Table.getColumnModel().getColumn(16).setResizable(false);
+            sf10Table.getColumnModel().getColumn(16).setPreferredWidth(150);
+        }
+
+        btnUseSelectedSections.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_ok_16px.png"))); // NOI18N
+        btnUseSelectedSections.setText("Use Selected Sections");
+
+        jLabel75.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel75.setText("Maximum of 5 Entries");
+
+        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+        jPanel26.setLayout(jPanel26Layout);
+        jPanel26Layout.setHorizontalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane36, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
+                        .addComponent(jLabel75)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                        .addComponent(btnUseSelectedSections)))
+                .addContainerGap())
+        );
+        jPanel26Layout.setVerticalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane36, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUseSelectedSections)
+                    .addComponent(jLabel75))
+                .addContainerGap())
+        );
+
+        tpSf10Pane.addTab("Select Enrolled Sections", jPanel26);
+
+        javax.swing.GroupLayout sf10TabLayout = new javax.swing.GroupLayout(sf10Tab);
+        sf10Tab.setLayout(sf10TabLayout);
+        sf10TabLayout.setHorizontalGroup(
+            sf10TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tpSf10Pane)
+        );
+        sf10TabLayout.setVerticalGroup(
+            sf10TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tpSf10Pane)
+        );
+
         loadingDialog.setBackground(new java.awt.Color(255, 255, 204));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -4118,6 +4326,45 @@ public class dashBoard extends javax.swing.JFrame {
     private void btnSf9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf9ActionPerformed
         selectFormToExport(9);
     }//GEN-LAST:event_btnSf9ActionPerformed
+
+    private void enrolledStudentsTable1loadStudentsAttendanceHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enrolledStudentsTable1loadStudentsAttendanceHandler
+        int row = enrolledStudentsTable1.getSelectedRow();
+        
+        if(evt.getClickCount() == 2){
+            tpSf10Pane.setSelectedIndex(1);
+            String studentId = enrolledStudentsTable1.getValueAt(row, 0).toString();
+            
+            my.runSecondaryThread(7, true,
+                    new JTable[]{sf10Table},
+                    new String[]{studentId},
+                    new JTextField[]{},
+                    new JButton[]{btnUseSelectedSections}, 
+                    new boolean[]{}
+            );
+        }else{
+            
+        }
+    }//GEN-LAST:event_enrolledStudentsTable1loadStudentsAttendanceHandler
+
+    private void btnSearchEnrolledStudent1searchEnrolledStudentsHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchEnrolledStudent1searchEnrolledStudentsHandler
+        if(myVariables.getFormSelected() != 10){
+            my.showMessage("SF10 Not Selected.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String toSearch = tfSearchEnrolledStudent1.getText();
+        
+        //clearGrades();
+        String where = "WHERE lrn='"+toSearch+"' OR lName LIKE '%"+toSearch+"%' OR fName LIKE '%"+toSearch+"%' OR mName LIKE '%"+toSearch+"%'";
+        my.searchItem(where, enrolledStudentsTable1, 0, null, new int [] {2,3,4}, true, true, lbSearchResult2, tfSearchEnrolledStudent1, true);
+    }//GEN-LAST:event_btnSearchEnrolledStudent1searchEnrolledStudentsHandler
+
+    private void sf10TableloadStudentsAttendanceHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sf10TableloadStudentsAttendanceHandler
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sf10TableloadStudentsAttendanceHandler
+
+    private void btnSf10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf10ActionPerformed
+        selectFormToExport(10);
+    }//GEN-LAST:event_btnSf10ActionPerformed
     private void selectFormToExport(int formIndexExact){
         if(myVariables.getFormSelected() != formIndexExact){
             my.clear_table_rows(assignedTeacherTable);
@@ -4156,6 +4403,7 @@ public class dashBoard extends javax.swing.JFrame {
                 my.select_tab(mainTab, 1);
                 break;
             }case 10:{
+                my.select_tab(mainTab, 9);
                 break;
             }default:{
                 break;
@@ -4332,6 +4580,8 @@ public class dashBoard extends javax.swing.JFrame {
             sf5SummaryTable,sf5LevelOfProgress,
             grade7RankingTable,grade8RankingTable,grade9RankingTable,grade10RankingTable,
             sf8Table,sf8SummaryTable,enrolledStudentsTable,gradesTable,
+            
+            enrolledStudentsTable1,sf10Table,
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
         //customHeaders(sf1SectionTable, new int []{0,1,2,3}, Color.RED, Color.WHITE, new Font("Comic Sans MS", Font.BOLD, 12), true);
@@ -4363,6 +4613,7 @@ public class dashBoard extends javax.swing.JFrame {
         mainTab.add("School Form 7",sf7Tab);
         mainTab.add("School Form 8",sf8Tab);
         mainTab.add("School Form 9",sf9Tab);
+        mainTab.add("School Form 10",sf10Tab);
         
         mainTab.setFont(myVariables.TAB_HEADER_FONT);
         tpSf2Sf4TabbedPane.setFont(myVariables.TEXTFIELD_HEADER_FONT);
@@ -4377,6 +4628,8 @@ public class dashBoard extends javax.swing.JFrame {
         Icon tabIcons [] = {
             my.getImgIcn(myVariables.getSelectFormsIcon()),
             my.getImgIcn(myVariables.getSectionsIcon()),
+            my.getImgIcn(myVariables.getFormsIcon()),
+            my.getImgIcn(myVariables.getFormsIcon()),
             my.getImgIcn(myVariables.getFormsIcon()),
             my.getImgIcn(myVariables.getFormsIcon()),
             my.getImgIcn(myVariables.getFormsIcon()),
@@ -4627,6 +4880,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnOnlySelectedSections1;
     private javax.swing.JButton btnRefreshRankings;
     private javax.swing.JButton btnSearchEnrolledStudent;
+    private javax.swing.JButton btnSearchEnrolledStudent1;
     private javax.swing.JButton btnSearchSection;
     private javax.swing.JButton btnSelectAllSections;
     private javax.swing.JButton btnSelectAllSections1;
@@ -4641,6 +4895,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnSf8;
     private javax.swing.JButton btnSf9;
     private javax.swing.JButton btnShowRankings;
+    private javax.swing.JButton btnUseSelectedSections;
     private javax.swing.JCheckBox cbCompareToRankings;
     private javax.swing.JCheckBox cbCompareToRankings1;
     private javax.swing.JCheckBox cbIncludeMissingRecordsOnExport;
@@ -4648,6 +4903,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JCheckBox cbShowIncompleteStudents1;
     private javax.swing.JCheckBox cbShowIncompleteStudents2;
     private javax.swing.JTable enrolledStudentsTable;
+    private javax.swing.JTable enrolledStudentsTable1;
     private javax.swing.JTable grade10RankingTable;
     private javax.swing.JTable grade7RankingTable;
     private javax.swing.JTable grade8RankingTable;
@@ -4726,6 +4982,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -4745,6 +5002,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -4779,6 +5038,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane31;
     private javax.swing.JScrollPane jScrollPane32;
     private javax.swing.JScrollPane jScrollPane33;
+    private javax.swing.JScrollPane jScrollPane35;
+    private javax.swing.JScrollPane jScrollPane36;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
@@ -4818,6 +5079,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel lbSchoolName;
     private javax.swing.JLabel lbSearchResult;
     private javax.swing.JLabel lbSearchResult1;
+    private javax.swing.JLabel lbSearchResult2;
     private javax.swing.JPanel left;
     private javax.swing.JPanel left1;
     private javax.swing.JPanel left2;
@@ -4831,6 +5093,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel right2;
     private javax.swing.JPanel selectFormPanel;
     private javax.swing.JPanel selectSectionTab;
+    private javax.swing.JPanel sf10Tab;
+    private javax.swing.JTable sf10Table;
     private javax.swing.JTable sf1StudentsTable;
     private javax.swing.JPanel sf1Tab;
     private javax.swing.JPanel sf2InstructionsPanel;
@@ -4882,6 +5146,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTextField tfSchoolYear5;
     private javax.swing.JTextField tfSchoolYear6;
     private javax.swing.JTextField tfSearchEnrolledStudent;
+    private javax.swing.JTextField tfSearchEnrolledStudent1;
     private javax.swing.JTextField tfSearchTeacherLoad;
     private javax.swing.JTextField tfSectionName;
     private javax.swing.JTextField tfSectionName1;
@@ -4891,6 +5156,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTextField tfSectionName5;
     private javax.swing.JTextField tfTotalCount;
     private javax.swing.JTabbedPane tpSelectSectionInstructions;
+    private javax.swing.JTabbedPane tpSf10Pane;
     private javax.swing.JTabbedPane tpSf2Sf4DetailsPane;
     private javax.swing.JTabbedPane tpSf2Sf4TabbedPane;
     private javax.swing.JTabbedPane tpSf5Sf6DetailsPane;
