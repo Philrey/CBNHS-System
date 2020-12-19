@@ -503,7 +503,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         jLabel6.setText("Middle Name");
 
-        jLabel7.setText("Last Name");
+        jLabel7.setText("Last Name, Extention (Jr,Sr,IV)");
 
         jLabel8.setText("Student LRN (12 Digits)");
         jLabel8.setToolTipText("Can be found on the student's report card.");

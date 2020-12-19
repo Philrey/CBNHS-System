@@ -925,7 +925,7 @@ public class myFunctions {
     protected String toNameFormat(String line,int [] columnIndex){
         String [] temp = line.split("@@");
         String finalString = "";
-        
+        String extentionName = "";
         for(int n=0;n<temp.length;n++){
             boolean isFound = false;
             boolean isLast = false;
@@ -942,6 +942,16 @@ public class myFunctions {
                 finalString+=temp[n]+"@@";
             }else{
                 if(!isLast){
+                    //Check For Extentions & take 2nd String as Extention Regardless
+                    if(temp[n].contains(",")){
+                        try {
+                            String tempName []= temp[n].split(",");
+                            temp[n] = tempName[0];
+                            extentionName = tempName[1];
+                        } catch (Exception e) {
+                            System.err.println("Changing Extention Error @ toNameFormat() in myFunctions.java");
+                        }
+                    }
                     finalString+=temp[n]+", ";
                 }else{
                     if(temp[n].length() > 1){
@@ -950,6 +960,8 @@ public class myFunctions {
                         //Remove comma
                         finalString = finalString.substring(0, finalString.length()-2);
                     }
+                    //Add Extention at the End
+                    finalString+=" "+extentionName.trim();
                 }
                 if(isLast){
                     finalString+="@@";
@@ -961,6 +973,7 @@ public class myFunctions {
     protected String toNameFormatFull(String line,int [] columnIndex){
         String [] temp = line.split("@@");
         String finalString = "";
+        String extentionName = "";
         
         for(int n=0;n<temp.length;n++){
             boolean isFound = false;
@@ -978,8 +991,20 @@ public class myFunctions {
                 finalString+=temp[n]+"@@";
             }else{
                 if(!isLast){
+                    //Check For Extentions & take 2nd String as Extention Regardless
+                    if(temp[n].contains(",")){
+                        try {
+                            String tempName []= temp[n].split(",");
+                            temp[n] = tempName[0];
+                            extentionName = tempName[1];
+                        } catch (Exception e) {
+                            System.err.println("Changing Extention Error @ toNameFormat() in myFunctions.java");
+                        }
+                    }
                     finalString+=temp[n]+", ";
                 }else{
+                    //Add Extention at the End
+                    finalString+=" "+extentionName.trim();
                     finalString+=temp[n];
                 }
                 if(isLast){

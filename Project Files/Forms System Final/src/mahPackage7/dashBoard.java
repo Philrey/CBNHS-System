@@ -342,6 +342,7 @@ public class dashBoard extends javax.swing.JFrame {
         sf10Table = new javax.swing.JTable();
         btnUseSelectedSections = new javax.swing.JButton();
         jLabel75 = new javax.swing.JLabel();
+        jPanel27 = new javax.swing.JPanel();
         loadingDialog = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jpbProgressBar = new javax.swing.JProgressBar();
@@ -3284,6 +3285,19 @@ public class dashBoard extends javax.swing.JFrame {
 
         tpSf10Pane.addTab("Select Enrolled Sections", jPanel26);
 
+        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
+        jPanel27.setLayout(jPanel27Layout);
+        jPanel27Layout.setHorizontalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 417, Short.MAX_VALUE)
+        );
+        jPanel27Layout.setVerticalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 631, Short.MAX_VALUE)
+        );
+
+        tpSf10Pane.addTab("SF10 Learner's Permanent Record", jPanel27);
+
         javax.swing.GroupLayout sf10TabLayout = new javax.swing.GroupLayout(sf10Tab);
         sf10Tab.setLayout(sf10TabLayout);
         sf10TabLayout.setHorizontalGroup(
@@ -5004,6 +5018,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
