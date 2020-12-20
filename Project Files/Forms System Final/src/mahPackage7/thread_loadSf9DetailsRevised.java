@@ -30,6 +30,8 @@ public class thread_loadSf9DetailsRevised extends SwingWorker<String, Object>{
     
     JButton btnLoadGrades;
     JButton btnExportSf9;
+    
+    boolean enableDisableButtons;
     //Functions Variables
     long threadDelay = 100;
     long pauseDelay = 500;
@@ -48,9 +50,13 @@ public class thread_loadSf9DetailsRevised extends SwingWorker<String, Object>{
         studentId = stringsToUse[0];
         sectionId = stringsToUse[1];
         subjectsContained = stringsToUse[2].substring(0,stringsToUse[2].length()-1);
+                
+        enableDisableButtons = booleansToUse[0];
         
-        btnLoadGrades = buttonsToUse[0];
-        btnExportSf9 = buttonsToUse[1];
+        if(enableDisableButtons){
+            btnLoadGrades = buttonsToUse[0];
+            btnExportSf9 = buttonsToUse[1];
+        }
         
         //For Loading Screen & Functions
         my = new myFunctions(true);
@@ -63,8 +69,10 @@ public class thread_loadSf9DetailsRevised extends SwingWorker<String, Object>{
 
     @Override
     protected String doInBackground() throws Exception {
-        btnLoadGrades.setEnabled(false);
-        btnExportSf9.setEnabled(false);
+        if(enableDisableButtons){
+            btnLoadGrades.setEnabled(false);
+            btnExportSf9.setEnabled(false);
+        }
         
         showCustomDialog("Loading SF9 Details...", dialogPanel, false, 420, 220, false);
         String subjectIds = subjectsContained.replace(":", ",");
@@ -143,13 +151,18 @@ public class thread_loadSf9DetailsRevised extends SwingWorker<String, Object>{
             System.err.println("Student ID: "+studentId+" in Section ID: "+sectionId+" has no records.");
         }
         
-        btnExportSf9.setEnabled(true);
+        if(enableDisableButtons){
+            btnExportSf9.setEnabled(true);
+        }
+        
         return "Task Complete...";
     }
 
     @Override
     protected void done() {
-        btnLoadGrades.setEnabled(true);
+        if (enableDisableButtons) {
+            btnLoadGrades.setEnabled(true);
+        }
         closeCustomDialog();
         super.done(); //To change body of generated methods, choose Tools | Templates.
     }
