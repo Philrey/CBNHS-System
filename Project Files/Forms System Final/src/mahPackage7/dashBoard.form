@@ -5428,7 +5428,7 @@
                               <Component id="btnSearchEnrolledStudent1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane35" pref="534" max="32767" attributes="0"/>
+                          <Component id="jScrollPane35" pref="618" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -5453,10 +5453,12 @@
                     <Component class="javax.swing.JTable" name="enrolledStudentsTable1">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="9" rowCount="4">
+                          <Table columnCount="11" rowCount="4">
                             <Column editable="false" title="ID" type="java.lang.Object"/>
                             <Column editable="false" title="LRN" type="java.lang.Object"/>
-                            <Column editable="false" title="Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Last Name" type="java.lang.Object"/>
+                            <Column editable="false" title="First Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Middle Name" type="java.lang.Object"/>
                             <Column editable="false" title="Gender" type="java.lang.Object"/>
                             <Column editable="false" title="Initial Grade" type="java.lang.Object"/>
                             <Column editable="false" title="Current Grade" type="java.lang.Object"/>
@@ -5478,12 +5480,22 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="false">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="80" resizable="false">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -5578,7 +5590,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane36" pref="534" max="32767" attributes="0"/>
+                          <Component id="jScrollPane36" pref="618" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnUseSelectedSections" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -5727,6 +5739,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Use Selected Sections"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUseSelectedSectionsActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel75">
                   <Properties>
@@ -5796,9 +5811,23 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane34" pref="675" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jScrollPane34" alignment="0" pref="675" max="32767" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="tfGeneralAverage1" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel91" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="jLabel92" pref="143" max="32767" attributes="0"/>
+                                                  <Component id="tfEvaluation1" max="32767" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -5807,7 +5836,20 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane34" pref="537" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane34" pref="575" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel91" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="tfGeneralAverage1" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel92" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="tfEvaluation1" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -5917,6 +5959,34 @@
                                 </Component>
                               </SubComponents>
                             </Container>
+                            <Component class="javax.swing.JTextField" name="tfGeneralAverage1">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel91">
+                              <Properties>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="General Average"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel92">
+                              <Properties>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Remarks"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="tfEvaluation1">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
+                              </Properties>
+                            </Component>
                           </SubComponents>
                         </Container>
                         <Container class="javax.swing.JPanel" name="sectionPanel2">
@@ -5927,8 +5997,8 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                              <JTabbedPaneConstraints tabName="SECTION_1">
-                                <Property name="tabTitle" type="java.lang.String" value="SECTION_1"/>
+                              <JTabbedPaneConstraints tabName="SECTION_2">
+                                <Property name="tabTitle" type="java.lang.String" value="SECTION_2"/>
                               </JTabbedPaneConstraints>
                             </Constraint>
                           </Constraints>
@@ -5936,9 +6006,23 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane38" pref="675" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jScrollPane38" alignment="0" pref="675" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="tfGeneralAverage2" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel94" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="jLabel95" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="tfEvaluation2" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -5947,7 +6031,20 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane38" pref="537" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane38" pref="575" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel94" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="tfGeneralAverage2" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel95" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="tfEvaluation2" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -6057,6 +6154,34 @@
                                 </Component>
                               </SubComponents>
                             </Container>
+                            <Component class="javax.swing.JLabel" name="jLabel94">
+                              <Properties>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="General Average"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="tfGeneralAverage2">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="tfEvaluation2">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel95">
+                              <Properties>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Remarks"/>
+                              </Properties>
+                            </Component>
                           </SubComponents>
                         </Container>
                         <Container class="javax.swing.JPanel" name="sectionPanel3">
@@ -6067,8 +6192,8 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                              <JTabbedPaneConstraints tabName="SECTION_1">
-                                <Property name="tabTitle" type="java.lang.String" value="SECTION_1"/>
+                              <JTabbedPaneConstraints tabName="SECTION_3">
+                                <Property name="tabTitle" type="java.lang.String" value="SECTION_3"/>
                               </JTabbedPaneConstraints>
                             </Constraint>
                           </Constraints>
@@ -6076,9 +6201,23 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane39" pref="675" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jScrollPane39" alignment="0" pref="675" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="tfGeneralAverage3" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel97" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="jLabel98" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="tfEvaluation3" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -6087,7 +6226,20 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane39" pref="537" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane39" pref="575" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel97" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="tfGeneralAverage3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel98" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="tfEvaluation3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -6197,6 +6349,34 @@
                                 </Component>
                               </SubComponents>
                             </Container>
+                            <Component class="javax.swing.JLabel" name="jLabel97">
+                              <Properties>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="General Average"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="tfGeneralAverage3">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="tfEvaluation3">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel98">
+                              <Properties>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Remarks"/>
+                              </Properties>
+                            </Component>
                           </SubComponents>
                         </Container>
                         <Container class="javax.swing.JPanel" name="sectionPanel4">
@@ -6207,8 +6387,8 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                              <JTabbedPaneConstraints tabName="SECTION_1">
-                                <Property name="tabTitle" type="java.lang.String" value="SECTION_1"/>
+                              <JTabbedPaneConstraints tabName="SECTION_4">
+                                <Property name="tabTitle" type="java.lang.String" value="SECTION_4"/>
                               </JTabbedPaneConstraints>
                             </Constraint>
                           </Constraints>
@@ -6216,9 +6396,23 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane40" pref="675" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jScrollPane40" alignment="0" pref="675" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="tfGeneralAverage4" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel100" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="jLabel101" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="tfEvaluation4" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -6227,7 +6421,20 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane40" pref="537" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane40" pref="575" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel100" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="tfGeneralAverage4" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel101" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="tfEvaluation4" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -6337,6 +6544,34 @@
                                 </Component>
                               </SubComponents>
                             </Container>
+                            <Component class="javax.swing.JLabel" name="jLabel100">
+                              <Properties>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="General Average"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="tfGeneralAverage4">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="tfEvaluation4">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel101">
+                              <Properties>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Remarks"/>
+                              </Properties>
+                            </Component>
                           </SubComponents>
                         </Container>
                         <Container class="javax.swing.JPanel" name="sectionPanel5">
@@ -6347,8 +6582,8 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                              <JTabbedPaneConstraints tabName="SECTION_1">
-                                <Property name="tabTitle" type="java.lang.String" value="SECTION_1"/>
+                              <JTabbedPaneConstraints tabName="SECTION_5">
+                                <Property name="tabTitle" type="java.lang.String" value="SECTION_5"/>
                               </JTabbedPaneConstraints>
                             </Constraint>
                           </Constraints>
@@ -6356,9 +6591,23 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane41" pref="675" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jScrollPane41" alignment="0" pref="675" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="tfGeneralAverage5" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel103" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="jLabel104" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="tfEvaluation5" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -6367,7 +6616,20 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane41" pref="537" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane41" pref="575" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel103" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="tfGeneralAverage5" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel104" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="tfEvaluation5" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -6477,6 +6739,34 @@
                                 </Component>
                               </SubComponents>
                             </Container>
+                            <Component class="javax.swing.JLabel" name="jLabel103">
+                              <Properties>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="General Average"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="tfGeneralAverage5">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="tfEvaluation5">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel104">
+                              <Properties>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Remarks"/>
+                              </Properties>
+                            </Component>
                           </SubComponents>
                         </Container>
                       </SubComponents>
@@ -6514,43 +6804,43 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel77" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jLabel78" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="tfSectionName6" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="tfFirstName" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jLabel79" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="tfAdviserName6" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="tfMiddleName" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jLabel80" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="tfAdviserName7" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="tfLastName" alignment="0" max="32767" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                       <Component id="jLabel81" max="32767" attributes="0"/>
-                                                      <Component id="tfAdviserName8" max="32767" attributes="0"/>
+                                                      <Component id="tfExtentionName" max="32767" attributes="0"/>
                                                   </Group>
                                                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                                       <Component id="jLabel84" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="tfAdviserName11" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
+                                                      <Component id="tfGender" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="tfAdviserName10" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="tfLrn" alignment="1" max="32767" attributes="0"/>
                                                   <Component id="jLabel83" alignment="1" max="32767" attributes="0"/>
                                                   <Component id="jLabel82" max="32767" attributes="0"/>
-                                                  <Component id="tfAdviserName9" max="32767" attributes="0"/>
+                                                  <Component id="tfBirthdate" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Component id="jLabel86" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="tfSectionName7" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="tfSchoolName" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jLabel87" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="tfSectionName8" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="tfSchoolAddress" alignment="0" max="32767" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                   <Component id="jLabel88" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="tfAdviserName12" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
+                                                  <Component id="tfSchoolId" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel89" max="32767" attributes="0"/>
-                                                  <Component id="tfAdviserName13" max="32767" attributes="0"/>
+                                                  <Component id="tfInitialGrade" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Component id="btnExportSf10" alignment="0" max="32767" attributes="0"/>
@@ -6571,26 +6861,26 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel78" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="tfSectionName6" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tfFirstName" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel79" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="tfAdviserName6" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tfMiddleName" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel80" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="tfAdviserName7" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tfLastName" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel81" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="tfAdviserName8" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfExtentionName" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel82" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="tfAdviserName9" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfBirthdate" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -6598,12 +6888,12 @@
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel83" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="tfAdviserName10" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfLrn" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel84" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="tfAdviserName11" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfGender" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -6611,22 +6901,22 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel86" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="tfSectionName7" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tfSchoolName" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel87" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="tfSectionName8" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tfSchoolAddress" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="jLabel88" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="tfAdviserName12" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfSchoolId" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="jLabel89" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="tfAdviserName13" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfInitialGrade" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -6691,7 +6981,7 @@
                                 <Property name="text" type="java.lang.String" value="First Name"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="tfSectionName6">
+                            <Component class="javax.swing.JTextField" name="tfFirstName">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
                               </Properties>
@@ -6701,7 +6991,7 @@
                                 <Property name="text" type="java.lang.String" value="Middle Name"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="tfAdviserName6">
+                            <Component class="javax.swing.JTextField" name="tfMiddleName">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
                               </Properties>
@@ -6711,7 +7001,7 @@
                                 <Property name="text" type="java.lang.String" value="Last Name"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="tfAdviserName7">
+                            <Component class="javax.swing.JTextField" name="tfLastName">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
                               </Properties>
@@ -6721,7 +7011,7 @@
                                 <Property name="text" type="java.lang.String" value="Extention Name"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="tfAdviserName8">
+                            <Component class="javax.swing.JTextField" name="tfExtentionName">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
@@ -6732,7 +7022,7 @@
                                 <Property name="text" type="java.lang.String" value="Birth Date"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="tfAdviserName9">
+                            <Component class="javax.swing.JTextField" name="tfBirthdate">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
@@ -6743,7 +7033,7 @@
                                 <Property name="text" type="java.lang.String" value="LRN"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="tfAdviserName10">
+                            <Component class="javax.swing.JTextField" name="tfLrn">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
@@ -6754,7 +7044,7 @@
                                 <Property name="text" type="java.lang.String" value="Gender"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="tfAdviserName11">
+                            <Component class="javax.swing.JTextField" name="tfGender">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
@@ -6771,7 +7061,7 @@
                                 <Property name="text" type="java.lang.String" value="Elemtary School Name"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="tfSectionName7">
+                            <Component class="javax.swing.JTextField" name="tfSchoolName">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
                               </Properties>
@@ -6781,7 +7071,7 @@
                                 <Property name="text" type="java.lang.String" value="Address"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="tfSectionName8">
+                            <Component class="javax.swing.JTextField" name="tfSchoolAddress">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
                               </Properties>
@@ -6791,7 +7081,7 @@
                                 <Property name="text" type="java.lang.String" value="School ID"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="tfAdviserName12">
+                            <Component class="javax.swing.JTextField" name="tfSchoolId">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
@@ -6802,7 +7092,7 @@
                                 <Property name="text" type="java.lang.String" value="General Average"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="tfAdviserName13">
+                            <Component class="javax.swing.JTextField" name="tfInitialGrade">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
