@@ -145,6 +145,10 @@ public class thread_loadSf9DetailsRevised extends SwingWorker<String, Object>{
                 }
                 Thread.sleep(threadDelay);
             }
+            //Convert -1 values to blank
+            if(!convertNegativeValues(sf9Table)){
+                throw new InterruptedException("Interrupted...");
+            }
             Thread.sleep(pauseDelay);
         } else {
             //Code Here
@@ -167,7 +171,32 @@ public class thread_loadSf9DetailsRevised extends SwingWorker<String, Object>{
         super.done(); //To change body of generated methods, choose Tools | Templates.
     }
     //Custom Functions
-    
+    private boolean convertNegativeValues(JTable tableName){
+        int count = tableName.getRowCount();
+        
+        if(myVariables.isDebugModeOn()){
+            return true;
+        }
+        try {
+            for (int n = 0; n < count; n++) {
+                //Code Here col 6,7,8,9,10
+                for (int x = 6; x < 11; x++) {
+                    //Code Here
+                    if(tableName.getValueAt(n, x).toString().contains("-1")){
+                        tableName.setValueAt(" ", n, x);
+                    }
+                }
+            }
+            Thread.sleep(threadDelay);
+        }catch(InterruptedException x){
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return true;
+        }
+        
+        return true;
+    }
     //Dialog Functions
     private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable){
         if(dialog != null && dialog.isVisible()){
