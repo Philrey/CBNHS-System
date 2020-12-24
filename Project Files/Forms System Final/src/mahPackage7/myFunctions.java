@@ -9,6 +9,8 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.SystemTray;
+import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.File;
@@ -795,6 +797,32 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
+    public void showTrayMessage(String title,String message,TrayIcon.MessageType messageType){
+        SystemTray tray = SystemTray.getSystemTray();
+        Image img = null;
+        
+        if(messageType == TrayIcon.MessageType.NONE){
+            img = getImage(myVariables.getMsgUrlIcon());
+        }
+        if(messageType == TrayIcon.MessageType.INFO){
+            img = getImage(myVariables.getMsgUrlIconSuccess());
+        }
+        if(messageType == TrayIcon.MessageType.ERROR){
+            img = getImage(myVariables.getMsgUrlIconFailed());
+        }
+        if(messageType == TrayIcon.MessageType.WARNING){
+            img = getImage(myVariables.getMsgUrlIconWarning());
+        }
+        
+        TrayIcon tIcon = new TrayIcon(img);
+        tIcon.setImageAutoSize(true);
+        //tIcon.setToolTip("Icon image tooltip here..");//Optional
+        try {
+            tray.add(tIcon);
+            tIcon.displayMessage(title, message, messageType);
+        } catch (Exception e) {
+        }
+    }
     public void runSecondaryThread(int threadIndex,boolean waitForMainThreadToFinish,JTable [] tablesToUse,String [] valuesToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean  [] booleansToUse){
         Thread toLoad = null;
         switch (threadIndex){

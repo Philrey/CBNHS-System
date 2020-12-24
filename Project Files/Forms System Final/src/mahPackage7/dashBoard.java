@@ -9,6 +9,7 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Cursor;
+import java.awt.TrayIcon;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -270,6 +271,22 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel55 = new javax.swing.JLabel();
         tfSchoolYear4 = new javax.swing.JTextField();
         sf7Tab = new javax.swing.JPanel();
+        jSplitPane10 = new javax.swing.JSplitPane();
+        jspRight = new javax.swing.JScrollPane();
+        jPanel31 = new javax.swing.JPanel();
+        jPanel32 = new javax.swing.JPanel();
+        jLabel96 = new javax.swing.JLabel();
+        jLabel99 = new javax.swing.JLabel();
+        jLabel108 = new javax.swing.JLabel();
+        btnLoadStudents7 = new javax.swing.JButton();
+        btnExportSf11 = new javax.swing.JButton();
+        jcbSchoolYear2 = new javax.swing.JComboBox<>();
+        jLabel102 = new javax.swing.JLabel();
+        spLeft = new javax.swing.JSplitPane();
+        jScrollPane44 = new javax.swing.JScrollPane();
+        sf7TeachersTable = new javax.swing.JTable();
+        jScrollPane45 = new javax.swing.JScrollPane();
+        sf7AssignedSubjectsTable1 = new javax.swing.JTable();
         sf8Tab = new javax.swing.JPanel();
         jSplitPane7 = new javax.swing.JSplitPane();
         jScrollPane29 = new javax.swing.JScrollPane();
@@ -2589,15 +2606,181 @@ public class dashBoard extends javax.swing.JFrame {
 
         sf7Tab.setBackground(new java.awt.Color(11, 102, 35));
 
+        jSplitPane10.setBorder(null);
+        jSplitPane10.setDividerLocation(650);
+
+        jspRight.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jPanel31.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel32.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel96.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel96.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel96.setText("SF7 Export Options");
+
+        javax.swing.GroupLayout jPanel32Layout = new javax.swing.GroupLayout(jPanel32);
+        jPanel32.setLayout(jPanel32Layout);
+        jPanel32Layout.setHorizontalGroup(
+            jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel32Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel96)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel32Layout.setVerticalGroup(
+            jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel32Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel96)
+                .addContainerGap())
+        );
+
+        jLabel99.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel99.setText("Basic");
+
+        jLabel108.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel108.setText("Export Options");
+
+        btnLoadStudents7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_sync_16px.png"))); // NOI18N
+        btnLoadStudents7.setText("Load Teachers");
+        btnLoadStudents7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadStudents7ActionPerformed(evt);
+            }
+        });
+
+        btnExportSf11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_print_16px.png"))); // NOI18N
+        btnExportSf11.setText("Export");
+        btnExportSf11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportSf11ActionPerformed(evt);
+            }
+        });
+
+        jcbSchoolYear2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020", "2021" }));
+
+        jLabel102.setText("Select School Year");
+
+        javax.swing.GroupLayout jPanel31Layout = new javax.swing.GroupLayout(jPanel31);
+        jPanel31.setLayout(jPanel31Layout);
+        jPanel31Layout.setHorizontalGroup(
+            jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel31Layout.createSequentialGroup()
+                .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 105, Short.MAX_VALUE))
+            .addGroup(jPanel31Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnExportSf11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel99, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel108, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLoadStudents7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel31Layout.createSequentialGroup()
+                        .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel102, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcbSchoolYear2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel31Layout.setVerticalGroup(
+            jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel31Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel99)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel102)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcbSchoolYear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel108)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLoadStudents7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExportSf11)
+                .addContainerGap(80, Short.MAX_VALUE))
+        );
+
+        jspRight.setViewportView(jPanel31);
+
+        jSplitPane10.setRightComponent(jspRight);
+
+        spLeft.setDividerLocation(300);
+        spLeft.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        sf7TeachersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID", "Remarks"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        sf7TeachersTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane44.setViewportView(sf7TeachersTable);
+        if (sf7TeachersTable.getColumnModel().getColumnCount() > 0) {
+            sf7TeachersTable.getColumnModel().getColumn(2).setPreferredWidth(50);
+            sf7TeachersTable.getColumnModel().getColumn(4).setPreferredWidth(40);
+        }
+
+        spLeft.setLeftComponent(jScrollPane44);
+
+        jScrollPane45.setBorder(null);
+
+        sf7AssignedSubjectsTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID", "Remarks"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        sf7AssignedSubjectsTable1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane45.setViewportView(sf7AssignedSubjectsTable1);
+        if (sf7AssignedSubjectsTable1.getColumnModel().getColumnCount() > 0) {
+            sf7AssignedSubjectsTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
+            sf7AssignedSubjectsTable1.getColumnModel().getColumn(4).setPreferredWidth(40);
+        }
+
+        spLeft.setRightComponent(jScrollPane45);
+
+        jSplitPane10.setLeftComponent(spLeft);
+
         javax.swing.GroupLayout sf7TabLayout = new javax.swing.GroupLayout(sf7Tab);
         sf7Tab.setLayout(sf7TabLayout);
         sf7TabLayout.setHorizontalGroup(
             sf7TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
+            .addGroup(sf7TabLayout.createSequentialGroup()
+                .addComponent(jSplitPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         sf7TabLayout.setVerticalGroup(
             sf7TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 623, Short.MAX_VALUE)
+            .addComponent(jSplitPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
         );
 
         jSplitPane7.setDividerLocation(600);
@@ -5189,6 +5372,14 @@ public class dashBoard extends javax.swing.JFrame {
         );
         tpSf10Pane.setSelectedIndex(2);
     }//GEN-LAST:event_btnUseSelectedSectionsActionPerformed
+
+    private void btnLoadStudents7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudents7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLoadStudents7ActionPerformed
+
+    private void btnExportSf11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExportSf11ActionPerformed
     private void selectFormToExport(int formIndexExact){
         if(myVariables.getFormSelected() != formIndexExact){
             my.clear_table_rows(assignedTeacherTable);
@@ -5762,6 +5953,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelLoading;
     private javax.swing.JButton btnExportSf1;
     private javax.swing.JButton btnExportSf10;
+    private javax.swing.JButton btnExportSf11;
     private javax.swing.JButton btnExportSf2;
     private javax.swing.JButton btnExportSf3;
     private javax.swing.JButton btnExportSf4;
@@ -5777,6 +5969,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnLoadStudents4;
     private javax.swing.JButton btnLoadStudents5;
     private javax.swing.JButton btnLoadStudents6;
+    private javax.swing.JButton btnLoadStudents7;
     private javax.swing.JButton btnOnlySelectedSections;
     private javax.swing.JButton btnOnlySelectedSections1;
     private javax.swing.JButton btnRefreshRankings;
@@ -5820,8 +6013,10 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
+    private javax.swing.JLabel jLabel102;
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
+    private javax.swing.JLabel jLabel108;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -5915,8 +6110,10 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel93;
     private javax.swing.JLabel jLabel94;
     private javax.swing.JLabel jLabel95;
+    private javax.swing.JLabel jLabel96;
     private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel98;
+    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -5940,6 +6137,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel31;
+    private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -5982,12 +6181,15 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane40;
     private javax.swing.JScrollPane jScrollPane41;
+    private javax.swing.JScrollPane jScrollPane44;
+    private javax.swing.JScrollPane jScrollPane45;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane jSplitPane10;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
     private javax.swing.JSplitPane jSplitPane4;
@@ -6007,12 +6209,14 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbRankingNumberOfStudents;
     private javax.swing.JComboBox<String> jcbRankingSchoolYear;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
+    private javax.swing.JComboBox<String> jcbSchoolYear2;
     private com.toedter.calendar.JDateChooser jdcCutOffDate;
     private com.toedter.calendar.JDateChooser jdcCutOffDate1;
     private com.toedter.calendar.JDateChooser jdcFirstDayOfFridate;
     private com.toedter.calendar.JDateChooser jdcFirstDayOfMonth;
     private com.toedter.calendar.JDateChooser jdcFirstDayOfMonth1;
     private javax.swing.JProgressBar jpbProgressBar;
+    private javax.swing.JScrollPane jspRight;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel lbFinalGradeId;
     private javax.swing.JLabel lbLoadingMessage;
@@ -6061,11 +6265,14 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTable sf5SummaryTable;
     private javax.swing.JTable sf5Table;
     private javax.swing.JTable sf6Table;
+    private javax.swing.JTable sf7AssignedSubjectsTable1;
     private javax.swing.JPanel sf7Tab;
+    private javax.swing.JTable sf7TeachersTable;
     private javax.swing.JTable sf8SummaryTable;
     private javax.swing.JPanel sf8Tab;
     private javax.swing.JTable sf8Table;
     private javax.swing.JPanel sf9Tab;
+    private javax.swing.JSplitPane spLeft;
     private javax.swing.JTable summarySf2;
     private javax.swing.JTextField tfAdviserName;
     private javax.swing.JTextField tfAdviserName1;
