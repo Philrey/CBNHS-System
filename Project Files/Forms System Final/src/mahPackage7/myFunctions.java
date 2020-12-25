@@ -1165,6 +1165,16 @@ public class myFunctions {
         
         return finalString;
     }
+    protected String [] separateLastNameExtention(String lastNameString){
+        String temp[];
+        if(lastNameString.contains(",")){
+            temp = lastNameString.split(",");
+            
+            return new String [] {temp[0].trim(),temp[1]};
+        }else{
+            return new String [] {lastNameString," "};
+        }
+    }
     protected String toNameFormat(String line,int [] columnIndex){
         String [] temp = line.split("@@");
         String finalString = "";

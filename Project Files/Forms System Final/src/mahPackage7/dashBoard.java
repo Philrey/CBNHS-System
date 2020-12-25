@@ -272,6 +272,11 @@ public class dashBoard extends javax.swing.JFrame {
         tfSchoolYear4 = new javax.swing.JTextField();
         sf7Tab = new javax.swing.JPanel();
         jSplitPane10 = new javax.swing.JSplitPane();
+        spLeft = new javax.swing.JSplitPane();
+        jScrollPane44 = new javax.swing.JScrollPane();
+        sf7TeachersTable = new javax.swing.JTable();
+        jScrollPane45 = new javax.swing.JScrollPane();
+        sf7AssignedSubjectsTable1 = new javax.swing.JTable();
         jspRight = new javax.swing.JScrollPane();
         jPanel31 = new javax.swing.JPanel();
         jPanel32 = new javax.swing.JPanel();
@@ -282,11 +287,6 @@ public class dashBoard extends javax.swing.JFrame {
         btnExportSf11 = new javax.swing.JButton();
         jcbSchoolYear2 = new javax.swing.JComboBox<>();
         jLabel102 = new javax.swing.JLabel();
-        spLeft = new javax.swing.JSplitPane();
-        jScrollPane44 = new javax.swing.JScrollPane();
-        sf7TeachersTable = new javax.swing.JTable();
-        jScrollPane45 = new javax.swing.JScrollPane();
-        sf7AssignedSubjectsTable1 = new javax.swing.JTable();
         sf8Tab = new javax.swing.JPanel();
         jSplitPane7 = new javax.swing.JSplitPane();
         jScrollPane29 = new javax.swing.JScrollPane();
@@ -2609,104 +2609,6 @@ public class dashBoard extends javax.swing.JFrame {
         jSplitPane10.setBorder(null);
         jSplitPane10.setDividerLocation(650);
 
-        jspRight.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        jPanel31.setBackground(new java.awt.Color(255, 255, 204));
-
-        jPanel32.setBackground(new java.awt.Color(22, 66, 33));
-
-        jLabel96.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel96.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel96.setText("SF7 Export Options");
-
-        javax.swing.GroupLayout jPanel32Layout = new javax.swing.GroupLayout(jPanel32);
-        jPanel32.setLayout(jPanel32Layout);
-        jPanel32Layout.setHorizontalGroup(
-            jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel32Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel96)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel32Layout.setVerticalGroup(
-            jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel32Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel96)
-                .addContainerGap())
-        );
-
-        jLabel99.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel99.setText("Basic");
-
-        jLabel108.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel108.setText("Export Options");
-
-        btnLoadStudents7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_sync_16px.png"))); // NOI18N
-        btnLoadStudents7.setText("Load Teachers");
-        btnLoadStudents7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoadStudents7ActionPerformed(evt);
-            }
-        });
-
-        btnExportSf11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_print_16px.png"))); // NOI18N
-        btnExportSf11.setText("Export");
-        btnExportSf11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportSf11ActionPerformed(evt);
-            }
-        });
-
-        jcbSchoolYear2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020", "2021" }));
-
-        jLabel102.setText("Select School Year");
-
-        javax.swing.GroupLayout jPanel31Layout = new javax.swing.GroupLayout(jPanel31);
-        jPanel31.setLayout(jPanel31Layout);
-        jPanel31Layout.setHorizontalGroup(
-            jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel31Layout.createSequentialGroup()
-                .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 105, Short.MAX_VALUE))
-            .addGroup(jPanel31Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnExportSf11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel99, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel108, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLoadStudents7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel31Layout.createSequentialGroup()
-                        .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel102, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jcbSchoolYear2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel31Layout.setVerticalGroup(
-            jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel31Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel99)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel102)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jcbSchoolYear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel108)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLoadStudents7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnExportSf11)
-                .addContainerGap(80, Short.MAX_VALUE))
-        );
-
-        jspRight.setViewportView(jPanel31);
-
-        jSplitPane10.setRightComponent(jspRight);
-
         spLeft.setDividerLocation(300);
         spLeft.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
@@ -2770,13 +2672,109 @@ public class dashBoard extends javax.swing.JFrame {
 
         jSplitPane10.setLeftComponent(spLeft);
 
+        jspRight.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jPanel31.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel32.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel96.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel96.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel96.setText("SF7 Export Options");
+
+        javax.swing.GroupLayout jPanel32Layout = new javax.swing.GroupLayout(jPanel32);
+        jPanel32.setLayout(jPanel32Layout);
+        jPanel32Layout.setHorizontalGroup(
+            jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel32Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel96)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel32Layout.setVerticalGroup(
+            jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel32Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel96)
+                .addContainerGap())
+        );
+
+        jLabel99.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel99.setText("Basic");
+
+        jLabel108.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel108.setText("Export Options");
+
+        btnLoadStudents7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_sync_16px.png"))); // NOI18N
+        btnLoadStudents7.setText("Load Teachers");
+        btnLoadStudents7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadStudents7ActionPerformed(evt);
+            }
+        });
+
+        btnExportSf11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_print_16px.png"))); // NOI18N
+        btnExportSf11.setText("Export");
+        btnExportSf11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportSf11ActionPerformed(evt);
+            }
+        });
+
+        jcbSchoolYear2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020", "2021" }));
+
+        jLabel102.setText("Select School Year");
+
+        javax.swing.GroupLayout jPanel31Layout = new javax.swing.GroupLayout(jPanel31);
+        jPanel31.setLayout(jPanel31Layout);
+        jPanel31Layout.setHorizontalGroup(
+            jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel31Layout.createSequentialGroup()
+                .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel31Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnExportSf11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel99, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel108, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLoadStudents7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel31Layout.createSequentialGroup()
+                        .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel102, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcbSchoolYear2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel31Layout.setVerticalGroup(
+            jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel31Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel99)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel102)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcbSchoolYear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel108)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLoadStudents7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExportSf11)
+                .addContainerGap(617, Short.MAX_VALUE))
+        );
+
+        jspRight.setViewportView(jPanel31);
+
+        jSplitPane10.setRightComponent(jspRight);
+
         javax.swing.GroupLayout sf7TabLayout = new javax.swing.GroupLayout(sf7Tab);
         sf7Tab.setLayout(sf7TabLayout);
         sf7TabLayout.setHorizontalGroup(
             sf7TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sf7TabLayout.createSequentialGroup()
-                .addComponent(jSplitPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jSplitPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE)
         );
         sf7TabLayout.setVerticalGroup(
             sf7TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3526,7 +3524,7 @@ public class dashBoard extends javax.swing.JFrame {
         });
 
         jLabel75.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel75.setText("Maximum of 5 Entries");
+        jLabel75.setText("Maximum of 5 Entries can be Selected.");
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
@@ -3538,7 +3536,7 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(jScrollPane36, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
                         .addComponent(jLabel75)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 627, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 544, Short.MAX_VALUE)
                         .addComponent(btnUseSelectedSections)))
                 .addContainerGap())
         );
@@ -5311,11 +5309,40 @@ public class dashBoard extends javax.swing.JFrame {
         if(evt.getClickCount() == 2){
             tpSf10Pane.setSelectedIndex(1);
             String studentId = enrolledStudentsTable1.getValueAt(row, 0).toString();
+            String lrn = enrolledStudentsTable1.getValueAt(row, 1).toString();
+            
+            String names [] = my.separateLastNameExtention(enrolledStudentsTable1.getValueAt(row, 2).toString());
+            
+            String lName = names[0];
+            String extName = names[1];
+            String fName = enrolledStudentsTable1.getValueAt(row, 3).toString();
+            String mName = enrolledStudentsTable1.getValueAt(row, 4).toString();
+            
+            String gender = enrolledStudentsTable1.getValueAt(row, 5).toString();
+            String inGrade = enrolledStudentsTable1.getValueAt(row, 6).toString();
+            
+            String schoolId = enrolledStudentsTable1.getValueAt(row, 8).toString();
+            String schoolName = enrolledStudentsTable1.getValueAt(row, 9).toString();
+            String address = enrolledStudentsTable1.getValueAt(row, 10).toString();
+            
+            tfLrn.setText(lrn);
+            tfFirstName.setText(fName);
+            tfMiddleName.setText(mName);
+            tfLastName.setText(lName);
+            tfExtentionName.setText(extName);
+            
+            tfGender.setText(gender);
+            
+            tfInitialGrade.setText(inGrade);
+            
+            tfSchoolId.setText(schoolId);
+            tfSchoolName.setText(schoolName);
+            tfSchoolAddress.setText(address);
             
             my.runSecondaryThread(7, true,
                     new JTable[]{sf10Table},
                     new String[]{studentId},
-                    new JTextField[]{},
+                    new JTextField[]{tfBirthdate},
                     new JButton[]{btnUseSelectedSections}, 
                     new boolean[]{}
             );
@@ -5551,7 +5578,7 @@ public class dashBoard extends javax.swing.JFrame {
             tfSchoolName.setText("");
             tfSchoolId.setText("");
             tfSchoolAddress.setText("");
-            tfGeneralAverage.setText("");
+            tfInitialGrade.setText("");
         }
         
         btnUseSelectedSections.setEnabled(enableDisableButtons);
@@ -5602,7 +5629,7 @@ public class dashBoard extends javax.swing.JFrame {
     private void setScrollSpeeds(){
         JScrollPane scrollpanes [] = {
             jScrollPane1,jScrollPane3,jScrollPane4,jScrollPane9,jScrollPane14,jScrollPane18,
-            jScrollPane19,jScrollPane29,
+            jScrollPane19,jScrollPane29,jScrollPane32,jScrollPane37,jspRight,
         };
         
         int scrollSpeed = 15;
@@ -5882,7 +5909,7 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadYearDropDowns(int numberOfYears){
         JComboBox [] yearDropDowns = {
-            jcbRankingSchoolYear,
+            jcbRankingSchoolYear,jcbSchoolYear2,
         };
         
         JComboBox [] yearDropDownsWithAllOption = {

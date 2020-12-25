@@ -27,6 +27,8 @@ public class thread_loadSf10EnrolledSections extends SwingWorker<String, Object>
     String studentId;
     JButton btnUseSelectedSections;
     
+    JTextField tfBirthdate;
+    
     //Functions Variables
     long threadDelay = 100;
     long pauseDelay = 500;
@@ -43,6 +45,8 @@ public class thread_loadSf10EnrolledSections extends SwingWorker<String, Object>
         sf10Table = tablesToUse[0];
         studentId = stringsToUse[0];
         btnUseSelectedSections = buttonsToUse[0];
+        
+        tfBirthdate = textFieldsToUse[0];
         //For Loading Screen & Functions
         
         my = new myFunctions(true);
@@ -57,18 +61,28 @@ public class thread_loadSf10EnrolledSections extends SwingWorker<String, Object>
     protected String doInBackground() throws Exception {
         btnUseSelectedSections.setEnabled(false);
         showCustomDialog("Loading Enrolled Sections...", dialogPanel, false, 420, 220, true);
-        progressBar.setMaximum(1);
+        progressBar.setMaximum(2);
         progressBar.setValue(0);
         
-        lbLoadingMessage.setText("Connecting to Database...");
+        lbLoadingMessage.setText("Connecting to Database...1/2");
         
         String where = "WHERE studentId='"+studentId+"'";
         String [] result = my.return_values("*", "form_sf10_view", where, myVariables.getJhsf10Order());
-        
         progressBar.setValue(1);
+        Thread.sleep(threadDelay);
+        
+        lbLoadingMessage.setText("Connecting to Database...2/2");
+        
+        String [] personalDetailsResult = my.return_values("*", "personalinfo", "WHERE stdId='"+studentId+"'", myVariables.getStudentsPersonalInfoOrder());
+        progressBar.setValue(2);
         Thread.sleep(pauseDelay);
         
         my.clear_table_rows(sf10Table);
+        
+        if(!loadDetailsToTextfields(personalDetailsResult)){
+            throw new InterruptedException();
+        }
+        
         if(result != null){
             int studCount = result.length;
             progressBar.setMaximum(studCount);
@@ -100,7 +114,21 @@ public class thread_loadSf10EnrolledSections extends SwingWorker<String, Object>
         super.done(); //To change body of generated methods, choose Tools | Templates.
     }
     //Custom Functions
-    
+    private boolean loadDetailsToTextfields(String result []){
+        try {
+            if(result == null){
+                return true;
+            }
+            
+            String birthDate = my.getValueAtColumn(result[0], 2);
+            tfBirthdate.setText(birthDate);
+            
+            Thread.sleep(threadDelay);
+        } catch (InterruptedException e) {
+            return false;
+        }
+        return true;
+    }
     //Dialog Functions
     private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable){
         if(dialog != null && dialog.isVisible()){
