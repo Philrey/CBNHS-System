@@ -276,15 +276,15 @@ public class dashBoard extends javax.swing.JFrame {
         jScrollPane44 = new javax.swing.JScrollPane();
         sf7TeachersTable = new javax.swing.JTable();
         jScrollPane45 = new javax.swing.JScrollPane();
-        sf7AssignedSubjectsTable1 = new javax.swing.JTable();
+        sf7AssignedSubjectsTable = new javax.swing.JTable();
         jspRight = new javax.swing.JScrollPane();
         jPanel31 = new javax.swing.JPanel();
         jPanel32 = new javax.swing.JPanel();
         jLabel96 = new javax.swing.JLabel();
         jLabel99 = new javax.swing.JLabel();
         jLabel108 = new javax.swing.JLabel();
-        btnLoadStudents7 = new javax.swing.JButton();
-        btnExportSf11 = new javax.swing.JButton();
+        btnLoadTeacher = new javax.swing.JButton();
+        btnExportSf7 = new javax.swing.JButton();
         jcbSchoolYear2 = new javax.swing.JComboBox<>();
         jLabel102 = new javax.swing.JLabel();
         sf8Tab = new javax.swing.JPanel();
@@ -2614,63 +2614,86 @@ public class dashBoard extends javax.swing.JFrame {
         jSplitPane10.setBorder(null);
         jSplitPane10.setDividerLocation(650);
 
-        spLeft.setDividerLocation(300);
+        spLeft.setDividerLocation(250);
         spLeft.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         sf7TeachersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID", "Remarks"
+                "ID", "Employee ID", "Name", "Gender", "Fund Source", "Position", "Nature of Appointment", "Degree", "Major", "Minor", "Access Level"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        sf7TeachersTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         sf7TeachersTable.getTableHeader().setReorderingAllowed(false);
+        sf7TeachersTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sf7TeachersTableMouseClicked(evt);
+            }
+        });
         jScrollPane44.setViewportView(sf7TeachersTable);
         if (sf7TeachersTable.getColumnModel().getColumnCount() > 0) {
-            sf7TeachersTable.getColumnModel().getColumn(2).setPreferredWidth(50);
-            sf7TeachersTable.getColumnModel().getColumn(4).setPreferredWidth(40);
+            sf7TeachersTable.getColumnModel().getColumn(1).setResizable(false);
+            sf7TeachersTable.getColumnModel().getColumn(1).setPreferredWidth(150);
+            sf7TeachersTable.getColumnModel().getColumn(2).setPreferredWidth(200);
+            sf7TeachersTable.getColumnModel().getColumn(3).setResizable(false);
+            sf7TeachersTable.getColumnModel().getColumn(3).setPreferredWidth(80);
+            sf7TeachersTable.getColumnModel().getColumn(4).setPreferredWidth(150);
+            sf7TeachersTable.getColumnModel().getColumn(5).setPreferredWidth(150);
+            sf7TeachersTable.getColumnModel().getColumn(6).setPreferredWidth(180);
+            sf7TeachersTable.getColumnModel().getColumn(7).setPreferredWidth(150);
+            sf7TeachersTable.getColumnModel().getColumn(8).setPreferredWidth(150);
+            sf7TeachersTable.getColumnModel().getColumn(9).setPreferredWidth(150);
+            sf7TeachersTable.getColumnModel().getColumn(10).setPreferredWidth(80);
         }
 
         spLeft.setLeftComponent(jScrollPane44);
 
         jScrollPane45.setBorder(null);
 
-        sf7AssignedSubjectsTable1.setModel(new javax.swing.table.DefaultTableModel(
+        sf7AssignedSubjectsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID", "Remarks"
+                "ID", "Teacher ID", "Section ID", "Section Name", "Subject ID", "Code", "Description", "Grade", "School Year"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        sf7AssignedSubjectsTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane45.setViewportView(sf7AssignedSubjectsTable1);
-        if (sf7AssignedSubjectsTable1.getColumnModel().getColumnCount() > 0) {
-            sf7AssignedSubjectsTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
-            sf7AssignedSubjectsTable1.getColumnModel().getColumn(4).setPreferredWidth(40);
+        sf7AssignedSubjectsTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        sf7AssignedSubjectsTable.setEnabled(false);
+        sf7AssignedSubjectsTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane45.setViewportView(sf7AssignedSubjectsTable);
+        if (sf7AssignedSubjectsTable.getColumnModel().getColumnCount() > 0) {
+            sf7AssignedSubjectsTable.getColumnModel().getColumn(3).setPreferredWidth(200);
+            sf7AssignedSubjectsTable.getColumnModel().getColumn(5).setPreferredWidth(100);
+            sf7AssignedSubjectsTable.getColumnModel().getColumn(6).setPreferredWidth(200);
+            sf7AssignedSubjectsTable.getColumnModel().getColumn(7).setResizable(false);
+            sf7AssignedSubjectsTable.getColumnModel().getColumn(7).setPreferredWidth(80);
+            sf7AssignedSubjectsTable.getColumnModel().getColumn(8).setResizable(false);
+            sf7AssignedSubjectsTable.getColumnModel().getColumn(8).setPreferredWidth(150);
         }
 
         spLeft.setRightComponent(jScrollPane45);
@@ -2710,19 +2733,19 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel108.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel108.setText("Export Options");
 
-        btnLoadStudents7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_sync_16px.png"))); // NOI18N
-        btnLoadStudents7.setText("Load Teachers");
-        btnLoadStudents7.addActionListener(new java.awt.event.ActionListener() {
+        btnLoadTeacher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_sync_16px.png"))); // NOI18N
+        btnLoadTeacher.setText("Load Teachers");
+        btnLoadTeacher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoadStudents7ActionPerformed(evt);
+                btnLoadTeacherActionPerformed(evt);
             }
         });
 
-        btnExportSf11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_print_16px.png"))); // NOI18N
-        btnExportSf11.setText("Export");
-        btnExportSf11.addActionListener(new java.awt.event.ActionListener() {
+        btnExportSf7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_print_16px.png"))); // NOI18N
+        btnExportSf7.setText("Export");
+        btnExportSf7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportSf11ActionPerformed(evt);
+                btnExportSf7ActionPerformed(evt);
             }
         });
 
@@ -2740,10 +2763,10 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(jPanel31Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnExportSf11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExportSf7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel99, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel108, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLoadStudents7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLoadTeacher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel31Layout.createSequentialGroup()
                         .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel102, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2765,9 +2788,9 @@ public class dashBoard extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel108)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLoadStudents7)
+                .addComponent(btnLoadTeacher)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnExportSf11)
+                .addComponent(btnExportSf7)
                 .addContainerGap(617, Short.MAX_VALUE))
         );
 
@@ -5405,17 +5428,43 @@ public class dashBoard extends javax.swing.JFrame {
         tpSf10Pane.setSelectedIndex(2);
     }//GEN-LAST:event_btnUseSelectedSectionsActionPerformed
 
-    private void btnLoadStudents7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudents7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoadStudents7ActionPerformed
+    private void btnLoadTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadTeacherActionPerformed
+        String schoolYear = jcbSchoolYear2.getSelectedItem().toString();
+        
+        my.runSecondaryThread(8, true,
+                new JTable[]{sf7TeachersTable,sf7AssignedSubjectsTable},
+                new String[]{schoolYear},
+                new JTextField[]{},
+                new JButton[]{btnLoadTeacher,btnExportSf7},
+                new boolean[]{true}
+        );
+    }//GEN-LAST:event_btnLoadTeacherActionPerformed
 
-    private void btnExportSf11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf11ActionPerformed
+    private void btnExportSf7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf7ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnExportSf11ActionPerformed
+    }//GEN-LAST:event_btnExportSf7ActionPerformed
 
     private void btnSf7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf7ActionPerformed
         selectFormToExport(7);
     }//GEN-LAST:event_btnSf7ActionPerformed
+
+    private void sf7TeachersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sf7TeachersTableMouseClicked
+        if(evt.getClickCount() == 2){
+            int row = sf7TeachersTable.getSelectedRow();
+            String userId = sf7TeachersTable.getValueAt(row, 0).toString();
+            
+            //selectItemsFromTable(sf7AssignedSubjectsTable,0, userId, true);
+            my.runSecondaryThread(9, true, 
+                    new JTable[]{sf7AssignedSubjectsTable,sf7TeachersTable}, 
+                    new String[]{"1",userId}, 
+                    new JTextField[]{},
+                    new JButton[]{},
+                    new boolean[]{true}
+            );
+        }else{
+            sf7AssignedSubjectsTable.clearSelection();
+        }
+    }//GEN-LAST:event_sf7TeachersTableMouseClicked
     private void selectFormToExport(int formIndexExact){
         if(myVariables.getFormSelected() != formIndexExact){
             my.clear_table_rows(assignedTeacherTable);
@@ -5463,6 +5512,7 @@ public class dashBoard extends javax.swing.JFrame {
         }
         
     }
+    
     private void setLoadingVariables(){
         myVariables.setProgressBar(jpbProgressBar);
         myVariables.setLbLoadingMessage(lbLoadingMessage);
@@ -5693,6 +5743,8 @@ public class dashBoard extends javax.swing.JFrame {
             grade7RankingTable,grade8RankingTable,grade9RankingTable,grade10RankingTable,
             sf8Table,sf8SummaryTable,enrolledStudentsTable,gradesTable,
             
+            sf7TeachersTable,sf7AssignedSubjectsTable,
+            
             enrolledStudentsTable1,sf10Table,gradesTable1,gradesTable2,gradesTable3,gradesTable4,gradesTable5,
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
@@ -5797,7 +5849,7 @@ public class dashBoard extends javax.swing.JFrame {
             btnLoadStudents4,btnExportSf5,btnRefreshRankings,btnLoadStudents5,btnExportSf6,
             btnOnlySelectedSections1,btnSelectAllSections1,btnLoadStudents6,btnExportSf8,
             btnSearchEnrolledStudent,btnSearchEnrolledStudent1,
-            btnLoadGrades,btnExportSf9,btnExportSf10,
+            btnLoadGrades,btnExportSf9,btnExportSf10,btnLoadTeacher,btnExportSf7,
         };
         
         JButton lightButtons [] = {
@@ -5830,7 +5882,7 @@ public class dashBoard extends javax.swing.JFrame {
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
             jLabel2,jLabel13,jLabel25,jLabel26,jLabel29,jLabel32,jLabel41,jLabel51,jLabel52,jLabel53,
-            jLabel42,jLabel56,jLabel64,jLabel76,
+            jLabel42,jLabel56,jLabel64,jLabel76,jLabel96,
         };
         JLabel labels [] = {
             lbSearchResult,lbSearchResult1,lbSearchResult2,jLabel75,
@@ -5840,7 +5892,7 @@ public class dashBoard extends javax.swing.JFrame {
         JLabel formsHeaderLabels [] = {
             jLabel3,jLabel8,jLabel14,jLabel19,jLabel22,jLabel27,jLabel33,jLabel34,jLabel36,
             jLabel43,jLabel44,jLabel45,jLabel46,jLabel54,jLabel57,jLabel62,jLabel63,jLabel65,
-            jLabel70,jLabel93,jLabel85,jLabel77,jLabel90,
+            jLabel70,jLabel93,jLabel85,jLabel77,jLabel90,jLabel99,jLabel108,
         };
         JLabel textFieldHeaderLabels [] = {
             lbLoadingMessage,jLabel4,jLabel5,jLabel6,jLabel7,jLabel9,jLabel10,
@@ -5849,7 +5901,7 @@ public class dashBoard extends javax.swing.JFrame {
             jLabel47,jLabel48,jLabel49,jLabel50,jLabel55,jLabel58,jLabel59,jLabel60,jLabel61,
             jLabel71,jLabel7,jLabel73,jLabel74,jLabel66,jLabel67,jLabel69,
             jLabel78,jLabel79,jLabel80,jLabel81,jLabel82,jLabel83,jLabel84,jLabel86,jLabel87,
-            jLabel88,jLabel89,
+            jLabel88,jLabel89,jLabel102,
             
         };
         
@@ -5990,12 +6042,12 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelLoading;
     private javax.swing.JButton btnExportSf1;
     private javax.swing.JButton btnExportSf10;
-    private javax.swing.JButton btnExportSf11;
     private javax.swing.JButton btnExportSf2;
     private javax.swing.JButton btnExportSf3;
     private javax.swing.JButton btnExportSf4;
     private javax.swing.JButton btnExportSf5;
     private javax.swing.JButton btnExportSf6;
+    private javax.swing.JButton btnExportSf7;
     private javax.swing.JButton btnExportSf8;
     private javax.swing.JButton btnExportSf9;
     private javax.swing.JButton btnLoadGrades;
@@ -6006,7 +6058,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnLoadStudents4;
     private javax.swing.JButton btnLoadStudents5;
     private javax.swing.JButton btnLoadStudents6;
-    private javax.swing.JButton btnLoadStudents7;
+    private javax.swing.JButton btnLoadTeacher;
     private javax.swing.JButton btnOnlySelectedSections;
     private javax.swing.JButton btnOnlySelectedSections1;
     private javax.swing.JButton btnRefreshRankings;
@@ -6302,7 +6354,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTable sf5SummaryTable;
     private javax.swing.JTable sf5Table;
     private javax.swing.JTable sf6Table;
-    private javax.swing.JTable sf7AssignedSubjectsTable1;
+    private javax.swing.JTable sf7AssignedSubjectsTable;
     private javax.swing.JPanel sf7Tab;
     private javax.swing.JTable sf7TeachersTable;
     private javax.swing.JTable sf8SummaryTable;

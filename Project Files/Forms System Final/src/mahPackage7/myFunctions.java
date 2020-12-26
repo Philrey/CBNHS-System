@@ -859,6 +859,14 @@ public class myFunctions {
                 thread_loadSf10EnrolledSections lR = new thread_loadSf10EnrolledSections(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
                 toLoad = new Thread(lR);
                 break;
+            }case 8:{
+                thread_loadSf7Details lR = new thread_loadSf7Details(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
+                toLoad = new Thread(lR);
+                break;
+            }case 9:{
+                thread_selectItemsFromTable lR = new thread_selectItemsFromTable(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
+                toLoad = new Thread(lR);
+                break;
             }default:{
                 System.err.println("No proper thread selected.");
                 return;
