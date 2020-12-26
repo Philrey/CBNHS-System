@@ -513,6 +513,11 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnSf7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"))); // NOI18N
         btnSf7.setText("School Form 7");
+        btnSf7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSf7ActionPerformed(evt);
+            }
+        });
 
         btnSf8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"))); // NOI18N
         btnSf8.setText("School Form 8");
@@ -5407,6 +5412,10 @@ public class dashBoard extends javax.swing.JFrame {
     private void btnExportSf11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf11ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExportSf11ActionPerformed
+
+    private void btnSf7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf7ActionPerformed
+        selectFormToExport(7);
+    }//GEN-LAST:event_btnSf7ActionPerformed
     private void selectFormToExport(int formIndexExact){
         if(myVariables.getFormSelected() != formIndexExact){
             my.clear_table_rows(assignedTeacherTable);
@@ -5436,6 +5445,7 @@ public class dashBoard extends javax.swing.JFrame {
                 tpSelectSectionInstructions.setSelectedIndex(3);
                 break;
             }case 7:{
+                my.select_tab(mainTab, 6);
                 break;
             }case 8:{
                 my.select_tab(mainTab, 1);

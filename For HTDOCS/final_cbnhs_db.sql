@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2020 at 02:48 AM
+-- Generation Time: Dec 26, 2020 at 04:20 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -609,6 +609,44 @@ CREATE TABLE `form_sf5_viewminimal` (
 ,`actionTaken` varchar(30)
 ,`failedSubjects` varchar(1000)
 ,`dateUpdated` datetime
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `form_sf7view_loads`
+-- (See below for the actual view)
+--
+CREATE TABLE `form_sf7view_loads` (
+`id` int(11)
+,`teacherId` int(11)
+,`sectionId` int(11)
+,`sectionName` varchar(50)
+,`subjectId` int(11)
+,`subjectCode` varchar(200)
+,`description` varchar(500)
+,`gradeLevel` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `form_sf7view_teachers`
+-- (See below for the actual view)
+--
+CREATE TABLE `form_sf7view_teachers` (
+`id` int(11)
+,`employeeNumber` varchar(100)
+,`user_Lname` varchar(200)
+,`user_Fname` varchar(200)
+,`user_Mname` varchar(200)
+,`gender` varchar(12)
+,`fundSource` text
+,`position` text
+,`nature` text
+,`degree` text
+,`major` text
+,`minor` text
 );
 
 -- --------------------------------------------------------
@@ -1681,6 +1719,24 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `form_sf7view_loads`
+--
+DROP TABLE IF EXISTS `form_sf7view_loads`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf7view_loads`  AS  select `teacherloads`.`id` AS `id`,`teacherloads`.`teacherId` AS `teacherId`,`teacherloads`.`sectionId` AS `sectionId`,`sections`.`sectionName` AS `sectionName`,`teacherloads`.`subjectId` AS `subjectId`,`subjects`.`subjectCode` AS `subjectCode`,`subjects`.`description` AS `description`,`subjects`.`gradeLevel` AS `gradeLevel` from ((`teacherloads` left join `sections` on((`teacherloads`.`sectionId` = `sections`.`id`))) left join `subjects` on((`teacherloads`.`subjectId` = `subjects`.`id`))) order by `teacherloads`.`teacherId` desc,`subjects`.`gradeLevel`,`sections`.`sectionName` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `form_sf7view_teachers`
+--
+DROP TABLE IF EXISTS `form_sf7view_teachers`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf7view_teachers`  AS  select `users`.`id` AS `id`,ifnull(`userdetails`.`employeeNumber`,' ') AS `employeeNumber`,`users`.`user_Lname` AS `user_Lname`,`users`.`user_Fname` AS `user_Fname`,`users`.`user_Mname` AS `user_Mname`,`users`.`gender` AS `gender`,ifnull(`userdetails`.`fundSource`,' ') AS `fundSource`,ifnull(`userdetails`.`position`,' ') AS `position`,ifnull(`userdetails`.`nature`,' ') AS `nature`,ifnull(`userdetails`.`degree`,' ') AS `degree`,ifnull(`userdetails`.`major`,' ') AS `major`,ifnull(`userdetails`.`minor`,' ') AS `minor` from (`users` left join `userdetails` on((`users`.`id` = `userdetails`.`userId`))) order by `users`.`user_Lname`,`users`.`user_Fname`,`users`.`user_Mname` ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `form_sf8_view`
 --
 DROP TABLE IF EXISTS `form_sf8_view`;
@@ -1703,7 +1759,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `form_sf10_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf10_view`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`sectionId` AS `sectionId`,`sections`.`sectionName` AS `sectionName`,`sections`.`adviserId` AS `adviserId`,`users`.`user_Lname` AS `user_Lname`,`users`.`user_Fname` AS `user_Fname`,`users`.`user_Mname` AS `user_Mname`,`users`.`gender` AS `gender`,`sections`.`loadId` AS `loadId`,`loads`.`b_loadName` AS `loadName`,`loads`.`c_gradeLevel` AS `gradeLevel`,`loads`.`d_subjectsContained` AS `subjectsContained`,`sections`.`schoolYear` AS `schoolYear`,`enrollment`.`remarks` AS `remarks`,`enrollment`.`dateEnrolled` AS `dateEnrolled` from ((((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `sections` on((`enrollment`.`sectionId` = `sections`.`id`))) left join `users` on((`sections`.`adviserId` = `users`.`id`))) left join `loads` on((`sections`.`loadId` = `loads`.`a_id`))) order by `enrollment`.`studentId` desc,`loads`.`c_gradeLevel`,`enrollment`.`dateEnrolled` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf10_view`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`sectionId` AS `sectionId`,`sections`.`sectionName` AS `sectionName`,`sections`.`adviserId` AS `adviserId`,`users`.`user_Lname` AS `user_Lname`,`users`.`user_Fname` AS `user_Fname`,`users`.`user_Mname` AS `user_Mname`,`users`.`gender` AS `gender`,`sections`.`loadId` AS `loadId`,`loads`.`b_loadName` AS `loadName`,`loads`.`c_gradeLevel` AS `gradeLevel`,`loads`.`d_subjectsContained` AS `subjectsContained`,`sections`.`schoolYear` AS `schoolYear`,`enrollment`.`remarks` AS `remarks`,`enrollment`.`dateEnrolled` AS `dateEnrolled` from ((((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `sections` on((`enrollment`.`sectionId` = `sections`.`id`))) left join `users` on((`sections`.`adviserId` = `users`.`id`))) left join `loads` on((`sections`.`loadId` = `loads`.`a_id`))) order by `enrollment`.`studentId` desc,`loads`.`c_gradeLevel`,`sections`.`schoolYear`,`enrollment`.`dateEnrolled` ;
 
 -- --------------------------------------------------------
 
