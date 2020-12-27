@@ -8,8 +8,17 @@ package mahPackageText;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import javax.swing.JTextField;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.ClientAnchor;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.Picture;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -65,6 +74,9 @@ public class myFunctions {
     //</editor-fold>
     //<editor-fold desc="Write Functions">
     //#1 Write Single Data
+    public void writeExcelSingleData(int sheetNumber,JTextField textField,String excelAddress){
+        writeExcelSingleData(sheetNumber, textField.getText(), excelAddress);
+    }
     public void writeExcelSingleData(int sheetNumber,String value,String excelAddress){
         //Note: excellAddress must have ',' to separate the address. E.G. ( A,1 )
         int [] location = parseExcelAddress(excelAddress);
@@ -136,6 +148,51 @@ public class myFunctions {
                 n++;
             }
             currColumn++;
+        }
+    }
+    //#3 Draw an Image
+    public void drawImageToCell(int sheetNumber,String imgUrl,String excelCellAddress,boolean resetSize){
+        int location [] = parseExcelAddress(excelCellAddress);
+        drawImageToCell(sheetNumber, imgUrl, new int [] {location[0],location[1],location[0]+1,location[1]+1}, resetSize);
+    }
+    public void drawImageToCell(int sheetNumber,String imgUrl,int [] anchors_X1Y1_X2Y2,boolean resetSize){
+        try {
+            XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+            
+            //Load File
+            
+            FileInputStream inpStream = new FileInputStream(new File(getClass().getResource(imgUrl).toURI()));
+            byte[] bytes = IOUtils.toByteArray(inpStream);
+            int pictureIndex = workbook.addPicture(bytes, XSSFWorkbook.PICTURE_TYPE_PNG);
+            inpStream.close();
+            
+            System.err.println("Picture Index: "+pictureIndex);
+            
+            if (bytes == null) {
+                System.err.println("Bytes are null");
+            }
+            //Anchor Image
+            CreationHelper helper = workbook.getCreationHelper();
+            Drawing drawing = sheet.createDrawingPatriarch();
+            
+            ClientAnchor anchor = helper.createClientAnchor();
+            
+            anchor.setRow1(anchors_X1Y1_X2Y2[0]);
+            anchor.setCol1(anchors_X1Y1_X2Y2[1]);
+            anchor.setRow2(anchors_X1Y1_X2Y2[2]);
+            anchor.setCol2(anchors_X1Y1_X2Y2[3]);
+            
+            //Create Picture
+            Picture picture = drawing.createPicture(anchor, pictureIndex);
+            if(resetSize){
+                picture.resize();
+            }
+        }catch(URISyntaxException x){
+            System.err.println("Invalid URI");
+            x.printStackTrace();
+        }catch (IOException e) {
+            System.err.println("File Not Found\n"+e.getMessage());
+            e.printStackTrace();
         }
     }
     //</editor-fold>
