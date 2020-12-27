@@ -134,6 +134,9 @@ public class myVariables {
     
     private static final String sectionsIcon = "icons/icons8_page_20px.png";
     private static final String viewStudentsIcon = "icons/icons8_read_online_20px.png";
+    
+    private static final String lateCommerIcon = "icons/late_commer.png";
+    private static final String cuttingClassesIcon = "icons/cutting_classes.png";
             
     //Window Icons
     private static final String attendanceWindowIcon = "icons/attendanceIcon.png";
@@ -690,8 +693,6 @@ public class myVariables {
     public static int[] getJhsf8Order() {
         return jhsf8Order;
     }
-    
-    //</editor-fold>
     public static void setSelectAllSectionsForSf6(boolean selectAllSectionsForSf6) {    
         myVariables.selectAllSectionsForSf6 = selectAllSectionsForSf6;
     }
@@ -728,4 +729,12 @@ public class myVariables {
         return jhsf7LoadsOrder;
     }
     
+    public static String getLateCommerIcon() {
+        return lateCommerIcon;
+    }
+
+    public static String getCuttingClassesIcon() {
+        return cuttingClassesIcon;
+    }
+    //</editor-fold>
 }

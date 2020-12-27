@@ -9,15 +9,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URISyntaxException;
 import javax.swing.JTextField;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Drawing;
 import org.apache.poi.ss.usermodel.Picture;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -34,6 +31,18 @@ public class myFunctions {
     }
     
     //<editor-fold desc="Excel Management Functions">
+    /*  -----------------------------------
+        | Important Dependencies For this |
+        -----------------------------------
+        poi-4.1.2.jar
+        poi-ooxml-4.1.2.jar
+        poi-ooxml-schemas-4.1.2.jar
+        dom4j-1.6.jar
+        commons-collections4-4.3.jar
+        commons-compress-1.18.jar
+        xmlbeans-3.1.0.jar
+    */
+    
     //<editor-fold desc="Variables That Matter">
     private static XSSFWorkbook workbook;
     private static final String letters [] = new String [] {
