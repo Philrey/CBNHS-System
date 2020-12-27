@@ -20,15 +20,18 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Phil Rey Paderogao
  */
 public class myFunctions {
+    public myFunctions() {
+        
+    }
+    
     //<editor-fold desc="Excel Management Functions">
+    //<editor-fold desc="Variables That Matter">
     private static XSSFWorkbook workbook;
     private static final String letters [] = new String [] {
-        "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r",
-        "s","t","u","v","w","x","y","z"
+        "a","b","c","d","e","f","g","h","i","j","k","l","m",
+        "n","o","p","q","r","s","t","u","v","w","x","y","z"
     };
-
-    public myFunctions() {
-    }
+    //</editor-fold>
     //<editor-fold desc="Open & Save File">
     public boolean createExcelFile(String fileName){
         if(fileName != null){
@@ -92,9 +95,10 @@ public class myFunctions {
         }
     }
     //#2 Write One Whole Row
-    public void writeExcelLine(int sheetNumber, String line,int [] skipExcelColumns,String startAddress){
+    public void writeExcelLine(int sheetNumber, String line,String skipMergedExcelColumns,String startAddress){
         //Note: excellAddress must have ',' to separate the address. E.G. ( A,1 )
         int [] location = parseExcelAddress(startAddress);
+        int [] skipExcelColumns = parseExcelColumns(skipMergedExcelColumns);
         writeExcelLine(sheetNumber, line, skipExcelColumns, location[0], location[1]);
     }
     private void writeExcelLine(int sheetNumber, String line,int [] skipExcelColumns,int rowStart,int columnStart){
@@ -105,36 +109,67 @@ public class myFunctions {
         }
         
         String [] values = line.split("@@");
-        int columnCount = values.length;
+        int dataCount = values.length;
         
         
         XSSFRow row = null;
         
-        for(int n=0;n<columnCount;n++){
+        int currColumn = columnStart;
+        for(int n=0;n<dataCount; ){
             row = sheet.getRow(rowStart);
+            
+            if(!isMergedCellIndex(currColumn, skipExcelColumns)){
+                if(row != null){
+                    XSSFCell cell = row.getCell(currColumn);
 
-            if(row != null){
-                XSSFCell cell = row.getCell(columnStart+n);
-
-                if(cell != null){
-                    cell.setCellValue(values[n]);
+                    if(cell != null){
+                        cell.setCellValue(values[n]);
+                    }else{
+                        XSSFCell newCell = row.createCell(currColumn);
+                        newCell.setCellValue(values[n]);
+                    }
                 }else{
-                    XSSFCell newCell = row.createCell(columnStart+n);
+                    row = sheet.createRow(rowStart);
+                    XSSFCell newCell = row.createCell(currColumn);
                     newCell.setCellValue(values[n]);
                 }
-            }else{
-                row = sheet.createRow(rowStart);
-                XSSFCell newCell = row.createCell(columnStart+n);
-                newCell.setCellValue(values[n]);
+                n++;
             }
+            currColumn++;
         }
     }
-    
     //</editor-fold>
-    
-    
-    
-    public int [] parseExcelAddress(String excelAddress){
+    //<editor-fold desc="Other Useful Functions Hehe">
+    private boolean isMergedCellIndex(int columnIndex, int [] mergedColumnsList){
+        boolean result = false;
+        if(mergedColumnsList != null){
+            for(int n=0;n<mergedColumnsList.length;n++){
+                if(columnIndex == mergedColumnsList[n]){
+                    //System.err.println("Merged Column Found: "+mergedColumns[n]);
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+    private int [] parseExcelColumns(String excelColumnAddress){
+        // Adresses must be in a format of E.G. ( A,B,D,E,G ) in ascending order
+        if(excelColumnAddress == null){
+            return null;
+        }
+        
+        String letters [] = excelColumnAddress.toLowerCase().split(",");
+        int [] indeces = new int[letters.length];
+        
+        for (int n = 0; n < indeces.length; n++) {
+            indeces[n] = getLetterValue( String.valueOf(letters[n].charAt(0)) );
+            System.err.println("Skipping column: "+letters[n]+"="+indeces[n]);
+        }
+        
+        return indeces;
+    }
+    private int [] parseExcelAddress(String excelAddress){
         String address [] = excelAddress.toLowerCase().split(",");
         
         int row = Integer.parseInt(address[1])-1;
@@ -154,5 +189,6 @@ public class myFunctions {
         }
         return 0;
     }
+    //</editor-fold>
     //</editor-fold>
 }

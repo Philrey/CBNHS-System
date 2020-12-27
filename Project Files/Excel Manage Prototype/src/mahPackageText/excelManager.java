@@ -10,7 +10,7 @@ public class excelManager {
         my = new myFunctions();
         
         my.createExcelFile("Test.xlsx");
-        my.writeExcelLine(0, "Meow@@Meow2@@Meow3@@", new int [] {1},"A,1");
+        my.writeExcelLine(0, "Meow@@Meow2@@Meow3@@", "B,C,D,F","A,1");
         my.writeExcelSingleData(0, "Hello World2", "G,5");
         my.saveExcelFile("Text.xlsx");
     }
