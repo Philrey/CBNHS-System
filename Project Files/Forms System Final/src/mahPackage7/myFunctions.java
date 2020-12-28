@@ -1698,14 +1698,16 @@ public class myFunctions {
         System.out.println("Creating File Success..."+fileName);
         return true;
     }
-    public void saveExcelFile(String fileName){
+    public boolean saveExcelFile(String fileName){
         try {
             FileOutputStream fileOut;
             fileOut = new FileOutputStream(new File(fileName));
             workbook.write(fileOut);
             fileOut.close();
+            return true;
         } catch (Exception e) {
             System.err.println("Saving File Failed...");
+            return false;
         }
     }
     //</editor-fold>

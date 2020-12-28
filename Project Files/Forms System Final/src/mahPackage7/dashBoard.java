@@ -4830,7 +4830,13 @@ public class dashBoard extends javax.swing.JFrame {
             return;
         }
         
-        
+        my.runExportThread(
+                new JTable[]{sf1StudentsTable},
+                new String[]{},
+                new JTextField[]{tfSectionName,tfAdviserName,tfGradeLevel,tfSchoolYear,tfMaleCount,tfFemaleCount,tfTotalCount}, 
+                new JButton[]{btnExportSf1},
+                new boolean[]{}
+        );
     }//GEN-LAST:event_btnExportSf1ActionPerformed
 
     private void btnSf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf1ActionPerformed
