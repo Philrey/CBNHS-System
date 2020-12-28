@@ -120,7 +120,7 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="TABLE FUNCTIONS">
-    public void searchItemThread(String toSearch,String where,JTable resultTable,int viewTableIndex,int [] combineColumns,boolean toNameFormat,JLabel resultText,int [] coloredColumnIndex,Color selectedColor){
+    public void searchItemThread(String toSearch,String where,JTable resultTable,int viewTableIndex,int [] combineColumns,boolean [] booleansToUse,JLabel resultText,int [] coloredColumnIndex,Color selectedColor){
         String from="";
         int [] order = null;
         switch(viewTableIndex){
@@ -191,7 +191,7 @@ public class myFunctions {
         }
         
         thread_return_values trv = new thread_return_values(
-                toSearch,"*", from, where, order, resultTable,combineColumns,toNameFormat,resultText,coloredColumnIndex,selectedColor
+                toSearch,"*", from, where, order, resultTable,combineColumns,booleansToUse,resultText,coloredColumnIndex,selectedColor
         );
         System.err.println("Starting Thread");
         if(mainThead != null){
@@ -806,6 +806,21 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
+    public String getSectionNameOnly(String sectionName,boolean toUppercase){
+        if(sectionName.contains("-")){
+            try {
+                String [] temp = sectionName.split("-");
+                temp[1] = toUppercase? temp[1].toUpperCase() : temp[1];
+                temp[1].trim();
+                return temp[1];
+            } catch (Exception e) {
+                System.err.println("Error extracting sectionName "+e.getLocalizedMessage());
+                return sectionName;
+            }
+        }else{
+            return sectionName;
+        }
+    }
     public void showTrayMessage(String title,String message,TrayIcon.MessageType messageType){
         SystemTray tray = SystemTray.getSystemTray();
         Image img = null;
@@ -831,6 +846,20 @@ public class myFunctions {
             tIcon.displayMessage(title, message, messageType);
         } catch (Exception e) {
         }
+    }
+    public void runExportThread(JTable [] tablesToUse,String [] valuesToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean  [] booleansToUse){
+        Thread toLoad = null;
+        
+        thread_export_schoolForms sfThread = new thread_export_schoolForms(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
+        toLoad = new Thread(sfThread);
+        
+        if(secondThread != null){
+            if(secondThread.isAlive()){
+                interrupSecondThread();
+            }
+        }
+        secondThread = toLoad;
+        secondThread.start();
     }
     public void runSecondaryThread(int threadIndex,boolean waitForMainThreadToFinish,JTable [] tablesToUse,String [] valuesToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean  [] booleansToUse){
         Thread toLoad = null;
@@ -1191,6 +1220,51 @@ public class myFunctions {
         }else{
             return new String [] {lastNameString," "};
         }
+    }
+    protected String toNameFormatPrintedName(String line,int [] columnIndex,boolean toUpperCase){
+        String [] temp = line.split("@@");
+        String finalString = "";
+        String firstName = "";
+        String lastName = "";
+        String middleName = "";
+        String extentionName = "";
+        
+        for(int n=0;n<temp.length;n++){
+            boolean isFound = false;
+            boolean isLast = false;
+            for(int x=0;x<columnIndex.length;x++){
+                if(x==columnIndex.length-1){
+                    isLast = true;
+                }
+                if(columnIndex[x] == n){
+                    isFound = true;
+                    switch(x){
+                        case 0:{
+                            lastName = temp[n];break;
+                        }case 1:{
+                            firstName = temp[n];break;
+                        }case 2:{
+                            middleName = temp[n];break;
+                        }
+                    }
+                    
+                    break;
+                }
+            }
+            if(!isFound){
+                finalString+=temp[n]+"@@";
+            }else{
+                if(isLast){
+                    String names [] = separateLastNameExtention(lastName);
+                    lastName = names[0].trim();
+                    extentionName = names[1].trim();
+                    
+                    finalString+=firstName.trim()+" "+middleName.trim()+" "+lastName+" "+extentionName+"@@";
+                }
+            }
+        }
+        
+        return finalString;
     }
     protected String toNameFormat(String line,int [] columnIndex){
         String [] temp = line.split("@@");

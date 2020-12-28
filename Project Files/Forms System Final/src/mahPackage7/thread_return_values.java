@@ -35,6 +35,7 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
     long threadDelay = 100;
     long pauseDelay = 500;
     int batchCount = 10;
+    myFunctions my;
     //Main Properties
     private String toSearch;
     private String select,from,where;
@@ -42,6 +43,7 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
     private JTable tableName;
     private int [] combineColumns;
     private boolean toNameFormat;
+    private boolean toPrintFormat;
     private JLabel resultText;
     
     Color selectedColor;
@@ -54,7 +56,9 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
     JLabel lbLoadingMessage;
     JProgressBar progressBar;
 
-    public thread_return_values(String toSearch,String select, String from, String where, int[] order, JTable tableName,int [] combineColumns,boolean toNameFormat,JLabel resultText,int [] coloredColumnIndex,Color selectedColor) {
+    public thread_return_values(String toSearch,String select, String from, String where, int[] order, JTable tableName,int [] combineColumns,boolean [] booleansToUse,JLabel resultText,int [] coloredColumnIndex,Color selectedColor) {
+        my = new myFunctions(true);
+        
         this.select = select;
         this.from = from;
         this.where = where;
@@ -65,7 +69,8 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
         this.lbLoadingMessage = myVariables.getLbLoadingMessage();
         this.progressBar = myVariables.getProgressBar();
         this.combineColumns = combineColumns;
-        this.toNameFormat = toNameFormat;
+        this.toNameFormat = booleansToUse[0];
+        toPrintFormat = booleansToUse[1];
         this.resultText = resultText;
         this.toSearch = toSearch;
         
@@ -92,7 +97,7 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
             //Start search
             lbLoadingMessage.setText("Retrieving from Database...");
             String [] result = return_values();
-            clear_table_rows(tableName);
+            my.clear_table_rows(tableName);
             
             Thread.sleep(pauseDelay);
             if(result != null){
@@ -113,22 +118,27 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
 
                     if(combineColumns != null){
                         if(toNameFormat){
-                            result[n] = toNameFormat(result[n], combineColumns);
+                            if(!toPrintFormat){
+                                result[n] = my.toNameFormat(result[n], combineColumns);  
+                            }else{
+                                result[n] = my.toNameFormatPrintedName(result[n], combineColumns,true);
+                            }
+                            
                         }else{
-                            result[n] = combineColumns(result[n], combineColumns);
+                            result[n] = my.combineColumns(result[n], combineColumns);
                         }
                         
                         if(selectedColor == null){
-                            add_table_row(result[n], tableName);
+                            my.add_table_row(result[n], tableName);
                         }else{
-                            add_table_row(result[n], tableName, selectedColumnIndex, selectedColor);
+                            my.add_table_row(result[n], tableName, selectedColumnIndex, selectedColor);
                         }
                         
                     }else{
                         if(selectedColor == null){
-                            add_table_row(result[n], tableName);
+                            my.add_table_row(result[n], tableName);
                         }else{
-                            add_table_row(result[n], tableName, selectedColumnIndex, selectedColor);
+                            my.add_table_row(result[n], tableName, selectedColumnIndex, selectedColor);
                         }
                     }
                     
@@ -164,131 +174,6 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
     
     
     //Custom Functions
-    public void clear_table_rows(JTable table_nameTable){
-        DefaultTableModel model=(DefaultTableModel) table_nameTable.getModel();
-        model.setRowCount(0);
-    }
-    protected String combineColumns(String line,int [] columnIndex){
-        String [] temp = line.split("@@");
-        String finalString = "";
-        
-        for(int n=0;n<temp.length;n++){
-            boolean isFound = false;
-            boolean isLast = false;
-            for(int x=0;x<columnIndex.length;x++){
-                if(x==columnIndex.length-1){
-                    isLast = true;
-                }
-                if(columnIndex[x] == n){
-                    isFound = true;
-                    break;
-                }
-            }
-            if(!isFound){
-                finalString+=temp[n]+"@@";
-            }else{
-                finalString+=temp[n]+" ";
-                if(isLast){
-                    finalString+="@@";
-                }
-            }
-            
-            
-        }
-        return finalString;
-    }
-    protected String toNameFormat(String line,int [] columnIndex){
-        String [] temp = line.split("@@");
-        String finalString = "";
-        
-        for(int n=0;n<temp.length;n++){
-            boolean isFound = false;
-            boolean isLast = false;
-            for(int x=0;x<columnIndex.length;x++){
-                if(x==columnIndex.length-1){
-                    isLast = true;
-                }
-                if(columnIndex[x] == n){
-                    isFound = true;
-                    break;
-                }
-            }
-            if(!isFound){
-                finalString+=temp[n]+"@@";
-            }else{
-                if(!isLast){
-                    finalString+=temp[n]+", ";
-                }else{
-                    if(temp[n].length() > 1){
-                        finalString+=temp[n].substring(0, 1)+".";
-                    }else{
-                        //Remove comma
-                        finalString = finalString.substring(0, finalString.length()-2);
-                    }
-                }
-                if(isLast){
-                    finalString+="@@";
-                }
-            }
-        }
-        return finalString;
-    }
-    public boolean add_table_row(String line,JTable tableName){
-        String [] row=line.split("@@");
-        Object [] rows = new Object[row.length];
-        
-        if(row[0].length() < 1){
-            return false;
-        }
-        for(int n=0;n<row.length;n++){
-            if(row[n].contains("null")){
-                rows[n] = "";
-            }else{
-                rows[n] = row[n];
-            }
-            
-        }
-        
-        DefaultTableModel model;
-        
-        model=(DefaultTableModel)tableName.getModel();
-        model.addRow(rows);
-        
-        return true;
-    }
-    public boolean add_table_row(String line,JTable tableName,int [] selectedColumns,Color foreground){
-        String [] row=line.split("@@");
-        Object [] rows = new Object[row.length];
-        
-        if(row[0].length() < 1){
-            return false;
-        }
-        for(int n=0;n<row.length;n++){
-            if(row[n].contains("null")){
-                rows[n] = "";
-            }else{
-                rows[n] = row[n];
-            }
-            
-        }
-        
-        DefaultTableModel model;
-        
-        CustomCellRenderer cellRenderer = new CustomCellRenderer(tableName.getBackground(), foreground, tableName.getFont(),tableName.getSelectionForeground(),tableName.getSelectionBackground());
-        cellRenderer.setHorizontalAlignment(JLabel.CENTER);
-        for(int n=0;n<tableName.getColumnCount();n++){
-            for(int x=0;x<selectedColumns.length;x++){
-                if(n == selectedColumns[x]){
-                    tableName.getColumnModel().getColumn(n).setCellRenderer(cellRenderer);
-                }
-            }
-        }
-        
-        model=(DefaultTableModel)tableName.getModel();
-        model.addRow(rows);
-        
-        return true;
-    }
     private String [] return_values(){
         String [] lines;
         String cLine;

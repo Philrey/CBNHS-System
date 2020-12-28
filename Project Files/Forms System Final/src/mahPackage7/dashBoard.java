@@ -4786,6 +4786,11 @@ public class dashBoard extends javax.swing.JFrame {
 
     private void btnLoadStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudentsActionPerformed
         String firstFridayDate = "";
+        
+        if(myVariables.getFormSelected() != 1){
+            my.showMessage("SF1 Not Selected", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         try {
             firstFridayDate = my.jCalendarToNumberDate(jdcFirstDayOfFridate.getDate().toString(), false);
         } catch (Exception e) {
@@ -4800,7 +4805,13 @@ public class dashBoard extends javax.swing.JFrame {
         
         String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
         
-        my.searchItemThread("", "WHERE sectionId='"+sectionId+"'", sf1StudentsTable, 10, new int [] {4,5,6}, true, null,null,null);
+        my.searchItemThread("",
+                "WHERE sectionId='"+sectionId+"'", 
+                sf1StudentsTable, 10, 
+                new int [] {4,5,6},
+                new boolean[]{true,false}, 
+                null,null,null
+        );
         my.runSecondaryThread(0, true, 
                 new JTable[]{sf1StudentsTable},
                 new String[]{firstFridayDate},
@@ -4814,7 +4825,12 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseClicked
 
     private void btnExportSf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf1ActionPerformed
-        // TODO add your handling code here:
+        if(myVariables.getFormSelected() != 1){
+            my.showMessage("SF1 Not Selected", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        
     }//GEN-LAST:event_btnExportSf1ActionPerformed
 
     private void btnSf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf1ActionPerformed
@@ -4863,7 +4879,7 @@ public class dashBoard extends javax.swing.JFrame {
             }
         }
         
-        my.searchItemThread("", "WHERE sectionId='"+sectionId+"'", sf2Table, 11, new int [] {3,4,5}, true, null,new int[]{7,12,17,22},Color.RED);
+        my.searchItemThread("", "WHERE sectionId='"+sectionId+"'", sf2Table, 11, new int [] {3,4,5}, new boolean[]{true,false}, null,new int[]{7,12,17,22},Color.RED);
         my.runSecondaryThread(1, true, 
                 new JTable[]{weekDaysOfTheMonthTable,sf2Table,summarySf2,null}, 
                 new String[]{sectionId,firstDayOfMonth,subjectId,cutOffDate,substituteValue}, 
@@ -5573,13 +5589,13 @@ public class dashBoard extends javax.swing.JFrame {
         }
         switch (myVariables.getFormSelected()){
             case 3:{
-                my.searchItemThread(toSearch,where, assignedTeacherTable, 12, new int [] {4,5,6}, true, lbSearchResult,null,null);
+                my.searchItemThread(toSearch,where, assignedTeacherTable, 12, new int [] {4,5,6}, new boolean[]{true,true}, lbSearchResult,null,null);
                 break;
             }case 9:{
-                my.searchItemThread(toSearch,where, assignedTeacherTable, 14, new int [] {4,5,6}, true, lbSearchResult,null,null);
+                my.searchItemThread(toSearch,where, assignedTeacherTable, 14, new int [] {4,5,6}, new boolean[]{true,true}, lbSearchResult,null,null);
                 break;
             }default:{
-                my.searchItemThread(toSearch,where, assignedTeacherTable, 9, new int [] {4,5,6}, true, lbSearchResult,null,null);
+                my.searchItemThread(toSearch,where, assignedTeacherTable, 9, new int [] {4,5,6}, new boolean[]{true,true}, lbSearchResult,null,null);
                 break;
             }
         }

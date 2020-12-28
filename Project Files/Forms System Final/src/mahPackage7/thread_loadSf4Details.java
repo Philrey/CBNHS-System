@@ -143,7 +143,7 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
                         }
                     }
                 }//</editor-fold>
-                my.searchItemThread("", "WHERE sectionId='"+sectionId+"'", tablesToUse[1], 11, new int [] {3,4,5}, true, null,new int[]{7,12,17,22},Color.RED);
+                my.searchItemThread("", "WHERE sectionId='"+sectionId+"'", tablesToUse[1], 11, new int [] {3,4,5}, new boolean[]{true,false}, null,new int[]{7,12,17,22},Color.RED);
                 my.runSecondaryThread(1, waitForThreadsToFinish[1], 
                         new JTable[]{tablesToUse[0],tablesToUse[1],tablesToUse[2],tablesToUse[3]}, 
                         new String[]{sectionId,stringsToUse[1],subjectId,stringsToUse[3],stringsToUse[4]}, 
