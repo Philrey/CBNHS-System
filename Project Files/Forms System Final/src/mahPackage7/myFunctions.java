@@ -1954,6 +1954,26 @@ public class myFunctions {
         System.err.println("Advanced Value: "+currentValue);
         return currentValue;
     }
+    private void removeSheetsAt(int sheetIndexInOrder []){
+        int sheetCount = workbook.getNumberOfSheets();
+        for (int n = sheetCount-1; n >= 0; n--) {
+            try {
+                workbook.removeSheetAt(sheetIndexInOrder[n]);
+            } catch (Exception e) {
+            }
+        }
+    }
+    public void keepOneSheetOnly(int sheetIndexToKeep){
+        int sheetCount = workbook.getNumberOfSheets();
+        for (int n = sheetCount-1; n >= 0; n--) {
+            try {
+                if(n != sheetIndexToKeep){
+                    workbook.removeSheetAt(n);
+                }
+            } catch (Exception e) {
+            }
+        }
+    }
     //</editor-fold>
     //</editor-fold>
     public ImageIcon getImgIcn(String url){

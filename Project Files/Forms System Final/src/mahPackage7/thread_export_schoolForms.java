@@ -92,23 +92,6 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 maleCount = textFieldsToUse[4].getText();
                 femaleCount = textFieldsToUse[5].getText();
                 totalCount = textFieldsToUse[6].getText();
-                
-                headers = new header[]{
-                    //Header Parts
-                    new header(schoolId, "C,3"),
-                    new header(region, "G,3"),
-                    new header(division, "L,3"),
-                    new header(district, "Q,3"),
-                    new header(schoolName, "C,4"),
-                    new header(schoolYear, "L,4"),
-                    new header(gradeLevel, "N,4"),
-                    new header(sectionName, "P,4"),
-                    //Form's Custom Fields
-                    new header(maleCount, "M,70"),
-                    new header(femaleCount, "M,71"),
-                    new header(totalCount, "M,72"),
-                    new header(adviserName, "O,70"),
-                };
                 break;
             }case 2:{
                 //Global Variables
@@ -120,22 +103,8 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 sf2WeekdaysTable = tables[0];
                 sf2Table = tables[1];
                 sf2SummaryTable = tables[2];
-                sf2MonthSelected = stringsToUse[0];
+                sf2MonthSelected = stringsToUse[0].toUpperCase();
                 sf2SchoolDays = textFieldsToUse[4].getText();
-                
-                headers = new header[]{
-                    //Header Parts
-                    new header(schoolId, "C,3"),
-                    new header(schoolName, "C,4"),
-                    new header(schoolYear, "I,4"),
-                    new header(gradeLevel, "R,4"),
-                    new header(sectionName, "AB,4"),
-                    //Form's Custom Fields
-                    new header(maleCount, "M,70"),
-                    new header(femaleCount, "M,71"),
-                    new header(totalCount, "M,72"),
-                    new header(adviserName, "O,70"),
-                };
                 break;
             }case 3:{
                 break;
@@ -166,35 +135,44 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         btnExport.setEnabled(false);
         
         showCustomDialog("Exporting to Excel File", dialogPanel, false, 420, 220, false);
-        lbLoadingMessage.setText("Creating File...1/4");
-        progressBar.setMaximum(4);
+        lbLoadingMessage.setText("Creating File...1/5");
+        progressBar.setMaximum(5);
+        progressBar.setValue(0);
         
-        //#1 Create File
+        //#1 Create File & Determine which sheet to use
         if(!my.createExcelFile(getFileName(true))){
-            my.showMessage("There was an error exporting the file.", JOptionPane.ERROR_MESSAGE);
+            my.showMessage("There was an error Creating the file.\nPlease Make Sure the template exists inside the Templates folder.", JOptionPane.ERROR_MESSAGE);
             throw new InterruptedException("Reading Failed");
         }
+        int sheetNumber = getSheetNumberToUse();
         progressBar.setValue(1);
         Thread.sleep(pauseDelay);
         
         //#2 Write Headers
-        lbLoadingMessage.setText("Writing Headers...2/4");
+        lbLoadingMessage.setText("Writing Headers...2/5");
         progressBar.setValue(2);
-        if(!writeHeaders(0)){throw new InterruptedException("Writing Headers Failed...");}
+        if(!loadHeaders(sheetNumber)){throw new InterruptedException("Loading Headers Failed...");}
+        if(!writeHeaders(sheetNumber)){throw new InterruptedException("Writing Headers Failed...");}
         
         //#3 Write Tables
-        lbLoadingMessage.setText("Writing Tables...3/4");
+        lbLoadingMessage.setText("Writing Tables...3/5");
         progressBar.setValue(3);
-        if(!writeTables(0)){throw new InterruptedException("Writing Tables Failed...");}
+        if(!writeTables(sheetNumber)){throw new InterruptedException("Writing Tables Failed...");}
         Thread.sleep(pauseDelay);
         
-        //#4 Save File
-        lbLoadingMessage.setText("Saving File...4/4");
+        //#4 Remove Extra Sheets
+        lbLoadingMessage.setText("Removing Extra Sheets...4/5");
+        my.keepOneSheetOnly(sheetNumber);
+        progressBar.setValue(4);
+        Thread.sleep(pauseDelay);
+        
+        //#5 Save File
+        lbLoadingMessage.setText("Saving File...5/5");
         if(!my.saveExcelFile(getFileName(false))){
-            my.showMessage("There was an error exporting the file.", JOptionPane.ERROR_MESSAGE);
+            my.showMessage("There was an error Exporting the file.\nPlease make sure the file you are saving at is not open and try again.", JOptionPane.ERROR_MESSAGE);
             throw new InterruptedException("Save Failed");
         }
-        progressBar.setValue(4);
+        progressBar.setValue(5);
         Thread.sleep(pauseDelay);
         
         closeCustomDialog();
@@ -208,6 +186,46 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         super.done(); //To change body of generated methods, choose Tools | Templates.
     }
     //<editor-fold desc="Custom Functions">
+    private int getSheetNumberToUse(){
+        int sheetIndex = 0;
+        int dataCount = 0;
+        switch(myVariables.getFormSelected()){
+            case 1:{
+                dataCount = sf1Table.getRowCount();break;
+            }case 2:{
+                dataCount = sf2Table.getRowCount()-3;break;
+            }case 3:{
+                dataCount = sf2Table.getRowCount()-3;break;
+            }case 4:{
+                dataCount = sf2Table.getRowCount()-3;break;
+            }case 5:{
+                dataCount = sf2Table.getRowCount()-3;break;
+            }case 7:{
+                dataCount = sf2Table.getRowCount()-3;break;
+            }case 8:{
+                dataCount = sf2Table.getRowCount()-3;break;
+            }default:{
+                break;
+            }
+        }
+        
+        if(dataCount <= 10){
+            sheetIndex = 0;
+        }if(dataCount > 10 && dataCount <= 20){
+            sheetIndex = 1;
+        }if(dataCount > 20 && dataCount <= 30){
+            sheetIndex = 2;
+        }if(dataCount > 30 && dataCount <= 40){
+            sheetIndex = 3;
+        }if(dataCount > 40 && dataCount <= 50){
+            sheetIndex = 4;
+        }if(dataCount > 50 && dataCount <= 60){
+            sheetIndex = 5;
+        }if(dataCount > 60 && dataCount <= 70){
+            sheetIndex = 6;
+        }
+        return sheetIndex;
+    }
     private boolean writeTables(int sheetNumber){
         String startingAddress,startingAddress2,startingAddress3;
         String excelColumnsToSkip;
@@ -279,29 +297,106 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
             return false;
         }
     }
+    private boolean loadHeaders(int sheetNumber){
+        try {
+            switch(myVariables.getFormSelected()){
+                case 1:{
+                    String mCount [] = new String [] {"M,20","M,30","M,40","M,50","M,60","M,70","M,80"};
+                    String fCount [] = new String [] {"M,21","M,31","M,41","M,51","M,61","M,71","M,81"};
+                    String tCount [] = new String [] {"M,22","M,32","M,42","M,52","M,62","M,72","M,82"};
+                    String advName []= new String [] {"O,20","O,30","O,40","O,50","O,60","O,70","O,80"};
+                    
+                    headers = new header[]{
+                        //Header Parts
+                        new header(schoolId, "C,3"),
+                        new header(region, "G,3"),
+                        new header(division, "L,3"),
+                        new header(district, "Q,3"),
+                        new header(schoolName, "C,4"),
+                        new header(schoolYear, "L,4"),
+                        new header(gradeLevel, "N,4"),
+                        new header(sectionName, "P,4"),
+                        //Form's Custom Fields
+                        new header(maleCount, mCount[sheetNumber]),
+                        new header(femaleCount, fCount[sheetNumber]),
+                        new header(totalCount, tCount[sheetNumber]),
+                        new header(adviserName, advName[sheetNumber]),
+                    };
+                    break;
+                }case 2:{
+                    //Set Addresses by sheetIndex
+                    String monthSelected [] = new String [] {
+                        "T,22","T,32","T,42","T,52","T,62","T,72","T,82"};
+                    String schoolDays [] = new String [] {
+                        "W,22","W,32","W,42","W,52","W,62","W,72","W,82"};
+                    String advName [] = new String [] {
+                        "U,45","U,55","U,65","U,75","U,85","U,95","U,105"};
+                    
+                    headers = new header[]{
+                        //Header Parts
+                        new header(schoolId, "C,3"),
+                        new header(sf2MonthSelected, "R,3"),
+                        new header(schoolName, "C,4"),
+                        new header(schoolYear, "I,3"),
+                        new header(gradeLevel, "R,4"),
+                        new header(sectionName, "AB,4"),
+                        //Form's Custom Fields
+                        new header(sf2MonthSelected, monthSelected[sheetNumber]),
+                        new header(sf2SchoolDays, schoolDays[sheetNumber]),
+                        new header(adviserName, advName[sheetNumber]),
+                    };
+                    break;
+                }case 3:{
+                    break;
+                }case 4:{
+                    break;
+                }case 5:{
+                    break;
+                }case 6:{
+                    break;
+                }case 7:{
+                    break;
+                }case 8:{
+                    break;
+                }case 9:{
+                    break;
+                }case 10:{
+                    break;
+                }
+            }
+            
+            Thread.sleep(pauseDelay);
+            return true;
+        }catch(InterruptedException x){
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return true;
+        }
+    }
     private String getFileName(boolean importExport){
         String fileName = "";
         switch(myVariables.getFormSelected()){
             case 1:{
                 fileName = importExport? "templates/jh_sf1.xlsx" : "exports/jh_sf1.xlsx";break;
             }case 2:{
-                fileName = importExport? "templates/jh_sf1.xlsx" : "exports/jh_sf1.xlsx";break;
+                fileName = importExport? "templates/jh_sf2.xlsx" : "exports/jh_sf2.xlsx";break;
             }case 3:{
-                fileName = importExport? "templates/jh_sf1.xlsx" : "exports/jh_sf1.xlsx";break;
+                fileName = importExport? "templates/jh_sf3.xlsx" : "exports/jh_sf3.xlsx";break;
             }case 4:{
-                fileName = importExport? "templates/jh_sf1.xlsx" : "exports/jh_sf1.xlsx";break;
+                fileName = importExport? "templates/jh_sf4.xlsx" : "exports/jh_sf4.xlsx";break;
             }case 5:{
-                fileName = importExport? "templates/jh_sf1.xlsx" : "exports/jh_sf1.xlsx";break;
+                fileName = importExport? "templates/jh_sf5.xlsx" : "exports/jh_sf5.xlsx";break;
             }case 6:{
-                fileName = importExport? "templates/jh_sf1.xlsx" : "exports/jh_sf1.xlsx";break;
+                fileName = importExport? "templates/jh_sf6.xlsx" : "exports/jh_sf6.xlsx";break;
             }case 7:{
-                fileName = importExport? "templates/jh_sf1.xlsx" : "exports/jh_sf1.xlsx";break;
+                fileName = importExport? "templates/jh_sf7.xlsx" : "exports/jh_sf7.xlsx";break;
             }case 8:{
-                fileName = importExport? "templates/jh_sf1.xlsx" : "exports/jh_sf1.xlsx";break;
+                fileName = importExport? "templates/jh_sf8.xlsx" : "exports/jh_sf8.xlsx";break;
             }case 9:{
-                fileName = importExport? "templates/jh_sf1.xlsx" : "exports/jh_sf1.xlsx";break;
+                fileName = importExport? "templates/jh_sf9.xlsx" : "exports/jh_sf9.xlsx";break;
             }case 10:{
-                fileName = importExport? "templates/jh_sf1.xlsx" : "exports/jh_sf1.xlsx";break;
+                fileName = importExport? "templates/jh_sf10.xlsx" : "exports/jh_sf10.xlsx";break;
             }
         }
         
@@ -325,30 +420,6 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         public String getExcelAddress() {
             return excelAddress;
         }
-    }
-    private class headersInt{
-        private String data;
-        private int row;
-        private int column;
-
-        public headersInt(String data, int row, int column) {
-            this.data = data;
-            this.row = row;
-            this.column = column;
-        }
-
-        public String getData() {
-            return data;
-        }
-
-        public int getRow() {
-            return row;
-        }
-
-        public int getColumn() {
-            return column;
-        }
-        
     }
     //</editor-fold>
     //<editor-fold desc="Dialog Functions">
