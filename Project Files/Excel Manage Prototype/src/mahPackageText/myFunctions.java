@@ -229,7 +229,7 @@ public class myFunctions {
         int [] indeces = new int[letters.length];
         
         for (int n = 0; n < indeces.length; n++) {
-            indeces[n] = getLetterValue( String.valueOf(letters[n].charAt(0)) );
+            indeces[n] = getLetterValueAdvanced(String.valueOf(letters[n].charAt(0)) );
             System.err.println("Skipping column: "+letters[n]+"="+indeces[n]);
         }
         
@@ -241,7 +241,7 @@ public class myFunctions {
         int row = Integer.parseInt(address[1])-1;
         int column = 0;
         
-        column = getLetterValue( String.valueOf(address[0].charAt(0)) );
+        column = getLetterValueAdvanced(address[0]);
         return new int[]{row,column};
     }
     private int getLetterValue(String letter){
@@ -254,6 +254,31 @@ public class myFunctions {
             }
         }
         return 0;
+    }
+    private int getLetterValueAdvanced(String letters){
+        // A = 0 Z = 25
+        
+        
+        //Check if column address has multiple letters
+        if(letters.length() <= 1){
+            return getLetterValue(letters);
+        }
+        
+        String letterToSearch = "";
+        int currentValue = 0;
+        
+        int characterCount = letters.length();
+        for (int n = 0; n < characterCount; n++) {
+            letterToSearch = String.valueOf( letters.charAt(n) );
+            //If Letter is not the last character, add values
+            if(n != characterCount-1){  
+                currentValue += (26 + (26*getLetterValue(letterToSearch)));
+            }else{
+                currentValue += getLetterValue(letterToSearch);
+            }
+        }
+        System.err.println("Advanced Value: "+currentValue);
+        return currentValue;
     }
     //</editor-fold>
     //</editor-fold>

@@ -1467,6 +1467,49 @@ public class myFunctions {
         }
         return finalDate;
     }
+    public String numberToWordMonth(String monthNumber){
+        String finalDate = "";
+        switch (Integer.parseInt(monthNumber)){
+            case 1:{
+                finalDate = "January";
+                break;
+            }case 2:{
+                finalDate = "February";
+                break;
+            }case 3:{
+                finalDate = "March";
+                break;
+            }case 4:{
+                finalDate = "April";
+                break;
+            }case 5:{
+                finalDate = "May";
+                break;
+            }case 6:{
+                finalDate = "June";
+                break;
+            }case 7:{
+                finalDate = "July";
+                break;
+            }case 8:{
+                finalDate = "August";
+                break;
+            }case 9:{
+                finalDate = "September";
+                break;
+            }case 10:{
+                finalDate = "October";
+                break;
+            }case 11:{
+                finalDate = "November";
+                break;
+            }case 12:{
+                finalDate = "December";
+                break;
+            }
+        }
+        return finalDate;
+    }
     public Date dateTimeTojCalendarDateFormat(String dateOrDateTime){
         String values [] = dateOrDateTime.split(" ");
         
@@ -1723,6 +1766,7 @@ public class myFunctions {
     }
     private void writeExcelSingleData(int sheetNumber,String value,int rowStart,int columnStart){
         XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+        workbook.setActiveSheet(sheetNumber);
         
         if(sheet == null){
             sheet = workbook.createSheet("SHEET_"+(sheetNumber+1));
@@ -1754,7 +1798,7 @@ public class myFunctions {
     }
     private void writeExcelLine(int sheetNumber, String line,int [] skipExcelColumns,int rowStart,int columnStart){
         XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
-        
+        workbook.setActiveSheet(sheetNumber);
         if(sheet == null){
             sheet = workbook.createSheet("SHEET_"+(sheetNumber+1));
         }
@@ -1859,7 +1903,7 @@ public class myFunctions {
         int [] indeces = new int[letters.length];
         
         for (int n = 0; n < indeces.length; n++) {
-            indeces[n] = getLetterValue( String.valueOf(letters[n].charAt(0)) );
+            indeces[n] = getLetterValueAdvanced(String.valueOf(letters[n].charAt(0)) );
             System.err.println("Skipping column: "+letters[n]+"="+indeces[n]);
         }
         
@@ -1871,7 +1915,7 @@ public class myFunctions {
         int row = Integer.parseInt(address[1])-1;
         int column = 0;
         
-        column = getLetterValue( String.valueOf(address[0].charAt(0)) );
+        column = getLetterValueAdvanced(address[0]);
         return new int[]{row,column};
     }
     private int getLetterValue(String letter){
@@ -1884,6 +1928,31 @@ public class myFunctions {
             }
         }
         return 0;
+    }
+    private int getLetterValueAdvanced(String letters){
+        // A = 0 Z = 25
+        
+        
+        //Check if column address has multiple letters
+        if(letters.length() <= 1){
+            return getLetterValue(letters);
+        }
+        
+        String letterToSearch = "";
+        int currentValue = 0;
+        
+        int characterCount = letters.length();
+        for (int n = 0; n < characterCount; n++) {
+            letterToSearch = String.valueOf( letters.charAt(n) );
+            //If Letter is not the last character, add values
+            if(n != characterCount-1){  
+                currentValue += (26 + (26*getLetterValue(letterToSearch)));
+            }else{
+                currentValue += getLetterValue(letterToSearch);
+            }
+        }
+        System.err.println("Advanced Value: "+currentValue);
+        return currentValue;
     }
     //</editor-fold>
     //</editor-fold>

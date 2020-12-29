@@ -1007,17 +1007,17 @@ public class dashBoard extends javax.swing.JFrame {
 
         sf1StudentsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Student ID", "Section ID", "Student LRN", "Name", "Gender", "Birth Date", "Age", "Mother Tongue", "IP (Ethnic Group)", "Religion", "House #/St.", "Barangay", "Municipality", "Province", "Father's Name", "Mother's Name", "Guardian's Name", "Relationship", "Contact Number", "Remarks"
+                "ID", "Student ID", "Section ID", "Student LRN", "Name", "Gender", "Birth Date", "Age", "Birth Place", "Mother Tongue", "IP (Ethnic Group)", "Religion", "House #/St.", "Barangay", "Municipality", "Province", "Father's Name", "Mother's Name", "Guardian's Name", "Relationship", "Contact Number", "Remarks"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1033,19 +1033,20 @@ public class dashBoard extends javax.swing.JFrame {
             sf1StudentsTable.getColumnModel().getColumn(5).setPreferredWidth(70);
             sf1StudentsTable.getColumnModel().getColumn(6).setPreferredWidth(100);
             sf1StudentsTable.getColumnModel().getColumn(7).setPreferredWidth(50);
-            sf1StudentsTable.getColumnModel().getColumn(8).setPreferredWidth(150);
-            sf1StudentsTable.getColumnModel().getColumn(9).setPreferredWidth(120);
-            sf1StudentsTable.getColumnModel().getColumn(10).setPreferredWidth(150);
-            sf1StudentsTable.getColumnModel().getColumn(11).setPreferredWidth(100);
+            sf1StudentsTable.getColumnModel().getColumn(8).setPreferredWidth(200);
+            sf1StudentsTable.getColumnModel().getColumn(9).setPreferredWidth(150);
+            sf1StudentsTable.getColumnModel().getColumn(10).setPreferredWidth(120);
+            sf1StudentsTable.getColumnModel().getColumn(11).setPreferredWidth(150);
             sf1StudentsTable.getColumnModel().getColumn(12).setPreferredWidth(100);
             sf1StudentsTable.getColumnModel().getColumn(13).setPreferredWidth(100);
             sf1StudentsTable.getColumnModel().getColumn(14).setPreferredWidth(100);
-            sf1StudentsTable.getColumnModel().getColumn(15).setPreferredWidth(150);
+            sf1StudentsTable.getColumnModel().getColumn(15).setPreferredWidth(100);
             sf1StudentsTable.getColumnModel().getColumn(16).setPreferredWidth(150);
             sf1StudentsTable.getColumnModel().getColumn(17).setPreferredWidth(150);
-            sf1StudentsTable.getColumnModel().getColumn(18).setPreferredWidth(100);
-            sf1StudentsTable.getColumnModel().getColumn(19).setPreferredWidth(120);
-            sf1StudentsTable.getColumnModel().getColumn(20).setPreferredWidth(200);
+            sf1StudentsTable.getColumnModel().getColumn(18).setPreferredWidth(150);
+            sf1StudentsTable.getColumnModel().getColumn(19).setPreferredWidth(100);
+            sf1StudentsTable.getColumnModel().getColumn(20).setPreferredWidth(120);
+            sf1StudentsTable.getColumnModel().getColumn(21).setPreferredWidth(200);
         }
 
         javax.swing.GroupLayout left1Layout = new javax.swing.GroupLayout(left1);
@@ -4718,6 +4719,7 @@ public class dashBoard extends javax.swing.JFrame {
                     tfSchoolYear.setText(schoolYear+"-"+String.valueOf(schoolYear+1));
                     
                     my.select_tab(mainTab, 2);
+                    btnExportSf1.setEnabled(false);
                     break;
                 }case 2:{
                     tfSectionName1.setText(sectionName);
@@ -4816,7 +4818,7 @@ public class dashBoard extends javax.swing.JFrame {
                 new JTable[]{sf1StudentsTable},
                 new String[]{firstFridayDate},
                 new JTextField[]{tfMaleCount,tfFemaleCount,tfTotalCount},
-                new JButton[]{},null
+                new JButton[]{btnExportSf1},null
         );
     }//GEN-LAST:event_btnLoadStudentsActionPerformed
 
@@ -4848,6 +4850,11 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSf2ActionPerformed
 
     private void btnLoadStudents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudents1ActionPerformed
+        if(myVariables.getFormSelected() != 2){
+            my.showMessage("SF2 Not Selected", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
         String firstDayOfMonth = "";
         String cutOffDate = "";
         try {
@@ -4895,7 +4902,21 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoadStudents1ActionPerformed
 
     private void btnExportSf2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf2ActionPerformed
-        // TODO add your handling code here:
+        if(myVariables.getFormSelected() != 2){
+            my.showMessage("SF2 Not Selected", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String dateSelected = my.jCalendarToNumberDate(jdcFirstDayOfMonth.getDate().toString(), false);
+        String dates [] = dateSelected.split("-");
+        String monthSelected = my.numberToWordMonth(dates[1]);
+        
+        my.runExportThread(
+                new JTable[]{weekDaysOfTheMonthTable,sf2Table,summarySf2},
+                new String[]{monthSelected},
+                new JTextField[]{tfSectionName1,tfAdviserName1,tfGradeLevel1,tfSchoolYear1,tfSchoolDays}, 
+                new JButton[]{btnExportSf2},
+                new boolean[]{}
+        );
     }//GEN-LAST:event_btnExportSf2ActionPerformed
 
     private void btnLoadStudents2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudents2ActionPerformed

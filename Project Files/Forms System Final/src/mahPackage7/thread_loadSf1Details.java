@@ -34,6 +34,8 @@ public class thread_loadSf1Details extends SwingWorker<String, Object>{
     private boolean waitForMainThreadToFinish;
     
     private JTextField tfMale,tfFemale,tfTotal;
+    
+    private JButton btnExport;
     //Dialog Properties
     private JDialog dialog;
     private JFrame jFrameName;
@@ -55,10 +57,13 @@ public class thread_loadSf1Details extends SwingWorker<String, Object>{
         tfMale = textFieldsToUse[0];
         tfFemale = textFieldsToUse[1];
         tfTotal = textFieldsToUse[2];
+        
+        btnExport = buttonsToUse[0];
     }
     
     @Override
     protected String doInBackground() throws Exception {
+        btnExport.setEnabled(false);
         if(waitForMainThreadToFinish){
             System.err.println("Waiting for mainThread to Finish first...");
             while (true) {                
@@ -92,7 +97,7 @@ public class thread_loadSf1Details extends SwingWorker<String, Object>{
             lbLoadingMessage.setText("Processing Records of Student "+(n+1)+" of "+rowCount);
             String birthDate = tableName.getValueAt(n, birthdateTableColumnIndex).toString();
             String age = getAgeInYearsMonths(firstFridayOfJuneDate, birthDate, false);
-            String remarksString = tableName.getValueAt(n, 20).toString();
+            String remarksString = tableName.getValueAt(n, 21).toString();
             String gender = tableName.getValueAt(n, 5).toString();
             
             if(gender.contains("female")){
@@ -104,13 +109,13 @@ public class thread_loadSf1Details extends SwingWorker<String, Object>{
             
             tableName.setValueAt(gender.substring(0, 1), n, 5);
             tableName.setValueAt(age, n, birthdateTableColumnIndex+1);
-            tableName.setValueAt(translateRemarks(remarksString, 1), n, 20);
+            tableName.setValueAt(translateRemarks(remarksString, 1), n, 21);
             tfMale.setText(String.valueOf(males));
             tfFemale.setText(String.valueOf(females));
             tfTotal.setText(String.valueOf(total));
             Thread.sleep(threadDelay);
         }
-        
+        btnExport.setEnabled(true);
         return null;
     }
 
