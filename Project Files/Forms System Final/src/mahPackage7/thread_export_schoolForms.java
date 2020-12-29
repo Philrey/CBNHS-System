@@ -252,6 +252,112 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     }
                     break;
                 }case 2:{
+                    //Write Dates
+                    lbLoadingMessage.setText("Writing Tables...3/4 Writing Dates");
+                    String days = my.get_table_row_values(0, sf2WeekdaysTable);
+                    days = my.skipColumns(days, new int [] {0,1,2,3,4,5,6,32,33});
+                    my.writeExcelLine(sheetNumber, days, null, "C,6");
+                    Thread.sleep(threadDelay);
+                    
+                    //Prepare blank days for writing
+                    lbLoadingMessage.setText("Writing Tables...3/4 Loading Blank Dates");
+                    String blankDays = "";
+                    for (int n = 0; n < 25; n++) {
+                        blankDays+=" @@";
+                    }
+                    Thread.sleep(threadDelay);
+                    
+                    //Extract Counters
+                    lbLoadingMessage.setText("Writing Tables...3/4 Extracting Counters");
+                    int rowCount = sf2Table.getRowCount()-3; //Exlude Counters From the bottom
+                    String mCount = my.get_table_row_values(rowCount, sf2Table);
+                    String fCount = my.get_table_row_values(rowCount+1, sf2Table);
+                    String tCount = my.get_table_row_values(rowCount+2, sf2Table);
+                    
+                    mCount = " @@"+my.skipColumns(mCount, new int [] {0,1,2,4,5,6});
+                    fCount = " @@"+my.skipColumns(fCount, new int [] {0,1,2,4,5,6});
+                    tCount = " @@"+my.skipColumns(tCount, new int [] {0,1,2,4,5,6});
+                    Thread.sleep(threadDelay);
+                    
+                    //Write Sf2 Table
+                    String remarks,gender,studentName,absent,tardy,attendanceValue;
+                    startingAddress = "A,";
+                    boolean firstFemaleFound = false;
+                    int row = 0;
+                    for (int n = 0; n < rowCount;) {
+                        lbLoadingMessage.setText("Writing Tables...3/4 Line "+(n+1)+" of "+rowCount);
+                        
+                        //Get line
+                        String line = my.get_table_row_values(n, sf2Table);
+                        studentName = my.getValueAtColumn(line, 3);
+                        gender = my.getValueAtColumn(line, 4);
+                        
+                        absent = my.getValueAtColumn(line, 32);
+                        tardy = my.getValueAtColumn(line, 33);
+                        
+                        //Extract & Move remarks to last part of the line later
+                        remarks = my.getValueAtColumn(line, 6);
+                        
+                        //Check for First Female Occurence & insert male counter & skip n increment
+                        if(!firstFemaleFound){
+                            if(gender.contains("Female")){
+                                firstFemaleFound = true;
+                                System.err.println(mCount);
+                                my.writeExcelLine(sheetNumber, mCount, null, startingAddress+(row+8));
+                                row++;
+                                Thread.sleep(threadDelay);
+                                continue;
+                            }
+                        }
+                        //Merge with blanks
+                        String newLine = (n+1)+"@@"+studentName+"@@"+blankDays+absent+"@@"+tardy+"@@"+remarks+"@@";
+                        my.writeExcelLine(sheetNumber, newLine, null, startingAddress+(row+8));
+                        Thread.sleep(threadDelay);
+                        
+                        //Insert Images If Present,Absent or Tardy
+                        for (int col = 7; col < 32; col++) {
+                            lbLoadingMessage.setText("Writing Tables...3/4 Line "+(n+1)+" of "+rowCount+", Attendance "+(col-6)+"/25");
+                            attendanceValue = my.getValueAtColumn(line, col);
+                            System.err.println("Attenance Value: "+attendanceValue);
+                            if(attendanceValue.equals("P")){
+                                continue;
+                            }if(attendanceValue.equals("A")){
+                                my.writeExcelSingleData(sheetNumber, "X", row+7, col-5);
+                                continue;
+                            }if(attendanceValue.equals("TLC")){
+                                my.drawImageToCell(sheetNumber, myVariables.getLateCommerIcon(), new int [] {row+7,col-5,row+8,col-4}, false);
+                                continue;
+                            }if(attendanceValue.equals("TCC")){
+                                my.drawImageToCell(sheetNumber, myVariables.getCuttingClassesIcon(), new int [] {row+7,col-5,row+8,col-4}, false);
+                                continue;
+                            }if(attendanceValue.equals("T")){
+                                my.drawImageToCell(sheetNumber, myVariables.getLateCommerIcon(), new int [] {row+7,col-5,row+8,col-4}, false);
+                                continue;
+                            }if(attendanceValue.equals("--")){
+                                my.writeExcelSingleData(sheetNumber, "--", row+7, col-5);
+                            }
+                            Thread.sleep(threadDelay);
+                        }
+                        
+                        //If there is no female and is last row
+                        if(!firstFemaleFound){
+                            if(n == rowCount-1){
+                                firstFemaleFound = true;
+                                row++;
+                                my.writeExcelLine(sheetNumber, mCount, null, startingAddress+(row+8));
+                                Thread.sleep(threadDelay);
+                            }
+                        }
+                        
+                        n++;
+                        row++;
+                        Thread.sleep(threadDelay);
+                    }
+                    //Write Female & Total Counters
+                    my.writeExcelLine(sheetNumber, fCount, null, startingAddress+(row+8));
+                    my.writeExcelLine(sheetNumber, tCount, null, startingAddress+(row+8+1));
+                    
+                    //Write Summary Table
                     break;
                 }case 3:{
                     break;
@@ -279,6 +385,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         }catch(InterruptedException x){
             return false;
         } catch (Exception e) {
+            e.printStackTrace();
             return true;
         }
     }

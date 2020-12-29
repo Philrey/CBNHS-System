@@ -1103,7 +1103,7 @@ public class myFunctions {
     protected String get_table_row_values(int rowNumber,JTable tableName){
         String toSend = "";
         for(int n=0;n<tableName.getColumnCount();n++){
-            toSend+=tableName.getValueAt(rowNumber, n)+"@@";
+            toSend+=tableName.getValueAt(rowNumber, n) != null? tableName.getValueAt(rowNumber, n)+"@@" : " @@";
         }
         
         return  toSend;
@@ -1764,7 +1764,7 @@ public class myFunctions {
         int [] location = parseExcelAddress(excelAddress);
         writeExcelSingleData(sheetNumber, value, location[0], location[1]);
     }
-    private void writeExcelSingleData(int sheetNumber,String value,int rowStart,int columnStart){
+    public void writeExcelSingleData(int sheetNumber,String value,int rowStart,int columnStart){
         XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
         workbook.setActiveSheet(sheetNumber);
         
