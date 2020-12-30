@@ -5,6 +5,7 @@
  */
 package mahPackage7;
 
+import java.awt.Color;
 import java.awt.Dialog;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -16,6 +17,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
+import org.apache.poi.ss.usermodel.BorderStyle;
 
 /**
  *
@@ -315,22 +317,41 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         Thread.sleep(threadDelay);
                         
                         //Insert Images If Present,Absent or Tardy
+                        int [] leftIndeces = new int []{7,12,17,22,27};
+                        int [] rightIndeces = new int []{11,16,21,26,31};
+                        
                         for (int col = 7; col < 32; col++) {
                             lbLoadingMessage.setText("Writing Tables...3/4 Line "+(n+1)+" of "+rowCount+", Attendance "+(col-6)+"/25");
                             attendanceValue = my.getValueAtColumn(line, col);
+                            
+                            BorderStyle [] borders;
+                            if(my.isInsideArray(col, leftIndeces)){
+                                borders = new BorderStyle[]{BorderStyle.MEDIUM,BorderStyle.THIN,BorderStyle.THIN,BorderStyle.THIN,};
+                            }else{
+                                if(my.isInsideArray(col, rightIndeces)){
+                                    borders = new BorderStyle[]{BorderStyle.THIN,BorderStyle.MEDIUM,BorderStyle.THIN,BorderStyle.THIN,};
+                                }else{
+                                    borders = new BorderStyle[]{BorderStyle.THIN,BorderStyle.THIN,BorderStyle.THIN,BorderStyle.THIN,};
+                                }
+                            }
+                            
                             //System.err.println("Attenance Value: "+attendanceValue);
                             if(attendanceValue.equals("P")){
+                                my.writeExcelSingleDataWColor(sheetNumber, "P", row+7, col-5,!myVariables.isDebugModeOn()?Color.WHITE:Color.BLUE,borders);
                                 continue;
                             }if(attendanceValue.equals("A")){
-                                my.writeExcelSingleData(sheetNumber, "X", row+7, col-5);
+                                my.writeExcelSingleDataWColor(sheetNumber, "X", row+7, col-5,!myVariables.isDebugModeOn()?Color.BLACK:Color.RED,borders);
                                 continue;
                             }if(attendanceValue.equals("TLC")){
+                                my.writeExcelSingleDataWColor(sheetNumber, "TLC", row+7, col-5,!myVariables.isDebugModeOn()?Color.WHITE:Color.ORANGE,borders);
                                 my.drawImageToCell(sheetNumber, myVariables.getLateCommerIcon(), new int [] {row+7,col-5,row+8,col-4}, false);
                                 continue;
                             }if(attendanceValue.equals("TCC")){
+                                my.writeExcelSingleDataWColor(sheetNumber, "TCC", row+7, col-5,!myVariables.isDebugModeOn()?Color.WHITE:Color.RED,borders);
                                 my.drawImageToCell(sheetNumber, myVariables.getCuttingClassesIcon(), new int [] {row+7,col-5,row+8,col-4}, false);
                                 continue;
                             }if(attendanceValue.equals("T")){
+                                my.writeExcelSingleDataWColor(sheetNumber, "T", row+7, col-5,!myVariables.isDebugModeOn()?Color.WHITE:Color.ORANGE,borders);
                                 my.drawImageToCell(sheetNumber, myVariables.getLateCommerIcon(), new int [] {row+7,col-5,row+8,col-4}, false);
                                 continue;
                             }if(attendanceValue.equals("--")){

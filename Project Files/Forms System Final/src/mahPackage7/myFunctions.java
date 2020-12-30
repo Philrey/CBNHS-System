@@ -38,15 +38,23 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Picture;
 import org.apache.poi.util.IOUtils;
+import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
+import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.extensions.XSSFCellBorder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -1588,6 +1596,22 @@ public class myFunctions {
         
         return toConvert;
     }
+    public boolean isInsideArray(int toSearch,int [] array){
+        for (int array1 : array) {
+            if(array1 == toSearch){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean isInsideArray(String toSearch,String [] array){
+        for (String array1 : array) {
+            if (array1.equals(toSearch)) {
+                return true;
+            }
+        }
+        return false;
+    }
     //</editor-fold>
     //<editor-fold desc="Nutritional Status Functions">
     public String getNutritionalStatus(String bmiString,String age,String gender){
@@ -1787,6 +1811,78 @@ public class myFunctions {
             row = sheet.createRow(rowStart);
             XSSFCell newCell = row.createCell(columnStart);
             newCell.setCellValue(value);
+        }
+    }
+    
+    public void writeExcelSingleDataWColor(int sheetNumber,String value,String excelAddress,Color color,BorderStyle [] lrtpBorder){
+        //Note: excellAddress must have ',' to separate the address. E.G. ( A,1 )
+        int [] location = parseExcelAddress(excelAddress);
+        writeExcelSingleDataWColor(sheetNumber, value, location[0], location[1], color, lrtpBorder);
+    }
+    public void writeExcelSingleDataWColor(int sheetNumber,String value,int rowStart,int columnStart,Color color,BorderStyle [] lrtpBorder){
+        XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+        workbook.setActiveSheet(sheetNumber);
+        XSSFCellStyle cellStyle;
+        XSSFCellStyle style;
+        XSSFFont font,newFont;
+        XSSFColor myColor = new XSSFColor(color, new DefaultIndexedColorMap());
+        
+        style = workbook.createCellStyle();
+        newFont = workbook.createFont();
+        
+        if(sheet == null){
+            sheet = workbook.createSheet("SHEET_"+(sheetNumber+1));
+        }
+        
+        XSSFRow row = null;
+        row = sheet.getRow(rowStart);
+        
+        if(row != null){
+            XSSFCell cell = row.getCell(columnStart);
+            cellStyle = cell.getCellStyle();
+            font = cellStyle.getFont();
+            
+            newFont.setColor(myColor);
+            newFont.setFontName(font.getFontName());
+            
+            style.setBorderLeft(lrtpBorder[0]);
+            style.setBorderRight(lrtpBorder[1]);
+            style.setBorderTop(lrtpBorder[2]);
+            style.setBorderBottom(lrtpBorder[3]);
+            
+            style.setFont(newFont);
+            style.setAlignment(cellStyle.getAlignment());
+            
+            //style.setFillForegroundColor(new XSSFColor(color, new DefaultIndexedColorMap()));
+            //style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            
+            if(cell != null){
+                cell.setCellValue(value);
+                cell.setCellStyle(style);
+            }else{
+                XSSFCell newCell = row.createCell(columnStart);
+                newCell.setCellValue(value);
+                newCell.setCellStyle(style);
+            }
+        }else{
+            row = sheet.createRow(rowStart);
+            XSSFCell newCell = row.createCell(columnStart);
+            cellStyle = newCell.getCellStyle();
+            font = cellStyle.getFont();
+            
+            newFont.setColor(myColor);
+            newFont.setFontName(font.getFontName());
+            
+            style.setBorderLeft(cellStyle.getBorderLeft());
+            style.setBorderRight(cellStyle.getBorderRight());
+            style.setBorderTop(cellStyle.getBorderTop());
+            style.setBorderBottom(cellStyle.getBorderBottom());
+            
+            style.setFont(newFont);
+            style.setAlignment(cellStyle.getAlignment());
+            
+            newCell.setCellValue(value);
+            newCell.setCellStyle(style);
         }
     }
     //#2 Write One Whole Row
