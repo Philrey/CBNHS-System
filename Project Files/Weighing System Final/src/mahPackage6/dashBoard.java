@@ -1321,6 +1321,7 @@ public class dashBoard extends javax.swing.JFrame {
                 mainTab.setSelectedIndex(1);
             }
         }else{
+            my.clear_table_rows(enrolledStudentsTable);
             my.remove_multiple_tabs(mainTab, new int [] {1,2});
         }
     }//GEN-LAST:event_assignedTeacherTableMouseClicked

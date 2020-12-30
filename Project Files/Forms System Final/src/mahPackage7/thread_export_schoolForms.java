@@ -234,6 +234,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         try {
             switch(myVariables.getFormSelected()){
                 case 1:{
+                    //<editor-fold desc="WRITE SF1">
                     int rowCount = sf1Table.getRowCount();
                     startingAddress = "A,"; //A,7 first row
                     excelColumnsToSkip = null;
@@ -252,8 +253,11 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         
                         Thread.sleep(threadDelay);
                     }
+                    //</editor-fold>
                     break;
                 }case 2:{
+                    //<editor-fold desc="WRITE SF2">
+                    
                     //Write Dates
                     lbLoadingMessage.setText("Writing Tables...3/4 Writing Dates");
                     String days = my.get_table_row_values(0, sf2WeekdaysTable);
@@ -269,7 +273,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     }
                     Thread.sleep(threadDelay);
                     
-                    //Extract Counters
+                    //<editor-fold desc="Extract Counters">
                     lbLoadingMessage.setText("Writing Tables...3/4 Extracting Counters");
                     int rowCount = sf2Table.getRowCount()-3; //Exlude Counters From the bottom
                     String mCount = my.get_table_row_values(rowCount, sf2Table);
@@ -280,6 +284,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     fCount = " @@"+my.skipColumns(fCount, new int [] {0,1,2,4,5,6});
                     tCount = " @@"+my.skipColumns(tCount, new int [] {0,1,2,4,5,6});
                     Thread.sleep(threadDelay);
+                    //</editor-fold>
                     
                     //Write Sf2 Table
                     String remarks,gender,studentName,absent,tardy,attendanceValue;
@@ -300,7 +305,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         //Extract & Move remarks to last part of the line later
                         remarks = my.getValueAtColumn(line, 6);
                         
-                        //Check for First Female Occurence & insert male counter & skip n increment
+                        //<editor-fold desc="Check for First Female Occurence & insert male counter & skip n increment">
                         if(!firstFemaleFound){
                             if(gender.contains("Female")){
                                 firstFemaleFound = true;
@@ -315,8 +320,9 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         String newLine = (n+1)+"@@"+studentName+"@@"+blankDays+absent+"@@"+tardy+"@@"+remarks+"@@";
                         my.writeExcelLine(sheetNumber, newLine, null, startingAddress+(row+8));
                         Thread.sleep(threadDelay);
+                        //</editor-fold>
                         
-                        //Insert Images If Present,Absent or Tardy
+                        //<editor-fold desc="Insert Images If Present,Absent or Tardy">
                         int [] leftIndeces = new int []{7,12,17,22,27};
                         int [] rightIndeces = new int []{11,16,21,26,31};
                         
@@ -359,6 +365,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                             }
                             Thread.sleep(threadDelay);
                         }
+                        //</editor-fold>
                         
                         //If there is no female and is last row
                         if(!firstFemaleFound){
@@ -390,9 +397,10 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         my.writeExcelLine(sheetNumber, line, null, startingAddress2+(rowAddresses[n]+(10*sheetNumber)));
                         Thread.sleep(threadDelay);
                     }
-                    
+                    //</editor-fold>
                     break;
                 }case 3:{
+                    
                     break;
                 }case 4:{
                     break;
