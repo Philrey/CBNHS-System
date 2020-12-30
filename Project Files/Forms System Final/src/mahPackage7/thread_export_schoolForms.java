@@ -302,7 +302,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         if(!firstFemaleFound){
                             if(gender.contains("Female")){
                                 firstFemaleFound = true;
-                                System.err.println(mCount);
+                                //System.err.println(mCount);
                                 my.writeExcelLine(sheetNumber, mCount, null, startingAddress+(row+8));
                                 row++;
                                 Thread.sleep(threadDelay);
@@ -318,7 +318,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         for (int col = 7; col < 32; col++) {
                             lbLoadingMessage.setText("Writing Tables...3/4 Line "+(n+1)+" of "+rowCount+", Attendance "+(col-6)+"/25");
                             attendanceValue = my.getValueAtColumn(line, col);
-                            System.err.println("Attenance Value: "+attendanceValue);
+                            //System.err.println("Attenance Value: "+attendanceValue);
                             if(attendanceValue.equals("P")){
                                 continue;
                             }if(attendanceValue.equals("A")){
@@ -358,6 +358,18 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     my.writeExcelLine(sheetNumber, tCount, null, startingAddress+(row+8+1));
                     
                     //Write Summary Table
+                    startingAddress2 = "Y,";
+                    int [] rowAddresses = new int [] {23,25,29,31,33,35,36,37,39,41};
+                    
+                    for (int n = 0; n < 10; n++) {
+                        lbLoadingMessage.setText("Writing Tables...3/4 "+(n+1)+" of 10");
+                        String line = my.get_table_row_values(n, sf2SummaryTable);
+                        line = my.skipColumns(line, new int [] {0});
+                        
+                        my.writeExcelLine(sheetNumber, line, null, startingAddress2+(rowAddresses[n]+(10*sheetNumber)));
+                        Thread.sleep(threadDelay);
+                    }
+                    
                     break;
                 }case 3:{
                     break;

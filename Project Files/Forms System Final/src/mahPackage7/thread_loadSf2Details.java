@@ -58,11 +58,15 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
     private String subjectId;
     private String missingValuesSubstitute;
     
+    
     private String startingDate;
     private String endingDate;
     
     private JTextField tfSchoolDays;
     private boolean waitForMainThreadToFinish;
+    private boolean  isSf2Selected;
+    
+    private JButton btnExport;
     //Dialog Properties
     private JDialog dialog;
     private JFrame jFrameName;
@@ -70,7 +74,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
     private JLabel lbLoadingMessage;
     private JProgressBar progressBar;
     //</editor-fold>
-    public thread_loadSf2Details(JTable [] tablesToUse,String [] stringsToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean waitForMainThreadToFinish) {
+    public thread_loadSf2Details(JTable [] tablesToUse,String [] stringsToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean [] booleansToUse) {
         dateTable = tablesToUse[0];
         tableName = tablesToUse[1];
         summaryTable = tablesToUse[2];
@@ -90,7 +94,13 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             tfSchoolYear = textFieldsToUse[4];
         }
         
-        this.waitForMainThreadToFinish = waitForMainThreadToFinish;
+        this.waitForMainThreadToFinish = booleansToUse[0];
+        isSf2Selected = booleansToUse[1];
+        try {
+            btnExport = buttonsToUse[0];
+        } catch (Exception e) {
+        }
+        
         jFrameName = myVariables.getCurrentLoadingFrame();
         dialogPanel = myVariables.getLoadingPanel();
         lbLoadingMessage = myVariables.getLbLoadingMessage();
@@ -114,6 +124,12 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             }
             //</editor-fold>
             //<editor-fold desc="Initialize Variables">
+            if(isSf2Selected){
+                if(btnExport != null){
+                    btnExport.setEnabled(false);
+                }
+            }
+            
             tableName.setEnabled(false);
             showCustomDialog("Loading Attendances...", dialogPanel, false, 420, 220, false);
             if(!loadSummary()){
@@ -259,6 +275,12 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             loadAverageAttendance();
             calculatePercentageOfAttendance();
             //</editor-fold>
+            
+            if(isSf2Selected){
+                if(btnExport != null){
+                    btnExport.setEnabled(true);
+                }
+            }
         } catch (Exception e) {
             System.err.println("Error Occured @ loadSf2Details : "+e.getMessage());
             throw new InterruptedException("Interrupted by USer");
@@ -308,6 +330,10 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         int transferredIn=0,transferredOut=0,dropped=0;
         try {
             for(int n=0;n<studCOunt;n++){
+                transferredIn=0;
+                transferredOut=0;
+                dropped=0;
+                
                 lbLoadingMessage.setText("Evaluating Remarks of Student "+(n+1)+" of "+studCOunt);
                 String gender = tableName.getValueAt(n, 4).toString();
                 String remarks = tableName.getValueAt(n, 6).toString();
@@ -316,7 +342,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
                     try {
                         String remarkParts [] = remarks.split(":");
                         if(remarkParts.length == 2){    //It has the correct format
-                            System.err.println("Valide Remarks Found: "+remarkParts[0]);
+                            //System.err.println("Valide Remarks Found: "+remarkParts[0]);
                             if(remarkParts[0].contains("T/I")){
                                 transferredIn++;
                             }if(remarkParts[0].contains("T/O")){
@@ -394,7 +420,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             int currMale = Integer.parseInt(summaryTable.getValueAt(6, 1).toString());
             int currFemale = Integer.parseInt(summaryTable.getValueAt(6, 2).toString());
             
-            System.err.println("Consecutive Absences: "+consecutiveAbsences);
+            //System.err.println("Consecutive Absences: "+consecutiveAbsences);
             if(consecutiveAbsences >= 5){
                 if(gender.contains("Female")){
                     currFemale++;
@@ -555,7 +581,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
                 }
             }
         }
-        System.err.println("Checking Enrollment Type: "+(isEnrolledOnTime?"Enrolled":"Late"));
+        //System.err.println("Checking Enrollment Type: "+(isEnrolledOnTime?"Enrolled":"Late"));
         
         //Put result to summary
         int crEnrMale = Integer.parseInt(summaryTable.getValueAt(0, 1).toString());

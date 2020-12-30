@@ -4730,6 +4730,8 @@ public class dashBoard extends javax.swing.JFrame {
                     my.select_tab(mainTab, 3);
                     my.select_tab(tpSf2Sf4TabbedPane, 0);
                     my.select_tab(tpSf2Sf4DetailsPane, 0);
+                    
+                    btnExportSf2.setEnabled(false);
                     break;
                 }case 3:{
                     tfSectionName2.setText(sectionName);
@@ -4873,6 +4875,7 @@ public class dashBoard extends javax.swing.JFrame {
         String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
         String subjectId = assignedTeacherTable.getValueAt(row, 6).toString();
         String substituteValue = "";
+        boolean isSf2Selected = true;
         
         switch(jcbMissingValues.getSelectedIndex()){
             case 0:{
@@ -4897,7 +4900,8 @@ public class dashBoard extends javax.swing.JFrame {
                 new JTable[]{weekDaysOfTheMonthTable,sf2Table,summarySf2,null}, 
                 new String[]{sectionId,firstDayOfMonth,subjectId,cutOffDate,substituteValue}, 
                 new JTextField[]{tfSchoolDays}, 
-                null,null
+                new JButton[]{btnExportSf2},
+                new boolean[]{true,isSf2Selected}
         );
     }//GEN-LAST:event_btnLoadStudents1ActionPerformed
 

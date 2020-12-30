@@ -869,7 +869,7 @@ public class myFunctions {
                 toLoad = new Thread(tca);
                 break;
             }case 1:{
-                thread_loadSf2Details ls2d = new thread_loadSf2Details(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, true);
+                thread_loadSf2Details ls2d = new thread_loadSf2Details(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
                 toLoad = new Thread(ls2d);
                 break;
             }case 2:{

@@ -148,7 +148,8 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
                         new JTable[]{tablesToUse[0],tablesToUse[1],tablesToUse[2],tablesToUse[3]}, 
                         new String[]{sectionId,stringsToUse[1],subjectId,stringsToUse[3],stringsToUse[4]}, 
                         new JTextField[]{textFieldsToUse[0],tfSectionName,tfAdviserName,tfGradeLevel,tfSchoolYear},
-                        null,null
+                        null,
+                        new boolean[]{true,false}
                 );
                 //<editor-fold desc="Wait For SF2 to Finish Before moving to the next section">
                 if(waitForSecondThreadToFinish){
