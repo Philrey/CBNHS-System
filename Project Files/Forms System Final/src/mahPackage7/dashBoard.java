@@ -4740,6 +4740,7 @@ public class dashBoard extends javax.swing.JFrame {
                     tfSchoolYear2.setText(schoolYear+"-"+String.valueOf(schoolYear+1));
                     
                     my.select_tab(mainTab, 4);
+                    btnExportSf3.setEnabled(false);
                     break;
                 }case 5:{
                     tfSectionName3.setText(sectionName);
@@ -5046,12 +5047,24 @@ public class dashBoard extends javax.swing.JFrame {
                 new JTable[]{sf3Table,sf3BooksTable},
                 new String[]{sectionId,subjectId,substituteValue,booksContained}, 
                 new JTextField[]{tfSectionName2,tfAdviserName2,tfGradeLevel2,tfSchoolYear2}, 
-                null,null
+                new JButton[]{btnExportSf3},
+                null
         );
     }//GEN-LAST:event_btnLoadStudents3ActionPerformed
 
     private void btnExportSf3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf3ActionPerformed
-        // TODO add your handling code here:
+        if(myVariables.getFormSelected() != 3){
+            my.showMessage("SF3 Not Selected", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        my.runExportThread(
+                new JTable[]{sf3Table,sf3BooksTable},
+                new String[]{},
+                new JTextField[]{tfSectionName2,tfAdviserName2,tfGradeLevel2,tfSchoolYear2}, 
+                new JButton[]{btnExportSf3},
+                new boolean[]{}
+        );
     }//GEN-LAST:event_btnExportSf3ActionPerformed
 
     private void sf3TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sf3TableMouseClicked

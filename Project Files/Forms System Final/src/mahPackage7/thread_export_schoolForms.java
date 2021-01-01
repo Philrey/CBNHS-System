@@ -37,6 +37,9 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         private JTable sf2SummaryTable;
         private String sf2MonthSelected;
         private String sf2SchoolDays;
+        //SF3
+        private JTable sf3Table;
+        private JTable sf3BooksTable;
     //Global Variables
     private String sectionName;
     private String adviserName;
@@ -109,6 +112,14 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 sf2SchoolDays = textFieldsToUse[4].getText();
                 break;
             }case 3:{
+                //Global Variables
+                sectionName = my.getSectionNameOnly(textFieldsToUse[0].getText(), true);
+                adviserName = textFieldsToUse[1].getText().toUpperCase();
+                gradeLevel = textFieldsToUse[2].getText();
+                schoolYear = textFieldsToUse[3].getText();
+                //SF3 Variables
+                sf3Table = tables[0];
+                sf3BooksTable = tables[1];
                 break;
             }case 4:{
                 break;
@@ -197,7 +208,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
             }case 2:{
                 dataCount = sf2Table.getRowCount()-3;break;
             }case 3:{
-                dataCount = sf2Table.getRowCount()-3;break;
+                dataCount = sf3Table.getRowCount();break;
             }case 4:{
                 dataCount = sf2Table.getRowCount()-3;break;
             }case 5:{
@@ -400,7 +411,10 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     //</editor-fold>
                     break;
                 }case 3:{
+                    //<editor-fold desc="WRITE SF3">
                     
+                    
+                    //</editor-fold>
                     break;
                 }case 4:{
                     break;
