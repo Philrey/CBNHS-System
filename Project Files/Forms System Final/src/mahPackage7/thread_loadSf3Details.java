@@ -39,9 +39,12 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
     private String sectionId;
     private String subjectId;
     private String missingValuesSubstitute;
+    private String remarksValuesSubstitute;
     private String booksContained;
     
     private boolean waitForMainThreadToFinish;
+    
+    private JButton btnExport;
     //Dialog Properties
     private JDialog dialog;
     private JFrame jFrameName;
@@ -58,12 +61,15 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
         sectionId = stringsToUse[0];
         subjectId = stringsToUse[1];
         missingValuesSubstitute = stringsToUse[2];
-        booksContained = stringsToUse[3];
+        remarksValuesSubstitute = stringsToUse[3];
+        booksContained = stringsToUse[4];
         
         tfSectionName = textFieldsToUse[0];
         tfAdviserName = textFieldsToUse[1];
         tfGradeLevel = textFieldsToUse[2];
         tfSchoolYear = textFieldsToUse[3];
+        
+        btnExport = buttonsToUse[0];
         
         waitForMainThreadToFinish = waitForThreadsToFinish[1];
         //For Loading Screen
@@ -76,6 +82,7 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
     
     @Override
     protected String doInBackground() throws Exception {
+        btnExport.setEnabled(false);
         try {
             showCustomDialog("Loading Books...", dialogPanel, false, 320, 220, false);
             lbLoadingMessage.setText("Loading Book Template...");
@@ -119,7 +126,7 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
                 loadEmptyCounters();
                 return "No Students Found";
             }
-
+            btnExport.setEnabled(true);
             return "Ended Successfully";
         } catch (InterruptedException e) {
             return "Interrupted by user";
@@ -299,10 +306,18 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
                                 String codes [] = currentValue.split(":");
                                 if(codes.length == 2){
                                     sf3Table.setValueAt(codes[0], rows, col);
+                                    //USe remarksSubstituteValues
+                                    int indexToUse = 4;
+                                    if(remarksValuesSubstitute.equals("CODE")){
+                                        indexToUse = 1;
+                                    }if(remarksValuesSubstitute.equals("NAME")){
+                                        indexToUse = 2;
+                                    }
+                                    
                                     if(remarks.trim().length() <= 0 || (remarks.length()==2 && remarks.contains("--"))){
-                                        remarks = currentBookDetails[4]+":"+codes[1];
+                                        remarks = currentBookDetails[indexToUse]+":"+codes[1];
                                     }else{
-                                        remarks +=", "+currentBookDetails[4]+":"+codes[1];
+                                        remarks +=", "+currentBookDetails[indexToUse]+":"+codes[1];
                                     }
                                     System.err.println("Code for Remark: "+codes[1]);
                                     //Add to counter based on CODE

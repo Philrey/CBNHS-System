@@ -1991,7 +1991,7 @@ public class myFunctions {
     }
     private int [] parseExcelColumns(String excelColumnAddress){
         // Adresses must be in a format of E.G. ( A,B,D,E,G ) in ascending order
-        if(excelColumnAddress == null){
+        if(excelColumnAddress == null || excelColumnAddress.length() <= 0){
             return null;
         }
         

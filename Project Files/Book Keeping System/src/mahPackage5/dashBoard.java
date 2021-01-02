@@ -1366,6 +1366,7 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        booksUsedTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         booksUsedTable.getTableHeader().setReorderingAllowed(false);
         booksUsedTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1374,10 +1375,12 @@ public class dashBoard extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(booksUsedTable);
         if (booksUsedTable.getColumnModel().getColumnCount() > 0) {
-            booksUsedTable.getColumnModel().getColumn(5).setPreferredWidth(70);
+            booksUsedTable.getColumnModel().getColumn(2).setPreferredWidth(200);
+            booksUsedTable.getColumnModel().getColumn(5).setPreferredWidth(100);
             booksUsedTable.getColumnModel().getColumn(5).setMaxWidth(70);
-            booksUsedTable.getColumnModel().getColumn(6).setPreferredWidth(70);
+            booksUsedTable.getColumnModel().getColumn(6).setPreferredWidth(100);
             booksUsedTable.getColumnModel().getColumn(6).setMaxWidth(70);
+            booksUsedTable.getColumnModel().getColumn(7).setPreferredWidth(200);
         }
 
         btnSaveStatusChanges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage5/icons/icons8_save_16px.png"))); // NOI18N

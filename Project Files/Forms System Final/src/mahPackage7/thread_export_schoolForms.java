@@ -208,7 +208,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
             }case 2:{
                 dataCount = sf2Table.getRowCount()-3;break;
             }case 3:{
-                dataCount = sf3Table.getRowCount();break;
+                dataCount = sf3Table.getRowCount()-3;break;
             }case 4:{
                 dataCount = sf2Table.getRowCount()-3;break;
             }case 5:{
@@ -401,7 +401,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     int [] rowAddresses = new int [] {23,25,29,31,33,35,36,37,39,41};
                     
                     for (int n = 0; n < 10; n++) {
-                        lbLoadingMessage.setText("Writing Tables...3/4 "+(n+1)+" of 10");
+                        lbLoadingMessage.setText("Writing Tables...3/4 Summary "+(n+1)+" of 10");
                         String line = my.get_table_row_values(n, sf2SummaryTable);
                         line = my.skipColumns(line, new int [] {0});
                         
@@ -412,7 +412,75 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     break;
                 }case 3:{
                     //<editor-fold desc="WRITE SF3">
+                    //#1 Write Book Names
+                    int rowCount = sf3BooksTable.getRowCount();
+                    startingAddress = "C,5"; //A,7 first row
+                    excelColumnsToSkip = "D,F,H,J,L,N,P,R,T,V";
                     
+                    String bookTitles = "";
+                    for (int n = 0; n < rowCount; n++) {
+                        lbLoadingMessage.setText("Writing Tables...3/4 Writing Book Names "+(n+1)+" of "+rowCount);
+                        String bookCode = sf3BooksTable.getValueAt(n, 1).toString();
+                        bookTitles += bookCode + "@@";
+                        Thread.sleep(pauseDelay);
+                    }
+                    my.writeExcelLine(sheetNumber, bookTitles, excelColumnsToSkip, startingAddress);
+                    
+                    //#2 Write Sf3 Table
+                    rowCount = sf3Table.getRowCount()-3;
+                    startingAddress2 = "A,"; //A,7 first row
+                    excelColumnsToSkip = null;
+                    
+                    //Extract Counters;
+                    String maleBooks = my.get_table_row_values(rowCount, sf3Table);
+                    String femaleBooks = my.get_table_row_values(rowCount+1, sf3Table);
+                    String totalBooks = my.get_table_row_values(rowCount+2, sf3Table);
+                    
+                    maleBooks = " @@"+my.skipColumns(maleBooks, new int [] {0,1,2,4});
+                    femaleBooks = " @@"+my.skipColumns(femaleBooks, new int [] {0,1,2,4});
+                    totalBooks = " @@"+my.skipColumns(totalBooks, new int [] {0,1,2,4});
+                    
+                    int row = 0;
+                    boolean firstFemaleFound = false;
+                    for (int n = 0; n < rowCount;) {
+                        lbLoadingMessage.setText("Writing Tables...3/4 Student "+(n+1)+" of "+rowCount);
+                        
+                        String gender = sf3Table.getValueAt(n, 4).toString();
+                        String line = my.get_table_row_values(n, sf3Table);
+                        line = (n+1)+"@@"+my.skipColumns(line, new int [] {0,1,2,4});
+                        
+                        System.err.println("Line : "+line);
+                        if(!firstFemaleFound){
+                            if(gender.contains("Female")){
+                                firstFemaleFound = true;
+                                //System.err.println(mCount);
+                                my.writeExcelLine(sheetNumber, maleBooks, excelColumnsToSkip, startingAddress2+(row+8));
+                                
+                                row++;
+                                Thread.sleep(threadDelay);
+                                continue;
+                            }
+                        }
+                        //Write Line
+                        my.writeExcelLine(sheetNumber, line, excelColumnsToSkip, startingAddress2+(row+8));
+                        Thread.sleep(threadDelay);
+                        
+                        //If there is no female and is last row
+                        if(!firstFemaleFound){
+                            if(n == rowCount-1){
+                                firstFemaleFound = true;
+                                row++;
+                                my.writeExcelLine(sheetNumber, maleBooks, excelColumnsToSkip, startingAddress2+(row+8));
+                                Thread.sleep(threadDelay);
+                            }
+                        }
+                        n++;
+                        row++;
+                        Thread.sleep(threadDelay);
+                    }
+                    //Write Female & Total Counters
+                    my.writeExcelLine(sheetNumber, femaleBooks, excelColumnsToSkip, startingAddress2+(row+8));
+                    my.writeExcelLine(sheetNumber, totalBooks, excelColumnsToSkip, startingAddress2+(row+8+1));
                     
                     //</editor-fold>
                     break;
@@ -487,12 +555,9 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     break;
                 }case 2:{
                     //Set Addresses by sheetIndex
-                    String monthSelected [] = new String [] {
-                        "T,22","T,32","T,42","T,52","T,62","T,72","T,82"};
-                    String schoolDays [] = new String [] {
-                        "W,22","W,32","W,42","W,52","W,62","W,72","W,82"};
-                    String advName [] = new String [] {
-                        "U,45","U,55","U,65","U,75","U,85","U,95","U,105"};
+                    String monthSelected [] = new String [] {"T,22","T,32","T,42","T,52","T,62","T,72","T,82"};
+                    String schoolDays [] = new String [] {"W,22","W,32","W,42","W,52","W,62","W,72","W,82"};
+                    String advName [] = new String [] {"U,45","U,55","U,65","U,75","U,85","U,95","U,105"};
                     
                     headers = new header[]{
                         //Header Parts
@@ -509,6 +574,19 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     };
                     break;
                 }case 3:{
+                    //Set Addresses by sheetIndex
+                    String advName [] = new String [] {"T,23","T,33","T,43","T,53","T,63","T,73","T,83"};
+                    
+                    headers = new header[]{
+                        //Header Parts
+                        new header(schoolId, "C,3"),
+                        new header(schoolName, "C,4"),
+                        new header(schoolYear, "I,3"),
+                        new header(gradeLevel, "P,4"),
+                        new header(sectionName, "T,4"),
+                        //Form's Custom Fields
+                        new header(adviserName, advName[sheetNumber]),
+                    };
                     break;
                 }case 4:{
                     break;

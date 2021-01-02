@@ -222,6 +222,8 @@ public class dashBoard extends javax.swing.JFrame {
         tfGradeLevel2 = new javax.swing.JTextField();
         jcbMissingValues2 = new javax.swing.JComboBox<>();
         jLabel40 = new javax.swing.JLabel();
+        jcbMissingValues3 = new javax.swing.JComboBox<>();
+        jLabel105 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane13 = new javax.swing.JScrollPane();
         sf3Table = new javax.swing.JTable();
@@ -1987,6 +1989,10 @@ public class dashBoard extends javax.swing.JFrame {
 
         jLabel40.setText("Values For Missing Records");
 
+        jcbMissingValues3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Book Code (Default)", "Book Name", "Book Index" }));
+
+        jLabel105.setText("Values For Remarks");
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -2008,6 +2014,7 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tfAdviserName2)
                     .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel105, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
@@ -2018,7 +2025,8 @@ public class dashBoard extends javax.swing.JFrame {
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(tfSchoolYear2)
                                     .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jcbMissingValues2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jcbMissingValues2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcbMissingValues3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -2056,6 +2064,10 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel40)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcbMissingValues2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel105)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcbMissingValues3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLoadStudents3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -5030,6 +5042,7 @@ public class dashBoard extends javax.swing.JFrame {
         String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
         String subjectId = assignedTeacherTable.getValueAt(row, 6).toString();
         String substituteValue = "";
+        String remarksSubstituteValue = "";
         String booksContained = assignedTeacherTable.getValueAt(row, 13).toString();
         
         switch(jcbMissingValues2.getSelectedIndex()){
@@ -5043,9 +5056,23 @@ public class dashBoard extends javax.swing.JFrame {
                 break;
             }
         }
+        switch(jcbMissingValues3.getSelectedIndex()){
+            case 0:{
+                remarksSubstituteValue="CODE";
+                break;
+            }case 1:{
+                remarksSubstituteValue="NAME";
+                break;
+            }case 2:{
+                remarksSubstituteValue="INDEX";
+                break;
+            }default:{
+                break;
+            }
+        }
         my.runSecondaryThread(2, true,
                 new JTable[]{sf3Table,sf3BooksTable},
-                new String[]{sectionId,subjectId,substituteValue,booksContained}, 
+                new String[]{sectionId,subjectId,substituteValue,remarksSubstituteValue,booksContained}, 
                 new JTextField[]{tfSectionName2,tfAdviserName2,tfGradeLevel2,tfSchoolYear2}, 
                 new JButton[]{btnExportSf3},
                 null
@@ -5961,7 +5988,7 @@ public class dashBoard extends javax.swing.JFrame {
             jLabel47,jLabel48,jLabel49,jLabel50,jLabel55,jLabel58,jLabel59,jLabel60,jLabel61,
             jLabel71,jLabel7,jLabel73,jLabel74,jLabel66,jLabel67,jLabel69,
             jLabel78,jLabel79,jLabel80,jLabel81,jLabel82,jLabel83,jLabel84,jLabel86,jLabel87,
-            jLabel88,jLabel89,jLabel102,
+            jLabel88,jLabel89,jLabel102,jLabel105,
             
         };
         
@@ -6039,6 +6066,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         JComboBox [] dropDowns = {
             jcbMissingValues,jcbMissingValues1,jcbMissingValues2,jcbRankingNumberOfStudents,
+            jcbMissingValues3,
         };
         int startingYear = 2019;
         
@@ -6165,6 +6193,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel102;
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
+    private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel108;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -6355,6 +6384,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbMissingValues;
     private javax.swing.JComboBox<String> jcbMissingValues1;
     private javax.swing.JComboBox<String> jcbMissingValues2;
+    private javax.swing.JComboBox<String> jcbMissingValues3;
     private javax.swing.JComboBox<String> jcbRankingNumberOfStudents;
     private javax.swing.JComboBox<String> jcbRankingSchoolYear;
     private javax.swing.JComboBox<String> jcbSchoolYear1;

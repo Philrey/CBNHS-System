@@ -2852,6 +2852,7 @@
                                   <Component id="jLabel38" alignment="0" max="32767" attributes="0"/>
                                   <Component id="tfAdviserName2" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLabel40" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel105" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
@@ -2866,6 +2867,7 @@
                                               </Group>
                                           </Group>
                                           <Component id="jcbMissingValues2" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
+                                          <Component id="jcbMissingValues3" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -2911,6 +2913,10 @@
                               <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jcbMissingValues2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel105" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jcbMissingValues3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnLoadStudents3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -3151,6 +3157,25 @@
                     <Component class="javax.swing.JLabel" name="jLabel40">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Values For Missing Records"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="jcbMissingValues3">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="3">
+                            <StringItem index="0" value="Book Code (Default)"/>
+                            <StringItem index="1" value="Book Name"/>
+                            <StringItem index="2" value="Book Index"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel105">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Values For Remarks"/>
                       </Properties>
                     </Component>
                   </SubComponents>
