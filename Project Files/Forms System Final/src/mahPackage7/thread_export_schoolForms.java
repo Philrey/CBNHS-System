@@ -421,7 +421,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     for (int n = 0; n < rowCount; n++) {
                         lbLoadingMessage.setText("Writing Tables...3/4 Writing Book Names "+(n+1)+" of "+rowCount);
                         String bookCode = sf3BooksTable.getValueAt(n, 1).toString();
-                        bookTitles += bookCode + "@@";
+                        bookTitles += (n+1)+". " + bookCode + "@@";
                         Thread.sleep(pauseDelay);
                     }
                     my.writeExcelLine(sheetNumber, bookTitles, excelColumnsToSkip, startingAddress);
@@ -449,7 +449,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         String line = my.get_table_row_values(n, sf3Table);
                         line = (n+1)+"@@"+my.skipColumns(line, new int [] {0,1,2,4});
                         
-                        System.err.println("Line : "+line);
+                        //System.err.println("Line : "+line);
                         if(!firstFemaleFound){
                             if(gender.contains("Female")){
                                 firstFemaleFound = true;
