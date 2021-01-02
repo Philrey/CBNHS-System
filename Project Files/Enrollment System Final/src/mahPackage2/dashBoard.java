@@ -384,7 +384,7 @@ public class dashBoard extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "ID (H)", "Name", "Grade Level"
+                "ID (H)", "Name", "Grade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -395,13 +395,11 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        loadsTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         loadsTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane12.setViewportView(loadsTable);
         if (loadsTable.getColumnModel().getColumnCount() > 0) {
             loadsTable.getColumnModel().getColumn(1).setPreferredWidth(200);
             loadsTable.getColumnModel().getColumn(2).setResizable(false);
-            loadsTable.getColumnModel().getColumn(2).setPreferredWidth(100);
         }
 
         btnAddNewSection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_add_16px.png"))); // NOI18N
@@ -603,7 +601,7 @@ public class dashBoard extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "ID (H)", "Name", "Grade Level"
+                "ID (H)", "Name", "Grade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -614,12 +612,11 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        loadsTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         loadsTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane14.setViewportView(loadsTable1);
         if (loadsTable1.getColumnModel().getColumnCount() > 0) {
+            loadsTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
             loadsTable1.getColumnModel().getColumn(2).setResizable(false);
-            loadsTable1.getColumnModel().getColumn(2).setPreferredWidth(100);
         }
 
         btnSaveSectionChanges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_save_16px.png"))); // NOI18N
@@ -1777,7 +1774,24 @@ public class dashBoard extends javax.swing.JFrame {
             String sectionId = sectionsTable.getValueAt(row, 0).toString();
             String sectionName = sectionsTable.getValueAt(row, 1).toString();
             int schoolYear = Integer.parseInt(sectionsTable.getValueAt(row, 8).toString());
-           
+            
+            //<editor-fold desc="Clear & add Teacher and Curriculum">
+            String adviserId = sectionsTable.getValueAt(row, 2).toString();
+            String adviserName = sectionsTable.getValueAt(row, 3).toString();
+            String gender = sectionsTable.getValueAt(row, 4).toString();
+            String accessLevel = "1";
+            
+            String loadId = sectionsTable.getValueAt(row, 5).toString();
+            String loadName = sectionsTable.getValueAt(row, 6).toString();
+            String gradeLevel = sectionsTable.getValueAt(row, 7).toString();
+            
+            my.clear_table_rows(usersTable1);
+            my.clear_table_rows(loadsTable1);
+            
+            my.add_table_row(adviserId+"@@"+adviserName+"@@"+gender+"@@"+accessLevel+"@@", usersTable1);
+            my.add_table_row(loadId+"@@"+loadName+"@@"+gradeLevel+"@@", loadsTable1);
+            //</editor-fold>
+            
             tfSectionName1.setText(sectionName);
             lbSectionId.setText(sectionId);
             

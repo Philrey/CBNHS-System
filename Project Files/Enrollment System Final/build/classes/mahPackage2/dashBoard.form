@@ -501,10 +501,9 @@
                                           <Table columnCount="3" rowCount="4">
                                             <Column editable="false" title="ID (H)" type="java.lang.Object"/>
                                             <Column editable="false" title="Name" type="java.lang.Object"/>
-                                            <Column editable="false" title="Grade Level" type="java.lang.Object"/>
+                                            <Column editable="false" title="Grade" type="java.lang.Object"/>
                                           </Table>
                                         </Property>
-                                        <Property name="autoResizeMode" type="int" value="0"/>
                                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                           <TableColumnModel selectionModel="0">
                                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -517,7 +516,7 @@
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
@@ -854,10 +853,9 @@
                                           <Table columnCount="3" rowCount="4">
                                             <Column editable="false" title="ID (H)" type="java.lang.Object"/>
                                             <Column editable="false" title="Name" type="java.lang.Object"/>
-                                            <Column editable="false" title="Grade Level" type="java.lang.Object"/>
+                                            <Column editable="false" title="Grade" type="java.lang.Object"/>
                                           </Table>
                                         </Property>
-                                        <Property name="autoResizeMode" type="int" value="0"/>
                                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                           <TableColumnModel selectionModel="0">
                                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -865,12 +863,12 @@
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="false">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>

@@ -39,7 +39,6 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
     private JTable [] tablesToUse;
     private String [] stringsToUse;
     private JTextField [] textFieldsToUse;
-    private JButton [] buttonsToUse;
     private boolean [] waitForThreadsToFinish;
     
     private JTextField tfSectionName;
@@ -52,6 +51,7 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
     private JTable sf4Table;
     private JTable sectionsTable;
     private boolean allSectionSelected;
+    private JButton btnExport;
     
     private String sectionId,sectionName,adviserName,gradeLevel;
     //</editor-fold>
@@ -61,7 +61,6 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
         this.tablesToUse = tablesToUse;
         this.stringsToUse = stringsToUse;
         this.textFieldsToUse = textFieldsToUse;
-        this.buttonsToUse = buttonsToUse;
         this.waitForThreadsToFinish = waitForThreadsToFinish;
         
         tfSectionName = textFieldsToUse[1];
@@ -79,11 +78,13 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
         sf4Table = tablesToUse[3];
         sectionsTable = tablesToUse[4];
         waitForSecondThreadToFinish = waitForThreadsToFinish[2];
+        btnExport = buttonsToUse[0];
     }
 
     @Override
     protected String doInBackground() throws Exception{
         sf4Table.setEnabled(false);
+        btnExport.setEnabled(false);
         int sectionCount = 0;
         int selectedSections [];
 
@@ -169,6 +170,7 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
         } catch (InterruptedException e) {
             throw new InterruptedException("Sf4 Interrupted By User.");
         }
+        btnExport.setEnabled(true);
         return "Success";
     }
 

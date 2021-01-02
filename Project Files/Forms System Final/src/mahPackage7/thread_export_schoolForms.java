@@ -40,6 +40,9 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         //SF3
         private JTable sf3Table;
         private JTable sf3BooksTable;
+        //SF4
+        private String sf4MonthSelected;
+        private JTable sf4Table;
     //Global Variables
     private String sectionName;
     private String adviserName;
@@ -122,6 +125,11 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 sf3BooksTable = tables[1];
                 break;
             }case 4:{
+                //Global Variables
+                schoolYear = textFieldsToUse[0].getText();
+                //SF4 Variables
+                sf4Table = tables[0];
+                sf4MonthSelected = stringsToUse[0].toUpperCase();
                 break;
             }case 5:{
                 break;
@@ -210,13 +218,13 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
             }case 3:{
                 dataCount = sf3Table.getRowCount()-3;break;
             }case 4:{
-                dataCount = sf2Table.getRowCount()-3;break;
+                dataCount = sf4Table.getRowCount();break;
             }case 5:{
-                dataCount = sf2Table.getRowCount()-3;break;
+                //dataCount = sf2Table.getRowCount()-3;break;
             }case 7:{
-                dataCount = sf2Table.getRowCount()-3;break;
+                //dataCount = sf2Table.getRowCount()-3;break;
             }case 8:{
-                dataCount = sf2Table.getRowCount()-3;break;
+                //dataCount = sf2Table.getRowCount()-3;break;
             }default:{
                 break;
             }
@@ -485,6 +493,9 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     //</editor-fold>
                     break;
                 }case 4:{
+                    //<editor-fold desc="SF4">
+                    
+                    //</editor-fold>
                     break;
                 }case 5:{
                     break;
@@ -589,6 +600,16 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     };
                     break;
                 }case 4:{
+                    headers = new header[]{
+                        //Header Parts
+                        new header(schoolId, "D,4"),
+                        new header(region, "J,4"),
+                        new header(division, "Q,4"),
+                        new header(district, "Y,4"),
+                        new header(schoolName, "C,6"),
+                        new header(schoolYear, "Y,6"),
+                        new header(sf4MonthSelected, "AJ,6"),
+                    };
                     break;
                 }case 5:{
                     break;
