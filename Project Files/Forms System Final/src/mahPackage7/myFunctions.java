@@ -43,8 +43,10 @@ import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Drawing;
 import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Picture;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -1355,9 +1357,14 @@ public class myFunctions {
                     }
                     finalString+=temp[n]+", ";
                 }else{
+                    if(temp[n].length() > 1){
+                        finalString+=temp[n].trim();
+                    }else{
+                        //Remove comma
+                        finalString = finalString.substring(0, finalString.length()-2);
+                    }
                     //Add Extention at the End
                     finalString+=" "+extentionName.trim();
-                    finalString+=temp[n];
                 }
                 if(isLast){
                     finalString+="@@";
@@ -1852,6 +1859,7 @@ public class myFunctions {
             
             style.setFont(newFont);
             style.setAlignment(cellStyle.getAlignment());
+            style.setVerticalAlignment(cellStyle.getVerticalAlignment());
             
             //style.setFillForegroundColor(new XSSFColor(color, new DefaultIndexedColorMap()));
             //style.setFillPattern(FillPatternType.SOLID_FOREGROUND);

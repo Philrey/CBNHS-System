@@ -207,7 +207,7 @@ public class thread_loadGrades extends SwingWorker<String, Object>{
                             if(failedSubjects.trim().length()<=0){
                                 failedSubjects = subjectCode;
                             }else{
-                                failedSubjects+=","+subjectCode;
+                                failedSubjects+=", "+subjectCode;
                             }
                             failedCount++;
                             break;
@@ -215,7 +215,7 @@ public class thread_loadGrades extends SwingWorker<String, Object>{
                             if(failedSubjects.trim().length()<=0){
                                 failedSubjects = subjectCode;
                             }else{
-                                failedSubjects+=" ,"+subjectCode;
+                                failedSubjects+=", "+subjectCode;
                             }
                             failedCount++;
                             incCount++;
