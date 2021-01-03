@@ -1622,7 +1622,7 @@ public class dashBoard extends javax.swing.JFrame {
         summarySf2.getTableHeader().setReorderingAllowed(false);
         jScrollPane7.setViewportView(summarySf2);
         if (summarySf2.getColumnModel().getColumnCount() > 0) {
-            summarySf2.getColumnModel().getColumn(0).setPreferredWidth(200);
+            summarySf2.getColumnModel().getColumn(0).setPreferredWidth(300);
             summarySf2.getColumnModel().getColumn(1).setResizable(false);
             summarySf2.getColumnModel().getColumn(1).setPreferredWidth(40);
             summarySf2.getColumnModel().getColumn(2).setResizable(false);

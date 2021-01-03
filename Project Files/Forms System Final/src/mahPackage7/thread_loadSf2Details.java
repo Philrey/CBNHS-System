@@ -36,7 +36,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
     //<editor-fold desc="Variables">
     long threadDelay = 100;
     long pauseDelay = 500;
-    
+    myFunctions my;
     //Summary Variables
     private int numberOfSchoolDays;
     private int absent,tardy;
@@ -75,6 +75,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
     private JProgressBar progressBar;
     //</editor-fold>
     public thread_loadSf2Details(JTable [] tablesToUse,String [] stringsToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean [] booleansToUse) {
+        my = new myFunctions(true);
         dateTable = tablesToUse[0];
         tableName = tablesToUse[1];
         summaryTable = tablesToUse[2];
@@ -123,12 +124,17 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
                 }
             }
             //</editor-fold>
+            try {
+                Runtime.getRuntime().exec("cls");
+            } catch (Exception e) {
+            }
             //<editor-fold desc="Initialize Variables">
             if(isSf2Selected){
                 if(btnExport != null){
                     btnExport.setEnabled(false);
                 }
             }
+            
             
             tableName.setEnabled(false);
             showCustomDialog("Loading Attendances...", dialogPanel, false, 420, 220, false);
@@ -141,6 +147,10 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
                 System.err.println("No students found. SKipping");
                 tfSchoolDays.setText("0");
                 throw new InterruptedException("Ended");
+            }
+            //Remove Students That are not enrolled Yet During the month
+            if(!removeStudents()){
+                throw new InterruptedException("Interrupted @ Remove Students");
             }
             
             if(!translateRemarks()){
@@ -176,7 +186,11 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
 
                     gender = tableName.getValueAt(n, 4).toString();
                     dateEnrolled = tableName.getValueAt(n, 5).toString();
-                    checkEnrollmentType(gender, dateEnrolled);
+                    if(!checkEnrollmentType(gender, dateEnrolled)){
+                        System.err.println("Student ID:"+studentId+" is not enrolled Year At This Time\nSelected: "+dateSelected+"\nEnrolled: "+dateEnrolled);
+                        Thread.sleep(threadDelay);
+                        continue;
+                    }
 
                     Thread.sleep(pauseDelay);
 
@@ -394,6 +408,52 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             return false;
         }
     }
+    private boolean removeStudents(){
+        try {
+            int rowCount = tableName.getRowCount();
+            for (int n = rowCount-1; n >= 0; n--) {
+                String dateEnrolled = tableName.getValueAt(n, 5).toString();
+                if(skipStudent(dateEnrolled)){
+                    my.remove_table_row(tableName, n);
+                }
+                Thread.sleep(threadDelay);
+            }
+            return true;
+        }catch(InterruptedException x){
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    private boolean skipStudent(String dateEnrolled){
+        String dtSelected [] = dateSelected.split("-");
+        String dtEnrld [] = dateEnrolled.split(" ")[0].split("-");
+        
+        int sYr = Integer.parseInt(dtEnrld[0]);
+        int sM = Integer.parseInt(dtSelected[1]);
+        int sD = Integer.parseInt(dtEnrld[2]);
+        int eYr = Integer.parseInt(dtEnrld[0]);
+        int eM = Integer.parseInt(dtEnrld[1]);
+        int eD = Integer.parseInt(dtEnrld[2]);
+        
+        //Skip this Student if Month Selected < Date Enrolled
+        if(sYr != eYr){
+            if(sYr<eYr){return true;}
+        }else{
+            if(sM != eM){
+                if (sM < eM) {return true;}
+            }else{
+                if(sD != eD){
+                    if(sD < eD){
+                        return true;
+                    }
+                }
+            }
+        }
+        
+        return false;
+    }
     //<editor-fold desc="Summary Functions">
     private void checkForFiveConsecutiveAbsences(){
         int studCount = tableName.getRowCount();
@@ -501,8 +561,8 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             String percentTotal = df.format(((maleADA+femaleADA)/(maleRegistered+femaleRegistered)) * 100);
 
             summaryTable.setValueAt(!percentMale.contains("NaN")?percentMale:"0", 5, 1);
-            summaryTable.setValueAt(!percentFemale.contains("NaN")?percentMale:"0", 5, 2);
-            summaryTable.setValueAt(!percentTotal.contains("NaN")?percentMale:"0", 5, 3);
+            summaryTable.setValueAt(!percentFemale.contains("NaN")?percentFemale:"0", 5, 2);
+            summaryTable.setValueAt(!percentTotal.contains("NaN")?percentTotal:"0", 5, 3);
             Thread.sleep(pauseDelay);
         } catch (Exception e) {
         }
@@ -556,11 +616,15 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         }
         schoolDaysColumnIndex = temp;
     }
-    private void checkEnrollmentType(String gender,String dateEnrolled){
+    private boolean checkEnrollmentType(String gender,String dateEnrolled){
         
         boolean isEnrolledOnTime = true;
+        
+        String dtSelected [] = dateSelected.split("-");
         String dtEnrld [] = dateEnrolled.split(" ")[0].split("-");
         String ctOff [] = lastDayOfEnrollment.split("-");
+        
+        int sM = Integer.parseInt(dtSelected[1]);
         
         int eYr = Integer.parseInt(dtEnrld[0]);
         int eM = Integer.parseInt(dtEnrld[1]);
@@ -579,6 +643,13 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
                 if(eD != cD){
                     isEnrolledOnTime = eD < cD ? true : false;
                 }
+            }
+        }
+        //Check if Month Selected is equal to Date Enrolled Month if Student is enrolled LATE
+        if(!isEnrolledOnTime){
+            if(sM != eM){
+                System.err.println("Month Selected is Not equal to Enrolled Month...setting enrolled on time to true.");
+                isEnrolledOnTime = true;
             }
         }
         //System.err.println("Checking Enrollment Type: "+(isEnrolledOnTime?"Enrolled":"Late"));
@@ -614,6 +685,8 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         summaryTable.setValueAt(crEnrMale+lateMale, 2, 1);
         summaryTable.setValueAt(crEnrFemale+lateFemale, 2, 2);
         summaryTable.setValueAt(crEnrMale+lateMale+crEnrFemale+lateFemale, 2, 3);
+        
+        return true;
     }
     private void getEnrollmentPercentage(){
         int rgMale = Integer.parseInt(summaryTable.getValueAt(2, 1).toString());
@@ -638,7 +711,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             clear_table_rows(summaryTable);
             String summary [] = {
                 "Enrollment (1st Fri of June)@@0@@0@@0@@",
-                "Late Enrollment@@0@@0@@0@@",
+                "Late Enrollment Dur. the Month (Beyond Cut-off)@@0@@0@@0@@",
                 "Registered Learners (End of Month)@@0@@0@@0@@",
                 "Percentage of Enrollment@@0@@0@@0@@",
                 "Average Daily Attendance@@0@@0@@0@@",

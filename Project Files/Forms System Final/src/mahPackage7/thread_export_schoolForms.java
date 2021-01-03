@@ -494,7 +494,19 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     break;
                 }case 4:{
                     //<editor-fold desc="SF4">
+                    int rowCount = sf4Table.getRowCount();
+                    startingAddress = "A,";
+                    excelColumnsToSkip = "M,N,O,S,T,U,V,W,X,AB,AC,AD,AE,AF,AG,AK,AL,AM";
                     
+                    for (int n = 0; n < rowCount; n++) {
+                        String line = my.get_table_row_values(n, sf4Table);
+                        String sectionName = my.getSectionNameOnly(sf4Table.getValueAt(n, 1).toString(), true);
+                        
+                        line = my.setValueAtColumn(line, 1, sectionName);
+                        
+                        my.writeExcelLine(sheetNumber, line, excelColumnsToSkip, startingAddress+(n+11));
+                        Thread.sleep(threadDelay);
+                    }
                     //</editor-fold>
                     break;
                 }case 5:{

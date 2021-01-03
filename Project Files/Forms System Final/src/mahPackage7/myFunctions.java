@@ -1999,8 +1999,10 @@ public class myFunctions {
         int [] indeces = new int[letters.length];
         
         for (int n = 0; n < indeces.length; n++) {
-            indeces[n] = getLetterValueAdvanced(String.valueOf(letters[n].charAt(0)) );
-            System.err.println("Skipping column: "+letters[n]+"="+indeces[n]);
+            indeces[n] = getLetterValueAdvanced( letters[n] );
+            if(myVariables.isDebugModeOn()){
+                System.err.println("Skipping column: "+letters[n]+"="+indeces[n]);
+            }
         }
         
         return indeces;
@@ -2047,7 +2049,9 @@ public class myFunctions {
                 currentValue += getLetterValue(letterToSearch);
             }
         }
-        System.err.println("Advanced Value: "+currentValue);
+        if(myVariables.isDebugModeOn()){
+            System.err.println("Advanced Value: "+currentValue);
+        }
         return currentValue;
     }
     private void removeSheetsAt(int sheetIndexInOrder []){
