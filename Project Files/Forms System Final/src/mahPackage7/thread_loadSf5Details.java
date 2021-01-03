@@ -162,9 +162,10 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
             }if(!updateLevelLevelOfProgressTable()){
                 throw new InterruptedException("Interrupted By User");
             }if(sf6Table != null){
-                if(!sendStatisticsToSf6Table()){
-                    throw new InterruptedException("INterrupted By User");
-                }
+                if(!sendStatisticsToSf6Table()){throw new InterruptedException("INterrupted By User");}
+            }else{
+                //Add Counters
+                if(!loadCounters()){throw new InterruptedException("INterrupted By User");}
             }
             try {
                 btnExport.setEnabled(!showIncompleteRecords);
@@ -192,6 +193,42 @@ public class thread_loadSf5Details extends SwingWorker<String, Object>{
         } catch (Exception e) {
         }
         super.done(); //To change body of generated methods, choose Tools | Templates.
+    }
+    private boolean loadCounters(){
+        try {
+            int rowCount = sf5Table.getRowCount();
+            progressBar.setValue(0);
+            progressBar.setMaximum(rowCount);
+            int male=0,female=0,total=0;
+            for (int n = 0; n < rowCount; n++) {
+                lbLoadingMessage.setText("Counting Students... "+(n+1)+" of "+rowCount);
+                progressBar.setValue(n+1);
+                
+                String gender = sf5Table.getValueAt(n, 6).toString();
+                if(gender.equals("Female")){
+                    female++;
+                }if(gender.equals("Male")){
+                    male++;
+                }
+                total++;
+                Thread.sleep(threadDelay);
+            }
+            
+            String maleCount = "--@@--@@--@@--@@"+male+"@@<== TOTAL MALE ==>@@ @@ @@ @@ @@ @@ @@";
+            String femaleCount = "--@@--@@--@@--@@"+female+"@@<== TOTAL FEMALE ==>@@ @@ @@ @@ @@ @@ @@";
+            String totalCount = "--@@--@@--@@--@@"+total+"@@<== COMBINED TOTAL ==>@@ @@ @@ @@ @@ @@ @@";
+            
+            my.add_table_row(maleCount, sf5Table);
+            my.add_table_row(femaleCount, sf5Table);
+            my.add_table_row(totalCount, sf5Table);
+            
+            return true;
+        }catch (InterruptedException x){
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
     private boolean sendStatisticsToSf6Table(){
         try {
