@@ -3457,7 +3457,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
-            <Property name="dividerLocation" type="int" value="650"/>
+            <Property name="dividerLocation" type="int" value="635"/>
           </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
@@ -3477,7 +3477,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tpSf5Sf6Pane" alignment="0" pref="650" max="32767" attributes="0"/>
+                      <Component id="tpSf5Sf6Pane" alignment="0" pref="635" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -3802,12 +3802,12 @@
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel43" max="32767" attributes="0"/>
                                                   <Component id="jScrollPane20" alignment="0" pref="0" max="32767" attributes="0"/>
-                                                  <Component id="jLabel44" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="tfSectionName3" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="jLabel47" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="jLabel46" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="jLabel48" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="tfAdviserName3" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel44" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="jScrollPane21" alignment="0" pref="0" max="32767" attributes="0"/>
                                                   <Component id="jLabel45" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="btnExportSf5" alignment="0" max="32767" attributes="0"/>
@@ -3815,14 +3815,23 @@
                                                   <Group type="102" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Group type="102" attributes="0">
-                                                              <Component id="tfGradeLevel3" min="-2" pref="94" max="-2" attributes="0"/>
+                                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                                  <Group type="102" alignment="0" attributes="0">
+                                                                      <Component id="tfGradeLevel3" min="-2" pref="94" max="-2" attributes="0"/>
+                                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                                      <Component id="tfSchoolYear3" min="-2" pref="94" max="-2" attributes="0"/>
+                                                                  </Group>
+                                                                  <Group type="102" alignment="0" attributes="0">
+                                                                      <Component id="jLabel49" min="-2" pref="94" max="-2" attributes="0"/>
+                                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                                      <Component id="jLabel50" min="-2" pref="94" max="-2" attributes="0"/>
+                                                                  </Group>
+                                                              </Group>
                                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                              <Component id="tfSchoolYear3" min="-2" pref="94" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <Component id="jLabel49" min="-2" pref="94" max="-2" attributes="0"/>
-                                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                              <Component id="jLabel50" min="-2" pref="94" max="-2" attributes="0"/>
+                                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                                  <Component id="tfCurriculum" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
+                                                                  <Component id="jLabel109" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
+                                                              </Group>
                                                           </Group>
                                                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                                               <Component id="cbShowIncompleteStudents" max="32767" attributes="0"/>
@@ -3854,19 +3863,28 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="tfAdviserName3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel49" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel50" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel109" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="tfCurriculum" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jLabel49" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel50" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="tfGradeLevel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="tfSchoolYear3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="jLabel43" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jScrollPane20" min="-2" pref="111" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tfGradeLevel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="tfSchoolYear3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jLabel43" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane20" min="-2" pref="88" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel44" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -3944,7 +3962,7 @@
                                 <Component class="javax.swing.JTable" name="sf5SummaryTable">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="4" rowCount="3">
+                                      <Table columnCount="4" rowCount="4">
                                         <Column editable="false" title="Status" type="java.lang.Object"/>
                                         <Column editable="false" title="Male" type="java.lang.Object"/>
                                         <Column editable="false" title="Female" type="java.lang.Object"/>
@@ -4049,6 +4067,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Export"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExportSf5ActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JButton" name="btnLoadStudents4">
                               <Properties>
@@ -4138,6 +4159,17 @@
                                 <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/mahPackage7/icons/icons8_checked_checkbox_20px.png"/>
                                 </Property>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel109">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Curriculum"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="tfCurriculum">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -4312,6 +4344,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Export"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExportSf6ActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel55">
                               <Properties>
@@ -7691,7 +7726,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Component id="jTabbedPane2" pref="599" max="32767" attributes="0"/>
+              <Component id="tpRankingsTab" pref="599" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -7706,7 +7741,7 @@
                       <Component id="jcbRankingNumberOfStudents" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTabbedPane2" pref="486" max="32767" attributes="0"/>
+                  <Component id="tpRankingsTab" pref="486" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -7753,7 +7788,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JTabbedPane" name="jTabbedPane2">
+        <Container class="javax.swing.JTabbedPane" name="tpRankingsTab">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
           <SubComponents>

@@ -43,6 +43,13 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         //SF4
         private String sf4MonthSelected;
         private JTable sf4Table;
+        //SF5
+        private JTable sf5Table;
+        private JTable sf5SummaryTable;
+        private JTable sf5LevelOfProgressTable;
+        private String sf5Curriculum;
+        //SF6
+        private JTable sf6Table;
     //Global Variables
     private String sectionName;
     private String adviserName;
@@ -132,8 +139,23 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 sf4MonthSelected = stringsToUse[0].toUpperCase();
                 break;
             }case 5:{
+                //Global Variables
+                sectionName = my.getSectionNameOnly(textFieldsToUse[0].getText(), true);
+                adviserName = textFieldsToUse[1].getText().toUpperCase();
+                gradeLevel = textFieldsToUse[2].getText();
+                schoolYear = textFieldsToUse[3].getText();
+                //SF5 Variables
+                sf5Curriculum = my.getCurriculumNameOnly(textFieldsToUse[4].getText(), ",", 0, true);
+                
+                sf5Table = tables[0];
+                sf5SummaryTable = tables[1];
+                sf5LevelOfProgressTable = tables[2];
                 break;
             }case 6:{
+                //Global Variables
+                schoolYear = textFieldsToUse[0].getText();
+                //SF6 Variables
+                sf6Table = tables[0];
                 break;
             }case 7:{
                 break;
@@ -210,6 +232,8 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
     private int getSheetNumberToUse(){
         int sheetIndex = 0;
         int dataCount = 0;
+        
+        //NOTE: School Form 6,9 & 10 doesn't require multiple sheets
         switch(myVariables.getFormSelected()){
             case 1:{
                 dataCount = sf1Table.getRowCount();break;
@@ -220,7 +244,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
             }case 4:{
                 dataCount = sf4Table.getRowCount();break;
             }case 5:{
-                //dataCount = sf2Table.getRowCount()-3;break;
+                dataCount = sf5Table.getRowCount()-3;break;
             }case 7:{
                 //dataCount = sf2Table.getRowCount()-3;break;
             }case 8:{
@@ -493,12 +517,14 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     //</editor-fold>
                     break;
                 }case 4:{
-                    //<editor-fold desc="SF4">
+                    //<editor-fold desc="WRITE SF4">
                     int rowCount = sf4Table.getRowCount();
                     startingAddress = "A,";
                     excelColumnsToSkip = "M,N,O,S,T,U,V,W,X,AB,AC,AD,AE,AF,AG,AK,AL,AM";
                     
                     for (int n = 0; n < rowCount; n++) {
+                        lbLoadingMessage.setText("Writing Tables...3/4 Section "+(n+1)+" of "+rowCount);
+                        
                         String line = my.get_table_row_values(n, sf4Table);
                         String sectionName = my.getSectionNameOnly(sf4Table.getValueAt(n, 1).toString(), true);
                         
@@ -510,8 +536,119 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     //</editor-fold>
                     break;
                 }case 5:{
+                    //<editor-fold desc="WRITE SF5">
+                    int rowCount = sf5Table.getRowCount()-3;
+                    startingAddress = "A,";
+                    excelColumnsToSkip = "C,D,E";
+                    
+                    //<editor-fold desc="Extract Counters">
+                    String mCount = my.get_table_row_values(rowCount, sf5Table);
+                    String fCount = my.get_table_row_values(rowCount+1, sf5Table);
+                    String tCount = my.get_table_row_values(rowCount+2, sf5Table);
+                    
+                    mCount = my.skipColumns(mCount, new int[]{0,1,2,3,6,7,11});
+                    fCount = my.skipColumns(fCount, new int[]{0,1,2,3,6,7,11});
+                    tCount = my.skipColumns(tCount, new int[]{0,1,2,3,6,7,11});
+                    //</editor-fold>
+                    
+                    //#1 Write Sf5 Table
+                    String gender;
+                    boolean firstFemaleFound = false;
+                    int row = 0;
+                    for (int n = 0; n < rowCount; ) {
+                        lbLoadingMessage.setText("Writing Tables...3/4 Line "+(n+1)+" of "+rowCount);
+                        
+                        //Get line
+                        String line = my.get_table_row_values(n, sf5Table);
+                        gender = my.getValueAtColumn(line, 6);
+                        line = my.skipColumns(line, new int[]{0,1,2,3,6,7,11});
+                        
+                        if(!firstFemaleFound){
+                            if(gender.contains("Female")){
+                                firstFemaleFound = true;
+                                //System.err.println(mCount);
+                                my.writeExcelLine(sheetNumber, mCount, excelColumnsToSkip, startingAddress+(row+8));
+                                row++;
+                                Thread.sleep(threadDelay);
+                                continue;
+                            }
+                        }
+                        my.writeExcelLine(sheetNumber, line, excelColumnsToSkip, startingAddress+(row+8));
+                        row++;
+                        n++;
+                        Thread.sleep(threadDelay);
+                    }
+                    //Write Female & Total Counters
+                    my.writeExcelLine(sheetNumber, fCount, excelColumnsToSkip, startingAddress+(row+8));
+                    my.writeExcelLine(sheetNumber, tCount, excelColumnsToSkip, startingAddress+(row+8+1));
+                    
+                    //#2 Write Summary Table
+                    startingAddress2 = "K,";
+                    excelColumnsToSkip = null;
+                    rowCount = sf5SummaryTable.getRowCount();
+                    
+                    for (int n = 0; n < rowCount; n++) {
+                        lbLoadingMessage.setText("Writing Tables...3/4 Summary "+(n+1)+" of "+rowCount);
+                        
+                        String line = my.get_table_row_values(n, sf5SummaryTable);
+                        line = my.skipColumns(line, new int [] {0});
+                        
+                        my.writeExcelLine(sheetNumber, line, excelColumnsToSkip, startingAddress2+(n+10));
+                        Thread.sleep(threadDelay);
+                    }
+                    
+                    //#3 Write Level of Progress & Achievement
+                    startingAddress2 = "K,";
+                    excelColumnsToSkip = null;
+                    rowCount = sf5LevelOfProgressTable.getRowCount();
+                    
+                    int [] rowsToSkip = new int[]{17,19,21,23,25};
+                    row = 0;
+                    for (int n = 0; n < rowCount;) {
+                        lbLoadingMessage.setText("Writing Tables...3/4 Progress "+(n+1)+" of "+rowCount);
+                        
+                        if(my.isInsideArray(row+16, rowsToSkip)){
+                            row++;
+                            continue;
+                        }
+                        String line = my.get_table_row_values(n, sf5LevelOfProgressTable);
+                        line = my.skipColumns(line, new int [] {0});
+                        
+                        my.writeExcelLine(sheetNumber, line, excelColumnsToSkip, startingAddress2+(row+16));
+                        
+                        n++;
+                        row++;
+                        Thread.sleep(threadDelay);
+                    }
+                    
+                    //</editor-fold>
                     break;
                 }case 6:{
+                    //<editor-fold desc="WRITE SF6">
+                    int rowCount = sf6Table.getRowCount();
+                    startingAddress = "B,";
+                    excelColumnsToSkip = "N,O,P,Q,R,S";
+                    int [] rowsToSkip = new int [] {13};
+                    
+                    int row = 0;
+                    for (int n = 0; n < rowCount; ) {
+                        lbLoadingMessage.setText("Writing Tables...3/4 Summary "+(n+1)+" of "+rowCount);
+                        
+                        if(my.isInsideArray(row+10, rowsToSkip)){
+                            row++;
+                            continue;
+                        }
+                        
+                        String line = my.get_table_row_values(n, sf6Table);
+                        line = my.skipColumns(line, new int [] {0});
+                        
+                        my.writeExcelLine(sheetNumber, line, excelColumnsToSkip, startingAddress+(row+10));
+                        
+                        row++;
+                        n++;
+                        Thread.sleep(threadDelay);
+                    }
+                    //</editor-fold>
                     break;
                 }case 7:{
                     break;
@@ -624,8 +761,31 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     };
                     break;
                 }case 5:{
+                    headers = new header[]{
+                        //Header Parts
+                        new header(schoolId, "C,5"),
+                        new header(region, "C,4"),
+                        new header(division, "F,4"),
+                        new header(schoolName, "C,6"),
+                        new header(schoolYear, "G,5"),
+                        new header(gradeLevel, "J,6"),
+                        new header(sectionName, "L,6"),
+                        new header(sf5Curriculum, "J,5"),
+                        //Form's Custom Fields
+                        new header(adviserName, "J,29"),
+                    };
                     break;
                 }case 6:{
+                    headers = new header[]{
+                        //Header Parts
+                        new header(schoolId, "D,4"),
+                        new header(region, "J,4"),
+                        new header(division, "O,4"),
+                        new header(schoolName, "D,6"),
+                        new header(district, "O,6"),
+                        new header(schoolYear, "T,6"),
+                        //Form's Custom Fields
+                    };
                     break;
                 }case 7:{
                     break;

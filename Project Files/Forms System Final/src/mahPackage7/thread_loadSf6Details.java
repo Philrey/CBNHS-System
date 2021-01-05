@@ -141,7 +141,7 @@ public class thread_loadSf6Details extends SwingWorker<String, Object>{
                 }
             }
         }
-        //Run Sf5 Threads
+        btnExportSf6.setEnabled(true);
         return "Finished Successfully";
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -149,7 +149,6 @@ public class thread_loadSf6Details extends SwingWorker<String, Object>{
     @Override
     protected void done() {
         btnLoadStudents.setEnabled(true);
-        btnExportSf6.setEnabled(true);
         closeCustomDialog();
         super.done(); //To change body of generated methods, choose Tools | Templates.
     }

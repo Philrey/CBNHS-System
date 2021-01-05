@@ -10,3 +10,6 @@
 [9] saved_userName=username
 [10] saved_password=password
 [11] debug_mode=false
+[12] school_head_name=Phil Rey Estrella Paderogao
+[13] division_representative=Phil Rey Estrella Paderogao
+[14] division_superintendent=Phil Rey Estrella Paderogao

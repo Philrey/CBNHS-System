@@ -96,11 +96,10 @@ public class thread_selectItemsFromTable extends SwingWorker<String, Object>{
             if(showMessageOnError){
                 my.showMessage("No Results Found...", JOptionPane.PLAIN_MESSAGE);
             }
-            Thread.sleep(pauseDelay);
+            
             return "Task Complete...Empty Table";
         }
         
-        Thread.sleep(pauseDelay);
         return "Task Complete...";
     }
 

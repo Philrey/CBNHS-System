@@ -137,7 +137,16 @@ public class myVariables {
     
     private static final String lateCommerIcon = "icons/late_commer.png";
     private static final String cuttingClassesIcon = "icons/cutting_classes.png";
-            
+    
+    private static final String freshemenIcon = "icons/icons8_baby_20px.png";
+    private static final String sophomoreIcon = "icons/icons8_boy_20px.png";
+    private static final String juniorIcon = "icons/icons8_students_20px.png";
+    private static final String seniorIcon = "icons/icons8_student_male_20px.png";
+    
+    private static final String selectStudentIcon = "icons/icons8_read_online_16px.png";
+    private static final String selectEnrolledSectionsIcon = "icons/icons8_classroom_16px.png";
+    private static final String permanentRecordIcon = "icons/icons8_mortarboard_16px_1.png";
+    
     //Window Icons
     private static final String attendanceWindowIcon = "icons/attendanceIcon.png";
     private static final String registrationWindowIcon = "icons/registerIcon.png";
@@ -369,6 +378,34 @@ public class myVariables {
     //</editor-fold>
     
     //<editor-fold desc="Getters & Setters">
+
+    public static String getFreshemenIcon() {
+        return freshemenIcon;
+    }
+
+    public static String getSophomoreIcon() {
+        return sophomoreIcon;
+    }
+
+    public static String getJuniorIcon() {
+        return juniorIcon;
+    }
+
+    public static String getSeniorIcon() {
+        return seniorIcon;
+    }
+    
+    public static String getSelectStudentIcon() {
+        return selectStudentIcon;
+    }
+
+    public static String getSelectEnrolledSectionsIcon() {
+        return selectEnrolledSectionsIcon;
+    }
+
+    public static String getPermanentRecordIcon() {
+        return permanentRecordIcon;
+    }
     
     public static int[] getJhsf3Order() {
         return jhsf3Order;

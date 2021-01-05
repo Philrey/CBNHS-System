@@ -816,13 +816,28 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
+    public String getCurriculumNameOnly(String curriculumName,String separator,int indexToGet,boolean toUpperCase){
+        if (curriculumName.contains(separator)) {
+            try {
+                String [] temp = curriculumName.split(separator);
+                temp[indexToGet] = toUpperCase? temp[indexToGet].toUpperCase() : temp[indexToGet];
+                
+                return temp[indexToGet].trim();
+            } catch (Exception e) {
+                System.err.println("Error extracting curriculumName "+e.getLocalizedMessage());
+                return curriculumName;
+            }
+        }
+        
+        return null;
+    }
     public String getSectionNameOnly(String sectionName,boolean toUppercase){
         if(sectionName.contains("-")){
             try {
                 String [] temp = sectionName.split("-");
                 temp[1] = toUppercase? temp[1].toUpperCase() : temp[1];
-                temp[1].trim();
-                return temp[1];
+                
+                return temp[1].trim();
             } catch (Exception e) {
                 System.err.println("Error extracting sectionName "+e.getLocalizedMessage());
                 return sectionName;
