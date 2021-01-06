@@ -29,12 +29,17 @@ public class thread_loadSf8Details extends SwingWorker<String, Object>{
     private final JTable sf8Table;
     private final JTable summaryTable;
     
+    private final JTextField tfDateOfMeasurement;
+    
     private final String sectionId;
     
     private final boolean showStudentsWmissingRecords;
+    private final boolean useFirstStudentForDateOfMeasurement;
     
     private final JButton btnLoadStudents;
     private final JButton btnExportSf8;
+    
+    
     //Dialog Properties
     private JDialog dialog;
     private final JFrame jFrameName;
@@ -50,7 +55,10 @@ public class thread_loadSf8Details extends SwingWorker<String, Object>{
         
         sectionId = stringsToUse[0];
         
+        tfDateOfMeasurement = textFieldsToUse[0];
+        
         showStudentsWmissingRecords = booleansToUse[0];
+        useFirstStudentForDateOfMeasurement = booleansToUse[1];
         
         btnLoadStudents = buttonsToUse[0];
         btnExportSf8 = buttonsToUse[1];
@@ -59,10 +67,15 @@ public class thread_loadSf8Details extends SwingWorker<String, Object>{
         dialogPanel = myVariables.getLoadingPanel();
         lbLoadingMessage = myVariables.getLbLoadingMessage();
         progressBar = myVariables.getProgressBar();
+        
+        
     }
     
     @Override
     protected String doInBackground() throws Exception {
+        btnLoadStudents.setEnabled(false);
+        btnExportSf8.setEnabled(false);
+        
         showCustomDialog("Loading Sf8 Details...", dialogPanel, false, 420, 220, false);
         
         //Load Empty Counters
@@ -93,6 +106,8 @@ public class thread_loadSf8Details extends SwingWorker<String, Object>{
             }
             
             if(!countSummary()){throw new InterruptedException("Error @ countSummary()");}
+            if(!determineDateOfMeasurement()){throw new InterruptedException("Error @ determineDateOfMeasurement()");}
+            btnExportSf8.setEnabled(true);
         }else{
             
         }
@@ -102,7 +117,90 @@ public class thread_loadSf8Details extends SwingWorker<String, Object>{
     @Override
     protected void done() {
         closeCustomDialog();
+        btnLoadStudents.setEnabled(true);
         super.done(); //To change body of generated methods, choose Tools | Templates.
+    }
+    private boolean determineDateOfMeasurement(){
+        try {
+            int bmiId = 0;
+            String dom;
+            int studentCount = sf8Table.getRowCount();
+            
+            if (useFirstStudentForDateOfMeasurement) {
+                lbLoadingMessage.setText("Determining Date of Measurement...");
+                for (int n = 0; n < studentCount; n++) {
+                    bmiId = Integer.parseInt(sf8Table.getValueAt(n, 5).toString());
+                    if(bmiId != -1){
+                        dom = sf8Table.getValueAt(n, 14).toString().split(" ")[0];  //Get Value,Split into an array, use first index 0
+                        String temp [] = dom.split("-");
+                        tfDateOfMeasurement.setText(temp[1]+"/"+temp[2]+"/"+temp[0]);
+                        return true;
+                    }
+                    Thread.sleep(0);
+                }
+            }else{
+                //#1. get unique dates
+                String uniqueDates = "";
+                
+                for (int n = 0; n < studentCount; n++) {
+                    lbLoadingMessage.setText("Determining Date of Measurement...Finding Unique Dates "+(n+1)+"/"+studentCount);
+                    bmiId = Integer.parseInt(sf8Table.getValueAt(n, 5).toString());
+                    if(bmiId != -1){
+                        dom = sf8Table.getValueAt(n, 14).toString().split(" ")[0];  //Get Value,Split into an array, use first index 0 = yyyy-mm-dd
+                        if(!uniqueDates.contains(dom)){
+                            uniqueDates += dom+"@@";
+                        }
+                    }
+                    Thread.sleep(0);
+                }
+                Thread.sleep(pauseDelay);
+                //#2. check if there is more than 1 unique date
+                String dates [] = uniqueDates.split("@@");
+                if(dates.length > 1){
+                    String maxDate="";
+                    int maxCount=0,currCount;
+                    
+                    for (int n = 0; n < dates.length; n++) {
+                        lbLoadingMessage.setText("Determining Date of Measurement...Finding Most Common Date "+(n+1)+"/"+studentCount);
+                        currCount = 0;
+                        //#3 Search for instances;
+                        for (int x = 0; x < studentCount; x++) {
+                            bmiId = Integer.parseInt(sf8Table.getValueAt(x, 5).toString());
+                            if(bmiId != -1){
+                                dom = sf8Table.getValueAt(x, 14).toString().split(" ")[0];  //Get Value,Split into an array, use first index 0 = yyyy-mm-dd
+                                
+                                if(dom.equals(dates[n])){
+                                    currCount++;
+                                }
+                            }
+                        }
+                        
+                        //Compare to current max count
+                        if(currCount > maxCount){
+                            maxDate = dates[n];
+                            maxCount = currCount;
+                        }
+                        Thread.sleep(0);
+                    }
+                    //#4 Set Value
+                    if(maxDate.contains("-")){
+                        String temp [] = maxDate.split("-");
+                        tfDateOfMeasurement.setText(temp[1]+"/"+temp[2]+"/"+temp[0]);
+                    }
+                    Thread.sleep(pauseDelay);
+                }else{
+                    String temp [] = dates[0].split("-");
+                    tfDateOfMeasurement.setText(temp[1]+"/"+temp[2]+"/"+temp[0]);
+                }
+            }
+            Thread.sleep(pauseDelay);
+            return true;
+        } catch(InterruptedException x){
+            return false;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return true;
+        }
     }
     private boolean countSummary(){
         try {

@@ -5372,6 +5372,23 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="tfGradeLevel4" alignment="0" pref="94" max="32767" attributes="0"/>
+                                          <Component id="jLabel60" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="tfSchoolYear5" pref="94" max="32767" attributes="0"/>
+                                          <Component id="jLabel61" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jLabel115" max="32767" attributes="0"/>
+                                          <Component id="tfDateOfMeasurement" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                                   <Component id="btnExportSf8" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLabel57" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLabel58" alignment="0" max="32767" attributes="0"/>
@@ -5380,21 +5397,10 @@
                                   <Component id="jLabel59" alignment="0" max="32767" attributes="0"/>
                                   <Component id="tfAdviserName4" alignment="0" max="32767" attributes="0"/>
                                   <Component id="btnLoadStudents6" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="tfGradeLevel4" alignment="0" pref="94" max="32767" attributes="0"/>
-                                          <Component id="jLabel60" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="tfSchoolYear5" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
-                                          <Component id="jLabel61" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="jScrollPane30" alignment="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane30" alignment="0" pref="304" max="32767" attributes="0"/>
                                   <Component id="jLabel63" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cbShowIncompleteStudents2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cbIncludeMissingRecordsOnExport" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cbShowIncompleteStudents2" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="cbUseFirstStudentForDate" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -5415,18 +5421,27 @@
                               <Component id="jLabel59" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="tfAdviserName4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel60" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="tfGradeLevel4" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="tfSchoolYear5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfDateOfMeasurement" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabel60" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="tfGradeLevel4" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel61" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                          <Component id="tfSchoolYear5" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel115" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel61" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -5436,10 +5451,10 @@
                               <Component id="jScrollPane30" min="-2" pref="145" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel62" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cbUseFirstStudentForDate" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="cbShowIncompleteStudents2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="cbIncludeMissingRecordsOnExport" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnLoadStudents6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -5637,12 +5652,25 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JCheckBox" name="cbIncludeMissingRecordsOnExport">
+                    <Component class="javax.swing.JLabel" name="jLabel115">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Date of Measurement"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="tfDateOfMeasurement">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JCheckBox" name="cbUseFirstStudentForDate">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="myVariables.TEXTFIELD_HEADER_FONT" type="code"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Include students with missing records on Export?"/>
+                        <Property name="selected" type="boolean" value="true"/>
+                        <Property name="text" type="java.lang.String" value="Use first Student for Date of Measurement?"/>
+                        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;&#x9;&lt;body  style=&quot;background-color: white; font-family: &apos;Century Gothic&apos;;&quot;&gt;&#xa;&#x9;&#x9;&lt;b&gt;Choose Method of Determining Date of Measurement&lt;/b&gt;&#xa;&#x9;&#x9;&lt;br&gt;&#xa;&#x9;&#x9;&lt;br&gt;&#xa;&#x9;&#x9;&lt;p&gt;- Uses the Date of Measurement of  the First Student with a Record&#xa;&#x9;&#x9;&#x9;&lt;br&gt;for the Date of Measurement for all students.&#xa;&#x9;&#x9;&lt;/p&gt;&#xa;&#x9;&#x9;&lt;p&gt;- If unchecked, Date of Measurement will be determined by majority a Date.&lt;/p&gt;&#xa;&#x9;&#x9;&lt;p&gt;- In case of equal count of Dates, the first Date will be choosen automatically.&lt;/p&gt;&#xa;&#x9;&lt;/body&gt;&#xa;&lt;/html&gt;"/>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/mahPackage7/icons/icons8_unchecked_checkbox_20px.png"/>
                         </Property>
@@ -5682,7 +5710,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane25" pref="436" max="32767" attributes="0"/>
+                          <Component id="jScrollPane25" pref="546" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>

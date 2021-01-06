@@ -342,7 +342,9 @@ public class dashBoard extends javax.swing.JFrame {
         sf8SummaryTable = new javax.swing.JTable();
         jLabel63 = new javax.swing.JLabel();
         cbShowIncompleteStudents2 = new javax.swing.JCheckBox();
-        cbIncludeMissingRecordsOnExport = new javax.swing.JCheckBox();
+        jLabel115 = new javax.swing.JLabel();
+        tfDateOfMeasurement = new javax.swing.JTextField();
+        cbUseFirstStudentForDate = new javax.swing.JCheckBox();
         jPanel22 = new javax.swing.JPanel();
         jScrollPane25 = new javax.swing.JScrollPane();
         sf8Table = new javax.swing.JTable();
@@ -3306,11 +3308,18 @@ public class dashBoard extends javax.swing.JFrame {
         cbShowIncompleteStudents2.setOpaque(false);
         cbShowIncompleteStudents2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
 
-        cbIncludeMissingRecordsOnExport.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        cbIncludeMissingRecordsOnExport.setText("Include students with missing records on Export?");
-        cbIncludeMissingRecordsOnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
-        cbIncludeMissingRecordsOnExport.setOpaque(false);
-        cbIncludeMissingRecordsOnExport.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+        jLabel115.setText("Date of Measurement");
+
+        tfDateOfMeasurement.setEditable(false);
+        tfDateOfMeasurement.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        cbUseFirstStudentForDate.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        cbUseFirstStudentForDate.setSelected(true);
+        cbUseFirstStudentForDate.setText("Use first Student for Date of Measurement?");
+        cbUseFirstStudentForDate.setToolTipText("<html>\n\t<body  style=\"background-color: white; font-family: 'Century Gothic';\">\n\t\t<b>Choose Method of Determining Date of Measurement</b>\n\t\t<br>\n\t\t<br>\n\t\t<p>- Uses the Date of Measurement of  the First Student with a Record\n\t\t\t<br>for the Date of Measurement for all students.\n\t\t</p>\n\t\t<p>- If unchecked, Date of Measurement will be determined by majority a Date.</p>\n\t\t<p>- In case of equal count of Dates, the first Date will be choosen automatically.</p>\n\t</body>\n</html>");
+        cbUseFirstStudentForDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        cbUseFirstStudentForDate.setOpaque(false);
+        cbUseFirstStudentForDate.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
@@ -3322,6 +3331,19 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfGradeLevel4, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                            .addComponent(jLabel60, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfSchoolYear5, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                            .addComponent(jLabel61, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel115, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfDateOfMeasurement))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(btnExportSf8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel57, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel58, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -3330,18 +3352,10 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(jLabel59, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tfAdviserName4)
                     .addComponent(btnLoadStudents6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfGradeLevel4, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                            .addComponent(jLabel60, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfSchoolYear5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel61, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane30, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane30, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                     .addComponent(jLabel63, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbShowIncompleteStudents2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbIncludeMissingRecordsOnExport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cbShowIncompleteStudents2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbUseFirstStudentForDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel20Layout.setVerticalGroup(
@@ -3359,27 +3373,33 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel59)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfAdviserName4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addComponent(jLabel60)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfGradeLevel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel61)
-                        .addGroup(jPanel20Layout.createSequentialGroup()
-                            .addGap(20, 20, 20)
-                            .addComponent(tfSchoolYear5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
+                            .addGap(26, 26, 26)
+                            .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(tfSchoolYear5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfDateOfMeasurement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel60)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tfGradeLevel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel115)
+                            .addComponent(jLabel61))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel63)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane30, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel62)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbUseFirstStudentForDate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbShowIncompleteStudents2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbIncludeMissingRecordsOnExport)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLoadStudents6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3435,7 +3455,7 @@ public class dashBoard extends javax.swing.JFrame {
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane25, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                .addComponent(jScrollPane25, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -5149,7 +5169,7 @@ public class dashBoard extends javax.swing.JFrame {
                     tfSchoolYear5.setText(schoolYear+"-"+String.valueOf(schoolYear+1));
                     
                     my.select_tab(mainTab, 7);
-                    
+                    btnExportSf8.setEnabled(false);
                     break;
                 }case 9:{
                     tfSectionName5.setText(sectionName);
@@ -5710,9 +5730,9 @@ public class dashBoard extends javax.swing.JFrame {
         my.runSecondaryThread(5, true,
                 new JTable[]{sf8Table,sf8SummaryTable},
                 new String[]{sectionId},
-                new JTextField[]{},
+                new JTextField[]{tfDateOfMeasurement},
                 new JButton[]{btnLoadStudents6,btnExportSf8},
-                new boolean[]{cbShowIncompleteStudents2.isSelected()}
+                new boolean[]{cbShowIncompleteStudents2.isSelected(),cbUseFirstStudentForDate.isSelected()}
         );
     }//GEN-LAST:event_btnLoadStudents6ActionPerformed
 
@@ -6508,7 +6528,7 @@ public class dashBoard extends javax.swing.JFrame {
             jLabel47,jLabel48,jLabel49,jLabel50,jLabel55,jLabel58,jLabel59,jLabel60,jLabel61,
             jLabel71,jLabel7,jLabel73,jLabel74,jLabel66,jLabel67,jLabel69,
             jLabel78,jLabel79,jLabel80,jLabel81,jLabel82,jLabel83,jLabel84,jLabel86,jLabel87,
-            jLabel88,jLabel89,jLabel102,jLabel105,jLabel106,jLabel109,
+            jLabel88,jLabel89,jLabel102,jLabel105,jLabel106,jLabel109,jLabel115,
             
         };
         
@@ -6561,7 +6581,7 @@ public class dashBoard extends javax.swing.JFrame {
             tfFirstName,tfMiddleName,tfLastName,tfExtentionName,tfBirthdate,
             tfGender,tfLrn,tfSchoolName,tfSchoolAddress,tfSchoolId,tfInitialGrade,
             
-            tfSchoolYear7,tfCurriculum,
+            tfSchoolYear7,tfCurriculum,tfDateOfMeasurement,
         };
         for(JSpinner n : spinners){
             n.setFont(myVariables.TEXTFIELD_FONT);
@@ -6692,10 +6712,10 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnUseSelectedSections;
     private javax.swing.JCheckBox cbCompareToRankings;
     private javax.swing.JCheckBox cbCompareToRankings1;
-    private javax.swing.JCheckBox cbIncludeMissingRecordsOnExport;
     private javax.swing.JCheckBox cbShowIncompleteStudents;
     private javax.swing.JCheckBox cbShowIncompleteStudents1;
     private javax.swing.JCheckBox cbShowIncompleteStudents2;
+    private javax.swing.JCheckBox cbUseFirstStudentForDate;
     private javax.swing.JPanel defaultInstructionPanel;
     private javax.swing.JTable enrolledStudentsTable;
     private javax.swing.JTable enrolledStudentsTable1;
@@ -6728,6 +6748,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel112;
     private javax.swing.JLabel jLabel113;
     private javax.swing.JLabel jLabel114;
+    private javax.swing.JLabel jLabel115;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -7011,6 +7032,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTextField tfAdviserName5;
     private javax.swing.JTextField tfBirthdate;
     private javax.swing.JTextField tfCurriculum;
+    private javax.swing.JTextField tfDateOfMeasurement;
     private javax.swing.JTextField tfEvaluation;
     private javax.swing.JTextField tfEvaluation1;
     private javax.swing.JTextField tfEvaluation2;
