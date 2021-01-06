@@ -106,6 +106,11 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jScrollPane10 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        sf3InstructionsPanel = new javax.swing.JPanel();
+        jPanel34 = new javax.swing.JPanel();
+        jLabel112 = new javax.swing.JLabel();
+        jScrollPane46 = new javax.swing.JScrollPane();
+        jTextArea7 = new javax.swing.JTextArea();
         sf4InstructionsPanel = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
@@ -125,6 +130,16 @@ public class dashBoard extends javax.swing.JFrame {
         jTextArea4 = new javax.swing.JTextArea();
         btnOnlySelectedSections1 = new javax.swing.JButton();
         btnSelectAllSections1 = new javax.swing.JButton();
+        sf8InstructionPanel = new javax.swing.JPanel();
+        jPanel35 = new javax.swing.JPanel();
+        jLabel113 = new javax.swing.JLabel();
+        jScrollPane47 = new javax.swing.JScrollPane();
+        jTextArea8 = new javax.swing.JTextArea();
+        sf9InstructionPanel = new javax.swing.JPanel();
+        jPanel36 = new javax.swing.JPanel();
+        jLabel114 = new javax.swing.JLabel();
+        jScrollPane48 = new javax.swing.JScrollPane();
+        jTextArea9 = new javax.swing.JTextArea();
         sf1Tab = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         left1 = new javax.swing.JPanel();
@@ -784,7 +799,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane42, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                .addComponent(jScrollPane42, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -820,7 +835,7 @@ public class dashBoard extends javax.swing.JFrame {
         jTextArea6.setFont(myVariables.TEXTFIELD_FONT);
         jTextArea6.setLineWrap(true);
         jTextArea6.setRows(5);
-        jTextArea6.setText("1. Select a Section to use.\n\n2. Select the First Friday of June.\n\n3. Load students & Export.");
+        jTextArea6.setText("1. Select a Section to use.\n\n2. Select the First Friday of June to accurately calculate each student's age.\n\n3. Load students & Export.");
         jTextArea6.setWrapStyleWord(true);
         jScrollPane43.setViewportView(jTextArea6);
 
@@ -842,11 +857,11 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane43, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                .addComponent(jScrollPane43, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        tpSelectSectionInstructions.addTab("Instructions", sf1InstructionPanel);
+        tpSelectSectionInstructions.addTab("Sf1 Instructions", sf1InstructionPanel);
 
         sf2InstructionsPanel.setBackground(new java.awt.Color(255, 255, 204));
 
@@ -878,7 +893,7 @@ public class dashBoard extends javax.swing.JFrame {
         jTextArea1.setFont(myVariables.TEXTFIELD_FONT);
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("1. Search for a Section.\n\n2. Select a section to use.\n\n3. Select the desired Month.\nSelect the first day of the Month Selected.\n(Important)\n\n4. Select what to fill-up missing attendances with.\n(Applies to Transferred in Students)");
+        jTextArea1.setText("1. Select a section to use.\n\n2. Select the desired Month.\nSelect the first day of the Month Selected.\n(Important)\n\n3. Select what to fill-up missing attendances with.\n(Applies to Transferred in Students)\n\n4. Load and Export Students.");
         jTextArea1.setWrapStyleWord(true);
         jScrollPane10.setViewportView(jTextArea1);
 
@@ -900,11 +915,69 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         tpSelectSectionInstructions.addTab("Sf2 Instructions", sf2InstructionsPanel);
+
+        sf3InstructionsPanel.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel34.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel112.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel112.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel112.setText("SF3 Instructions");
+
+        javax.swing.GroupLayout jPanel34Layout = new javax.swing.GroupLayout(jPanel34);
+        jPanel34.setLayout(jPanel34Layout);
+        jPanel34Layout.setHorizontalGroup(
+            jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel34Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel112)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel34Layout.setVerticalGroup(
+            jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel34Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel112)
+                .addContainerGap())
+        );
+
+        jTextArea7.setEditable(false);
+        jTextArea7.setColumns(20);
+        jTextArea7.setFont(myVariables.TEXTFIELD_FONT);
+        jTextArea7.setLineWrap(true);
+        jTextArea7.setRows(5);
+        jTextArea7.setText("1. Search for a Section.\n\n2. Select a section to use.\n\n3. Select a value to substitute empty records.. (Optional)\n\n4. Select a value to use on the remarks column. (Optional)\n\n5. Load & Export Students");
+        jTextArea7.setWrapStyleWord(true);
+        jScrollPane46.setViewportView(jTextArea7);
+
+        javax.swing.GroupLayout sf3InstructionsPanelLayout = new javax.swing.GroupLayout(sf3InstructionsPanel);
+        sf3InstructionsPanel.setLayout(sf3InstructionsPanelLayout);
+        sf3InstructionsPanelLayout.setHorizontalGroup(
+            sf3InstructionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sf3InstructionsPanelLayout.createSequentialGroup()
+                .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(sf3InstructionsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane46, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        sf3InstructionsPanelLayout.setVerticalGroup(
+            sf3InstructionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sf3InstructionsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane46, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        tpSelectSectionInstructions.addTab("Sf3 Instructions", sf3InstructionsPanel);
 
         sf4InstructionsPanel.setBackground(new java.awt.Color(255, 255, 204));
 
@@ -935,7 +1008,7 @@ public class dashBoard extends javax.swing.JFrame {
         jTextArea2.setFont(myVariables.TEXTFIELD_FONT);
         jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
-        jTextArea2.setText("1. Search for Sections.\n\n2. You can choose all of the Sections available by pressing the Select All Button.\n\n3. If you only want a certain number of sections, you can Individually select Sections you want to use, and then press the Only Selected Button.\n\n4. Select the desired Month. Select the first day of the Month Selected. (Important)\n\n5. Select what to fill-up missing attendances with. (Applies to Transferred in Students)");
+        jTextArea2.setText("1. Search for Sections. Choose only one specific School Year to use. (Important)\n\n2. You can choose all of the Sections available by pressing the Select All Button.\n\n3. If you only want a certain number of sections, you can Individually select Sections you want to use, and then press the Only Selected Button.\n\n4. Select the desired Month. Select the first day of the Month Selected. (Important)\n\n5. Select what to fill-up missing attendances with. (Applies to Transferred in Students)\n\n6. Load & Export Students.");
         jTextArea2.setWrapStyleWord(true);
         jScrollPane11.setViewportView(jTextArea2);
 
@@ -976,7 +1049,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnOnlySelectedSections)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1038,7 +1111,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane23, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                .addComponent(jScrollPane23, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1073,7 +1146,7 @@ public class dashBoard extends javax.swing.JFrame {
         jTextArea4.setFont(myVariables.TEXTFIELD_FONT);
         jTextArea4.setLineWrap(true);
         jTextArea4.setRows(5);
-        jTextArea4.setText("1. Search for Sections.\n\n2. You can choose all of the Sections available by pressing the Select All Button.\n\n3. If you only want a certain number of sections, you can Individually select Sections you want to use, and then press the Only Selected Button.\n\nNote:\n     This task might be time cosuming depending on the Number of Students this School has. It is advisable that you take a break, drink coffee or do other important tasks while waiting.");
+        jTextArea4.setText("1. Search for Sections. Choose only one specific School Year to use. (Important)\n\n2. You can choose all of the Sections available by pressing the Select All Button.\n\n3. If you only want a certain number of sections, you can Individually select Sections you want to use, and then press the Only Selected Button.\n\n6. Load & Export Students.\n\nNote:\n     This task might be time cosuming depending on the Number of Students this School has. It is advisable that you take a break, drink coffee or do other important tasks while waiting.");
         jTextArea4.setWrapStyleWord(true);
         jScrollPane24.setViewportView(jTextArea4);
 
@@ -1114,7 +1187,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane24, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                .addComponent(jScrollPane24, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnOnlySelectedSections1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1123,6 +1196,122 @@ public class dashBoard extends javax.swing.JFrame {
         );
 
         tpSelectSectionInstructions.addTab("Sf6 Instructions", sf6InstructionsPanel);
+
+        sf8InstructionPanel.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel35.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel113.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel113.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel113.setText("SF8 Instructions");
+
+        javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
+        jPanel35.setLayout(jPanel35Layout);
+        jPanel35Layout.setHorizontalGroup(
+            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel35Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel113)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel35Layout.setVerticalGroup(
+            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel35Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel113)
+                .addContainerGap())
+        );
+
+        jTextArea8.setEditable(false);
+        jTextArea8.setColumns(20);
+        jTextArea8.setFont(myVariables.TEXTFIELD_FONT);
+        jTextArea8.setLineWrap(true);
+        jTextArea8.setRows(5);
+        jTextArea8.setText("1. Select a Section to use.\n\n2. Choose whether to show & include Students with no records. (Optional)\n\n3. Load students & Export.");
+        jTextArea8.setWrapStyleWord(true);
+        jScrollPane47.setViewportView(jTextArea8);
+
+        javax.swing.GroupLayout sf8InstructionPanelLayout = new javax.swing.GroupLayout(sf8InstructionPanel);
+        sf8InstructionPanel.setLayout(sf8InstructionPanelLayout);
+        sf8InstructionPanelLayout.setHorizontalGroup(
+            sf8InstructionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sf8InstructionPanelLayout.createSequentialGroup()
+                .addComponent(jPanel35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(sf8InstructionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane47, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        sf8InstructionPanelLayout.setVerticalGroup(
+            sf8InstructionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sf8InstructionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane47, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        tpSelectSectionInstructions.addTab("Sf8 Instructions", sf8InstructionPanel);
+
+        sf9InstructionPanel.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel36.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel114.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel114.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel114.setText("SF9 Instructions");
+
+        javax.swing.GroupLayout jPanel36Layout = new javax.swing.GroupLayout(jPanel36);
+        jPanel36.setLayout(jPanel36Layout);
+        jPanel36Layout.setHorizontalGroup(
+            jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel36Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel114)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel36Layout.setVerticalGroup(
+            jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel36Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel114)
+                .addContainerGap())
+        );
+
+        jTextArea9.setEditable(false);
+        jTextArea9.setColumns(20);
+        jTextArea9.setFont(myVariables.TEXTFIELD_FONT);
+        jTextArea9.setLineWrap(true);
+        jTextArea9.setRows(5);
+        jTextArea9.setText("1. Select a Section to use.\n\n2. Select the First Friday of June to accurately calculate each student's age.\n\n3. Load students & Export.");
+        jTextArea9.setWrapStyleWord(true);
+        jScrollPane48.setViewportView(jTextArea9);
+
+        javax.swing.GroupLayout sf9InstructionPanelLayout = new javax.swing.GroupLayout(sf9InstructionPanel);
+        sf9InstructionPanel.setLayout(sf9InstructionPanelLayout);
+        sf9InstructionPanelLayout.setHorizontalGroup(
+            sf9InstructionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sf9InstructionPanelLayout.createSequentialGroup()
+                .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(sf9InstructionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane48, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        sf9InstructionPanelLayout.setVerticalGroup(
+            sf9InstructionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sf9InstructionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane48, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        tpSelectSectionInstructions.addTab("Sf9 Instructions", sf9InstructionPanel);
 
         jSplitPane4.setRightComponent(tpSelectSectionInstructions);
 
@@ -5847,13 +6036,13 @@ public class dashBoard extends javax.swing.JFrame {
             defaultInstructionPanel,
             sf1InstructionPanel,
             sf2InstructionsPanel,
-            null,
+            sf3InstructionsPanel,
             sf4InstructionsPanel,
             sf5InstructionsPanel,
             sf6InstructionsPanel,
             null,
-            null,
-            null,
+            sf8InstructionPanel,
+            sf9InstructionPanel,
             null
         };
         tpSelectSectionInstructions.removeAll();
@@ -6298,8 +6487,9 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
-            jLabel2,jLabel13,jLabel25,jLabel26,jLabel29,jLabel32,jLabel41,jLabel51,jLabel52,jLabel53,
-            jLabel42,jLabel56,jLabel64,jLabel76,jLabel96,
+            jLabel2,jLabel13,jLabel25,jLabel26,jLabel29,jLabel32,jLabel41,jLabel51,
+            jLabel52,jLabel53,jLabel42,jLabel56,jLabel64,jLabel76,jLabel96,jLabel110,
+            jLabel111,jLabel112,jLabel113,jLabel114,
         };
         JLabel labels [] = {
             lbSearchResult,lbSearchResult1,lbSearchResult2,jLabel75,
@@ -6535,6 +6725,9 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel110;
     private javax.swing.JLabel jLabel111;
+    private javax.swing.JLabel jLabel112;
+    private javax.swing.JLabel jLabel113;
+    private javax.swing.JLabel jLabel114;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -6658,6 +6851,9 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel31;
     private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel33;
+    private javax.swing.JPanel jPanel34;
+    private javax.swing.JPanel jPanel35;
+    private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -6704,6 +6900,9 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane43;
     private javax.swing.JScrollPane jScrollPane44;
     private javax.swing.JScrollPane jScrollPane45;
+    private javax.swing.JScrollPane jScrollPane46;
+    private javax.swing.JScrollPane jScrollPane47;
+    private javax.swing.JScrollPane jScrollPane48;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
@@ -6725,6 +6924,9 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextArea jTextArea5;
     private javax.swing.JTextArea jTextArea6;
+    private javax.swing.JTextArea jTextArea7;
+    private javax.swing.JTextArea jTextArea8;
+    private javax.swing.JTextArea jTextArea9;
     private javax.swing.JComboBox<String> jcbMissingValues;
     private javax.swing.JComboBox<String> jcbMissingValues1;
     private javax.swing.JComboBox<String> jcbMissingValues2;
@@ -6777,6 +6979,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel sf2Tab;
     private javax.swing.JTable sf2Table;
     private javax.swing.JTable sf3BooksTable;
+    private javax.swing.JPanel sf3InstructionsPanel;
     private javax.swing.JPanel sf3Tab;
     private javax.swing.JTable sf3Table;
     private javax.swing.JPanel sf4InstructionsPanel;
@@ -6792,9 +6995,11 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTable sf7AssignedSubjectsTable;
     private javax.swing.JPanel sf7Tab;
     private javax.swing.JTable sf7TeachersTable;
+    private javax.swing.JPanel sf8InstructionPanel;
     private javax.swing.JTable sf8SummaryTable;
     private javax.swing.JPanel sf8Tab;
     private javax.swing.JTable sf8Table;
+    private javax.swing.JPanel sf9InstructionPanel;
     private javax.swing.JPanel sf9Tab;
     private javax.swing.JSplitPane spLeft;
     private javax.swing.JTable summarySf2;
