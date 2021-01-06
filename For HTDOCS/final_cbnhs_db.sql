@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2020 at 01:15 PM
+-- Generation Time: Jan 06, 2021 at 11:14 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -98,7 +98,9 @@ INSERT INTO `attendance` (`id`, `studentId`, `sectionId`, `subjectId`, `status`,
 (86, 1, 7, 52, 'Absent', '2020-02-17 08:00:00', ' '),
 (87, 3, 7, 52, 'Present', '2020-02-17 08:00:00', ' '),
 (88, 1, 7, 52, 'Present', '2020-11-27 10:52:05', ' '),
-(89, 3, 7, 52, 'Tardy', '2020-11-27 10:52:05', 'LC: 20 mins late');
+(89, 3, 7, 52, 'Tardy', '2020-11-27 10:52:05', 'LC: 20 mins late'),
+(90, 1, 7, 52, 'Tardy', '2020-11-17 08:15:00', 'CC: Caught Inside Internet Cafe'),
+(91, 3, 7, 52, 'Present', '2020-11-17 08:15:00', ' ');
 
 -- --------------------------------------------------------
 
@@ -412,14 +414,14 @@ CREATE TABLE `booksissuedreturned` (
 --
 
 INSERT INTO `booksissuedreturned` (`id`, `sectionId`, `studentId`, `bookId`, `dateIssued`, `dateReturned`, `dateUpdated`) VALUES
-(1, 7, 1, 1, '2020-11-02', 'FM:LLTR', '2020-11-02 19:23:08'),
-(2, 7, 1, 3, '2020-11-02', 'NEG', '2020-11-02 19:23:08'),
-(3, 7, 1, 4, '2020-11-02', 'NEG:PTL', '2020-11-02 19:23:08'),
-(4, 7, 1, 5, '2020-11-02', ' ', '2020-11-02 19:23:08'),
-(5, 7, 3, 1, '2020-11-03', ' ', '2020-11-03 09:17:39'),
-(6, 7, 3, 3, '2020-11-03', ' ', '2020-11-03 09:17:39'),
-(7, 7, 3, 4, '2020-11-03', ' ', '2020-11-03 09:17:39'),
-(8, 7, 3, 5, '2020-11-03', ' ', '2020-11-03 09:17:39');
+(1, 7, 1, 1, '2020-11-02', 'FM:LLTR', '2021-01-02 12:55:17'),
+(2, 7, 1, 3, '2020-11-02', 'NEG', '2021-01-02 12:55:17'),
+(3, 7, 1, 4, '2020-11-02', 'NEG:PTL', '2021-01-02 12:55:17'),
+(4, 7, 1, 5, '2020-11-02', '2021-01-02', '2021-01-02 12:55:17'),
+(5, 7, 3, 1, '2020-11-03', '2021-01-02', '2021-01-02 12:59:03'),
+(6, 7, 3, 3, '2020-11-03', '2021-01-02', '2021-01-02 12:59:03'),
+(7, 7, 3, 4, '2020-11-03', '2021-01-02', '2021-01-02 12:59:03'),
+(8, 7, 3, 5, '2020-11-03', '2021-01-02', '2021-01-02 12:59:03');
 
 -- --------------------------------------------------------
 
@@ -492,7 +494,7 @@ CREATE TABLE `finalgrades` (
 INSERT INTO `finalgrades` (`id`, `sectionId`, `studentId`, `generalAverage`, `actionTaken`, `failedSubjects`, `dateUpdated`) VALUES
 (1, 7, 1, 87.166, 'Promoted', ' ', '2020-11-27 13:10:58'),
 (2, 9, 3, 0, 'Incomplete', ' ', '2020-11-22 00:33:46'),
-(3, 7, 3, 70.166, 'Incomplete', 'ENG7 ,MATH7 ,SCI7 ,FIL7 ,AP7 ,TLE7 ,MUS7 ,PE7 ,HLT7', '2020-12-12 15:48:46');
+(3, 7, 3, 70.166, 'Incomplete', 'ENG7, MATH7, SCI7, FIL7, AP7, TLE7, MUS7, PE7, HLT7', '2021-01-03 16:45:47');
 
 -- --------------------------------------------------------
 
@@ -662,16 +664,17 @@ CREATE TABLE `form_sf8_view` (
 `id` int(11)
 ,`studentId` int(11)
 ,`sectionId` int(11)
+,`lrn` varchar(12)
 ,`lName` varchar(100)
 ,`fName` varchar(100)
 ,`mName` varchar(100)
 ,`bDate` varchar(10)
+,`sex` varchar(10)
 ,`bmiId` bigint(11)
+,`age` varchar(10)
 ,`weight` bigint(11)
 ,`height` varchar(22)
-,`sex` varchar(10)
 ,`heightSq` varchar(20)
-,`age` varchar(10)
 ,`bmi` varchar(12)
 ,`bmiForAge` varchar(20)
 ,`heightForAge` varchar(20)
@@ -1114,10 +1117,10 @@ CREATE TABLE `loads` (
 --
 
 INSERT INTO `loads` (`a_id`, `b_loadName`, `c_gradeLevel`, `d_subjectsContained`) VALUES
-(8, 'Grade 7', 7, '9:10:11:8:12:13:14:60:15:16:17:18:52:'),
-(9, 'Grade 8', 8, '19:20:21:22:23:24:25:26:27:28:29:61:53:'),
-(10, 'Grade 9', 9, '30:31:32:33:34:35:36:37:38:39:40:62:54:'),
-(11, 'Grade 10', 10, '41:42:43:44:45:46:47:48:49:50:51:63:55:'),
+(8, 'K-12, Grade 7', 7, '9:10:11:8:12:13:14:60:15:16:17:18:52:'),
+(9, 'K-12, Grade 8', 8, '19:20:21:22:23:24:25:26:27:28:29:61:53:'),
+(10, 'K-12, Grade 9', 9, '30:31:32:33:34:35:36:37:38:39:40:62:54:'),
+(11, 'K-12, Grade 10', 10, '41:42:43:44:45:46:47:48:49:50:51:63:55:'),
 (12, 'Grade 8 New', 8, ''),
 (13, 'Grade 8', 8, ''),
 (14, 'Grade 10', 10, ''),
@@ -1181,7 +1184,7 @@ CREATE TABLE `sections` (
 INSERT INTO `sections` (`id`, `sectionName`, `adviserId`, `loadId`, `bookTemplateId`, `schoolYear`) VALUES
 (7, 'Grade 7 - Fidelity', 2, 8, 1, 2019),
 (8, 'Grade 8 - Cashew', 2, 9, -1, 2020),
-(9, 'Grade 7 Rizal', 1, 8, -1, 2020),
+(9, 'Grade 7 - Rizal', 1, 8, -1, 2020),
 (10, 'Grade 9 - Mabini', 2, 10, 3, 2020),
 (11, 'Grade 10 - Strawberry', 3, 11, -1, 2019),
 (12, 'Grade 9 - Integrity', 3, 8, -1, 2019),
@@ -1215,7 +1218,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `lrn`, `lName`, `fName`, `mName`, `sex`, `inGr`, `curGrLvl`, `schoolId`, `schoolName`, `schoolAddress`) VALUES
-(1, '123543457474', 'Paderogao, Jr', 'Phil Rey', 'Estrella', 'Male', 90.1, 7, '000001', 'GMES-1', 'Manay, Davao Oriental'),
+(1, '123543457474', 'Paderogao, Jr', 'Phil Rey', 'Estrella', 'Female', 90.1, 7, '000001', 'GMES-1', 'Manay, Davao Oriental'),
 (2, '123456789012', 'Kerby', 'Estrella', 'Paderogao', 'Female', 90.2, 0, '000000', 'GMES-1', 'Manay, Davao Oriental'),
 (3, '123456789023', 'Rizal', 'Jose', ' ', 'Male', 99, 7, '000000', 'Cuta Elementary School', 'Tarragona, Davao Oriental'),
 (4, '129493120101', 'Cabillon', 'Jesthony', ' ', 'Male', 80, 0, '000000', 'GMES-1', 'Manay, Davao Oriental'),
@@ -1744,7 +1747,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `form_sf8_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf8_view`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`enrollment`.`sectionId` AS `sectionId`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,date_format(`personalinfo`.`bDate`,'%m/%d/%Y') AS `bDate`,ifnull(`bmi`.`id`,-(1)) AS `bmiId`,ifnull(`bmi`.`weight`,0) AS `weight`,ifnull(`bmi`.`height`,'0.0') AS `height`,`students`.`sex` AS `sex`,ifnull(`bmi`.`heightSq`,'0.0000') AS `heightSq`,ifnull(`bmi`.`age`,'0: 0') AS `age`,ifnull(`bmi`.`bmi`,'0.0') AS `bmi`,ifnull(`bmi`.`bmiForAge`,'No Record') AS `bmiForAge`,ifnull(`bmi`.`heightForAge`,'No Record') AS `heightForAge`,ifnull(`bmi`.`dateExamined`,now()) AS `dateExamined` from (((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `personalinfo` on((`enrollment`.`studentId` = `personalinfo`.`stdId`))) left join `bmi` on(((`enrollment`.`studentId` = `bmi`.`studentId`) and (`enrollment`.`sectionId` = `bmi`.`sectionId`)))) order by `enrollment`.`sectionId`,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf8_view`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`enrollment`.`sectionId` AS `sectionId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,date_format(`personalinfo`.`bDate`,'%m/%d/%Y') AS `bDate`,`students`.`sex` AS `sex`,ifnull(`bmi`.`id`,-(1)) AS `bmiId`,ifnull(`bmi`.`age`,'0: 0') AS `age`,ifnull(`bmi`.`weight`,0) AS `weight`,ifnull(`bmi`.`height`,'0.0') AS `height`,ifnull(`bmi`.`heightSq`,'0.0000') AS `heightSq`,ifnull(`bmi`.`bmi`,'0.0') AS `bmi`,ifnull(`bmi`.`bmiForAge`,'No Record') AS `bmiForAge`,ifnull(`bmi`.`heightForAge`,'No Record') AS `heightForAge`,ifnull(`bmi`.`dateExamined`,now()) AS `dateExamined` from (((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `personalinfo` on((`enrollment`.`studentId` = `personalinfo`.`stdId`))) left join `bmi` on(((`enrollment`.`studentId` = `bmi`.`studentId`) and (`enrollment`.`sectionId` = `bmi`.`sectionId`)))) order by `enrollment`.`sectionId`,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
 
 -- --------------------------------------------------------
 
@@ -1977,7 +1980,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `bmi`
