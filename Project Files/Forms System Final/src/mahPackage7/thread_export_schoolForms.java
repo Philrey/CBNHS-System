@@ -672,7 +672,8 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 }case 7:{
                     break;
                 }case 8:{
-                    //<editor-fold desc="WRITE SF5">
+                    //<editor-fold desc="WRITE SF8">
+                    //#1 Write Sf8 Table
                     int rowCount = sf8Table.getRowCount();
                     startingAddress = "A,";
                     excelColumnsToSkip = "D,E,F";
@@ -707,11 +708,44 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                             }
                         }
                         my.writeExcelLine(sheetNumber, line, excelColumnsToSkip, startingAddress+(row+11));
+                        
+                        //If there is no female and is last row
+                        if(!firstFemaleFound){
+                            if(n == rowCount-1){
+                                firstFemaleFound = true;
+                                row++;
+                                my.writeExcelLine(sheetNumber, fCount, excelColumnsToSkip, startingAddress+(row+11));
+                                Thread.sleep(threadDelay);
+                            }
+                        }
+                        
                         row++;
                         n++;
                         Thread.sleep(threadDelay);
                     }
-                    //my.writeExcelLine(sheetNumber, tCount, excelColumnsToSkip, startingAddress+(row+8));
+                    //my.writeExcelLine(sheetNumber, tCount, excelColumnsToSkip, startingAddress+(row+11));
+                    
+                    //#2 Write Summary Table
+                    int rowsToSkip [] = new int [] {0,6};
+                    rowCount = sf8SummaryTable.getRowCount();
+                    
+                    String startingColumns [] = new String [] {"I,","C,","E,","F,","G,","H,","N,","J,","K,","L,","M,"};
+                    int startingRows [] = new int [] {28,38,48,58,68,78,88};
+                    String summaryMale,summaryFemale,summaryTotal;
+                    excelColumnsToSkip = "D,O";
+                    
+                    for (int n = 0; n < rowCount; n++) {
+                        lbLoadingMessage.setText("Writing Tables...3/4 Summary "+(n+1)+" of "+rowCount);
+                        
+                        summaryMale = sf8SummaryTable.getValueAt(n, 1).toString();
+                        summaryFemale = sf8SummaryTable.getValueAt(n, 2).toString();
+                        summaryTotal = sf8SummaryTable.getValueAt(n, 3).toString();
+                        
+                        my.writeExcelSingleData(sheetNumber, summaryMale, startingColumns[n]+startingRows[sheetNumber]);
+                        my.writeExcelSingleData(sheetNumber, summaryFemale, startingColumns[n]+(startingRows[sheetNumber]+1));
+                        my.writeExcelSingleData(sheetNumber, summaryTotal, startingColumns[n]+(startingRows[sheetNumber]+2));
+                        Thread.sleep(threadDelay);
+                    }
                     //</editor-fold>
                     break;
                 }case 9:{
