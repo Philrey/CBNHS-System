@@ -24,6 +24,7 @@ import org.apache.poi.ss.usermodel.BorderStyle;
  * @author Phil Rey Paderogao
  */
 public class thread_export_schoolForms extends SwingWorker<Object, Object>{
+    //<editor-fold desc="IMPORTANT VARIABLES">
     //Main Variables
     private header[] headers;
         //SF1
@@ -50,6 +51,12 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         private String sf5Curriculum;
         //SF6
         private JTable sf6Table;
+        //SF7
+        
+        //SF8
+        private JTable sf8Table;
+        private JTable sf8SummaryTable;
+        private String dateOfMeasurement;
     //Global Variables
     private String sectionName;
     private String adviserName;
@@ -72,7 +79,8 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
     private final JPanel dialogPanel;
     private final JLabel lbLoadingMessage;
     private final JProgressBar progressBar;
-
+    //</editor-fold>   
+    
     public thread_export_schoolForms(JTable [] tablesToUse,String [] stringsToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean [] booleansToUse) {
         //For Loading Screen & Functions
         my = new myFunctions(true);
@@ -160,6 +168,15 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
             }case 7:{
                 break;
             }case 8:{
+                //Global Variables
+                sectionName = my.getSectionNameOnly(textFieldsToUse[0].getText(), true);
+                adviserName = textFieldsToUse[1].getText().toUpperCase();
+                gradeLevel = textFieldsToUse[2].getText();
+                schoolYear = textFieldsToUse[3].getText();
+                //SF3 Variables
+                dateOfMeasurement = textFieldsToUse[4].getText();
+                sf8Table = tables[0];
+                sf8SummaryTable = tables[1];
                 break;
             }case 9:{
                 break;
@@ -205,7 +222,9 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         
         //#4 Remove Extra Sheets
         lbLoadingMessage.setText("Removing Extra Sheets...4/5");
-        my.keepOneSheetOnly(sheetNumber);
+        if(myVariables.getFormSelected() != 10){
+            my.keepOneSheetOnly(sheetNumber);
+        }
         progressBar.setValue(4);
         Thread.sleep(pauseDelay);
         
@@ -248,7 +267,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
             }case 7:{
                 //dataCount = sf2Table.getRowCount()-3;break;
             }case 8:{
-                //dataCount = sf2Table.getRowCount()-3;break;
+                dataCount = sf8Table.getRowCount();break;
             }default:{
                 break;
             }
@@ -653,6 +672,47 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 }case 7:{
                     break;
                 }case 8:{
+                    //<editor-fold desc="WRITE SF5">
+                    int rowCount = sf8Table.getRowCount();
+                    startingAddress = "A,";
+                    excelColumnsToSkip = "D,E,F";
+                    
+                    
+                    String mCount = " @@Male@@";
+                    String fCount = " @@Female@@";
+                    
+                    String gender;
+                    boolean firstFemaleFound = false;
+                    
+                    int row = 0;
+                    my.writeExcelLine(sheetNumber, mCount, excelColumnsToSkip, startingAddress+(row+11));
+                    row++;
+                    
+                    for (int n = 0; n < rowCount; ) {
+                        lbLoadingMessage.setText("Writing Tables...3/4 Line "+(n+1)+" of "+rowCount);
+                        
+                        //Get line
+                        String line = my.get_table_row_values(n, sf8Table);
+                        gender = my.getValueAtColumn(line, 6);
+                        line = (n+1)+"@@"+my.skipColumns(line, new int[]{0,1,2,6,7,15});
+                        
+                        if(!firstFemaleFound){
+                            if(gender.contains("Female")){
+                                firstFemaleFound = true;
+                                //System.err.println(mCount);
+                                my.writeExcelLine(sheetNumber, fCount, excelColumnsToSkip, startingAddress+(row+11));
+                                row++;
+                                Thread.sleep(threadDelay);
+                                continue;
+                            }
+                        }
+                        my.writeExcelLine(sheetNumber, line, excelColumnsToSkip, startingAddress+(row+11));
+                        row++;
+                        n++;
+                        Thread.sleep(threadDelay);
+                    }
+                    //my.writeExcelLine(sheetNumber, tCount, excelColumnsToSkip, startingAddress+(row+8));
+                    //</editor-fold>
                     break;
                 }case 9:{
                     break;
@@ -790,6 +850,21 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 }case 7:{
                     break;
                 }case 8:{
+                    String [] dateOfMearuringAddress = new String [] {"A,34","A,44","A,54","A,64","A,74","A,84","A,94"};
+                    
+                    headers = new header[]{
+                        //Header Parts
+                        new header(schoolId, "C,7"),
+                        new header(region, "O,5"),
+                        new header(division, "L,5"),
+                        new header(schoolName, "E,5"),
+                        new header(schoolYear, "O,7"),
+                        new header(gradeLevel, "F,7"),
+                        new header(sectionName, "H,7"),
+                        new header(district, "I,5"),
+                        //Form's Custom Fields
+                        new header(dateOfMeasurement, dateOfMearuringAddress[sheetNumber]),
+                    };
                     break;
                 }case 9:{
                     break;

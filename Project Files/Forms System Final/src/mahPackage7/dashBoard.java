@@ -3302,7 +3302,6 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel63.setText("Summary Table");
 
         cbShowIncompleteStudents2.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        cbShowIncompleteStudents2.setSelected(true);
         cbShowIncompleteStudents2.setText("Show students with missing records?");
         cbShowIncompleteStudents2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
         cbShowIncompleteStudents2.setOpaque(false);
@@ -3373,23 +3372,18 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel59)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfAdviserName4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfSchoolYear5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfDateOfMeasurement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
-                            .addGap(26, 26, 26)
-                            .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(tfSchoolYear5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tfDateOfMeasurement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jLabel60)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(tfGradeLevel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel115)
-                            .addComponent(jLabel61))))
+                    .addComponent(jLabel115)
+                    .addComponent(jLabel61))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel63)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3415,17 +3409,17 @@ public class dashBoard extends javax.swing.JFrame {
 
         sf8Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Student ID", "Section ID", "Name", "Birth Date", "BMI ID", "Weight", "Height", "Gender", "Height^2", "Age", "BMI", "Nutritional Status", "Height-For-Age", "Date Recorded"
+                "Id", "Student ID", "Section ID", "LRN", "Name", "Birth Date", "Gender", "BMI ID", "Age", "Weight", "Height", "Height^2", "BMI", "Nutritional Status", "Height-For-Age", "Date Recorded"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -3436,10 +3430,11 @@ public class dashBoard extends javax.swing.JFrame {
         sf8Table.getTableHeader().setReorderingAllowed(false);
         jScrollPane25.setViewportView(sf8Table);
         if (sf8Table.getColumnModel().getColumnCount() > 0) {
-            sf8Table.getColumnModel().getColumn(3).setPreferredWidth(200);
-            sf8Table.getColumnModel().getColumn(12).setPreferredWidth(150);
+            sf8Table.getColumnModel().getColumn(3).setPreferredWidth(100);
+            sf8Table.getColumnModel().getColumn(4).setPreferredWidth(200);
             sf8Table.getColumnModel().getColumn(13).setPreferredWidth(150);
             sf8Table.getColumnModel().getColumn(14).setPreferredWidth(150);
+            sf8Table.getColumnModel().getColumn(15).setPreferredWidth(150);
         }
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
@@ -5726,6 +5721,11 @@ public class dashBoard extends javax.swing.JFrame {
         
         String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
         
+        if(cbShowIncompleteStudents2.isSelected()){
+            if(!my.getConfirmation("Showing Students with no Records will not be counted for the Summary Table.\nContinue?")){
+                return;
+            }
+        }
         
         my.runSecondaryThread(5, true,
                 new JTable[]{sf8Table,sf8SummaryTable},
@@ -5737,7 +5737,18 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoadStudents6ActionPerformed
 
     private void btnExportSf8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf8ActionPerformed
-        // TODO add your handling code here:
+        if(myVariables.getFormSelected() != 8){
+            my.showMessage("SF8 Not Selected", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        my.runExportThread(
+                new JTable[]{sf8Table,sf8SummaryTable},
+                new String[]{},
+                new JTextField[]{tfSectionName4,tfAdviserName4,tfGradeLevel4,tfSchoolYear5,tfDateOfMeasurement}, 
+                new JButton[]{btnExportSf8,},
+                new boolean[]{}
+        );
     }//GEN-LAST:event_btnExportSf8ActionPerformed
 
     private void btnSf8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf8ActionPerformed
@@ -6313,7 +6324,7 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(sf3Table, new int [] {0,1,2});
             my.hideColumns(sf3BooksTable, new int [] {0,3});
             my.hideColumns(sf5Table, new int [] {0,1,2,3,7});
-            my.hideColumns(sf8Table, new int [] {0,1,2,5});
+            my.hideColumns(sf8Table, new int [] {0,1,2,7});
             
             my.hideColumns(grade7RankingTable, new int [] {0,1,3,4,5,7,11});
             my.hideColumns(grade8RankingTable, new int [] {0,1,3,4,5,7,11});

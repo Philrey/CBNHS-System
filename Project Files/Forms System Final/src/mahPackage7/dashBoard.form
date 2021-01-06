@@ -5421,29 +5421,21 @@
                               <Component id="jLabel59" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="tfAdviserName4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="tfSchoolYear5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="tfDateOfMeasurement" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                          <Component id="tfSchoolYear5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tfDateOfMeasurement" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jLabel60" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="tfGradeLevel4" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel115" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel61" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <Component id="jLabel115" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel61" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabel63" min="-2" max="-2" attributes="0"/>
@@ -5641,7 +5633,6 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="myVariables.TEXTFIELD_HEADER_FONT" type="code"/>
                         </Property>
-                        <Property name="selected" type="boolean" value="true"/>
                         <Property name="text" type="java.lang.String" value="Show students with missing records?"/>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/mahPackage7/icons/icons8_unchecked_checkbox_20px.png"/>
@@ -5727,18 +5718,19 @@
                     <Component class="javax.swing.JTable" name="sf8Table">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="15" rowCount="4">
+                          <Table columnCount="16" rowCount="4">
                             <Column editable="false" title="Id" type="java.lang.Object"/>
                             <Column editable="false" title="Student ID" type="java.lang.Object"/>
                             <Column editable="false" title="Section ID" type="java.lang.Object"/>
+                            <Column editable="false" title="LRN" type="java.lang.Object"/>
                             <Column editable="false" title="Name" type="java.lang.Object"/>
                             <Column editable="false" title="Birth Date" type="java.lang.Object"/>
+                            <Column editable="false" title="Gender" type="java.lang.Object"/>
                             <Column editable="false" title="BMI ID" type="java.lang.Object"/>
+                            <Column editable="false" title="Age" type="java.lang.Object"/>
                             <Column editable="false" title="Weight" type="java.lang.Object"/>
                             <Column editable="false" title="Height" type="java.lang.Object"/>
-                            <Column editable="false" title="Gender" type="java.lang.Object"/>
                             <Column editable="false" title="Height^2" type="java.lang.Object"/>
-                            <Column editable="false" title="Age" type="java.lang.Object"/>
                             <Column editable="false" title="BMI" type="java.lang.Object"/>
                             <Column editable="false" title="Nutritional Status" type="java.lang.Object"/>
                             <Column editable="false" title="Height-For-Age" type="java.lang.Object"/>
@@ -5759,6 +5751,11 @@
                               <Renderer/>
                             </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>

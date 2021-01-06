@@ -100,7 +100,7 @@ public class thread_loadSf8Details extends SwingWorker<String, Object>{
                 lbLoadingMessage.setText("Loading Student "+(n+1)+" of "+studCount);
                 progressBar.setValue(n+1);
                 
-                result[n] = my.toNameFormat(result[n], new int []{3,4,5});
+                result[n] = my.toNameFormat(result[n], new int []{4,5,6});
                 my.add_table_row(result[n], sf8Table);
                 Thread.sleep(threadDelay);
             }
@@ -129,9 +129,9 @@ public class thread_loadSf8Details extends SwingWorker<String, Object>{
             if (useFirstStudentForDateOfMeasurement) {
                 lbLoadingMessage.setText("Determining Date of Measurement...");
                 for (int n = 0; n < studentCount; n++) {
-                    bmiId = Integer.parseInt(sf8Table.getValueAt(n, 5).toString());
+                    bmiId = Integer.parseInt(sf8Table.getValueAt(n, 7).toString());
                     if(bmiId != -1){
-                        dom = sf8Table.getValueAt(n, 14).toString().split(" ")[0];  //Get Value,Split into an array, use first index 0
+                        dom = sf8Table.getValueAt(n, 15).toString().split(" ")[0];  //Get Value,Split into an array, use first index 0
                         String temp [] = dom.split("-");
                         tfDateOfMeasurement.setText(temp[1]+"/"+temp[2]+"/"+temp[0]);
                         return true;
@@ -144,9 +144,9 @@ public class thread_loadSf8Details extends SwingWorker<String, Object>{
                 
                 for (int n = 0; n < studentCount; n++) {
                     lbLoadingMessage.setText("Determining Date of Measurement...Finding Unique Dates "+(n+1)+"/"+studentCount);
-                    bmiId = Integer.parseInt(sf8Table.getValueAt(n, 5).toString());
+                    bmiId = Integer.parseInt(sf8Table.getValueAt(n, 7).toString());
                     if(bmiId != -1){
-                        dom = sf8Table.getValueAt(n, 14).toString().split(" ")[0];  //Get Value,Split into an array, use first index 0 = yyyy-mm-dd
+                        dom = sf8Table.getValueAt(n, 15).toString().split(" ")[0];  //Get Value,Split into an array, use first index 0 = yyyy-mm-dd
                         if(!uniqueDates.contains(dom)){
                             uniqueDates += dom+"@@";
                         }
@@ -165,9 +165,9 @@ public class thread_loadSf8Details extends SwingWorker<String, Object>{
                         currCount = 0;
                         //#3 Search for instances;
                         for (int x = 0; x < studentCount; x++) {
-                            bmiId = Integer.parseInt(sf8Table.getValueAt(x, 5).toString());
+                            bmiId = Integer.parseInt(sf8Table.getValueAt(x, 7).toString());
                             if(bmiId != -1){
-                                dom = sf8Table.getValueAt(x, 14).toString().split(" ")[0];  //Get Value,Split into an array, use first index 0 = yyyy-mm-dd
+                                dom = sf8Table.getValueAt(x, 15).toString().split(" ")[0];  //Get Value,Split into an array, use first index 0 = yyyy-mm-dd
                                 
                                 if(dom.equals(dates[n])){
                                     currCount++;
@@ -230,12 +230,12 @@ public class thread_loadSf8Details extends SwingWorker<String, Object>{
                 lbLoadingMessage.setText("Counting Results... "+(n+1)+" of "+studCount);
                 progressBar.setValue(n+1);
                 
-                bmiId = sf8Table.getValueAt(n, 5).toString();
+                bmiId = sf8Table.getValueAt(n, 7).toString();
                 
                 if(!bmiId.equals("-1")){
-                    gender = sf8Table.getValueAt(n, 8).toString();
-                    nutritionalStatus = sf8Table.getValueAt(n, 12).toString();
-                    heightForAge = sf8Table.getValueAt(n, 13).toString();
+                    gender = sf8Table.getValueAt(n, 6).toString();
+                    nutritionalStatus = sf8Table.getValueAt(n, 13).toString();
+                    heightForAge = sf8Table.getValueAt(n, 14).toString();
                     
                     //<editor-fold desc="Nutritional Status">
                     if(nutritionalStatus.equals("Severely Wasted")){
