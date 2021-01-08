@@ -57,6 +57,16 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         private JTable sf8Table;
         private JTable sf8SummaryTable;
         private String dateOfMeasurement;
+        //SF9
+        private JTable sf9GradesTable;
+        private String sf9GeneralAverage;
+        private String sf9FailedSubjects;
+        private String sf9Remarks;
+        
+        private String lrn;
+        private String studentName;
+        private String gender;
+        private String age;
     //Global Variables
     private String sectionName;
     private String adviserName;
@@ -179,6 +189,22 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 sf8SummaryTable = tables[1];
                 break;
             }case 9:{
+                //Global Variables
+                sectionName = my.getSectionNameOnly(textFieldsToUse[0].getText(), true);
+                adviserName = textFieldsToUse[1].getText().toUpperCase();
+                gradeLevel = textFieldsToUse[2].getText();
+                schoolYear = textFieldsToUse[3].getText();
+                //SF9 Variables
+                sf9GeneralAverage = textFieldsToUse[4].getText();
+                sf9FailedSubjects = textFieldsToUse[5].getText();
+                sf9Remarks = textFieldsToUse[6].getText();
+                
+                sf9GradesTable = tables[0];
+                
+                lrn = stringsToUse[0];
+                studentName = stringsToUse[1];
+                gender = stringsToUse[2];
+                age = stringsToUse[3];
                 break;
             }case 10:{
                 break;
@@ -222,8 +248,17 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         
         //#4 Remove Extra Sheets
         lbLoadingMessage.setText("Removing Extra Sheets...4/5");
-        if(myVariables.getFormSelected() != 10){
+        if(myVariables.getFormSelected() != 10 && myVariables.getFormSelected() != 9){
             my.keepOneSheetOnly(sheetNumber);
+        }else{
+            switch(myVariables.getFormSelected()){
+                case 9:{
+                    my.removeSheetsAt(new int [] {2});
+                    break;
+                }case 10:{
+                    break;
+                }
+            }
         }
         progressBar.setValue(4);
         Thread.sleep(pauseDelay);
@@ -753,6 +788,22 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     //</editor-fold>
                     break;
                 }case 9:{
+                    //<editor-fold desc="WRITE SF9">
+                    int rowCount = sf9GradesTable.getRowCount();
+                    startingAddress = "A,";
+                    excelColumnsToSkip = "B,C,D,E,G,I,K,M,O,Q,R";
+                    
+                    for (int n = 0; n < rowCount; n++) {
+                        lbLoadingMessage.setText("Writing Tables...3/4 Grade "+(n+1)+" of "+rowCount);
+                        
+                        String line = my.get_table_row_values(n, sf9GradesTable);
+                        
+                        line = my.skipColumns(line, new int [] {0,1,2,3,4,12});
+                        
+                        my.writeExcelLine(sheetNumber, line, excelColumnsToSkip, startingAddress+(n+23));
+                        Thread.sleep(threadDelay);
+                    }
+                    //</editor-fold>
                     break;
                 }case 10:{
                     break;
@@ -905,6 +956,23 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     };
                     break;
                 }case 9:{
+                    headers = new header[]{
+                        //Header Parts
+                        new header(schoolYear, "P,9"),
+                        new header(gradeLevel, "C,9"),
+                        new header(sectionName, "G,9"),
+                        //Form's Custom Fields
+                        new header(adviserName, "K,16"),
+                        
+                        new header(lrn, "C,8"),
+                        new header(studentName, "C,7"),
+                        new header(gender, "P,8"),
+                        new header(age, "L,8"),
+                        
+                        new header(sf9GeneralAverage, "N,35"),
+                        new header(sf9FailedSubjects, "F,44"),
+                        new header(sf9Remarks, "P,35"),
+                    };
                     break;
                 }case 10:{
                     break;

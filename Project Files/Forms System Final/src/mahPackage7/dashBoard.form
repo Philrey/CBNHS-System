@@ -5948,8 +5948,8 @@
                             <Column editable="false" title="LRN" type="java.lang.Object"/>
                             <Column editable="false" title="Name" type="java.lang.Object"/>
                             <Column editable="false" title="Gender" type="java.lang.Object"/>
+                            <Column editable="false" title="Birth Date" type="java.lang.Object"/>
                             <Column editable="false" title="Section ID" type="java.lang.Object"/>
-                            <Column editable="false" title="Remarks" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -6048,16 +6048,6 @@
                                           </Group>
                                           <Component id="tfFailedSubjects" alignment="0" pref="0" max="32767" attributes="0"/>
                                           <Component id="jLabel69" alignment="0" max="32767" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabel67" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="tfGeneralAverage" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="jLabel66" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
                                           <Component id="tfEvaluation" alignment="0" pref="0" max="32767" attributes="0"/>
                                           <Component id="jLabel70" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jLabel71" alignment="0" max="32767" attributes="0"/>
@@ -6077,6 +6067,18 @@
                                           </Group>
                                           <Component id="btnLoadGrades" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jLabel93" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel67" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                      <Component id="tfGeneralAverage" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="jLabel66" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="jLabel116" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jdcDateOfExport" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -6137,7 +6139,11 @@
                               <Component id="tfEvaluation" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel93" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jLabel116" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jdcDateOfExport" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnLoadGrades" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnExportSf9" min="-2" max="-2" attributes="0"/>
@@ -6415,6 +6421,13 @@
                         <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="text" type="java.lang.String" value="Export Options"/>
                       </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel116">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Date of Export"/>
+                      </Properties>
+                    </Component>
+                    <Component class="com.toedter.calendar.JDateChooser" name="jdcDateOfExport">
                     </Component>
                   </SubComponents>
                 </Container>

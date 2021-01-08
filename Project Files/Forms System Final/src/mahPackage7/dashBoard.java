@@ -383,6 +383,8 @@ public class dashBoard extends javax.swing.JFrame {
         tfSchoolYear6 = new javax.swing.JTextField();
         jLabel74 = new javax.swing.JLabel();
         jLabel93 = new javax.swing.JLabel();
+        jLabel116 = new javax.swing.JLabel();
+        jdcDateOfExport = new com.toedter.calendar.JDateChooser();
         sf10Tab = new javax.swing.JPanel();
         tpSf10Pane = new javax.swing.JTabbedPane();
         jPanel25 = new javax.swing.JPanel();
@@ -3497,7 +3499,7 @@ public class dashBoard extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID", "Remarks"
+                "ID", "Student ID", "LRN", "Name", "Gender", "Birth Date", "Section ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -3682,6 +3684,8 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel93.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel93.setText("Export Options");
 
+        jLabel116.setText("Date of Export");
+
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
         jPanel23Layout.setHorizontalGroup(
@@ -3704,13 +3708,6 @@ public class dashBoard extends javax.swing.JFrame {
                                 .addGap(97, 97, 97))
                             .addComponent(tfFailedSubjects, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jLabel69, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel23Layout.createSequentialGroup()
-                                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel67)
-                                    .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(tfGeneralAverage, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel66, javax.swing.GroupLayout.Alignment.LEADING)))
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(tfEvaluation, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jLabel70, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel71, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -3726,7 +3723,16 @@ public class dashBoard extends javax.swing.JFrame {
                                     .addComponent(tfSchoolYear6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel74, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(btnLoadGrades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel93, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel93, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel23Layout.createSequentialGroup()
+                                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel67)
+                                    .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(tfGeneralAverage, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel66, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(jLabel116)
+                                    .addComponent(jdcDateOfExport, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel23Layout.setVerticalGroup(
@@ -3777,7 +3783,11 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(tfEvaluation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel93)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel116)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jdcDateOfExport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLoadGrades)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExportSf9)
@@ -5768,7 +5778,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         clearGrades();
         String where = "WHERE sectionId='"+sectionId+"' AND (lrn='"+toSearch+"' OR lName LIKE '%"+toSearch+"%' OR fName LIKE '%"+toSearch+"%' OR mName LIKE '%"+toSearch+"%')";
-        my.searchItem(where, enrolledStudentsTable, 6, null, new int [] {3,4,5}, true, true, lbSearchResult1, tfSearchEnrolledStudent, true);
+        my.searchItem(where, enrolledStudentsTable, 8, null, new int [] {3,4,5}, true, true, lbSearchResult1, tfSearchEnrolledStudent, true);
     }//GEN-LAST:event_btnSearchEnrolledStudentsearchEnrolledStudentsHandler
 
     private void enrolledStudentsTableloadStudentsAttendanceHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enrolledStudentsTableloadStudentsAttendanceHandler
@@ -5848,7 +5858,44 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoadGradesActionPerformed
 
     private void btnExportSf9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf9ActionPerformed
+        if(myVariables.getFormSelected() != 9){
+            my.showMessage("SF9 Not Selected", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if(jdcDateOfExport.getDate() == null){
+            my.showMessage("No Date Selected.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         
+        String dateOfExport = my.jCalendarToNumberDate(jdcDateOfExport.getDate().toString(), false);
+        
+        int row = enrolledStudentsTable.getSelectedRow();
+        if(row  == -1 ){
+            my.showMessage("No Student Selected.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        String dateOfBirth = " ";
+        String age = " ";
+        
+        String lrn = enrolledStudentsTable.getValueAt(row, 2).toString();
+        String studentName = enrolledStudentsTable.getValueAt(row, 3).toString();
+        String sex = enrolledStudentsTable.getValueAt(row, 4).toString();
+        
+        try {
+            dateOfBirth = enrolledStudentsTable.getValueAt(row, 5).toString();
+            age = my.getAgeInYearsMonths(dateOfExport, dateOfBirth, false);
+        } catch (Exception e) {
+            System.err.println("Error Calculating Age...");
+        }
+        
+        my.runExportThread(
+                new JTable[]{gradesTable},
+                new String[]{lrn,studentName,sex,age},
+                new JTextField[]{tfSectionName5,tfAdviserName5,tfGradeLevel5,tfSchoolYear6,tfGeneralAverage,tfFailedSubjects,tfEvaluation}, 
+                new JButton[]{btnExportSf9,},
+                new boolean[]{}
+        );
     }//GEN-LAST:event_btnExportSf9ActionPerformed
 
     private void btnSf9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf9ActionPerformed
@@ -6331,7 +6378,7 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(grade9RankingTable, new int [] {0,1,3,4,5,7,11});
             my.hideColumns(grade10RankingTable, new int [] {0,1,3,4,5,7,11});
             
-            my.hideColumns(enrolledStudentsTable, new int []{0,1,5,6});
+            my.hideColumns(enrolledStudentsTable, new int []{0,1,6});
             my.hideColumns(gradesTable, new int [] {0,1,2,3});
             
             my.hideColumns(gradesTable1, new int [] {0,1,2,3});
@@ -6566,7 +6613,7 @@ public class dashBoard extends javax.swing.JFrame {
     private void loadTextFields(){
         JDateChooser dateChoosers [] = {
             jdcFirstDayOfFridate,jdcFirstDayOfMonth,jdcCutOffDate,
-            jdcFirstDayOfMonth1,jdcCutOffDate1,
+            jdcFirstDayOfMonth1,jdcCutOffDate1,jdcDateOfExport,
         };
         JSpinner spinners [] = {
             //jsHours,jsMinutes
@@ -6760,6 +6807,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel113;
     private javax.swing.JLabel jLabel114;
     private javax.swing.JLabel jLabel115;
+    private javax.swing.JLabel jLabel116;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -6969,6 +7017,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbSchoolYear2;
     private com.toedter.calendar.JDateChooser jdcCutOffDate;
     private com.toedter.calendar.JDateChooser jdcCutOffDate1;
+    private com.toedter.calendar.JDateChooser jdcDateOfExport;
     private com.toedter.calendar.JDateChooser jdcFirstDayOfFridate;
     private com.toedter.calendar.JDateChooser jdcFirstDayOfMonth;
     private com.toedter.calendar.JDateChooser jdcFirstDayOfMonth1;

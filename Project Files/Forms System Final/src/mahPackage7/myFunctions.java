@@ -1551,6 +1551,10 @@ public class myFunctions {
         return new Date(year-1900, month-1, date);
     }
     public String jCalendarToNumberDate(String jCalendarDateString,boolean includeTime){
+        if(jCalendarDateString == null){
+            return null;
+        }
+        
         String [] temp = jCalendarDateString.split(" ");
         String m = temp[1];
         String d = temp[2];
@@ -2077,7 +2081,7 @@ public class myFunctions {
         }
         return currentValue;
     }
-    private void removeSheetsAt(int sheetIndexInOrder []){
+    public void removeSheetsAt(int sheetIndexInOrder []){
         int sheetCount = workbook.getNumberOfSheets();
         for (int n = sheetCount-1; n >= 0; n--) {
             try {
