@@ -268,6 +268,10 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 //dataCount = sf2Table.getRowCount()-3;break;
             }case 8:{
                 dataCount = sf8Table.getRowCount();break;
+            }case 9:{
+                dataCount = 0;break;
+            }case 10:{
+                dataCount = 0;break;
             }default:{
                 break;
             }
