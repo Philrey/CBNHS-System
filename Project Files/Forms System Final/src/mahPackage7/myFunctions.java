@@ -2081,6 +2081,20 @@ public class myFunctions {
         }
         return currentValue;
     }
+    public String removeSubjectGrade(String line,String separator){
+        String temp = "";
+        String text [] = line.split(separator);
+        
+        for(String word : text){
+            try {
+                Integer.parseInt(word);
+            } catch (Exception e) {
+                temp+=word+separator;
+            }
+        }
+        
+        return temp.trim();
+    }
     public void removeSheetsAt(int sheetIndexInOrder []){
         int sheetCount = workbook.getNumberOfSheets();
         for (int n = sheetCount-1; n >= 0; n--) {

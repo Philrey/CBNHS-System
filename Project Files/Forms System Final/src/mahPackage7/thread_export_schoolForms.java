@@ -192,7 +192,10 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 //Global Variables
                 sectionName = my.getSectionNameOnly(textFieldsToUse[0].getText(), true);
                 adviserName = textFieldsToUse[1].getText().toUpperCase();
+                
                 gradeLevel = textFieldsToUse[2].getText();
+                gradeLevel = gradeLevel.toLowerCase().replace("grade", " ").trim();
+                
                 schoolYear = textFieldsToUse[3].getText();
                 //SF9 Variables
                 sf9GeneralAverage = textFieldsToUse[4].getText();
@@ -202,7 +205,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 sf9GradesTable = tables[0];
                 
                 lrn = stringsToUse[0];
-                studentName = stringsToUse[1];
+                studentName = stringsToUse[1].toUpperCase();
                 gender = stringsToUse[2];
                 age = stringsToUse[3];
                 break;
@@ -796,8 +799,11 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     for (int n = 0; n < rowCount; n++) {
                         lbLoadingMessage.setText("Writing Tables...3/4 Grade "+(n+1)+" of "+rowCount);
                         
-                        String line = my.get_table_row_values(n, sf9GradesTable);
+                        String subjectName = sf9GradesTable.getValueAt(n, 5).toString();
+                        subjectName = my.removeSubjectGrade(subjectName, " ");
                         
+                        String line = my.get_table_row_values(n, sf9GradesTable);
+                        line = my.setValueAtColumn(line, 5, subjectName);
                         line = my.skipColumns(line, new int [] {0,1,2,3,4,12});
                         
                         my.writeExcelLine(sheetNumber, line, excelColumnsToSkip, startingAddress+(n+23));
