@@ -6640,6 +6640,9 @@ public class dashBoard extends javax.swing.JFrame {
             tfGender,tfLrn,tfSchoolName,tfSchoolAddress,tfSchoolId,tfInitialGrade,
             
             tfSchoolYear7,tfCurriculum,tfDateOfMeasurement,
+            
+            tfGeneralAverage1,tfGeneralAverage2,tfGeneralAverage3,tfGeneralAverage4,tfGeneralAverage5,
+            tfEvaluation1,tfEvaluation2,tfEvaluation3,tfEvaluation4,tfEvaluation5,
         };
         for(JSpinner n : spinners){
             n.setFont(myVariables.TEXTFIELD_FONT);

@@ -83,7 +83,8 @@ public class thread_loadRankings extends SwingWorker<String, Object>{
                 progressBar.setValue(n-6);
                 lbLoadingMessage.setText("Connecting to Database..."+(n-6)+"/4");
                 
-                String where =  "WHERE gradeLevel='"+n+"' AND schoolYear='"+schoolYear+"' AND actionTaken='Promoted' AND generalAverage>=75 ORDER BY generalAverage DESC LIMIT 0,"+studentsToShow;
+                String where =  "WHERE gradeLevel='"+n+"' AND schoolYear='"+schoolYear+
+                        "' AND actionTaken='Promoted' AND generalAverage>=75 ORDER BY generalAverage DESC LIMIT 0,"+studentsToShow;
                 result = my.return_values("*", "form_sf5_viewfull", where, myVariables.getJhsf5FullOrder());
                 
                 Thread.sleep(pauseDelay);
