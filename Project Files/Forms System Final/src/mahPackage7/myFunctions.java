@@ -2115,6 +2115,9 @@ public class myFunctions {
             }
         }
     }
+    public void setSheetSelected(int sheetIndex){
+        workbook.setActiveSheet(sheetIndex);
+    }
     //</editor-fold>
     //</editor-fold>
     public ImageIcon getImgIcn(String url){

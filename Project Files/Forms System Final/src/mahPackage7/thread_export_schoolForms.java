@@ -227,15 +227,15 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 break;
             }case 10:{
                 //Global Variables
-                firstName = textFieldsToUse[0].getText();
-                middleName = textFieldsToUse[1].getText();
-                lastName = textFieldsToUse[2].getText();
+                firstName = textFieldsToUse[0].getText().toUpperCase();
+                middleName = textFieldsToUse[1].getText().toUpperCase();
+                lastName = textFieldsToUse[2].getText().toUpperCase();
                 extentionName = textFieldsToUse[3].getText();
                 birthDate = textFieldsToUse[4].getText();
-                gender = textFieldsToUse[5].getText();
+                gender = textFieldsToUse[5].getText().toUpperCase();
                 lrn = textFieldsToUse[6].getText();
-                elemSchoolName = textFieldsToUse[7].getText();
-                elemSchoolAddress = textFieldsToUse[8].getText();
+                elemSchoolName = textFieldsToUse[7].getText().toUpperCase();
+                elemSchoolAddress = textFieldsToUse[8].getText().toUpperCase();
                 elemShoolId = textFieldsToUse[9].getText();
                 elemGeneralAverage = textFieldsToUse[10].getText();
                 //SF9 Variables
@@ -247,11 +247,11 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     textFieldsToUse[15].getText()
                 };
                 evaluations = new String [] {
-                    textFieldsToUse[16].getText(),
-                    textFieldsToUse[17].getText(),
-                    textFieldsToUse[18].getText(),
-                    textFieldsToUse[19].getText(),
-                    textFieldsToUse[20].getText(),
+                    textFieldsToUse[16].getText().toUpperCase(),
+                    textFieldsToUse[17].getText().toUpperCase(),
+                    textFieldsToUse[18].getText().toUpperCase(),
+                    textFieldsToUse[19].getText().toUpperCase(),
+                    textFieldsToUse[20].getText().toUpperCase(),
                 };
                 
                 sf10Table = tables[0];
@@ -271,10 +271,12 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
     protected Object doInBackground() throws Exception {
         btnExport.setEnabled(false);
         
+        //<editor-fold desc="Show Dialogs">
         showCustomDialog("Exporting to Excel File", dialogPanel, false, 420, 220, false);
         lbLoadingMessage.setText("Creating File...1/5");
         progressBar.setMaximum(5);
         progressBar.setValue(0);
+        //</editor-fold>
         
         //<editor-fold desc="#1 Create File & Determine which sheet to use">
         if(!my.createExcelFile(getFileName(true))){
@@ -310,6 +312,8 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     my.removeSheetsAt(new int [] {2});
                     break;
                 }case 10:{
+                    my.removeSheetsAt(new int [] {2,3,4});
+                    my.setSheetSelected(0);
                     break;
                 }
             }
@@ -865,6 +869,52 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     //</editor-fold>
                     break;
                 }case 10:{
+                    //<editor-fold desc="WRITE SF10">
+                    //#1 Write Section Headers
+                    int rowCount = sf10Table.getRowCount();
+                    int sheetNumbers [] = new int [] {0,0,1,1,1};
+                    String sectionHeaderAddressess [][] = {
+                        new String [] {"C,23","I,23","M,23","Q,23","U,23","C,24","E,24","J,24","N,24"},
+                        new String [] {"C,47","I,47","M,47","Q,47","U,47","C,48","E,48","J,48","N,48"},
+                        new String [] {"C,2","I,2","M,2","Q,2","U,2","C,3","E,3","J,3","N,3"},
+                        new String [] {"C,26","I,26","M,26","Q,26","U,26","C,27","E,27","J,27","N,27"},
+                        new String [] {"C,50","I,50","M,50","Q,50","U,50","C,51","E,51","J,51","N,51"},
+                    };
+                    
+                    for (int n = 0; n < rowCount; n++) {
+                        lbLoadingMessage.setText("Writing Tables...3/4 Section "+(n+1)+" of "+rowCount);
+                        //Get Values from table
+                        gradeLevel = sf10Table.getValueAt(n, 12).toString();
+                        
+                        sectionName = sf10Table.getValueAt(n, 6).toString();
+                        sectionName = my.getSectionNameOnly(sectionName, true);
+                        
+                        schoolYear = sf10Table.getValueAt(n, 14).toString();
+                        adviserName = sf10Table.getValueAt(n, 8).toString().toUpperCase();
+                        
+                        //Prepare Headers
+                        header sectionHeader [] = new header [] {
+                            new header(schoolName, sectionHeaderAddressess[n][0]),
+                            new header(schoolId, sectionHeaderAddressess[n][1]),
+                            new header(district, sectionHeaderAddressess[n][2]),
+                            new header(division, sectionHeaderAddressess[n][3]),
+                            new header(region, sectionHeaderAddressess[n][4]),
+                            
+                            new header(gradeLevel, sectionHeaderAddressess[n][5]),
+                            new header(sectionName, sectionHeaderAddressess[n][6]),
+                            new header(schoolYear, sectionHeaderAddressess[n][7]),
+                            new header(adviserName, sectionHeaderAddressess[n][8]),
+                        };
+                        int headerLength = sectionHeader.length;
+                        for (int x = 0; x < headerLength; x++) {
+                            lbLoadingMessage.setText("Writing Tables...3/4 Section "+(n+1)+" of "+rowCount+" Header "+(x+1)+"/"+headerLength);
+                            my.writeExcelSingleData(sheetNumbers[n], sectionHeader[x].getData(),sectionHeader[x].getExcelAddress());
+                            Thread.sleep(10);
+                        }
+                        
+                        Thread.sleep(threadDelay);
+                    }
+                    //</editor-fold>
                     break;
                 }default:{
                     
