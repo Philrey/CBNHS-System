@@ -67,6 +67,22 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         private String studentName;
         private String gender;
         private String age;
+        //SF10
+        private String firstName;
+        private String middleName;
+        private String lastName;
+        private String extentionName;
+        private String birthDate;
+        
+        private String elemSchoolName;
+        private String elemSchoolAddress;
+        private String elemShoolId;
+        private String elemGeneralAverage;
+        private String generalAverages [];
+        private String evaluations [];
+        
+        private JTable sf10Table;
+        private JTable [] sf10GradeTables;
     //Global Variables
     private String sectionName;
     private String adviserName;
@@ -210,6 +226,38 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 age = stringsToUse[3];
                 break;
             }case 10:{
+                //Global Variables
+                firstName = textFieldsToUse[0].getText();
+                middleName = textFieldsToUse[1].getText();
+                lastName = textFieldsToUse[2].getText();
+                extentionName = textFieldsToUse[3].getText();
+                birthDate = textFieldsToUse[4].getText();
+                gender = textFieldsToUse[5].getText();
+                lrn = textFieldsToUse[6].getText();
+                elemSchoolName = textFieldsToUse[7].getText();
+                elemSchoolAddress = textFieldsToUse[8].getText();
+                elemShoolId = textFieldsToUse[9].getText();
+                elemGeneralAverage = textFieldsToUse[10].getText();
+                //SF9 Variables
+                generalAverages = new String [] {
+                    textFieldsToUse[11].getText(),
+                    textFieldsToUse[12].getText(),
+                    textFieldsToUse[13].getText(),
+                    textFieldsToUse[14].getText(),
+                    textFieldsToUse[15].getText()
+                };
+                evaluations = new String [] {
+                    textFieldsToUse[16].getText(),
+                    textFieldsToUse[17].getText(),
+                    textFieldsToUse[18].getText(),
+                    textFieldsToUse[19].getText(),
+                    textFieldsToUse[20].getText(),
+                };
+                
+                sf10Table = tables[0];
+                sf10GradeTables = new JTable[] {
+                    tables[1],tables[2],tables[3],tables[4],tables[5]
+                };
                 break;
             }default:{
                 System.err.println("No Form Selected");
@@ -228,7 +276,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         progressBar.setMaximum(5);
         progressBar.setValue(0);
         
-        //#1 Create File & Determine which sheet to use
+        //<editor-fold desc="#1 Create File & Determine which sheet to use">
         if(!my.createExcelFile(getFileName(true))){
             my.showMessage("There was an error Creating the file.\nPlease Make Sure the template exists inside the Templates folder.", JOptionPane.ERROR_MESSAGE);
             throw new InterruptedException("Reading Failed");
@@ -236,20 +284,23 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         int sheetNumber = getSheetNumberToUse();
         progressBar.setValue(1);
         Thread.sleep(pauseDelay);
+        //</editor-fold>
         
-        //#2 Write Headers
+        //<editor-fold desc="#2 Write Headers">
         lbLoadingMessage.setText("Writing Headers...2/5");
         progressBar.setValue(2);
         if(!loadHeaders(sheetNumber)){throw new InterruptedException("Loading Headers Failed...");}
         if(!writeHeaders(sheetNumber)){throw new InterruptedException("Writing Headers Failed...");}
+        //</editor-fold>
         
-        //#3 Write Tables
+        //<editor-fold desc="#3 Write Tables">
         lbLoadingMessage.setText("Writing Tables...3/5");
         progressBar.setValue(3);
         if(!writeTables(sheetNumber)){throw new InterruptedException("Writing Tables Failed...");}
         Thread.sleep(pauseDelay);
+        //</editor-fold>
         
-        //#4 Remove Extra Sheets
+        //<editor-fold desc="#4 Remove Extra Sheets">
         lbLoadingMessage.setText("Removing Extra Sheets...4/5");
         if(myVariables.getFormSelected() != 10 && myVariables.getFormSelected() != 9){
             my.keepOneSheetOnly(sheetNumber);
@@ -265,8 +316,9 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         }
         progressBar.setValue(4);
         Thread.sleep(pauseDelay);
+        //</editor-fold>
         
-        //#5 Save File
+        //<editor-fold desc="#5 Save File">
         lbLoadingMessage.setText("Saving File...5/5");
         if(!my.saveExcelFile(getFileName(false))){
             my.showMessage("There was an error Exporting the file.\nPlease make sure the file you are saving at is not open and try again.", JOptionPane.ERROR_MESSAGE);
@@ -274,6 +326,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         }
         progressBar.setValue(5);
         Thread.sleep(pauseDelay);
+        //</editor-fold>
         
         closeCustomDialog();
         btnExport.setEnabled(true);
@@ -846,6 +899,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         try {
             switch(myVariables.getFormSelected()){
                 case 1:{
+                    //<editor-fold desc="SF1 Headers">
                     String mCount [] = new String [] {"M,20","M,30","M,40","M,50","M,60","M,70","M,80"};
                     String fCount [] = new String [] {"M,21","M,31","M,41","M,51","M,61","M,71","M,81"};
                     String tCount [] = new String [] {"M,22","M,32","M,42","M,52","M,62","M,72","M,82"};
@@ -867,8 +921,10 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         new header(totalCount, tCount[sheetNumber]),
                         new header(adviserName, advName[sheetNumber]),
                     };
+                    //</editor-fold>
                     break;
                 }case 2:{
+                    //<editor-fold desc="SF2 Headers">
                     //Set Addresses by sheetIndex
                     String monthSelected [] = new String [] {"T,22","T,32","T,42","T,52","T,62","T,72","T,82"};
                     String schoolDays [] = new String [] {"W,22","W,32","W,42","W,52","W,62","W,72","W,82"};
@@ -887,8 +943,10 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         new header(sf2SchoolDays, schoolDays[sheetNumber]),
                         new header(adviserName, advName[sheetNumber]),
                     };
+                    //</editor-fold>
                     break;
                 }case 3:{
+                    //<editor-fold desc="SF3 Headers">
                     //Set Addresses by sheetIndex
                     String advName [] = new String [] {"T,23","T,33","T,43","T,53","T,63","T,73","T,83"};
                     
@@ -902,8 +960,10 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         //Form's Custom Fields
                         new header(adviserName, advName[sheetNumber]),
                     };
+                    //</editor-fold>
                     break;
                 }case 4:{
+                    //<editor-fold desc="SF4 Headers">
                     headers = new header[]{
                         //Header Parts
                         new header(schoolId, "D,4"),
@@ -914,8 +974,10 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         new header(schoolYear, "Y,6"),
                         new header(sf4MonthSelected, "AJ,6"),
                     };
+                    //</editor-fold>
                     break;
                 }case 5:{
+                    //<editor-fold desc="SF5 Headers">
                     headers = new header[]{
                         //Header Parts
                         new header(schoolId, "C,5"),
@@ -929,8 +991,10 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         //Form's Custom Fields
                         new header(adviserName, "J,29"),
                     };
+                    //</editor-fold>
                     break;
                 }case 6:{
+                    //<editor-fold desc="SF6 Headers">
                     headers = new header[]{
                         //Header Parts
                         new header(schoolId, "D,4"),
@@ -941,10 +1005,12 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         new header(schoolYear, "T,6"),
                         //Form's Custom Fields
                     };
+                    //</editor-fold>
                     break;
                 }case 7:{
                     break;
                 }case 8:{
+                    //<editor-fold desc="SF8 Headers">
                     String [] dateOfMearuringAddress = new String [] {"A,34","A,44","A,54","A,64","A,74","A,84","A,94"};
                     
                     headers = new header[]{
@@ -960,8 +1026,10 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         //Form's Custom Fields
                         new header(dateOfMeasurement, dateOfMearuringAddress[sheetNumber]),
                     };
+                    //</editor-fold>
                     break;
                 }case 9:{
+                    //<editor-fold desc="SF9 Headers">
                     headers = new header[]{
                         //Header Parts
                         new header(schoolYear, "P,9"),
@@ -979,8 +1047,29 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         new header(sf9FailedSubjects, "F,44"),
                         new header(sf9Remarks, "P,35"),
                     };
+                    //</editor-fold>
                     break;
                 }case 10:{
+                    //<editor-fold desc="SF10 Headers">
+                    String birthDate [] = this.birthDate.split("-");
+                    headers = new header[]{
+                        new header(lastName, "C,7"),
+                        new header(firstName, "H,7"),
+                        new header(extentionName, "O,7"),
+                        new header(middleName, "S,7"),
+                        
+                        new header(lrn, "D,8"),
+                        new header(birthDate[1], "M,8"),
+                        new header(birthDate[2], "O,8"),
+                        new header(birthDate[0], "Q,8"),
+                        new header(gender, "T,8"),
+                        
+                        new header(elemGeneralAverage, "I,13"),
+                        new header(elemSchoolName, "D,14"),
+                        new header(elemShoolId, "L,14"),
+                        new header(elemSchoolAddress, "Q,14"),
+                    };
+                    //</editor-fold>
                     break;
                 }
             }

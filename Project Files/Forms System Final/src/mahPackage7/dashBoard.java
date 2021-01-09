@@ -5971,7 +5971,22 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSf10ActionPerformed
 
     private void btnExportSf10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf10ActionPerformed
-        // TODO add your handling code here:
+        if(myVariables.getFormSelected() != 10){
+            my.showMessage("SF10 Not Selected", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        my.runExportThread(
+                new JTable[]{sf10Table,gradesTable1,gradesTable2,gradesTable3,gradesTable4,gradesTable5,},
+                new String[]{},
+                new JTextField[]{tfFirstName,tfMiddleName,tfLastName,tfExtentionName,tfBirthdate,tfGender,tfLrn,
+                    tfSchoolName,tfSchoolAddress,tfSchoolId,tfInitialGrade,
+                    tfGeneralAverage1,tfGeneralAverage2,tfGeneralAverage3,tfGeneralAverage4,tfGeneralAverage5,
+                    tfEvaluation1,tfEvaluation2,tfEvaluation3,tfEvaluation4,tfEvaluation5,
+                }, 
+                new JButton[]{btnExportSf10,},
+                new boolean[]{}
+        );
     }//GEN-LAST:event_btnExportSf10ActionPerformed
 
     private void btnUseSelectedSectionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUseSelectedSectionsActionPerformed
