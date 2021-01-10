@@ -331,6 +331,7 @@ public class dashBoard extends javax.swing.JFrame {
         btnExportSf7 = new javax.swing.JButton();
         jcbSchoolYear2 = new javax.swing.JComboBox<>();
         jLabel102 = new javax.swing.JLabel();
+        cbRemoveTeachersWNoSubjects = new javax.swing.JCheckBox();
         sf8Tab = new javax.swing.JPanel();
         jSplitPane7 = new javax.swing.JSplitPane();
         jScrollPane29 = new javax.swing.JScrollPane();
@@ -3156,6 +3157,13 @@ public class dashBoard extends javax.swing.JFrame {
 
         jLabel102.setText("Select School Year");
 
+        cbRemoveTeachersWNoSubjects.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        cbRemoveTeachersWNoSubjects.setSelected(true);
+        cbRemoveTeachersWNoSubjects.setText("Remove Teachers with no Subjects Handled?");
+        cbRemoveTeachersWNoSubjects.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        cbRemoveTeachersWNoSubjects.setOpaque(false);
+        cbRemoveTeachersWNoSubjects.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel31Layout = new javax.swing.GroupLayout(jPanel31);
         jPanel31.setLayout(jPanel31Layout);
         jPanel31Layout.setHorizontalGroup(
@@ -3166,14 +3174,16 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(jPanel31Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnExportSf7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel99, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel108, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExportSf7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLoadTeacher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel31Layout.createSequentialGroup()
-                        .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel102, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jcbSchoolYear2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel102, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jcbSchoolYear2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(cbRemoveTeachersWNoSubjects))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -3190,11 +3200,13 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(jcbSchoolYear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel108)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbRemoveTeachersWNoSubjects)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLoadTeacher)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExportSf7)
-                .addContainerGap(617, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jspRight.setViewportView(jPanel31);
@@ -6033,7 +6045,7 @@ public class dashBoard extends javax.swing.JFrame {
                 new String[]{schoolYear},
                 new JTextField[]{},
                 new JButton[]{btnLoadTeacher,btnExportSf7},
-                new boolean[]{true}
+                new boolean[]{cbRemoveTeachersWNoSubjects.isSelected(),}
         );
     }//GEN-LAST:event_btnLoadTeacherActionPerformed
 
@@ -6846,6 +6858,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnUseSelectedSections;
     private javax.swing.JCheckBox cbCompareToRankings;
     private javax.swing.JCheckBox cbCompareToRankings1;
+    private javax.swing.JCheckBox cbRemoveTeachersWNoSubjects;
     private javax.swing.JCheckBox cbShowIncompleteStudents;
     private javax.swing.JCheckBox cbShowIncompleteStudents1;
     private javax.swing.JCheckBox cbShowIncompleteStudents2;

@@ -30,8 +30,10 @@ public class thread_loadSf7Details extends SwingWorker<String, Object>{
     JButton btnLoadTeachers;
     JButton btnExportSf7;
     
+    boolean removeUnassignedTeachers;
     //Functions Variables
     long threadDelay = 100;
+    long subTheadDelay = 10;
     long pauseDelay = 500;
     private myFunctions my;
     //Dialog Properties
@@ -50,6 +52,7 @@ public class thread_loadSf7Details extends SwingWorker<String, Object>{
         btnLoadTeachers = buttonsToUse[0];
         btnExportSf7 = buttonsToUse[1];
         
+        removeUnassignedTeachers = booleansToUse[0];
         //For Loading Screen & Functions
         my = new myFunctions(true);
         
@@ -93,7 +96,7 @@ public class thread_loadSf7Details extends SwingWorker<String, Object>{
                 
                 my.add_table_row(result[n], teachersTable);
                 
-                Thread.sleep(threadDelay);
+                Thread.sleep(subTheadDelay);
             }
             Thread.sleep(pauseDelay);
             
@@ -103,6 +106,7 @@ public class thread_loadSf7Details extends SwingWorker<String, Object>{
             
             for (int n = 0; n < teacherCount; n++) {
                 lbLoadingMessage.setText("Loading Subjects...Teacher "+(n+1)+"/"+teacherCount+" Connecting to Database");
+                progressBar.setValue(n+1);
                 
                 userId = teachersTable.getValueAt(n, 0).toString();
                 where = "WHERE teacherId='"+userId+"' AND schoolYear='"+schoolYear+"'";
@@ -119,13 +123,16 @@ public class thread_loadSf7Details extends SwingWorker<String, Object>{
                         progressBar.setValue(x+1);
                         
                         my.add_table_row(loadsResult[x], loadsTable);
-                        Thread.sleep(threadDelay);
+                        Thread.sleep(subTheadDelay);
                     }
                 }
                 
-                Thread.sleep(pauseDelay);
+                Thread.sleep(threadDelay);
             }
             //</editor-fold>
+            if (removeUnassignedTeachers) {
+                if(!removeUnassignedTeachers()){throw new InterruptedException("Removing Teachers Failed...");}
+            }
             
             btnExportSf7.setEnabled(true);
         }else{
@@ -142,6 +149,46 @@ public class thread_loadSf7Details extends SwingWorker<String, Object>{
         super.done(); //To change body of generated methods, choose Tools | Templates.
     }
     
+    private boolean removeUnassignedTeachers(){
+        try {
+            int teacherCount = teachersTable.getRowCount();
+            int subjectsCount = loadsTable.getRowCount();
+            int currTeacherId,resultTeacherId;
+            boolean matchFound;
+            
+            progressBar.setMaximum(teacherCount);
+            progressBar.setValue(0);
+            for (int n = teacherCount-1; n >= 0; n--) {
+                lbLoadingMessage.setText("Removing Unassigned Teachers..."+(teacherCount-n)+" of "+teacherCount);
+                progressBar.setValue(teacherCount-n);
+                matchFound = false;
+                try {
+                    currTeacherId = Integer.parseInt(teachersTable.getValueAt(n, 0).toString());
+                } catch (Exception e) {currTeacherId = -1;}
+                
+                for (int x = 0; x < subjectsCount; x++) {
+                    lbLoadingMessage.setText("Removing Unassigned Teachers..."+(teacherCount-n)+" of "+teacherCount+" Subject "+(x+1)+"/"+subjectsCount);
+                    resultTeacherId = Integer.parseInt(loadsTable.getValueAt(x, 1).toString());
+                    if(currTeacherId == resultTeacherId){
+                        matchFound = true;break;
+                    }
+                    Thread.sleep(subTheadDelay);
+                }
+                if(!matchFound){
+                    my.remove_table_row(teachersTable, n);
+                }
+                Thread.sleep(subTheadDelay);
+            }
+            
+            Thread.sleep(pauseDelay);
+            return true;
+        } catch(InterruptedException x){
+            return false;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return true;
+        }
+    }
     //Dialog Functions
     private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable){
         if(dialog != null && dialog.isVisible()){
