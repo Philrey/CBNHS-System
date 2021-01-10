@@ -914,6 +914,48 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         
                         Thread.sleep(threadDelay);
                     }
+                    
+                    //#2 Write Grade Tables
+                    startingAddress = "A,";
+                    excelColumnsToSkip = "B,C,D,E,F,G,H,J,L,N,P,R,T,U";
+                    int gradeCount;
+                    int startingRows [] = new int [] {28,52,7,31,55};
+                    String genAveEvaluationAddressess [] [] = new String [][] {
+                        new String [] {"Q,40","S,40"},
+                        new String [] {"Q,64","S,64"},
+                        new String [] {"Q,19","S,19"},
+                        new String [] {"Q,43","S,43"},
+                        new String [] {"Q,67","S,67"},
+                    };
+                    String subjectName;
+                    
+                    for (int n = 0; n < rowCount; n++) {
+                        lbLoadingMessage.setText("Writing Tables...3/4 Table "+(n+1)+" of "+rowCount);
+                        gradeCount = sf10GradeTables[n].getRowCount();
+                        
+                        if(gradeCount < 1){
+                            System.err.println("No Grades on this table index "+n+"...Skipping");
+                            continue;
+                        }
+                        //Write grade on Table[n]
+                        for (int x = 0; x < gradeCount; x++) {
+                            lbLoadingMessage.setText("Writing Tables...3/4 Table "+(n+1)+" of "+rowCount+" Grade "+(x+1)+"/"+gradeCount);
+                            subjectName = sf10GradeTables[n].getValueAt(x, 5).toString();
+                            subjectName = my.removeSubjectGrade(subjectName, " ");
+                            
+                            String line = my.get_table_row_values(x, sf10GradeTables[n]);
+                            line = my.setValueAtColumn(line, 5, subjectName);
+                            line = my.skipColumns(line, new int [] {0,1,2,3,4,12});
+                            
+                            
+                            my.writeExcelLine(sheetNumbers[n], line, excelColumnsToSkip, startingAddress+(startingRows[n]+x));
+                            Thread.sleep(10);
+                        }
+                        //Write General Average & Evaluation
+                        my.writeExcelSingleData(sheetNumbers[n], generalAverages[n], genAveEvaluationAddressess[n][0]);
+                        my.writeExcelSingleData(sheetNumbers[n], evaluations[n], genAveEvaluationAddressess[n][1]);
+                        Thread.sleep(threadDelay);
+                    }
                     //</editor-fold>
                     break;
                 }default:{
