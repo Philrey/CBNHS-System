@@ -31,12 +31,22 @@ import javax.swing.table.DefaultTableCellRenderer;
  */
 public class dashBoard extends javax.swing.JFrame {
     myFunctions my;
-    /**
-     * Creates new form dashBoard
-     */
+    JPanel formsPanels [];
     public dashBoard() {
         my = new myFunctions(false);
         initComponents();
+        formsPanels = new JPanel[]{
+            selectFormPanel,
+            selectSectionTab,
+            sf1Tab,
+            sf2Sf4Tab,
+            sf3Tab,
+            sf5Sf6Tab,
+            sf7Tab,
+            sf8Tab,
+            sf9Tab,
+            sf10Tab,
+        };
         
         lbLoggedInUser.setText("Welcome "+myVariables.getUserLoggedInName()+" ("+myVariables.getAccessLevelName(-1)+")");
         
@@ -57,6 +67,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         setLoadingVariables();
         loadInstructions();
+        loadSchoolFormTabs();
     }
     
     /**
@@ -5139,7 +5150,7 @@ public class dashBoard extends javax.swing.JFrame {
                     tfGradeLevel1.setText("Grade "+gradeLevel);
                     tfSchoolYear1.setText(schoolYear+"-"+String.valueOf(schoolYear+1));
                     
-                    my.select_tab(mainTab, 3);
+                    my.select_tab(mainTab, 2);
                     my.select_tab(tpSf2Sf4TabbedPane, 0);
                     my.select_tab(tpSf2Sf4DetailsPane, 0);
                     
@@ -5151,7 +5162,7 @@ public class dashBoard extends javax.swing.JFrame {
                     tfGradeLevel2.setText("Grade "+gradeLevel);
                     tfSchoolYear2.setText(schoolYear+"-"+String.valueOf(schoolYear+1));
                     
-                    my.select_tab(mainTab, 4);
+                    my.select_tab(mainTab, 2);
                     btnExportSf3.setEnabled(false);
                     break;
                 }case 5:{
@@ -5163,7 +5174,7 @@ public class dashBoard extends javax.swing.JFrame {
                     tfSchoolYear3.setText(schoolYear+"-"+String.valueOf(schoolYear+1));
                     tfCurriculum.setText(curriculum);
                     
-                    my.select_tab(mainTab, 5);
+                    my.select_tab(mainTab, 2);
                     my.select_tab(tpSf5Sf6Pane, 0);
                     my.select_tab(tpSf5Sf6DetailsPane, 0);
                     break;
@@ -5173,7 +5184,7 @@ public class dashBoard extends javax.swing.JFrame {
                     tfGradeLevel4.setText("Grade "+gradeLevel);
                     tfSchoolYear5.setText(schoolYear+"-"+String.valueOf(schoolYear+1));
                     
-                    my.select_tab(mainTab, 7);
+                    my.select_tab(mainTab, 2);
                     btnExportSf8.setEnabled(false);
                     break;
                 }case 9:{
@@ -5183,7 +5194,7 @@ public class dashBoard extends javax.swing.JFrame {
                     tfSchoolYear6.setText(schoolYear+"-"+String.valueOf(schoolYear+1));
                     
                     my.clear_table_rows(enrolledStudentsTable);
-                    my.select_tab(mainTab, 8);
+                    my.select_tab(mainTab, 2);
                     clearGrades();
                     break;
                 }
@@ -5418,7 +5429,7 @@ public class dashBoard extends javax.swing.JFrame {
         btnExportSf4.setEnabled(false);
         
         myVariables.setSelectAllSectionsForSf4(true);
-        mainTab.setSelectedIndex(3);
+        my.select_tab(mainTab, 2);
         my.select_tab(tpSf2Sf4TabbedPane, 1);
         my.select_tab(tpSf2Sf4DetailsPane, 1);
     }//GEN-LAST:event_btnSelectAllSectionsActionPerformed
@@ -5446,7 +5457,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         if(selectedRows != null && selectedRows.length > 0){
             myVariables.setSelectAllSectionsForSf4(false);
-            mainTab.setSelectedIndex(3);
+            my.select_tab(mainTab, 2);
             my.select_tab(tpSf2Sf4TabbedPane, 1);
             my.select_tab(tpSf2Sf4DetailsPane, 1);
         }else{
@@ -5672,7 +5683,7 @@ public class dashBoard extends javax.swing.JFrame {
             btnExportSf6.setEnabled(false);
             
             myVariables.setSelectAllSectionsForSf6(false);
-            mainTab.setSelectedIndex(5);
+            my.select_tab(mainTab, 2);
             my.select_tab(tpSf5Sf6Pane, 1);
             my.select_tab(tpSf5Sf6DetailsPane, 1);
             
@@ -5699,7 +5710,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         btnExportSf6.setEnabled(false);
         myVariables.setSelectAllSectionsForSf6(true);
-        mainTab.setSelectedIndex(5);
+        my.select_tab(mainTab, 2);
         my.select_tab(tpSf5Sf6Pane, 1);
         my.select_tab(tpSf5Sf6DetailsPane, 1);
         tfSchoolYear4.setText(schoolYear+"-"+(schoolYear+1));
@@ -6086,44 +6097,91 @@ public class dashBoard extends javax.swing.JFrame {
             my.clear_table_rows(assignedTeacherTable);
         }
         myVariables.setFormSelected(formIndexExact);
-        switch(formIndexExact){
+        
+        loadSchoolFormTabs();
+        loadInstructions();
+    }
+    private void loadSchoolFormTabs(){
+        
+        
+        int tabsToShow [];
+        Icon [] icons;
+        int tabSelectedIndex = 0;
+        String titles [];
+        switch(myVariables.getFormSelected()){
             case 1:{
-                my.select_tab(mainTab, 1);
+                tabsToShow = new int [] {0,1,2};
+                icons = new Icon [] {my.getImgIcn(myVariables.getSelectFormsIcon()),my.getImgIcn(myVariables.getSectionsIcon()),my.getImgIcn(myVariables.getFormsIcon())};
+                titles = new String [] {"Select Form","Select Section","School Form "+myVariables.getFormSelected()};
+                tabSelectedIndex = 1;
                 break;
             }case 2:{
-                my.select_tab(mainTab, 1);
+                tabsToShow = new int [] {0,1,3};
+                icons = new Icon [] {my.getImgIcn(myVariables.getSelectFormsIcon()),my.getImgIcn(myVariables.getSectionsIcon()),my.getImgIcn(myVariables.getFormsIcon())};
+                titles = new String [] {"Select Form","Select Section","School Form "+myVariables.getFormSelected()};
+                tabSelectedIndex = 1;
                 break;
             }case 3:{
-                my.select_tab(mainTab, 1);
+                tabsToShow = new int [] {0,1,4};
+                icons = new Icon [] {my.getImgIcn(myVariables.getSelectFormsIcon()),my.getImgIcn(myVariables.getSectionsIcon()),my.getImgIcn(myVariables.getFormsIcon())};
+                titles = new String [] {"Select Form","Select Section","School Form "+myVariables.getFormSelected()};
+                tabSelectedIndex = 1;
                 break;
             }case 4:{
-                my.select_tab(mainTab, 1);
+                tabsToShow = new int [] {0,1,3};
+                icons = new Icon [] {my.getImgIcn(myVariables.getSelectFormsIcon()),my.getImgIcn(myVariables.getSectionsIcon()),my.getImgIcn(myVariables.getFormsIcon())};
+                titles = new String [] {"Select Form","Select Section","School Form "+myVariables.getFormSelected()};
+                tabSelectedIndex = 1;
                 break;
             }case 5:{
-                my.select_tab(mainTab, 1);
+                tabsToShow = new int [] {0,1,5};
+                icons = new Icon [] {my.getImgIcn(myVariables.getSelectFormsIcon()),my.getImgIcn(myVariables.getSectionsIcon()),my.getImgIcn(myVariables.getFormsIcon())};
+                titles = new String [] {"Select Form","Select Section","School Form "+myVariables.getFormSelected()};
+                tabSelectedIndex = 1;
                 break;
             }case 6:{
-                my.select_tab(mainTab, 1);
+                tabsToShow = new int [] {0,1,5};
+                icons = new Icon [] {my.getImgIcn(myVariables.getSelectFormsIcon()),my.getImgIcn(myVariables.getSectionsIcon()),my.getImgIcn(myVariables.getFormsIcon())};
+                titles = new String [] {"Select Form","Select Section","School Form "+myVariables.getFormSelected()};
+                tabSelectedIndex = 1;
                 break;
             }case 7:{
-                my.select_tab(mainTab, 6);
+                tabsToShow = new int [] {0,6};
+                icons = new Icon [] {my.getImgIcn(myVariables.getSelectFormsIcon()),my.getImgIcn(myVariables.getFormsIcon())};
+                titles = new String [] {"Select Form","School Form "+myVariables.getFormSelected()};
+                tabSelectedIndex = 1;
                 break;
             }case 8:{
-                my.select_tab(mainTab, 1);
+                tabsToShow = new int [] {0,1,7};
+                icons = new Icon [] {my.getImgIcn(myVariables.getSelectFormsIcon()),my.getImgIcn(myVariables.getSectionsIcon()),my.getImgIcn(myVariables.getFormsIcon())};
+                titles = new String [] {"Select Form","Select Section","School Form "+myVariables.getFormSelected()};
+                tabSelectedIndex = 1;
                 break;
             }case 9:{
-                my.select_tab(mainTab, 1);
+                tabsToShow = new int [] {0,1,8};
+                icons = new Icon [] {my.getImgIcn(myVariables.getSelectFormsIcon()),my.getImgIcn(myVariables.getSectionsIcon()),my.getImgIcn(myVariables.getFormsIcon())};
+                titles = new String [] {"Select Form","Select Section","School Form "+myVariables.getFormSelected()};
+                tabSelectedIndex = 1;
                 break;
             }case 10:{
-                my.select_tab(mainTab, 9);
+                tabsToShow = new int [] {0,9};
+                icons = new Icon [] {my.getImgIcn(myVariables.getSelectFormsIcon()),my.getImgIcn(myVariables.getFormsIcon())};
+                titles = new String [] {"Select Form","School Form "+myVariables.getFormSelected()};
+                tabSelectedIndex = 1;
                 break;
             }default:{
+                tabsToShow = new int [] {0};
+                icons = new Icon [] {my.getImgIcn(myVariables.getSelectFormsIcon())};
+                titles = new String [] {"Select Form"};
                 break;
             }
         }
-        loadInstructions();
+        mainTab.removeAll();
+        for (int n = 0; n < tabsToShow.length; n++) {
+            mainTab.addTab(titles[n], icons[n], formsPanels[tabsToShow[n]]);
+        }
+        mainTab.setSelectedIndex(tabSelectedIndex);
     }
-    
     private void loadInstructions(){
         JPanel [] instructionPanel = new JPanel[]{
             defaultInstructionPanel,
