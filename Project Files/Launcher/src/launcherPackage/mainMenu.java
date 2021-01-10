@@ -11,11 +11,12 @@ package launcherPackage;
  * @author Phil Rey Paderogao
  */
 public class mainMenu extends javax.swing.JFrame {
-
+    myFunctions my;
     /**
      * Creates new form mainMenu
      */
     public mainMenu() {
+        my = new myFunctions();
         initComponents();
     }
 
@@ -30,35 +31,85 @@ public class mainMenu extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         leftTabPanel = new keeptoo.KGradientPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         kGradientPanel1 = new keeptoo.KGradientPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        btnEnrollment = new javax.swing.JLabel();
+        btnRegistration = new javax.swing.JLabel();
+        btnAttendance = new javax.swing.JLabel();
+        btnWeighing = new javax.swing.JLabel();
+        btnBookKeepimg = new javax.swing.JLabel();
+        btnGrading = new javax.swing.JLabel();
+        btnForms = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel36 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Welcome To HiSRMS");
+        setTitle("HiSRMS v2.0");
+        setResizable(false);
 
-        jSplitPane1.setDividerLocation(200);
+        jSplitPane1.setDividerLocation(220);
         jSplitPane1.setDividerSize(0);
-        jSplitPane1.setEnabled(false);
 
-        leftTabPanel.setkEndColor(new java.awt.Color(11, 102, 35));
-        leftTabPanel.setkStartColor(new java.awt.Color(11, 102, 0));
+        leftTabPanel.setkEndColor(new java.awt.Color(22, 66, 33));
+        leftTabPanel.setkStartColor(new java.awt.Color(22, 66, 33));
+
+        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 47, Short.MAX_VALUE)
+        );
+
+        jLabel8.setFont(myVariables.TITLE_HEADER_FONT);
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("HiSRMS");
+
+        jLabel9.setFont(myVariables.LABEL_FONT);
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("High School Records");
+
+        jLabel10.setFont(myVariables.LABEL_FONT);
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Management System");
 
         javax.swing.GroupLayout leftTabPanelLayout = new javax.swing.GroupLayout(leftTabPanel);
         leftTabPanel.setLayout(leftTabPanelLayout);
         leftTabPanelLayout.setHorizontalGroup(
             leftTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 199, Short.MAX_VALUE)
+            .addGroup(leftTabPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(leftTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))
+                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         leftTabPanelLayout.setVerticalGroup(
             leftTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
+            .addGroup(leftTabPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(322, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(leftTabPanel);
@@ -69,68 +120,152 @@ public class mainMenu extends javax.swing.JFrame {
         kGradientPanel1.setkStartColor(new java.awt.Color(255, 255, 204));
         kGradientPanel1.setkTransparentControls(false);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Enrollment.png"))); // NOI18N
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEnrollment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Enrollment.png"))); // NOI18N
+        btnEnrollment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEnrollment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEnrollmentMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEnrollmentMouseExited(evt);
+            }
+        });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Registration.png"))); // NOI18N
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegistration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Registration.png"))); // NOI18N
+        btnRegistration.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegistration.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRegistrationMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRegistrationMouseExited(evt);
+            }
+        });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Attendance.png"))); // NOI18N
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAttendance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Attendance.png"))); // NOI18N
+        btnAttendance.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAttendance.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAttendanceMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAttendanceMouseExited(evt);
+            }
+        });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Weighing_.png"))); // NOI18N
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnWeighing.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Weighing_.png"))); // NOI18N
+        btnWeighing.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnWeighing.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnWeighingMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnWeighingMouseExited(evt);
+            }
+        });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Book Keeping.png"))); // NOI18N
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBookKeepimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Book Keeping.png"))); // NOI18N
+        btnBookKeepimg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBookKeepimg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBookKeepimgMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBookKeepimgMouseExited(evt);
+            }
+        });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Grading.png"))); // NOI18N
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGrading.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Grading.png"))); // NOI18N
+        btnGrading.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGrading.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnGradingMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGradingMouseExited(evt);
+            }
+        });
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Forms.png"))); // NOI18N
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnForms.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Forms.png"))); // NOI18N
+        btnForms.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnForms.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnFormsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnFormsMouseExited(evt);
+            }
+        });
+
+        jPanel8.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel36.setText("Select Module");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel36)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel36)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnForms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(btnWeighing)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5)
+                                .addComponent(btnBookKeepimg)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6))
+                                .addComponent(btnGrading))
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(btnRegistration)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)
+                                .addComponent(btnEnrollment)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)))
+                                .addComponent(btnAttendance)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                    .addComponent(btnAttendance)
+                    .addComponent(btnRegistration)
+                    .addComponent(btnEnrollment))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(btnWeighing)
+                    .addComponent(btnBookKeepimg)
+                    .addComponent(btnGrading))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnForms)
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(kGradientPanel1);
@@ -141,16 +276,72 @@ public class mainMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistrationMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrationMouseEntered
+        btnRegistration.setIcon(my.getImgIcn(myVariables.getRegistrationActBtnIcon()));
+    }//GEN-LAST:event_btnRegistrationMouseEntered
+
+    private void btnRegistrationMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrationMouseExited
+        btnRegistration.setIcon(my.getImgIcn(myVariables.getRegistrationBtnIcon()));
+    }//GEN-LAST:event_btnRegistrationMouseExited
+
+    private void btnEnrollmentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnrollmentMouseEntered
+        btnEnrollment.setIcon(my.getImgIcn(myVariables.getEnrollmentActBtnIcon()));
+    }//GEN-LAST:event_btnEnrollmentMouseEntered
+
+    private void btnEnrollmentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnrollmentMouseExited
+        btnEnrollment.setIcon(my.getImgIcn(myVariables.getEnrollmentBtnIcon()));
+    }//GEN-LAST:event_btnEnrollmentMouseExited
+
+    private void btnAttendanceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAttendanceMouseEntered
+        btnAttendance.setIcon(my.getImgIcn(myVariables.getAttendanceActBtnIcon()));
+    }//GEN-LAST:event_btnAttendanceMouseEntered
+
+    private void btnAttendanceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAttendanceMouseExited
+        btnAttendance.setIcon(my.getImgIcn(myVariables.getAttendanceBtnIcon()));
+    }//GEN-LAST:event_btnAttendanceMouseExited
+
+    private void btnWeighingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnWeighingMouseEntered
+        btnWeighing.setIcon(my.getImgIcn(myVariables.getWeighingActBtnIcon()));
+    }//GEN-LAST:event_btnWeighingMouseEntered
+
+    private void btnWeighingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnWeighingMouseExited
+        btnWeighing.setIcon(my.getImgIcn(myVariables.getWeighingBtnIcon()));
+    }//GEN-LAST:event_btnWeighingMouseExited
+
+    private void btnBookKeepimgMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBookKeepimgMouseEntered
+        btnBookKeepimg.setIcon(my.getImgIcn(myVariables.getBookKeepActBtnIcon()));
+    }//GEN-LAST:event_btnBookKeepimgMouseEntered
+
+    private void btnBookKeepimgMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBookKeepimgMouseExited
+        btnBookKeepimg.setIcon(my.getImgIcn(myVariables.getBookKeepBtnIcon()));
+    }//GEN-LAST:event_btnBookKeepimgMouseExited
+
+    private void btnGradingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGradingMouseEntered
+        btnGrading.setIcon(my.getImgIcn(myVariables.getGradingActBtnIcon()));
+    }//GEN-LAST:event_btnGradingMouseEntered
+
+    private void btnGradingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGradingMouseExited
+        btnGrading.setIcon(my.getImgIcn(myVariables.getGradingBtnIcon()));
+    }//GEN-LAST:event_btnGradingMouseExited
+
+    private void btnFormsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFormsMouseEntered
+        btnForms.setIcon(my.getImgIcn(myVariables.getFormsActBtnIcon()));
+    }//GEN-LAST:event_btnFormsMouseEntered
+
+    private void btnFormsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFormsMouseExited
+        btnForms.setIcon(my.getImgIcn(myVariables.getFormsBtnIcon()));
+    }//GEN-LAST:event_btnFormsMouseExited
 
     /**
      * @param args the command line arguments
@@ -188,13 +379,19 @@ public class mainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel btnAttendance;
+    private javax.swing.JLabel btnBookKeepimg;
+    private javax.swing.JLabel btnEnrollment;
+    private javax.swing.JLabel btnForms;
+    private javax.swing.JLabel btnGrading;
+    private javax.swing.JLabel btnRegistration;
+    private javax.swing.JLabel btnWeighing;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
     private keeptoo.KGradientPanel kGradientPanel1;
