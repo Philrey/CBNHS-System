@@ -95,7 +95,10 @@ public class myVariables {
     
     private static final String sectionsIcon = "icons/icons8_page_20px.png";
     private static final String viewStudentsIcon = "icons/icons8_read_online_20px.png";
-            
+    
+    private static final String homeIcon = "icons/icons8_home_20px_1.png";
+    private static final String settingsIcon = "icons/icons8_settings_20px.png";
+    private static final String aboutIcon = "icons/icons8_about_20px.png";
     //Window Icons
     private static final String attendanceWindowIcon = "icons/attendanceIcon.png";
     private static final String registrationWindowIcon = "icons/registerIcon.png";
@@ -335,6 +338,20 @@ public class myVariables {
 
     //<editor-fold desc="Getters & Setters">
 
+    public static String getHomeIcon() {
+        return homeIcon;
+    }
+
+    public static String getSettingsIcon() {
+        return settingsIcon;
+    }
+
+    public static String getAboutIcon() {
+        return aboutIcon;
+    }
+    
+    
+    
     public static String getFormsBtnIcon() {
         return formsBtnIcon;
     }

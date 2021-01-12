@@ -485,7 +485,7 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
             dialog.setTitle(title);
             dialog.add(customPanel);
             dialog.setLocationRelativeTo(jFrameName);
-            System.err.println("Sf4 Dialog is already visible. Skipping...");
+            System.err.println("Sf3 Dialog is already visible. Skipping...");
             return;
         }
         dialog = new JDialog(jFrameName);
