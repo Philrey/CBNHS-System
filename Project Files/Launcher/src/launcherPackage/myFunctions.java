@@ -6,6 +6,7 @@
 package launcherPackage;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
@@ -45,7 +46,8 @@ public class myFunctions {
     }
     public void loadSettings() throws IOException{
         try {
-            File file = new File("settings.txt");
+            //File file = new File("settings.txt");
+            File file = new File(getClass().getResource("modules/settings.txt").toURI());
             BufferedReader br = new BufferedReader(new FileReader(file));
             
             
@@ -1126,6 +1128,16 @@ public class myFunctions {
     }
     
     //</editor-fold>
+    public void runExeFile(String fileName,boolean check){
+        try {
+            File file = new File(getClass().getResource(fileName).toURI());
+            Desktop desktop = Desktop.getDesktop();
+            
+            desktop.open(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public ImageIcon getImgIcn(String url){
         return new ImageIcon(getClass().getResource(url));
     }

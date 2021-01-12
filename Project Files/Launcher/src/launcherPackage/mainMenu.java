@@ -123,6 +123,8 @@ public class mainMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HiSRMS v2.0");
+        setIconImage(my.getImgIcn(myVariables.getLauncherIcon()).getImage()
+        );
         setResizable(false);
 
         kGradientPanel2.setkEndColor(new java.awt.Color(255, 255, 204));
@@ -133,7 +135,7 @@ public class mainMenu extends javax.swing.JFrame {
         lbSchoolName.setBackground(new java.awt.Color(255, 255, 255));
         lbSchoolName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbSchoolName.setForeground(new java.awt.Color(255, 255, 255));
-        lbSchoolName.setText("SCHOOL_NAME Registration System");
+        lbSchoolName.setText("SCHOOL_NAME Launcher");
 
         lbSchoolAddress.setBackground(new java.awt.Color(255, 255, 255));
         lbSchoolAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -147,7 +149,7 @@ public class mainMenu extends javax.swing.JFrame {
             .addGroup(headerPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbSchoolName, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
+                    .addComponent(lbSchoolName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbSchoolAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -167,8 +169,10 @@ public class mainMenu extends javax.swing.JFrame {
         mainTab.setMinimumSize(new java.awt.Dimension(100, 100));
         mainTab.setPreferredSize(new java.awt.Dimension(1068, 548));
 
+        jSplitPane2.setBorder(null);
         jSplitPane2.setDividerLocation(475);
 
+        jScrollPane2.setBorder(null);
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(255, 245, 135));
@@ -222,6 +226,9 @@ public class mainMenu extends javax.swing.JFrame {
         btnBookKeepimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Book Keeping.png"))); // NOI18N
         btnBookKeepimg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBookKeepimg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBookKeepimgMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnBookKeepimgMouseEntered(evt);
             }
@@ -328,7 +335,7 @@ public class mainMenu extends javax.swing.JFrame {
 
         jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel37.setText("Module Information");
+        jLabel37.setText("System Details");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -352,7 +359,7 @@ public class mainMenu extends javax.swing.JFrame {
         jtaModuleInformation.setFont(myVariables.TEXTFIELD_FONT);
         jtaModuleInformation.setLineWrap(true);
         jtaModuleInformation.setRows(5);
-        jtaModuleInformation.setText("Select a Module to show details.\n");
+        jtaModuleInformation.setText("Select a System for more info.\n");
         jtaModuleInformation.setWrapStyleWord(true);
         jScrollPane3.setViewportView(jtaModuleInformation);
 
@@ -374,7 +381,7 @@ public class mainMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -389,7 +396,7 @@ public class mainMenu extends javax.swing.JFrame {
         kGradientPanel2Layout.setHorizontalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(mainTab, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(mainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -484,6 +491,10 @@ public class mainMenu extends javax.swing.JFrame {
         selectModuleInfo(0);
     }//GEN-LAST:event_btnFormsMouseExited
 
+    private void btnBookKeepimgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBookKeepimgMouseClicked
+        runModule(5);
+    }//GEN-LAST:event_btnBookKeepimgMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -520,16 +531,39 @@ public class mainMenu extends javax.swing.JFrame {
     }
     //<editor-fold desc="Custom Functions">
     private static final String moduleInformation [] = {
-        "Select a Module to show details.",
-        "Registration","Enrollment","Attendance",
-        "Weighing","Book Keeping","Grading",
+        "Select a System for more info.",
+        "Registration",
+        "Enrollment",
+        "Attendance",
+        "Weighing",
+        "Book Keeping",
+        "Grading",
         "Forms"
     };
     
     private void selectModuleInfo(int index){
         jtaModuleInformation.setText(moduleInformation[index]);
     }
-    
+    private void runModule(int index){
+        switch(index){
+            case 1:{
+                break;
+            }case 2:{
+                break;
+            }case 3:{
+                break;
+            }case 4:{
+                break;
+            }case 5:{
+                my.runExeFile("modules/BorrowSystem.exe", true);
+                break;
+            }case 6:{
+                break;
+            }case 7:{
+                break;
+            }
+        }
+    }
     //</editor-fold>
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnAttendance;
