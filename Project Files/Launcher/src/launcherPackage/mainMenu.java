@@ -555,7 +555,7 @@ public class mainMenu extends javax.swing.JFrame {
             }case 4:{
                 break;
             }case 5:{
-                my.runExeFile("modules/BorrowSystem.exe", true);
+                my.runExeFile("modules/bookKeeping.exe");
                 break;
             }case 6:{
                 break;

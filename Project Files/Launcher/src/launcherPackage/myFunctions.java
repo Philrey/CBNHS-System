@@ -13,9 +13,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Scanner;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -1128,14 +1130,37 @@ public class myFunctions {
     }
     
     //</editor-fold>
-    public void runExeFile(String fileName,boolean check){
+    public void runExeFile(String fileName){
         try {
             File file = new File(getClass().getResource(fileName).toURI());
             Desktop desktop = Desktop.getDesktop();
             
-            desktop.open(file);
-        } catch (Exception e) {
+            if(!isProcessRunning(file)){
+                desktop.open(file);
+            }else{
+                showMessage(fileName+" is already running.", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        } catch (IOException x){
+            x.printStackTrace();
+        }catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    private static boolean isProcessRunning(File file){
+        try {
+            File copy = file;
+            
+            if(file.renameTo(copy)){
+                return false;
+            }else{
+                return true;
+            }
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            return true;
         }
     }
     public ImageIcon getImgIcn(String url){
