@@ -1,10 +1,15 @@
 package launcherPackage;
 
 import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.Cursor;
+import java.awt.Font;
 import javax.swing.Icon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,14 +30,66 @@ public class mainMenu extends javax.swing.JFrame {
         my = new myFunctions();
         initComponents();
         
-        lbSchoolName.setText(myVariables.getSchoolName());
-        lbSchoolAddress.setText(myVariables.getSchoolAddress());
+        reloadSettingFields();
         
         loadLabels();
+        loadTextFields();
+        loadColoredButtons();
         loadTabIcons();
         setScrollSpeeds();
     }
+    private void reloadSettingFields(){
+        lbSchoolName.setText(myVariables.getSchoolName());
+        lbSchoolAddress.setText(myVariables.getSchoolAddress());
+        
+        tfSchoolName.setText(myVariables.getSchoolName());
+        tfSchoolAddress.setText(myVariables.getSchoolAddress());
+        tfSchoolId.setText(myVariables.getSchoolId());
+        
+        tfDistrict.setText(myVariables.getDistrict());
+        tfDivision.setText(myVariables.getDivision());
+        tfRegion.setText(myVariables.getRegion());
+        
+        tfSchoolHead.setText(myVariables.getPrincipal());
+        tfDivisionRepresentative.setText(myVariables.getDivisionRepresentative());
+        tfDivisionSuperintendent.setText(myVariables.getDivisionSuperintendent());
+        
+        try {
+            jcbLoadingSpeed.setSelectedIndex(myVariables.getLoadingSpeed());
+        } catch (Exception e) {
+            jcbLoadingSpeed.setSelectedIndex(0);
+        }
+        
+        tfIpAddress.setText(myVariables.getIpAddressOnly());
+    }
     
+    private void loadTextFields(){
+        JTextField searchFields [] = {
+            
+        };
+        JTextField forms [] = {
+            tfSchoolName,
+            tfSchoolAddress,
+            tfSchoolId,
+            
+            tfDistrict,
+            tfDivision,
+            tfRegion,
+            
+            tfSchoolHead,
+            tfDivisionRepresentative,
+            tfDivisionSuperintendent,
+            
+            tfIpAddress,
+        };
+        
+        for(JTextField n : searchFields){
+            n.setFont(myVariables.SEARCH_TEXTFIELD_FONT);
+        }
+        for(JTextField n : forms){
+            n.setFont(myVariables.TEXTFIELD_FONT);
+        }
+    }
     private void setScrollSpeeds(){
         JScrollPane scrollpanes [] = {
             jScrollPane2,
@@ -62,14 +119,18 @@ public class mainMenu extends javax.swing.JFrame {
     }
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
-            jLabel36,jLabel37,
+            jLabel36,jLabel37,jLabel38,jLabel40,
         };
         JLabel labels [] = {
+            
         };
         
         JLabel formsHeaderLabels [] = {
+            jLabel1,jLabel5,jLabel9,
         };
         JLabel textFieldHeaderLabels [] = {
+            jLabel2,jLabel3,jLabel4,jLabel6,jLabel7,jLabel8,jLabel10,jLabel11,jLabel12,
+            jLabel13,jLabel14,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -90,6 +151,37 @@ public class mainMenu extends javax.swing.JFrame {
         for(JLabel n : textFieldHeaderLabels){
             n.setFont(myVariables.TEXTFIELD_HEADER_FONT);
             n.setForeground(Color.BLACK);
+        }
+    }
+    private void loadColoredButtons(){
+        JButton buttons [] = {
+            btnSaveSettings,
+        };
+        
+        JButton lightButtons [] = {
+            //btnEdit1
+        };
+        Cursor tempC;
+        for(int n=0;n<buttons.length;n++){
+            buttons[n].setUI(new custom_styledButtonIU());
+            //buttons[n].setBackground(new Color(22,66,33));
+            buttons[n].setBackground(new Color(22,66,33));
+            buttons[n].setForeground(Color.WHITE);            
+            buttons[n].setFont(myVariables.BUTTON_FONT);
+            //buttons[n].setCursor(my.getCursor(myVariables.getHandCursor()));
+            buttons[n].setCursor(new Cursor(Cursor.HAND_CURSOR));
+            buttons[n].setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        }
+        
+        for(int n=0;n<lightButtons.length;n++){
+            lightButtons[n].setUI(new custom_styledButtonIU());
+            //buttons[n].setBackground(new Color(22,66,33));
+            lightButtons[n].setBackground(new Color(214, 255, 183));
+            lightButtons[n].setForeground(new Color(22,66,33));            
+            lightButtons[n].setFont(new Font("Comic Sans MS",Font.BOLD,12));
+            //buttons[n].setCursor(my.getCursor(myVariables.getHandCursor()));
+            lightButtons[n].setCursor(new Cursor(Cursor.HAND_CURSOR));
+            lightButtons[n].setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         }
     }
     @SuppressWarnings("unchecked")
@@ -119,7 +211,39 @@ public class mainMenu extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jtaModuleInformation = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
+        kGradientPanel3 = new keeptoo.KGradientPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel38 = new javax.swing.JLabel();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        tfSchoolName = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        tfSchoolAddress = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        tfSchoolId = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        tfDistrict = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        tfDivision = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        tfRegion = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        tfSchoolHead = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        tfDivisionRepresentative = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        tfDivisionSuperintendent = new javax.swing.JTextField();
+        jcbLoadingSpeed = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        btnSaveSettings = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        tfIpAddress = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
+        kGradientPanel4 = new keeptoo.KGradientPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HiSRMS v2.0");
@@ -171,6 +295,7 @@ public class mainMenu extends javax.swing.JFrame {
 
         jSplitPane2.setBorder(null);
         jSplitPane2.setDividerLocation(475);
+        jSplitPane2.setResizeWeight(1.0);
 
         jScrollPane2.setBorder(null);
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -388,7 +513,222 @@ public class mainMenu extends javax.swing.JFrame {
         jSplitPane2.setRightComponent(jPanel1);
 
         mainTab.addTab("Home", jSplitPane2);
+
+        kGradientPanel3.setkEndColor(new java.awt.Color(255, 245, 135));
+        kGradientPanel3.setkStartColor(new java.awt.Color(255, 255, 204));
+
+        jPanel10.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel38.setText("General");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel38)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel38)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel12.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel40.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel40.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel40.setText("Performance");
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel40)
+                .addContainerGap(291, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel40)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("School Details");
+
+        jLabel2.setText("School Name");
+
+        jLabel3.setText("Address");
+
+        jLabel4.setText("School ID");
+
+        tfSchoolId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Department Details");
+
+        jLabel6.setText("District");
+
+        jLabel7.setText("Division");
+
+        jLabel8.setText("Region");
+
+        tfRegion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Personnel Details");
+
+        jLabel10.setText("School Head");
+
+        jLabel11.setText("Division Representative");
+
+        jLabel12.setText("Division Superintendent");
+
+        jcbLoadingSpeed.setFont(myVariables.TEXTFIELD_FONT);
+        jcbLoadingSpeed.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Normal (Default)", "Fast", "Very Fast " }));
+
+        jLabel13.setText("Loading Speed");
+
+        btnSaveSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/icons/icons8_save_16px.png"))); // NOI18N
+        btnSaveSettings.setText("Save Changes");
+
+        jLabel14.setText("IP Address");
+
+        tfIpAddress.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        javax.swing.GroupLayout kGradientPanel3Layout = new javax.swing.GroupLayout(kGradientPanel3);
+        kGradientPanel3.setLayout(kGradientPanel3Layout);
+        kGradientPanel3Layout.setHorizontalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(340, Short.MAX_VALUE))
+                    .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                        .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tfSchoolAddress)
+                                .addComponent(tfSchoolId, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfDivision, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfSchoolHead, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfDivisionRepresentative, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfDivisionSuperintendent, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfSchoolName)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jcbLoadingSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSaveSettings, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfIpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        kGradientPanel3Layout.setVerticalGroup(
+            kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel3Layout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfSchoolName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfSchoolAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfSchoolId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfDivision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfSchoolHead, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfDivisionRepresentative, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfDivisionSuperintendent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfIpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jcbLoadingSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSaveSettings)
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.setViewportView(kGradientPanel3);
+
         mainTab.addTab("Settings", jScrollPane1);
+
+        kGradientPanel4.setkEndColor(new java.awt.Color(255, 245, 135));
+        kGradientPanel4.setkStartColor(new java.awt.Color(255, 255, 204));
+
+        javax.swing.GroupLayout kGradientPanel4Layout = new javax.swing.GroupLayout(kGradientPanel4);
+        kGradientPanel4.setLayout(kGradientPanel4Layout);
+        kGradientPanel4Layout.setHorizontalGroup(
+            kGradientPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 711, Short.MAX_VALUE)
+        );
+        kGradientPanel4Layout.setVerticalGroup(
+            kGradientPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 518, Short.MAX_VALUE)
+        );
+
+        jScrollPane4.setViewportView(kGradientPanel4);
+
         mainTab.addTab("About", jScrollPane4);
 
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
@@ -555,7 +895,7 @@ public class mainMenu extends javax.swing.JFrame {
             }case 4:{
                 break;
             }case 5:{
-                my.runExeFile("modules/bookKeeping.exe");
+                my.runExeFile("modules/bookKeeping.exe",false);
                 break;
             }case 6:{
                 break;
@@ -572,11 +912,32 @@ public class mainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel btnForms;
     private javax.swing.JLabel btnGrading;
     private javax.swing.JLabel btnRegistration;
+    private javax.swing.JButton btnSaveSettings;
     private javax.swing.JLabel btnWeighing;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -584,11 +945,24 @@ public class mainMenu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSplitPane jSplitPane2;
+    private javax.swing.JComboBox<String> jcbLoadingSpeed;
     private javax.swing.JTextArea jtaModuleInformation;
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel2;
+    private keeptoo.KGradientPanel kGradientPanel3;
+    private keeptoo.KGradientPanel kGradientPanel4;
     private javax.swing.JLabel lbSchoolAddress;
     private javax.swing.JLabel lbSchoolName;
     private javax.swing.JTabbedPane mainTab;
+    private javax.swing.JTextField tfDistrict;
+    private javax.swing.JTextField tfDivision;
+    private javax.swing.JTextField tfDivisionRepresentative;
+    private javax.swing.JTextField tfDivisionSuperintendent;
+    private javax.swing.JTextField tfIpAddress;
+    private javax.swing.JTextField tfRegion;
+    private javax.swing.JTextField tfSchoolAddress;
+    private javax.swing.JTextField tfSchoolHead;
+    private javax.swing.JTextField tfSchoolId;
+    private javax.swing.JTextField tfSchoolName;
     // End of variables declaration//GEN-END:variables
 }

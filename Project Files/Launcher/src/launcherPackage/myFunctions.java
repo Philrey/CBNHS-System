@@ -48,8 +48,8 @@ public class myFunctions {
     }
     public void loadSettings() throws IOException{
         try {
-            //File file = new File("settings.txt");
-            File file = new File(getClass().getResource("modules/settings.txt").toURI());
+            File file = new File("modules/settings.txt");
+            //File file = new File(getClass().getResource("modules/settings.txt").toURI());
             BufferedReader br = new BufferedReader(new FileReader(file));
             
             
@@ -68,12 +68,23 @@ public class myFunctions {
             String settings[] = result.split("@@");
             
             myVariables.setIpAddress("http://"+settings[0]+"/CBNHSSystemFinal/");
+            myVariables.setIpAddressOnly(settings[0]);
             myVariables.setSchoolName(settings[1]);
             myVariables.setSchoolAddress(settings[2]);
             myVariables.setSchoolId(settings[3]);
             myVariables.setDistrict(settings[4]);
             myVariables.setDivision(settings[5]);
             myVariables.setRegion(settings[6]);
+            
+            myVariables.setPrincipal(settings[12]);
+            myVariables.setDivisionRepresentative(settings[13]);
+            myVariables.setDivisionSuperintendent(settings[14]);
+            
+            try {
+                myVariables.setLoadingSpeed(Integer.parseInt(settings[15]));
+            } catch (Exception e) {
+                myVariables.setLoadingSpeed(0);
+            }
             
             myVariables.setDebugMode(settings[11].contains("true"));
             
@@ -1130,21 +1141,41 @@ public class myFunctions {
     }
     
     //</editor-fold>
-    public void runExeFile(String fileName){
-        try {
-            File file = new File(getClass().getResource(fileName).toURI());
-            Desktop desktop = Desktop.getDesktop();
-            
-            if(!isProcessRunning(file)){
-                desktop.open(file);
-            }else{
-                showMessage(fileName+" is already running.", JOptionPane.ERROR_MESSAGE);
+    public void runExeFile(String fileName,boolean useClassPath){
+        File file;
+        
+        if(useClassPath){
+            try {
+                file = new File(getClass().getResource(fileName).toURI());
+                Desktop desktop = Desktop.getDesktop();
+
+                if(!isProcessRunning(file)){
+                    desktop.open(file);
+                }else{
+                    showMessage(fileName+" is already running.", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (IOException x){
+                x.printStackTrace();
+            }catch (Exception e) {
+                e.printStackTrace();
             }
-            
-        } catch (IOException x){
-            x.printStackTrace();
-        }catch (Exception e) {
-            e.printStackTrace();
+        }else{
+            try {
+                file = new File(fileName);
+                Desktop desktop = Desktop.getDesktop();
+
+                if(!isProcessRunning(file)){
+                    desktop.open(file);
+                }else{
+                    showMessage(fileName+" is already running.", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (IOException x){
+                x.printStackTrace();
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
     

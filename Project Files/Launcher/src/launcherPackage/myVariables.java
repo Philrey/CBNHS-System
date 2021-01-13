@@ -15,14 +15,18 @@ public class myVariables {
     private static boolean debugModeOn = false;
     
     private static String ipAddress = "";
+    private static String ipAddressOnly = "";
     private static String schoolName;
     private static String schoolId;
     private static String region;
     private static String division;
     private static String district;
     private static String principal;
+    private static String divisionRepresentative;
+    private static String divisionSuperintendent;
     private static String schoolAddress;
     
+    private static int loadingSpeed = 0;
     //Fonts
     public static final Font COLUMN_HEADER_FONT = new Font("Arial",Font.BOLD,13);
     public static final Font COLUMN_FONT = new Font("Arial",Font.PLAIN,13);
@@ -353,9 +357,32 @@ public class myVariables {
     public static String getAboutIcon() {
         return aboutIcon;
     }
+
+    public static String getDivisionRepresentative() {
+        return divisionRepresentative;
+    }
+
+    public static void setDivisionRepresentative(String divisionRepresentative) {
+        myVariables.divisionRepresentative = divisionRepresentative;
+    }
+
+    public static String getDivisionSuperintendent() {
+        return divisionSuperintendent;
+    }
+
+    public static void setDivisionSuperintendent(String divisionSuperintendent) {
+        myVariables.divisionSuperintendent = divisionSuperintendent;
+    }
     
     
-    
+    public static String getIpAddressOnly() {
+        return ipAddressOnly;
+    }
+
+    public static void setIpAddressOnly(String ipAddressOnly) {
+        myVariables.ipAddressOnly = ipAddressOnly;
+    }
+        
     public static String getFormsBtnIcon() {
         return formsBtnIcon;
     }
@@ -594,5 +621,14 @@ public class myVariables {
     public static String getUsersPrsnlInfIcon() {
         return usersPrsnlInfIcon;
     }
+    
+    public static int getLoadingSpeed() {
+        return loadingSpeed;
+    }
+
+    public static void setLoadingSpeed(int loadingSpeed) {
+        myVariables.loadingSpeed = loadingSpeed;
+    }
     //</editor-fold>
+
 }
