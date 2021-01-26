@@ -245,6 +245,7 @@ public class mainMenu extends javax.swing.JFrame {
         tfIpAddress = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         kGradientPanel4 = new keeptoo.KGradientPanel();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HiSRMS v2.0");
@@ -308,6 +309,9 @@ public class mainMenu extends javax.swing.JFrame {
         btnEnrollment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Enrollment.png"))); // NOI18N
         btnEnrollment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEnrollment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEnrollmentMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnEnrollmentMouseEntered(evt);
             }
@@ -319,6 +323,9 @@ public class mainMenu extends javax.swing.JFrame {
         btnRegistration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Registration.png"))); // NOI18N
         btnRegistration.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistration.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistrationMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnRegistrationMouseEntered(evt);
             }
@@ -330,6 +337,9 @@ public class mainMenu extends javax.swing.JFrame {
         btnAttendance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Attendance.png"))); // NOI18N
         btnAttendance.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAttendance.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAttendanceMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnAttendanceMouseEntered(evt);
             }
@@ -341,6 +351,9 @@ public class mainMenu extends javax.swing.JFrame {
         btnWeighing.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Weighing_.png"))); // NOI18N
         btnWeighing.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnWeighing.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnWeighingMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnWeighingMouseEntered(evt);
             }
@@ -366,6 +379,9 @@ public class mainMenu extends javax.swing.JFrame {
         btnGrading.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Grading.png"))); // NOI18N
         btnGrading.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGrading.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGradingMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnGradingMouseEntered(evt);
             }
@@ -377,6 +393,9 @@ public class mainMenu extends javax.swing.JFrame {
         btnForms.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/buttons/Forms.png"))); // NOI18N
         btnForms.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnForms.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFormsMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnFormsMouseEntered(evt);
             }
@@ -721,15 +740,17 @@ public class mainMenu extends javax.swing.JFrame {
         kGradientPanel4.setkEndColor(new java.awt.Color(255, 245, 135));
         kGradientPanel4.setkStartColor(new java.awt.Color(255, 255, 204));
 
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/icons/About Tab.png"))); // NOI18N
+
         javax.swing.GroupLayout kGradientPanel4Layout = new javax.swing.GroupLayout(kGradientPanel4);
         kGradientPanel4.setLayout(kGradientPanel4Layout);
         kGradientPanel4Layout.setHorizontalGroup(
             kGradientPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 711, Short.MAX_VALUE)
+            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         kGradientPanel4Layout.setVerticalGroup(
             kGradientPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 518, Short.MAX_VALUE)
+            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
         );
 
         jScrollPane4.setViewportView(kGradientPanel4);
@@ -875,6 +896,30 @@ public class mainMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSaveSettingsActionPerformed
 
+    private void btnRegistrationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrationMouseClicked
+        runModule(1, true);
+    }//GEN-LAST:event_btnRegistrationMouseClicked
+
+    private void btnEnrollmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnrollmentMouseClicked
+        runModule(2, true);
+    }//GEN-LAST:event_btnEnrollmentMouseClicked
+
+    private void btnAttendanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAttendanceMouseClicked
+        runModule(3, true);
+    }//GEN-LAST:event_btnAttendanceMouseClicked
+
+    private void btnWeighingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnWeighingMouseClicked
+        runModule(4, true);
+    }//GEN-LAST:event_btnWeighingMouseClicked
+
+    private void btnGradingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGradingMouseClicked
+        runModule(6, true);
+    }//GEN-LAST:event_btnGradingMouseClicked
+
+    private void btnFormsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFormsMouseClicked
+        runModule(7, true);
+    }//GEN-LAST:event_btnFormsMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -975,6 +1020,7 @@ public class mainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel36;

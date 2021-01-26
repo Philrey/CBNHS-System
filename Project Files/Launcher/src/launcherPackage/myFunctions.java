@@ -1188,7 +1188,12 @@ public class myFunctions {
             try {
                 file = new File(getClass().getResource(fileName).toURI());
                 Desktop desktop = Desktop.getDesktop();
-
+                
+                if(!file.exists()){
+                    showMessage(fileName+" is missing from your computer.", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+                
                 if(!isProcessRunning(file)){
                     desktop.open(file);
                     return true;
@@ -1204,7 +1209,12 @@ public class myFunctions {
             try {
                 file = new File(fileName);
                 Desktop desktop = Desktop.getDesktop();
-
+                
+                if(!file.exists()){
+                    showMessage(fileName+" is missing from your computer.", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+                
                 if(!isProcessRunning(file)){
                     desktop.open(file);
                     return true;
