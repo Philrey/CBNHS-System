@@ -6,6 +6,7 @@ import java.awt.Cursor;
 import java.awt.Font;
 import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -601,6 +602,11 @@ public class mainMenu extends javax.swing.JFrame {
 
         btnSaveSettings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launcherPackage/icons/icons8_save_16px.png"))); // NOI18N
         btnSaveSettings.setText("Save Changes");
+        btnSaveSettings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveSettingsActionPerformed(evt);
+            }
+        });
 
         jLabel14.setText("IP Address");
 
@@ -618,29 +624,28 @@ public class mainMenu extends javax.swing.JFrame {
                         .addContainerGap(340, Short.MAX_VALUE))
                     .addGroup(kGradientPanel3Layout.createSequentialGroup()
                         .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(kGradientPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tfSchoolAddress)
-                                .addComponent(tfSchoolId, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tfDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tfDivision, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tfRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tfSchoolHead, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tfDivisionRepresentative, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tfDivisionSuperintendent, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tfSchoolName)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jcbLoadingSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfSchoolAddress)
+                            .addComponent(tfSchoolId, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfDivision, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfSchoolHead, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfDivisionRepresentative, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfDivisionSuperintendent, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfSchoolName)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcbLoadingSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSaveSettings, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -832,8 +837,43 @@ public class mainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFormsMouseExited
 
     private void btnBookKeepimgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBookKeepimgMouseClicked
-        runModule(5);
+        runModule(5,true);
     }//GEN-LAST:event_btnBookKeepimgMouseClicked
+
+    private void btnSaveSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveSettingsActionPerformed
+        String schoolName = tfSchoolName.getText().trim();
+        String schoolAddress = tfSchoolAddress.getText().trim();
+        String schoolId = tfSchoolId.getText().trim();
+        
+        String district = tfDistrict.getText().trim();
+        String division = tfDivision.getText().trim();
+        String region = tfRegion.getText().trim();
+        
+        String schoolHead = tfSchoolHead.getText().trim();
+        String representative = tfDivisionRepresentative.getText().trim();
+        String superintendent = tfDivisionSuperintendent.getText().trim();
+        
+        String ipAddress = tfIpAddress.getText().trim();
+        int speed = jcbLoadingSpeed.getSelectedIndex();
+        
+        myVariables.setSchoolName(schoolName.length()>0? schoolName:" ");
+        myVariables.setSchoolAddress(schoolAddress.length()>0? schoolAddress:" ");
+        myVariables.setSchoolId(schoolId.length()>0? schoolId:" ");
+        
+        myVariables.setDistrict(district.length()>0? district:" ");
+        myVariables.setDivision(division.length()>0? division:" ");
+        myVariables.setRegion(region.length()>0? region:" ");
+        
+        myVariables.setPrincipal(schoolHead.length()>0? schoolHead:" ");
+        myVariables.setDivisionRepresentative(representative.length()>0? representative:" ");
+        myVariables.setDivisionSuperintendent(superintendent.length()>0? superintendent:" ");
+        
+        myVariables.setIpAddressOnly(ipAddress.length()>0? ipAddress:" ");
+        myVariables.setLoadingSpeed(speed);
+        if (my.writeSettings()) {
+            my.showMessage("Settings Saved.", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSaveSettingsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -884,23 +924,37 @@ public class mainMenu extends javax.swing.JFrame {
     private void selectModuleInfo(int index){
         jtaModuleInformation.setText(moduleInformation[index]);
     }
-    private void runModule(int index){
+    private void runModule(int index,boolean minimizeOpened){
+        boolean opened = false;
         switch(index){
             case 1:{
+                opened = my.runExeFile("modules/registration.exe",false);
                 break;
             }case 2:{
+                opened = my.runExeFile("modules/enrollment.exe",false);
                 break;
             }case 3:{
+                opened = my.runExeFile("modules/attendance.exe",false);
                 break;
             }case 4:{
+                opened = my.runExeFile("modules/weighing.exe",false);
                 break;
             }case 5:{
-                my.runExeFile("modules/bookKeeping.exe",false);
+                opened = my.runExeFile("modules/bookKeeping.exe",false);
                 break;
             }case 6:{
+                opened = my.runExeFile("modules/grading.exe",false);
                 break;
             }case 7:{
+                opened = my.runExeFile("modules/forms.exe",false);
                 break;
+            }
+        }
+        if(minimizeOpened){
+            if(opened){
+                this.setState(JFrame.ICONIFIED);
+            }else{
+                this.setState(JFrame.NORMAL);
             }
         }
     }
@@ -926,7 +980,6 @@ public class mainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
@@ -936,7 +989,6 @@ public class mainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;

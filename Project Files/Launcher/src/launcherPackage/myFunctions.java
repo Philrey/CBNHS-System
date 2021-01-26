@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -45,6 +46,45 @@ public class myFunctions {
     public void openWindow(JFrame currentWindow,JFrame targetWindow){
         currentWindow.dispose();
         targetWindow.setVisible(true);
+    }
+    public boolean writeSettings(){
+        String fileName = "modules/settings.txt";
+        try {
+            //Prepare Values
+            String [] values = {
+                "[0] ip_address="+myVariables.getIpAddressOnly(),
+                "[1] school_name="+myVariables.getSchoolName(),
+                "[2] school_address="+myVariables.getSchoolAddress(),
+                "[3] school_id="+myVariables.getSchoolId(),
+                "[4] district="+myVariables.getDistrict(),
+                "[5] division="+myVariables.getDivision(),
+                "[6] region="+myVariables.getRegion(),
+                "[7] remember_me=false",
+                "[8] auto_login=false",
+                "[9] saved_userName=username",
+                "[10] saved_password=password",
+                "[11] debug_mode="+myVariables.isDebugModeOn(),
+                "[12] school_head_name="+myVariables.getPrincipal(),
+                "[13] division_representative="+myVariables.getDivisionRepresentative(),
+                "[14] division_superintendent="+myVariables.getDivisionSuperintendent(),
+                "[15] speed="+myVariables.getLoadingSpeed()
+            };
+            
+            FileWriter fw = new FileWriter(fileName);
+            for (int n = 0; n < values.length; n++) {
+                fw.write(values[n]);
+                if(n!=values.length-1){
+                    fw.write("\n");
+                }
+            }
+            fw.close();
+            
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error: "+e.getLocalizedMessage());
+            //JOptionPane.showMessageDialog(null, "Cannot Find \""+fileName+"\" file.");
+        }
+        return false;
     }
     public void loadSettings() throws IOException{
         try {
@@ -1141,7 +1181,7 @@ public class myFunctions {
     }
     
     //</editor-fold>
-    public void runExeFile(String fileName,boolean useClassPath){
+    public boolean runExeFile(String fileName,boolean useClassPath){
         File file;
         
         if(useClassPath){
@@ -1151,10 +1191,10 @@ public class myFunctions {
 
                 if(!isProcessRunning(file)){
                     desktop.open(file);
+                    return true;
                 }else{
                     showMessage(fileName+" is already running.", JOptionPane.ERROR_MESSAGE);
                 }
-
             } catch (IOException x){
                 x.printStackTrace();
             }catch (Exception e) {
@@ -1167,16 +1207,17 @@ public class myFunctions {
 
                 if(!isProcessRunning(file)){
                     desktop.open(file);
+                    return true;
                 }else{
                     showMessage(fileName+" is already running.", JOptionPane.ERROR_MESSAGE);
                 }
-
             } catch (IOException x){
                 x.printStackTrace();
             }catch (Exception e) {
                 e.printStackTrace();
             }
         }
+        return false;
     }
     
     private static boolean isProcessRunning(File file){
