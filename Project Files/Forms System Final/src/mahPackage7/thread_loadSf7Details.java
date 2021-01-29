@@ -33,7 +33,6 @@ public class thread_loadSf7Details extends SwingWorker<String, Object>{
     boolean removeUnassignedTeachers;
     //Functions Variables
     long threadDelay = 100;
-    long subTheadDelay = 10;
     long pauseDelay = 500;
     private myFunctions my;
     //Dialog Properties
@@ -101,7 +100,7 @@ public class thread_loadSf7Details extends SwingWorker<String, Object>{
                 
                 my.add_table_row(result[n], teachersTable);
                 
-                Thread.sleep(subTheadDelay);
+                Thread.sleep(threadDelay);
             }
             Thread.sleep(pauseDelay);
             
@@ -128,7 +127,7 @@ public class thread_loadSf7Details extends SwingWorker<String, Object>{
                         progressBar.setValue(x+1);
                         
                         my.add_table_row(loadsResult[x], loadsTable);
-                        Thread.sleep(subTheadDelay);
+                        Thread.sleep(threadDelay);
                     }
                 }
                 
@@ -177,12 +176,12 @@ public class thread_loadSf7Details extends SwingWorker<String, Object>{
                     if(currTeacherId == resultTeacherId){
                         matchFound = true;break;
                     }
-                    Thread.sleep(subTheadDelay);
+                    Thread.sleep(threadDelay);
                 }
                 if(!matchFound){
                     my.remove_table_row(teachersTable, n);
                 }
-                Thread.sleep(subTheadDelay);
+                Thread.sleep(threadDelay);
             }
             
             Thread.sleep(pauseDelay);
