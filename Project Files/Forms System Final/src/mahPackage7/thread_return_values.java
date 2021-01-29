@@ -33,7 +33,6 @@ import org.json.JSONObject;
  */
 public class thread_return_values extends SwingWorker<Integer, Object>{
     long threadDelay = 100;
-    long subThreadDelay = 10;
     long pauseDelay = 500;
     int batchCount = 10;
     myFunctions my;
@@ -152,7 +151,7 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
                         Thread.sleep(pauseDelay); //Hold the process for the CPU to rest.
                         System.err.println("Thread resting.");
                     }else{
-                        Thread.sleep(subThreadDelay);
+                        Thread.sleep(threadDelay);
                     }
                 }
             }else{

@@ -1021,18 +1021,6 @@ public class myFunctions {
             }
         }
     }
-    public void stopAllThreads(){
-        Thread toLoad = null;
-        thread_stopAllThreads sat = new thread_stopAllThreads();
-        if(stopThread != null){
-            if(stopThread.isAlive()){
-                interruptStopThread();
-            }
-        }
-        toLoad = new Thread(sat);
-        stopThread = toLoad;
-        stopThread.start();
-    }
     public String getDateNow(boolean includeTime){
         String result [] = return_values("now() AS 'dateNow'", "", "", new int [] {0});
         if(result != null){
