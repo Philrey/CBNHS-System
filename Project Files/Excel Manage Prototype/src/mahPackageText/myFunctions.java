@@ -15,6 +15,7 @@ import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Drawing;
 import org.apache.poi.ss.usermodel.Picture;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -205,6 +206,36 @@ public class myFunctions {
             System.err.println("File Not Found\n"+e.getMessage());
             e.printStackTrace();
         }
+    }
+    //</editor-fold>
+    //<editor-fold desc="Merge Functions">
+    public void mergeRegion(int sheetNumber,String addressFrom,String addressTo){
+        int [] addr1 = parseExcelAddress(addressFrom);
+        int [] addr2 = parseExcelAddress(addressTo);
+        
+        mergeRegion(sheetNumber, addr1[0], addr1[1], addr2[0], addr2[1]);
+    }
+    public void mergeRegion(int sheetNumber,int row1,int column1,int row2,int column2){
+        XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+        sheet.addMergedRegion(new CellRangeAddress(row1, row2, column1, column2));
+    }
+    public void mergeColumns(int sheetNumber,int rowAddress,String columnAddressStart,String columnAddressEnd){
+        int values [] = parseExcelColumns(columnAddressStart.toLowerCase()+","+columnAddressEnd.toLowerCase());
+        
+        mergeColumns(sheetNumber, rowAddress-1, values[0], values[1]);
+    }
+    public void mergeColumns(int sheetNumber,int rowAddress, int columnIndexStart, int columnIndexEnd){
+        XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+        sheet.addMergedRegion(new CellRangeAddress(rowAddress, rowAddress, columnIndexStart, columnIndexEnd));
+    }
+    public void mergeRows(int sheetNumber,String columnAddress,int rowAddressStart,int rowAddressEnd){
+        int column = getLetterValueAdvanced(columnAddress.toLowerCase());
+        
+        mergeRows(sheetNumber, column, rowAddressStart, rowAddressEnd);
+    }
+    public void mergeRows(int sheetNumber,int columnIndex, int rowIndexStart, int rowIndexEnd){
+        XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+        sheet.addMergedRegion(new CellRangeAddress(rowIndexStart, rowIndexEnd, columnIndex, columnIndex));
     }
     //</editor-fold>
     //<editor-fold desc="Remove Row Functions">

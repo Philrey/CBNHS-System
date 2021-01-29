@@ -9,10 +9,12 @@ public class excelManager {
     public static void main(String[] args) {
         my = new myFunctions();
         
-        my.createExcelFile("jh_sf7.xlsx");
-        //my.removeRow(0, 9);
-        my.removeRows(0, 19, 31);
+        my.createExcelFile("Test.xlsx");
+        //my.removeRow(0, 19);
         //my.removeRows(0, new int [] {1,4,6,7});
+        my.mergeRows(0, "B", 1, 4);
+        my.mergeColumns(0, 2, "C", "E");
+        my.mergeRegion(0, "C,3", "E,4");
         my.saveExcelFile("Text.xlsx");
     }
 }
