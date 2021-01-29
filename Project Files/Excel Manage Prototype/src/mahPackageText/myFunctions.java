@@ -207,6 +207,34 @@ public class myFunctions {
         }
     }
     //</editor-fold>
+    //<editor-fold desc="Remove Row Functions">
+    public void removeRows(int sheetNumber, int [] rowAddressesAscending){
+        // Delete multiple rows with skipping in-between rows e.g {1,5,7,10}
+        int rowCount = rowAddressesAscending.length;
+        for (int n = rowCount-1; n >= 0; n--) {
+            removeRow(sheetNumber, rowAddressesAscending[n]);
+        }
+    }
+    public void removeRows(int sheetNumber, int rowStartAddress,int rowEndAddress){
+        // Delete mupltiple rows in a straight order e.g {2,3,4,5,6}
+        for (int n = rowEndAddress; n >= rowStartAddress; n--) {
+            removeRow(sheetNumber, n);
+        }
+    }
+    public void removeRow(int sheetNumber, int rowAddress){
+        XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+        
+        try {
+            int lastIndex = sheet.getLastRowNum()<= rowAddress? sheet.getLastRowNum()+1 : sheet.getLastRowNum();
+            
+            //System.out.println("Last Row = "+sheet.getLastRowNum());
+            sheet.shiftRows(rowAddress, lastIndex, -1);
+        } catch (Exception e) {
+            //e.printStackTrace();
+            
+        }
+    }
+    //</editor-fold>
     //<editor-fold desc="Other Useful Functions Hehe">
     private boolean isMergedCellIndex(int columnIndex, int [] mergedColumnsList){
         boolean result = false;
