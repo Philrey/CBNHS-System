@@ -108,7 +108,7 @@ public class myFunctions {
             myVariables.setRegion(settings[6]);
             
             myVariables.setDebugMode(settings[11].contains("true"));
-            
+            myVariables.setProcessingSpeed(Integer.parseInt(settings[15]));
         }catch (Exception e) {
             System.err.println("Error: "+e.getLocalizedMessage());
             JOptionPane.showMessageDialog(null, "Cannot Find \"settings.txt\" file.");

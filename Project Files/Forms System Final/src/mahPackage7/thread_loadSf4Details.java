@@ -79,6 +79,11 @@ public class thread_loadSf4Details extends SwingWorker<String, Object>{
         sectionsTable = tablesToUse[4];
         waitForSecondThreadToFinish = waitForThreadsToFinish[2];
         btnExport = buttonsToUse[0];
+        
+        //For thead Speed
+        long [] threadSpeeds = myVariables.getProcessingSpeedValue();
+        threadDelay = threadSpeeds[0];
+        pauseDelay = threadSpeeds[1];
     }
 
     @Override

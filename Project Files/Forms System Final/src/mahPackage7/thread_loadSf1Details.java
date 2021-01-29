@@ -59,6 +59,11 @@ public class thread_loadSf1Details extends SwingWorker<String, Object>{
         tfTotal = textFieldsToUse[2];
         
         btnExport = buttonsToUse[0];
+        
+        //For thead Speed
+        long [] threadSpeeds = myVariables.getProcessingSpeedValue();
+        threadDelay = threadSpeeds[0];
+        pauseDelay = threadSpeeds[1];
     }
     
     @Override

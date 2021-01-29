@@ -80,6 +80,11 @@ public class thread_loadSf9Details extends SwingWorker<String, Object>{
         
         df=new DecimalFormat("#.000");
         df.setRoundingMode(RoundingMode.DOWN);
+        
+        //For thead Speed
+        long [] threadSpeeds = myVariables.getProcessingSpeedValue();
+        threadDelay = threadSpeeds[0];
+        pauseDelay = threadSpeeds[1];
     }
 
     @Override

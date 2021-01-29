@@ -52,7 +52,8 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         //SF6
         private JTable sf6Table;
         //SF7
-        
+        private JTable sf7Table;
+        private JTable sf7AssignedSubjectsTable;
         //SF8
         private JTable sf8Table;
         private JTable sf8SummaryTable;
@@ -115,6 +116,11 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         dialogPanel = myVariables.getLoadingPanel();
         lbLoadingMessage = myVariables.getLbLoadingMessage();
         progressBar = myVariables.getProgressBar();
+        
+        //For thead Speed
+        long [] threadSpeeds = myVariables.getProcessingSpeedValue();
+        threadDelay = threadSpeeds[0];
+        pauseDelay = threadSpeeds[1];
         
         //Main Variables
         btnExport = buttonsToUse[0];

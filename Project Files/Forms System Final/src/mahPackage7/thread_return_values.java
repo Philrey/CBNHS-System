@@ -77,6 +77,11 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
         
         this.selectedColor = selectedColor;
         this.selectedColumnIndex = coloredColumnIndex;
+        
+        //For thead Speed
+        long [] threadSpeeds = myVariables.getProcessingSpeedValue();
+        threadDelay = threadSpeeds[0];
+        pauseDelay = threadSpeeds[1];
     }
     
     @Override

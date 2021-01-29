@@ -77,6 +77,11 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
         dialogPanel = myVariables.getLoadingPanel();
         lbLoadingMessage = myVariables.getLbLoadingMessage();
         progressBar = myVariables.getProgressBar();
+        
+        //For thead Speed
+        long [] threadSpeeds = myVariables.getProcessingSpeedValue();
+        threadDelay = threadSpeeds[0];
+        pauseDelay = threadSpeeds[1];
     }
     
     

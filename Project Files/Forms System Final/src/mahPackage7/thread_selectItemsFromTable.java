@@ -58,6 +58,11 @@ public class thread_selectItemsFromTable extends SwingWorker<String, Object>{
         dialogPanel = myVariables.getLoadingPanel();
         lbLoadingMessage = myVariables.getLbLoadingMessage();
         progressBar = myVariables.getProgressBar();
+        
+        //For thead Speed
+        long [] threadSpeeds = myVariables.getProcessingSpeedValue();
+        threadDelay = threadSpeeds[0];
+        pauseDelay = threadSpeeds[1];
     }
     
     @Override
@@ -82,7 +87,7 @@ public class thread_selectItemsFromTable extends SwingWorker<String, Object>{
                     lastResult = n;
                 }
             }
-            Thread.sleep(0);
+            Thread.sleep(threadDelay);
         }
         try {
             my.showSelectedRow(tableName, firstResult);

@@ -68,7 +68,10 @@ public class thread_loadSf8Details extends SwingWorker<String, Object>{
         lbLoadingMessage = myVariables.getLbLoadingMessage();
         progressBar = myVariables.getProgressBar();
         
-        
+        //For thead Speed
+        long [] threadSpeeds = myVariables.getProcessingSpeedValue();
+        threadDelay = threadSpeeds[0];
+        pauseDelay = threadSpeeds[1];
     }
     
     @Override

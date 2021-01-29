@@ -18,15 +18,16 @@ import javax.swing.JProgressBar;
 public class myVariables {
     private static boolean debugModeOn = false;
     
-    private static String ipAddress = "";
-    private static String schoolName;
-    private static String schoolId;
-    private static String region;
-    private static String division;
-    private static String district;
-    private static String principal;
-    private static String schoolAddress;
+    private static String ipAddress = "localhost";
+    private static String schoolName = "Default_School_Name";
+    private static String schoolId = "000001";
+    private static String region = "XI";
+    private static String division = "Default_Division";
+    private static String district = "Default_Distict";
+    private static String principal = "Default_Principal";
+    private static String schoolAddress = "Default_School_Address";
     
+    private static int processingSpeed = 0;
     //Fonts
     public static final Font COLUMN_HEADER_FONT = new Font("Arial",Font.BOLD,13);
     public static final Font COLUMN_FONT = new Font("Arial",Font.PLAIN,13);
@@ -772,6 +773,28 @@ public class myVariables {
 
     public static String getCuttingClassesIcon() {
         return cuttingClassesIcon;
+    }
+    public static int getProcessingSpeed() {
+        return processingSpeed;
+    }
+    public static long [] getProcessingSpeedValue(){
+        switch (getProcessingSpeed()){
+            case 0:{
+                return new long[] {100,500};
+            }case 1:{
+                return new long[] {50,250};
+            }case 2:{
+                return new long[] {25,125};
+            }case 3:{
+                //Hidden Value WARNING: may cause stuttering
+                return new long[] {0,0};
+            }default:{
+                return new long[] {100,500};
+            }
+        }
+    }
+    public static void setProcessingSpeed(int processingSpeed) {
+        myVariables.processingSpeed = processingSpeed;
     }
     //</editor-fold>
 }
