@@ -184,7 +184,7 @@ public class thread_loadSf7Details extends SwingWorker<String, Object>{
                 Thread.sleep(threadDelay);
             }
             
-            Thread.sleep(pauseDelay);
+            Thread.sleep(threadDelay);
             return true;
         } catch(InterruptedException x){
             return false;

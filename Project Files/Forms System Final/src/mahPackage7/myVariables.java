@@ -25,6 +25,8 @@ public class myVariables {
     private static String division = "Default_Division";
     private static String district = "Default_Distict";
     private static String principal = "Default_Principal";
+    private static String divisionRepresentative = "Default_Representative";
+    private static String divisionSuperintendent = "Default_Superintendent";
     private static String schoolAddress = "Default_School_Address";
     
     private static int processingSpeed = 0;
@@ -777,6 +779,23 @@ public class myVariables {
     public static int getProcessingSpeed() {
         return processingSpeed;
     }
+
+    public static String getDivisionRepresentative() {
+        return divisionRepresentative;
+    }
+
+    public static void setDivisionRepresentative(String divisionRepresentative) {
+        myVariables.divisionRepresentative = divisionRepresentative;
+    }
+
+    public static String getDivisionSuperintendent() {
+        return divisionSuperintendent;
+    }
+
+    public static void setDivisionSuperintendent(String divisionSuperintendent) {
+        myVariables.divisionSuperintendent = divisionSuperintendent;
+    }
+    
     public static long [] getProcessingSpeedValue(){
         switch (getProcessingSpeed()){
             case 0:{

@@ -32,8 +32,8 @@ public class thread_selectItemsFromTable extends SwingWorker<String, Object>{
     
     boolean showMessageOnError;
     //Functions Variables
-    long threadDelay = 100;
-    long pauseDelay = 500;
+    long threadDelay = 10;
+    long pauseDelay = 10;
     private myFunctions my;
     //Dialog Properties
     private JDialog dialog;
@@ -60,9 +60,9 @@ public class thread_selectItemsFromTable extends SwingWorker<String, Object>{
         progressBar = myVariables.getProgressBar();
         
         //For thead Speed
-        long [] threadSpeeds = myVariables.getProcessingSpeedValue();
-        threadDelay = threadSpeeds[0];
-        pauseDelay = threadSpeeds[1];
+        //long [] threadSpeeds = myVariables.getProcessingSpeedValue();
+        //threadDelay = threadSpeeds[0];
+        //pauseDelay = threadSpeeds[1];
     }
     
     @Override
@@ -92,7 +92,7 @@ public class thread_selectItemsFromTable extends SwingWorker<String, Object>{
         try {
             my.showSelectedRow(tableName, firstResult);
             tableName.setRowSelectionInterval(firstResult, lastResult);
-            tableName.updateUI();
+            //tableName.updateUI();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -121,7 +121,7 @@ public class thread_selectItemsFromTable extends SwingWorker<String, Object>{
             dialog.setTitle(title);
             dialog.add(customPanel);
             dialog.setLocationRelativeTo(jFrameName);
-            System.err.println("Sf4 Dialog is already visible. Skipping...");
+            System.err.println("Selection Dialog is already visible. Skipping...");
             return;
         }
         dialog = new JDialog(jFrameName);

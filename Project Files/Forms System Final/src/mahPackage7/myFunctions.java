@@ -47,6 +47,7 @@ import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Picture;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -106,6 +107,10 @@ public class myFunctions {
             myVariables.setDistrict(settings[4]);
             myVariables.setDivision(settings[5]);
             myVariables.setRegion(settings[6]);
+            
+            myVariables.setPrincipal(settings[12]);
+            myVariables.setDivisionRepresentative(settings[13]);
+            myVariables.setDivisionSuperintendent(settings[14]);
             
             myVariables.setDebugMode(settings[11].contains("true"));
             myVariables.setProcessingSpeed(Integer.parseInt(settings[15]));
@@ -816,6 +821,28 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
+    private static final String acronyms [][] = {
+        new String [] {"edukasyon sa pagpapakatao","ESP"},
+        new String [] {"physical education","PE"},
+        new String [] {"technology and livelihood education","TLE"},
+        new String [] {"mathematics","MATH"},
+        new String [] {"araling panlipunan","ARAL PAN"},
+    };
+    public String getAcronym(String subjectName,boolean includeGradeLevel, String gradeLevel){
+        String name = removeSubjectGrade(subjectName.toLowerCase(), " ");
+        for (int n = 0; n < acronyms.length; n++) {
+            if(name.contains(acronyms[n][0])){
+                //System.err.println("Acronym Found");
+                name = acronyms[n][1];
+                break;
+            }
+        }
+        if (includeGradeLevel) {
+            return name+" "+gradeLevel;
+        }else{
+            return name;
+        }
+    }
     public String getCurriculumNameOnly(String curriculumName,String separator,int indexToGet,boolean toUpperCase){
         if (curriculumName.contains(separator)) {
             try {
@@ -959,6 +986,8 @@ public class myFunctions {
                 toLoad = new Thread(tld);
                 break;
             }case 3:{
+                thread_export_schoolForms sfThread = new thread_export_schoolForms(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
+                toLoad = new Thread(sfThread);
                 break;
             }default:{
                 System.err.println("No proper thread selected.");
@@ -1987,6 +2016,64 @@ public class myFunctions {
         }catch (IOException e) {
             System.err.println("File Not Found\n"+e.getMessage());
             e.printStackTrace();
+        }
+    }
+    //</editor-fold>
+    //<editor-fold desc="Merge Functions">
+    public void mergeRegion(int sheetNumber,String addressFrom,String addressTo){
+        int [] addr1 = parseExcelAddress(addressFrom);
+        int [] addr2 = parseExcelAddress(addressTo);
+        
+        mergeRegion(sheetNumber, addr1[0], addr1[1], addr2[0], addr2[1]);
+    }
+    public void mergeRegion(int sheetNumber,int row1,int column1,int row2,int column2){
+        XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+        sheet.addMergedRegion(new CellRangeAddress(row1, row2, column1, column2));
+    }
+    public void mergeColumns(int sheetNumber,int rowAddress,String columnAddressStart,String columnAddressEnd){
+        int values [] = parseExcelColumns(columnAddressStart.toLowerCase()+","+columnAddressEnd.toLowerCase());
+        
+        mergeColumns(sheetNumber, rowAddress-1, values[0], values[1]);
+    }
+    public void mergeColumns(int sheetNumber,int rowAddress, int columnIndexStart, int columnIndexEnd){
+        XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+        sheet.addMergedRegion(new CellRangeAddress(rowAddress, rowAddress, columnIndexStart, columnIndexEnd));
+    }
+    public void mergeRows(int sheetNumber,String columnAddress,int rowAddressStart,int rowAddressEnd){
+        int column = getLetterValueAdvanced(columnAddress.toLowerCase());
+        
+        mergeRows(sheetNumber, column, rowAddressStart-1, rowAddressEnd-1);
+    }
+    public void mergeRows(int sheetNumber,int columnIndex, int rowIndexStart, int rowIndexEnd){
+        XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+        sheet.addMergedRegion(new CellRangeAddress(rowIndexStart, rowIndexEnd, columnIndex, columnIndex));
+    }
+    //</editor-fold>
+    //<editor-fold desc="Remove Row Functions">
+    public void removeRows(int sheetNumber, int [] rowAddressesAscending){
+        // Delete multiple rows with skipping in-between rows e.g {1,5,7,10}
+        int rowCount = rowAddressesAscending.length;
+        for (int n = rowCount-1; n >= 0; n--) {
+            removeRow(sheetNumber, rowAddressesAscending[n]);
+        }
+    }
+    public void removeRows(int sheetNumber, int rowStartAddress,int rowEndAddress){
+        // Delete mupltiple rows in a straight order e.g {2,3,4,5,6}
+        for (int n = rowEndAddress; n >= rowStartAddress; n--) {
+            removeRow(sheetNumber, n);
+        }
+    }
+    public void removeRow(int sheetNumber, int rowAddress){
+        XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+        
+        try {
+            int lastIndex = sheet.getLastRowNum()<= rowAddress? sheet.getLastRowNum()+1 : sheet.getLastRowNum();
+            
+            //System.out.println("Last Row = "+sheet.getLastRowNum());
+            sheet.shiftRows(rowAddress, lastIndex, -1);
+        } catch (Exception e) {
+            //e.printStackTrace();
+            
         }
     }
     //</editor-fold>

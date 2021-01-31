@@ -54,6 +54,8 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         //SF7
         private JTable sf7Table;
         private JTable sf7AssignedSubjectsTable;
+        private boolean useSubjectCodeAsSubjectName;
+        private boolean useAcronyms;
         //SF8
         private JTable sf8Table;
         private JTable sf8SummaryTable;
@@ -131,10 +133,10 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         district = myVariables.getDistrict();
         schoolName = myVariables.getSchoolName();
         
-        assignTablesByForm(tablesToUse,stringsToUse,textFieldsToUse);
+        assignTablesByForm(tablesToUse,stringsToUse,textFieldsToUse,booleansToUse);
     }
     //<editor-fold desc="Constructor Functions">
-    private void assignTablesByForm(JTable [] tables,String [] stringsToUse,JTextField [] textFieldsToUse){
+    private void assignTablesByForm(JTable [] tables,String [] stringsToUse,JTextField [] textFieldsToUse, boolean [] booleans){
         switch(myVariables.getFormSelected()){
             case 1:{
                 //Global Variables
@@ -203,6 +205,8 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 //Sf7 Variables
                 sf7Table = tables[0];
                 sf7AssignedSubjectsTable = tables[1];
+                useSubjectCodeAsSubjectName = booleans[0];
+                useAcronyms = booleans[1];
                 break;
             }case 8:{
                 //Global Variables
@@ -371,7 +375,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
             }case 5:{
                 dataCount = sf5Table.getRowCount()-3;break;
             }case 7:{
-                //dataCount = sf2Table.getRowCount()-3;break;
+                dataCount = sf7Table.getRowCount();break;
             }case 8:{
                 dataCount = sf8Table.getRowCount();break;
             }case 9:{
@@ -780,6 +784,76 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     //</editor-fold>
                     break;
                 }case 7:{
+                    //<editor-fold desc="Write SF7">
+                    int rowCount = sf7Table.getRowCount(),subjCount;
+                    startingAddress = "A,"; //A,7 first row
+                    startingAddress2 = "L,";
+                    excelColumnsToSkip = "E,J";
+                    
+                    String staffDetails;
+                    String subjName;
+                    String subjSection;
+                    String subjectDetails;
+                    String grLvl;
+                    
+                    int [] selectedSubjects;
+                    for (int n = rowCount-1; n >= 0; n--) {
+                        progressBar.setMaximum(rowCount);
+                        progressBar.setValue(rowCount-n);
+                        lbLoadingMessage.setText("Writing Tables...3/4 Teacher "+(rowCount-n)+" of "+rowCount);
+                        
+                        //#1 Get staff details
+                        staffDetails = my.get_table_row_values(n, sf7Table);
+                        staffDetails = my.skipColumns(staffDetails, new int [] {0,10});
+                        
+                        my.writeExcelLine(sheetNumber, staffDetails, excelColumnsToSkip, startingAddress+(17+(16*n)));
+                        Thread.sleep(threadDelay);
+                        //#2 Get subjects assigned to this staff from assignedSubjectsTable
+                        //sf7Table.setRowSelectionInterval(n, n); //Optional
+                        String userId = sf7Table.getValueAt(n, 0).toString();
+                        my.runSecondaryThread(9, true, 
+                                new JTable[]{sf7AssignedSubjectsTable,sf7Table}, 
+                                new String[]{"1",userId}, 
+                                new JTextField[]{},
+                                new JButton[]{},
+                                new boolean[]{true}
+                        );
+                        //wait for 2nd thread to finish
+                        while (myFunctions.getSecondThread().isAlive()) {                            
+                            Thread.sleep(10);
+                        }
+                        Thread.sleep(threadDelay);
+                        //Resume Thread
+                        showCustomDialog("Exporting to Excel File", dialogPanel, false, 420, 220, false);
+                        progressBar.setMaximum(rowCount);
+                        progressBar.setValue(n+1);
+                        
+                        selectedSubjects = sf7AssignedSubjectsTable.getSelectedRows();
+                        subjCount = selectedSubjects.length;
+                        
+                        for (int x = 0; x < subjCount; x++) {
+                            lbLoadingMessage.setText("Writing Tables...3/4 Teacher "+(rowCount-n)+" of "+rowCount+". "+(x+1)+"/"+subjCount);
+                            if(!useSubjectCodeAsSubjectName){
+                                subjName = sf7AssignedSubjectsTable.getValueAt(selectedSubjects[x], 6).toString();
+                                if(useAcronyms){
+                                    gradeLevel = sf7AssignedSubjectsTable.getValueAt(selectedSubjects[x], 7).toString();
+                                    subjName = my.getAcronym(subjName, true, gradeLevel);
+                                }
+                            }else{
+                                subjName = sf7AssignedSubjectsTable.getValueAt(selectedSubjects[x], 5).toString();
+                            }
+                            subjSection = my.getSectionNameOnly(sf7AssignedSubjectsTable.getValueAt(selectedSubjects[x], 3).toString(), true);
+                            subjectDetails = subjName.toUpperCase()+" - "+subjSection+"@@";
+                            
+                            my.writeExcelLine(sheetNumber, subjectDetails, null, startingAddress2+((17+(16*n))+x) );
+                            Thread.sleep(threadDelay);
+                        }
+                        //#3 Remove Extra rows (Minimum 3-5 rows should be left?)
+                        //#4 Merge Cells
+                        Thread.sleep(threadDelay);
+                    }
+                    sf7AssignedSubjectsTable.clearSelection();
+                    //</editor-fold>
                     break;
                 }case 8:{
                     //<editor-fold desc="WRITE SF8">
@@ -1112,17 +1186,18 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     break;
                 }case 7:{
                     //<editor-fold desc="SF7 Headers">
-                    String [] shclHead = {"K,180","K,340","K,500","K,660","K,820","K,980","K,1140"};
+                    String [] shclHead = {"M,180","M,340","M,500","M,660","M,820","M,980","M,1140"};
                     
                     headers = new header[]{
                         //Header Parts
                         new header(schoolId, "C,4"),
-                        new header(region, "F,4"),
-                        new header(division, "J,4"),
-                        new header(district, "J,6"),
+                        new header(region, "H,4"),
+                        new header(division, "K,4"),
                         new header(schoolName, "C,6"),
-                        new header(schoolYear, "O,6"),
+                        new header(district, "K,6"),
+                        new header(schoolYear, "Q,6"),
                         //Form's Custom Fields
+                        new header(myVariables.getPrincipal().toUpperCase(), shclHead[sheetNumber]),
                     };
                     //</editor-fold>
                     break;
@@ -1216,7 +1291,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
             }case 6:{
                 fileName = importExport? "templates/jh_sf6.xlsx" : "exports/jh_sf6.xlsx";break;
             }case 7:{
-                fileName = importExport? "templates/jh_sf7_unmerged.xlsx" : "exports/jh_sf7.xlsx";break;
+                fileName = importExport? "templates/jh_sf7.xlsx" : "exports/jh_sf7.xlsx";break;
             }case 8:{
                 fileName = importExport? "templates/jh_sf8.xlsx" : "exports/jh_sf8.xlsx";break;
             }case 9:{

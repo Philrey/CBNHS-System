@@ -332,6 +332,8 @@ public class dashBoard extends javax.swing.JFrame {
         jcbSchoolYear2 = new javax.swing.JComboBox<>();
         jLabel102 = new javax.swing.JLabel();
         cbRemoveTeachersWNoSubjects = new javax.swing.JCheckBox();
+        cbUseCodeAsName = new javax.swing.JCheckBox();
+        cbUseAcronyms = new javax.swing.JCheckBox();
         sf8Tab = new javax.swing.JPanel();
         jSplitPane7 = new javax.swing.JSplitPane();
         jScrollPane29 = new javax.swing.JScrollPane();
@@ -3016,7 +3018,7 @@ public class dashBoard extends javax.swing.JFrame {
         sf7Tab.setBackground(new java.awt.Color(11, 102, 35));
 
         jSplitPane10.setBorder(null);
-        jSplitPane10.setDividerLocation(650);
+        jSplitPane10.setDividerLocation(645);
 
         spLeft.setDividerLocation(200);
         spLeft.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
@@ -3164,6 +3166,29 @@ public class dashBoard extends javax.swing.JFrame {
         cbRemoveTeachersWNoSubjects.setOpaque(false);
         cbRemoveTeachersWNoSubjects.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
 
+        cbUseCodeAsName.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        cbUseCodeAsName.setText("Use Subject Code as Subject Name?");
+        cbUseCodeAsName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        cbUseCodeAsName.setOpaque(false);
+        cbUseCodeAsName.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+        cbUseCodeAsName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbUseCodeAsNameActionPerformed(evt);
+            }
+        });
+
+        cbUseAcronyms.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        cbUseAcronyms.setSelected(true);
+        cbUseAcronyms.setText("Use Subject acronyms? (Mathematics = MATH)");
+        cbUseAcronyms.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        cbUseAcronyms.setOpaque(false);
+        cbUseAcronyms.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+        cbUseAcronyms.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbUseAcronymsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel31Layout = new javax.swing.GroupLayout(jPanel31);
         jPanel31.setLayout(jPanel31Layout);
         jPanel31Layout.setHorizontalGroup(
@@ -3171,20 +3196,21 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(jPanel31Layout.createSequentialGroup()
                 .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel31Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel31Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel99, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel108, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnExportSf7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLoadTeacher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel31Layout.createSequentialGroup()
-                        .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel102, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jcbSchoolYear2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(cbRemoveTeachersWNoSubjects))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cbUseAcronyms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel99, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel108, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExportSf7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLoadTeacher, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel31Layout.createSequentialGroup()
+                        .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel102, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcbSchoolYear2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(cbRemoveTeachersWNoSubjects, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbUseCodeAsName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel31Layout.setVerticalGroup(
@@ -3203,10 +3229,14 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbRemoveTeachersWNoSubjects)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbUseAcronyms)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbUseCodeAsName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLoadTeacher)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExportSf7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(290, Short.MAX_VALUE))
         );
 
         jspRight.setViewportView(jPanel31);
@@ -6055,12 +6085,13 @@ public class dashBoard extends javax.swing.JFrame {
             return;
         }
         
-        my.runExportThread(
+        my.runThirdThread(3, false,
                 new JTable[]{sf7TeachersTable,sf7AssignedSubjectsTable},
                 new String[]{jcbSchoolYear2.getSelectedItem().toString()},
-                new JTextField[]{}, 
+                new JTextField[]{},
                 new JButton[]{btnExportSf7},
-                new boolean[]{}
+                new boolean[]{cbUseCodeAsName.isSelected(),cbUseAcronyms.isSelected()},
+                null
         );
     }//GEN-LAST:event_btnExportSf7ActionPerformed
 
@@ -6115,6 +6146,18 @@ public class dashBoard extends javax.swing.JFrame {
                 new boolean[]{}
         );
     }//GEN-LAST:event_btnExportSf6ActionPerformed
+
+    private void cbUseCodeAsNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUseCodeAsNameActionPerformed
+        if(cbUseCodeAsName.isSelected()){
+            cbUseAcronyms.setSelected(false);
+        }
+    }//GEN-LAST:event_cbUseCodeAsNameActionPerformed
+
+    private void cbUseAcronymsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUseAcronymsActionPerformed
+        if(cbUseAcronyms.isSelected()){
+            cbUseCodeAsName.setSelected(false);
+        }
+    }//GEN-LAST:event_cbUseAcronymsActionPerformed
     private void selectFormToExport(int formIndexExact){
         if(myVariables.getFormSelected() != formIndexExact){
             my.clear_table_rows(assignedTeacherTable);
@@ -6873,6 +6916,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JCheckBox cbShowIncompleteStudents;
     private javax.swing.JCheckBox cbShowIncompleteStudents1;
     private javax.swing.JCheckBox cbShowIncompleteStudents2;
+    private javax.swing.JCheckBox cbUseAcronyms;
+    private javax.swing.JCheckBox cbUseCodeAsName;
     private javax.swing.JCheckBox cbUseFirstStudentForDate;
     private javax.swing.JPanel defaultInstructionPanel;
     private javax.swing.JTable enrolledStudentsTable;
