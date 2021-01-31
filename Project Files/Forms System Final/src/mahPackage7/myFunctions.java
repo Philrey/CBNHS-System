@@ -2078,6 +2078,19 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Useful Functions Hehe">
+    public boolean isCellEmpty(int sheetNumber,String excelAddress){
+        int address [] = parseExcelAddress(excelAddress);
+        XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+        XSSFRow row = sheet.getRow(address[0]);
+        XSSFCell cell = row.getCell(address[1]);
+        
+        if(cell == null){
+            return true;
+        }if(cell.getStringCellValue().trim().length()<=0){
+            return true;
+        }
+        return false;
+    }
     private boolean isMergedCellIndex(int columnIndex, int [] mergedColumnsList){
         boolean result = false;
         if(mergedColumnsList != null){
@@ -2091,7 +2104,7 @@ public class myFunctions {
         }
         return result;
     }
-    private int [] parseExcelColumns(String excelColumnAddress){
+    public int [] parseExcelColumns(String excelColumnAddress){
         // Adresses must be in a format of E.G. ( A,B,D,E,G ) in ascending order
         if(excelColumnAddress == null || excelColumnAddress.length() <= 0){
             return null;

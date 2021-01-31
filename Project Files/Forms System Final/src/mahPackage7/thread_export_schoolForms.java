@@ -18,6 +18,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 
 /**
  *
@@ -318,6 +319,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         //</editor-fold>
         
         //<editor-fold desc="#4 Remove Extra Sheets">
+        progressBar.setMaximum(5);
         lbLoadingMessage.setText("Removing Extra Sheets...4/5");
         if(myVariables.getFormSelected() != 10 && myVariables.getFormSelected() != 9){
             my.keepOneSheetOnly(sheetNumber);
@@ -339,6 +341,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         
         //<editor-fold desc="#5 Save File">
         lbLoadingMessage.setText("Saving File...5/5");
+        
         if(!my.saveExcelFile(getFileName(false))){
             my.showMessage("There was an error Exporting the file.\nPlease make sure the file you are saving at is not open and try again.", JOptionPane.ERROR_MESSAGE);
             throw new InterruptedException("Save Failed");
@@ -797,6 +800,8 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     String grLvl;
                     
                     int [] selectedSubjects;
+                    
+                    //<editor-fold desc="WRITE VALUES">
                     for (int n = rowCount-1; n >= 0; n--) {
                         progressBar.setMaximum(rowCount);
                         progressBar.setValue(rowCount-n);
@@ -848,11 +853,100 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                             my.writeExcelLine(sheetNumber, subjectDetails, null, startingAddress2+((17+(16*n))+x) );
                             Thread.sleep(threadDelay);
                         }
-                        //#3 Remove Extra rows (Minimum 3-5 rows should be left?)
-                        //#4 Merge Cells
                         Thread.sleep(threadDelay);
                     }
+                    //</editor-fold>
                     sf7AssignedSubjectsTable.clearSelection();
+                    
+                    //#3 Remove Extra rows (Minimum 3-5 rows should be left?)..Descending Order
+                    int [] dataCounts = {10,20,30,40,50,60,70};
+
+                    int rowsToRemove;
+
+                    startingAddress3 = "L,";
+                    int startRow,endRow,tempRow,dataCount;
+                    
+                    int lastRowAddress = ( 17+(16*(dataCounts[sheetNumber])) )-1;
+                    System.err.println("Initial Last Row: "+lastRowAddress);
+                    
+                    progressBar.setMaximum(dataCounts[sheetNumber]);
+                    progressBar.setValue(0);
+                    
+                    for (int n = dataCounts[sheetNumber]-1; n >= 0; n--) {
+                        progressBar.setValue(dataCounts[sheetNumber]-n);
+                        lbLoadingMessage.setText("Writing Tables...3/4 Removing Excess Rows "+(dataCounts[sheetNumber]-n)+"/"+dataCounts[sheetNumber]);
+                        startRow = 17+(16*n);
+                        endRow = startRow+15;
+                        dataCount = 0;
+                        
+                        //Check for empty values
+                        if(my.isCellEmpty(sheetNumber, startingAddress3+startRow)){
+                            //Shift rows
+                            my.removeRows(sheetNumber, startRow, endRow);
+                            lastRowAddress -= 16;
+                        }else{
+                            //System.err.println("Cell @ row "+startRow+" is not empty");
+                            for (int x = startRow; ; x++) {
+                                if(my.isCellEmpty(sheetNumber, startingAddress3+x)){
+                                    tempRow = x;break;
+                                }
+                                dataCount++;
+                            }
+                            
+                            if(dataCount < 5){
+                                tempRow = startRow+5;
+                            }
+                            //Shift Rows
+                            my.removeRows(sheetNumber, tempRow, endRow-1);
+                            
+                            
+                            
+                            lastRowAddress -= endRow-tempRow;
+                            System.err.println((endRow-tempRow)+" has been reduced");
+                        }
+                        Thread.sleep(threadDelay);
+                    }
+                    
+                    //#4 Merge rows
+                    System.err.println("Last Row: "+lastRowAddress);
+
+                    String [] columnsToMerge = {"A","B","C","F","G","H","K"};
+                    String [][] regionColumnsToMerge = {
+                        {"D,","E,"},
+                        {"I,","J,"},
+                        {"Q,","R,"}
+                    };
+                    startingAddress3 = "C,"; //Check gender column since it always has a value
+                    int lastEmptyRow;
+                    for (int n = 17; n <= lastRowAddress; n++) {
+                        if(!my.isCellEmpty(sheetNumber, startingAddress3+n)){
+                            lastEmptyRow = n;
+                            n++;
+                            //Search for last empty value
+                            for (int x = n; x <= lastRowAddress; x++) {
+                                if(!my.isCellEmpty(sheetNumber, startingAddress3+x)){
+                                    break;
+                                }
+                                lastEmptyRow++;
+                            }
+                            //System.err.println("Start: "+(n-1)+" Last: "+lastEmptyRow);
+                            
+                            //Merge Row
+                            for (String x: columnsToMerge) {
+                                my.mergeRows(sheetNumber, x, n-1, lastEmptyRow);
+                            }
+                            //Merge Regions
+                            for(String [] x : regionColumnsToMerge){
+                                my.mergeRegion(sheetNumber, x[0]+(n-1), x[1]+(lastEmptyRow));
+                            }
+                            n = lastEmptyRow;
+                        }
+                        Thread.sleep(threadDelay);
+                    }
+                    
+                    //Fix Distorted Footers
+                    
+                    
                     //</editor-fold>
                     break;
                 }case 8:{
@@ -1336,7 +1430,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 dialog.setModalityType(Dialog.ModalityType.MODELESS);
             }
             dialog.setLocationRelativeTo(jFrameName);
-            System.err.println("Sf4 Dialog is already visible. Skipping...");
+            //System.err.println("Sf4 Dialog is already visible. Skipping...");
             return;
         }
         dialog = new JDialog(jFrameName);
