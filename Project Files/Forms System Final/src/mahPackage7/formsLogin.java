@@ -235,6 +235,7 @@ public class formsLogin extends javax.swing.JFrame {
 
         switch(result){
             case 0:{
+                myVariables.setFormSelected(0);
                 my.openWindow(this,new dashBoard());
                 break;
             }case 1:{

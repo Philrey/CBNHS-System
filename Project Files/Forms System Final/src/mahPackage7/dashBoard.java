@@ -3018,7 +3018,7 @@ public class dashBoard extends javax.swing.JFrame {
         sf7Tab.setBackground(new java.awt.Color(11, 102, 35));
 
         jSplitPane10.setBorder(null);
-        jSplitPane10.setDividerLocation(645);
+        jSplitPane10.setDividerLocation(640);
 
         spLeft.setDividerLocation(200);
         spLeft.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
