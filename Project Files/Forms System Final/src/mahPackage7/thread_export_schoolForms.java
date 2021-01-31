@@ -945,6 +945,15 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     }
                     
                     //Fix Distorted Footers
+                    my.mergeColumns(sheetNumber, lastRowAddress+2, "A", "K");
+                    my.mergeColumns(sheetNumber, lastRowAddress+2, "M", "P");
+                    my.mergeColumns(sheetNumber, lastRowAddress+5, "M", "P");
+                    my.mergeColumns(sheetNumber, lastRowAddress+6, "M", "P");
+                    
+                    my.mergeRegion(sheetNumber, "A,"+(lastRowAddress+3), "K,"+(lastRowAddress+4));
+                    my.mergeRegion(sheetNumber, "A,"+(lastRowAddress+5), "K,"+(lastRowAddress+6));
+                    my.mergeRegion(sheetNumber, "A,"+(lastRowAddress+7), "K,"+(lastRowAddress+8));
+                    my.mergeRegion(sheetNumber, "A,"+(lastRowAddress+9), "K,"+(lastRowAddress+10));
                     
                     
                     //</editor-fold>
@@ -1280,7 +1289,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     break;
                 }case 7:{
                     //<editor-fold desc="SF7 Headers">
-                    String [] shclHead = {"M,180","M,340","M,500","M,660","M,820","M,980","M,1140"};
+                    String [] shclHead = {"M,181","M,341","M,501","M,661","M,821","M,981","M,1141"};
                     
                     headers = new header[]{
                         //Header Parts
