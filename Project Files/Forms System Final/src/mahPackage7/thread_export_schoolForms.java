@@ -198,6 +198,11 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 sf6Table = tables[0];
                 break;
             }case 7:{
+                //Global Variables
+                schoolYear = stringsToUse[0];
+                //Sf7 Variables
+                sf7Table = tables[0];
+                sf7AssignedSubjectsTable = tables[1];
                 break;
             }case 8:{
                 //Global Variables
@@ -1106,6 +1111,20 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     //</editor-fold>
                     break;
                 }case 7:{
+                    //<editor-fold desc="SF7 Headers">
+                    String [] shclHead = {"K,180","K,340","K,500","K,660","K,820","K,980","K,1140"};
+                    
+                    headers = new header[]{
+                        //Header Parts
+                        new header(schoolId, "C,4"),
+                        new header(region, "F,4"),
+                        new header(division, "J,4"),
+                        new header(district, "J,6"),
+                        new header(schoolName, "C,6"),
+                        new header(schoolYear, "O,6"),
+                        //Form's Custom Fields
+                    };
+                    //</editor-fold>
                     break;
                 }case 8:{
                     //<editor-fold desc="SF8 Headers">
@@ -1197,7 +1216,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
             }case 6:{
                 fileName = importExport? "templates/jh_sf6.xlsx" : "exports/jh_sf6.xlsx";break;
             }case 7:{
-                fileName = importExport? "templates/jh_sf7.xlsx" : "exports/jh_sf7.xlsx";break;
+                fileName = importExport? "templates/jh_sf7_unmerged.xlsx" : "exports/jh_sf7.xlsx";break;
             }case 8:{
                 fileName = importExport? "templates/jh_sf8.xlsx" : "exports/jh_sf8.xlsx";break;
             }case 9:{

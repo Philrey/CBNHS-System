@@ -3018,7 +3018,7 @@ public class dashBoard extends javax.swing.JFrame {
         jSplitPane10.setBorder(null);
         jSplitPane10.setDividerLocation(650);
 
-        spLeft.setDividerLocation(250);
+        spLeft.setDividerLocation(200);
         spLeft.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         sf7TeachersTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -6050,7 +6050,18 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoadTeacherActionPerformed
 
     private void btnExportSf7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf7ActionPerformed
-        // TODO add your handling code here:
+        if(myVariables.getFormSelected() != 7){
+            my.showMessage("SF7 Not Selected", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        my.runExportThread(
+                new JTable[]{sf7TeachersTable,sf7AssignedSubjectsTable},
+                new String[]{jcbSchoolYear2.getSelectedItem().toString()},
+                new JTextField[]{}, 
+                new JButton[]{btnExportSf7},
+                new boolean[]{}
+        );
     }//GEN-LAST:event_btnExportSf7ActionPerformed
 
     private void btnSf7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf7ActionPerformed

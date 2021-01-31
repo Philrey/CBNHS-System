@@ -231,7 +231,7 @@ public class myFunctions {
     public void mergeRows(int sheetNumber,String columnAddress,int rowAddressStart,int rowAddressEnd){
         int column = getLetterValueAdvanced(columnAddress.toLowerCase());
         
-        mergeRows(sheetNumber, column, rowAddressStart, rowAddressEnd);
+        mergeRows(sheetNumber, column, rowAddressStart-1, rowAddressEnd-1);
     }
     public void mergeRows(int sheetNumber,int columnIndex, int rowIndexStart, int rowIndexEnd){
         XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
