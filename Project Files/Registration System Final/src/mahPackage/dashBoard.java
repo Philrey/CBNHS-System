@@ -347,6 +347,7 @@ public class dashBoard extends javax.swing.JFrame {
         lbSchoolName = new javax.swing.JLabel();
         lbSchoolAddress = new javax.swing.JLabel();
         lbLoggedInUser = new javax.swing.JLabel();
+        btnImportFromLis = new javax.swing.JButton();
         mainTab = new javax.swing.JTabbedPane();
 
         manageStudentsTab.setBackground(new java.awt.Color(11, 102, 35));
@@ -3105,6 +3106,9 @@ public class dashBoard extends javax.swing.JFrame {
         lbLoggedInUser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbLoggedInUser.setText("Welcome USER_NAME, ACCESS_LEVEL");
 
+        btnImportFromLis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_upload_16px.png"))); // NOI18N
+        btnImportFromLis.setText("Import from DepEd LIS");
+
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
@@ -3118,7 +3122,8 @@ public class dashBoard extends javax.swing.JFrame {
                         .addComponent(lbLoggedInUser))
                     .addGroup(headerPanelLayout.createSequentialGroup()
                         .addComponent(lbSchoolAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnImportFromLis)))
                 .addContainerGap())
         );
         headerPanelLayout.setVerticalGroup(
@@ -3129,7 +3134,9 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(lbSchoolName)
                     .addComponent(lbLoggedInUser))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbSchoolAddress)
+                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbSchoolAddress)
+                    .addComponent(btnImportFromLis))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -3151,7 +3158,7 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(mainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -4749,7 +4756,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         
         JButton lightButtons [] = {
-            //btnEdit1
+            btnImportFromLis,
         };
         Cursor tempC;
         for(int n=0;n<buttons.length;n++){
@@ -4766,9 +4773,9 @@ public class dashBoard extends javax.swing.JFrame {
         for(int n=0;n<lightButtons.length;n++){
             lightButtons[n].setUI(new custom_styledButtonIU());
             //buttons[n].setBackground(new Color(22,66,33));
-            lightButtons[n].setBackground(new Color(214, 255, 183));
+            lightButtons[n].setBackground(Color.WHITE);
             lightButtons[n].setForeground(new Color(22,66,33));            
-            lightButtons[n].setFont(new Font("Comic Sans MS",Font.BOLD,12));
+            lightButtons[n].setFont(myVariables.BUTTON_FONT);
             //buttons[n].setCursor(my.getCursor(myVariables.getHandCursor()));
             lightButtons[n].setCursor(new Cursor(Cursor.HAND_CURSOR));
             lightButtons[n].setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
@@ -4868,6 +4875,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnEdit1;
     private javax.swing.JButton btnEditAssignedSubject;
+    private javax.swing.JButton btnImportFromLis;
     private javax.swing.JButton btnRemoveSubjectFromList;
     private javax.swing.JButton btnSaveChanges;
     private javax.swing.JButton btnSaveChanges1;

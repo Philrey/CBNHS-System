@@ -13,8 +13,10 @@ import java.net.URISyntaxException;
 import javax.swing.JTextField;
 import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Drawing;
 import org.apache.poi.ss.usermodel.Picture;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -82,6 +84,73 @@ public class myFunctions {
             System.err.println("Saving File Failed...");
             return false;
         }
+    }
+    //</editor-fold>
+    //<editor-fold desc="Read Functions">
+    public String readSingleValue(int sheetNumber,String excelAddress){
+        int [] location = parseExcelAddress(excelAddress);
+        return readSingleValue(sheetNumber, location[0], location[1]);
+    }
+    private String readSingleValue(int sheetNumber,int rowStart,int columnStart){
+        DataFormatter df = new DataFormatter();
+        XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+        XSSFRow row = sheet.getRow(rowStart);
+        XSSFCell cell = row.getCell(columnStart);
+        
+        if(cell!=null){
+            return df.formatCellValue(cell);
+        }
+        return null;
+    }
+    public String readExcelLine(int sheetNumber,String skipMergedExcelColumns,String excelAddressStart,String lastColumnAddress){
+        //readExcelLine(0,"A,B,D","A,1","Z");
+        int startLocation [] = parseExcelAddress(excelAddressStart);
+        int [] skippedColumns = parseExcelColumns(skipMergedExcelColumns);
+        int lastColumn = lastColumnAddress==null || lastColumnAddress.length()<=0? -1 : getLetterValueAdvanced(lastColumnAddress.toLowerCase());
+        return readExcelLine(sheetNumber, skippedColumns, startLocation[0], startLocation[1], lastColumn);
+    }
+    private String readExcelLine(int sheetNumber,int [] skipExcelColumns,int rowStart,int columnStart,int columnEnd){
+        String cLine = "";
+        XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+        DataFormatter df = new DataFormatter();
+        
+        if(sheet == null){
+            sheet = workbook.createSheet("SHEET_"+(sheetNumber+1));
+        }
+        
+        XSSFRow row = null;
+        XSSFCell cell = null;
+        row = sheet.getRow(rowStart);
+        int lastColumn = columnEnd!=-1?columnEnd+1 : row.getLastCellNum();    //Put -1 on columnEnd if you want to get until the last column, else specify
+        
+        for (int n = columnStart; n < lastColumn; n++) {
+            if(!isMergedCellIndex(n, skipExcelColumns)){
+                cell = row.getCell(n);
+                if(cell != null){
+                    cLine+=df.formatCellValue(cell)+"@@";
+                }else{
+                    cLine+=" @@";
+                }
+            }
+        }
+        
+        return cLine;
+    }
+    public String [] readRegion(int sheetNumber,String skipMergedExcelColumns,String excelAddressStart,String excelAddressEnd){
+        int [] startLoc = parseExcelAddress(excelAddressStart);
+        int [] endLoc = parseExcelAddress(excelAddressEnd);
+        int [] columnsToSkip = parseExcelColumns(skipMergedExcelColumns);
+        return readRegion(sheetNumber, columnsToSkip, startLoc[0], startLoc[1], endLoc[0], endLoc[1]);
+    }
+    private String [] readRegion(int sheetNumber,int [] skipExcelColumns,int row1,int column1,int row2,int column2){
+        int rowCount = row2+1;
+        String [] values = new String [rowCount];
+        String cLine;
+        for (int n = row1; n < rowCount; n++) {
+            cLine = readExcelLine(sheetNumber, skipExcelColumns, n, column1, column2);
+            values[n] = cLine;
+        }
+        return values;
     }
     //</editor-fold>
     //<editor-fold desc="Write Functions">
@@ -178,7 +247,7 @@ public class myFunctions {
             int pictureIndex = workbook.addPicture(bytes, XSSFWorkbook.PICTURE_TYPE_PNG);
             inpStream.close();
             
-            System.err.println("Picture Index: "+pictureIndex);
+            //System.err.println("Picture Index: "+pictureIndex);
             
             if (bytes == null) {
                 System.err.println("Bytes are null");
@@ -282,7 +351,7 @@ public class myFunctions {
     }
     private int [] parseExcelColumns(String excelColumnAddress){
         // Adresses must be in a format of E.G. ( A,B,D,E,G ) in ascending order
-        if(excelColumnAddress == null){
+        if(excelColumnAddress == null || excelColumnAddress.length()<=0){
             return null;
         }
         
@@ -291,7 +360,7 @@ public class myFunctions {
         
         for (int n = 0; n < indeces.length; n++) {
             indeces[n] = getLetterValueAdvanced(String.valueOf(letters[n].charAt(0)) );
-            System.err.println("Skipping column: "+letters[n]+"="+indeces[n]);
+            //System.err.println("Skipping column: "+letters[n]+"="+indeces[n]);
         }
         
         return indeces;
@@ -338,7 +407,7 @@ public class myFunctions {
                 currentValue += getLetterValue(letterToSearch);
             }
         }
-        System.err.println("Advanced Value: "+currentValue);
+        //System.err.println("Advanced Value: "+currentValue);
         return currentValue;
     }
     private void removeSheetsAt(int sheetIndexInOrder []){
