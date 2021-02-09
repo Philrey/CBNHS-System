@@ -42,7 +42,7 @@ public class dashBoard extends javax.swing.JFrame {
     myFunctions my;
     
     public dashBoard() {
-        my = new myFunctions();
+        my = new myFunctions(false);
         initComponents();
         
         lbLoggedInUser.setText("Welcome "+myVariables.getUserLoggedInName()+" ("+myVariables.getAccessLevelName(-1)+")");
@@ -56,6 +56,9 @@ public class dashBoard extends javax.swing.JFrame {
         setScrollSpeeds();
         
         loadYearDropDowns(1);
+        
+        myVariables.setProgressBar(jpbProgressBar);
+        myVariables.setLbLoadingMessage(lbProgressMessage);
         
         lbSchoolName.setText(myVariables.getSchoolName() + " Registration System");
         lbSchoolAddress.setText(myVariables.getSchoolAddress());
@@ -403,6 +406,16 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(studentTable);
+        if (studentTable.getColumnModel().getColumnCount() > 0) {
+            studentTable.getColumnModel().getColumn(0).setHeaderValue("ID (H)");
+            studentTable.getColumnModel().getColumn(1).setPreferredWidth(120);
+            studentTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+            studentTable.getColumnModel().getColumn(3).setPreferredWidth(150);
+            studentTable.getColumnModel().getColumn(4).setPreferredWidth(150);
+            studentTable.getColumnModel().getColumn(5).setPreferredWidth(100);
+            studentTable.getColumnModel().getColumn(6).setPreferredWidth(120);
+            studentTable.getColumnModel().getColumn(7).setPreferredWidth(100);
+        }
 
         tfSearchStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3122,17 +3135,17 @@ public class dashBoard extends javax.swing.JFrame {
 
         importTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID (H)", "LRN", "Last Name", "First Name", "Middle Name", "Gender", "Initial Gen. Ave.", "Current Gr. Lvl"
+                "LRN", "First Name", "Middle Name", "Last Name", "Gender", "Birthday", "Age", "Birthplace", "Mother Tongue", "IP", "Religion", "House No.", "Brgy.", "Municipality", "Province", "Father's Name", "Mother's Name", "Guardian's Name", "Contact", "Remarks", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -3147,10 +3160,35 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
         jScrollPane18.setViewportView(importTable);
+        if (importTable.getColumnModel().getColumnCount() > 0) {
+            importTable.getColumnModel().getColumn(0).setPreferredWidth(120);
+            importTable.getColumnModel().getColumn(1).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(3).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(4).setPreferredWidth(100);
+            importTable.getColumnModel().getColumn(5).setPreferredWidth(120);
+            importTable.getColumnModel().getColumn(6).setPreferredWidth(100);
+            importTable.getColumnModel().getColumn(7).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(8).setPreferredWidth(100);
+            importTable.getColumnModel().getColumn(9).setPreferredWidth(120);
+            importTable.getColumnModel().getColumn(10).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(11).setPreferredWidth(100);
+            importTable.getColumnModel().getColumn(12).setPreferredWidth(100);
+            importTable.getColumnModel().getColumn(13).setPreferredWidth(100);
+            importTable.getColumnModel().getColumn(14).setPreferredWidth(100);
+            importTable.getColumnModel().getColumn(15).setPreferredWidth(200);
+            importTable.getColumnModel().getColumn(16).setPreferredWidth(200);
+            importTable.getColumnModel().getColumn(17).setPreferredWidth(200);
+            importTable.getColumnModel().getColumn(18).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(19).setPreferredWidth(200);
+        }
 
         jLabel95.setText("Select Excel File Format");
 
-        jcbFileFormats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HiSRMS-SF1 JHS (Default)", "LIS-SF1 JHS", "LIS-SF1 SHS", " " }));
+        jcbFileFormats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HiSRMS-SF1 JHS (Default)", "LIS-SF1 JHS", "LIS-SF1 SHS" }));
+        jcbFileFormats.setSelectedIndex(1);
+
+        tfFileLocation.setEditable(false);
 
         btnOpenFileExplorer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_opened_folder_16px.png"))); // NOI18N
         btnOpenFileExplorer.setText("Select File");
@@ -3163,11 +3201,13 @@ public class dashBoard extends javax.swing.JFrame {
         btnRegisterStudents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_add_user_group_woman_man_16px.png"))); // NOI18N
         btnRegisterStudents.setText("Register Students");
 
-        btnCancelImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_cancel_16px.png"))); // NOI18N
+        btnCancelImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_close_window_50px.png"))); // NOI18N
+        btnCancelImport.setEnabled(false);
 
         jpbProgressBar.setBackground(new java.awt.Color(255, 255, 255));
         jpbProgressBar.setMinimum(5);
         jpbProgressBar.setToolTipText("");
+        jpbProgressBar.setValue(0);
 
         lbProgressMessage.setText("Select a file first...");
 
@@ -3189,12 +3229,12 @@ public class dashBoard extends javax.swing.JFrame {
                         .addComponent(jLabel95)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(importStudentsTabLayout.createSequentialGroup()
-                        .addComponent(jpbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jpbProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbProgressMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelImport, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbProgressMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelImport, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRegisterStudents)))
                 .addContainerGap())
         );
@@ -3209,14 +3249,16 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(tfFileLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnOpenFileExplorer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lbProgressMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRegisterStudents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(btnCancelImport, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpbProgressBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegisterStudents, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnCancelImport, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, importStudentsTabLayout.createSequentialGroup()
+                            .addComponent(jpbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lbProgressMessage))))
                 .addContainerGap())
         );
 
@@ -3237,7 +3279,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtbImportTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE))
+                .addComponent(jtbImportTabs))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -4622,8 +4664,12 @@ public class dashBoard extends javax.swing.JFrame {
     
     private void showFileChooserDialog(String fileTypeTitle,String extentionName){
         fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         
+        if(tfFileLocation.getText().length()>0){
+            fileChooser.setCurrentDirectory(new File(tfFileLocation.getText()));
+        }else{
+            fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        }
         filter = new FileNameExtensionFilter(fileTypeTitle, new String [] {extentionName});
         
         fileChooser.setFileFilter(filter);
@@ -4645,7 +4691,17 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void processFileSelected(){
         tfFileLocation.setText(fileChooser.getSelectedFile().toString());
+        File file = fileChooser.getSelectedFile();
         
+        
+        my.runMainThread(
+                0,new JTable[]{importTable},
+                new String[]{String.valueOf(jcbFileFormats.getSelectedIndex())},
+                new JTextField[]{tfFileLocation},
+                new JButton[]{btnOpenFileExplorer,btnCancelImport,btnRegisterStudents},
+                null,
+                new File[]{file}
+        );
     }
     
     private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable){

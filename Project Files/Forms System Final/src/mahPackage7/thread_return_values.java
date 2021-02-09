@@ -126,7 +126,8 @@ public class thread_return_values extends SwingWorker<Integer, Object>{
                             if(!toPrintFormat){
                                 result[n] = my.toNameFormat(result[n], combineColumns);  
                             }else{
-                                result[n] = my.toNameFormatPrintedName(result[n], combineColumns,true);
+                                result[n] = my.toNameFormatFull2(result[n], combineColumns);
+                                //result[n] = my.toNameFormatPrintedName(result[n], combineColumns,true);
                             }
                             
                         }else{

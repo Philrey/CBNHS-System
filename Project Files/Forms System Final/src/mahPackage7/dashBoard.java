@@ -5282,7 +5282,7 @@ public class dashBoard extends javax.swing.JFrame {
                 "WHERE sectionId='"+sectionId+"'", 
                 sf1StudentsTable, 10, 
                 new int [] {4,5,6},
-                new boolean[]{true,false}, 
+                new boolean[]{true,true}, 
                 null,null,null
         );
         my.runSecondaryThread(0, true, 

@@ -143,11 +143,12 @@ public class myFunctions {
         return readRegion(sheetNumber, columnsToSkip, startLoc[0], startLoc[1], endLoc[0], endLoc[1]);
     }
     private String [] readRegion(int sheetNumber,int [] skipExcelColumns,int row1,int column1,int row2,int column2){
-        int rowCount = row2+1;
+        int rowCount = (row2-row1)+1;
         String [] values = new String [rowCount];
         String cLine;
-        for (int n = row1; n < rowCount; n++) {
-            cLine = readExcelLine(sheetNumber, skipExcelColumns, n, column1, column2);
+        for (int n = 0; n < rowCount; n++) {
+            cLine = readExcelLine(sheetNumber, skipExcelColumns, n+row1, column1, column2);
+            //System.err.println("Line: "+cLine);
             values[n] = cLine;
         }
         return values;

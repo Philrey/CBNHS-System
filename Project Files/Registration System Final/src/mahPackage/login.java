@@ -25,7 +25,7 @@ public class login extends javax.swing.JFrame {
      * Creates new form login
      */
     public login() {
-        my = new myFunctions();
+        my = new myFunctions(false);
         initComponents();
         loadColoredButtons();
         loadLabels();

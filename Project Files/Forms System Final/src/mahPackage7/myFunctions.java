@@ -1408,6 +1408,60 @@ public class myFunctions {
         
         return finalString;
     }
+    protected String toNameFormatFull2(String line,int [] columnIndex){
+        String [] temp = line.split("@@");
+        String finalString = "";
+        String extentionName = "";
+        
+        for(int n=0;n<temp.length;n++){
+            boolean isFound = false;
+            boolean isLast = false;
+            for(int x=0;x<columnIndex.length;x++){
+                if(x==columnIndex.length-1){
+                    isLast = true;
+                }
+                if(columnIndex[x] == n){
+                    isFound = true;
+                    break;
+                }
+            }
+            if(!isFound){
+                finalString+=temp[n]+"@@";
+            }else{
+                if(!isLast){
+                    //Check For Extentions & take 2nd String as Extention Regardless
+                    if(temp[n].contains(",")){
+                        try {
+                            String tempName []= temp[n].split(",");
+                            temp[n] = tempName[0];
+                            extentionName = tempName[1].toUpperCase();
+                        } catch (Exception e) {
+                            System.err.println("Changing Extention Error @ toNameFormat() in myFunctions.java");
+                        }
+                    }
+                    finalString+=temp[n].toUpperCase()+", ";
+                }else{
+                    if(temp[n].length() > 1){
+                        finalString+=temp[n].toUpperCase().trim();
+                    }else{
+                        //Remove comma
+                        finalString = finalString.substring(0, finalString.length()-2);
+                    }
+                    //Add Extention at the End
+                    if(extentionName.trim().length()>0){
+                        finalString+=", "+extentionName.trim();
+                    }
+                }
+                if(isLast){
+                    finalString+="@@";
+                }
+            }
+            
+            
+        }
+        
+        return finalString;
+    }
     protected String combineColumns(String line,int [] columnIndex){
         String [] temp = line.split("@@");
         String finalString = "";

@@ -105,7 +105,7 @@ public class thread_loadSf1Details extends SwingWorker<String, Object>{
             String remarksString = tableName.getValueAt(n, 21).toString();
             String gender = tableName.getValueAt(n, 5).toString();
             
-            if(gender.contains("female")){
+            if(gender.contains("Female")){
                 females++;
             }else{
                 males++;

@@ -104,41 +104,41 @@
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title value="ID (H)"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -4283,7 +4283,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jtbImportTabs" pref="533" max="32767" attributes="0"/>
+                  <Component id="jtbImportTabs" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -4367,12 +4367,13 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jpbProgressBar" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jpbProgressBar" max="32767" attributes="0"/>
+                                      <Component id="lbProgressMessage" min="-2" pref="336" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="btnCancelImport" min="-2" pref="26" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lbProgressMessage" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnCancelImport" min="-2" pref="36" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnRegisterStudents" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -4392,15 +4393,18 @@
                               <Component id="btnOpenFileExplorer" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane18" pref="401" max="32767" attributes="0"/>
+                          <Component id="jScrollPane18" pref="318" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lbProgressMessage" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="btnRegisterStudents" alignment="3" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnRegisterStudents" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="btnCancelImport" alignment="0" pref="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jpbProgressBar" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="lbProgressMessage" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <Component id="btnCancelImport" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jpbProgressBar" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -4418,51 +4422,129 @@
                     <Component class="javax.swing.JTable" name="importTable">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="8" rowCount="4">
-                            <Column editable="false" title="ID (H)" type="java.lang.Object"/>
+                          <Table columnCount="21" rowCount="4">
                             <Column editable="false" title="LRN" type="java.lang.Object"/>
-                            <Column editable="false" title="Last Name" type="java.lang.Object"/>
                             <Column editable="false" title="First Name" type="java.lang.Object"/>
                             <Column editable="false" title="Middle Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Last Name" type="java.lang.Object"/>
                             <Column editable="false" title="Gender" type="java.lang.Object"/>
-                            <Column editable="false" title="Initial Gen. Ave." type="java.lang.Object"/>
-                            <Column editable="false" title="Current Gr. Lvl" type="java.lang.Object"/>
+                            <Column editable="false" title="Birthday" type="java.lang.Object"/>
+                            <Column editable="false" title="Age" type="java.lang.Object"/>
+                            <Column editable="false" title="Birthplace" type="java.lang.Object"/>
+                            <Column editable="false" title="Mother Tongue" type="java.lang.Object"/>
+                            <Column editable="false" title="IP" type="java.lang.Object"/>
+                            <Column editable="false" title="Religion" type="java.lang.Object"/>
+                            <Column editable="false" title="House No." type="java.lang.Object"/>
+                            <Column editable="false" title="Brgy." type="java.lang.Object"/>
+                            <Column editable="false" title="Municipality" type="java.lang.Object"/>
+                            <Column editable="false" title="Province" type="java.lang.Object"/>
+                            <Column editable="false" title="Father&apos;s Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Mother&apos;s Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Guardian&apos;s Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Contact" type="java.lang.Object"/>
+                            <Column editable="false" title="Remarks" type="java.lang.Object"/>
+                            <Column editable="false" title="Status" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="autoResizeMode" type="int" value="0"/>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -4492,19 +4574,22 @@
                 <Component class="javax.swing.JComboBox" name="jcbFileFormats">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
+                      <StringArray count="3">
                         <StringItem index="0" value="HiSRMS-SF1 JHS (Default)"/>
                         <StringItem index="1" value="LIS-SF1 JHS"/>
                         <StringItem index="2" value="LIS-SF1 SHS"/>
-                        <StringItem index="3" value=" "/>
                       </StringArray>
                     </Property>
+                    <Property name="selectedIndex" type="int" value="1"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfFileLocation">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnOpenFileExplorer">
                   <Properties>
@@ -4528,8 +4613,9 @@
                 <Component class="javax.swing.JButton" name="btnCancelImport">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/mahPackage/icons/icons8_cancel_16px.png"/>
+                      <Image iconType="3" name="/mahPackage/icons/icons8_close_window_50px.png"/>
                     </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JProgressBar" name="jpbProgressBar">
@@ -4539,6 +4625,7 @@
                     </Property>
                     <Property name="minimum" type="int" value="5"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
+                    <Property name="value" type="int" value="0"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbProgressMessage">
