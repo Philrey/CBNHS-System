@@ -11,11 +11,14 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,6 +26,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
@@ -342,6 +347,21 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel61 = new javax.swing.JLabel();
         addStudentGenderGroup = new javax.swing.ButtonGroup();
         editStudentGenderGroup = new javax.swing.ButtonGroup();
+        importDialog = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
+        jLabel94 = new javax.swing.JLabel();
+        jtbImportTabs = new javax.swing.JTabbedPane();
+        importStudentsTab = new javax.swing.JPanel();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        importTable = new javax.swing.JTable();
+        jLabel95 = new javax.swing.JLabel();
+        jcbFileFormats = new javax.swing.JComboBox<>();
+        tfFileLocation = new javax.swing.JTextField();
+        btnOpenFileExplorer = new javax.swing.JButton();
+        btnRegisterStudents = new javax.swing.JButton();
+        btnCancelImport = new javax.swing.JButton();
+        jpbProgressBar = new javax.swing.JProgressBar();
+        lbProgressMessage = new javax.swing.JLabel();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -383,10 +403,6 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(studentTable);
-        if (studentTable.getColumnModel().getColumnCount() > 0) {
-            studentTable.getColumnModel().getColumn(0).setPreferredWidth(10);
-            studentTable.getColumnModel().getColumn(5).setPreferredWidth(20);
-        }
 
         tfSearchStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3077,6 +3093,153 @@ public class dashBoard extends javax.swing.JFrame {
             .addComponent(usersPersonalInfoTabNew)
         );
 
+        importDialog.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel17.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel94.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel94.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel94.setText("Import From DepEd LIS");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel94)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel94)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        importStudentsTab.setBackground(new java.awt.Color(255, 255, 204));
+
+        importTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID (H)", "LRN", "Last Name", "First Name", "Middle Name", "Gender", "Initial Gen. Ave.", "Current Gr. Lvl"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        importTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        importTable.getTableHeader().setReorderingAllowed(false);
+        importTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                importTableloadStudentHandler(evt);
+            }
+        });
+        jScrollPane18.setViewportView(importTable);
+
+        jLabel95.setText("Select Excel File Format");
+
+        jcbFileFormats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HiSRMS-SF1 JHS (Default)", "LIS-SF1 JHS", "LIS-SF1 SHS", " " }));
+
+        btnOpenFileExplorer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_opened_folder_16px.png"))); // NOI18N
+        btnOpenFileExplorer.setText("Select File");
+        btnOpenFileExplorer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpenFileExplorerActionPerformed(evt);
+            }
+        });
+
+        btnRegisterStudents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_add_user_group_woman_man_16px.png"))); // NOI18N
+        btnRegisterStudents.setText("Register Students");
+
+        btnCancelImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_cancel_16px.png"))); // NOI18N
+
+        jpbProgressBar.setBackground(new java.awt.Color(255, 255, 255));
+        jpbProgressBar.setMinimum(5);
+        jpbProgressBar.setToolTipText("");
+
+        lbProgressMessage.setText("Select a file first...");
+
+        javax.swing.GroupLayout importStudentsTabLayout = new javax.swing.GroupLayout(importStudentsTab);
+        importStudentsTab.setLayout(importStudentsTabLayout);
+        importStudentsTabLayout.setHorizontalGroup(
+            importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(importStudentsTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+                    .addGroup(importStudentsTabLayout.createSequentialGroup()
+                        .addComponent(jcbFileFormats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfFileLocation)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnOpenFileExplorer))
+                    .addGroup(importStudentsTabLayout.createSequentialGroup()
+                        .addComponent(jLabel95)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(importStudentsTabLayout.createSequentialGroup()
+                        .addComponent(jpbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelImport, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbProgressMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRegisterStudents)))
+                .addContainerGap())
+        );
+        importStudentsTabLayout.setVerticalGroup(
+            importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, importStudentsTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel95)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcbFileFormats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfFileLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOpenFileExplorer))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbProgressMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRegisterStudents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCancelImport, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpbProgressBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jtbImportTabs.addTab("Import Students", importStudentsTab);
+
+        javax.swing.GroupLayout importDialogLayout = new javax.swing.GroupLayout(importDialog);
+        importDialog.setLayout(importDialogLayout);
+        importDialogLayout.setHorizontalGroup(
+            importDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(importDialogLayout.createSequentialGroup()
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jtbImportTabs)
+        );
+        importDialogLayout.setVerticalGroup(
+            importDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(importDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtbImportTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Dashboard");
         setIconImage(my.getImgIcn(myVariables.getRegistrationWindowIcon()).getImage());
@@ -3106,8 +3269,13 @@ public class dashBoard extends javax.swing.JFrame {
         lbLoggedInUser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbLoggedInUser.setText("Welcome USER_NAME, ACCESS_LEVEL");
 
-        btnImportFromLis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_upload_16px.png"))); // NOI18N
-        btnImportFromLis.setText("Import from DepEd LIS");
+        btnImportFromLis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_upward_arrow_16px.png"))); // NOI18N
+        btnImportFromLis.setText("Import from LIS");
+        btnImportFromLis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImportFromLisActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
@@ -4400,6 +4568,18 @@ public class dashBoard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfSchoolAddress1addNewStudentHandler
 
+    private void btnImportFromLisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportFromLisActionPerformed
+        showCustomDialog("Import Files", importDialog, false, 600, 500, true);
+    }//GEN-LAST:event_btnImportFromLisActionPerformed
+
+    private void importTableloadStudentHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importTableloadStudentHandler
+        // TODO add your handling code here:
+    }//GEN-LAST:event_importTableloadStudentHandler
+
+    private void btnOpenFileExplorerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenFileExplorerActionPerformed
+        showFileChooserDialog("Excel Files","xlsx");
+    }//GEN-LAST:event_btnOpenFileExplorerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -4435,6 +4615,79 @@ public class dashBoard extends javax.swing.JFrame {
         });
     }
     //<editor-fold desc="Custom Functions">
+    JDialog dialog;
+    JDialog seconDaryDialog;
+    JFileChooser fileChooser;
+    FileFilter filter;
+    
+    private void showFileChooserDialog(String fileTypeTitle,String extentionName){
+        fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        
+        filter = new FileNameExtensionFilter(fileTypeTitle, new String [] {extentionName});
+        
+        fileChooser.setFileFilter(filter);
+        
+        int result = fileChooser.showOpenDialog(importDialog);
+        
+        System.err.println(result);
+        
+        switch(result){
+            case JFileChooser.APPROVE_OPTION:{
+                //Process file here
+                processFileSelected();
+                break;
+            }default:{
+                System.err.println("No File Selected");
+                break;
+            }
+        }
+    }
+    private void processFileSelected(){
+        tfFileLocation.setText(fileChooser.getSelectedFile().toString());
+        
+    }
+    
+    private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable){
+        if (dialog == null || dialog.isVisible() || dialog.isActive()){
+            closeCustomDialog();
+        }
+        dialog = new JDialog(this);
+        dialog.setTitle(title);
+        dialog.add(customPanel);
+        dialog.setModal(isModal);
+        dialog.setSize(width, height);
+        dialog.setResizable(isResizable);
+        
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+    }
+    private void closeCustomDialog(){
+        if(dialog != null){
+            dialog.dispose();
+        }else{
+            System.err.println("Dialog is null...skipping");
+        }
+    }
+    //Use only when making two jdialogs overlap
+    private void showSecondaryCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable){
+        seconDaryDialog = new JDialog(this);
+        seconDaryDialog.setTitle(title);
+        seconDaryDialog.add(customPanel);
+        seconDaryDialog.setModal(isModal);
+        seconDaryDialog.setSize(width, height);
+        seconDaryDialog.setResizable(isResizable);
+        
+        seconDaryDialog.setLocationRelativeTo(this);
+        seconDaryDialog.setVisible(true);
+    }
+    private void closeSecondaryCustomDialog(){
+        if(seconDaryDialog != null){
+            seconDaryDialog.dispose();
+        }else{
+            System.err.println("Dialog is null...skipping");
+        }
+    }
     private void openWindow(int index){
         JFrame windows [] = {
             this,
@@ -4588,7 +4841,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         JComboBox [] dropDowns = {
             jcbAccessLevel,jcbAccessLevel1,jcbGender1,jcbGender2,jcbGradeLevel,
-            jcbGradeLevel1,jcbGradeLevel2,jcbGradeLevel3,
+            jcbGradeLevel1,jcbGradeLevel2,jcbGradeLevel3,jcbFileFormats,
         };
         int startingYear = 2019;
         
@@ -4657,6 +4910,8 @@ public class dashBoard extends javax.swing.JFrame {
             usersTable1,
             managedSubjectTable,
             searchedsubjectTable1,
+            
+            importTable,
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
         //customHeaders(sf1SectionTable, new int []{0,1,2,3}, Color.RED, Color.WHITE, new Font("Comic Sans MS", Font.BOLD, 12), true);
@@ -4687,6 +4942,7 @@ public class dashBoard extends javax.swing.JFrame {
         mainTab.add("User's Personal Info",usersPersonalInfoTab);
         
         mainTab.setFont(myVariables.TAB_HEADER_FONT);
+        jtbImportTabs.setFont(myVariables.TAB_HEADER_FONT);
         
         my.remove_multiple_tabs(jTabbedPane2, new int [] {1});
         my.remove_multiple_tabs(subjectsTab, new int [] {1});
@@ -4753,6 +5009,10 @@ public class dashBoard extends javax.swing.JFrame {
             btnDeleteManagedSubject,
             btnSaveManagedSubjectChanges,
             btnSearch7,
+            //Import From LIS
+            btnOpenFileExplorer,
+            btnCancelImport,
+            btnRegisterStudents,
         };
         
         JButton lightButtons [] = {
@@ -4783,7 +5043,7 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
-            jLabel1,jLabel2,jLabel17,jLabel39,jLabel46,jLabel42,jLabel51,jLabel44,jLabel64,jLabel78,
+            jLabel1,jLabel2,jLabel17,jLabel39,jLabel46,jLabel42,jLabel51,jLabel44,jLabel64,jLabel78,jLabel94,
         };
         JLabel labels [] = {
             lbSearchResult,lbSearchResult1,lbSearchResult2,lbSearchResult3,lbSearchResult4,lbSearchResult5
@@ -4799,7 +5059,7 @@ public class dashBoard extends javax.swing.JFrame {
             jLabel31,jLabel32,jLabel34,jLabel35,jLabel38,jLabel40,jLabel41,jLabel45,jLabel48,jLabel49,jLabel50,jLabel43,
             jLabel47,jLabel52,jLabel53,jLabel56,jLabel59,jLabel60,jLabel62,jLabel65,jLabel71,jLabel66,jLabel68,
             jLabel67,jLabel69,jLabel76,jLabel77,jLabel70,jLabel79,jLabel80,jLabel99,jLabel81,jLabel84,jLabel85,
-            jLabel86,jLabel36,jLabel37,jLabel83,jLabel87,jLabel90,jLabel91,
+            jLabel86,jLabel36,jLabel37,jLabel83,jLabel87,jLabel90,jLabel91,jLabel95,lbProgressMessage,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -4846,6 +5106,8 @@ public class dashBoard extends javax.swing.JFrame {
             //User's Personal Info
             tfEmployeeNumber,tfFundSource,tfPosition,tfNatureOfAppointment,
             tfDegree,tfMajor,tfMinor,
+            //Import Tab
+            tfFileLocation,
         };
         
         for(JTextField n : searchFields){
@@ -4871,11 +5133,14 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd3;
     private javax.swing.JButton btnAddManagedSubject;
     private javax.swing.JButton btnAddSubjectToList;
+    private javax.swing.JButton btnCancelImport;
     private javax.swing.JButton btnDeleteManagedSubject;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnEdit1;
     private javax.swing.JButton btnEditAssignedSubject;
     private javax.swing.JButton btnImportFromLis;
+    private javax.swing.JButton btnOpenFileExplorer;
+    private javax.swing.JButton btnRegisterStudents;
     private javax.swing.JButton btnRemoveSubjectFromList;
     private javax.swing.JButton btnSaveChanges;
     private javax.swing.JButton btnSaveChanges1;
@@ -4898,6 +5163,9 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel editSubjectTab;
     private javax.swing.JPanel editUserTab;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JPanel importDialog;
+    private javax.swing.JPanel importStudentsTab;
+    private javax.swing.JTable importTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -4991,6 +5259,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel91;
     private javax.swing.JLabel jLabel92;
     private javax.swing.JLabel jLabel93;
+    private javax.swing.JLabel jLabel94;
+    private javax.swing.JLabel jLabel95;
     private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
@@ -5001,6 +5271,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -5017,6 +5288,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -5033,15 +5305,19 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JComboBox<String> jcbAccessLevel;
     private javax.swing.JComboBox<String> jcbAccessLevel1;
+    private javax.swing.JComboBox<String> jcbFileFormats;
     private javax.swing.JComboBox<String> jcbGender1;
     private javax.swing.JComboBox<String> jcbGender2;
     private javax.swing.JComboBox<String> jcbGradeLevel;
     private javax.swing.JComboBox<String> jcbGradeLevel1;
     private javax.swing.JComboBox<String> jcbGradeLevel2;
     private javax.swing.JComboBox<String> jcbGradeLevel3;
+    private javax.swing.JProgressBar jpbProgressBar;
+    private javax.swing.JTabbedPane jtbImportTabs;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel lbLoadId;
     private javax.swing.JLabel lbLoggedInUser;
+    private javax.swing.JLabel lbProgressMessage;
     private javax.swing.JLabel lbSchoolAddress;
     private javax.swing.JLabel lbSchoolName;
     private javax.swing.JLabel lbSearchResult;
@@ -5092,6 +5368,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTextField tfEmployeeNumber;
     private javax.swing.JTextField tfEthnicGroup;
     private javax.swing.JTextField tfFathersName;
+    private javax.swing.JTextField tfFileLocation;
     private javax.swing.JTextField tfFirstName1;
     private javax.swing.JTextField tfFname;
     private javax.swing.JTextField tfFname1;
