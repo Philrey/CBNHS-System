@@ -410,8 +410,10 @@ public class dashBoard extends javax.swing.JFrame {
             studentTable.getColumnModel().getColumn(0).setHeaderValue("ID (H)");
             studentTable.getColumnModel().getColumn(1).setPreferredWidth(120);
             studentTable.getColumnModel().getColumn(2).setPreferredWidth(150);
-            studentTable.getColumnModel().getColumn(3).setPreferredWidth(150);
+            studentTable.getColumnModel().getColumn(2).setHeaderValue("Last Name");
+            studentTable.getColumnModel().getColumn(3).setPreferredWidth(300);
             studentTable.getColumnModel().getColumn(4).setPreferredWidth(150);
+            studentTable.getColumnModel().getColumn(4).setHeaderValue("Middle Name");
             studentTable.getColumnModel().getColumn(5).setPreferredWidth(100);
             studentTable.getColumnModel().getColumn(6).setPreferredWidth(120);
             studentTable.getColumnModel().getColumn(7).setPreferredWidth(100);
@@ -3135,17 +3137,17 @@ public class dashBoard extends javax.swing.JFrame {
 
         importTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "LRN", "First Name", "Middle Name", "Last Name", "Gender", "Birthday", "Age", "Birthplace", "Mother Tongue", "IP", "Religion", "House No.", "Brgy.", "Municipality", "Province", "Father's Name", "Mother's Name", "Guardian's Name", "Contact", "Remarks", "Status"
+                "LRN", "Name", "Gender", "Birthday", "Age", "Birthplace", "Mother Tongue", "IP", "Religion", "House No.", "Brgy.", "Municipality", "Province", "Father's Name", "Mother's Name", "Guardian's Name", "Relationship", "Contact", "Remarks", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -3162,25 +3164,25 @@ public class dashBoard extends javax.swing.JFrame {
         jScrollPane18.setViewportView(importTable);
         if (importTable.getColumnModel().getColumnCount() > 0) {
             importTable.getColumnModel().getColumn(0).setPreferredWidth(120);
-            importTable.getColumnModel().getColumn(1).setPreferredWidth(150);
-            importTable.getColumnModel().getColumn(2).setPreferredWidth(150);
-            importTable.getColumnModel().getColumn(3).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(1).setPreferredWidth(300);
+            importTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+            importTable.getColumnModel().getColumn(3).setPreferredWidth(120);
             importTable.getColumnModel().getColumn(4).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(5).setPreferredWidth(120);
+            importTable.getColumnModel().getColumn(5).setPreferredWidth(150);
             importTable.getColumnModel().getColumn(6).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(7).setPreferredWidth(150);
-            importTable.getColumnModel().getColumn(8).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(9).setPreferredWidth(120);
-            importTable.getColumnModel().getColumn(10).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(7).setPreferredWidth(120);
+            importTable.getColumnModel().getColumn(8).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(9).setPreferredWidth(100);
+            importTable.getColumnModel().getColumn(10).setPreferredWidth(100);
             importTable.getColumnModel().getColumn(11).setPreferredWidth(100);
             importTable.getColumnModel().getColumn(12).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(13).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(14).setPreferredWidth(100);
+            importTable.getColumnModel().getColumn(13).setPreferredWidth(200);
+            importTable.getColumnModel().getColumn(14).setPreferredWidth(200);
             importTable.getColumnModel().getColumn(15).setPreferredWidth(200);
-            importTable.getColumnModel().getColumn(16).setPreferredWidth(200);
-            importTable.getColumnModel().getColumn(17).setPreferredWidth(200);
-            importTable.getColumnModel().getColumn(18).setPreferredWidth(150);
-            importTable.getColumnModel().getColumn(19).setPreferredWidth(200);
+            importTable.getColumnModel().getColumn(16).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(17).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(18).setPreferredWidth(200);
+            importTable.getColumnModel().getColumn(19).setPreferredWidth(250);
         }
 
         jLabel95.setText("Select Excel File Format");
@@ -3201,7 +3203,7 @@ public class dashBoard extends javax.swing.JFrame {
         btnRegisterStudents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_add_user_group_woman_man_16px.png"))); // NOI18N
         btnRegisterStudents.setText("Register Students");
 
-        btnCancelImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_close_window_50px.png"))); // NOI18N
+        btnCancelImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_close_window_25px.png"))); // NOI18N
         btnCancelImport.setEnabled(false);
 
         jpbProgressBar.setBackground(new java.awt.Color(255, 255, 255));
@@ -3233,7 +3235,7 @@ public class dashBoard extends javax.swing.JFrame {
                             .addComponent(jpbProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbProgressMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelImport, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelImport, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRegisterStudents)))
                 .addContainerGap())
@@ -3253,12 +3255,11 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegisterStudents, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnCancelImport, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, importStudentsTabLayout.createSequentialGroup()
-                            .addComponent(jpbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lbProgressMessage))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, importStudentsTabLayout.createSequentialGroup()
+                        .addComponent(jpbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbProgressMessage))
+                    .addComponent(btnCancelImport, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -5066,13 +5067,13 @@ public class dashBoard extends javax.swing.JFrame {
             btnSaveManagedSubjectChanges,
             btnSearch7,
             //Import From LIS
-            btnOpenFileExplorer,
-            btnCancelImport,
+            //btnOpenFileExplorer,
             btnRegisterStudents,
         };
         
         JButton lightButtons [] = {
             btnImportFromLis,
+            btnOpenFileExplorer,
         };
         Cursor tempC;
         for(int n=0;n<buttons.length;n++){

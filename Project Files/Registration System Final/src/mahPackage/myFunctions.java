@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -1387,6 +1388,47 @@ public class myFunctions {
         }
         
         return finalString;
+    }
+    protected String capitalizeName(String nameFull){
+        String finalString = "";
+        String names [] = nameFull.split(",");
+        
+        for (int n = 0; n < names.length; n++) {
+            //Separate Compound Name
+            String temp[] = names[n].split(" ");
+            
+            if(temp.length > 1){
+                for (int x = 0; x < temp.length; x++) {
+                    finalString+=StringUtils.capitalize(temp[x]);
+                    if(x<temp.length-1){
+                        finalString+=" ";
+                    }
+                }
+            }else{
+                finalString+=StringUtils.capitalize(names[n].trim());
+            }
+            if(n<names.length-1){
+                finalString+=",";
+            }
+        }
+        return finalString;
+    }
+    protected String explodeNameFormat(String line,int columnIndex){
+        String value = getValueAtColumn(line, columnIndex);
+        String [] values = value.split(",");
+        
+        String finalString = "";
+        for (int n = 0; n < 4; n++) {
+            try {
+                finalString+=StringUtils.capitalize(values[n]);
+            } catch (Exception e) {
+                finalString+=" ";
+            }
+            if(n != 4-1){
+                finalString+="@@";
+            }
+        }
+        return setValueAtColumn(line, columnIndex, finalString);
     }
     protected String toNameFormat(String line,int [] columnIndex){
         String [] temp = line.split("@@");

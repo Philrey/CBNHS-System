@@ -16,6 +16,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -98,15 +99,19 @@ public class thread_importSf1 extends SwingWorker<String, Object>{
         try {
             int rowCount = result.length;
             progressBar.setMaximum(rowCount);
+            String name = "";
             for(int n=0;n<rowCount;n++){
                 lbLoadingMessage.setText("Loading Data "+(n+1)+"/"+rowCount);
                 progressBar.setValue(n+1);
-                System.err.println(result[n]);
-                my.add_table_row(result[n], importTable);
+                
+                name = my.capitalizeName(my.getValueAtColumn(result[n], 1).toLowerCase());
+                result[n] = my.setValueAtColumn(result[n], 1, name);
+                my.add_table_row(result[n]+"Ready", importTable);
                 Thread.sleep(threadDelay);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return "Error Occured";
         }
         return "Import Thread Completed";
     }
