@@ -82,7 +82,7 @@ public class myVariables {
     private static final int [] usersPersonalInfoOrder = new int [] {5,7,8,9,6,3,4,1,2,0};
     private static final int [] studentsOrder = new int [] {8,6,0,2,9,4,1,3,5,10,7};
     private static final int [] gradesOrder = new int [] {4,0,5,8,1,6,3,7,2,9,10};
-    private static final int [] studentsPersonalInfoOrder = new int[] {14,10,12,16,8,17,4,11,3,5,6,0,9,15,2,7,13,1};
+    private static final int [] studentsPersonalInfoOrder = new int[] {13,9,11,15,16,4,10,3,5,6,0,8,14,2,7,12,1};
     private static final int [] subjectLoadsOrder = new int [] {0,3,2,1};
     private static final int [] sectionsOrder = new int [] {9,0,4,6,5,10,1,2,11,7,8,3};
     private static final int [] booksTemplatesOrder = new int [] {2,1,0,3};

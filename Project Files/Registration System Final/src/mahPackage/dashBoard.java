@@ -176,8 +176,6 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        tfBirthPlace = new javax.swing.JTextField();
         manageSubjectsTab = new javax.swing.JPanel();
         jSplitPane3 = new javax.swing.JSplitPane();
         left3 = new javax.swing.JPanel();
@@ -1155,7 +1153,7 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
 
-        jLabel18.setText("Birth Date");
+        jLabel18.setText("Birth Date (yyyy-mm-dd)");
 
         jLabel19.setText("Age");
 
@@ -1199,24 +1197,18 @@ public class dashBoard extends javax.swing.JFrame {
 
         jLabel35.setText("Contact number of Parent or Guardian");
 
-        jLabel38.setText("Birth Place");
-
-        tfBirthPlace.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                savePersonalInfoChangesHandler(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1229,33 +1221,29 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(tfBirthPlace, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfAge, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfBdate, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSaveChanges1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfContactNumber, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                            .addComponent(tfRelationship, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfGuardiansName, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfMothersName, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfFathersName, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfMunicipality, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfBarangay, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfHouseNumber, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfEthnicGroup, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfMotherTongue, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfReligion)
-                            .addComponent(jLabel30, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfProvince))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfAge)
+                            .addComponent(tfBdate)
+                            .addComponent(btnSaveChanges1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfContactNumber)
+                            .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                            .addComponent(tfRelationship)
+                            .addComponent(tfGuardiansName)
+                            .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfMothersName)
+                            .addComponent(tfFathersName)
+                            .addComponent(tfMunicipality)
+                            .addComponent(tfBarangay)
+                            .addComponent(tfHouseNumber)
+                            .addComponent(tfEthnicGroup)
+                            .addComponent(tfMotherTongue)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfReligion, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfProvince, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap())))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1273,10 +1261,6 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel38)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfBirthPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfMotherTongue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3547,27 +3531,26 @@ public class dashBoard extends javax.swing.JFrame {
                 }
             }
             
-            System.out.println(result[0]);
+            //System.out.println(result[0]);
             String [] info = result[0].split("@@");
             
             tfBdate.setText(info[2]);
             tfAge.setText(info[3]);
-            tfBirthPlace.setText(info[4]);
-            tfMotherTongue.setText(info[5]);
-            tfEthnicGroup.setText(info[6]);
-            tfReligion.setText(info[7]);
+            tfMotherTongue.setText(info[4]);
+            tfEthnicGroup.setText(info[5]);
+            tfReligion.setText(info[6]);
             
-            tfHouseNumber.setText(info[8]);
-            tfBarangay.setText(info[9]);
-            tfMunicipality.setText(info[10]);
-            tfProvince.setText(info[11]);
+            tfHouseNumber.setText(info[7]);
+            tfBarangay.setText(info[8]);
+            tfMunicipality.setText(info[9]);
+            tfProvince.setText(info[10]);
             
-            tfFathersName.setText(info[12]);
-            tfMothersName.setText(info[13]);
+            tfFathersName.setText(info[11]);
+            tfMothersName.setText(info[12]);
             
-            tfGuardiansName.setText(info[14]);
-            tfRelationship.setText(info[15]);
-            tfContactNumber.setText(info[16]);
+            tfGuardiansName.setText(info[13]);
+            tfRelationship.setText(info[14]);
+            tfContactNumber.setText(info[15]);
             
             enableDisablePersonalInfoFields(false, false);
             
@@ -4223,7 +4206,6 @@ public class dashBoard extends javax.swing.JFrame {
         String [] basic = {
             "bDate='"+my.convertEscapeCharacters(tfBdate.getText())+"'",
             "age='"+my.convertEscapeCharacters(tfAge.getText())+"'",
-            "bPlace='"+my.convertEscapeCharacters(tfBirthPlace.getText())+"'",
             "mTongue='"+my.convertEscapeCharacters(tfMotherTongue.getText())+"'",
             "ip='"+my.convertEscapeCharacters(tfEthnicGroup.getText())+"'",
             "rlgn='"+my.convertEscapeCharacters(tfReligion.getText())+"'",            
@@ -4835,7 +4817,6 @@ public class dashBoard extends javax.swing.JFrame {
         JTextField textFields [] = {
             tfBdate,
             tfAge,
-            tfBirthPlace,
             tfMotherTongue,
             tfEthnicGroup,
             tfReligion,
@@ -5147,7 +5128,7 @@ public class dashBoard extends javax.swing.JFrame {
         JLabel textFieldHeaderLabels [] = {
             jLabel5,jLabel6,jLabel7,jLabel8,jLabel9,jLabel10,jLabel11,jLabel12,jLabel13,jLabel14,jLabel15,
             jLabel16,jLabel18,jLabel19,jLabel20,jLabel21,jLabel22,jLabel23,jLabel24,jLabel25,jLabel26,jLabel29,
-            jLabel31,jLabel32,jLabel34,jLabel35,jLabel38,jLabel40,jLabel41,jLabel45,jLabel48,jLabel49,jLabel50,jLabel43,
+            jLabel31,jLabel32,jLabel34,jLabel35,jLabel40,jLabel41,jLabel45,jLabel48,jLabel49,jLabel50,jLabel43,
             jLabel47,jLabel52,jLabel53,jLabel56,jLabel59,jLabel60,jLabel62,jLabel65,jLabel71,jLabel66,jLabel68,
             jLabel67,jLabel69,jLabel76,jLabel77,jLabel70,jLabel79,jLabel80,jLabel99,jLabel81,jLabel84,jLabel85,
             jLabel86,jLabel36,jLabel37,jLabel83,jLabel87,jLabel90,jLabel91,jLabel95,lbProgressMessage,
@@ -5184,7 +5165,7 @@ public class dashBoard extends javax.swing.JFrame {
             tfFname,tfMname,tfLName,tfStudentLrn,tfInitialGrade,tfSchoolId,tfSchoolName,tfSchoolAddress,
             tfFirstName1,tfMiddleName1,tfLastName1,tfStudentLrn1,tfInitialGrade1,tfSchoolId1,tfSchoolName1,tfSchoolAddress1,
             //Personal Info
-            tfBdate,tfAge,tfBirthPlace,tfMotherTongue,tfEthnicGroup,tfReligion,
+            tfBdate,tfAge,tfMotherTongue,tfEthnicGroup,tfReligion,
             tfHouseNumber,tfBarangay,tfMunicipality,tfProvince,
             tfFathersName,tfMotherTongue,tfGuardiansName,tfRelationship,tfContactNumber,
             //Subjects
@@ -5288,7 +5269,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
@@ -5453,7 +5433,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTextField tfAge;
     private javax.swing.JTextField tfBarangay;
     private javax.swing.JTextField tfBdate;
-    private javax.swing.JTextField tfBirthPlace;
     private javax.swing.JTextField tfContactNumber;
     private javax.swing.JTextField tfDegree;
     private javax.swing.JTextField tfEmployeeNumber;

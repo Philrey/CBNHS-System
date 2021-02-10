@@ -1100,11 +1100,14 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
+                                  <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="32" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel18" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jLabel19" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="jLabel38" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jLabel22" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jLabel21" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jLabel20" alignment="1" max="32767" attributes="0"/>
@@ -1117,8 +1120,7 @@
                                       <Component id="jLabel34" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jLabel32" alignment="1" max="32767" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="tfBirthPlace" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel28" alignment="0" max="32767" attributes="0"/>
                                               <Component id="tfAge" alignment="0" max="32767" attributes="0"/>
                                               <Component id="tfBdate" alignment="0" max="32767" attributes="0"/>
@@ -1145,10 +1147,6 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -1167,10 +1165,6 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="tfAge" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfBirthPlace" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="tfMotherTongue" min="-2" max="-2" attributes="0"/>
@@ -1369,7 +1363,7 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel18">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Birth Date"/>
+                            <Property name="text" type="java.lang.String" value="Birth Date (yyyy-mm-dd)"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel19">
@@ -1472,16 +1466,6 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Contact number of Parent or Guardian"/>
                           </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel38">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Birth Place"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="tfBirthPlace">
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="savePersonalInfoChangesHandler"/>
-                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
