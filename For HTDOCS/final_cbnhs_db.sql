@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2021 at 10:27 AM
+-- Generation Time: Feb 10, 2021 at 02:38 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -513,7 +513,6 @@ CREATE TABLE `form_sf1_view` (
 ,`sex` varchar(10)
 ,`bDate` date
 ,`age` int(11)
-,`bPlace` varchar(200)
 ,`mTongue` varchar(500)
 ,`ip` varchar(500)
 ,`rlgn` varchar(500)
@@ -1137,7 +1136,6 @@ CREATE TABLE `personalinfo` (
   `stdId` int(12) NOT NULL,
   `bDate` date NOT NULL,
   `age` int(11) NOT NULL DEFAULT '0',
-  `bPlace` varchar(200) NOT NULL DEFAULT 'LOCATION',
   `mTongue` varchar(500) NOT NULL DEFAULT 'LANGUAGE',
   `ip` varchar(500) NOT NULL DEFAULT 'INDIGENOUS PEOPLE',
   `rlgn` varchar(500) NOT NULL DEFAULT 'RELIGION',
@@ -1157,10 +1155,10 @@ CREATE TABLE `personalinfo` (
 -- Dumping data for table `personalinfo`
 --
 
-INSERT INTO `personalinfo` (`id`, `stdId`, `bDate`, `age`, `bPlace`, `mTongue`, `ip`, `rlgn`, `houseN`, `brgy`, `mncpl`, `prvnce`, `fName`, `mName`, `gName`, `rltnshp`, `contact`, `date`) VALUES
-(1, 1, '2006-12-11', 20, 'Manay, Davao Oriental', 'Mandaya', '', 'Roman Catholic', 'Purok 18, Bato St.', 'Central', 'Manay', 'Davao Oriental', 'Enrique C. Paderogao', 'Jocelyn E. Paderogao', '', '', '09483428056', '2020-11-13 12:56:17'),
-(3, 2, '2006-12-11', 20, 'Manay, Davao Oriental', 'Mandaya', 'Mandaya', 'Roman Catholic', 'Purok 18, Bato St.', 'Central', 'Manay', 'Davao Oriental', 'Enrique C. Paderogao', 'Jocelyn E. Paderogao', 'Joerick E. Paderogao', 'Brother', '09483428056', '2020-09-09 18:37:23'),
-(5, 3, '2006-05-13', 0, 'LOCATION', 'LANGUAGE', 'INDIGENOUS PEOPLE', 'RELIGION', 'HOUSE NUM', 'BRGY', 'MUNICIPAL', 'PROVINCE', 'FATHER NAME', 'MOTHER NAME', 'GUARDIAN NAME', 'RELATIONSHIP', 'CONTACT', '2020-09-05 17:05:12');
+INSERT INTO `personalinfo` (`id`, `stdId`, `bDate`, `age`, `mTongue`, `ip`, `rlgn`, `houseN`, `brgy`, `mncpl`, `prvnce`, `fName`, `mName`, `gName`, `rltnshp`, `contact`, `date`) VALUES
+(1, 1, '2006-12-11', 20, 'Mandaya', '', 'Roman Catholic', 'Purok 18, Bato St.', 'Central', 'Manay', 'Davao Oriental', 'Enrique C. Paderogao', 'Jocelyn E. Paderogao', '', '', '09483428056', '2020-11-13 12:56:17'),
+(3, 2, '2006-12-11', 20, 'Mandaya', 'Mandaya', 'Roman Catholic', 'Purok 18, Bato St.', 'Central', 'Manay', 'Davao Oriental', 'Enrique C. Paderogao', 'Jocelyn E. Paderogao', 'Joerick E. Paderogao', 'Brother', '09483428056', '2020-09-09 18:37:23'),
+(5, 3, '2006-05-13', 0, 'LANGUAGE', 'INDIGENOUS PEOPLE', 'RELIGION', 'HOUSE NUM', 'BRGY', 'MUNICIPAL', 'PROVINCE', 'FATHER NAME', 'MOTHER NAME', 'GUARDIAN NAME', 'RELATIONSHIP', 'CONTACT', '2021-02-10 17:50:00');
 
 -- --------------------------------------------------------
 
@@ -1688,7 +1686,7 @@ CREATE TABLE `v_teacherloads` (
 --
 DROP TABLE IF EXISTS `form_sf1_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf1_view`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`enrollment`.`sectionId` AS `sectionId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`personalinfo`.`bDate` AS `bDate`,`personalinfo`.`age` AS `age`,`personalinfo`.`bPlace` AS `bPlace`,`personalinfo`.`mTongue` AS `mTongue`,`personalinfo`.`ip` AS `ip`,`personalinfo`.`rlgn` AS `rlgn`,`personalinfo`.`houseN` AS `houseN`,`personalinfo`.`brgy` AS `brgy`,`personalinfo`.`mncpl` AS `mncpl`,`personalinfo`.`prvnce` AS `prvnce`,`personalinfo`.`fName` AS `fathersName`,`personalinfo`.`mName` AS `mothersName`,`personalinfo`.`gName` AS `gName`,`personalinfo`.`rltnshp` AS `rltnshp`,`personalinfo`.`contact` AS `contact`,`enrollment`.`remarks` AS `remarks` from ((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `personalinfo` on((`enrollment`.`studentId` = `personalinfo`.`stdId`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `form_sf1_view`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`enrollment`.`sectionId` AS `sectionId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`personalinfo`.`bDate` AS `bDate`,`personalinfo`.`age` AS `age`,`personalinfo`.`mTongue` AS `mTongue`,`personalinfo`.`ip` AS `ip`,`personalinfo`.`rlgn` AS `rlgn`,`personalinfo`.`houseN` AS `houseN`,`personalinfo`.`brgy` AS `brgy`,`personalinfo`.`mncpl` AS `mncpl`,`personalinfo`.`prvnce` AS `prvnce`,`personalinfo`.`fName` AS `fathersName`,`personalinfo`.`mName` AS `mothersName`,`personalinfo`.`gName` AS `gName`,`personalinfo`.`rltnshp` AS `rltnshp`,`personalinfo`.`contact` AS `contact`,`enrollment`.`remarks` AS `remarks` from ((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `personalinfo` on((`enrollment`.`studentId` = `personalinfo`.`stdId`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName` ;
 
 -- --------------------------------------------------------
 
