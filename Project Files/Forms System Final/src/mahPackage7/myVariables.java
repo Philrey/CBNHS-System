@@ -104,7 +104,7 @@ public class myVariables {
     private static final int [] subjectOrder = new int[] {2,3,1,0};
     
     //School Form Views
-    private static final int [] jhsf1Order= new int [] {19,12,8,7,1,14,20,5,16,21,13,23,6,15,4,9,10,0,3,17,2,11,18,22};
+    private static final int [] jhsf1Order= new int [] {18,12,8,7,1,13,19,5,15,20,22,6,14,4,9,10,0,3,16,2,11,17,21};
     private static final int [] jhsf2Order= new int [] {5,6,0,1,2,7,3,4,8};
     private static final int [] jhsf3Order= new int [] {4,5,0,1,2,6,3};
     private static final int [] jhsf5MinimalOrder=new int [] {11,4,8,7,3,0,9,12,2,13,1,10,5,6};

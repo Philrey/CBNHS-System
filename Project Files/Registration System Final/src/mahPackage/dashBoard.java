@@ -990,7 +990,6 @@ public class dashBoard extends javax.swing.JFrame {
         jScrollPane2.setViewportView(studentTable1);
         if (studentTable1.getColumnModel().getColumnCount() > 0) {
             studentTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
-            studentTable1.getColumnModel().getColumn(1).setHeaderValue("LRN");
             studentTable1.getColumnModel().getColumn(5).setPreferredWidth(20);
         }
 
@@ -3121,17 +3120,17 @@ public class dashBoard extends javax.swing.JFrame {
 
         importTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "LRN", "Name", "Gender", "Birthday", "Age", "Birthplace", "Mother Tongue", "IP", "Religion", "House No.", "Brgy.", "Municipality", "Province", "Father's Name", "Mother's Name", "Guardian's Name", "Relationship", "Contact", "Remarks", "Status"
+                "LRN", "Name", "Gender", "Birthday", "Age", "Mother Tongue", "IP", "Religion", "House No.", "Brgy.", "Municipality", "Province", "Father's Name", "Mother's Name", "Guardian's Name", "Relationship", "Contact", "Remarks", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -3152,21 +3151,20 @@ public class dashBoard extends javax.swing.JFrame {
             importTable.getColumnModel().getColumn(2).setPreferredWidth(100);
             importTable.getColumnModel().getColumn(3).setPreferredWidth(120);
             importTable.getColumnModel().getColumn(4).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(5).setPreferredWidth(150);
-            importTable.getColumnModel().getColumn(6).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(7).setPreferredWidth(120);
-            importTable.getColumnModel().getColumn(8).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(5).setPreferredWidth(100);
+            importTable.getColumnModel().getColumn(6).setPreferredWidth(120);
+            importTable.getColumnModel().getColumn(7).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(8).setPreferredWidth(100);
             importTable.getColumnModel().getColumn(9).setPreferredWidth(100);
             importTable.getColumnModel().getColumn(10).setPreferredWidth(100);
             importTable.getColumnModel().getColumn(11).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(12).setPreferredWidth(100);
+            importTable.getColumnModel().getColumn(12).setPreferredWidth(200);
             importTable.getColumnModel().getColumn(13).setPreferredWidth(200);
             importTable.getColumnModel().getColumn(14).setPreferredWidth(200);
-            importTable.getColumnModel().getColumn(15).setPreferredWidth(200);
+            importTable.getColumnModel().getColumn(15).setPreferredWidth(150);
             importTable.getColumnModel().getColumn(16).setPreferredWidth(150);
-            importTable.getColumnModel().getColumn(17).setPreferredWidth(150);
-            importTable.getColumnModel().getColumn(18).setPreferredWidth(200);
-            importTable.getColumnModel().getColumn(19).setPreferredWidth(250);
+            importTable.getColumnModel().getColumn(17).setPreferredWidth(200);
+            importTable.getColumnModel().getColumn(18).setPreferredWidth(250);
         }
 
         jLabel95.setText("Select Excel File Format");

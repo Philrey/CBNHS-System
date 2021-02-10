@@ -1351,17 +1351,17 @@ public class dashBoard extends javax.swing.JFrame {
 
         sf1StudentsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Student ID", "Section ID", "Student LRN", "Name", "Gender", "Birth Date", "Age", "Birth Place", "Mother Tongue", "IP (Ethnic Group)", "Religion", "House #/St.", "Barangay", "Municipality", "Province", "Father's Name", "Mother's Name", "Guardian's Name", "Relationship", "Contact Number", "Remarks"
+                "ID", "Student ID", "Section ID", "Student LRN", "Name", "Gender", "Birth Date", "Age", "Mother Tongue", "IP (Ethnic Group)", "Religion", "House #/St.", "Barangay", "Municipality", "Province", "Father's Name", "Mother's Name", "Guardian's Name", "Relationship", "Contact Number", "Remarks"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1377,20 +1377,19 @@ public class dashBoard extends javax.swing.JFrame {
             sf1StudentsTable.getColumnModel().getColumn(5).setPreferredWidth(70);
             sf1StudentsTable.getColumnModel().getColumn(6).setPreferredWidth(100);
             sf1StudentsTable.getColumnModel().getColumn(7).setPreferredWidth(50);
-            sf1StudentsTable.getColumnModel().getColumn(8).setPreferredWidth(200);
-            sf1StudentsTable.getColumnModel().getColumn(9).setPreferredWidth(150);
-            sf1StudentsTable.getColumnModel().getColumn(10).setPreferredWidth(120);
-            sf1StudentsTable.getColumnModel().getColumn(11).setPreferredWidth(150);
+            sf1StudentsTable.getColumnModel().getColumn(8).setPreferredWidth(150);
+            sf1StudentsTable.getColumnModel().getColumn(9).setPreferredWidth(120);
+            sf1StudentsTable.getColumnModel().getColumn(10).setPreferredWidth(150);
+            sf1StudentsTable.getColumnModel().getColumn(11).setPreferredWidth(100);
             sf1StudentsTable.getColumnModel().getColumn(12).setPreferredWidth(100);
             sf1StudentsTable.getColumnModel().getColumn(13).setPreferredWidth(100);
             sf1StudentsTable.getColumnModel().getColumn(14).setPreferredWidth(100);
-            sf1StudentsTable.getColumnModel().getColumn(15).setPreferredWidth(100);
+            sf1StudentsTable.getColumnModel().getColumn(15).setPreferredWidth(150);
             sf1StudentsTable.getColumnModel().getColumn(16).setPreferredWidth(150);
             sf1StudentsTable.getColumnModel().getColumn(17).setPreferredWidth(150);
-            sf1StudentsTable.getColumnModel().getColumn(18).setPreferredWidth(150);
-            sf1StudentsTable.getColumnModel().getColumn(19).setPreferredWidth(100);
-            sf1StudentsTable.getColumnModel().getColumn(20).setPreferredWidth(120);
-            sf1StudentsTable.getColumnModel().getColumn(21).setPreferredWidth(200);
+            sf1StudentsTable.getColumnModel().getColumn(18).setPreferredWidth(100);
+            sf1StudentsTable.getColumnModel().getColumn(19).setPreferredWidth(120);
+            sf1StudentsTable.getColumnModel().getColumn(20).setPreferredWidth(200);
         }
 
         javax.swing.GroupLayout left1Layout = new javax.swing.GroupLayout(left1);

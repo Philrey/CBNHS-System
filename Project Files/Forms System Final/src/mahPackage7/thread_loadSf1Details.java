@@ -102,7 +102,7 @@ public class thread_loadSf1Details extends SwingWorker<String, Object>{
             lbLoadingMessage.setText("Processing Records of Student "+(n+1)+" of "+rowCount);
             String birthDate = tableName.getValueAt(n, birthdateTableColumnIndex).toString();
             String age = getAgeInYearsMonths(firstFridayOfJuneDate, birthDate, false);
-            String remarksString = tableName.getValueAt(n, 21).toString();
+            String remarksString = tableName.getValueAt(n, 20).toString();
             String gender = tableName.getValueAt(n, 5).toString();
             
             if(gender.contains("Female")){
@@ -112,9 +112,10 @@ public class thread_loadSf1Details extends SwingWorker<String, Object>{
             }
             total++;
             
+            tableName.setValueAt(rearrangeBirthDate(birthDate), n, 6);
             tableName.setValueAt(gender.substring(0, 1), n, 5);
             tableName.setValueAt(age, n, birthdateTableColumnIndex+1);
-            tableName.setValueAt(translateRemarks(remarksString, 1), n, 21);
+            tableName.setValueAt(translateRemarks(remarksString, 1), n, 20);
             tfMale.setText(String.valueOf(males));
             tfFemale.setText(String.valueOf(females));
             tfTotal.setText(String.valueOf(total));
@@ -139,6 +140,11 @@ public class thread_loadSf1Details extends SwingWorker<String, Object>{
             }
         }
         return null;
+    }
+    private String rearrangeBirthDate(String birthDate){
+        //From yyyy-mm-dd to mm/dd/yyyy
+        String temp [] = birthDate.split("-");
+        return temp[1]+"/"+temp[2]+"/"+temp[0];
     }
     private String getAgeInYearsMonths(String dateConducted,String dateOfBirth,boolean includeMonths){
         String dateCon [] = dateConducted.split("-");

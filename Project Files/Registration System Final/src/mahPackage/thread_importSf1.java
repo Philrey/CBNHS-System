@@ -47,7 +47,7 @@ public class thread_importSf1 extends SwingWorker<String, Object>{
     //Values for different file types
     String startColumns [] = {"A","A","A"};
     String counterColumns [] = {"B","C","C"};
-    String endColumns [] = {"S","AS","S"};
+    String endColumns [] = {"R","AS","R"};
     String columnsToSkip [] = {
         null,
         "B,D,E,F,I,K,M,Q,S,T,V,X,Y,Z,AA,AC,AD,AE,AG,AH,AI,AJ,AL,AM,AN,AQ,AR,AT",
@@ -117,11 +117,13 @@ public class thread_importSf1 extends SwingWorker<String, Object>{
                 lbLoadingMessage.setText("Loading Data "+(n+1)+"/"+rowCount);
                 progressBar.setValue(n+1);
                 
-                counters = my.getValueAtColumn(result[n], 1).toLowerCase();
+                if(fileTypeSelected != 0){
+                    counters = my.getValueAtColumn(result[n], 1).toLowerCase();
                 
-                if(counters.contains("total male") && fileTypeSelected != 0){
-                    System.out.println("Counter: "+counters);
-                    continue;
+                    if(counters.contains("total male") && fileTypeSelected != 0){
+                        //System.out.println("Counter: "+counters);
+                        continue;
+                    }
                 }
                 //System.err.println(result[n]);
                 name = my.capitalizeName(my.getValueAtColumn(result[n], 1).toLowerCase());
@@ -181,7 +183,7 @@ public class thread_importSf1 extends SwingWorker<String, Object>{
             }
             Thread.sleep(pauseDelay);
             endingRow--;
-            System.err.println("Last Row With IDs: "+endingRow);
+            //System.err.println("Last Row With IDs: "+endingRow);
             
             if(startRows[fileTypeSelected] >= endingRow){   //Nothing was found
                 return 2;

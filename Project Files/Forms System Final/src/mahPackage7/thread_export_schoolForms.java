@@ -99,6 +99,9 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
     private String division;
     private String district;
     private String schoolName;
+    private String principalName;
+    private String representativeName;
+    private String superIntendentName;
     //Functions Variables
     long threadDelay = 100;
     long pauseDelay = 500;
@@ -133,6 +136,10 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         division = myVariables.getDivision();
         district = myVariables.getDistrict();
         schoolName = myVariables.getSchoolName();
+        
+        principalName = myVariables.getPrincipal().toUpperCase();
+        representativeName = myVariables.getDivisionRepresentative().toUpperCase();
+        superIntendentName = myVariables.getDivisionSuperintendent().toUpperCase();
         
         assignTablesByForm(tablesToUse,stringsToUse,textFieldsToUse,booleansToUse);
     }
@@ -1180,26 +1187,27 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
             switch(myVariables.getFormSelected()){
                 case 1:{
                     //<editor-fold desc="SF1 Headers">
-                    String mCount [] = new String [] {"M,20","M,30","M,40","M,50","M,60","M,70","M,80"};
-                    String fCount [] = new String [] {"M,21","M,31","M,41","M,51","M,61","M,71","M,81"};
-                    String tCount [] = new String [] {"M,22","M,32","M,42","M,52","M,62","M,72","M,82"};
-                    String advName []= new String [] {"O,20","O,30","O,40","O,50","O,60","O,70","O,80"};
-                    
+                    String mCount [] = new String [] {"L,20","L,30","L,40","L,50","L,60","L,70","L,80"};
+                    String fCount [] = new String [] {"L,21","L,31","L,41","L,51","L,61","L,71","L,81"};
+                    String tCount [] = new String [] {"L,22","L,32","L,42","L,52","L,62","L,72","L,82"};
+                    String advName []= new String [] {"N,20","N,30","N,40","N,50","N,60","N,70","N,80"};
+                    String prncplName []= new String [] {"Q,20","Q,30","Q,40","Q,50","Q,60","Q,70","Q,80"};
                     headers = new header[]{
                         //Header Parts
                         new header(schoolId, "C,3"),
-                        new header(region, "G,3"),
-                        new header(division, "L,3"),
-                        new header(district, "Q,3"),
+                        new header(region, "F,3"),
+                        new header(division, "K,3"),
+                        new header(district, "P,3"),
                         new header(schoolName, "C,4"),
-                        new header(schoolYear, "L,4"),
-                        new header(gradeLevel, "N,4"),
-                        new header(sectionName, "P,4"),
+                        new header(schoolYear, "K,4"),
+                        new header(gradeLevel, "M,4"),
+                        new header(sectionName, "O,4"),
                         //Form's Custom Fields
                         new header(maleCount, mCount[sheetNumber]),
                         new header(femaleCount, fCount[sheetNumber]),
                         new header(totalCount, tCount[sheetNumber]),
                         new header(adviserName, advName[sheetNumber]),
+                        new header(principalName, prncplName[sheetNumber])
                     };
                     //</editor-fold>
                     break;

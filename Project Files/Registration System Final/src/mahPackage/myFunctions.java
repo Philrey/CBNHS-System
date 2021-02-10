@@ -769,7 +769,7 @@ public class myFunctions {
         XSSFRow row = null;
         XSSFCell cell = null;
         row = sheet.getRow(rowStart);
-        System.err.println("Row: "+rowStart+" Col: "+columnStart);
+        //System.err.println("Row: "+rowStart+" Col: "+columnStart);
         int lastColumn = columnEnd!=-1?columnEnd+1 : row.getLastCellNum();    //Put -1 on columnEnd if you want to get until the last column, else specify
         
         for (int n = columnStart; n < lastColumn; n++) {
@@ -795,11 +795,7 @@ public class myFunctions {
         
         int [] columnsToSkip = parseExcelColumns(skipMergedExcelColumns);
         
-        for (int n: columnsToSkip) {
-            System.err.print(n+",");
-        }
-        System.err.println("");
-        System.err.println("To Region Config: "+skipMergedExcelColumns+":"+excelAddressStart+":"+excelAddressEnd);
+        //System.err.println("To Region Config: "+skipMergedExcelColumns+":"+excelAddressStart+":"+excelAddressEnd);
         return readRegion(sheetNumber, columnsToSkip, startLoc[0], startLoc[1], endLoc[0], endLoc[1]);
     }
     private String [] readRegion(int sheetNumber,int [] skipExcelColumns,int row1,int column1,int row2,int column2){
