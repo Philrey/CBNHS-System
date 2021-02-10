@@ -769,13 +769,18 @@ public class myFunctions {
         XSSFRow row = null;
         XSSFCell cell = null;
         row = sheet.getRow(rowStart);
+        System.err.println("Row: "+rowStart+" Col: "+columnStart);
         int lastColumn = columnEnd!=-1?columnEnd+1 : row.getLastCellNum();    //Put -1 on columnEnd if you want to get until the last column, else specify
         
         for (int n = columnStart; n < lastColumn; n++) {
             if(!isMergedCellIndex(n, skipExcelColumns)){
                 cell = row.getCell(n);
                 if(cell != null){
-                    cLine+=df.formatCellValue(cell)+"@@";
+                    if(df.formatCellValue(cell).length() > 0){
+                        cLine+=df.formatCellValue(cell)+"@@";
+                    }else{
+                        cLine+=" @@";
+                    }
                 }else{
                     cLine+=" @@";
                 }
@@ -787,8 +792,14 @@ public class myFunctions {
     public String [] readRegion(int sheetNumber,String skipMergedExcelColumns,String excelAddressStart,String excelAddressEnd){
         int [] startLoc = parseExcelAddress(excelAddressStart);
         int [] endLoc = parseExcelAddress(excelAddressEnd);
-        System.err.println(excelAddressStart+":"+excelAddressEnd);
+        
         int [] columnsToSkip = parseExcelColumns(skipMergedExcelColumns);
+        
+        for (int n: columnsToSkip) {
+            System.err.print(n+",");
+        }
+        System.err.println("");
+        System.err.println("To Region Config: "+skipMergedExcelColumns+":"+excelAddressStart+":"+excelAddressEnd);
         return readRegion(sheetNumber, columnsToSkip, startLoc[0], startLoc[1], endLoc[0], endLoc[1]);
     }
     private String [] readRegion(int sheetNumber,int [] skipExcelColumns,int row1,int column1,int row2,int column2){
@@ -1009,7 +1020,7 @@ public class myFunctions {
         int [] indeces = new int[letters.length];
         
         for (int n = 0; n < indeces.length; n++) {
-            indeces[n] = getLetterValueAdvanced(String.valueOf(letters[n].charAt(0)) );
+            indeces[n] = getLetterValueAdvanced(letters[n]);
             //System.err.println("Skipping column: "+letters[n]+"="+indeces[n]);
         }
         
@@ -1077,7 +1088,7 @@ public class myFunctions {
         Thread toLoad = null;
         switch (threadIndex){
             case 0:{
-                thread_importSf1 tld = new thread_importSf1(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse, filesToUse);
+                thread_importSf1 tld = new thread_importSf1(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
                 toLoad = new Thread(tld);
                 break;
             }case 1:{

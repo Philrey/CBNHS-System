@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2021 at 11:14 AM
+-- Generation Time: Feb 10, 2021 at 10:27 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -849,7 +849,7 @@ INSERT INTO `grades` (`id`, `studentId`, `sectionId`, `subjectId`, `firstQuarter
 (89, 6, 10, 34, '80', '90', '87', '99', '89', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (90, 6, 10, 39, '88', '77', '99', '88', '88', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (91, 6, 10, 40, '90', '80', '90', '80', '85', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(92, 1, 8, 22, '99', '99', '99', '99', '99', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
+(92, 1, 8, 22, '99', '99', '99', '99', '99', 'Open:Open:Open:Open:Passed:', '2021-01-08 20:43:15'),
 (93, 4, 8, 22, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (94, 1, 8, 27, '83', '-1', '-1', '-1', '21', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
 (95, 1, 7, 9, '80', '99', '89', '79', '86', 'Open:Open:Open:Open:Passed:', '2020-11-20 23:36:35'),
@@ -1118,7 +1118,7 @@ CREATE TABLE `loads` (
 
 INSERT INTO `loads` (`a_id`, `b_loadName`, `c_gradeLevel`, `d_subjectsContained`) VALUES
 (8, 'K-12, Grade 7', 7, '9:10:11:8:12:13:14:60:15:16:17:18:52:'),
-(9, 'K-12, Grade 8', 8, '19:20:21:22:23:24:25:26:27:28:29:61:53:'),
+(9, 'K-12, Grade 8', 8, '19:20:21:22:23:24:25:61:26:27:28:29:53:'),
 (10, 'K-12, Grade 9', 9, '30:31:32:33:34:35:36:37:38:39:40:62:54:'),
 (11, 'K-12, Grade 10', 10, '41:42:43:44:45:46:47:48:49:50:51:63:55:'),
 (12, 'Grade 8 New', 8, ''),
@@ -1189,7 +1189,7 @@ INSERT INTO `sections` (`id`, `sectionName`, `adviserId`, `loadId`, `bookTemplat
 (11, 'Grade 10 - Strawberry', 3, 11, -1, 2019),
 (12, 'Grade 9 - Integrity', 3, 8, -1, 2019),
 (13, 'Grade 10 - Unity', 2, 11, -1, 2019),
-(14, 'Grade 7 Oreo', 3, 8, -1, 2019),
+(14, 'Grade 7 - Oreo', 3, 8, -1, 2019),
 (15, 'Grade 9 - Nikko', 8, 10, -1, 2019),
 (16, 'Grade 8 - Paderogao', 2, 12, -1, 2020);
 
@@ -1219,11 +1219,11 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`id`, `lrn`, `lName`, `fName`, `mName`, `sex`, `inGr`, `curGrLvl`, `schoolId`, `schoolName`, `schoolAddress`) VALUES
 (1, '123543457474', 'Paderogao, Jr', 'Phil Rey', 'Estrella', 'Female', 90.1, 7, '000001', 'GMES-1', 'Manay, Davao Oriental'),
-(2, '123456789012', 'Kerby', 'Estrella', 'Paderogao', 'Female', 90.2, 0, '000000', 'GMES-1', 'Manay, Davao Oriental'),
+(2, '123456789012', 'Paderogao', 'Kerby', 'Estrella', 'Female', 90.2, 0, '000000', 'GMES-1', 'Manay, Davao Oriental'),
 (3, '123456789023', 'Rizal', 'Jose', ' ', 'Male', 99, 7, '000000', 'Cuta Elementary School', 'Tarragona, Davao Oriental'),
 (4, '129493120101', 'Cabillon', 'Jesthony', ' ', 'Male', 80, 0, '000000', 'GMES-1', 'Manay, Davao Oriental'),
 (5, '129679130184', 'Antiga', 'Ariel', 'Socorro', 'Male', 80, 0, '000000', 'GMES-1', 'Manay, Davao Oriental'),
-(6, '123546789014', 'Masyedow', 'Marites', 'Supladae', 'Male', 89, 0, '123456', 'Chaka Elementary School', 'Dimakita City');
+(6, '123546789014', 'Masyedow', 'Marites', 'Supladae', 'Female', 89, 0, '123456', 'Chaka Elementary School', 'Dimakita City');
 
 -- --------------------------------------------------------
 
@@ -1475,7 +1475,11 @@ INSERT INTO `users` (`id`, `user_Lname`, `user_Fname`, `user_Mname`, `gender`, `
 (8, 'Bulahan', 'Harris', 'Kay', 'Male', 'hbulahan', 'password1', 3),
 (9, 'Rezane', 'Warren', 'Dunno', 'Male', 'wrezxaneDH', '1234567', 2),
 (10, 'Lname', 'Fname', 'Mname', 'Female', 'admin2', 'password', 3),
-(11, 'Lname2', 'Fname2', 'Mname2', 'Female', 'admin3', 'password', 2);
+(11, 'Lname2', 'Fname2', 'Mname2', 'Female', 'admin3', 'password', 2),
+(12, 'Minchin', 'Maria', 'Loti', 'Female', 'minchinxsarah', 'password', 4),
+(13, 'Mason', 'Alex', 'Joe', 'Male', 'thenumbers', 'password', 3),
+(14, 'Filonzo', 'Ferdinand', 'Wika', 'Male', 'ferdi', 'password', 2),
+(15, 'Englard', 'Edgar', 'Poe', 'Male', 'edgar', 'password', 2);
 
 -- --------------------------------------------------------
 
@@ -2094,7 +2098,7 @@ ALTER TABLE `userdetails`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

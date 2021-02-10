@@ -43,8 +43,20 @@ public class thread_importSf1 extends SwingWorker<String, Object>{
     myFunctions my;
     private JLabel lbLoadingMessage;
     private JProgressBar progressBar;
+    
+    //Values for different file types
+    String startColumns [] = {"A","A","A"};
+    String counterColumns [] = {"B","C","C"};
+    String endColumns [] = {"S","AS","S"};
+    String columnsToSkip [] = {
+        null,
+        "B,D,E,F,I,K,M,Q,S,T,V,X,Y,Z,AA,AC,AD,AE,AG,AH,AI,AJ,AL,AM,AN,AQ,AR,AT",
+        null
+    };
+    int startRows [] = {7,7,7};
+    int endingRow;
 
-    public thread_importSf1(JTable [] tablesToUse,String [] stringsToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean [] booleansToUse,File [] filesToUse) {
+    public thread_importSf1(JTable [] tablesToUse,String [] stringsToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean [] booleansToUse) {
         my = new myFunctions(true);
         //Main Variables
         importTable = tablesToUse[0];
@@ -99,11 +111,19 @@ public class thread_importSf1 extends SwingWorker<String, Object>{
         try {
             int rowCount = result.length;
             progressBar.setMaximum(rowCount);
-            String name = "";
+            String name;
+            String counters;
             for(int n=0;n<rowCount;n++){
                 lbLoadingMessage.setText("Loading Data "+(n+1)+"/"+rowCount);
                 progressBar.setValue(n+1);
                 
+                counters = my.getValueAtColumn(result[n], 1).toLowerCase();
+                
+                if(counters.contains("total male") && fileTypeSelected != 0){
+                    System.out.println("Counter: "+counters);
+                    continue;
+                }
+                //System.err.println(result[n]);
                 name = my.capitalizeName(my.getValueAtColumn(result[n], 1).toLowerCase());
                 result[n] = my.setValueAtColumn(result[n], 1, name);
                 my.add_table_row(result[n]+"Ready", importTable);
@@ -113,6 +133,7 @@ public class thread_importSf1 extends SwingWorker<String, Object>{
             e.printStackTrace();
             return "Error Occured";
         }
+        lbLoadingMessage.setText("Process Complete...");
         return "Import Thread Completed";
     }
 
@@ -121,21 +142,14 @@ public class thread_importSf1 extends SwingWorker<String, Object>{
         closedThread();
         super.done(); //To change body of generated methods, choose Tools | Templates.
     }
-    String startColumns [] = {"A","A","A"};
-    String endColumns [] = {"S","S","S"};
-    String columnsToSkip [] = {
-        null,
-        null,
-        null
-    };
-    int startRows [] = {7,7,7};
-    int endingRow;
+    
     private int determineEndingPoints(){
         //Returns values -1 = interrupted, 0 = error occured, 1 = successful, 2 = empty
         progressBar.setMaximum(1);
         progressBar.setValue(1);
         lbLoadingMessage.setText("Reading Contents...");
         String value;
+        String counterCheck;
         try {
             //Search for LRNs
             for (int n = startRows[fileTypeSelected]; ; n++) {
@@ -145,7 +159,17 @@ public class thread_importSf1 extends SwingWorker<String, Object>{
                     
                     if(value.length() != 12){
                         endingRow = n;
-                        break;
+                        
+                        //Check if has a male counters to not end the loop yet
+                        if(fileTypeSelected != 0){
+                            counterCheck = my.readSingleValue(0, counterColumns[fileTypeSelected]+","+n).toLowerCase();
+                            
+                            if(!counterCheck.contains("total male")){
+                                break;
+                            }
+                        }else{
+                            break;
+                        }
                     }
                     
                     endingRow = n;
@@ -181,7 +205,7 @@ public class thread_importSf1 extends SwingWorker<String, Object>{
         btnFileChooser.setEnabled(true);
         btnCancel.setEnabled(false);
         btnRegister.setEnabled(true);
-        lbLoadingMessage.setText("Process complete...");
+        //lbLoadingMessage.setText("Process complete...");
     }
     //</editor-fold>
 }

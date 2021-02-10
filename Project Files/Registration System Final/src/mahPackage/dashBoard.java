@@ -3187,8 +3187,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         jLabel95.setText("Select Excel File Format");
 
-        jcbFileFormats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HiSRMS-SF1 JHS (Default)", "LIS-SF1 JHS", "LIS-SF1 SHS" }));
-        jcbFileFormats.setSelectedIndex(1);
+        jcbFileFormats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HiSRMS-SF1 JHS (Default)", "LIS-SF1 JHS v2014.2.1.1" }));
 
         tfFileLocation.setEditable(false);
 
@@ -3202,9 +3201,19 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnRegisterStudents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_add_user_group_woman_man_16px.png"))); // NOI18N
         btnRegisterStudents.setText("Register Students");
+        btnRegisterStudents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterStudentsActionPerformed(evt);
+            }
+        });
 
         btnCancelImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_close_window_25px.png"))); // NOI18N
         btnCancelImport.setEnabled(false);
+        btnCancelImport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelImportActionPerformed(evt);
+            }
+        });
 
         jpbProgressBar.setBackground(new java.awt.Color(255, 255, 255));
         jpbProgressBar.setMinimum(5);
@@ -3251,7 +3260,7 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(tfFileLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnOpenFileExplorer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegisterStudents, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -4622,6 +4631,31 @@ public class dashBoard extends javax.swing.JFrame {
     private void btnOpenFileExplorerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenFileExplorerActionPerformed
         showFileChooserDialog("Excel Files","xlsx");
     }//GEN-LAST:event_btnOpenFileExplorerActionPerformed
+
+    private void btnCancelImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelImportActionPerformed
+        my.interruptThirdThread();
+        my.interrupSecondThread();
+        my.interrupMainThread();
+        lbProgressMessage.setText("Import Cancelled...");
+        jpbProgressBar.setValue(0);
+    }//GEN-LAST:event_btnCancelImportActionPerformed
+
+    private void btnRegisterStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterStudentsActionPerformed
+        if(importTable.getRowCount() <= 0){
+            my.showMessage("No Students found inside the table.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        my.runMainThread(
+                1,
+                new JTable[]{importTable},
+                new String[]{},
+                new JTextField[]{tfFileLocation},
+                new JButton[]{btnOpenFileExplorer,btnCancelImport,btnRegisterStudents},
+                null,
+                null
+        );
+    }//GEN-LAST:event_btnRegisterStudentsActionPerformed
 
     /**
      * @param args the command line arguments
