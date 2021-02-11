@@ -126,12 +126,14 @@ public class thread_importSf1 extends SwingWorker<String, Object>{
                     }
                 }
                 //System.err.println(result[n]);
-                name = my.capitalizeName(my.getValueAtColumn(result[n], 1).toLowerCase());
+                name = my.capitalizeName(my.getValueAtColumn(result[n], 1).toLowerCase(),true);
                 result[n] = my.setValueAtColumn(result[n], 1, name);
                 my.add_table_row(result[n]+"Ready", importTable);
                 Thread.sleep(threadDelay);
             }
-        } catch (Exception e) {
+        } catch(InterruptedException x){
+            return "Interrupted By User";
+        }catch(Exception e) {
             e.printStackTrace();
             return "Error Occured";
         }

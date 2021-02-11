@@ -1396,26 +1396,46 @@ public class myFunctions {
         
         return finalString;
     }
-    protected String capitalizeName(String nameFull){
+    protected String capitalizeName(String nameFull,boolean removeDashedMiddleNames){
         String finalString = "";
         String names [] = nameFull.split(",");
-        
+        boolean rowSkipped;
         for (int n = 0; n < names.length; n++) {
             //Separate Compound Name
-            String temp[] = names[n].split(" ");
+            String temp[] = names[n].trim().split(" ");
+            rowSkipped = false;
             
             if(temp.length > 1){
                 for (int x = 0; x < temp.length; x++) {
-                    finalString+=StringUtils.capitalize(temp[x]);
-                    if(x<temp.length-1){
-                        finalString+=" ";
+                    if(removeDashedMiddleNames && temp[x].contains("-")){
+                        rowSkipped = true;
+                        break;
+                    }else{
+                        finalString+=StringUtils.capitalize(temp[x].trim());
+                        if(x<temp.length-1){
+                            finalString+=" ";
+                        }
                     }
                 }
             }else{
-                finalString+=StringUtils.capitalize(names[n].trim());
+                if(removeDashedMiddleNames && names[n].contains("-")){
+                    rowSkipped = true;
+                }else{
+                    finalString+=StringUtils.capitalize(names[n].trim());
+                }
+                
             }
-            if(n<names.length-1){
-                finalString+=",";
+            if(!rowSkipped){
+                if(n<names.length-1){
+                    finalString+=",";
+                }
+            }else{
+                //remove comma at last
+                int wordLength = finalString.length();
+                //System.err.println(finalString+" Last char: "+finalString.charAt(wordLength-1));
+                if(finalString.charAt(wordLength-1) == ','){
+                    finalString = finalString.substring(0, finalString.length()-1);
+                }
             }
         }
         return finalString;
