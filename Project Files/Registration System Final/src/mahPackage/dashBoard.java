@@ -3146,25 +3146,25 @@ public class dashBoard extends javax.swing.JFrame {
         });
         jScrollPane18.setViewportView(importTable);
         if (importTable.getColumnModel().getColumnCount() > 0) {
-            importTable.getColumnModel().getColumn(0).setPreferredWidth(120);
-            importTable.getColumnModel().getColumn(1).setPreferredWidth(300);
-            importTable.getColumnModel().getColumn(2).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(3).setPreferredWidth(120);
-            importTable.getColumnModel().getColumn(4).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(5).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(6).setPreferredWidth(120);
-            importTable.getColumnModel().getColumn(7).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(0).setPreferredWidth(100);
+            importTable.getColumnModel().getColumn(1).setPreferredWidth(250);
+            importTable.getColumnModel().getColumn(2).setPreferredWidth(80);
+            importTable.getColumnModel().getColumn(3).setPreferredWidth(80);
+            importTable.getColumnModel().getColumn(4).setPreferredWidth(70);
+            importTable.getColumnModel().getColumn(5).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(6).setPreferredWidth(100);
+            importTable.getColumnModel().getColumn(7).setPreferredWidth(100);
             importTable.getColumnModel().getColumn(8).setPreferredWidth(100);
             importTable.getColumnModel().getColumn(9).setPreferredWidth(100);
             importTable.getColumnModel().getColumn(10).setPreferredWidth(100);
             importTable.getColumnModel().getColumn(11).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(12).setPreferredWidth(200);
-            importTable.getColumnModel().getColumn(13).setPreferredWidth(200);
-            importTable.getColumnModel().getColumn(14).setPreferredWidth(200);
-            importTable.getColumnModel().getColumn(15).setPreferredWidth(150);
-            importTable.getColumnModel().getColumn(16).setPreferredWidth(150);
+            importTable.getColumnModel().getColumn(12).setPreferredWidth(250);
+            importTable.getColumnModel().getColumn(13).setPreferredWidth(250);
+            importTable.getColumnModel().getColumn(14).setPreferredWidth(250);
+            importTable.getColumnModel().getColumn(15).setPreferredWidth(100);
+            importTable.getColumnModel().getColumn(16).setPreferredWidth(100);
             importTable.getColumnModel().getColumn(17).setPreferredWidth(200);
-            importTable.getColumnModel().getColumn(18).setPreferredWidth(250);
+            importTable.getColumnModel().getColumn(18).setPreferredWidth(200);
         }
 
         jLabel95.setText("Select Excel File Format");
@@ -4601,7 +4601,7 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_tfSchoolAddress1addNewStudentHandler
 
     private void btnImportFromLisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportFromLisActionPerformed
-        showCustomDialog("Import Files", importDialog, false, 600, 500, true);
+        showCustomDialog("Import Files", importDialog, false, 800, 500, true);
     }//GEN-LAST:event_btnImportFromLisActionPerformed
 
     private void importTableloadStudentHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importTableloadStudentHandler
@@ -4629,7 +4629,7 @@ public class dashBoard extends javax.swing.JFrame {
         my.runMainThread(
                 1,
                 new JTable[]{importTable},
-                new String[]{},
+                new String[]{String.valueOf(jcbFileFormats.getSelectedIndex())},
                 new JTextField[]{tfFileLocation},
                 new JButton[]{btnOpenFileExplorer,btnCancelImport,btnRegisterStudents},
                 null,

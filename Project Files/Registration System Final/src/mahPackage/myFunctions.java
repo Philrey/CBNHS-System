@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -394,6 +395,91 @@ public class myFunctions {
         }
     }
     //R= Read Method //
+    public String [] return_values(String select,String from,String where,int [] order,boolean debugModeOn){
+        String [] lines;
+        String cLine;
+        
+        try {
+            String url = myVariables.getIpAddress()+"returnValues.php?select="+select+"&from="+from+"&where="+where;
+            //System.out.println(url);
+            url = url.replace("%", "%25");
+            url = url.replace(" ", "%20");
+            url = url.replace("Ñ", "%25C3%2591");
+            url = url.replace("ñ", "%25C3%25B1");
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            // optional default is GET
+            con.setRequestMethod("GET");
+            //add request header
+            con.setRequestProperty("User-Agent", "Mozilla/5.0");
+            int responseCode = con.getResponseCode();
+            if(debugModeOn){
+                System.out.println("\nSending 'GET' request to URL : " + url);
+                System.out.println("Response Code : " + responseCode);
+            }
+            
+            if(responseCode != 200){
+                JOptionPane.showMessageDialog(null, "Server Error. Please check your connection.");
+                return null;
+            }
+            
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+               response.append(inputLine);
+            }
+            in.close();
+            //print in String
+            //System.out.println(response.toString());
+            
+
+            //Read JSON response and print
+            JSONObject myResponse = new JSONObject(response.toString());
+            JSONArray res = myResponse.getJSONArray("result");
+            
+            //Get column names
+            
+            
+            
+            if(res.length() > 0){
+                //Get column names
+                JSONObject sample = res.getJSONObject(0);
+                cLine = "";
+                
+                if (debugModeOn) {
+                    //Display column index & name
+                    for(int n=0;n<sample.names().length();n++){
+                        System.out.println(n+" "+sample.names().getString(n));
+                    }
+                }
+                
+                //Get values based on column name keys
+                for(int n=0;n<res.length();n++){
+                    JSONObject row = res.getJSONObject(n);
+                    String temp = "";
+                    for(int x=0;x<order.length;x++){
+                        //System.err.println(row.names().getString(order[x]));
+                        temp+=row.getString(row.names().getString(order[x]))+"@@";
+                    }
+                    cLine+=temp+"//";
+                }
+                cLine = cLine.replace("%C3%91", "Ñ");
+                cLine = cLine.replace("%C3%B1", "ñ");
+                
+                lines = cLine.split("//");
+                return lines;
+            }else{
+                System.err.println("No result");
+            }
+        } catch (Exception e) {
+            showMessage("Lost Connection to Database. \n\nError: "+e.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
+            System.err.println("Exception Found "+e.getLocalizedMessage());
+        }
+        
+        return null;
+    }
     public String [] return_values(String select,String from,String where,int [] order){
         String [] lines;
         String cLine;
@@ -505,8 +591,10 @@ public class myFunctions {
             con.setRequestProperty("User-Agent", "Mozilla/5.0");
             int responseCode = con.getResponseCode();
             
-            System.out.println("\nSending 'GET' request to URL : " + url);
-            System.out.println("Response Code : " + responseCode);
+            if (myVariables.isDebugModeOn()) {
+                System.out.println("\nSending 'GET' request to URL : " + url);
+                System.out.println("Response Code : " + responseCode);
+            }
             
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(con.getInputStream()));
@@ -533,6 +621,7 @@ public class myFunctions {
     }
     //JSON Query
     public boolean update_values(String tableName,String [] sets, String where){
+        //Note: the WHERE clause is already added in the PHP file
         String set = "";
         for(int n=0;n<sets.length;n++){
             if(n!=sets.length-1){
@@ -556,8 +645,10 @@ public class myFunctions {
             con.setRequestProperty("User-Agent", "Mozilla/5.0");
             int responseCode = con.getResponseCode();
             
-            System.out.println("\nSending 'GET' request to URL : " + url);
-            System.out.println("Response Code : " + responseCode);
+            if (myVariables.isDebugModeOn()) {
+                System.out.println("\nSending 'GET' request to URL : " + url);
+                System.out.println("Response Code : " + responseCode);
+            }
             
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(con.getInputStream()));
@@ -1088,6 +1179,8 @@ public class myFunctions {
                 toLoad = new Thread(tld);
                 break;
             }case 1:{
+                thread_registerSf1 tld = new thread_registerSf1(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
+                toLoad = new Thread(tld);
                 break;
             }case 2:{
                 break;
@@ -1143,6 +1236,20 @@ public class myFunctions {
         }
     }
     //</editor-fold>
+    SimpleDateFormat sdf1,sdf2;
+    public String changeDateFormat(String date,String originalFormat,String newFormat){
+        try {
+            String result = "";
+            sdf1 = new SimpleDateFormat(originalFormat);
+            sdf2 = new SimpleDateFormat(newFormat);
+            
+            result = sdf2.format(sdf1.parse(date));
+            
+            return result;
+        } catch (Exception e) {
+            return null;
+        }
+    }
     public String convertEscapeCharacters(String toConvert){
         //This function is primarily used for user input with possible escape characters being typed.
         //Usually on SEARCH FIELDS and INPUT FIELDS during add_values and/or update_values
@@ -1249,7 +1356,7 @@ public class myFunctions {
     
     public boolean checkForDuplicates(String tableName,String whereLimitExluded,int [] order){
         whereLimitExluded +=" LIMIT 1"; //For fast search. You only need to find at least 1 dupliclate
-        String result [] = return_values("*", tableName, whereLimitExluded, order);
+        String result [] = return_values("*", tableName, whereLimitExluded, order, myVariables.isDebugModeOn());
         
         if(result != null){
             return true;
@@ -1442,19 +1549,12 @@ public class myFunctions {
     }
     protected String explodeNameFormat(String line,int columnIndex){
         String value = getValueAtColumn(line, columnIndex);
-        String [] values = value.split(",");
+        String [] names = value.split(",");
         
         String finalString = "";
-        for (int n = 0; n < 4; n++) {
-            try {
-                finalString+=StringUtils.capitalize(values[n]);
-            } catch (Exception e) {
-                finalString+=" ";
-            }
-            if(n != 4-1){
-                finalString+="@@";
-            }
-        }
+        int nameCount = names.length;
+        //Check length
+        
         return setValueAtColumn(line, columnIndex, finalString);
     }
     protected String toNameFormat(String line,int [] columnIndex){
