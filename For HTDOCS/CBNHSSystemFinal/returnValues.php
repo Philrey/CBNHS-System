@@ -8,7 +8,6 @@
 	}
 	function return_values($select,$from,$where){
 		global $connect;
-		
 		$query="select ".$select;
 		if(strlen($from) > 0){
 			$query.=" from ".$from;
@@ -18,9 +17,8 @@
 		
 		$temp = array();
 		
-		$result = mysqli_query($connect,$query) or die (mysqli_error($connect));
+		$result = mysqli_query($connect,$query) or die ('{"error":[{"message":"'.mysqli_error($connect).'"}]}');
 		$rowCount = mysqli_num_rows($result);
-			
 			
 		$temp = array();
 		if($rowCount > 0){

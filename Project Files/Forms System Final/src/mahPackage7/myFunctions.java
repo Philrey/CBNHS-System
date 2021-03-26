@@ -573,8 +573,21 @@ public class myFunctions {
             
 
             //Read JSON response and print
+            
             JSONObject myResponse = new JSONObject(response.toString());
-            JSONArray res = myResponse.getJSONArray("result");
+            JSONArray res;
+            //Check for query errors
+            try {
+                res = myResponse.getJSONArray("result");
+            } catch (Exception e) {
+                res = myResponse.getJSONArray("error");
+                JSONObject row = res.getJSONObject(0);
+                
+                cLine = row.getString(row.names().getString(0));
+                showMessage("Query Error Occured. \n\nError: "+cLine, JOptionPane.ERROR_MESSAGE);
+                System.err.println("Exception Found "+e.getLocalizedMessage());
+                return null;
+            }
             
             //Get column names
             
