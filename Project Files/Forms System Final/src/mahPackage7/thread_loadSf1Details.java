@@ -70,7 +70,7 @@ public class thread_loadSf1Details extends SwingWorker<String, Object>{
     protected String doInBackground() throws Exception {
         btnExport.setEnabled(false);
         if(waitForMainThreadToFinish){
-            System.err.println("Waiting for mainThread to Finish first...");
+            //System.err.println("Waiting for mainThread to Finish first...");
             while (true) {                
                 if(myFunctions.getMainThead() == null){
                     break;
@@ -83,7 +83,7 @@ public class thread_loadSf1Details extends SwingWorker<String, Object>{
         }
         tableName.setEnabled(false);
         showCustomDialog("Calculating Students' Age...", dialogPanel, false, 320, 220, false);
-        System.err.println("Starting Second THread");
+        //System.err.println("Starting Second THread");
         
         //set variables displayed
         males=0;

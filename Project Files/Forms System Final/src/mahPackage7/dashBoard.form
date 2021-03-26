@@ -3004,9 +3004,13 @@
                             <Component class="javax.swing.JLabel" name="jLabel20">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="1st Day of Desired Month"/>
+                                <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;&#x9;&lt;h4&gt;Choose the first day of the month to get attendance from.&lt;/h4&gt;&#xa;&#x9;&lt;p&gt;Selecting the first date determines weekdays and weekends&lt;br&gt;for the program to use.&lt;/p&gt;&#xa;&lt;/html&gt;"/>
                               </Properties>
                             </Component>
                             <Component class="com.toedter.calendar.JDateChooser" name="jdcFirstDayOfMonth">
+                              <Properties>
+                                <Property name="toolTipText" type="java.lang.String" value=""/>
+                              </Properties>
                             </Component>
                             <Component class="javax.swing.JButton" name="btnLoadStudents1">
                               <Properties>
@@ -3083,6 +3087,7 @@
                             <Component class="javax.swing.JLabel" name="jLabel21">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Enrollment Cut-off Date"/>
+                                <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;&#x9;&lt;h4&gt;Choose the date when enrollment ended.&lt;/h4&gt;&#xa;&#x9;&lt;p&gt;Selecting the cut-off date determines which student to &lt;br&gt;include or exclude from calculating the attendance&lt;br&gt;depending on their enrollment date&lt;/p&gt;&#xa;&lt;/html&gt;"/>
                               </Properties>
                             </Component>
                             <Component class="com.toedter.calendar.JDateChooser" name="jdcCutOffDate">

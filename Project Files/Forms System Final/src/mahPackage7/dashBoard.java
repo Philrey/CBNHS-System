@@ -1919,6 +1919,9 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel19.setText("Export Options");
 
         jLabel20.setText("1st Day of Desired Month");
+        jLabel20.setToolTipText("<html>\n\t<h4>Choose the first day of the month to get attendance from.</h4>\n\t<p>Selecting the first date determines weekdays and weekends<br>for the program to use.</p>\n</html>");
+
+        jdcFirstDayOfMonth.setToolTipText("");
 
         btnLoadStudents1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_sync_16px.png"))); // NOI18N
         btnLoadStudents1.setText("Load Students");
@@ -1970,6 +1973,7 @@ public class dashBoard extends javax.swing.JFrame {
         }
 
         jLabel21.setText("Enrollment Cut-off Date");
+        jLabel21.setToolTipText("<html>\n\t<h4>Choose the date when enrollment ended.</h4>\n\t<p>Selecting the cut-off date determines which student to <br>include or exclude from calculating the attendance<br>depending on their enrollment date</p>\n</html>");
 
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("Summary");

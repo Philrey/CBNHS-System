@@ -586,8 +586,10 @@ public class myFunctions {
                 cLine = "";
                 
                 //Display column index & name
-                for(int n=0;n<sample.names().length();n++){
-                    System.out.println(n+" "+sample.names().getString(n));
+                if(myVariables.isDebugModeOn()){
+                    for(int n=0;n<sample.names().length();n++){
+                        System.out.println(n+" "+sample.names().getString(n));
+                    }
                 }
                 
                 //Get values based on column name keys
