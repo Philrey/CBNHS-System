@@ -149,7 +149,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             loadSchoolDaysIndex();
             //Check if there are students
             if(tableName.getRowCount() <= 0){
-                System.err.println("No students found. SKipping");
+                //System.err.println("No students found. SKipping");
                 tfSchoolDays.setText("0");
                 throw new InterruptedException("Ended");
             }
@@ -164,7 +164,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
             if(!evaluateRemarks()){
                 throw new InterruptedException("Interrupted @ Evaluate Remarks");
             }
-            System.err.println("Starting Second THread");
+            //System.err.println("Starting Second THread");
             //Load Dates
             lbLoadingMessage.setText("Determining Days...");
             String dateLine = "-@@-@@-@@-@@-@@-@@-@@"+getStartAndEndDates(dateSelected, false);

@@ -534,18 +534,16 @@ public class myFunctions {
                 return null;
             }
             
-            //Get column names
-            
-            
-            
             if(res.length() > 0){
                 //Get column names
                 JSONObject sample = res.getJSONObject(0);
                 cLine = "";
                 
                 //Display column index & name
-                for(int n=0;n<sample.names().length();n++){
-                    System.out.println(n+" "+sample.names().getString(n));
+                if(myVariables.isDebugModeOn()){
+                    for(int n=0;n<sample.names().length();n++){
+                        System.out.println(n+" "+sample.names().getString(n));
+                    }
                 }
                 
                 //Get values based on column name keys
