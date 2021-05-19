@@ -141,7 +141,7 @@ public class myVariables {
     private static final String lateCommerIcon = "icons/late_commer.png";
     private static final String cuttingClassesIcon = "icons/cutting_classes.png";
     
-    private static final String freshemenIcon = "icons/icons8_baby_20px.png";
+    private static final String freshemenIcon = "icons/icons8_babys_room_20px.png";
     private static final String sophomoreIcon = "icons/icons8_boy_20px.png";
     private static final String juniorIcon = "icons/icons8_students_20px.png";
     private static final String seniorIcon = "icons/icons8_student_male_20px.png";
