@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>D:\CBNHS System\Project Files\Enrollment System Final\dist\Enrollment_System_Final.jar</jar>
+  <outfile>D:\CBNHS System\Builds\modules\enrollment.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl>https://www.oracle.com/ph/java/technologies/javase-jre8-downloads.html</downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>D:\CBNHS System\Builds\modules\icons [temp]\icons8_resume.ico</icon>
+  <singleInstance>
+    <mutexName>hisrms_enrollment</mutexName>
+    <windowTitle>Enrollment System</windowTitle>
+  </singleInstance>
+  <classPath>
+    <mainClass>mahPackage2.login</mainClass>
+    <cp>lib/java-json.jar</cp>
+    <cp>lib/KGradientPanel.jar</cp>
+    <cp>lib/AbsoluteLayout.jar</cp>
+  </classPath>
+  <jre>
+    <path></path>
+    <bundledJre64Bit>false</bundledJre64Bit>
+    <bundledJreAsFallback>false</bundledJreAsFallback>
+    <minVersion>1.0.0</minVersion>
+    <maxVersion>9.9.9</maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <runtimeBits>64/32</runtimeBits>
+  </jre>
+  <splash>
+    <file>E:\Splash Screens\splash_enrollment.bmp</file>
+    <waitForWindow>true</waitForWindow>
+    <timeout>60</timeout>
+    <timeoutErr>true</timeoutErr>
+  </splash>
+</launch4jConfig>
