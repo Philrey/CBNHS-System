@@ -5083,7 +5083,7 @@ public class dashBoard extends javax.swing.JFrame {
         lbLoggedInUser.setText("Welcome USER_NAME, ACCESS_LEVEL");
 
         btnShowRankings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_prize_16px.png"))); // NOI18N
-        btnShowRankings.setText("Ranking System");
+        btnShowRankings.setText("Student Rankings");
         btnShowRankings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShowRankingsActionPerformed(evt);

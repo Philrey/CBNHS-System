@@ -9162,7 +9162,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/mahPackage7/icons/icons8_prize_16px.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Ranking System"/>
+                <Property name="text" type="java.lang.String" value="Student Rankings"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowRankingsActionPerformed"/>
