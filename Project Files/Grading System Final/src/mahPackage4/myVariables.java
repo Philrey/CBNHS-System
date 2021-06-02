@@ -6,6 +6,8 @@
 package mahPackage4;
 
 import java.awt.Font;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 
 /**
  *
@@ -22,6 +24,9 @@ public class myVariables {
     private static String district;
     private static String principal;
     private static String schoolAddress;
+    
+    private static int processingSpeed = 0;
+
     
     //Fonts
     public static final Font COLUMN_HEADER_FONT = new Font("Arial",Font.BOLD,13);
@@ -44,6 +49,10 @@ public class myVariables {
     private static int userLoggedInId;
     private static String userLoggedInName;
     private static int accessLevel;
+    
+    //Loading Dialog
+    private static JProgressBar progressBar;
+    private static JLabel lbLoadingMessage;
     
     //Selected Variables
     private static int adviserIdSelected;
@@ -319,6 +328,13 @@ public class myVariables {
     //</editor-fold>
 
     //<editor-fold desc="Getters & Setters">
+    public static int getProcessingSpeed() {
+        return processingSpeed;
+    }
+
+    public static void setProcessingSpeed(int processingSpeed) {
+        myVariables.processingSpeed = processingSpeed;
+    }
     
     public static int[] getGradesOrder() {
         return gradesOrder;
@@ -499,6 +515,39 @@ public class myVariables {
 
     public static String getUsersPrsnlInfIcon() {
         return usersPrsnlInfIcon;
+    }
+    
+    public static JProgressBar getProgressBar() {
+        return progressBar;
+    }
+
+    public static void setProgressBar(JProgressBar progressBar) {
+        myVariables.progressBar = progressBar;
+    }
+
+    public static JLabel getLbLoadingMessage() {
+        return lbLoadingMessage;
+    }
+
+    public static void setLbLoadingMessage(JLabel lbLoadingMessage) {
+        myVariables.lbLoadingMessage = lbLoadingMessage;
+    }
+    
+    public static long [] getProcessingSpeedValue(){
+        switch (getProcessingSpeed()){
+            case 0:{
+                return new long[] {100,500};
+            }case 1:{
+                return new long[] {50,250};
+            }case 2:{
+                return new long[] {25,125};
+            }case 3:{
+                //Hidden Value WARNING: may cause stuttering
+                return new long[] {0,0};
+            }default:{
+                return new long[] {100,500};
+            }
+        }
     }
     //</editor-fold>
 }

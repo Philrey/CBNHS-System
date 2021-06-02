@@ -33,7 +33,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class dashBoard extends javax.swing.JFrame {
     myFunctions my;
     public dashBoard() {
-        my = new myFunctions();
+        my = new myFunctions(false);
         initComponents();
         
         lbLoggedInUser.setText("Welcome "+myVariables.getUserLoggedInName()+" ("+myVariables.getAccessLevelName(-1)+")");
@@ -49,6 +49,9 @@ public class dashBoard extends javax.swing.JFrame {
         
         setScrollSpeeds();
         loadYearDropDowns(12);
+        
+        myVariables.setProgressBar(jpbProgressBar);
+        myVariables.setLbLoadingMessage(lbMessage);
         
         lbSchoolName.setText(myVariables.getSchoolName() + " Grading System");
         lbSchoolAddress.setText(myVariables.getSchoolAddress());
