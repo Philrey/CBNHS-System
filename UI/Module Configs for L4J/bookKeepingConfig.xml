@@ -2,8 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>D:\CBNHS System\Project Files\Registration System Final\dist\Registration_System_Final.jar</jar>
-  <outfile>D:\CBNHS System\Builds\modules\bookKeeping.exe</outfile>
+  <jar>D:\Repositories\CBNHS-System\Project Files\Book Keeping System\dist\Book_Keeping_System.jar</jar>
+  <outfile>D:\Repositories\CBNHS-System\Builds\modules\bookKeeping.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
@@ -13,7 +13,7 @@
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
-  <icon>D:\CBNHS System\Builds\modules\icons [temp]\icons8_book_shelf.ico</icon>
+  <icon>D:\Repositories\CBNHS-System\Builds\modules\icons [temp]\icons8_book_shelf.ico</icon>
   <singleInstance>
     <mutexName>hisrms_book_keeping</mutexName>
     <windowTitle>Book Keeping System</windowTitle>
@@ -29,13 +29,13 @@
     <path></path>
     <bundledJre64Bit>false</bundledJre64Bit>
     <bundledJreAsFallback>false</bundledJreAsFallback>
-    <minVersion>1.0.0</minVersion>
-    <maxVersion>9.9.9</maxVersion>
+    <minVersion>8.0.0</minVersion>
+    <maxVersion>15.0.0</maxVersion>
     <jdkPreference>preferJre</jdkPreference>
     <runtimeBits>64/32</runtimeBits>
   </jre>
   <splash>
-    <file>E:\Splash Screens\splash_bookkeeping.bmp</file>
+    <file>D:\Repositories\CBNHS-System\UI\Splash Screens\splash_bookkeeping.bmp</file>
     <waitForWindow>true</waitForWindow>
     <timeout>60</timeout>
     <timeoutErr>true</timeoutErr>
