@@ -68,6 +68,60 @@ public class dashBoard extends javax.swing.JFrame {
         jcbSchoolYear1 = new javax.swing.JComboBox<>();
         jScrollPane8 = new javax.swing.JScrollPane();
         assignedTeacherTable = new javax.swing.JTable();
+        viewStudentsTab2 = new javax.swing.JPanel();
+        jSplitPane2 = new javax.swing.JSplitPane();
+        left2 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        enrolledStudentsTable1 = new javax.swing.JTable();
+        btnRefreshStudents = new javax.swing.JButton();
+        jpbProgressBar = new javax.swing.JProgressBar();
+        lbMessage = new javax.swing.JLabel();
+        right2 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        lbStatusOptions1 = new javax.swing.JLabel();
+        jRadioButton17 = new javax.swing.JRadioButton();
+        jRadioButton18 = new javax.swing.JRadioButton();
+        jRadioButton19 = new javax.swing.JRadioButton();
+        jRadioButton20 = new javax.swing.JRadioButton();
+        lbStatusOptions2 = new javax.swing.JLabel();
+        jRadioButton21 = new javax.swing.JRadioButton();
+        jRadioButton22 = new javax.swing.JRadioButton();
+        jRadioButton23 = new javax.swing.JRadioButton();
+        jRadioButton24 = new javax.swing.JRadioButton();
+        lbStatusOptions3 = new javax.swing.JLabel();
+        jRadioButton25 = new javax.swing.JRadioButton();
+        jRadioButton26 = new javax.swing.JRadioButton();
+        jRadioButton27 = new javax.swing.JRadioButton();
+        jRadioButton28 = new javax.swing.JRadioButton();
+        jRadioButton29 = new javax.swing.JRadioButton();
+        jRadioButton30 = new javax.swing.JRadioButton();
+        jRadioButton31 = new javax.swing.JRadioButton();
+        jRadioButton32 = new javax.swing.JRadioButton();
+        lbStatusOptions4 = new javax.swing.JLabel();
+        btnSaveChanges = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        btnDphSelected = new javax.swing.JButton();
+        btnDphAll = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        btnRgrSelected = new javax.swing.JButton();
+        btnRgrAll = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
+        btnAdvSelected = new javax.swing.JButton();
+        btnAdvAll = new javax.swing.JButton();
         viewStudentsTab = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         left = new javax.swing.JPanel();
@@ -255,6 +309,616 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
                 .addContainerGap())
+        );
+
+        jSplitPane2.setBorder(null);
+        jSplitPane2.setDividerLocation(600);
+
+        left2.setBackground(new java.awt.Color(11, 102, 35));
+
+        enrolledStudentsTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID", "Grade ID", "Q1", "Q2", "Q3", "Q4", "General Average", "Status", "Date Updated"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        enrolledStudentsTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        enrolledStudentsTable1.getTableHeader().setReorderingAllowed(false);
+        enrolledStudentsTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                enrolledStudentsTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(enrolledStudentsTable1);
+        if (enrolledStudentsTable1.getColumnModel().getColumnCount() > 0) {
+            enrolledStudentsTable1.getColumnModel().getColumn(2).setPreferredWidth(150);
+            enrolledStudentsTable1.getColumnModel().getColumn(3).setPreferredWidth(200);
+            enrolledStudentsTable1.getColumnModel().getColumn(4).setPreferredWidth(100);
+            enrolledStudentsTable1.getColumnModel().getColumn(11).setPreferredWidth(120);
+            enrolledStudentsTable1.getColumnModel().getColumn(12).setPreferredWidth(150);
+        }
+
+        btnRefreshStudents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_sync_16px.png"))); // NOI18N
+        btnRefreshStudents.setText("Refresh");
+
+        lbMessage.setForeground(new java.awt.Color(255, 255, 255));
+        lbMessage.setText("Progress Here");
+
+        javax.swing.GroupLayout left2Layout = new javax.swing.GroupLayout(left2);
+        left2.setLayout(left2Layout);
+        left2Layout.setHorizontalGroup(
+            left2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(left2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(left2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+                    .addGroup(left2Layout.createSequentialGroup()
+                        .addGroup(left2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(left2Layout.createSequentialGroup()
+                                .addComponent(jpbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRefreshStudents)))
+                .addContainerGap())
+        );
+        left2Layout.setVerticalGroup(
+            left2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, left2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(left2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRefreshStudents)
+                    .addGroup(left2Layout.createSequentialGroup()
+                        .addComponent(lbMessage)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jpbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jSplitPane2.setLeftComponent(left2);
+
+        right2.setBackground(new java.awt.Color(255, 255, 204));
+
+        jScrollPane6.setBorder(null);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel10.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel38.setText("Grade Details");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel38)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel38)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("Basic");
+
+        jLabel19.setText("Section Name:");
+
+        jLabel20.setText("SECTION_NAME");
+
+        jLabel21.setText("Subject Name:");
+
+        jLabel22.setText("SUBJECT_NAME");
+
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("Grade Details");
+
+        lbStatusOptions1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbStatusOptions1.setText("1st Quarter Status");
+
+        jRadioButton17.setBackground(new java.awt.Color(255, 255, 255));
+        q1StatusGroup.add(jRadioButton17);
+        jRadioButton17.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton17.setForeground(new java.awt.Color(0, 102, 0));
+        jRadioButton17.setText("Open");
+        jRadioButton17.setToolTipText("The subject teacher can edit the grades.");
+        jRadioButton17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton17.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton17.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton17.setFocusable(false);
+        jRadioButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton17.setOpaque(false);
+        jRadioButton17.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        jRadioButton18.setBackground(new java.awt.Color(255, 255, 255));
+        q1StatusGroup.add(jRadioButton18);
+        jRadioButton18.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton18.setForeground(new java.awt.Color(0, 0, 153));
+        jRadioButton18.setText("Submitted");
+        jRadioButton18.setToolTipText("Once submitted, subject teachers can't edit the grade anymore and should wait for the Approval of the Department Head");
+        jRadioButton18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton18.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton18.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton18.setFocusable(false);
+        jRadioButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton18.setOpaque(false);
+        jRadioButton18.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        jRadioButton19.setBackground(new java.awt.Color(255, 255, 255));
+        q1StatusGroup.add(jRadioButton19);
+        jRadioButton19.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton19.setForeground(new java.awt.Color(255, 102, 0));
+        jRadioButton19.setText("Approved");
+        jRadioButton19.setToolTipText("Approved by the Department Head and waiting for the Registrar to close it.");
+        jRadioButton19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton19.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton19.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton19.setFocusable(false);
+        jRadioButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton19.setOpaque(false);
+        jRadioButton19.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        jRadioButton20.setBackground(new java.awt.Color(255, 255, 255));
+        q1StatusGroup.add(jRadioButton20);
+        jRadioButton20.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton20.setForeground(new java.awt.Color(204, 0, 0));
+        jRadioButton20.setText("Closed");
+        jRadioButton20.setToolTipText("Closed by the Registrar and means it has been finalized.");
+        jRadioButton20.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton20.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton20.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton20.setFocusable(false);
+        jRadioButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton20.setOpaque(false);
+        jRadioButton20.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        lbStatusOptions2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbStatusOptions2.setText("2nd Quarter Status");
+
+        jRadioButton21.setBackground(new java.awt.Color(255, 255, 255));
+        q2StatusGroup.add(jRadioButton21);
+        jRadioButton21.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton21.setForeground(new java.awt.Color(0, 102, 0));
+        jRadioButton21.setText("Open");
+        jRadioButton21.setToolTipText("The subject teacher can edit the grades.");
+        jRadioButton21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton21.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton21.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton21.setFocusable(false);
+        jRadioButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton21.setOpaque(false);
+        jRadioButton21.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        jRadioButton22.setBackground(new java.awt.Color(255, 255, 255));
+        q2StatusGroup.add(jRadioButton22);
+        jRadioButton22.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton22.setForeground(new java.awt.Color(0, 0, 153));
+        jRadioButton22.setText("Submitted");
+        jRadioButton22.setToolTipText("Once submitted, subject teachers can't edit the grade anymore and should wait for the Approval of the Department Head");
+        jRadioButton22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton22.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton22.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton22.setFocusable(false);
+        jRadioButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton22.setOpaque(false);
+        jRadioButton22.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        jRadioButton23.setBackground(new java.awt.Color(255, 255, 255));
+        q2StatusGroup.add(jRadioButton23);
+        jRadioButton23.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton23.setForeground(new java.awt.Color(255, 102, 0));
+        jRadioButton23.setText("Approved");
+        jRadioButton23.setToolTipText("Approved by the Department Head and waiting for the Registrar to close it.");
+        jRadioButton23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton23.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton23.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton23.setFocusable(false);
+        jRadioButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton23.setOpaque(false);
+        jRadioButton23.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        jRadioButton24.setBackground(new java.awt.Color(255, 255, 255));
+        q2StatusGroup.add(jRadioButton24);
+        jRadioButton24.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton24.setForeground(new java.awt.Color(204, 0, 0));
+        jRadioButton24.setText("Closed");
+        jRadioButton24.setToolTipText("Closed by the Registrar and means it has been finalized.");
+        jRadioButton24.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton24.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton24.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton24.setFocusable(false);
+        jRadioButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton24.setOpaque(false);
+        jRadioButton24.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        lbStatusOptions3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbStatusOptions3.setText("3rd Quarter Status");
+
+        jRadioButton25.setBackground(new java.awt.Color(255, 255, 255));
+        q3tatusGroup.add(jRadioButton25);
+        jRadioButton25.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton25.setForeground(new java.awt.Color(0, 102, 0));
+        jRadioButton25.setText("Open");
+        jRadioButton25.setToolTipText("The subject teacher can edit the grades.");
+        jRadioButton25.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton25.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton25.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton25.setFocusable(false);
+        jRadioButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton25.setOpaque(false);
+        jRadioButton25.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        jRadioButton26.setBackground(new java.awt.Color(255, 255, 255));
+        q3tatusGroup.add(jRadioButton26);
+        jRadioButton26.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton26.setForeground(new java.awt.Color(0, 0, 153));
+        jRadioButton26.setText("Submitted");
+        jRadioButton26.setToolTipText("Once submitted, subject teachers can't edit the grade anymore and should wait for the Approval of the Department Head");
+        jRadioButton26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton26.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton26.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton26.setFocusable(false);
+        jRadioButton26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton26.setOpaque(false);
+        jRadioButton26.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        jRadioButton27.setBackground(new java.awt.Color(255, 255, 255));
+        q3tatusGroup.add(jRadioButton27);
+        jRadioButton27.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton27.setForeground(new java.awt.Color(255, 102, 0));
+        jRadioButton27.setText("Approved");
+        jRadioButton27.setToolTipText("Approved by the Department Head and waiting for the Registrar to close it.");
+        jRadioButton27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton27.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton27.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton27.setFocusable(false);
+        jRadioButton27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton27.setOpaque(false);
+        jRadioButton27.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        jRadioButton28.setBackground(new java.awt.Color(255, 255, 255));
+        q3tatusGroup.add(jRadioButton28);
+        jRadioButton28.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton28.setForeground(new java.awt.Color(204, 0, 0));
+        jRadioButton28.setText("Closed");
+        jRadioButton28.setToolTipText("Closed by the Registrar and means it has been finalized.");
+        jRadioButton28.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton28.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton28.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton28.setFocusable(false);
+        jRadioButton28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton28.setOpaque(false);
+        jRadioButton28.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        jRadioButton29.setBackground(new java.awt.Color(255, 255, 255));
+        q4StatusGroup.add(jRadioButton29);
+        jRadioButton29.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton29.setForeground(new java.awt.Color(255, 102, 0));
+        jRadioButton29.setText("Approved");
+        jRadioButton29.setToolTipText("Approved by the Department Head and waiting for the Registrar to close it.");
+        jRadioButton29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton29.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton29.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton29.setFocusable(false);
+        jRadioButton29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton29.setOpaque(false);
+        jRadioButton29.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        jRadioButton30.setBackground(new java.awt.Color(255, 255, 255));
+        q4StatusGroup.add(jRadioButton30);
+        jRadioButton30.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton30.setForeground(new java.awt.Color(204, 0, 0));
+        jRadioButton30.setText("Closed");
+        jRadioButton30.setToolTipText("Closed by the Registrar and means it has been finalized.");
+        jRadioButton30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton30.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton30.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton30.setFocusable(false);
+        jRadioButton30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton30.setOpaque(false);
+        jRadioButton30.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        jRadioButton31.setBackground(new java.awt.Color(255, 255, 255));
+        q4StatusGroup.add(jRadioButton31);
+        jRadioButton31.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton31.setForeground(new java.awt.Color(0, 102, 0));
+        jRadioButton31.setText("Open");
+        jRadioButton31.setToolTipText("The subject teacher can edit the grades.");
+        jRadioButton31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton31.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton31.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton31.setFocusable(false);
+        jRadioButton31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton31.setOpaque(false);
+        jRadioButton31.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        jRadioButton32.setBackground(new java.awt.Color(255, 255, 255));
+        q4StatusGroup.add(jRadioButton32);
+        jRadioButton32.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        jRadioButton32.setForeground(new java.awt.Color(0, 0, 153));
+        jRadioButton32.setText("Submitted");
+        jRadioButton32.setToolTipText("Once submitted, subject teachers can't edit the grade anymore and should wait for the Approval of the Department Head");
+        jRadioButton32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButton32.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
+        jRadioButton32.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        jRadioButton32.setFocusable(false);
+        jRadioButton32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        jRadioButton32.setOpaque(false);
+        jRadioButton32.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+
+        lbStatusOptions4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbStatusOptions4.setText("4th Quarter Status");
+
+        btnSaveChanges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_save_16px.png"))); // NOI18N
+        btnSaveChanges.setText("Save Changes");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSaveChanges, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbStatusOptions1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbStatusOptions2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbStatusOptions3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbStatusOptions4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jRadioButton17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton20))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jRadioButton21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton24))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jRadioButton25)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton26)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton27)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton28))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jRadioButton31)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton32)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton29)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton30)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbStatusOptions1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton17)
+                    .addComponent(jRadioButton18)
+                    .addComponent(jRadioButton19)
+                    .addComponent(jRadioButton20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbStatusOptions2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton21)
+                    .addComponent(jRadioButton22)
+                    .addComponent(jRadioButton23)
+                    .addComponent(jRadioButton24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbStatusOptions3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton25)
+                    .addComponent(jRadioButton26)
+                    .addComponent(jRadioButton27)
+                    .addComponent(jRadioButton28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbStatusOptions4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton31)
+                    .addComponent(jRadioButton32)
+                    .addComponent(jRadioButton29)
+                    .addComponent(jRadioButton30))
+                .addGap(18, 18, 18)
+                .addComponent(btnSaveChanges)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jScrollPane6.setViewportView(jPanel2);
+
+        jTabbedPane1.addTab("Main Details", jScrollPane6);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel11.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel39.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel39.setText("Global Approval Controls");
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel39)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel39)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel24.setText("Department Head Controls");
+
+        btnDphSelected.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_to_do_16px.png"))); // NOI18N
+        btnDphSelected.setText("Approve Selected");
+
+        btnDphAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_check_all_16px.png"))); // NOI18N
+        btnDphAll.setText("Approve All");
+
+        jLabel25.setText("Registrar Controls");
+
+        btnRgrSelected.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_to_do_16px.png"))); // NOI18N
+        btnRgrSelected.setText("Close Selected");
+
+        btnRgrAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_check_all_16px.png"))); // NOI18N
+        btnRgrAll.setText("Close All");
+
+        jLabel26.setText("Subject Teacher Controls");
+
+        btnAdvSelected.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_to_do_16px.png"))); // NOI18N
+        btnAdvSelected.setText("Submit Selected");
+
+        btnAdvAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_check_all_16px.png"))); // NOI18N
+        btnAdvAll.setText("Submit All");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 156, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdvSelected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAdvAll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDphSelected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDphAll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRgrSelected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRgrAll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel26)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel25))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAdvSelected)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAdvAll)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDphSelected)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDphAll)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRgrSelected)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRgrAll)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jScrollPane7.setViewportView(jPanel3);
+
+        jTabbedPane1.addTab("Approval Controls", jScrollPane7);
+
+        javax.swing.GroupLayout right2Layout = new javax.swing.GroupLayout(right2);
+        right2.setLayout(right2Layout);
+        right2Layout.setHorizontalGroup(
+            right2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1)
+        );
+        right2Layout.setVerticalGroup(
+            right2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+        );
+
+        jSplitPane2.setRightComponent(right2);
+
+        javax.swing.GroupLayout viewStudentsTab2Layout = new javax.swing.GroupLayout(viewStudentsTab2);
+        viewStudentsTab2.setLayout(viewStudentsTab2Layout);
+        viewStudentsTab2Layout.setHorizontalGroup(
+            viewStudentsTab2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane2)
+        );
+        viewStudentsTab2Layout.setVerticalGroup(
+            viewStudentsTab2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane2)
         );
 
         jSplitPane1.setBorder(null);
@@ -1141,7 +1805,7 @@ public class dashBoard extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Dashboard");
+        setTitle("Grading System Dashboard");
         setIconImage(my.getImgIcn(myVariables.getGradingWindowIcon()).getImage()
         );
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -1373,7 +2037,7 @@ public class dashBoard extends javax.swing.JFrame {
                 String subjectName = assignedTeacherTable.getValueAt(row, 8).toString();
                 lbSubjectName.setText("Subject Name:  "+subjectName);
                 
-                mainTab.addTab("View Students", my.getImgIcn(myVariables.getViewStudentsIcon()), viewStudentsTab);
+                mainTab.addTab("View Students", my.getImgIcn(myVariables.getViewStudentsIcon()), viewStudentsTab2);
                 mainTab.setSelectedIndex(1);
             }
             resetStudentDetails(true, true, false);
@@ -1570,6 +2234,10 @@ public class dashBoard extends javax.swing.JFrame {
     private void tfEvaluationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEvaluationActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfEvaluationActionPerformed
+
+    private void enrolledStudentsTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enrolledStudentsTable1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enrolledStudentsTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1895,6 +2563,7 @@ public class dashBoard extends javax.swing.JFrame {
         if(!myVariables.isDebugModeOn()){
             my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6});
             my.hideColumns(enrolledStudentsTable, new int [] {0,1,5});
+            my.hideColumns(enrolledStudentsTable1, new int [] {});
             my.hideColumns(assignedSubjectsTable, new int [] {0});
         }
         
@@ -1902,7 +2571,9 @@ public class dashBoard extends javax.swing.JFrame {
         JTable tables [] = {
             assignedTeacherTable,
             enrolledStudentsTable,
+            enrolledStudentsTable1,
             assignedSubjectsTable,
+            
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
         //customHeaders(sf1SectionTable, new int []{0,1,2,3}, Color.RED, Color.WHITE, new Font("Comic Sans MS", Font.BOLD, 12), true);
@@ -1926,7 +2597,7 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadTabs(){
         mainTab.add("Select Managed Section",selectSectionTab);
-        mainTab.add("View Students",viewStudentsTab);
+        mainTab.add("View Students",viewStudentsTab2);
         
         mainTab.setFont(myVariables.TAB_HEADER_FONT);
     }
@@ -1949,6 +2620,11 @@ public class dashBoard extends javax.swing.JFrame {
             //View Students
             btnEditGrades,
             btnSearchEnrolledStudent,
+            btnSaveChanges,
+            //Approval
+            btnAdvSelected,btnAdvAll,
+            btnDphSelected,btnDphAll,
+            btnRgrSelected,btnRgrAll,
             //Edit Grades Dialog
             btnSaveGradeChanges,
             //My Assigned Subjects Dialog
@@ -1956,7 +2632,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         
         JButton lightButtons [] = {
-            btnMyManagedSubjects,
+            btnMyManagedSubjects,btnRefreshStudents,
         };
         Cursor tempC;
         for(int n=0;n<buttons.length;n++){
@@ -1983,18 +2659,22 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
-            jLabel35,jLabel36,jLabel37,
+            jLabel35,jLabel36,jLabel37,jLabel38,jLabel39,
         };
         JLabel labels [] = {
-            lbSearchResult,lbSearchResult1,
+            lbSearchResult,lbSearchResult1,lbMessage,
         };
         
         JLabel formsHeaderLabels [] = {
-            jLabel2,jLabel3,jLabel12,jLabel13,jLabel14
+            jLabel2,jLabel3,jLabel12,jLabel13,jLabel14,
+            jLabel18,jLabel23,
         };
         JLabel textFieldHeaderLabels [] = {
             lbDateUpdated,lbGradeStatus,jLabel5,jLabel6,jLabel7,jLabel8,jLabel9,lbSubjectName,
             jLabel1,jLabel4,jLabel10,jLabel11,jLabel15,lbRecordId,jLabel16,lbStatusOptions,jLabel17,
+            jLabel19,jLabel20,jLabel21,jLabel22,
+            lbStatusOptions1,lbStatusOptions2,lbStatusOptions3,lbStatusOptions4,
+            jLabel24,jLabel25,jLabel26,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -2084,9 +2764,17 @@ public class dashBoard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable assignedSubjectsTable;
     private javax.swing.JTable assignedTeacherTable;
+    private javax.swing.JButton btnAdvAll;
+    private javax.swing.JButton btnAdvSelected;
+    private javax.swing.JButton btnDphAll;
+    private javax.swing.JButton btnDphSelected;
     private javax.swing.JButton btnEditGrades;
     private javax.swing.JButton btnMyManagedSubjects;
     private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnRefreshStudents;
+    private javax.swing.JButton btnRgrAll;
+    private javax.swing.JButton btnRgrSelected;
+    private javax.swing.JButton btnSaveChanges;
     private javax.swing.JButton btnSaveGradeChanges;
     private javax.swing.JButton btnSearchEnrolledStudent;
     private javax.swing.JButton btnSearchSection;
@@ -2095,6 +2783,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel contentsPanel;
     private javax.swing.JPanel editGradeDialog;
     private javax.swing.JTable enrolledStudentsTable;
+    private javax.swing.JTable enrolledStudentsTable1;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2105,11 +2794,22 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2117,6 +2817,10 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
@@ -2128,8 +2832,24 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton14;
     private javax.swing.JRadioButton jRadioButton15;
     private javax.swing.JRadioButton jRadioButton16;
+    private javax.swing.JRadioButton jRadioButton17;
+    private javax.swing.JRadioButton jRadioButton18;
+    private javax.swing.JRadioButton jRadioButton19;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton20;
+    private javax.swing.JRadioButton jRadioButton21;
+    private javax.swing.JRadioButton jRadioButton22;
+    private javax.swing.JRadioButton jRadioButton23;
+    private javax.swing.JRadioButton jRadioButton24;
+    private javax.swing.JRadioButton jRadioButton25;
+    private javax.swing.JRadioButton jRadioButton26;
+    private javax.swing.JRadioButton jRadioButton27;
+    private javax.swing.JRadioButton jRadioButton28;
+    private javax.swing.JRadioButton jRadioButton29;
     private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton30;
+    private javax.swing.JRadioButton jRadioButton31;
+    private javax.swing.JRadioButton jRadioButton32;
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
@@ -2140,21 +2860,33 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane jSplitPane2;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
+    private javax.swing.JProgressBar jpbProgressBar;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel lbDateUpdated;
     private javax.swing.JLabel lbGradeStatus;
     private javax.swing.JLabel lbLoggedInUser;
+    private javax.swing.JLabel lbMessage;
     private javax.swing.JLabel lbRecordId;
     private javax.swing.JLabel lbSchoolAddress;
     private javax.swing.JLabel lbSchoolName;
     private javax.swing.JLabel lbSearchResult;
     private javax.swing.JLabel lbSearchResult1;
     private javax.swing.JLabel lbStatusOptions;
+    private javax.swing.JLabel lbStatusOptions1;
+    private javax.swing.JLabel lbStatusOptions2;
+    private javax.swing.JLabel lbStatusOptions3;
+    private javax.swing.JLabel lbStatusOptions4;
     private javax.swing.JLabel lbSubjectName;
     private javax.swing.JPanel left;
+    private javax.swing.JPanel left2;
     private javax.swing.JTabbedPane mainTab;
     private javax.swing.JPanel myAssignedSubjectsDialog;
     private javax.swing.ButtonGroup q1StatusGroup;
@@ -2164,6 +2896,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbAutomatic;
     private javax.swing.JRadioButton rbManual;
     private javax.swing.JPanel right;
+    private javax.swing.JPanel right2;
     private javax.swing.JPanel selectSectionTab;
     private javax.swing.JTextField tfEditFirstQuarter;
     private javax.swing.JTextField tfEditFourthQuarter;
@@ -2179,6 +2912,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTextField tfSecondQ;
     private javax.swing.JTextField tfThirdQ;
     private javax.swing.JPanel viewStudentsTab;
+    private javax.swing.JPanel viewStudentsTab2;
     // End of variables declaration//GEN-END:variables
 
 }
