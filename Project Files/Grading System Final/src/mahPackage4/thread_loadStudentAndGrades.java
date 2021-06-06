@@ -22,15 +22,13 @@ public class thread_loadStudentAndGrades extends SwingWorker<String, Object>{
     
     //Main Variables
     JTable enrolledStudentsTable;
-    String fileLocation;
-    String startingAddress;
-    String endingAddress;
+    String sectionId;
+    String subjectId;
+    String adviserId;
     
     int fileTypeSelected;
     
-    JButton btnFileChooser;
-    JButton btnCancel;
-    JButton btnRegister;
+    JButton btnRefresh;
     
     
     //Dialog Properties
@@ -42,12 +40,9 @@ public class thread_loadStudentAndGrades extends SwingWorker<String, Object>{
         my = new myFunctions(true);
         //Main Variables
         enrolledStudentsTable = tablesToUse[0];
-        fileLocation = textFieldsToUse[0].getText();
         fileTypeSelected = Integer.parseInt(stringsToUse[0]);
         
-        btnFileChooser = buttonsToUse[0];
-        btnCancel = buttonsToUse[1];
-        btnRegister = buttonsToUse[2];
+        btnRefresh = buttonsToUse[0];
         //For Loading Screen
         lbLoadingMessage = myVariables.getLbLoadingMessage();
         progressBar = myVariables.getProgressBar();
@@ -58,7 +53,17 @@ public class thread_loadStudentAndGrades extends SwingWorker<String, Object>{
     }
     @Override
     protected String doInBackground() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        btnRefresh.setEnabled(false);
+        
+        //#1 Load Students based on section id
+        //#2 Load grades based on section id and subjectId
+        
+        return "Finished";
     }
-    
+
+    @Override
+    protected void done() {
+        btnRefresh.setEnabled(true);
+        super.done(); //To change body of generated methods, choose Tools | Templates.
+    }
 }

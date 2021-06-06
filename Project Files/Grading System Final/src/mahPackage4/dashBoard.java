@@ -50,7 +50,7 @@ public class dashBoard extends javax.swing.JFrame {
         setScrollSpeeds();
         loadYearDropDowns(12);
         
-        myVariables.setProgressBar(jpbProgressBar);
+        myVariables.setProgressBar(pbProgressBar);
         myVariables.setLbLoadingMessage(lbMessage);
         
         lbSchoolName.setText(myVariables.getSchoolName() + " Grading System");
@@ -77,7 +77,7 @@ public class dashBoard extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         enrolledStudentsTable1 = new javax.swing.JTable();
         btnRefreshStudents = new javax.swing.JButton();
-        jpbProgressBar = new javax.swing.JProgressBar();
+        pbProgressBar = new javax.swing.JProgressBar();
         lbMessage = new javax.swing.JLabel();
         right2 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -356,6 +356,11 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnRefreshStudents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_sync_16px.png"))); // NOI18N
         btnRefreshStudents.setText("Refresh");
+        btnRefreshStudents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshStudentsActionPerformed(evt);
+            }
+        });
 
         lbMessage.setForeground(new java.awt.Color(255, 255, 255));
         lbMessage.setText("Progress Here");
@@ -372,7 +377,7 @@ public class dashBoard extends javax.swing.JFrame {
                         .addGroup(left2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(left2Layout.createSequentialGroup()
-                                .addComponent(jpbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRefreshStudents)))
@@ -387,7 +392,7 @@ public class dashBoard extends javax.swing.JFrame {
                     .addGroup(left2Layout.createSequentialGroup()
                         .addComponent(lbMessage)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(pbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                 .addContainerGap())
@@ -2242,6 +2247,10 @@ public class dashBoard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_enrolledStudentsTable1MouseClicked
 
+    private void btnRefreshStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshStudentsActionPerformed
+        refreshStudentsAndGrades();
+    }//GEN-LAST:event_btnRefreshStudentsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2731,6 +2740,26 @@ public class dashBoard extends javax.swing.JFrame {
             n.setFont(myVariables.TEXTFIELD_FONT);
         }
     }
+    public void refreshStudentsAndGrades(){
+        int row = assignedSubjectsTable.getSelectedRow();
+        if(row == -1){
+            return;
+        }
+        myVariables.setProgressBar(pbProgressBar);
+        myVariables.setLbLoadingMessage(lbMessage);
+        
+        my.runMainThread(1,
+            new JTable[]{enrolledStudentsTable1},
+            new String[]{
+                assignedTeacherTable.getValueAt(row, 1).toString(),
+                assignedTeacherTable.getValueAt(row, 5).toString(),
+                assignedTeacherTable.getValueAt(row, 6).toString()
+            },
+            new JTextField[]{},
+            new JButton[]{btnRefreshStudents},
+            null, null
+        );
+    }
     private void loadYearDropDowns(int numberOfYears){
         JComboBox [] yearDropDowns = {
             
@@ -2871,7 +2900,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
-    private javax.swing.JProgressBar jpbProgressBar;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel lbDateUpdated;
     private javax.swing.JLabel lbGradeStatus;
@@ -2892,6 +2920,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel left2;
     private javax.swing.JTabbedPane mainTab;
     private javax.swing.JPanel myAssignedSubjectsDialog;
+    private javax.swing.JProgressBar pbProgressBar;
     private javax.swing.ButtonGroup q1StatusGroup;
     private javax.swing.ButtonGroup q2StatusGroup;
     private javax.swing.ButtonGroup q3tatusGroup;
