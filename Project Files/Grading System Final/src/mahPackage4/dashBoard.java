@@ -87,9 +87,9 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel38 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        lbSectionName2 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        lbSubjectName2 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         lbStatusOptions1 = new javax.swing.JLabel();
         jRadioButton17 = new javax.swing.JRadioButton();
@@ -434,11 +434,11 @@ public class dashBoard extends javax.swing.JFrame {
 
         jLabel19.setText("Section Name:");
 
-        jLabel20.setText("SECTION_NAME");
+        lbSectionName2.setText("SECTION_NAME");
 
         jLabel21.setText("Subject Name:");
 
-        jLabel22.setText("SUBJECT_NAME");
+        lbSubjectName2.setText("SUBJECT_NAME");
 
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("Grade Details");
@@ -694,11 +694,11 @@ public class dashBoard extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lbSectionName2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lbSubjectName2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbStatusOptions1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbStatusOptions2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -754,11 +754,11 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jLabel20))
+                    .addComponent(lbSectionName2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(jLabel22))
+                    .addComponent(lbSubjectName2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel23)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -857,7 +857,7 @@ public class dashBoard extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 156, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -909,7 +909,7 @@ public class dashBoard extends javax.swing.JFrame {
         right2.setLayout(right2Layout);
         right2Layout.setHorizontalGroup(
             right2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
         );
         right2Layout.setVerticalGroup(
             right2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2042,13 +2042,17 @@ public class dashBoard extends javax.swing.JFrame {
             if(mainTab.getTabCount() <= 1){
                 int row = assignedTeacherTable.getSelectedRow();
                 
+                String sectionName = assignedTeacherTable.getValueAt(row, 2).toString();
                 String subjectName = assignedTeacherTable.getValueAt(row, 8).toString();
-                lbSubjectName.setText("Subject Name:  "+subjectName);
+                
+                lbSubjectName2.setText(subjectName.toUpperCase());
+                lbSectionName2.setText(sectionName.toUpperCase());
                 
                 mainTab.addTab("View Students", my.getImgIcn(myVariables.getViewStudentsIcon()), viewStudentsTab2);
                 mainTab.setSelectedIndex(1);
             }
-            resetStudentDetails(true, true, false);
+            //resetStudentDetails(true, true, false);
+            loadStudentsAndGrades();
             //calculateAttendanceCount(lbAttendanceCount, attendanceTable);
         }else{
             my.remove_multiple_tabs(mainTab, new int [] {1,2});
@@ -2248,7 +2252,7 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_enrolledStudentsTable1MouseClicked
 
     private void btnRefreshStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshStudentsActionPerformed
-        refreshStudentsAndGrades();
+        loadStudentsAndGrades();
     }//GEN-LAST:event_btnRefreshStudentsActionPerformed
 
     /**
@@ -2510,6 +2514,29 @@ public class dashBoard extends javax.swing.JFrame {
             }
         }
     }
+    
+    private void loadStudentsAndGrades(){
+        int row = assignedTeacherTable.getSelectedRow();
+        
+        if(row == -1){
+            my.showMessage("No Section Selected.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        String sectionId = assignedTeacherTable.getValueAt(row, 1).toString();
+        String adviserId = assignedTeacherTable.getValueAt(row, 3).toString();
+        String subjectId = assignedTeacherTable.getValueAt(row, 6).toString();
+        
+        my.runMainThread(
+            0,
+            new JTable[]{enrolledStudentsTable1},
+            new String[]{sectionId,adviserId,subjectId},
+            null,
+            new JButton[]{btnRefreshStudents},
+            null,
+            null
+        );
+    }
     //<editor-fold desc="Custom Functions"> 
     JDialog dialog;
     JDialog seconDaryDialog;
@@ -2684,7 +2711,7 @@ public class dashBoard extends javax.swing.JFrame {
         JLabel textFieldHeaderLabels [] = {
             lbDateUpdated,lbGradeStatus,jLabel5,jLabel6,jLabel7,jLabel8,jLabel9,lbSubjectName,
             jLabel1,jLabel4,jLabel10,jLabel11,jLabel15,lbRecordId,jLabel16,lbStatusOptions,jLabel17,
-            jLabel19,jLabel20,jLabel21,jLabel22,
+            jLabel19,lbSectionName2,jLabel21,lbSubjectName2,
             lbStatusOptions1,lbStatusOptions2,lbStatusOptions3,lbStatusOptions4,
             jLabel24,jLabel25,jLabel26,
         };
@@ -2740,26 +2767,7 @@ public class dashBoard extends javax.swing.JFrame {
             n.setFont(myVariables.TEXTFIELD_FONT);
         }
     }
-    public void refreshStudentsAndGrades(){
-        int row = assignedSubjectsTable.getSelectedRow();
-        if(row == -1){
-            return;
-        }
-        myVariables.setProgressBar(pbProgressBar);
-        myVariables.setLbLoadingMessage(lbMessage);
-        
-        my.runMainThread(1,
-            new JTable[]{enrolledStudentsTable1},
-            new String[]{
-                assignedTeacherTable.getValueAt(row, 1).toString(),
-                assignedTeacherTable.getValueAt(row, 5).toString(),
-                assignedTeacherTable.getValueAt(row, 6).toString()
-            },
-            new JTextField[]{},
-            new JButton[]{btnRefreshStudents},
-            null, null
-        );
-    }
+    
     private void loadYearDropDowns(int numberOfYears){
         JComboBox [] yearDropDowns = {
             
@@ -2793,6 +2801,7 @@ public class dashBoard extends javax.swing.JFrame {
         }
     }
     //</editor-fold>
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable assignedSubjectsTable;
     private javax.swing.JTable assignedTeacherTable;
@@ -2829,9 +2838,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -2910,12 +2917,14 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel lbSchoolName;
     private javax.swing.JLabel lbSearchResult;
     private javax.swing.JLabel lbSearchResult1;
+    private javax.swing.JLabel lbSectionName2;
     private javax.swing.JLabel lbStatusOptions;
     private javax.swing.JLabel lbStatusOptions1;
     private javax.swing.JLabel lbStatusOptions2;
     private javax.swing.JLabel lbStatusOptions3;
     private javax.swing.JLabel lbStatusOptions4;
     private javax.swing.JLabel lbSubjectName;
+    private javax.swing.JLabel lbSubjectName2;
     private javax.swing.JPanel left;
     private javax.swing.JPanel left2;
     private javax.swing.JTabbedPane mainTab;
