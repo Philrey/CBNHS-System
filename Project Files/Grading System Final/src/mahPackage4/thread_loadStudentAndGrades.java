@@ -81,18 +81,50 @@ public class thread_loadStudentAndGrades extends SwingWorker<String, Object>{
         
         //#2 Load grades based on section id and subjectId
         String [] result2 = my.return_values(
-            "*", "v_grades",
-            "WHERE sectionId='"+sectionId+"' AND subjectId='"+subjectId+"' AND teacherId='"+teacherId+"' AND studentId IN ("+studentIds+")",
+            "*", "grades",
+            "WHERE sectionId='"+sectionId+"' AND subjectId='"+subjectId+"' AND studentId IN ("+studentIds+")",
             myVariables.getGradesOrder()
         );
         
         //#3 Load Everything to table
+        int studentIdToFind,currId;
+        String gradeDetails;
+        boolean matchFound;
+        
         for (int n = 0; n < result.length; n++) {
+            //System.err.println(result[n]);
             result[n] = my.toNameFormat(result[n], new int[]{3,4,5});
-            my.add_table_row(
-                my.skipColumns(result[n], new int []{6})+"-1@@--@@--@@--@@--@@--@@--@@--@@",
-                enrolledStudentsTable
-            );
+            studentIdToFind = Integer.parseInt(my.getValueAtColumn(result[n], 1));
+            gradeDetails = ""; matchFound = false;
+            
+            
+            //#3.1 Find Grade based on student ID
+            if(result2 != null){
+                for (int x = 0; x < result2.length; x++) {
+                    currId = Integer.parseInt(my.getValueAtColumn(result2[x], 1));
+                    System.err.println(result2[x]);
+
+                    //System.err.println("toFind "+studentIdToFind+": curr "+ currId);
+                    if(studentIdToFind == currId){
+                        matchFound = true;
+                        gradeDetails = my.skipColumns(result2[x], new int [] {1,2,3});
+                        break;
+                    }
+                }
+            }
+            
+            if(matchFound){
+                System.out.println("Match Found..");
+                my.add_table_row(
+                    my.skipColumns(result[n], new int []{6})+gradeDetails,
+                    enrolledStudentsTable
+                );
+            } else{
+                my.add_table_row(
+                    my.skipColumns(result[n], new int []{6})+"-1@@--@@--@@--@@--@@--@@--@@--@@",
+                    enrolledStudentsTable
+                );
+            }
         }
         return "Loading Complete";
     }

@@ -351,7 +351,8 @@ public class dashBoard extends javax.swing.JFrame {
             enrolledStudentsTable1.getColumnModel().getColumn(3).setPreferredWidth(200);
             enrolledStudentsTable1.getColumnModel().getColumn(4).setPreferredWidth(100);
             enrolledStudentsTable1.getColumnModel().getColumn(11).setPreferredWidth(120);
-            enrolledStudentsTable1.getColumnModel().getColumn(12).setPreferredWidth(150);
+            enrolledStudentsTable1.getColumnModel().getColumn(12).setPreferredWidth(200);
+            enrolledStudentsTable1.getColumnModel().getColumn(13).setPreferredWidth(200);
         }
 
         btnRefreshStudents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_sync_16px.png"))); // NOI18N
@@ -2602,7 +2603,7 @@ public class dashBoard extends javax.swing.JFrame {
         if(!myVariables.isDebugModeOn()){
             my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6});
             my.hideColumns(enrolledStudentsTable, new int [] {0,1,5});
-            my.hideColumns(enrolledStudentsTable1, new int [] {});
+            my.hideColumns(enrolledStudentsTable1, new int [] {0,1,5,6,12});
             my.hideColumns(assignedSubjectsTable, new int [] {0});
         }
         
