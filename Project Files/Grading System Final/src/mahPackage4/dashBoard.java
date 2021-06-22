@@ -12,6 +12,7 @@ import java.awt.ComponentOrientation;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.text.DecimalFormat;
+import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -451,6 +452,7 @@ public class dashBoard extends javax.swing.JFrame {
         q1StatusGroup.add(jRadioButton17);
         jRadioButton17.setFont(myVariables.TEXTFIELD_HEADER_FONT);
         jRadioButton17.setForeground(new java.awt.Color(0, 102, 0));
+        jRadioButton17.setSelected(true);
         jRadioButton17.setText("Open");
         jRadioButton17.setToolTipText("The subject teacher can edit the grades.");
         jRadioButton17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -524,6 +526,7 @@ public class dashBoard extends javax.swing.JFrame {
         q2StatusGroup.add(jRadioButton22);
         jRadioButton22.setFont(myVariables.TEXTFIELD_HEADER_FONT);
         jRadioButton22.setForeground(new java.awt.Color(0, 0, 153));
+        jRadioButton22.setSelected(true);
         jRadioButton22.setText("Submitted");
         jRadioButton22.setToolTipText("Once submitted, subject teachers can't edit the grade anymore and should wait for the Approval of the Department Head");
         jRadioButton22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -624,9 +627,9 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton29.setBackground(new java.awt.Color(255, 255, 255));
         q4StatusGroup.add(jRadioButton29);
         jRadioButton29.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        jRadioButton29.setForeground(new java.awt.Color(255, 102, 0));
-        jRadioButton29.setText("Approved");
-        jRadioButton29.setToolTipText("Approved by the Department Head and waiting for the Registrar to close it.");
+        jRadioButton29.setForeground(new java.awt.Color(0, 102, 0));
+        jRadioButton29.setText("Open");
+        jRadioButton29.setToolTipText("The subject teacher can edit the grades.");
         jRadioButton29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton29.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton29.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -638,9 +641,10 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton30.setBackground(new java.awt.Color(255, 255, 255));
         q4StatusGroup.add(jRadioButton30);
         jRadioButton30.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        jRadioButton30.setForeground(new java.awt.Color(204, 0, 0));
-        jRadioButton30.setText("Closed");
-        jRadioButton30.setToolTipText("Closed by the Registrar and means it has been finalized.");
+        jRadioButton30.setForeground(new java.awt.Color(0, 0, 153));
+        jRadioButton30.setSelected(true);
+        jRadioButton30.setText("Submitted");
+        jRadioButton30.setToolTipText("Once submitted, subject teachers can't edit the grade anymore and should wait for the Approval of the Department Head");
         jRadioButton30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton30.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton30.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -652,9 +656,9 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton31.setBackground(new java.awt.Color(255, 255, 255));
         q4StatusGroup.add(jRadioButton31);
         jRadioButton31.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        jRadioButton31.setForeground(new java.awt.Color(0, 102, 0));
-        jRadioButton31.setText("Open");
-        jRadioButton31.setToolTipText("The subject teacher can edit the grades.");
+        jRadioButton31.setForeground(new java.awt.Color(255, 102, 0));
+        jRadioButton31.setText("Approved");
+        jRadioButton31.setToolTipText("Approved by the Department Head and waiting for the Registrar to close it.");
         jRadioButton31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton31.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton31.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -666,9 +670,9 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton32.setBackground(new java.awt.Color(255, 255, 255));
         q4StatusGroup.add(jRadioButton32);
         jRadioButton32.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        jRadioButton32.setForeground(new java.awt.Color(0, 0, 153));
-        jRadioButton32.setText("Submitted");
-        jRadioButton32.setToolTipText("Once submitted, subject teachers can't edit the grade anymore and should wait for the Approval of the Department Head");
+        jRadioButton32.setForeground(new java.awt.Color(204, 0, 0));
+        jRadioButton32.setText("Closed");
+        jRadioButton32.setToolTipText("Closed by the Registrar and means it has been finalized.");
         jRadioButton32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton32.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_unchecked_radio_button_20px.png"))); // NOI18N
         jRadioButton32.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
@@ -732,13 +736,13 @@ public class dashBoard extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jRadioButton28))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jRadioButton31)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton32)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jRadioButton29)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton30)))
+                                .addComponent(jRadioButton30)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton31)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton32)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -790,10 +794,10 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(lbStatusOptions4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton31)
-                    .addComponent(jRadioButton32)
                     .addComponent(jRadioButton29)
-                    .addComponent(jRadioButton30))
+                    .addComponent(jRadioButton30)
+                    .addComponent(jRadioButton31)
+                    .addComponent(jRadioButton32))
                 .addGap(18, 18, 18)
                 .addComponent(btnSaveChanges)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -2249,9 +2253,61 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_tfEvaluationActionPerformed
 
     private void enrolledStudentsTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enrolledStudentsTable1MouseClicked
-        // TODO add your handling code here:
+        int row = enrolledStudentsTable1.getSelectedRow();
+        int col = enrolledStudentsTable1.getSelectedColumn();
+        
+        if(row != -1){
+            String statuses = enrolledStudentsTable1.getValueAt(row, 12).toString();
+            
+            if(!statuses.contains("--")){
+                loadStatusRadioBtns(statuses);
+                
+                if(col >= 7 && col <= 11){
+                    //Check if status is open
+                    if(canEditGrade(col)){
+                        String studentName = enrolledStudentsTable1.getValueAt(row, 3).toString();
+                        String currentGrade = enrolledStudentsTable1.getValueAt(row, col).toString();
+                        
+                        String temp = (String) JOptionPane.showInputDialog(
+                                this,
+                                col-6!= 5? "Quarter " + (col-6) + " Grade:" : "General Average",
+                                studentName,
+                                JOptionPane.INFORMATION_MESSAGE,
+                                my.getImgIcn(myVariables.getMsgUrlIcon()),
+                                null,currentGrade
+                        );
+                        
+                        if(temp != null){
+                            enrolledStudentsTable1.setValueAt(temp, row, col);
+                        }
+                    }
+                }
+                
+                return;
+            }
+            
+            loadStatusRadioBtns(null);
+        }
+        
     }//GEN-LAST:event_enrolledStudentsTable1MouseClicked
-
+    private boolean canEditGrade(int column){
+        switch(column){
+            case 7:{
+                return jRadioButton17.isSelected();
+            }case 8:{
+                return jRadioButton21.isSelected();
+            }case 9:{
+                return jRadioButton25.isSelected();
+            }case 10:{
+                return jRadioButton29.isSelected();
+            }case 11:{
+                return true;//can edit General Average Directly
+            } default: {
+                return false;
+            }
+        }
+    }
+    
     private void btnRefreshStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshStudentsActionPerformed
         loadStudentsAndGrades();
     }//GEN-LAST:event_btnRefreshStudentsActionPerformed
@@ -2436,6 +2492,46 @@ public class dashBoard extends javax.swing.JFrame {
             btnSaveGradeChanges.setEnabled(true);
         }
     }
+    private void loadStatusRadioBtns(String statuses){
+        JRadioButton [][] radioSets = {
+            new JRadioButton[] {jRadioButton17,jRadioButton18,jRadioButton19,jRadioButton20},
+            new JRadioButton[] {jRadioButton21,jRadioButton22,jRadioButton23,jRadioButton24},
+            new JRadioButton[] {jRadioButton25,jRadioButton26,jRadioButton27,jRadioButton28},
+            new JRadioButton[] {jRadioButton29,jRadioButton30,jRadioButton31,jRadioButton32},
+        };
+        ButtonGroup [] radioGroups = {q1StatusGroup,q2StatusGroup,q3tatusGroup,q4StatusGroup};
+        
+        if(statuses == null){
+            
+            //Disable & uncheck all
+            for (int n = 0; n < radioSets.length; n++) {
+                radioGroups[n].clearSelection();
+                for (int x = 0; x < 4; x++) {
+                    radioSets[n][x].setEnabled(false);
+                }
+            }
+            
+            btnSaveChanges.setEnabled(false);
+        } else {
+            String [] status = statuses.split(":");
+            
+            //Check Based on status
+            for (int n = 0; n < radioSets.length; n++) {
+                switch (status[n]){
+                    case "Open":{
+                        radioSets[n][0].setSelected(true); break;
+                    }case "Submitted":{
+                        radioSets[n][1].setSelected(true); break;
+                    }case "Approved":{
+                        radioSets[n][2].setSelected(true); break;
+                    }case "Closed":{
+                        radioSets[n][3].setSelected(true); break;
+                    }
+                }
+            }
+        }
+    }
+    
     private String retrieveStatuses(){
         String status [] = new String[4];
         JTextField [] textFields = {tfEditFirstQuarter,tfEditSecondQuarter,tfEditThirdQuarter,tfEditFourthQuarter};
@@ -2528,6 +2624,8 @@ public class dashBoard extends javax.swing.JFrame {
         String adviserId = assignedTeacherTable.getValueAt(row, 3).toString();
         String subjectId = assignedTeacherTable.getValueAt(row, 6).toString();
         
+        loadStatusRadioBtns(null);
+        
         my.runMainThread(
             0,
             new JTable[]{enrolledStudentsTable1},
@@ -2603,7 +2701,7 @@ public class dashBoard extends javax.swing.JFrame {
         if(!myVariables.isDebugModeOn()){
             my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6});
             my.hideColumns(enrolledStudentsTable, new int [] {0,1,5});
-            my.hideColumns(enrolledStudentsTable1, new int [] {0,1,5,6,12});
+            my.hideColumns(enrolledStudentsTable1, new int [] {0,1,5,6}); // 12 is status column
             my.hideColumns(assignedSubjectsTable, new int [] {0});
         }
         

@@ -500,13 +500,13 @@
                                                       <Component id="jRadioButton28" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jRadioButton31" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="jRadioButton32" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                       <Component id="jRadioButton29" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                       <Component id="jRadioButton30" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="jRadioButton31" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="jRadioButton32" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -570,10 +570,10 @@
                                       <Component id="lbStatusOptions4" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jRadioButton31" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton32" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jRadioButton29" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jRadioButton30" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jRadioButton31" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jRadioButton32" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnSaveChanges" min="-2" max="-2" attributes="0"/>
@@ -676,6 +676,7 @@
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="0" green="66" red="0" type="rgb"/>
                                 </Property>
+                                <Property name="selected" type="boolean" value="true"/>
                                 <Property name="text" type="java.lang.String" value="Open"/>
                                 <Property name="toolTipText" type="java.lang.String" value="The subject teacher can edit the grades."/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -857,6 +858,7 @@
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="99" green="0" red="0" type="rgb"/>
                                 </Property>
+                                <Property name="selected" type="boolean" value="true"/>
                                 <Property name="text" type="java.lang.String" value="Submitted"/>
                                 <Property name="toolTipText" type="java.lang.String" value="Once submitted, subject teachers can&apos;t edit the grade anymore and should wait for the Approval of the Department Head"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -1106,10 +1108,10 @@
                                   <Connection code="myVariables.TEXTFIELD_HEADER_FONT" type="code"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="66" red="ff" type="rgb"/>
+                                  <Color blue="0" green="66" red="0" type="rgb"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="Approved"/>
-                                <Property name="toolTipText" type="java.lang.String" value="Approved by the Department Head and waiting for the Registrar to close it."/>
+                                <Property name="text" type="java.lang.String" value="Open"/>
+                                <Property name="toolTipText" type="java.lang.String" value="The subject teacher can edit the grades."/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Hand Cursor"/>
                                 </Property>
@@ -1141,10 +1143,11 @@
                                   <Connection code="myVariables.TEXTFIELD_HEADER_FONT" type="code"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="cc" type="rgb"/>
+                                  <Color blue="99" green="0" red="0" type="rgb"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="Closed"/>
-                                <Property name="toolTipText" type="java.lang.String" value="Closed by the Registrar and means it has been finalized."/>
+                                <Property name="selected" type="boolean" value="true"/>
+                                <Property name="text" type="java.lang.String" value="Submitted"/>
+                                <Property name="toolTipText" type="java.lang.String" value="Once submitted, subject teachers can&apos;t edit the grade anymore and should wait for the Approval of the Department Head"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Hand Cursor"/>
                                 </Property>
@@ -1176,10 +1179,10 @@
                                   <Connection code="myVariables.TEXTFIELD_HEADER_FONT" type="code"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="66" red="0" type="rgb"/>
+                                  <Color blue="0" green="66" red="ff" type="rgb"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="Open"/>
-                                <Property name="toolTipText" type="java.lang.String" value="The subject teacher can edit the grades."/>
+                                <Property name="text" type="java.lang.String" value="Approved"/>
+                                <Property name="toolTipText" type="java.lang.String" value="Approved by the Department Head and waiting for the Registrar to close it."/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Hand Cursor"/>
                                 </Property>
@@ -1211,10 +1214,10 @@
                                   <Connection code="myVariables.TEXTFIELD_HEADER_FONT" type="code"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="99" green="0" red="0" type="rgb"/>
+                                  <Color blue="0" green="0" red="cc" type="rgb"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="Submitted"/>
-                                <Property name="toolTipText" type="java.lang.String" value="Once submitted, subject teachers can&apos;t edit the grade anymore and should wait for the Approval of the Department Head"/>
+                                <Property name="text" type="java.lang.String" value="Closed"/>
+                                <Property name="toolTipText" type="java.lang.String" value="Closed by the Registrar and means it has been finalized."/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Hand Cursor"/>
                                 </Property>
