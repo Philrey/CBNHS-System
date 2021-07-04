@@ -60,11 +60,17 @@ public class thread_loadStudentAndGrades extends SwingWorker<String, Object>{
         my.clear_table_rows(enrolledStudentsTable);
         
         //#1 Load Students based on section id
+        lbLoadingMessage.setText("Connecting to Database...1/2");
+        progressBar.setMaximum(1);
+        progressBar.setValue(0);        
         int arrLength;
         String [] result = my.return_values(
                 "*", "v_enrollment_minimal", "WHERE sectionId='"+sectionId+"'",
                 myVariables.getEnrollmentViewMinimalOrder()
         );
+        progressBar.setValue(1);
+        Thread.sleep(pauseDelay);
+        
         arrLength = result.length;
         if(result == null){
             return "No Students Found on this Section";
@@ -80,18 +86,29 @@ public class thread_loadStudentAndGrades extends SwingWorker<String, Object>{
         }
         
         //#2 Load grades based on section id and subjectId
+        lbLoadingMessage.setText("Connecting to Database...2/2");
+        progressBar.setValue(0);
+        
         String [] result2 = my.return_values(
             "*", "grades",
             "WHERE sectionId='"+sectionId+"' AND subjectId='"+subjectId+"' AND studentId IN ("+studentIds+")",
             myVariables.getGradesOrder()
         );
+        progressBar.setValue(1);
+        Thread.sleep(pauseDelay);
         
         //#3 Load Everything to table
+        lbLoadingMessage.setText("Loading Students...");
+        progressBar.setMaximum(result.length);
+        progressBar.setValue(0);
+        
         int studentIdToFind,currId;
         String gradeDetails;
         boolean matchFound;
         
         for (int n = 0; n < result.length; n++) {
+            lbLoadingMessage.setText("Loading Students..." + (n+1) + " of " + result.length);
+            progressBar.setValue(n+1);
             //System.err.println(result[n]);
             result[n] = my.toNameFormat(result[n], new int[]{3,4,5});
             studentIdToFind = Integer.parseInt(my.getValueAtColumn(result[n], 1));
@@ -102,7 +119,7 @@ public class thread_loadStudentAndGrades extends SwingWorker<String, Object>{
             if(result2 != null){
                 for (int x = 0; x < result2.length; x++) {
                     currId = Integer.parseInt(my.getValueAtColumn(result2[x], 1));
-                    System.err.println(result2[x]);
+                    //System.err.println(result2[x]);
 
                     //System.err.println("toFind "+studentIdToFind+": curr "+ currId);
                     if(studentIdToFind == currId){
@@ -114,7 +131,7 @@ public class thread_loadStudentAndGrades extends SwingWorker<String, Object>{
             }
             
             if(matchFound){
-                System.out.println("Match Found..");
+                //System.out.println("Match Found..");
                 my.add_table_row(
                     my.skipColumns(result[n], new int []{6})+gradeDetails,
                     enrolledStudentsTable
@@ -125,6 +142,7 @@ public class thread_loadStudentAndGrades extends SwingWorker<String, Object>{
                     enrolledStudentsTable
                 );
             }
+            Thread.sleep(threadDelay);
         }
         return "Loading Complete";
     }

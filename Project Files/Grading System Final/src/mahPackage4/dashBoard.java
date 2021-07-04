@@ -3159,7 +3159,7 @@ public class dashBoard extends javax.swing.JFrame {
         }
     }
     private void enableDisableRadioBtnsByUserType(){
-        System.err.println("Enabling Radio Btns "+ myVariables.getAccessLevel());
+        //System.err.println("Enabling Radio Btns "+ myVariables.getAccessLevel());
         JRadioButton [][] radioSets = {
             new JRadioButton[] {jRadioButton17,jRadioButton18,jRadioButton19,jRadioButton20},
             new JRadioButton[] {jRadioButton21,jRadioButton22,jRadioButton23,jRadioButton24},
