@@ -116,7 +116,8 @@ public class dashBoard extends javax.swing.JFrame {
         jRadioButton32 = new javax.swing.JRadioButton();
         lbStatusOptions4 = new javax.swing.JLabel();
         btnSaveChangesCurrent = new javax.swing.JButton();
-        btnSaveChangesAll = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        lbEvaluation = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -163,12 +164,13 @@ public class dashBoard extends javax.swing.JFrame {
         lbRecordId = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         selectQuarterDialog = new javax.swing.JPanel();
-        rbQuarter1 = new javax.swing.JRadioButton();
         lbQuarterSelect = new javax.swing.JLabel();
         btnSelectQuarter = new javax.swing.JButton();
+        rbQuarter1 = new javax.swing.JRadioButton();
         rbQuarter2 = new javax.swing.JRadioButton();
         rbQuarter3 = new javax.swing.JRadioButton();
         rbQuarter4 = new javax.swing.JRadioButton();
+        rbAllQuarters = new javax.swing.JRadioButton();
         editGradeDialog = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         contentsPanel = new javax.swing.JPanel();
@@ -221,12 +223,23 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         btnRefresh = new javax.swing.JButton();
         selectQuarterGroup = new javax.swing.ButtonGroup();
+        importDialog = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
+        jLabel94 = new javax.swing.JLabel();
+        jtbImportTabs = new javax.swing.JTabbedPane();
+        selectStudentTab = new javax.swing.JPanel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        studentTable = new javax.swing.JTable();
+        tfSearchStudent = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        lbSearchResult2 = new javax.swing.JLabel();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
         lbSchoolAddress = new javax.swing.JLabel();
         lbLoggedInUser = new javax.swing.JLabel();
         btnMyManagedSubjects = new javax.swing.JButton();
+        btnImportFromSf10 = new javax.swing.JButton();
         mainTab = new javax.swing.JTabbedPane();
 
         selectSectionTab.setBackground(new java.awt.Color(11, 102, 35));
@@ -369,7 +382,7 @@ public class dashBoard extends javax.swing.JFrame {
             enrolledStudentsTable1.getColumnModel().getColumn(3).setPreferredWidth(200);
             enrolledStudentsTable1.getColumnModel().getColumn(4).setPreferredWidth(100);
             enrolledStudentsTable1.getColumnModel().getColumn(11).setPreferredWidth(120);
-            enrolledStudentsTable1.getColumnModel().getColumn(12).setPreferredWidth(200);
+            enrolledStudentsTable1.getColumnModel().getColumn(12).setPreferredWidth(250);
             enrolledStudentsTable1.getColumnModel().getColumn(13).setPreferredWidth(200);
         }
 
@@ -413,7 +426,7 @@ public class dashBoard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -783,9 +796,15 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnSaveChangesCurrent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_save_16px.png"))); // NOI18N
         btnSaveChangesCurrent.setText("Save Changes (This Student)");
+        btnSaveChangesCurrent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveChangesCurrentActionPerformed(evt);
+            }
+        });
 
-        btnSaveChangesAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_save_16px.png"))); // NOI18N
-        btnSaveChangesAll.setText("Save All Changes");
+        jLabel22.setText("Evaluation:");
+
+        lbEvaluation.setText("-- Select Student --");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -797,7 +816,6 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSaveChangesCurrent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel19)
@@ -807,6 +825,11 @@ public class dashBoard extends javax.swing.JFrame {
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbSubjectName2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbEvaluation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSaveChangesCurrent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbStatusOptions1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbStatusOptions2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -846,8 +869,7 @@ public class dashBoard extends javax.swing.JFrame {
                                 .addComponent(jRadioButton31)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jRadioButton32)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnSaveChangesAll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -865,7 +887,11 @@ public class dashBoard extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(lbSubjectName2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(lbEvaluation))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel23)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbStatusOptions1)
@@ -899,11 +925,9 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(jRadioButton30)
                     .addComponent(jRadioButton31)
                     .addComponent(jRadioButton32))
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(btnSaveChangesCurrent)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSaveChangesAll)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jScrollPane6.setViewportView(jPanel2);
@@ -1345,8 +1369,20 @@ public class dashBoard extends javax.swing.JFrame {
 
         selectQuarterDialog.setBackground(new java.awt.Color(255, 255, 204));
 
+        lbQuarterSelect.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbQuarterSelect.setText("Select Quarter:");
+
+        btnSelectQuarter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_16px.png"))); // NOI18N
+        btnSelectQuarter.setText("OK");
+        btnSelectQuarter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectQuarterActionPerformed(evt);
+            }
+        });
+
         selectQuarterGroup.add(rbQuarter1);
         rbQuarter1.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        rbQuarter1.setSelected(true);
         rbQuarter1.setText("First Quarter (Q1)");
         rbQuarter1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rbQuarter1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
@@ -1359,20 +1395,9 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
 
-        lbQuarterSelect.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbQuarterSelect.setText("Select Quarter:");
-
-        btnSelectQuarter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_16px.png"))); // NOI18N
-        btnSelectQuarter.setText("OK");
-        btnSelectQuarter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelectQuarterActionPerformed(evt);
-            }
-        });
-
         selectQuarterGroup.add(rbQuarter2);
         rbQuarter2.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        rbQuarter2.setText("Third Quarter (Q3)");
+        rbQuarter2.setText("Second Quarter (Q2)");
         rbQuarter2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rbQuarter2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         rbQuarter2.setIconTextGap(10);
@@ -1386,8 +1411,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         selectQuarterGroup.add(rbQuarter3);
         rbQuarter3.setFont(myVariables.TEXTFIELD_HEADER_FONT);
-        rbQuarter3.setSelected(true);
-        rbQuarter3.setText("Second Quarter (Q2)");
+        rbQuarter3.setText("Third Quarter (Q3)");
         rbQuarter3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rbQuarter3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
         rbQuarter3.setIconTextGap(10);
@@ -1413,6 +1437,21 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
 
+        selectQuarterGroup.add(rbAllQuarters);
+        rbAllQuarters.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        rbAllQuarters.setText("All Quarters");
+        rbAllQuarters.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rbAllQuarters.setEnabled(false);
+        rbAllQuarters.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_round_20px.png"))); // NOI18N
+        rbAllQuarters.setIconTextGap(10);
+        rbAllQuarters.setOpaque(false);
+        rbAllQuarters.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_ok_20px.png"))); // NOI18N
+        rbAllQuarters.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbAllQuarterscbAllowDecimalValuesMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout selectQuarterDialogLayout = new javax.swing.GroupLayout(selectQuarterDialog);
         selectQuarterDialog.setLayout(selectQuarterDialogLayout);
         selectQuarterDialogLayout.setHorizontalGroup(
@@ -1423,9 +1462,10 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(lbQuarterSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, selectQuarterDialogLayout.createSequentialGroup()
                         .addGroup(selectQuarterDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(rbAllQuarters, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rbQuarter4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rbQuarter2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rbQuarter3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbQuarter2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rbQuarter1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSelectQuarter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
@@ -1437,12 +1477,14 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(lbQuarterSelect)
                 .addGap(18, 18, 18)
                 .addComponent(rbQuarter1)
-                .addGap(4, 4, 4)
-                .addComponent(rbQuarter3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbQuarter2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbQuarter3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbQuarter4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbAllQuarters)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSelectQuarter)
                 .addContainerGap())
@@ -2054,6 +2096,110 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        importDialog.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel17.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel94.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel94.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel94.setText("Import From DepEd LIS");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel94)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel94)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        selectStudentTab.setBackground(new java.awt.Color(11, 102, 35));
+
+        studentTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID (H)", "LRN", "Last Name", "First Name", "Middle Name", "Gender", "Initial Gen. Ave.", "Current Gr. Lvl"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        studentTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane9.setViewportView(studentTable);
+
+        btnSearch.setText("Search");
+
+        lbSearchResult2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbSearchResult2.setForeground(new java.awt.Color(255, 255, 255));
+        lbSearchResult2.setText("Search using the search bar...");
+
+        javax.swing.GroupLayout selectStudentTabLayout = new javax.swing.GroupLayout(selectStudentTab);
+        selectStudentTab.setLayout(selectStudentTabLayout);
+        selectStudentTabLayout.setHorizontalGroup(
+            selectStudentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, selectStudentTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(selectStudentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane9)
+                    .addGroup(selectStudentTabLayout.createSequentialGroup()
+                        .addComponent(lbSearchResult2, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfSearchStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        selectStudentTabLayout.setVerticalGroup(
+            selectStudentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(selectStudentTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(selectStudentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfSearchStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch)
+                    .addComponent(lbSearchResult2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jtbImportTabs.addTab("tab1", selectStudentTab);
+
+        javax.swing.GroupLayout importDialogLayout = new javax.swing.GroupLayout(importDialog);
+        importDialog.setLayout(importDialogLayout);
+        importDialogLayout.setHorizontalGroup(
+            importDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(importDialogLayout.createSequentialGroup()
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jtbImportTabs)
+        );
+        importDialogLayout.setVerticalGroup(
+            importDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(importDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtbImportTabs))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Grading System Dashboard");
         setIconImage(my.getImgIcn(myVariables.getGradingWindowIcon()).getImage()
@@ -2093,19 +2239,25 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
 
+        btnImportFromSf10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_upward_arrow_16px.png"))); // NOI18N
+        btnImportFromSf10.setText("Import Grades");
+
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbSchoolName, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbSchoolAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbSchoolName, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+                    .addComponent(lbSchoolAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbLoggedInUser, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnMyManagedSubjects, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
+                        .addComponent(btnImportFromSf10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMyManagedSubjects)))
                 .addContainerGap())
         );
         headerPanelLayout.setVerticalGroup(
@@ -2118,7 +2270,9 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbSchoolAddress)
-                    .addComponent(btnMyManagedSubjects))
+                    .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnMyManagedSubjects)
+                        .addComponent(btnImportFromSf10)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -2133,7 +2287,7 @@ public class dashBoard extends javax.swing.JFrame {
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(mainTab, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(mainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE)
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2527,7 +2681,7 @@ public class dashBoard extends javax.swing.JFrame {
             if(!statuses.contains("--")){
                 loadStatusRadioBtns(statuses);
                 
-                if(col >= 7 && col <= 11){
+                if(col >= 7 && col <= 10){  //Q1 to Q4 
                     //Check if status is open And can only be edited by Subject Teacher, Registrar or Admin
                     if(canEditGrade(col) && (myVariables.getAccessLevel() == 1 || myVariables.getAccessLevel() >= 4)){
                         String studentName = enrolledStudentsTable1.getValueAt(row, 3).toString();
@@ -2543,8 +2697,18 @@ public class dashBoard extends javax.swing.JFrame {
                         );
                         
                         if(temp != null){
-                            enrolledStudentsTable1.setValueAt(temp, row, col);
-                            calculateGrade(row);
+                            try {
+                                temp = String.valueOf(
+                                        Integer.parseInt(
+                                                String.valueOf((int)Float.parseFloat(temp))
+                                        ) //Checks if grade is a whole number. If decimal, convert to integer
+                                ); 
+                                
+                                enrolledStudentsTable1.setValueAt(temp, row, col);
+                                calculateGrade(row);
+                            } catch (NumberFormatException e) {
+                                my.showMessage("Invalid Grade Entered.", JOptionPane.WARNING_MESSAGE);
+                            }
                         } else {
                             //enrolledStudentsTable1.setValueAt(0, row, col);
                         }
@@ -2610,7 +2774,7 @@ public class dashBoard extends javax.swing.JFrame {
             if(!statuses.contains("--")){
                 loadStatusRadioBtns(statuses);
                 
-                if(col >= 7 && col <= 11){
+                if(col >= 7 && col <= 10){  //Q1 to Q4 Columns
                     //Check if status is open
                     if(canEditGrade(col)){
                         String studentName = enrolledStudentsTable1.getValueAt(row, 3).toString();
@@ -2626,10 +2790,20 @@ public class dashBoard extends javax.swing.JFrame {
                         );
                         
                         if(temp != null){
-                            enrolledStudentsTable1.setValueAt(temp, row, col);
-                            calculateGrade(row);
+                            try {
+                                temp = String.valueOf(
+                                        Integer.parseInt(
+                                                String.valueOf((int)Float.parseFloat(temp))
+                                        ) //Checks if grade is a whole number. If decimal, convert to integer
+                                ); 
+                                
+                                enrolledStudentsTable1.setValueAt(temp, row, col);
+                                calculateGrade(row);
+                            } catch (NumberFormatException e) {
+                                my.showMessage("Invalid Grade Entered.", JOptionPane.WARNING_MESSAGE);
+                            }
                         } else {
-                            
+                            //enrolledStudentsTable1.setValueAt(0, row, col);
                         }
                     }
                 }
@@ -2692,9 +2866,45 @@ public class dashBoard extends javax.swing.JFrame {
 
     private void btnSelectQuarterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectQuarterActionPerformed
         //Save Here
-        
         closeCustomDialog();
+        rbAllQuarters.setEnabled(false);
+        
+        switch(dialog.getTitle()){
+            case "Update Grades":{
+                updateGrades(enrolledStudentsTable1.getSelectedRow());
+                break;
+            }case "Submit Selected":{
+                break;
+            }case "Submit All":{
+                break;
+            }case "Approve Selected":{
+                break;
+            }case "Approve All":{
+                break;
+            }case "Close Selected":{
+                break;
+            }case "Close All":{
+                break;
+            }default:{
+                
+            }
+        }
     }//GEN-LAST:event_btnSelectQuarterActionPerformed
+
+    private void btnSaveChangesCurrentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesCurrentActionPerformed
+        int row = enrolledStudentsTable1.getSelectedRow();
+        
+        if(row == -1){
+            return;
+        }
+        //updateGrades(row);
+        rbAllQuarters.setEnabled(true);
+        selectQuarter("Update Grades");
+    }//GEN-LAST:event_btnSaveChangesCurrentActionPerformed
+
+    private void rbAllQuarterscbAllowDecimalValuesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbAllQuarterscbAllowDecimalValuesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbAllQuarterscbAllowDecimalValuesMouseClicked
     
     
     public static void main(String args[]) {
@@ -2728,6 +2938,54 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void updateGrades(int row){
+        //Get id and values
+        String gradeId = enrolledStudentsTable1.getValueAt(row, 6).toString();
+        
+        String updatedStatus = "";
+        
+        if(myVariables.getAccessLevel() == 1){
+            updatedStatus = retrieveCheckedStatuses(row, true);
+        }else {
+            updatedStatus = my.getConfirmation("Set grade's status from 'Open' to 'Submitted'?\n(Any grade that has 'Open' checked are affected)")?
+                                    retrieveCheckedStatuses(row, true):
+                                    retrieveCheckedStatuses(row, false);
+        }
+        
+        String q1 = enrolledStudentsTable1.getValueAt(row, 7).toString().trim().length()>0? enrolledStudentsTable1.getValueAt(row, 7).toString() : "";
+        String q2 = enrolledStudentsTable1.getValueAt(row, 8).toString().trim().length()>0? enrolledStudentsTable1.getValueAt(row, 8).toString() : "";
+        String q3 = enrolledStudentsTable1.getValueAt(row, 9).toString().trim().length()>0? enrolledStudentsTable1.getValueAt(row, 9).toString() : "";
+        String q4 = enrolledStudentsTable1.getValueAt(row, 10).toString().trim().length()>0? enrolledStudentsTable1.getValueAt(row, 10).toString() : "";
+        String gwa = enrolledStudentsTable1.getValueAt(row, 11).toString().trim();
+        
+        
+        if(gwa.contains("NaN")){
+            my.showMessage("Invalid Grade. Please check your inputs first.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //Check where all quarters should be submitted or not
+        
+        
+        String [] sets = {
+            "firstQuarter='"+q1+"'",
+            "secondQuarter='"+q2+"'",
+            "thirdQuarter='"+q3+"'",
+            "fourthQuarter='"+q4+"'",
+            "gwa='"+gwa+"'",
+            "status='"+updatedStatus+"'",
+            "dateUpdated=now()",
+        };
+        
+        if(my.update_values("grades", sets, "id='"+gradeId+"'")){
+            my.showMessage("Changes Saved.", JOptionPane.INFORMATION_MESSAGE);
+            loadStudentsAndGrades();
+        }else{
+            my.showMessage("Update Failed. Please make sure you are connected to the School Network", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     private void selectQuarter(String title){
         switch (enrolledStudentsTable1.getSelectedColumn()){
             case 7: {
@@ -2795,6 +3053,27 @@ public class dashBoard extends javax.swing.JFrame {
             return "Passed";
         }
     }
+    private void showEvaluation(String statuses){
+        if(statuses == null){
+            lbEvaluation.setForeground(Color.BLACK);
+            lbEvaluation.setText("-- Select Student --");
+        }else{
+            String status [] = statuses.split(":");
+            switch(status[4]){
+                case "Incomplete":{
+                    lbEvaluation.setForeground(new Color(255,102,0)); break;    //ORANGE
+                }case "Passed":{
+                    lbEvaluation.setForeground(new Color(0,102,0)); break;    //GREEN;
+                }case "Failed":{
+                    lbEvaluation.setForeground(Color.RED); break;    //RED
+                }default:{
+                    lbEvaluation.setForeground(Color.BLUE); break;    //BLUE
+                }
+            }
+            
+            lbEvaluation.setText(status[4]);
+        }
+    }
     private String getEvaluation(int row, double gwa){
         //Check if all fields have values
         if(enrolledStudentsTable1.getValueAt(row, 7).toString().length() == 0 || 
@@ -2833,6 +3112,7 @@ public class dashBoard extends javax.swing.JFrame {
                     4, getEvaluation(row,gwa)
             );
             enrolledStudentsTable1.setValueAt(newStatus.replace("@@",":"), row, 12);
+            showEvaluation(newStatus.replace("@@",":"));
         } catch (Exception e) {
             System.err.println("Invalid Values entered");
             tfEditGwa.setText("NaN");
@@ -2974,9 +3254,8 @@ public class dashBoard extends javax.swing.JFrame {
                     radioSets[n][x].setEnabled(false);
                 }
             }
-            
+            showEvaluation(null);
             btnSaveChangesCurrent.setEnabled(false);
-            btnSaveChangesAll.setEnabled(false);
         } else {
             String [] status = statuses.split(":");
             
@@ -2994,6 +3273,7 @@ public class dashBoard extends javax.swing.JFrame {
                     }
                 }
             }
+            showEvaluation(statuses);
             enableDisableRadioBtnsByUserType();
         }
     }
@@ -3007,20 +3287,58 @@ public class dashBoard extends javax.swing.JFrame {
             new JRadioButton[] {jRadioButton25,jRadioButton26,jRadioButton27,jRadioButton28},
             new JRadioButton[] {jRadioButton29,jRadioButton30,jRadioButton31,jRadioButton32},
         };
+        int rbIndexToUpdate = 0;
+        if(rbQuarter1.isSelected())
+            rbIndexToUpdate = 0;
+        if(rbQuarter2.isSelected())
+            rbIndexToUpdate = 1;
+        if(rbQuarter3.isSelected())
+            rbIndexToUpdate = 2;
+        if(rbQuarter4.isSelected())
+            rbIndexToUpdate = 3;
         
         for(int n=0;n<radioSets.length;n++){
             if(radioSets[n][0].isSelected()){   //Open
                 //Override and Set to submitted if user is an ADVISER_USER and Column has a value
-                String gradeValue = enrolledStudentsTable1.getValueAt(row, n).toString().trim();
-                if(checkForSubmittedGrades && 
-                    myVariables.getAccessLevel() == 1 &&
-                    gradeValue.length() > 0 &&
-                    !gradeValue.contains("--") && Integer.parseInt(gradeValue) > 0){
-                    
-                    status[n] = "Submitted";
+                System.err.println("Open selected");
+                
+                String gradeValue = enrolledStudentsTable1.getValueAt(row, n+7).toString().trim();
+                
+                if(rbAllQuarters.isSelected()){
+                    if(checkForSubmittedGrades){
+                        if(gradeValue == null){
+                            status[n] = "Open";
+                        } else {
+                            try {                        
+                                Integer.parseInt(gradeValue);
+                                status[n] = "Submitted";
+                            } catch (NumberFormatException e) {
+                                status[n] = "Open";
+                            }
+                        }
+                    }else{
+                        status[n] = "Open";
+                    }
                 }else{
-                    status[n] = "Open";
-                }continue;
+                    if(n == rbIndexToUpdate){
+                        if(checkForSubmittedGrades){
+                            if(gradeValue == null){
+                                status[n] = "Open";
+                            } else {
+                                try {                        
+                                    Integer.parseInt(gradeValue);
+                                    status[n] = "Submitted";
+                                } catch (NumberFormatException e) {
+                                    status[n] = "Open";
+                                }
+                            }
+                        }else{
+                            status[n] = "Open";
+                        }
+                    }else {
+                        status[n] = "Open";
+                    }
+                }
             }if(radioSets[n][1].isSelected()){  //Submitted
                 status[n] = "Submitted";continue;
             }if(radioSets[n][2].isSelected()){  //Approved
@@ -3029,8 +3347,9 @@ public class dashBoard extends javax.swing.JFrame {
                 status[n] = "Closed";
             }
         }
-        
         String finalStatus = status[0]+":"+status[1]+":"+status[2]+":"+status[3]+":"+previousStatuses[4]+":";
+        
+        System.out.println("New Status: " + finalStatus);
         return finalStatus;
     }
     private String retrieveStatuses(){
@@ -3066,6 +3385,9 @@ public class dashBoard extends javax.swing.JFrame {
     private void hideElementsByAccessLevel(){
         if(myVariables.getAccessLevel() != 2 && myVariables.getAccessLevel() != 5){
             btnMyManagedSubjects.setVisible(false);
+        }
+        if(myVariables.getAccessLevel() != 4 && myVariables.getAccessLevel() != 5){
+            btnImportFromSf10.setVisible(false);
         }
     }
     private void refreshAssignedSubjects(boolean notifyIfEmpty){
@@ -3126,6 +3448,7 @@ public class dashBoard extends javax.swing.JFrame {
         String subjectId = assignedTeacherTable.getValueAt(row, 6).toString();
         
         loadStatusRadioBtns(null);
+        lbEvaluation.setText("-- Select Student --");
         
         my.runMainThread(
             0,
@@ -3139,7 +3462,6 @@ public class dashBoard extends javax.swing.JFrame {
         
         enableDisableGlobalBtnsByUserType();
         btnSaveChangesCurrent.setEnabled(false);
-        btnSaveChangesAll.setEnabled(true);
     }
     private void enableDisableGlobalBtnsByUserType(){
         JButton adviserBtns [] = {btnAdvSelected, btnAdvAll};
@@ -3248,7 +3570,7 @@ public class dashBoard extends javax.swing.JFrame {
     
     private void setScrollSpeeds(){
         JScrollPane scrollpanes [] = {
-            jScrollPane2,jScrollPane3,
+            jScrollPane2,jScrollPane3,jScrollPane6,
         };
         
         int scrollSpeed = 15;
@@ -3327,7 +3649,6 @@ public class dashBoard extends javax.swing.JFrame {
             btnEditGrades,
             btnSearchEnrolledStudent,
             btnSaveChangesCurrent,
-            btnSaveChangesAll,
             //Select Quarter
             btnSelectQuarter,
             //Approval
@@ -3341,7 +3662,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         
         JButton lightButtons [] = {
-            btnMyManagedSubjects,btnRefreshStudents,
+            btnMyManagedSubjects,btnRefreshStudents,btnImportFromSf10,
         };
         Cursor tempC;
         for(int n=0;n<buttons.length;n++){
@@ -3383,7 +3704,7 @@ public class dashBoard extends javax.swing.JFrame {
             jLabel1,jLabel4,jLabel10,jLabel11,jLabel15,lbRecordId,jLabel16,lbStatusOptions,jLabel17,
             jLabel19,lbSectionName2,jLabel21,lbSubjectName2,
             lbStatusOptions1,lbStatusOptions2,lbStatusOptions3,lbStatusOptions4,
-            jLabel24,jLabel25,jLabel26,
+            jLabel24,jLabel25,jLabel26,jLabel22,lbEvaluation,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -3480,14 +3801,15 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnDphAll;
     private javax.swing.JButton btnDphSelected;
     private javax.swing.JButton btnEditGrades;
+    private javax.swing.JButton btnImportFromSf10;
     private javax.swing.JButton btnMyManagedSubjects;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnRefreshStudents;
     private javax.swing.JButton btnRgrAll;
     private javax.swing.JButton btnRgrSelected;
-    private javax.swing.JButton btnSaveChangesAll;
     private javax.swing.JButton btnSaveChangesCurrent;
     private javax.swing.JButton btnSaveGradeChanges;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSearchEnrolledStudent;
     private javax.swing.JButton btnSearchSection;
     private javax.swing.JButton btnSelectQuarter;
@@ -3498,6 +3820,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTable enrolledStudentsTable;
     private javax.swing.JTable enrolledStudentsTable1;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JPanel importDialog;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -3511,6 +3834,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -3527,9 +3851,11 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel94;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel7;
@@ -3575,12 +3901,15 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
+    private javax.swing.JTabbedPane jtbImportTabs;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel lbDateUpdated;
+    private javax.swing.JLabel lbEvaluation;
     private javax.swing.JLabel lbGradeStatus;
     private javax.swing.JLabel lbLoggedInUser;
     private javax.swing.JLabel lbMessage;
@@ -3590,6 +3919,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel lbSchoolName;
     private javax.swing.JLabel lbSearchResult;
     private javax.swing.JLabel lbSearchResult1;
+    private javax.swing.JLabel lbSearchResult2;
     private javax.swing.JLabel lbSectionName2;
     private javax.swing.JLabel lbStatusOptions;
     private javax.swing.JLabel lbStatusOptions1;
@@ -3607,6 +3937,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.ButtonGroup q2StatusGroup;
     private javax.swing.ButtonGroup q3tatusGroup;
     private javax.swing.ButtonGroup q4StatusGroup;
+    private javax.swing.JRadioButton rbAllQuarters;
     private javax.swing.JRadioButton rbAutomatic;
     private javax.swing.JRadioButton rbManual;
     private javax.swing.JRadioButton rbQuarter1;
@@ -3618,6 +3949,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel selectQuarterDialog;
     private javax.swing.ButtonGroup selectQuarterGroup;
     private javax.swing.JPanel selectSectionTab;
+    private javax.swing.JPanel selectStudentTab;
+    private javax.swing.JTable studentTable;
     private javax.swing.JTextField tfEditFirstQuarter;
     private javax.swing.JTextField tfEditFourthQuarter;
     private javax.swing.JTextField tfEditGwa;
@@ -3628,6 +3961,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTextField tfFourthQ;
     private javax.swing.JTextField tfGeneralWeighedAverage;
     private javax.swing.JTextField tfSearchEnrolledStudent;
+    private javax.swing.JTextField tfSearchStudent;
     private javax.swing.JTextField tfSearchTeacherLoad;
     private javax.swing.JTextField tfSecondQ;
     private javax.swing.JTextField tfThirdQ;
