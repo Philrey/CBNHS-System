@@ -233,6 +233,22 @@ public class dashBoard extends javax.swing.JFrame {
         tfSearchStudent = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         lbSearchResult2 = new javax.swing.JLabel();
+        selectSf10Tab = new javax.swing.JPanel();
+        jLabel95 = new javax.swing.JLabel();
+        jcbFileFormats = new javax.swing.JComboBox<>();
+        tfFileLocation = new javax.swing.JTextField();
+        btnOpenFileExplorer = new javax.swing.JButton();
+        gradeTabs = new javax.swing.JTabbedPane();
+        gradeDetailsTab = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        importedGradeDetailsTable = new javax.swing.JTable();
+        jLabel27 = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        importedGradesTable = new javax.swing.JTable();
+        lbImportedGeneralAverage = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -2121,6 +2137,8 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jtbImportTabs.setBackground(new java.awt.Color(255, 255, 204));
+
         selectStudentTab.setBackground(new java.awt.Color(11, 102, 35));
 
         studentTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -2160,7 +2178,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addGroup(selectStudentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane9)
                     .addGroup(selectStudentTabLayout.createSequentialGroup()
-                        .addComponent(lbSearchResult2, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                        .addComponent(lbSearchResult2, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tfSearchStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2176,11 +2194,183 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(btnSearch)
                     .addComponent(lbSearchResult2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jtbImportTabs.addTab("tab1", selectStudentTab);
+        jtbImportTabs.addTab("Select Student", selectStudentTab);
+
+        selectSf10Tab.setBackground(new java.awt.Color(255, 255, 204));
+
+        jLabel95.setText("Select Excel File Format");
+
+        jcbFileFormats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HiSRMS-SF10 JHS (Default)", "SF10 - 4.10.2012" }));
+
+        tfFileLocation.setEditable(false);
+
+        btnOpenFileExplorer.setText("Select File");
+        btnOpenFileExplorer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpenFileExplorerActionPerformed(evt);
+            }
+        });
+
+        gradeDetailsTab.setBackground(new java.awt.Color(255, 255, 204));
+
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("Scholastic Record");
+
+        importedGradeDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "School Name", "School ID", "District", "Division", "Region", "Classified As", "Section", "School Year", "Adviser"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true, true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        importedGradeDetailsTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        importedGradeDetailsTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane10.setViewportView(importedGradeDetailsTable);
+        if (importedGradeDetailsTable.getColumnModel().getColumnCount() > 0) {
+            importedGradeDetailsTable.getColumnModel().getColumn(0).setPreferredWidth(300);
+            importedGradeDetailsTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+            importedGradeDetailsTable.getColumnModel().getColumn(2).setPreferredWidth(200);
+            importedGradeDetailsTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+            importedGradeDetailsTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+            importedGradeDetailsTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+            importedGradeDetailsTable.getColumnModel().getColumn(6).setPreferredWidth(80);
+            importedGradeDetailsTable.getColumnModel().getColumn(7).setPreferredWidth(80);
+            importedGradeDetailsTable.getColumnModel().getColumn(8).setPreferredWidth(100);
+        }
+
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel27.setText("Grades");
+
+        importedGradesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Subject Name", "Q1", "Q2", "Q3", "Q4", "Final Rating", "Remarks"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        importedGradesTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane11.setViewportView(importedGradesTable);
+        if (importedGradesTable.getColumnModel().getColumnCount() > 0) {
+            importedGradesTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            importedGradesTable.getColumnModel().getColumn(1).setPreferredWidth(50);
+            importedGradesTable.getColumnModel().getColumn(2).setPreferredWidth(50);
+            importedGradesTable.getColumnModel().getColumn(3).setPreferredWidth(50);
+            importedGradesTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+            importedGradesTable.getColumnModel().getColumn(5).setPreferredWidth(80);
+            importedGradesTable.getColumnModel().getColumn(6).setPreferredWidth(80);
+        }
+
+        lbImportedGeneralAverage.setForeground(new java.awt.Color(0, 102, 51));
+        lbImportedGeneralAverage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbImportedGeneralAverage.setText("0.00");
+
+        jLabel29.setText("General Average");
+
+        javax.swing.GroupLayout gradeDetailsTabLayout = new javax.swing.GroupLayout(gradeDetailsTab);
+        gradeDetailsTab.setLayout(gradeDetailsTabLayout);
+        gradeDetailsTabLayout.setHorizontalGroup(
+            gradeDetailsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gradeDetailsTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(gradeDetailsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane10)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane11)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gradeDetailsTabLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbImportedGeneralAverage)))
+                .addContainerGap())
+        );
+        gradeDetailsTabLayout.setVerticalGroup(
+            gradeDetailsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gradeDetailsTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(gradeDetailsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbImportedGeneralAverage)
+                    .addComponent(jLabel29))
+                .addContainerGap())
+        );
+
+        gradeTabs.addTab("[ SLOT 1]", gradeDetailsTab);
+
+        jButton1.setText("Import");
+
+        javax.swing.GroupLayout selectSf10TabLayout = new javax.swing.GroupLayout(selectSf10Tab);
+        selectSf10Tab.setLayout(selectSf10TabLayout);
+        selectSf10TabLayout.setHorizontalGroup(
+            selectSf10TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(selectSf10TabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(selectSf10TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(gradeTabs)
+                    .addGroup(selectSf10TabLayout.createSequentialGroup()
+                        .addComponent(jcbFileFormats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfFileLocation)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnOpenFileExplorer))
+                    .addGroup(selectSf10TabLayout.createSequentialGroup()
+                        .addComponent(jLabel95)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, selectSf10TabLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
+                .addContainerGap())
+        );
+        selectSf10TabLayout.setVerticalGroup(
+            selectSf10TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(selectSf10TabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel95)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(selectSf10TabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcbFileFormats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfFileLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOpenFileExplorer))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(gradeTabs)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+
+        jtbImportTabs.addTab("Select File", selectSf10Tab);
 
         javax.swing.GroupLayout importDialogLayout = new javax.swing.GroupLayout(importDialog);
         importDialog.setLayout(importDialogLayout);
@@ -2905,6 +3095,10 @@ public class dashBoard extends javax.swing.JFrame {
     private void rbAllQuarterscbAllowDecimalValuesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbAllQuarterscbAllowDecimalValuesMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_rbAllQuarterscbAllowDecimalValuesMouseClicked
+
+    private void btnOpenFileExplorerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenFileExplorerActionPerformed
+        //showFileChooserDialog("Excel Files","xlsx");
+    }//GEN-LAST:event_btnOpenFileExplorerActionPerformed
     
     
     public static void main(String args[]) {
@@ -3803,6 +3997,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnEditGrades;
     private javax.swing.JButton btnImportFromSf10;
     private javax.swing.JButton btnMyManagedSubjects;
+    private javax.swing.JButton btnOpenFileExplorer;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnRefreshStudents;
     private javax.swing.JButton btnRgrAll;
@@ -3819,8 +4014,13 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel editGradeDialog;
     private javax.swing.JTable enrolledStudentsTable;
     private javax.swing.JTable enrolledStudentsTable1;
+    private javax.swing.JPanel gradeDetailsTab;
+    private javax.swing.JTabbedPane gradeTabs;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel importDialog;
+    private javax.swing.JTable importedGradeDetailsTable;
+    private javax.swing.JTable importedGradesTable;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -3833,12 +4033,15 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
@@ -3852,6 +4055,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel94;
+    private javax.swing.JLabel jLabel95;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -3894,6 +4098,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -3905,12 +4111,14 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JComboBox<String> jcbFileFormats;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
     private javax.swing.JTabbedPane jtbImportTabs;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel lbDateUpdated;
     private javax.swing.JLabel lbEvaluation;
     private javax.swing.JLabel lbGradeStatus;
+    private javax.swing.JLabel lbImportedGeneralAverage;
     private javax.swing.JLabel lbLoggedInUser;
     private javax.swing.JLabel lbMessage;
     private javax.swing.JLabel lbQuarterSelect;
@@ -3949,6 +4157,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel selectQuarterDialog;
     private javax.swing.ButtonGroup selectQuarterGroup;
     private javax.swing.JPanel selectSectionTab;
+    private javax.swing.JPanel selectSf10Tab;
     private javax.swing.JPanel selectStudentTab;
     private javax.swing.JTable studentTable;
     private javax.swing.JTextField tfEditFirstQuarter;
@@ -3957,6 +4166,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTextField tfEditSecondQuarter;
     private javax.swing.JTextField tfEditThirdQuarter;
     private javax.swing.JTextField tfEvaluation;
+    private javax.swing.JTextField tfFileLocation;
     private javax.swing.JTextField tfFirstQ;
     private javax.swing.JTextField tfFourthQ;
     private javax.swing.JTextField tfGeneralWeighedAverage;
