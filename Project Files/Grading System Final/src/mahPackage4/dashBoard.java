@@ -3142,7 +3142,7 @@ public class dashBoard extends javax.swing.JFrame {
         if(myVariables.getAccessLevel() == 1){
             updatedStatus = retrieveCheckedStatuses(row, true);
         }else {
-            updatedStatus = my.getConfirmation("Set grade's status from 'Open' to 'Submitted'?\n(Any grade that has 'Open' checked are affected)")?
+            updatedStatus = my.getConfirmation("Set grade's status from 'Open' to 'Submitted'?\n\nYes - Updates Grade and sets status to Submitted\nNo - Updates Grades but status remains as is")?
                                     retrieveCheckedStatuses(row, true):
                                     retrieveCheckedStatuses(row, false);
         }
