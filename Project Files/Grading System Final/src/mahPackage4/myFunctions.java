@@ -478,6 +478,43 @@ public class myFunctions {
         return null;
     }
     //U= Update Method //
+    protected  boolean update_multiple_values(String tableName,String columnNames,String onDuplicateFoundUpdateWhat,String [] rows, int recordsPerBatch){
+        // -1 or 0 or 1= Put it in 1 query, otherwise split update by batchCount
+        if(recordsPerBatch > 1){
+            int batchCount = rows.length/recordsPerBatch;
+            int excessRecords = rows.length%recordsPerBatch;
+            
+            batchCount = excessRecords == 0 ? batchCount : batchCount++;
+            
+            int currentIndex = 0;
+            int failed = 0;
+            String temp [];
+            String result = "Update Result:\n\n";
+            for(int x=0; x<batchCount; x++){
+                temp = x<batchCount-1? new String[recordsPerBatch] : new String[excessRecords];
+                
+                for(int n=0; n<temp.length; n++){
+                    temp[n] = rows[currentIndex];
+                    currentIndex++;
+                }
+                
+                if(update_multiple_values(tableName, columnNames, onDuplicateFoundUpdateWhat, temp)){
+                    result+="Batch "+(x+1)+": Success\n";
+                }else{
+                    result+="Batch "+(x+1)+": Failed\n";
+                    failed++;
+                }
+            }
+            /*if(failed > 0){
+                showMessage(result, JOptionPane.WARNING_MESSAGE);
+            }*/
+            showMessage(result, JOptionPane.WARNING_MESSAGE);
+            
+            return true;
+        }else{
+            return update_multiple_values(tableName, columnNames, onDuplicateFoundUpdateWhat, rows);
+        }
+    }
     protected  boolean update_multiple_values(String tableName,String columnNames,String onDuplicateFoundUpdateWhat,String [] rows){
         String toSend = "";
         String [] columns = rows;

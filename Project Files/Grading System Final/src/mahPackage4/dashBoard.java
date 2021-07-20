@@ -13,6 +13,7 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.JButton;
@@ -3064,8 +3065,10 @@ public class dashBoard extends javax.swing.JFrame {
                 updateGrades(enrolledStudentsTable1.getSelectedRow());
                 break;
             }case "Submit Selected":{
+                submitGrades(true);
                 break;
             }case "Submit All":{
+                submitGrades(false);
                 break;
             }case "Approve Selected":{
                 break;
@@ -3179,7 +3182,112 @@ public class dashBoard extends javax.swing.JFrame {
             my.showMessage("Update Failed. Please make sure you are connected to the School Network", JOptionPane.ERROR_MESSAGE);
         }
     }
+    private boolean isStatusEqualto(String status, int quarter, String expectedValue){
+        String values [] = status.split(":");
+        return values[quarter-1].contains(expectedValue);
+    }
     
+    private String setStatus(int quarter, String status, String newValue){
+        String temp [] = status.split(":");
+        temp[quarter-1] = newValue;
+        
+        String finalString="";
+        
+        for (String temp1 : temp) {
+            finalString += temp1 + ":";
+        }
+        
+        return finalString;
+    }
+    
+    private void submitGrades(boolean submitSelected){
+        int quarter = getSelectedQuarter();
+        
+        if(quarter == -1){
+            my.showMessage("No Quarter Selected.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if(quarter == 5){
+            my.showMessage("Please Select One Quarter Only.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //Proceed to Updating
+        int column = quarter + 6;   //Determine column index from table
+        ArrayList<String> temp = new ArrayList<>();
+        if(submitSelected){
+            if(enrolledStudentsTable1.getSelectedRows() == null){
+                my.showMessage("No Students Selected.", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            int rowsSelected [] = enrolledStudentsTable1.getSelectedRows();
+            
+            for(int n=0; n<rowsSelected.length; n++){
+                
+                String gradeId = enrolledStudentsTable1.getValueAt(rowsSelected[n], 6).toString();
+                String quarterGrade = enrolledStudentsTable1.getValueAt(rowsSelected[n], column).toString();
+                String gwa = enrolledStudentsTable1.getValueAt(rowsSelected[n], 11).toString();
+                String status = enrolledStudentsTable1.getValueAt(rowsSelected[n], 12).toString();
+                
+                if(isStatusEqualto(status, quarter, "Open")){   //Update Only Quarter Grades that has an Open status only
+                    if(quarterGrade.trim().length() > 0){
+                        temp.add(gradeId+",'"+quarterGrade+"','"+gwa+"','"+setStatus(quarter, status, "Submitted")+"',now()");
+                    }else {
+                        temp.add(gradeId+",'"+quarterGrade+"','"+gwa+"','"+status+"',now()");
+                    }
+                }
+                
+                //values[n] = gradeId+",'"+quarterGrade+"','"+gwa+"','"+status+"',now()";
+            }
+        }else{
+            if(enrolledStudentsTable1.getRowCount() <= 0){
+                my.showMessage("No Students Selected.", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            int size = enrolledStudentsTable1.getRowCount();
+            
+            for(int n=0; n<size; n++){
+                String gradeId = enrolledStudentsTable1.getValueAt(n, 6).toString();
+                String quarterGrade = enrolledStudentsTable1.getValueAt(n, column).toString();
+                String gwa = enrolledStudentsTable1.getValueAt(n, 11).toString();
+                String status = enrolledStudentsTable1.getValueAt(n, 12).toString();
+                
+                if(isStatusEqualto(status, quarter, "Open")){   //Update Only Quarter Grades that has an Open status only
+                    temp.add(gradeId+",'"+quarterGrade+"','"+gwa+"','"+status+"',now()");
+                }
+                
+                //values[n] = gradeId+",'"+quarterGrade+"','"+gwa+"','"+status+"',now()";
+            }
+        }
+        String values [] = new String[temp.size()];
+        
+        for(int n=0;n<temp.size();n++){
+            values[n] = temp.get(n);
+        }
+        
+        if(my.update_multiple_values("grades", "id,"+getSelectedQuarterText()+",gwa,status,dateUpdated", "gwa=VALUES(gwa),status=VALUES(status),dateUpdated=VALUES(dateUpdated)", values,0)){
+            //Change Value of recordsPerBatch to 10 if update errors occur due to large query message
+            my.showMessage("Update Successful", JOptionPane.INFORMATION_MESSAGE);
+            loadStudentsAndGrades();
+        }else{
+            my.showMessage("Update Failed", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    private int getSelectedQuarter(){
+        if(rbQuarter1.isSelected()){return 1;}
+        if(rbQuarter2.isSelected()){return 2;}
+        if(rbQuarter3.isSelected()){return 3;}
+        if(rbQuarter4.isSelected()){return 4;}
+        if(rbAllQuarters.isSelected()){return 5;}
+        return -1;
+    }
+    private String getSelectedQuarterText(){
+        if(rbQuarter1.isSelected()){return "firstQuarter";}
+        if(rbQuarter2.isSelected()){return "firstQuarter";}
+        if(rbQuarter3.isSelected()){return "firstQuarter";}
+        if(rbQuarter4.isSelected()){return "firstQuarter";}
+        return null;
+    }
     private void selectQuarter(String title){
         switch (enrolledStudentsTable1.getSelectedColumn()){
             case 7: {
