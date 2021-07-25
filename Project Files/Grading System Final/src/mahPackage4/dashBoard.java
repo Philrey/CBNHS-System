@@ -3077,12 +3077,16 @@ public class dashBoard extends javax.swing.JFrame {
                 submitGrades(false);
                 break;
             }case "Approve Selected":{
+                approveOrCloseGrades(true, "Submitted", "Approved");
                 break;
             }case "Approve All":{
+                approveOrCloseGrades(false, "Submitted", "Approved");
                 break;
             }case "Close Selected":{
+                approveOrCloseGrades(true, "Approved", "Closed");
                 break;
             }case "Close All":{
+                approveOrCloseGrades(false, "Approved", "Closed");
                 break;
             }default:{
                 
@@ -3273,6 +3277,13 @@ public class dashBoard extends javax.swing.JFrame {
             values[n] = temp.get(n);
         }
         
+        if(values.length < 1){
+            my.showMessage("No Students to " + 
+                    (finalStatus.contains("Approved")? "Approved" : "Close")
+                    + " were found.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
         if(my.update_multiple_values("grades", "id,"+getSelectedQuarterText()+",gwa,status,dateUpdated", "gwa=VALUES(gwa),status=VALUES(status),dateUpdated=VALUES(dateUpdated)", values,0)){
             //Change Value of recordsPerBatch to 10 if update errors occur due to large query message
             my.showMessage("Update Successful", JOptionPane.INFORMATION_MESSAGE);
@@ -3347,6 +3358,10 @@ public class dashBoard extends javax.swing.JFrame {
         }
         String values [] = new String[temp.size()];
         
+        if(values.length < 1){
+            my.showMessage("No Students to Submit were found.", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         for(int n=0;n<temp.size();n++){
             values[n] = temp.get(n);
         }
