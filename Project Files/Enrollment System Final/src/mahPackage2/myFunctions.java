@@ -815,7 +815,15 @@ public class myFunctions {
         
         return true;
     }
-    
+    public void remove_multiple_tabs(JTabbedPane tabName,int [] indexASC){
+        for(int n=indexASC.length-1 ; n>=0 ; n--){
+            try {
+                tabName.removeTabAt(indexASC[n]);
+            } catch (Exception e) {
+                System.err.println("Tab already removed.");
+            }
+        }
+    }
     public String skipColumns(String line,int [] columnsToSkip){
         String [] temp = line.split("@@");
         String finalString = "";

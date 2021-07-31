@@ -43,7 +43,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         setScrollSpeeds();
         loadYearDropDowns(12);
-        
+                
         lbSchoolName.setText(myVariables.getSchoolName() + " Enrollment System");
         lbSchoolAddress.setText(myVariables.getSchoolAddress());
     }
@@ -170,6 +170,10 @@ public class dashBoard extends javax.swing.JFrame {
         usersTable2 = new javax.swing.JTable();
         btnAssignTeacher = new javax.swing.JButton();
         btnNone = new javax.swing.JButton();
+        tpStart = new com.github.lgooddatepicker.components.TimePicker();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        tpEnd = new com.github.lgooddatepicker.components.TimePicker();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -1322,17 +1326,17 @@ public class dashBoard extends javax.swing.JFrame {
         usersTable2.setAutoCreateRowSorter(true);
         usersTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID (H)", "Name", "Gender", "Access Level"
+                "ID (H)", "Name", "Gender", "Access Level", "Time Start", "Time End"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1347,9 +1351,6 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
         jScrollPane17.setViewportView(usersTable2);
-        if (usersTable2.getColumnModel().getColumnCount() > 0) {
-            usersTable2.getColumnModel().getColumn(3).setHeaderValue("Access Level");
-        }
 
         btnAssignTeacher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_ok_16px.png"))); // NOI18N
         btnAssignTeacher.setText("Assign Teacher");
@@ -1367,27 +1368,41 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
 
+        tpStart.setText("7:00am");
+
+        jLabel16.setText("Time Start");
+
+        jLabel17.setText("Time End");
+
+        tpEnd.setText("7:00am");
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(0, 45, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAssignTeacher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
                         .addComponent(tfSearchUser2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSearchUser2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnNone)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tpStart, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAssignTeacher)))
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tpEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnNone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -1403,11 +1418,21 @@ public class dashBoard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfSearchUser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane17)
+                .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAssignTeacher)
-                    .addComponent(btnNone))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tpStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tpEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnNone)
+                .addGap(3, 3, 3)
+                .addComponent(btnAssignTeacher)
                 .addContainerGap())
         );
 
@@ -1910,7 +1935,7 @@ public class dashBoard extends javax.swing.JFrame {
                 System.err.println("Comma found...deleting");
             }
 
-            where = "WHERE subjectId IN ("+subjectsContained+") AND sectionId='"+sectionId+"'";
+            where = "WHERE subjectId IN ("+subjectsContained+") AND sectionId='"+sectionId+"' ORDER BY FIELD(subjectId,"+subjectsContained+")";
             
             //Check if section is already finalized in teacherLoads table
             String result [] = my.return_values("*", "v_teacherloads", where, myVariables.getTeacherLoadsViewOrder());
@@ -2313,6 +2338,9 @@ public class dashBoard extends javax.swing.JFrame {
         for(int n=0;n<tabIcons.length;n++){
             mainTab.setIconAt(n,tabIcons[n]);
         }
+        if(myVariables.getAccessLevel() == 3){
+            my.remove_multiple_tabs(mainTab, new int [] {0,1});
+        }
     }
     private void loadColoredButtons(){
         JButton buttons [] = {
@@ -2374,6 +2402,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         JLabel textFieldHeaderLabels [] = {
             jLabel5,jLabel6,jLabel7,jLabel8,jLabel9,jLabel10,jLabel13,jLabel11,jLabel15,
+            jLabel16,jLabel17,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -2486,6 +2515,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel34;
@@ -2569,6 +2600,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTextField tfSearchUser2;
     private javax.swing.JTextField tfSectionName;
     private javax.swing.JTextField tfSectionName1;
+    private com.github.lgooddatepicker.components.TimePicker tpEnd;
+    private com.github.lgooddatepicker.components.TimePicker tpStart;
     private javax.swing.JTable usersTable;
     private javax.swing.JTable usersTable1;
     private javax.swing.JTable usersTable2;
