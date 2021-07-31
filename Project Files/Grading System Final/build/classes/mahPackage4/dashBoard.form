@@ -4001,6 +4001,8 @@
                   <Image iconType="3" name="/mahPackage4/icons/icons8_upward_arrow_16px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Import Grades"/>
+                <Property name="toolTipText" type="java.lang.String" value="Under Construction"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>

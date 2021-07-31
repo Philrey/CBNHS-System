@@ -2432,6 +2432,8 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnImportFromSf10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_upward_arrow_16px.png"))); // NOI18N
         btnImportFromSf10.setText("Import Grades");
+        btnImportFromSf10.setToolTipText("Under Construction");
+        btnImportFromSf10.setEnabled(false);
 
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
@@ -3359,7 +3361,7 @@ public class dashBoard extends javax.swing.JFrame {
         String values [] = new String[temp.size()];
         
         if(values.length < 1){
-            my.showMessage("No Students to Submit were found.", JOptionPane.WARNING_MESSAGE);
+            my.showMessage("No Students found.", JOptionPane.WARNING_MESSAGE);
             return;
         }
         for(int n=0;n<temp.size();n++){
