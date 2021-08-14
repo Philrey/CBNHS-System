@@ -1561,12 +1561,6 @@ public class dashBoard extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addGap(20, 20, 20)
                             .addComponent(tfSchoolYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(10, 10, 10)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jdcFirstDayOfFridate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -1581,11 +1575,17 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfTotalCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jdcFirstDayOfFridate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLoadStudents)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExportSf1)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jScrollPane3.setViewportView(jPanel3);
@@ -6178,6 +6178,7 @@ public class dashBoard extends javax.swing.JFrame {
             String dateSelected = my.jCalendarToNumberDate(jdcFirstDayOfMonth.getDate().toString(), false); //Get date from date picker
             jdcFirstDayOfMonth.setDate(my.dateTimeTojCalendarDateFormat(dateSelected.substring(0, 8)+"01"));//Extract yyyy-mm- then add the first day 
         } catch (Exception e) {
+            //Gets an error when first initialized because of empty value
         }
     }//GEN-LAST:event_jdcFirstDayOfMonthPropertyChange
 
@@ -6186,6 +6187,7 @@ public class dashBoard extends javax.swing.JFrame {
             String dateSelected = my.jCalendarToNumberDate(jdcFirstDayOfMonth1.getDate().toString(), false); //Get date from date picker
             jdcFirstDayOfMonth1.setDate(my.dateTimeTojCalendarDateFormat(dateSelected.substring(0, 8)+"01"));//Extract yyyy-mm- then add the first day 
         } catch (Exception e) {
+            //Gets an error when first initialized because of empty value
         }
     }//GEN-LAST:event_jdcFirstDayOfMonth1PropertyChange
     private void selectFormToExport(int formIndexExact){
