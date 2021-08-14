@@ -435,9 +435,9 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         String dtSelected [] = dateSelected.split("-");
         String dtEnrld [] = dateEnrolled.split(" ")[0].split("-");
         
-        int sYr = Integer.parseInt(dtEnrld[0]);
+        int sYr = Integer.parseInt(dtSelected[0]);
         int sM = Integer.parseInt(dtSelected[1]);
-        int sD = Integer.parseInt(dtEnrld[2]);
+        int sD = Integer.parseInt(dtSelected[2]);
         int eYr = Integer.parseInt(dtEnrld[0]);
         int eM = Integer.parseInt(dtEnrld[1]);
         int eD = Integer.parseInt(dtEnrld[2]);
