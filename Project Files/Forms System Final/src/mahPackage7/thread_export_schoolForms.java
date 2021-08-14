@@ -1217,6 +1217,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     String monthSelected [] = new String [] {"T,22","T,32","T,42","T,52","T,62","T,72","T,82"};
                     String schoolDays [] = new String [] {"W,22","W,32","W,42","W,52","W,62","W,72","W,82"};
                     String advName [] = new String [] {"U,45","U,55","U,65","U,75","U,85","U,95","U,105"};
+                    String prncplName [] = new String [] {"U,50","U,60","U,70","U,80","U,90","U,100","U,110"};
                     
                     headers = new header[]{
                         //Header Parts
@@ -1230,6 +1231,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         new header(sf2MonthSelected, monthSelected[sheetNumber]),
                         new header(sf2SchoolDays, schoolDays[sheetNumber]),
                         new header(adviserName, advName[sheetNumber]),
+                        new header(principalName, prncplName[sheetNumber]),
                     };
                     //</editor-fold>
                     break;

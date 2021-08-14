@@ -3011,6 +3011,9 @@
                               <Properties>
                                 <Property name="toolTipText" type="java.lang.String" value=""/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jdcFirstDayOfMonthPropertyChange"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JButton" name="btnLoadStudents1">
                               <Properties>
@@ -3282,6 +3285,9 @@
                               </Properties>
                             </Component>
                             <Component class="com.toedter.calendar.JDateChooser" name="jdcFirstDayOfMonth1">
+                              <Events>
+                                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jdcFirstDayOfMonth1PropertyChange"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JComboBox" name="jcbMissingValues1">
                               <Properties>

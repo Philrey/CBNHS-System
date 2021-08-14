@@ -1922,6 +1922,11 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel20.setToolTipText("<html>\n\t<h4>Choose the first day of the month to get attendance from.</h4>\n\t<p>Selecting the first date determines weekdays and weekends<br>for the program to use.</p>\n</html>");
 
         jdcFirstDayOfMonth.setToolTipText("");
+        jdcFirstDayOfMonth.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jdcFirstDayOfMonthPropertyChange(evt);
+            }
+        });
 
         btnLoadStudents1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_sync_16px.png"))); // NOI18N
         btnLoadStudents1.setText("Load Students");
@@ -2118,6 +2123,12 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel28.setText("1st Day of Desired Month");
 
         jLabel30.setText("Values For Missing Records");
+
+        jdcFirstDayOfMonth1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jdcFirstDayOfMonth1PropertyChange(evt);
+            }
+        });
 
         jcbMissingValues1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None (Default)", "Present", "Absent", "Dashed (--)" }));
 
@@ -6161,6 +6172,22 @@ public class dashBoard extends javax.swing.JFrame {
             cbUseCodeAsName.setSelected(false);
         }
     }//GEN-LAST:event_cbUseAcronymsActionPerformed
+
+    private void jdcFirstDayOfMonthPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcFirstDayOfMonthPropertyChange
+        try {
+            String dateSelected = my.jCalendarToNumberDate(jdcFirstDayOfMonth.getDate().toString(), false); //Get date from date picker
+            jdcFirstDayOfMonth.setDate(my.dateTimeTojCalendarDateFormat(dateSelected.substring(0, 8)+"01"));//Extract yyyy-mm- then add the first day 
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jdcFirstDayOfMonthPropertyChange
+
+    private void jdcFirstDayOfMonth1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcFirstDayOfMonth1PropertyChange
+        try {
+            String dateSelected = my.jCalendarToNumberDate(jdcFirstDayOfMonth1.getDate().toString(), false); //Get date from date picker
+            jdcFirstDayOfMonth1.setDate(my.dateTimeTojCalendarDateFormat(dateSelected.substring(0, 8)+"01"));//Extract yyyy-mm- then add the first day 
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jdcFirstDayOfMonth1PropertyChange
     private void selectFormToExport(int formIndexExact){
         if(myVariables.getFormSelected() != formIndexExact){
             my.clear_table_rows(assignedTeacherTable);
