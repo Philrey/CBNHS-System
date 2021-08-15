@@ -34,7 +34,7 @@
             <Container class="javax.swing.JPanel" name="jPanel1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="23" green="66" red="b" type="rgb"/>
+                  <Color blue="99" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -44,58 +44,63 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnSf1" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="btnSf2" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="btnSf3" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="btnSf4" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="btnSf5" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btnLabelSf1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnLabelSf2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btnLabelSf3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnLabelSf4" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnSf7" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <Component id="btnSf6" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <Component id="btnSf8" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <Component id="btnSf9" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="btnLabelSf5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnLabelSf7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnLabelSf9" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="229" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="btnSf10" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="btnLabelSf6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnLabelSf8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnLabelSf10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnSf1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnSf6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnSf2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnSf7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnSf3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnSf8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnSf4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnSf9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnSf5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnSf10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="btnLabelSf1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnLabelSf2" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="btnLabelSf3" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnLabelSf4" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnLabelSf5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnLabelSf7" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnLabelSf9" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="btnLabelSf6" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnLabelSf8" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnLabelSf10" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -103,114 +108,134 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="btnSf1">
+                <Component class="javax.swing.JLabel" name="btnLabelSf1">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"/>
+                      <Image iconType="3" name="/mahPackage7/icons/sf1.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="School Form 1"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSf1ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLabelSf1MouseClicked"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnSf2">
+                <Component class="javax.swing.JLabel" name="btnLabelSf2">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"/>
+                      <Image iconType="3" name="/mahPackage7/icons/sf2.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="School Form 2"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSf2ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLabelSf2MouseClicked"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnSf3">
+                <Component class="javax.swing.JLabel" name="btnLabelSf3">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"/>
+                      <Image iconType="3" name="/mahPackage7/icons/sf3.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="School Form 3"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSf3ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLabelSf3MouseClicked"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnSf4">
+                <Component class="javax.swing.JLabel" name="btnLabelSf4">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"/>
+                      <Image iconType="3" name="/mahPackage7/icons/sf4.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="School Form 4"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSf4ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLabelSf4MouseClicked"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnSf5">
+                <Component class="javax.swing.JLabel" name="btnLabelSf5">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"/>
+                      <Image iconType="3" name="/mahPackage7/icons/sf5.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="School Form 5"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSf5ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLabelSf5MouseClicked"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnSf6">
+                <Component class="javax.swing.JLabel" name="btnLabelSf6">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"/>
+                      <Image iconType="3" name="/mahPackage7/icons/sf6.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="School Form 6"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSf6ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLabelSf6MouseClicked"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnSf7">
+                <Component class="javax.swing.JLabel" name="btnLabelSf7">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"/>
+                      <Image iconType="3" name="/mahPackage7/icons/sf7.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="School Form 7"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSf7ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLabelSf7MouseClicked"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnSf8">
+                <Component class="javax.swing.JLabel" name="btnLabelSf8">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"/>
+                      <Image iconType="3" name="/mahPackage7/icons/sf8.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="School Form 8"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSf8ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLabelSf8MouseClicked"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnSf9">
+                <Component class="javax.swing.JLabel" name="btnLabelSf9">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"/>
+                      <Image iconType="3" name="/mahPackage7/icons/sf9.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="School Form 9"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSf9ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLabelSf9MouseClicked"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnSf10">
+                <Component class="javax.swing.JLabel" name="btnLabelSf10">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"/>
+                      <Image iconType="3" name="/mahPackage7/icons/sf10.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="School Form 10"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSf10ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLabelSf10MouseClicked"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -2772,7 +2797,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
                   <SubComponents>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+                    <Container class="javax.swing.JScrollPane" name="jspSf2DetailsTab">
                       <Properties>
                         <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                       </Properties>
@@ -3136,7 +3161,7 @@
                         </Container>
                       </SubComponents>
                     </Container>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane9">
+                    <Container class="javax.swing.JScrollPane" name="jspSf4DetailsTab">
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                           <JTabbedPaneConstraints tabName="Sf4 Settings">

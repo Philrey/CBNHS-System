@@ -82,16 +82,16 @@ public class dashBoard extends javax.swing.JFrame {
         selectFormPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        btnSf1 = new javax.swing.JButton();
-        btnSf2 = new javax.swing.JButton();
-        btnSf3 = new javax.swing.JButton();
-        btnSf4 = new javax.swing.JButton();
-        btnSf5 = new javax.swing.JButton();
-        btnSf6 = new javax.swing.JButton();
-        btnSf7 = new javax.swing.JButton();
-        btnSf8 = new javax.swing.JButton();
-        btnSf9 = new javax.swing.JButton();
-        btnSf10 = new javax.swing.JButton();
+        btnLabelSf1 = new javax.swing.JLabel();
+        btnLabelSf2 = new javax.swing.JLabel();
+        btnLabelSf3 = new javax.swing.JLabel();
+        btnLabelSf4 = new javax.swing.JLabel();
+        btnLabelSf5 = new javax.swing.JLabel();
+        btnLabelSf6 = new javax.swing.JLabel();
+        btnLabelSf7 = new javax.swing.JLabel();
+        btnLabelSf8 = new javax.swing.JLabel();
+        btnLabelSf9 = new javax.swing.JLabel();
+        btnLabelSf10 = new javax.swing.JLabel();
         selectSectionTab = new javax.swing.JPanel();
         jSplitPane4 = new javax.swing.JSplitPane();
         left3 = new javax.swing.JPanel();
@@ -196,7 +196,7 @@ public class dashBoard extends javax.swing.JFrame {
         sf4Table = new javax.swing.JTable();
         right2 = new javax.swing.JPanel();
         tpSf2Sf4DetailsPane = new javax.swing.JTabbedPane();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        jspSf2DetailsTab = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -223,7 +223,7 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jcbMissingValues = new javax.swing.JComboBox<>();
-        jScrollPane9 = new javax.swing.JScrollPane();
+        jspSf4DetailsTab = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
@@ -512,85 +512,85 @@ public class dashBoard extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(null);
 
-        jPanel1.setBackground(new java.awt.Color(11, 102, 35));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 153));
 
-        btnSf1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"))); // NOI18N
-        btnSf1.setText("School Form 1");
-        btnSf1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSf1ActionPerformed(evt);
+        btnLabelSf1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/sf1.png"))); // NOI18N
+        btnLabelSf1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLabelSf1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLabelSf1MouseClicked(evt);
             }
         });
 
-        btnSf2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"))); // NOI18N
-        btnSf2.setText("School Form 2");
-        btnSf2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSf2ActionPerformed(evt);
+        btnLabelSf2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/sf2.png"))); // NOI18N
+        btnLabelSf2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLabelSf2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLabelSf2MouseClicked(evt);
             }
         });
 
-        btnSf3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"))); // NOI18N
-        btnSf3.setText("School Form 3");
-        btnSf3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSf3ActionPerformed(evt);
+        btnLabelSf3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/sf3.png"))); // NOI18N
+        btnLabelSf3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLabelSf3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLabelSf3MouseClicked(evt);
             }
         });
 
-        btnSf4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"))); // NOI18N
-        btnSf4.setText("School Form 4");
-        btnSf4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSf4ActionPerformed(evt);
+        btnLabelSf4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/sf4.png"))); // NOI18N
+        btnLabelSf4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLabelSf4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLabelSf4MouseClicked(evt);
             }
         });
 
-        btnSf5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"))); // NOI18N
-        btnSf5.setText("School Form 5");
-        btnSf5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSf5ActionPerformed(evt);
+        btnLabelSf5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/sf5.png"))); // NOI18N
+        btnLabelSf5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLabelSf5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLabelSf5MouseClicked(evt);
             }
         });
 
-        btnSf6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"))); // NOI18N
-        btnSf6.setText("School Form 6");
-        btnSf6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSf6ActionPerformed(evt);
+        btnLabelSf6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/sf6.png"))); // NOI18N
+        btnLabelSf6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLabelSf6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLabelSf6MouseClicked(evt);
             }
         });
 
-        btnSf7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"))); // NOI18N
-        btnSf7.setText("School Form 7");
-        btnSf7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSf7ActionPerformed(evt);
+        btnLabelSf7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/sf7.png"))); // NOI18N
+        btnLabelSf7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLabelSf7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLabelSf7MouseClicked(evt);
             }
         });
 
-        btnSf8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"))); // NOI18N
-        btnSf8.setText("School Form 8");
-        btnSf8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSf8ActionPerformed(evt);
+        btnLabelSf8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/sf8.png"))); // NOI18N
+        btnLabelSf8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLabelSf8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLabelSf8MouseClicked(evt);
             }
         });
 
-        btnSf9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"))); // NOI18N
-        btnSf9.setText("School Form 9");
-        btnSf9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSf9ActionPerformed(evt);
+        btnLabelSf9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/sf9.png"))); // NOI18N
+        btnLabelSf9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLabelSf9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLabelSf9MouseClicked(evt);
             }
         });
 
-        btnSf10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_microsoft_excel_2019_50px.png"))); // NOI18N
-        btnSf10.setText("School Form 10");
-        btnSf10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSf10ActionPerformed(evt);
+        btnLabelSf10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/sf10.png"))); // NOI18N
+        btnLabelSf10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLabelSf10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLabelSf10MouseClicked(evt);
             }
         });
 
@@ -601,47 +601,51 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSf1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSf2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSf3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSf4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSf5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnLabelSf1)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLabelSf2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnLabelSf3)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLabelSf4))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSf7, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSf6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSf8, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSf9, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnSf10, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(btnLabelSf5)
+                            .addComponent(btnLabelSf7)
+                            .addComponent(btnLabelSf9))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnLabelSf6)
+                            .addComponent(btnLabelSf8)
+                            .addComponent(btnLabelSf10))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSf1)
-                    .addComponent(btnSf6))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSf2)
-                    .addComponent(btnSf7))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSf3)
-                    .addComponent(btnSf8))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSf4)
-                    .addComponent(btnSf9))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSf5)
-                    .addComponent(btnSf10))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnLabelSf1)
+                            .addComponent(btnLabelSf2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnLabelSf3)
+                            .addComponent(btnLabelSf4))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLabelSf5)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLabelSf7)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLabelSf9))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnLabelSf6)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLabelSf8)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLabelSf10)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1867,7 +1871,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         jSplitPane2.setLeftComponent(left2);
 
-        jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jspSf2DetailsTab.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 204));
 
@@ -2088,9 +2092,9 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
-        jScrollPane4.setViewportView(jPanel5);
+        jspSf2DetailsTab.setViewportView(jPanel5);
 
-        tpSf2Sf4DetailsPane.addTab("Sf2 Settings", jScrollPane4);
+        tpSf2Sf4DetailsPane.addTab("Sf2 Settings", jspSf2DetailsTab);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 204));
 
@@ -2220,9 +2224,9 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap(385, Short.MAX_VALUE))
         );
 
-        jScrollPane9.setViewportView(jPanel2);
+        jspSf4DetailsTab.setViewportView(jPanel2);
 
-        tpSf2Sf4DetailsPane.addTab("Sf4 Settings", jScrollPane9);
+        tpSf2Sf4DetailsPane.addTab("Sf4 Settings", jspSf4DetailsTab);
 
         javax.swing.GroupLayout right2Layout = new javax.swing.GroupLayout(right2);
         right2.setLayout(right2Layout);
@@ -5221,6 +5225,8 @@ public class dashBoard extends javax.swing.JFrame {
                     my.select_tab(mainTab, 2);
                     btnExportSf3.setEnabled(false);
                     break;
+                }case 4:{
+                    break;
                 }case 5:{
                     String curriculum = assignedTeacherTable.getValueAt(row, 12).toString();
                     
@@ -5325,14 +5331,6 @@ public class dashBoard extends javax.swing.JFrame {
                 new boolean[]{}
         );
     }//GEN-LAST:event_btnExportSf1ActionPerformed
-
-    private void btnSf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf1ActionPerformed
-        selectFormToExport(1);
-    }//GEN-LAST:event_btnSf1ActionPerformed
-
-    private void btnSf2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf2ActionPerformed
-        selectFormToExport(2);
-    }//GEN-LAST:event_btnSf2ActionPerformed
 
     private void btnLoadStudents1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudents1ActionPerformed
         if(myVariables.getFormSelected() != 2){
@@ -5462,10 +5460,6 @@ public class dashBoard extends javax.swing.JFrame {
         );
     }//GEN-LAST:event_btnExportSf4ActionPerformed
 
-    private void btnSf4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf4ActionPerformed
-        selectFormToExport(4);
-    }//GEN-LAST:event_btnSf4ActionPerformed
-
     private void btnSelectAllSectionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectAllSectionsActionPerformed
         if(assignedTeacherTable.getRowCount() <= 0){
             my.showMessage("No Sections Found.", JOptionPane.ERROR_MESSAGE);
@@ -5486,8 +5480,8 @@ public class dashBoard extends javax.swing.JFrame {
         
         myVariables.setSelectAllSectionsForSf4(true);
         my.select_tab(mainTab, 2);
-        my.select_tab(tpSf2Sf4TabbedPane, 1);
-        my.select_tab(tpSf2Sf4DetailsPane, 1);
+        //my.select_tab(tpSf2Sf4TabbedPane, 1);
+        //my.select_tab(tpSf2Sf4DetailsPane, 1);
     }//GEN-LAST:event_btnSelectAllSectionsActionPerformed
 
     private void btnOnlySelectedSectionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOnlySelectedSectionsActionPerformed
@@ -5514,16 +5508,12 @@ public class dashBoard extends javax.swing.JFrame {
         if(selectedRows != null && selectedRows.length > 0){
             myVariables.setSelectAllSectionsForSf4(false);
             my.select_tab(mainTab, 2);
-            my.select_tab(tpSf2Sf4TabbedPane, 1);
-            my.select_tab(tpSf2Sf4DetailsPane, 1);
+            //my.select_tab(tpSf2Sf4TabbedPane, 1);
+            //my.select_tab(tpSf2Sf4DetailsPane, 1);
         }else{
             my.showMessage("No Section(s) Selected.", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnOnlySelectedSectionsActionPerformed
-
-    private void btnSf3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf3ActionPerformed
-        selectFormToExport(3);
-    }//GEN-LAST:event_btnSf3ActionPerformed
 
     private void btnLoadStudents3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudents3ActionPerformed
         int row = assignedTeacherTable.getSelectedRow();
@@ -5640,10 +5630,6 @@ public class dashBoard extends javax.swing.JFrame {
             sf3BooksTable.clearSelection();
         }
     }//GEN-LAST:event_sf3TableMouseClicked
-
-    private void btnSf5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf5ActionPerformed
-        selectFormToExport(5);
-    }//GEN-LAST:event_btnSf5ActionPerformed
 
     private void btnLoadStudents4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudents4ActionPerformed
         int row = assignedTeacherTable.getSelectedRow();
@@ -5772,10 +5758,6 @@ public class dashBoard extends javax.swing.JFrame {
         tfSchoolYear4.setText(schoolYear+"-"+(schoolYear+1));
     }//GEN-LAST:event_btnSelectAllSections1ActionPerformed
 
-    private void btnSf6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf6ActionPerformed
-        selectFormToExport(6);
-    }//GEN-LAST:event_btnSf6ActionPerformed
-
     private void btnLoadStudents5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStudents5ActionPerformed
         boolean showIncompleteStudents = cbShowIncompleteStudents1.isSelected();
         boolean compareToRankings = cbCompareToRankings1.isSelected();
@@ -5827,10 +5809,6 @@ public class dashBoard extends javax.swing.JFrame {
                 new boolean[]{}
         );
     }//GEN-LAST:event_btnExportSf8ActionPerformed
-
-    private void btnSf8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf8ActionPerformed
-        selectFormToExport(8);
-    }//GEN-LAST:event_btnSf8ActionPerformed
 
     private void btnSearchEnrolledStudentsearchEnrolledStudentsHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchEnrolledStudentsearchEnrolledStudentsHandler
         int row = assignedTeacherTable.getSelectedRow();
@@ -5965,10 +5943,6 @@ public class dashBoard extends javax.swing.JFrame {
         );
     }//GEN-LAST:event_btnExportSf9ActionPerformed
 
-    private void btnSf9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf9ActionPerformed
-        selectFormToExport(9);
-    }//GEN-LAST:event_btnSf9ActionPerformed
-
     private void enrolledStudentsTable1loadStudentsAttendanceHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enrolledStudentsTable1loadStudentsAttendanceHandler
         int row = enrolledStudentsTable1.getSelectedRow();
         
@@ -6032,10 +6006,6 @@ public class dashBoard extends javax.swing.JFrame {
     private void sf10TableloadStudentsAttendanceHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sf10TableloadStudentsAttendanceHandler
         // TODO add your handling code here:
     }//GEN-LAST:event_sf10TableloadStudentsAttendanceHandler
-
-    private void btnSf10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf10ActionPerformed
-        selectFormToExport(10);
-    }//GEN-LAST:event_btnSf10ActionPerformed
 
     private void btnExportSf10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportSf10ActionPerformed
         if(myVariables.getFormSelected() != 10){
@@ -6108,10 +6078,6 @@ public class dashBoard extends javax.swing.JFrame {
                 null
         );
     }//GEN-LAST:event_btnExportSf7ActionPerformed
-
-    private void btnSf7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSf7ActionPerformed
-        selectFormToExport(7);
-    }//GEN-LAST:event_btnSf7ActionPerformed
 
     private void sf7TeachersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sf7TeachersTableMouseClicked
         if(evt.getClickCount() == 2){
@@ -6190,6 +6156,46 @@ public class dashBoard extends javax.swing.JFrame {
             //Gets an error when first initialized because of empty value
         }
     }//GEN-LAST:event_jdcFirstDayOfMonth1PropertyChange
+
+    private void btnLabelSf1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf1MouseClicked
+        selectFormToExport(1);
+    }//GEN-LAST:event_btnLabelSf1MouseClicked
+
+    private void btnLabelSf2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf2MouseClicked
+        selectFormToExport(2);
+    }//GEN-LAST:event_btnLabelSf2MouseClicked
+
+    private void btnLabelSf3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf3MouseClicked
+        selectFormToExport(3);
+    }//GEN-LAST:event_btnLabelSf3MouseClicked
+
+    private void btnLabelSf4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf4MouseClicked
+        selectFormToExport(4);
+    }//GEN-LAST:event_btnLabelSf4MouseClicked
+
+    private void btnLabelSf5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf5MouseClicked
+        selectFormToExport(5);
+    }//GEN-LAST:event_btnLabelSf5MouseClicked
+
+    private void btnLabelSf6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf6MouseClicked
+        selectFormToExport(6);
+    }//GEN-LAST:event_btnLabelSf6MouseClicked
+
+    private void btnLabelSf7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf7MouseClicked
+        selectFormToExport(7);
+    }//GEN-LAST:event_btnLabelSf7MouseClicked
+
+    private void btnLabelSf8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf8MouseClicked
+        selectFormToExport(8);
+    }//GEN-LAST:event_btnLabelSf8MouseClicked
+
+    private void btnLabelSf9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf9MouseClicked
+        selectFormToExport(9);
+    }//GEN-LAST:event_btnLabelSf9MouseClicked
+
+    private void btnLabelSf10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf10MouseClicked
+        selectFormToExport(10);
+    }//GEN-LAST:event_btnLabelSf10MouseClicked
     private void selectFormToExport(int formIndexExact){
         if(myVariables.getFormSelected() != formIndexExact){
             my.clear_table_rows(assignedTeacherTable);
@@ -6200,12 +6206,13 @@ public class dashBoard extends javax.swing.JFrame {
         loadInstructions();
     }
     private void loadSchoolFormTabs(){
-        
-        
         int tabsToShow [];
         Icon [] icons;
         int tabSelectedIndex = 0;
         String titles [];
+        
+        JPanel sf2Sf4SubTabs [] = {};
+        
         switch(myVariables.getFormSelected()){
             case 1:{
                 tabsToShow = new int [] {0,1,2};
@@ -6218,6 +6225,13 @@ public class dashBoard extends javax.swing.JFrame {
                 icons = new Icon [] {my.getImgIcn(myVariables.getSelectFormsIcon()),my.getImgIcn(myVariables.getSectionsIcon()),my.getImgIcn(myVariables.getFormsIcon())};
                 titles = new String [] {"Select Form","Select Section","School Form "+myVariables.getFormSelected()};
                 tabSelectedIndex = 1;
+                
+                //Show sf2 tab only
+                tpSf2Sf4TabbedPane.removeAll();
+                tpSf2Sf4DetailsPane.removeAll();
+                
+                tpSf2Sf4TabbedPane.addTab("SF2 Daily Attendance Report", my.getImgIcn(myVariables.getDailyIcon()), sf2Tab);
+                tpSf2Sf4DetailsPane.addTab("SF2 Settings", my.getImgIcn(myVariables.getInfoIcon()), jspSf2DetailsTab);
                 break;
             }case 3:{
                 tabsToShow = new int [] {0,1,4};
@@ -6230,6 +6244,13 @@ public class dashBoard extends javax.swing.JFrame {
                 icons = new Icon [] {my.getImgIcn(myVariables.getSelectFormsIcon()),my.getImgIcn(myVariables.getSectionsIcon()),my.getImgIcn(myVariables.getFormsIcon())};
                 titles = new String [] {"Select Form","Select Section","School Form "+myVariables.getFormSelected()};
                 tabSelectedIndex = 1;
+                
+                //Show sf4 tab only
+                tpSf2Sf4TabbedPane.removeAll();
+                tpSf2Sf4DetailsPane.removeAll();
+                
+                tpSf2Sf4TabbedPane.addTab("SF4 Daily Monthly Report", my.getImgIcn(myVariables.getMonthlyIcon()), sf4Tab);
+                tpSf2Sf4DetailsPane.addTab("SF4 Settings", my.getImgIcn(myVariables.getInfoIcon()), jspSf4DetailsTab);
                 break;
             }case 5:{
                 tabsToShow = new int [] {0,1,5};
@@ -6514,7 +6535,7 @@ public class dashBoard extends javax.swing.JFrame {
     
     private void setScrollSpeeds(){
         JScrollPane scrollpanes [] = {
-            jScrollPane1,jScrollPane3,jScrollPane4,jScrollPane9,jScrollPane14,jScrollPane18,
+            jScrollPane1,jScrollPane3,jspSf2DetailsTab,jspSf4DetailsTab,jScrollPane14,jScrollPane18,
             jScrollPane19,jScrollPane29,jScrollPane32,jScrollPane37,jspRight,
         };
         
@@ -6708,7 +6729,6 @@ public class dashBoard extends javax.swing.JFrame {
         };
         
         JButton lightButtons [] = {
-            btnSf1,btnSf2,btnSf3,btnSf4,btnSf5,btnSf6,btnSf7,btnSf8,btnSf9,btnSf10,
             btnShowRankings,btnUseSelectedSections,
         };
         Cursor tempC;
@@ -6913,6 +6933,16 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnExportSf7;
     private javax.swing.JButton btnExportSf8;
     private javax.swing.JButton btnExportSf9;
+    private javax.swing.JLabel btnLabelSf1;
+    private javax.swing.JLabel btnLabelSf10;
+    private javax.swing.JLabel btnLabelSf2;
+    private javax.swing.JLabel btnLabelSf3;
+    private javax.swing.JLabel btnLabelSf4;
+    private javax.swing.JLabel btnLabelSf5;
+    private javax.swing.JLabel btnLabelSf6;
+    private javax.swing.JLabel btnLabelSf7;
+    private javax.swing.JLabel btnLabelSf8;
+    private javax.swing.JLabel btnLabelSf9;
     private javax.swing.JButton btnLoadGrades;
     private javax.swing.JButton btnLoadStudents;
     private javax.swing.JButton btnLoadStudents1;
@@ -6930,16 +6960,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnSearchSection;
     private javax.swing.JButton btnSelectAllSections;
     private javax.swing.JButton btnSelectAllSections1;
-    private javax.swing.JButton btnSf1;
-    private javax.swing.JButton btnSf10;
-    private javax.swing.JButton btnSf2;
-    private javax.swing.JButton btnSf3;
-    private javax.swing.JButton btnSf4;
-    private javax.swing.JButton btnSf5;
-    private javax.swing.JButton btnSf6;
-    private javax.swing.JButton btnSf7;
-    private javax.swing.JButton btnSf8;
-    private javax.swing.JButton btnSf9;
     private javax.swing.JButton btnShowRankings;
     private javax.swing.JButton btnUseSelectedSections;
     private javax.swing.JCheckBox cbCompareToRankings;
@@ -7150,7 +7170,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane37;
     private javax.swing.JScrollPane jScrollPane38;
     private javax.swing.JScrollPane jScrollPane39;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane40;
     private javax.swing.JScrollPane jScrollPane41;
     private javax.swing.JScrollPane jScrollPane42;
@@ -7164,7 +7183,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane10;
     private javax.swing.JSplitPane jSplitPane2;
@@ -7200,6 +7218,8 @@ public class dashBoard extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jdcFirstDayOfMonth1;
     private javax.swing.JProgressBar jpbProgressBar;
     private javax.swing.JScrollPane jspRight;
+    private javax.swing.JScrollPane jspSf2DetailsTab;
+    private javax.swing.JScrollPane jspSf4DetailsTab;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel lbFinalGradeId;
     private javax.swing.JLabel lbLoadingMessage;

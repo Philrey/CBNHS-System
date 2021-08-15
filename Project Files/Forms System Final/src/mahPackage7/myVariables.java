@@ -150,6 +150,18 @@ public class myVariables {
     private static final String selectEnrolledSectionsIcon = "icons/icons8_classroom_16px.png";
     private static final String permanentRecordIcon = "icons/icons8_mortarboard_16px_1.png";
     
+    //Forms Icons
+    private static final String sf1Icon = "icons/sf1.png";
+    private static final String sf2Icon = "icons/sf2.png";
+    private static final String sf3Icon = "icons/sf3.png";
+    private static final String sf4Icon = "icons/sf4.png";
+    private static final String sf5Icon = "icons/sf5.png";
+    private static final String sf6Icon = "icons/sf6.png";
+    private static final String sf7Icon = "icons/sf7.png";
+    private static final String sf8Icon = "icons/sf8.png";
+    private static final String sf9Icon = "icons/sf9.png";
+    private static final String sf10Icon = "icons/sf10.png";
+    
     //Window Icons
     private static final String attendanceWindowIcon = "icons/attendanceIcon.png";
     private static final String registrationWindowIcon = "icons/registerIcon.png";
