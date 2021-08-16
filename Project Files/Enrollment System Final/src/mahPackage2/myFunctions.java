@@ -650,7 +650,7 @@ public class myFunctions {
             String temp [] = time[0].split(":");
             int hour = Integer.valueOf(temp[0]);
             int minute = Integer.valueOf(temp[1]);
-            int seconds = Integer.valueOf(temp[2]);
+            int seconds = temp.length>2? Integer.valueOf(temp[2]) : 0;
             String meridan = time[1];
             
             String finalTime = "";
@@ -704,7 +704,7 @@ public class myFunctions {
     }
     
     public String addZeroes(String value){
-        return Integer.parseInt(value) < 10 ? "0"+value : value;
+        return Integer.parseInt(value) < 10 ? "0"+Integer.parseInt(value) : value;
     }
     
     public String addZeroes(int value){

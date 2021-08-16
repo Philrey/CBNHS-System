@@ -107,6 +107,7 @@ public class myVariables {
     private static final String enrollmentWindowIcon = "icons/enrollmentIcon.png";
     private static final String formsWindowIcon = "Imagez/Window Icons/forms.png";
     
+    private static final String timeIcon = "icons/icons8_alarm_clock_20px.png";
     //Dropdown Icons
     private static final String maleIcon = "icons/icons8_male_16px.png";
     private static final String femaleIcon = "icons/icons8_female_16px.png";
@@ -325,6 +326,12 @@ public class myVariables {
     //</editor-fold>
 
     //<editor-fold desc="Getters & Setters">
+
+    public static String getTimeIcon() {
+        return timeIcon;
+    }
+    
+    
     public static int[] getTeacherLoadsViewWTimeOrder() {
         return teacherLoadsViewWTimeOrder;
     }
