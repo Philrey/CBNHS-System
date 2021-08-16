@@ -1601,7 +1601,7 @@
                             <Column editable="false" title="Adv ID" type="java.lang.Object"/>
                             <Column editable="false" title="Adviser" type="java.lang.Object"/>
                             <Column editable="false" title="Gender" type="java.lang.Object"/>
-                            <Column editable="false" title="Lod ID" type="java.lang.Object"/>
+                            <Column editable="false" title="Load ID" type="java.lang.Object"/>
                             <Column editable="false" title="Curriculum" type="java.lang.Object"/>
                             <Column editable="false" title="Level" type="java.lang.Object"/>
                             <Column editable="false" title="School Year" type="java.lang.Object"/>
@@ -1616,7 +1616,7 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -1641,7 +1641,7 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -1651,12 +1651,12 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -1784,7 +1784,7 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jScrollPane8" min="-2" pref="300" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane8" min="-2" pref="307" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="btnSaveSubjectTeacherChanges" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1853,7 +1853,7 @@
                                     <Component class="javax.swing.JTable" name="assignedTeacherTable">
                                       <Properties>
                                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                          <Table columnCount="9" rowCount="12">
+                                          <Table columnCount="11" rowCount="12">
                                             <Column editable="false" title="ID" type="java.lang.Object"/>
                                             <Column editable="false" title="Section ID" type="java.lang.Object"/>
                                             <Column editable="false" title="Adv ID" type="java.lang.Object"/>
@@ -1863,6 +1863,8 @@
                                             <Column editable="false" title="Code" type="java.lang.Object"/>
                                             <Column editable="false" title="Description" type="java.lang.Object"/>
                                             <Column editable="false" title="Grade" type="java.lang.Object"/>
+                                            <Column editable="false" title="Time Start" type="java.lang.Object"/>
+                                            <Column editable="false" title="Time End" type="java.lang.Object"/>
                                           </Table>
                                         </Property>
                                         <Property name="autoResizeMode" type="int" value="0"/>
@@ -1888,7 +1890,7 @@
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="60" minWidth="-1" prefWidth="-1" resizable="true">
+                                            <Column maxWidth="60" minWidth="-1" prefWidth="80" resizable="true">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
@@ -1898,17 +1900,27 @@
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="40" resizable="true">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="true">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="true">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="50" minWidth="-1" prefWidth="-1" resizable="true">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
@@ -1996,7 +2008,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="47" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="99" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
@@ -2139,16 +2151,13 @@
                                       <Properties>
                                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                          <Table columnCount="6" rowCount="4">
+                                          <Table columnCount="4" rowCount="4">
                                             <Column editable="false" title="ID (H)" type="java.lang.Object"/>
                                             <Column editable="false" title="Name" type="java.lang.Object"/>
                                             <Column editable="false" title="Gender" type="java.lang.Object"/>
                                             <Column editable="false" title="Access Level" type="java.lang.Object"/>
-                                            <Column editable="true" title="Time Start" type="java.lang.Object"/>
-                                            <Column editable="false" title="Time End" type="java.lang.Object"/>
                                           </Table>
                                         </Property>
-                                        <Property name="autoResizeMode" type="int" value="0"/>
                                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                           <TableColumnModel selectionModel="0">
                                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -2156,17 +2165,7 @@
                                               <Editor/>
                                               <Renderer/>
                                             </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                              <Title/>
-                                              <Editor/>
-                                              <Renderer/>
-                                            </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                              <Title/>
-                                              <Editor/>
-                                              <Renderer/>
-                                            </Column>
-                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
                                               <Title/>
                                               <Editor/>
                                               <Renderer/>
@@ -2232,7 +2231,7 @@
                                 </Component>
                                 <Component class="com.github.lgooddatepicker.components.TimePicker" name="tpEnd">
                                   <Properties>
-                                    <Property name="text" type="java.lang.String" value="7:00am"/>
+                                    <Property name="text" type="java.lang.String" value="8:00am"/>
                                   </Properties>
                                 </Component>
                               </SubComponents>

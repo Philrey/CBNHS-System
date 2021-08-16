@@ -1066,7 +1066,7 @@ public class dashBoard extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Section Name", "Adv ID", "Adviser", "Gender", "Lod ID", "Curriculum", "Level", "School Year", "Subjects Contained"
+                "ID", "Section Name", "Adv ID", "Adviser", "Gender", "Load ID", "Curriculum", "Level", "School Year", "Subjects Contained"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1086,11 +1086,13 @@ public class dashBoard extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(sectionsTable2);
         if (sectionsTable2.getColumnModel().getColumnCount() > 0) {
-            sectionsTable2.getColumnModel().getColumn(1).setPreferredWidth(100);
+            sectionsTable2.getColumnModel().getColumn(1).setPreferredWidth(150);
             sectionsTable2.getColumnModel().getColumn(3).setPreferredWidth(150);
             sectionsTable2.getColumnModel().getColumn(4).setPreferredWidth(50);
+            sectionsTable2.getColumnModel().getColumn(6).setPreferredWidth(150);
             sectionsTable2.getColumnModel().getColumn(7).setPreferredWidth(50);
-            sectionsTable2.getColumnModel().getColumn(8).setPreferredWidth(50);
+            sectionsTable2.getColumnModel().getColumn(8).setPreferredWidth(100);
+            sectionsTable2.getColumnModel().getColumn(9).setPreferredWidth(200);
         }
 
         tfSearchSection2.addActionListener(new java.awt.event.ActionListener() {
@@ -1173,25 +1175,25 @@ public class dashBoard extends javax.swing.JFrame {
 
         assignedTeacherTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Section ID", "Adv ID", "Name", "Gender", "Subject ID", "Code", "Description", "Grade"
+                "ID", "Section ID", "Adv ID", "Name", "Gender", "Subject ID", "Code", "Description", "Grade", "Time Start", "Time End"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1208,10 +1210,12 @@ public class dashBoard extends javax.swing.JFrame {
         jScrollPane8.setViewportView(assignedTeacherTable);
         if (assignedTeacherTable.getColumnModel().getColumnCount() > 0) {
             assignedTeacherTable.getColumnModel().getColumn(3).setPreferredWidth(150);
+            assignedTeacherTable.getColumnModel().getColumn(4).setPreferredWidth(80);
             assignedTeacherTable.getColumnModel().getColumn(4).setMaxWidth(60);
-            assignedTeacherTable.getColumnModel().getColumn(6).setPreferredWidth(40);
-            assignedTeacherTable.getColumnModel().getColumn(7).setPreferredWidth(60);
-            assignedTeacherTable.getColumnModel().getColumn(8).setMaxWidth(50);
+            assignedTeacherTable.getColumnModel().getColumn(6).setPreferredWidth(50);
+            assignedTeacherTable.getColumnModel().getColumn(7).setPreferredWidth(150);
+            assignedTeacherTable.getColumnModel().getColumn(9).setPreferredWidth(100);
+            assignedTeacherTable.getColumnModel().getColumn(10).setPreferredWidth(100);
         }
 
         btnSaveSubjectTeacherChanges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_save_16px.png"))); // NOI18N
@@ -1257,7 +1261,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSaveSubjectTeacherChanges)
@@ -1326,24 +1330,23 @@ public class dashBoard extends javax.swing.JFrame {
         usersTable2.setAutoCreateRowSorter(true);
         usersTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID (H)", "Name", "Gender", "Access Level", "Time Start", "Time End"
+                "ID (H)", "Name", "Gender", "Access Level"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        usersTable2.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         usersTable2.getTableHeader().setReorderingAllowed(false);
         usersTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1351,6 +1354,9 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
         jScrollPane17.setViewportView(usersTable2);
+        if (usersTable2.getColumnModel().getColumnCount() > 0) {
+            usersTable2.getColumnModel().getColumn(1).setPreferredWidth(200);
+        }
 
         btnAssignTeacher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_ok_16px.png"))); // NOI18N
         btnAssignTeacher.setText("Assign Teacher");
@@ -1374,7 +1380,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         jLabel17.setText("Time End");
 
-        tpEnd.setText("7:00am");
+        tpEnd.setText("8:00am");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1382,7 +1388,7 @@ public class dashBoard extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 45, Short.MAX_VALUE))
+                .addGap(0, 99, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1418,7 +1424,7 @@ public class dashBoard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfSearchUser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
@@ -1938,7 +1944,7 @@ public class dashBoard extends javax.swing.JFrame {
             where = "WHERE subjectId IN ("+subjectsContained+") AND sectionId='"+sectionId+"' ORDER BY FIELD(subjectId,"+subjectsContained+")";
             
             //Check if section is already finalized in teacherLoads table
-            String result [] = my.return_values("*", "v_teacherloads", where, myVariables.getTeacherLoadsViewOrder());
+            String result [] = my.return_values("*", "v_teacherloads_w_time", where, myVariables.getTeacherLoadsViewWTimeOrder());
             
             if(result == null){
                 //Prompt to finalize section
@@ -1967,7 +1973,7 @@ public class dashBoard extends javax.swing.JFrame {
                 }                
                 return;
             }
-            //Check for missing subjects
+            //<editor-fold desc="Check for missing subjects">
             String expectedSubjectIds [] = subjectsContained.split(",");
             
             boolean prompForMissingSubjects;
@@ -2041,11 +2047,13 @@ public class dashBoard extends javax.swing.JFrame {
                     }
                     break;
                 }
-            }
+            }//</editor-fold>
             
             my.clear_table_rows(assignedTeacherTable);
             enableDisableAssignSubjectTeacherFields(true, false, false);
             for(String n : result){
+                n = my.setValueAtColumn(n, 11, my.from24To12HourFormat(my.getValueAtColumn(n, 11),false));
+                n = my.setValueAtColumn(n, 12, my.from24To12HourFormat(my.getValueAtColumn(n, 12),false));
                 n = my.toNameFormat(n, new int [] {3,4,5});
                 
                 if(my.getValueAtColumn(n, 2).contains("-1")){
@@ -2090,6 +2098,9 @@ public class dashBoard extends javax.swing.JFrame {
             //Check if selected subject is on allowed subjects table
             int row = assignedTeacherTable.getSelectedRow();
             int selectedSubjectId = Integer.parseInt(assignedTeacherTable.getValueAt(row, 5).toString());            
+            
+            tpStart.setText(assignedTeacherTable.getValueAt(row, 9).toString().replace(" ", ""));
+            tpEnd.setText(assignedTeacherTable.getValueAt(row, 10).toString().replace(" ", ""));
             
             if(subjectTeacherTab.getTabCount() <= 1){
                 subjectTeacherTab.addTab("Select Teacher", selectTeacherTab);
@@ -2232,6 +2243,7 @@ public class dashBoard extends javax.swing.JFrame {
         }else{
             if(row == -1){
                 my.showMessage("Please select a teacher.", JOptionPane.WARNING_MESSAGE);
+                return;
             }
             
             //Get values and pass to assignedTeachers table
@@ -2242,6 +2254,12 @@ public class dashBoard extends javax.swing.JFrame {
             assignedTeacherTable.setValueAt(teacherId, slotRow, 2);
             assignedTeacherTable.setValueAt(name, slotRow, 3);
             assignedTeacherTable.setValueAt(gender, slotRow, 4);
+            
+            //Get Time Values
+            System.err.println("Start: "+tpStart.getTime().toString()+" End: "+tpEnd.getTime().toString());
+            
+            assignedTeacherTable.setValueAt(my.from24To12HourFormat(tpStart.getTime().toString(),false), slotRow, 9);
+            assignedTeacherTable.setValueAt(my.from24To12HourFormat(tpEnd.getTime().toString(),false), slotRow, 10);
         }
         if(subjectTeacherTab.getTabCount() >= 2){
             subjectTeacherTab.removeTabAt(1);
