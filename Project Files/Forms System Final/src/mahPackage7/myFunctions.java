@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mahPackage7;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -23,7 +19,9 @@ import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -38,17 +36,22 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import org.apache.commons.io.IOUtils;
+import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.core5.http.HttpEntity;
+import org.apache.hc.core5.http.NameValuePair;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
+import org.apache.hc.core5.http.message.BasicNameValuePair;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Drawing;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Picture;
-import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
@@ -57,7 +60,6 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.xssf.usermodel.extensions.XSSFCellBorder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -68,7 +70,7 @@ public class myFunctions {
     public myFunctions(boolean skipLoadingSettings){
         try {
             loadSettings(skipLoadingSettings);
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.err.println("Error Loading Settings");
         }
     }
@@ -77,7 +79,7 @@ public class myFunctions {
         currentWindow.dispose();
         targetWindow.setVisible(true);
     }
-    public void loadSettings(boolean skipLoadingSettings) throws IOException{
+    public static void loadSettings(boolean skipLoadingSettings) throws IOException{
         if(skipLoadingSettings){
             return;
         }
@@ -87,7 +89,7 @@ public class myFunctions {
             
             
             
-            String st = "";
+            String st;
             String result="";
             
             System.out.println("Loading Settings from \"settings.txt\"...");
@@ -114,7 +116,7 @@ public class myFunctions {
             
             myVariables.setDebugMode(settings[11].contains("true"));
             myVariables.setProcessingSpeed(Integer.parseInt(settings[15]));
-        }catch (Exception e) {
+        }catch (IOException | NumberFormatException e) {
             System.err.println("Error: "+e.getLocalizedMessage());
             JOptionPane.showMessageDialog(null, "Cannot Find \"settings.txt\" file.");
             System.exit(0);
@@ -535,6 +537,96 @@ public class myFunctions {
     }
     //R= Read Method //
     public String [] return_values(String select,String from,String where,int [] order){
+        try {
+            String url = myVariables.getIpAddress()+"returnValues.php";
+            
+            //<editor-fold desc="Parse Characters to URL">
+            url = url.replace("%", "%25");
+            url = url.replace(" ", "%20");
+            url = url.replace("Ñ", "%25C3%2591");
+            url = url.replace("ñ", "%25C3%25B1");
+            //</editor-fold>
+            //<editor-fold desc="Declare HTTP Request">
+            CloseableHttpClient httpClient = HttpClients.createDefault();
+            HttpPost httpPost = new HttpPost(url);
+            //</editor-fold>
+            //<editor-fold desc="Add Values To Post">
+            List<NameValuePair> values = new ArrayList<>();
+            
+            values.add(new BasicNameValuePair("select", select));
+            values.add(new BasicNameValuePair("from", from));
+            values.add(new BasicNameValuePair("where", where));
+            
+            httpPost.setEntity(new UrlEncodedFormEntity(values));
+            //</editor-fold>
+            //<editor-fold desc="Send and Read POST Request">
+            String response = null;
+            try (CloseableHttpResponse response2 = httpClient.execute(httpPost)) {
+                System.out.println("\nSending 'POST' request to URL : " + url);
+                System.out.println(response2.getCode() + " " + response2.getReasonPhrase());
+                HttpEntity entity2 = response2.getEntity();
+                // do something useful with the response body
+                response = IOUtils.toString(entity2.getContent(), "UTF-8");
+                // and ensure it is fully consumed
+                EntityUtils.consume(entity2);
+                
+                //System.out.println(response);
+            }catch(Exception x){System.err.println("Response Error");}
+            //</editor-fold>
+            //<editor-fold desc="Read JSON response and print">
+            JSONObject myResponse = new JSONObject(response);
+            JSONArray res;
+            String cLine;
+            String lines [];
+            
+            //Check for query errors            
+            try {
+                res = myResponse.getJSONArray("result");
+            } catch (Exception e) {
+                res = myResponse.getJSONArray("error");
+                JSONObject row = res.getJSONObject(0);
+                
+                cLine = row.getString(row.names().getString(0));
+                //showMessage("Query Error Occured. \n\nError: "+cLine, JOptionPane.ERROR_MESSAGE);
+                System.err.println("Exception Found "+e.getLocalizedMessage());
+                return null;
+            }
+            
+            if(res.length() > 0){
+                //Get column names
+                JSONObject sample = res.getJSONObject(0);
+                cLine = "";
+                
+                //Display column index & name
+                for(int n=0;n<sample.names().length();n++){
+                    System.out.println(n+" "+sample.names().getString(n));
+                }
+                
+                //Get values based on column name keys
+                for(int n=0;n<res.length();n++){
+                    JSONObject row = res.getJSONObject(n);
+                    String temp = "";
+                    for(int x=0;x<order.length;x++){
+                        //System.err.println(row.names().getString(order[x]));
+                        temp+=row.getString(row.names().getString(order[x]))+"@@";
+                    }
+                    cLine+=temp+"//";
+                }
+                cLine = cLine.replace("%C3%91", "Ñ");
+                cLine = cLine.replace("%C3%B1", "ñ");
+                lines = cLine.split("//");
+                return lines;
+            }else{
+                System.err.println("No result");
+            }
+            //</editor-fold>
+        } catch (Exception e) {
+        }
+        
+        return null;
+    }
+    //Deprecated
+    public String [] return_values_get(String select,String from,String where,int [] order){
         String [] lines;
         String cLine;
         
@@ -1908,7 +2000,7 @@ public class myFunctions {
             sheet = workbook.createSheet("SHEET_"+(sheetNumber+1));
         }
         
-        XSSFRow row = null;
+        XSSFRow row;
         row = sheet.getRow(rowStart);
         
         if(row != null){
@@ -2277,6 +2369,15 @@ public class myFunctions {
     }
     //</editor-fold>
     //</editor-fold>
+    public boolean giveUserAccess(int [] allowedAccessLevel){
+        for(int n : allowedAccessLevel){
+            if(myVariables.getAccessLevel() == n){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public ImageIcon getImgIcn(String url){
         return new ImageIcon(getClass().getResource(url));
     }

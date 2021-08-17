@@ -6158,43 +6158,83 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jdcFirstDayOfMonth1PropertyChange
 
     private void btnLabelSf1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf1MouseClicked
-        selectFormToExport(1);
+        if(my.giveUserAccess(new int [] {1,2,3,4,5})){
+            selectFormToExport(1);
+        }else{
+            my.showMessage("Your access level("+myVariables.getAccessLevel()+") is not allowed to access this feature.", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnLabelSf1MouseClicked
 
     private void btnLabelSf2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf2MouseClicked
-        selectFormToExport(2);
+        if(my.giveUserAccess(new int [] {1,2,4,5})){
+            selectFormToExport(2);
+        }else{
+            my.showMessage("Your access level("+myVariables.getAccessLevel()+") is not allowed to access this feature.", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnLabelSf2MouseClicked
 
     private void btnLabelSf3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf3MouseClicked
-        selectFormToExport(3);
+        if(my.giveUserAccess(new int [] {1,2,3,4,5})){
+            selectFormToExport(3);
+        }else{
+            my.showMessage("Your access level("+myVariables.getAccessLevel()+") is not allowed to access this feature.", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnLabelSf3MouseClicked
 
     private void btnLabelSf4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf4MouseClicked
-        selectFormToExport(4);
+        if(my.giveUserAccess(new int [] {4,5})){
+            selectFormToExport(4);
+        }else{
+            my.showMessage("Your access level("+myVariables.getAccessLevel()+") is not allowed to access this feature.", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnLabelSf4MouseClicked
 
     private void btnLabelSf5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf5MouseClicked
-        selectFormToExport(5);
+        if(my.giveUserAccess(new int [] {1,2,3,4,5})){
+            selectFormToExport(5);
+        }else{
+            my.showMessage("Your access level("+myVariables.getAccessLevel()+") is not allowed to access this feature.", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnLabelSf5MouseClicked
 
     private void btnLabelSf6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf6MouseClicked
-        selectFormToExport(6);
+        if(my.giveUserAccess(new int [] {4,5})){
+            selectFormToExport(6);
+        }else{
+            my.showMessage("Your access level("+myVariables.getAccessLevel()+") is not allowed to access this feature.", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnLabelSf6MouseClicked
 
     private void btnLabelSf7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf7MouseClicked
-        selectFormToExport(7);
+        if(my.giveUserAccess(new int [] {4,5})){
+            selectFormToExport(7);
+        }else{
+            my.showMessage("Your access level("+myVariables.getAccessLevel()+") is not allowed to access this feature.", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnLabelSf7MouseClicked
 
     private void btnLabelSf8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf8MouseClicked
-        selectFormToExport(8);
+        if(my.giveUserAccess(new int [] {1,2,3,4,5})){
+            selectFormToExport(8);
+        }else{
+            my.showMessage("Your access level("+myVariables.getAccessLevel()+") is not allowed to access this feature.", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnLabelSf8MouseClicked
 
     private void btnLabelSf9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf9MouseClicked
-        selectFormToExport(9);
+        if(my.giveUserAccess(new int [] {1,2,3,4,5})){
+            selectFormToExport(9);
+        }else{
+            my.showMessage("Your access level("+myVariables.getAccessLevel()+") is not allowed to access this feature.", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnLabelSf9MouseClicked
 
     private void btnLabelSf10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLabelSf10MouseClicked
-        selectFormToExport(10);
+        if(my.giveUserAccess(new int [] {1,2,3,4,5})){
+            selectFormToExport(10);
+        }else{
+            my.showMessage("Your access level("+myVariables.getAccessLevel()+") is not allowed to access this feature.", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnLabelSf10MouseClicked
     private void selectFormToExport(int formIndexExact){
         if(myVariables.getFormSelected() != formIndexExact){
