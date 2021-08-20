@@ -3981,17 +3981,17 @@ public class dashBoard extends javax.swing.JFrame {
 
         sf10Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID", "Section Name", "Adv ID", "Adviser Name", "Gender", "Load ID", "Load Name", "Grade", "Subjects Contained", "School Year", "Remarks", "Date Enrolled"
+                "ID", "Student ID", "LRN", "Name", "Gender", "Section ID", "Section Name", "Adv ID", "Adviser Name", "Gender", "Load ID", "Load Name", "Grade", "Subjects Contained", "School Year", "Remarks", "Date Enrolled", "School (H)", "School ID (H)", "District (H)", "Division (H)", "Region (H)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -6623,7 +6623,7 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(sf7AssignedSubjectsTable, new int [] {0,1,2,4});
             
             my.hideColumns(enrolledStudentsTable1, new int [] {0});
-            my.hideColumns(sf10Table, new int [] {0,1,5,7,10,13,15});
+            my.hideColumns(sf10Table, new int [] {0,1,5,7,9,10,13,15});
         }
         my.customHeaders(weekDaysOfTheMonthTable,new int [] {7,12,17,22,27},Color.RED,Color.BLACK,myVariables.COLUMN_HEADER_FONT,true);
         my.customHeaders(sf2Table,new int [] {7,12,17,22,27},Color.RED,Color.BLACK,myVariables.COLUMN_HEADER_FONT,true);

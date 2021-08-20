@@ -6785,7 +6785,7 @@
                     <Component class="javax.swing.JTable" name="sf10Table">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="17" rowCount="4">
+                          <Table columnCount="22" rowCount="4">
                             <Column editable="false" title="ID" type="java.lang.Object"/>
                             <Column editable="false" title="Student ID" type="java.lang.Object"/>
                             <Column editable="false" title="LRN" type="java.lang.Object"/>
@@ -6803,6 +6803,11 @@
                             <Column editable="false" title="School Year" type="java.lang.Object"/>
                             <Column editable="false" title="Remarks" type="java.lang.Object"/>
                             <Column editable="false" title="Date Enrolled" type="java.lang.Object"/>
+                            <Column editable="false" title="School (H)" type="java.lang.Object"/>
+                            <Column editable="false" title="School ID (H)" type="java.lang.Object"/>
+                            <Column editable="false" title="District (H)" type="java.lang.Object"/>
+                            <Column editable="false" title="Division (H)" type="java.lang.Object"/>
+                            <Column editable="false" title="Region (H)" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="autoResizeMode" type="int" value="0"/>
@@ -6889,6 +6894,31 @@
                               <Renderer/>
                             </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>

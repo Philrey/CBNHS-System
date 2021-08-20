@@ -3367,8 +3367,8 @@ public class dashBoard extends javax.swing.JFrame {
         for(int n=0;n<temp.size();n++){
             values[n] = temp.get(n);
         }
-        
-        if(my.update_multiple_values("grades", "id,"+getSelectedQuarterText()+",gwa,status,dateUpdated", "gwa=VALUES(gwa),status=VALUES(status),dateUpdated=VALUES(dateUpdated)", values,0)){
+                
+        if(my.update_multiple_values("grades", "id,"+getSelectedQuarterText()+",gwa,status,dateUpdated", "gwa=VALUES(gwa),"+getSelectedQuarterText()+"=VALUES("+getSelectedQuarterText()+"),status=VALUES(status),dateUpdated=VALUES(dateUpdated)", values,0)){
             //Change Value of recordsPerBatch to 10 if update errors occur due to large query message
             my.showMessage("Update Successful", JOptionPane.INFORMATION_MESSAGE);
             loadStudentsAndGrades();
@@ -3386,9 +3386,9 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private String getSelectedQuarterText(){
         if(rbQuarter1.isSelected()){return "firstQuarter";}
-        if(rbQuarter2.isSelected()){return "firstQuarter";}
-        if(rbQuarter3.isSelected()){return "firstQuarter";}
-        if(rbQuarter4.isSelected()){return "firstQuarter";}
+        if(rbQuarter2.isSelected()){return "secondQuarter";}
+        if(rbQuarter3.isSelected()){return "thirdQuarter";}
+        if(rbQuarter4.isSelected()){return "fourthQuarter";}
         return null;
     }
     private void selectQuarter(String title){

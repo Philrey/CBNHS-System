@@ -310,6 +310,7 @@ public class dashBoard extends javax.swing.JFrame {
         jScrollPane14 = new javax.swing.JScrollPane();
         usersTable1 = new javax.swing.JTable();
         right = new javax.swing.JPanel();
+        jtpUserDetailsTab = new javax.swing.JTabbedPane();
         jScrollPane15 = new javax.swing.JScrollPane();
         jPanel15 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
@@ -331,21 +332,25 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel88 = new javax.swing.JLabel();
         jLabel89 = new javax.swing.JLabel();
         btnSaveChanges6 = new javax.swing.JButton();
-        jLabel97 = new javax.swing.JLabel();
-        jScrollPane16 = new javax.swing.JScrollPane();
-        managedSubjectTable = new javax.swing.JTable();
-        btnEditAssignedSubject = new javax.swing.JButton();
         jLabel99 = new javax.swing.JLabel();
         jLabel82 = new javax.swing.JLabel();
         lbUserInfoId = new javax.swing.JLabel();
-        btnSaveManagedSubjectChanges = new javax.swing.JButton();
-        btnAddManagedSubject = new javax.swing.JButton();
+        jScrollPane19 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
+        jLabel96 = new javax.swing.JLabel();
+        jLabel97 = new javax.swing.JLabel();
+        btnEditAssignedSubject = new javax.swing.JButton();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        managedSubjectTable = new javax.swing.JTable();
         btnDeleteManagedSubject = new javax.swing.JButton();
+        jLabel61 = new javax.swing.JLabel();
         tfSearchSubject3 = new javax.swing.JTextField();
         btnSearch7 = new javax.swing.JButton();
         jScrollPane17 = new javax.swing.JScrollPane();
         searchedsubjectTable1 = new javax.swing.JTable();
-        jLabel61 = new javax.swing.JLabel();
+        btnAddManagedSubject = new javax.swing.JButton();
+        btnSaveManagedSubjectChanges = new javax.swing.JButton();
         addStudentGenderGroup = new javax.swing.ButtonGroup();
         editStudentGenderGroup = new javax.swing.ButtonGroup();
         importDialog = new javax.swing.JPanel();
@@ -2713,6 +2718,8 @@ public class dashBoard extends javax.swing.JFrame {
 
         usersPersonalInfoTabNew.setLeftComponent(left);
 
+        jtpUserDetailsTab.setBackground(new java.awt.Color(255, 255, 204));
+
         jScrollPane15.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane15.setAutoscrolls(true);
 
@@ -2819,123 +2826,11 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
 
-        jLabel97.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel97.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel97.setText("Managed Subjects");
-
-        managedSubjectTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID (H)", "Subject Code (H)", "Description", "Grade Level"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        managedSubjectTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane16.setViewportView(managedSubjectTable);
-        if (managedSubjectTable.getColumnModel().getColumnCount() > 0) {
-            managedSubjectTable.getColumnModel().getColumn(0).setPreferredWidth(5);
-            managedSubjectTable.getColumnModel().getColumn(1).setPreferredWidth(5);
-            managedSubjectTable.getColumnModel().getColumn(2).setPreferredWidth(5);
-        }
-
-        btnEditAssignedSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_edit_16px.png"))); // NOI18N
-        btnEditAssignedSubject.setText("Edit");
-        btnEditAssignedSubject.setToolTipText("Edit managed subjects by this user");
-        btnEditAssignedSubject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditAssignedSubjectActionPerformed(evt);
-            }
-        });
-
         jLabel99.setText("Position/ Designation");
 
         jLabel82.setText("Profile ID: ");
 
         lbUserInfoId.setText("ID_NUMBER");
-
-        btnSaveManagedSubjectChanges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_edit_16px.png"))); // NOI18N
-        btnSaveManagedSubjectChanges.setText("Save Changes");
-        btnSaveManagedSubjectChanges.setToolTipText("Save Changes");
-        btnSaveManagedSubjectChanges.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveManagedSubjectChangesActionPerformed(evt);
-            }
-        });
-
-        btnAddManagedSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_add_16px.png"))); // NOI18N
-        btnAddManagedSubject.setText("Add");
-        btnAddManagedSubject.setToolTipText("Add a new subject");
-        btnAddManagedSubject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddManagedSubjectActionPerformed(evt);
-            }
-        });
-
-        btnDeleteManagedSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_delete_bin_16px.png"))); // NOI18N
-        btnDeleteManagedSubject.setText("Remove");
-        btnDeleteManagedSubject.setToolTipText("Remove selected subjects");
-        btnDeleteManagedSubject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteManagedSubjectActionPerformed(evt);
-            }
-        });
-
-        btnSearch7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_search_property_16px.png"))); // NOI18N
-        btnSearch7.setText("Search");
-        btnSearch7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearch7findSubjectHandler(evt);
-            }
-        });
-
-        searchedsubjectTable1.setAutoCreateRowSorter(true);
-        searchedsubjectTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID (H)", "Subject Code", "Description", "Grade Level"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        searchedsubjectTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane17.setViewportView(searchedsubjectTable1);
-        if (searchedsubjectTable1.getColumnModel().getColumnCount() > 0) {
-            searchedsubjectTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
-        }
-
-        jLabel61.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel61.setText("Select Subjec(s) to Add.");
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -2951,19 +2846,12 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(jLabel84, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel85, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel86, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel97, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel15Layout.createSequentialGroup()
                                 .addComponent(jLabel82)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lbUserInfoId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel61, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addComponent(tfSearchSubject3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSearch7, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(tfPosition)
                             .addComponent(jLabel89, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tfFundSource)
@@ -2974,28 +2862,11 @@ public class dashBoard extends javax.swing.JFrame {
                             .addComponent(tfMinor)
                             .addComponent(tfMajor)
                             .addComponent(tfDegree)
-                            .addComponent(jLabel88, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addComponent(btnAddManagedSubject)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSaveManagedSubjectChanges)))
+                            .addComponent(jLabel88, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnEditAssignedSubject))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnDeleteManagedSubject)))
-                .addContainerGap())
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3038,44 +2909,224 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(btnEdit1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSaveChanges6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel82)
+                    .addComponent(lbUserInfoId))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jScrollPane15.setViewportView(jPanel15);
+
+        jtpUserDetailsTab.addTab("Personal Info", jScrollPane15);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel18.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel96.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel96.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel96.setText("Assign Department Head Subjects");
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel96)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel96)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel97.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel97.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel97.setText("Managed Subjects");
+
+        btnEditAssignedSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_edit_16px.png"))); // NOI18N
+        btnEditAssignedSubject.setText("Edit");
+        btnEditAssignedSubject.setToolTipText("Edit managed subjects by this user");
+        btnEditAssignedSubject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditAssignedSubjectActionPerformed(evt);
+            }
+        });
+
+        managedSubjectTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID (H)", "Subject Code (H)", "Description", "Grade Level"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        managedSubjectTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane16.setViewportView(managedSubjectTable);
+        if (managedSubjectTable.getColumnModel().getColumnCount() > 0) {
+            managedSubjectTable.getColumnModel().getColumn(0).setPreferredWidth(5);
+            managedSubjectTable.getColumnModel().getColumn(1).setPreferredWidth(5);
+            managedSubjectTable.getColumnModel().getColumn(2).setPreferredWidth(5);
+        }
+
+        btnDeleteManagedSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_delete_bin_16px.png"))); // NOI18N
+        btnDeleteManagedSubject.setText("Remove Selected");
+        btnDeleteManagedSubject.setToolTipText("Remove selected subjects");
+        btnDeleteManagedSubject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteManagedSubjectActionPerformed(evt);
+            }
+        });
+
+        jLabel61.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel61.setText("Select Subjec(s) to Add.");
+
+        btnSearch7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_search_property_16px.png"))); // NOI18N
+        btnSearch7.setText("Search");
+        btnSearch7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearch7findSubjectHandler(evt);
+            }
+        });
+
+        searchedsubjectTable1.setAutoCreateRowSorter(true);
+        searchedsubjectTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID (H)", "Subject Code", "Description", "Grade Level"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        searchedsubjectTable1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane17.setViewportView(searchedsubjectTable1);
+        if (searchedsubjectTable1.getColumnModel().getColumnCount() > 0) {
+            searchedsubjectTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+        }
+
+        btnAddManagedSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_add_16px.png"))); // NOI18N
+        btnAddManagedSubject.setText("Add Selected");
+        btnAddManagedSubject.setToolTipText("Add a new subject");
+        btnAddManagedSubject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddManagedSubjectActionPerformed(evt);
+            }
+        });
+
+        btnSaveManagedSubjectChanges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_edit_16px.png"))); // NOI18N
+        btnSaveManagedSubjectChanges.setText("Save Changes");
+        btnSaveManagedSubjectChanges.setToolTipText("Save Changes");
+        btnSaveManagedSubjectChanges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveManagedSubjectChangesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel97, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel61, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(tfSearchSubject3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearch7, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnSaveManagedSubjectChanges, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnEditAssignedSubject)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDeleteManagedSubject))
+                            .addComponent(btnAddManagedSubject, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel97)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEditAssignedSubject)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDeleteManagedSubject)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDeleteManagedSubject)
+                    .addComponent(btnEditAssignedSubject))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel61)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfSearchSubject3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSaveManagedSubjectChanges)
-                    .addComponent(btnAddManagedSubject))
+                .addComponent(btnAddManagedSubject)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel82)
-                    .addComponent(lbUserInfoId))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(btnSaveManagedSubjectChanges)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane15.setViewportView(jPanel15);
+        jScrollPane19.setViewportView(jPanel2);
+
+        jtpUserDetailsTab.addTab("Assign Subjects", jScrollPane19);
 
         javax.swing.GroupLayout rightLayout = new javax.swing.GroupLayout(right);
         right.setLayout(rightLayout);
         rightLayout.setHorizontalGroup(
             rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+            .addComponent(jtpUserDetailsTab, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
         );
         rightLayout.setVerticalGroup(
             rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+            .addComponent(jtpUserDetailsTab, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
         );
 
         usersPersonalInfoTabNew.setRightComponent(right);
@@ -3902,7 +3953,7 @@ public class dashBoard extends javax.swing.JFrame {
 
     private void searchUserPersonalInfoHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserPersonalInfoHandler
         String toSearch = my.convertEscapeCharacters(tfSearchUser1.getText().trim());
-        String where = "WHERE user_Lname='"+toSearch+"' OR user_Fname='"+toSearch+"' OR user_Mname='"+toSearch+"'";
+        String where = "WHERE (user_Lname='"+toSearch+"' OR user_Fname='"+toSearch+"' OR user_Mname='"+toSearch+"') AND user_level='2'";
         String order = " ORDER BY user_level DESC,user_Lname ASC,user_Fname ASC, user_Mname ASC";
         
         if(myVariables.getAccessLevel() <5){
@@ -4935,6 +4986,7 @@ public class dashBoard extends javax.swing.JFrame {
             jScrollPane15,
             jScrollPane6,
             jScrollPane7,
+            jScrollPane19,
         };
         
         int scrollSpeed = 15;
@@ -5037,8 +5089,12 @@ public class dashBoard extends javax.swing.JFrame {
         switch(myVariables.getAccessLevel()){
             case 3:{
                 my.remove_multiple_tabs(mainTab, new int [] {0,1,4});
+                jtpUserDetailsTab.removeAll();
+                jtpUserDetailsTab.addTab("Assign Subjects", jScrollPane19);
                 break;
             }case 4:{
+                jtpUserDetailsTab.removeAll();
+                jtpUserDetailsTab.addTab("Personal Info", jScrollPane15);
                 break;
             }case 5:{
                 break;
@@ -5330,6 +5386,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel93;
     private javax.swing.JLabel jLabel94;
     private javax.swing.JLabel jLabel95;
+    private javax.swing.JLabel jLabel96;
     private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
@@ -5341,6 +5398,8 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -5358,6 +5417,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane18;
+    private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -5383,6 +5443,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcbGradeLevel3;
     private javax.swing.JProgressBar jpbProgressBar;
     private javax.swing.JTabbedPane jtbImportTabs;
+    private javax.swing.JTabbedPane jtpUserDetailsTab;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel lbLoadId;
     private javax.swing.JLabel lbLoggedInUser;
