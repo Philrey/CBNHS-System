@@ -2,8 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>D:\CBNHS System\Project Files\Enrollment System Final\dist\Enrollment_System_Final.jar</jar>
-  <outfile>D:\CBNHS System\Builds\modules\enrollment.exe</outfile>
+  <jar>D:\Repositories\CBNHS-System\Project Files\Enrollment System Final\dist\Enrollment_System_Final.jar</jar>
+  <outfile>D:\Repositories\CBNHS-System\Builds\modules\enrollment.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
@@ -13,17 +13,11 @@
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
-  <icon>D:\CBNHS System\Builds\modules\icons [temp]\icons8_resume.ico</icon>
+  <icon>D:\Repositories\CBNHS-System\Builds\modules\icons [temp]\icons8_resume.ico</icon>
   <singleInstance>
     <mutexName>hisrms_enrollment</mutexName>
     <windowTitle>Enrollment System</windowTitle>
   </singleInstance>
-  <classPath>
-    <mainClass>mahPackage2.login</mainClass>
-    <cp>lib/java-json.jar</cp>
-    <cp>lib/KGradientPanel.jar</cp>
-    <cp>lib/AbsoluteLayout.jar</cp>
-  </classPath>
   <jre>
     <path></path>
     <bundledJre64Bit>false</bundledJre64Bit>
@@ -34,9 +28,16 @@
     <runtimeBits>64/32</runtimeBits>
   </jre>
   <splash>
-    <file>E:\Splash Screens\splash_enrollment.bmp</file>
+    <file>D:\Repositories\CBNHS-System\UI\Splash Screens\splash_enrollment.bmp</file>
     <waitForWindow>true</waitForWindow>
     <timeout>60</timeout>
     <timeoutErr>true</timeoutErr>
   </splash>
+  <messages>
+    <startupErr>An error occurred while starting the application.</startupErr>
+    <bundledJreErr>This application requires a Java Runtime Environment.</bundledJreErr>
+    <jreVersionErr>This application requires a Java Runtime Environment</jreVersionErr>
+    <launcherErr>The registry refers to a nonexistent Java Runtime Environment installation or the runtime is corrupted.</launcherErr>
+    <instanceAlreadyExistsMsg>An application instance is already running.</instanceAlreadyExistsMsg>
+  </messages>
 </launch4jConfig>

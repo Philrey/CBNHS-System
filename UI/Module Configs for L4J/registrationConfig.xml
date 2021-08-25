@@ -2,8 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>D:\CBNHS System\Project Files\Registration System Final\dist\Registration_System_Final.jar</jar>
-  <outfile>D:\CBNHS System\Builds\modules\registration.exe</outfile>
+  <jar>D:\Repositories\CBNHS-System\Project Files\Registration System Final\dist\Registration_System_Final.jar</jar>
+  <outfile>D:\Repositories\CBNHS-System\Builds\modules\registration.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
@@ -13,26 +13,11 @@
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
-  <icon>D:\CBNHS System\Builds\modules\icons [temp]\icons8_add_user_male.ico</icon>
+  <icon>D:\Repositories\CBNHS-System\Builds\modules\icons [temp]\icons8_add_user_male.ico</icon>
   <singleInstance>
     <mutexName>hisrms_registration</mutexName>
     <windowTitle>Registration System</windowTitle>
   </singleInstance>
-  <classPath>
-    <mainClass>mahPackage.login</mainClass>
-    <cp>lib/KGradientPanel.jar</cp>
-    <cp>lib/AbsoluteLayout.jar</cp>
-    <cp>lib/java-json.jar</cp>
-    <cp>lib/poi-4.1.2.jar</cp>
-    <cp>lib/poi-ooxml-4.1.2.jar</cp>
-    <cp>lib/poi-ooxml-schemas-4.1.2.jar</cp>
-    <cp>lib/dom4j-1.6.jar</cp>
-    <cp>lib/commons-collections4-4.3.jar</cp>
-    <cp>lib/commons-compress-1.18.jar</cp>
-    <cp>lib/xmlbeans-3.1.0.jar</cp>
-    <cp>lib/commons-lang3-3.9.jar</cp>
-    <cp>lib/commons-validator-1.7.jar</cp>
-  </classPath>
   <jre>
     <path></path>
     <bundledJre64Bit>false</bundledJre64Bit>
@@ -43,9 +28,16 @@
     <runtimeBits>64/32</runtimeBits>
   </jre>
   <splash>
-    <file>E:\Splash Screens\splash_registration.bmp</file>
+    <file>D:\Repositories\CBNHS-System\UI\Splash Screens\splash_registration.bmp</file>
     <waitForWindow>true</waitForWindow>
     <timeout>60</timeout>
     <timeoutErr>true</timeoutErr>
   </splash>
+  <messages>
+    <startupErr>An error occurred while starting the application.</startupErr>
+    <bundledJreErr>This application requires a Java Runtime Environment.</bundledJreErr>
+    <jreVersionErr>This application requires a Java Runtime Environment</jreVersionErr>
+    <launcherErr>The registry refers to a nonexistent Java Runtime Environment installation or the runtime is corrupted.</launcherErr>
+    <instanceAlreadyExistsMsg>An application instance is already running.</instanceAlreadyExistsMsg>
+  </messages>
 </launch4jConfig>
