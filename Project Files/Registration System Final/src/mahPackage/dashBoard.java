@@ -2712,7 +2712,7 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(btnSearch6)
                     .addComponent(lbSearchResult5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -3122,7 +3122,7 @@ public class dashBoard extends javax.swing.JFrame {
         right.setLayout(rightLayout);
         rightLayout.setHorizontalGroup(
             rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jtpUserDetailsTab, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+            .addComponent(jtpUserDetailsTab, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
         );
         rightLayout.setVerticalGroup(
             rightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3220,7 +3220,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         jLabel95.setText("Select Excel File Format");
 
-        jcbFileFormats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HiSRMS-SF1 JHS (Default)", "LIS-SF1 JHS v2014.2.1.1" }));
+        jcbFileFormats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HiSRMS-SF1 JHS (Default)", "LIS-SF1 JHS v2014.2.1.1", "CBNHS - SF10" }));
 
         tfFileLocation.setEditable(false);
 
@@ -4660,7 +4660,18 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_importTableloadStudentHandler
 
     private void btnOpenFileExplorerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenFileExplorerActionPerformed
-        showFileChooserDialog("Excel Files","xlsx");
+        switch(jcbFileFormats.getSelectedIndex()){
+            case 0:{
+                showFileChooserDialog("Excel Files","xlsx");
+                break;
+            }case 1:{
+                showFileChooserDialog("Excel Files","xlsx");
+                break;
+            }case 2:{
+                showFolderChooserDialog();
+                break;
+            }
+        }
     }//GEN-LAST:event_btnOpenFileExplorerActionPerformed
 
     private void btnCancelImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelImportActionPerformed
@@ -4728,6 +4739,35 @@ public class dashBoard extends javax.swing.JFrame {
     JFileChooser fileChooser;
     FileFilter filter;
     
+    private void showFolderChooserDialog(){
+        fileChooser = new JFileChooser();
+        
+        //Check if there is already a selected directory
+        if(tfFileLocation.getText().length()>0){
+            fileChooser.setCurrentDirectory(new File(tfFileLocation.getText()));
+        }else{
+            fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        }
+        
+        fileChooser.setDialogTitle("Select Folder with SF10 Excel Files");
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        
+        //Check if approved or not
+        int result = fileChooser.showOpenDialog(importDialog);
+        
+        switch(result){
+            case JFileChooser.APPROVE_OPTION:{
+                //Process file here
+                processFolderSelected();
+                break;
+            }default:{
+                System.err.println("No File Selected");
+                break;
+            }
+        }
+    }
     private void showFileChooserDialog(String fileTypeTitle,String extentionName){
         fileChooser = new JFileChooser();
         
@@ -4754,6 +4794,19 @@ public class dashBoard extends javax.swing.JFrame {
                 break;
             }
         }
+    }
+    private void processFolderSelected(){
+        tfFileLocation.setText(fileChooser.getSelectedFile().toString());
+        File file = fileChooser.getSelectedFile();
+        
+        my.runMainThread(
+                2,new JTable[]{importTable},
+                new String[]{String.valueOf(jcbFileFormats.getSelectedIndex())},
+                new JTextField[]{tfFileLocation},
+                new JButton[]{btnOpenFileExplorer,btnCancelImport,btnRegisterStudents},
+                null,
+                new File[]{file}
+        );
     }
     private void processFileSelected(){
         tfFileLocation.setText(fileChooser.getSelectedFile().toString());

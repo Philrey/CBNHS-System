@@ -1193,6 +1193,8 @@ public class myFunctions {
                 toLoad = new Thread(tld);
                 break;
             }case 2:{
+                thread_importSf10 tld = new thread_importSf10(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, filesToUse);
+                toLoad = new Thread(tld);
                 break;
             }case 3:{
                 break;
