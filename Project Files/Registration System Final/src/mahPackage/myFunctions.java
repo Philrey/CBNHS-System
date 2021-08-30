@@ -1678,7 +1678,6 @@ public class myFunctions {
             
             
         }
-        System.err.println("To Name format: "+finalString);
         return finalString;
     }
     protected String combineColumns(String line,int [] columnIndex){

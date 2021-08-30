@@ -14,7 +14,6 @@ import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
-import javax.swing.filechooser.FileFilter;
 
 /**
  *
@@ -93,6 +92,8 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
         
         //#1 Get Files with .xlsx Format
         lbLoadingMessage.setText("Reading Directory for SF10 Files.");
+        progressBar.setMaximum(1);
+        progressBar.setValue(0);
         FilenameFilter filenameFilter = new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
@@ -106,20 +107,24 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
             my.showMessage("No Students Found", JOptionPane.WARNING_MESSAGE);
             return "No SF10 Found";
         }
+        progressBar.setValue(1);
         Thread.sleep(pauseDelay);
         //#2 Read each file inside and put values to import table
         //Note: use thread_importSf1 reading process
+        progressBar.setValue(0);
+        progressBar.setMaximum(filesInsideFolder.length);
         for(int n=0,length=filesInsideFolder.length;n<length;n++){
             //Read File
             lbLoadingMessage.setText("Loading file "+(n+1)+"/"+length);
+            progressBar.setValue(n+1);
             my.createExcelFile(filesInsideFolder[n].getPath());
-            Thread.sleep(threadDelay);
             
             //Get Headers
             String [] result = my.getHeaderValues(headerAddresses);
             
             //Setup Values
-            String fName = result[2];
+            String lrn = result[0];
+            String fName = result[2].trim();
             String lName = processExtentionName(result[1], result[4]);
             String mName = checkMiddleName(result[3]);
             
@@ -128,7 +133,7 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
                     +result[5]+"@@"+
                     result[8]+"-"+result[6]+"-"+result[7]+"@@"+
                     result[9]+"@@"+result[10]+"@@"+result[11]+"@@"+result[12]+"@@Ready@@";
-            //System.err.println("Line " + line);
+            System.err.println("Line " + lrn);
             
             String name = my.capitalizeName(my.getValueAtColumn(line, 1).toLowerCase(),true);
             line = my.setValueAtColumn(line, 1, name);
@@ -138,8 +143,86 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
             Thread.sleep(threadDelay);
         }
         
-        //#3 Validate Values
+        //#3 Validate Values        
+        String cValue,msg,fHalf,sHalf;
+        boolean isReadyForImport;
         
+        progressBar.setValue(0);
+        progressBar.setMaximum(importTable.getRowCount());
+        for(int n=0,len=importTable.getRowCount();n<len;n++){
+            isReadyForImport = true;
+            msg = "";
+            lbLoadingMessage.setText("Validating Values "+(n+1)+"/"+len);
+            progressBar.setValue(n+1);
+            
+            for(int x=0,xlen=importTable.getColumnCount();x<xlen-1;x++){
+                cValue = importTable.getValueAt(n, x).toString();
+                if(cValue.trim().length()<=0){
+                    msg = "Missing Values";
+                    isReadyForImport = false;
+                    break;
+                }
+                
+                //Check values depending on column
+                switch(x){
+                    case 0:{    //LRN
+                        try {
+                            if(cValue.length() != 12){
+                                msg = "Invalid LRN";
+                                isReadyForImport = false;
+                            }else{
+                                fHalf = cValue.substring(0, 6);
+                                sHalf = cValue.substring(6, 12);
+                                
+                                //Note LRN is 12 digits, int limit is 10
+                                Integer.parseInt(fHalf);
+                                Integer.parseInt(sHalf);
+                            }
+                        } catch (NumberFormatException e) {
+                            e.getMessage();
+                            msg = "Invalid LRN";
+                            isReadyForImport = false;
+                        }
+                        break;
+                    }case 1:{   //Name                        
+                        break;
+                    }case 2:{   //Gender
+                        if(!cValue.toLowerCase().contains("male") && !cValue.toLowerCase().contains("female")){
+                            msg = "Invalid Gender";
+                            isReadyForImport = false;
+                        }
+                        break;
+                    }case 3:{   //Bday
+                        if(cValue.length() != 8 && cValue.length() != 9 && cValue.length() != 10){
+                            msg = "Invalid Date";
+                            isReadyForImport = false;
+                        }
+                        break;
+                    }case 4:{   //Grade
+                        try {
+                            Float.parseFloat(cValue);
+                        } catch (NumberFormatException e) {
+                            msg = "Invalid Grade";
+                            isReadyForImport = false;
+                        }
+                        break;
+                    }case 5:{   //School ID
+                        try {
+                            Integer.parseInt(cValue);
+                        } catch (NumberFormatException e) {
+                            msg = "Invalid School ID";
+                            isReadyForImport = false;
+                        }
+                        break;
+                    }
+                }
+                if(!isReadyForImport){break;}
+            }
+            if(!isReadyForImport){
+                importTable.setValueAt(msg, n, 8);
+            }
+            Thread.sleep(threadDelay);
+        }
         
         return "Thread Complete";
     }
@@ -147,14 +230,14 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
     private String processExtentionName(String lastName,String extention){
         String temp="";
         if(extention.trim().length() > 0){
-            temp+=lastName+","+temp;
+            temp+=lastName.trim()+","+extention.trim();
         }else{
-            temp+=lastName;
+            temp+=lastName.trim();
         }
         return temp;
     }
     private String checkMiddleName(String middleName){
-        return middleName.trim().length()>0? middleName : "-";
+        return middleName.trim().length()>0? middleName.trim() : "-";
     }
     
     //</editor-fold>
@@ -174,7 +257,7 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
         btnFileChooser.setEnabled(true);
         btnCancel.setEnabled(false);
         btnRegister.setEnabled(true);
-        //lbLoadingMessage.setText("Process complete...");
+        lbLoadingMessage.setText("Process complete...");
     }
     //</editor-fold>
 }

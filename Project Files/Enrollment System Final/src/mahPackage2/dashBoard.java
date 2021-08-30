@@ -249,11 +249,11 @@ public class dashBoard extends javax.swing.JFrame {
             sectionsTable.getColumnModel().getColumn(3).setPreferredWidth(200);
             sectionsTable.getColumnModel().getColumn(4).setResizable(false);
             sectionsTable.getColumnModel().getColumn(4).setPreferredWidth(80);
-            sectionsTable.getColumnModel().getColumn(6).setPreferredWidth(100);
+            sectionsTable.getColumnModel().getColumn(6).setPreferredWidth(150);
             sectionsTable.getColumnModel().getColumn(7).setResizable(false);
             sectionsTable.getColumnModel().getColumn(7).setPreferredWidth(100);
             sectionsTable.getColumnModel().getColumn(8).setResizable(false);
-            sectionsTable.getColumnModel().getColumn(8).setPreferredWidth(150);
+            sectionsTable.getColumnModel().getColumn(8).setPreferredWidth(100);
         }
 
         jcbSchoolYear4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020" }));
@@ -540,7 +540,9 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel8.setText("Section Name");
+        jLabel8.setText("Section Name (ex. Grade 7 - Fidelity)");
+
+        tfSectionName1.setToolTipText("");
 
         jLabel9.setText("Select Adviser");
 
@@ -794,10 +796,13 @@ public class dashBoard extends javax.swing.JFrame {
         jScrollPane4.setViewportView(enrollmentTable);
         if (enrollmentTable.getColumnModel().getColumnCount() > 0) {
             enrollmentTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-            enrollmentTable.getColumnModel().getColumn(3).setPreferredWidth(50);
-            enrollmentTable.getColumnModel().getColumn(6).setPreferredWidth(50);
-            enrollmentTable.getColumnModel().getColumn(7).setPreferredWidth(50);
-            enrollmentTable.getColumnModel().getColumn(8).setPreferredWidth(70);
+            enrollmentTable.getColumnModel().getColumn(2).setPreferredWidth(200);
+            enrollmentTable.getColumnModel().getColumn(3).setPreferredWidth(80);
+            enrollmentTable.getColumnModel().getColumn(4).setPreferredWidth(80);
+            enrollmentTable.getColumnModel().getColumn(5).setPreferredWidth(200);
+            enrollmentTable.getColumnModel().getColumn(6).setPreferredWidth(100);
+            enrollmentTable.getColumnModel().getColumn(7).setPreferredWidth(80);
+            enrollmentTable.getColumnModel().getColumn(8).setPreferredWidth(100);
         }
 
         btnSearchStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_search_property_16px.png"))); // NOI18N
@@ -920,6 +925,12 @@ public class dashBoard extends javax.swing.JFrame {
         studentTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         studentTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane15.setViewportView(studentTable);
+        if (studentTable.getColumnModel().getColumnCount() > 0) {
+            studentTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+            studentTable.getColumnModel().getColumn(2).setPreferredWidth(200);
+            studentTable.getColumnModel().getColumn(3).setPreferredWidth(80);
+            studentTable.getColumnModel().getColumn(4).setPreferredWidth(100);
+        }
 
         sectionsTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -944,8 +955,10 @@ public class dashBoard extends javax.swing.JFrame {
         sectionsTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane16.setViewportView(sectionsTable1);
         if (sectionsTable1.getColumnModel().getColumnCount() > 0) {
-            sectionsTable1.getColumnModel().getColumn(3).setPreferredWidth(10);
-            sectionsTable1.getColumnModel().getColumn(4).setPreferredWidth(10);
+            sectionsTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
+            sectionsTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
+            sectionsTable1.getColumnModel().getColumn(3).setPreferredWidth(50);
+            sectionsTable1.getColumnModel().getColumn(4).setPreferredWidth(80);
         }
 
         tfSearchSection1.addActionListener(new java.awt.event.ActionListener() {
@@ -1100,11 +1113,11 @@ public class dashBoard extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(sectionsTable2);
         if (sectionsTable2.getColumnModel().getColumnCount() > 0) {
-            sectionsTable2.getColumnModel().getColumn(1).setPreferredWidth(150);
-            sectionsTable2.getColumnModel().getColumn(3).setPreferredWidth(150);
-            sectionsTable2.getColumnModel().getColumn(4).setPreferredWidth(50);
+            sectionsTable2.getColumnModel().getColumn(1).setPreferredWidth(100);
+            sectionsTable2.getColumnModel().getColumn(3).setPreferredWidth(200);
+            sectionsTable2.getColumnModel().getColumn(4).setPreferredWidth(80);
             sectionsTable2.getColumnModel().getColumn(6).setPreferredWidth(150);
-            sectionsTable2.getColumnModel().getColumn(7).setPreferredWidth(50);
+            sectionsTable2.getColumnModel().getColumn(7).setPreferredWidth(80);
             sectionsTable2.getColumnModel().getColumn(8).setPreferredWidth(100);
             sectionsTable2.getColumnModel().getColumn(9).setPreferredWidth(200);
         }
@@ -1151,7 +1164,7 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(btnSearchSection2)
                     .addComponent(jcbSchoolYear3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2570,7 +2583,7 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(sectionsTable1, new int [] {0});
             
             my.hideColumns(sectionsTable2, new int [] {0,2,5,7,9});
-            my.hideColumns(assignedTeacherTable, new int [] {0,1,2,5});
+            my.hideColumns(assignedTeacherTable, new int [] {0,1,2,5,6,8});
             my.hideColumns(usersTable2, new int[] {0});
         }
         

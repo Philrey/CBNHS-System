@@ -644,6 +644,9 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
+    public void setPlaceHolder(String msg,JTextField textField){
+        
+    }
     public String from12To24HourFormat(String time12Hour){
         try {
             String time [] = time12Hour.split(" ");
