@@ -836,6 +836,20 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Read Functions">
+    public String [] getHeaderValues(String [] excelAddresses){
+        String [] temp = new String[excelAddresses.length];
+        
+        for(int n=0,len=temp.length;n<len;n++){
+            temp[n] = readSingleValue(0, excelAddresses[n]);
+        }
+        
+        return temp;
+    }
+    public String toSentenceCase(String line){
+        
+        return null;
+    }
+    
     public String readSingleValue(int sheetNumber,String excelAddress){
         int [] location = parseExcelAddress(excelAddress);
         return readSingleValue(sheetNumber, location[0], location[1]);
@@ -1515,6 +1529,9 @@ public class myFunctions {
         
         return finalString;
     }
+    protected String capitalizeWord(String line){
+        return  StringUtils.capitalize(line);
+    }
     protected String capitalizeName(String nameFull,boolean removeDashedMiddleNames){
         String finalString = "";
         String names [] = nameFull.split(",");
@@ -1661,7 +1678,7 @@ public class myFunctions {
             
             
         }
-        
+        System.err.println("To Name format: "+finalString);
         return finalString;
     }
     protected String combineColumns(String line,int [] columnIndex){

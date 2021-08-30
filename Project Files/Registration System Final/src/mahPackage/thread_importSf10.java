@@ -38,6 +38,8 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
     
     File directorySelected;
     
+    String headerAddresses [];
+    
     //Dialog Properties
     myFunctions my;
     private JLabel lbLoadingMessage;
@@ -55,6 +57,26 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
         btnRegister = buttonsToUse[2];
         
         directorySelected = directoriesToUse[0];
+        
+        headerAddresses = new String [] {
+            "K,8",  //LRN
+            
+            "E,7",  //Lname
+            "O,7",  //Fname
+            "AJ,7", //Mname
+            "AB,7", //Extention
+            
+            "AK,8", //Sex
+            
+            "AB,8", //Month
+            "AD,8", //Day
+            "AF,8", //Year
+            
+            "S,12",  //General Ave
+            "Y,13",  //School ID
+            "J,13",  //Elem School Name
+            "AH,13", //Address
+        };
         //For Loading Screen
         lbLoadingMessage = myVariables.getLbLoadingMessage();
         progressBar = myVariables.getProgressBar();
@@ -77,7 +99,6 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
                 return name.toLowerCase().endsWith(".xlsx");
             }
         };
-        
         File [] filesInsideFolder;
         filesInsideFolder = directorySelected.listFiles(filenameFilter);
         
@@ -85,16 +106,58 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
             my.showMessage("No Students Found", JOptionPane.WARNING_MESSAGE);
             return "No SF10 Found";
         }
-        
+        Thread.sleep(pauseDelay);
         //#2 Read each file inside and put values to import table
-        for (File n : filesInsideFolder) {
-            //System.err.println("File "+n.getName()+"@@" + n.getPath());
+        //Note: use thread_importSf1 reading process
+        for(int n=0,length=filesInsideFolder.length;n<length;n++){
+            //Read File
+            lbLoadingMessage.setText("Loading file "+(n+1)+"/"+length);
+            my.createExcelFile(filesInsideFolder[n].getPath());
+            Thread.sleep(threadDelay);
+            
+            //Get Headers
+            String [] result = my.getHeaderValues(headerAddresses);
+            
+            //Setup Values
+            String fName = result[2];
+            String lName = processExtentionName(result[1], result[4]);
+            String mName = checkMiddleName(result[3]);
+            
+            String line = result[0]+"@@"+
+                    my.toNameFormatFull(lName+"@@"+fName+"@@"+mName+"@@", new int [] {0,1,2})
+                    +result[5]+"@@"+
+                    result[8]+"-"+result[6]+"-"+result[7]+"@@"+
+                    result[9]+"@@"+result[10]+"@@"+result[11]+"@@"+result[12]+"@@Ready@@";
+            //System.err.println("Line " + line);
+            
+            String name = my.capitalizeName(my.getValueAtColumn(line, 1).toLowerCase(),true);
+            line = my.setValueAtColumn(line, 1, name);
+            //System.err.println("LineA " + line);
+            my.add_table_row(line, importTable);
+            
+            Thread.sleep(threadDelay);
         }
         
-        //#3 Check if student id's already exist
+        //#3 Validate Values
+        
+        
         return "Thread Complete";
     }
+    //<editor-fold desc="Functions">
+    private String processExtentionName(String lastName,String extention){
+        String temp="";
+        if(extention.trim().length() > 0){
+            temp+=lastName+","+temp;
+        }else{
+            temp+=lastName;
+        }
+        return temp;
+    }
+    private String checkMiddleName(String middleName){
+        return middleName.trim().length()>0? middleName : "-";
+    }
     
+    //</editor-fold>
     @Override
     protected void done() {
         closedThread();

@@ -358,8 +358,11 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel94 = new javax.swing.JLabel();
         jtbImportTabs = new javax.swing.JTabbedPane();
         importStudentsTab = new javax.swing.JPanel();
+        importTablesTab = new javax.swing.JTabbedPane();
         jScrollPane18 = new javax.swing.JScrollPane();
-        importTable = new javax.swing.JTable();
+        importTableSF1 = new javax.swing.JTable();
+        jScrollPane20 = new javax.swing.JScrollPane();
+        importTableSF10 = new javax.swing.JTable();
         jLabel95 = new javax.swing.JLabel();
         jcbFileFormats = new javax.swing.JComboBox<>();
         tfFileLocation = new javax.swing.JTextField();
@@ -3169,7 +3172,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         importStudentsTab.setBackground(new java.awt.Color(255, 255, 204));
 
-        importTable.setModel(new javax.swing.table.DefaultTableModel(
+        importTableSF1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -3188,35 +3191,88 @@ public class dashBoard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        importTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        importTable.getTableHeader().setReorderingAllowed(false);
-        importTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        importTableSF1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        importTableSF1.getTableHeader().setReorderingAllowed(false);
+        importTableSF1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                importTableloadStudentHandler(evt);
+                importTableSF1loadStudentHandler(evt);
             }
         });
-        jScrollPane18.setViewportView(importTable);
-        if (importTable.getColumnModel().getColumnCount() > 0) {
-            importTable.getColumnModel().getColumn(0).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(1).setPreferredWidth(250);
-            importTable.getColumnModel().getColumn(2).setPreferredWidth(80);
-            importTable.getColumnModel().getColumn(3).setPreferredWidth(80);
-            importTable.getColumnModel().getColumn(4).setPreferredWidth(70);
-            importTable.getColumnModel().getColumn(5).setPreferredWidth(150);
-            importTable.getColumnModel().getColumn(6).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(7).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(8).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(9).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(10).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(11).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(12).setPreferredWidth(250);
-            importTable.getColumnModel().getColumn(13).setPreferredWidth(250);
-            importTable.getColumnModel().getColumn(14).setPreferredWidth(250);
-            importTable.getColumnModel().getColumn(15).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(16).setPreferredWidth(100);
-            importTable.getColumnModel().getColumn(17).setPreferredWidth(200);
-            importTable.getColumnModel().getColumn(18).setPreferredWidth(200);
+        jScrollPane18.setViewportView(importTableSF1);
+        if (importTableSF1.getColumnModel().getColumnCount() > 0) {
+            importTableSF1.getColumnModel().getColumn(0).setPreferredWidth(100);
+            importTableSF1.getColumnModel().getColumn(1).setPreferredWidth(250);
+            importTableSF1.getColumnModel().getColumn(2).setPreferredWidth(80);
+            importTableSF1.getColumnModel().getColumn(3).setPreferredWidth(80);
+            importTableSF1.getColumnModel().getColumn(4).setPreferredWidth(70);
+            importTableSF1.getColumnModel().getColumn(5).setPreferredWidth(150);
+            importTableSF1.getColumnModel().getColumn(6).setPreferredWidth(100);
+            importTableSF1.getColumnModel().getColumn(7).setPreferredWidth(100);
+            importTableSF1.getColumnModel().getColumn(8).setPreferredWidth(100);
+            importTableSF1.getColumnModel().getColumn(8).setHeaderValue("House No.");
+            importTableSF1.getColumnModel().getColumn(9).setPreferredWidth(100);
+            importTableSF1.getColumnModel().getColumn(9).setHeaderValue("Brgy.");
+            importTableSF1.getColumnModel().getColumn(10).setPreferredWidth(100);
+            importTableSF1.getColumnModel().getColumn(10).setHeaderValue("Municipality");
+            importTableSF1.getColumnModel().getColumn(11).setPreferredWidth(100);
+            importTableSF1.getColumnModel().getColumn(11).setHeaderValue("Province");
+            importTableSF1.getColumnModel().getColumn(12).setPreferredWidth(250);
+            importTableSF1.getColumnModel().getColumn(12).setHeaderValue("Father's Name");
+            importTableSF1.getColumnModel().getColumn(13).setPreferredWidth(250);
+            importTableSF1.getColumnModel().getColumn(13).setHeaderValue("Mother's Name");
+            importTableSF1.getColumnModel().getColumn(14).setPreferredWidth(250);
+            importTableSF1.getColumnModel().getColumn(14).setHeaderValue("Guardian's Name");
+            importTableSF1.getColumnModel().getColumn(15).setPreferredWidth(100);
+            importTableSF1.getColumnModel().getColumn(15).setHeaderValue("Relationship");
+            importTableSF1.getColumnModel().getColumn(16).setPreferredWidth(100);
+            importTableSF1.getColumnModel().getColumn(16).setHeaderValue("Contact");
+            importTableSF1.getColumnModel().getColumn(17).setPreferredWidth(200);
+            importTableSF1.getColumnModel().getColumn(17).setHeaderValue("Remarks");
+            importTableSF1.getColumnModel().getColumn(18).setPreferredWidth(200);
         }
+
+        importTablesTab.addTab("SF1", jScrollPane18);
+
+        importTableSF10.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "LRN", "Name", "Gender", "Birthday", "Elem. Grade", "School ID", "School", "School Address", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        importTableSF10.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        importTableSF10.getTableHeader().setReorderingAllowed(false);
+        importTableSF10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                importTableSF10loadStudentHandler(evt);
+            }
+        });
+        jScrollPane20.setViewportView(importTableSF10);
+        if (importTableSF10.getColumnModel().getColumnCount() > 0) {
+            importTableSF10.getColumnModel().getColumn(0).setPreferredWidth(100);
+            importTableSF10.getColumnModel().getColumn(1).setPreferredWidth(250);
+            importTableSF10.getColumnModel().getColumn(2).setPreferredWidth(80);
+            importTableSF10.getColumnModel().getColumn(3).setPreferredWidth(80);
+            importTableSF10.getColumnModel().getColumn(4).setPreferredWidth(100);
+            importTableSF10.getColumnModel().getColumn(5).setPreferredWidth(150);
+            importTableSF10.getColumnModel().getColumn(6).setPreferredWidth(200);
+            importTableSF10.getColumnModel().getColumn(7).setPreferredWidth(200);
+            importTableSF10.getColumnModel().getColumn(8).setPreferredWidth(100);
+        }
+
+        importTablesTab.addTab("SF10", jScrollPane20);
 
         jLabel95.setText("Select Excel File Format");
 
@@ -3262,7 +3318,6 @@ public class dashBoard extends javax.swing.JFrame {
             .addGroup(importStudentsTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
                     .addGroup(importStudentsTabLayout.createSequentialGroup()
                         .addComponent(jcbFileFormats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3270,16 +3325,17 @@ public class dashBoard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnOpenFileExplorer))
                     .addGroup(importStudentsTabLayout.createSequentialGroup()
-                        .addComponent(jLabel95)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(importStudentsTabLayout.createSequentialGroup()
                         .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jpbProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lbProgressMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelImport, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRegisterStudents)))
+                        .addComponent(btnRegisterStudents))
+                    .addGroup(importStudentsTabLayout.createSequentialGroup()
+                        .addComponent(jLabel95)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(importTablesTab))
                 .addContainerGap())
         );
         importStudentsTabLayout.setVerticalGroup(
@@ -3293,7 +3349,7 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(tfFileLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnOpenFileExplorer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addComponent(importTablesTab, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegisterStudents, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -3322,7 +3378,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtbImportTabs))
+                .addComponent(jtbImportTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -4655,20 +4711,23 @@ public class dashBoard extends javax.swing.JFrame {
         showCustomDialog("Import Files", importDialog, false, 800, 500, true);
     }//GEN-LAST:event_btnImportFromLisActionPerformed
 
-    private void importTableloadStudentHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importTableloadStudentHandler
+    private void importTableSF1loadStudentHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importTableSF1loadStudentHandler
         // TODO add your handling code here:
-    }//GEN-LAST:event_importTableloadStudentHandler
+    }//GEN-LAST:event_importTableSF1loadStudentHandler
 
     private void btnOpenFileExplorerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenFileExplorerActionPerformed
         switch(jcbFileFormats.getSelectedIndex()){
             case 0:{
                 showFileChooserDialog("Excel Files","xlsx");
+                importTablesTab.setSelectedIndex(0);
                 break;
             }case 1:{
                 showFileChooserDialog("Excel Files","xlsx");
+                importTablesTab.setSelectedIndex(0);
                 break;
             }case 2:{
                 showFolderChooserDialog();
+                importTablesTab.setSelectedIndex(1);
                 break;
             }
         }
@@ -4683,14 +4742,14 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelImportActionPerformed
 
     private void btnRegisterStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterStudentsActionPerformed
-        if(importTable.getRowCount() <= 0){
+        if(importTableSF1.getRowCount() <= 0){
             my.showMessage("No Students found inside the table.", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
         my.runMainThread(
                 1,
-                new JTable[]{importTable},
+                new JTable[]{importTableSF1},
                 new String[]{String.valueOf(jcbFileFormats.getSelectedIndex())},
                 new JTextField[]{tfFileLocation},
                 new JButton[]{btnOpenFileExplorer,btnCancelImport,btnRegisterStudents},
@@ -4698,6 +4757,10 @@ public class dashBoard extends javax.swing.JFrame {
                 null
         );
     }//GEN-LAST:event_btnRegisterStudentsActionPerformed
+
+    private void importTableSF10loadStudentHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importTableSF10loadStudentHandler
+        // TODO add your handling code here:
+    }//GEN-LAST:event_importTableSF10loadStudentHandler
 
     /**
      * @param args the command line arguments
@@ -4800,7 +4863,7 @@ public class dashBoard extends javax.swing.JFrame {
         File file = fileChooser.getSelectedFile();
         
         my.runMainThread(
-                2,new JTable[]{importTable},
+                2,new JTable[]{importTableSF10},
                 new String[]{String.valueOf(jcbFileFormats.getSelectedIndex())},
                 new JTextField[]{tfFileLocation},
                 new JButton[]{btnOpenFileExplorer,btnCancelImport,btnRegisterStudents},
@@ -4814,7 +4877,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         
         my.runMainThread(
-                0,new JTable[]{importTable},
+                0,new JTable[]{importTableSF1},
                 new String[]{String.valueOf(jcbFileFormats.getSelectedIndex())},
                 new JTextField[]{tfFileLocation},
                 new JButton[]{btnOpenFileExplorer,btnCancelImport,btnRegisterStudents},
@@ -5086,7 +5149,8 @@ public class dashBoard extends javax.swing.JFrame {
             managedSubjectTable,
             searchedsubjectTable1,
             
-            importTable,
+            importTableSF1,
+            importTableSF10,
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
         //customHeaders(sf1SectionTable, new int []{0,1,2,3}, Color.RED, Color.WHITE, new Font("Comic Sans MS", Font.BOLD, 12), true);
@@ -5344,7 +5408,9 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel importDialog;
     private javax.swing.JPanel importStudentsTab;
-    private javax.swing.JTable importTable;
+    private javax.swing.JTable importTableSF1;
+    private javax.swing.JTable importTableSF10;
+    private javax.swing.JTabbedPane importTablesTab;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -5472,6 +5538,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane20;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
