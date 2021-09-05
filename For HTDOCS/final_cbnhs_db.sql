@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2021 at 06:55 PM
+-- Generation Time: Sep 05, 2021 at 05:40 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -48,62 +48,6 @@ CREATE TABLE `attendance` (
   `notes` varchar(1000) NOT NULL DEFAULT ' '
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `attendance`
---
-
-INSERT INTO `attendance` (`id`, `studentId`, `sectionId`, `subjectId`, `status`, `dateAdded`, `notes`) VALUES
-(28, 6, 7, 52, 'Absent', '2020-02-10 17:52:45', 'Notes'),
-(29, 3, 7, 52, 'Present', '2020-02-10 17:52:45', 'Notes'),
-(30, 5, 7, 52, 'Absent', '2020-02-10 17:52:45', 'Notes'),
-(31, 8, 7, 52, 'Present', '2020-02-10 17:52:45', 'Notes'),
-(32, 7, 7, 52, 'Present', '2020-02-10 17:52:45', 'Notes'),
-(33, 6, 8, 53, 'Present', '2020-02-11 16:40:58', 'Notes'),
-(34, 4, 8, 53, 'Present', '2020-02-11 16:40:58', 'Notes'),
-(35, 1, 8, 53, 'Present', '2020-02-11 16:40:58', 'Notes'),
-(36, 6, 8, 27, 'Absent', '2020-02-11 16:56:46', 'Notes'),
-(37, 4, 8, 27, 'Present', '2020-02-11 16:56:46', 'Notes'),
-(38, 1, 8, 27, 'Present', '2020-02-11 16:56:46', 'Notes'),
-(40, 3, 7, 13, 'Present', '2020-02-12 15:30:12', 'Notes'),
-(41, 5, 7, 13, 'Present', '2020-02-12 15:30:12', 'Notes'),
-(42, 8, 7, 13, 'Present', '2020-02-12 15:30:12', 'Notes'),
-(43, 7, 7, 13, 'Present', '2020-02-12 15:30:12', 'Notes'),
-(44, 6, 8, 53, 'Present', '2020-02-14 10:41:00', 'Notes'),
-(45, 4, 8, 53, 'Absent', '2020-02-14 10:41:00', 'Notes'),
-(46, 1, 8, 53, 'Tardy', '2020-02-14 10:41:00', 'Arrived 20 minutes Late'),
-(47, 6, 7, 52, 'Tardy', '2020-02-10 07:31:00', 'Notes'),
-(48, 6, 7, 52, 'Tardy', '2020-02-11 10:51:38', 'Notes'),
-(49, 3, 7, 52, 'Tardy', '2020-02-11 10:51:38', 'LC:Late by 20 minutes from the sound of the bell. Lol Hahaha'),
-(50, 5, 7, 52, 'Absent', '2020-02-11 10:51:38', 'Notes'),
-(51, 8, 7, 52, 'Present', '2020-02-11 10:51:38', 'Notes'),
-(52, 7, 7, 52, 'Absent', '2020-02-11 10:51:38', 'Notes'),
-(53, 6, 7, 52, 'Absent', '2020-02-12 12:34:46', 'Notes'),
-(54, 3, 7, 52, 'Absent', '2020-02-12 12:34:46', 'Gave excuse letter sent by parent.'),
-(55, 5, 7, 52, 'Absent', '2020-02-12 12:34:46', 'Notes'),
-(56, 8, 7, 52, 'Absent', '2020-02-12 12:34:46', 'Notes'),
-(57, 7, 7, 52, 'Absent', '2020-02-12 12:34:46', 'Notes'),
-(58, 6, 7, 52, 'Present', '2020-02-13 16:23:42', 'Notes'),
-(59, 3, 7, 52, 'Present', '2020-02-13 16:23:42', 'Notes'),
-(60, 5, 7, 52, 'Present', '2020-02-13 16:23:42', 'Notes'),
-(61, 8, 7, 52, 'Absent', '2020-02-13 16:23:42', 'Notes'),
-(62, 7, 7, 52, 'Present', '2020-02-13 16:23:42', 'Notes'),
-(78, 1, 7, 52, 'Present', '2020-10-13 08:15:00', 'Cutting Classes'),
-(79, 3, 7, 52, 'Present', '2020-10-13 08:15:00', 'Gave Excuse Letter'),
-(80, 1, 7, 52, 'Present', '2020-10-12 17:39:55', ' '),
-(81, 3, 7, 52, 'Tardy', '2020-10-12 17:39:55', 'LC:Hay nako...Mata pud ug sayo oi..hahahaha'),
-(82, 1, 7, 52, 'Present', '2020-11-13 08:30:43', 'Tardy'),
-(83, 3, 7, 52, 'Absent', '2020-11-13 08:30:43', 'Tards'),
-(84, 1, 7, 52, 'Absent', '2020-11-16 19:00:41', ' '),
-(85, 3, 7, 52, 'Present', '2020-11-16 19:00:41', ' '),
-(86, 1, 7, 52, 'Absent', '2020-02-17 08:00:00', ' '),
-(87, 3, 7, 52, 'Present', '2020-02-17 08:00:00', ' '),
-(88, 1, 7, 52, 'Present', '2020-11-27 10:52:05', ' '),
-(89, 3, 7, 52, 'Tardy', '2020-11-27 10:52:05', 'LC: 20 mins late'),
-(90, 1, 7, 52, 'Tardy', '2020-11-17 08:15:00', 'CC: Caught Inside Internet Cafe'),
-(91, 3, 7, 52, 'Present', '2020-11-17 08:15:00', ' '),
-(92, 3, 7, 52, 'Absent', '2021-03-10 16:12:03', ' '),
-(93, 1, 7, 52, 'Absent', '2021-03-10 16:12:03', ' ');
-
 -- --------------------------------------------------------
 
 --
@@ -123,13 +67,6 @@ CREATE TABLE `bmi` (
   `heightForAge` varchar(20) NOT NULL DEFAULT 'Unmeasured',
   `dateExamined` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `bmi`
---
-
-INSERT INTO `bmi` (`id`, `studentId`, `sectionId`, `age`, `weight`, `height`, `heightSq`, `bmi`, `bmiForAge`, `heightForAge`, `dateExamined`) VALUES
-(1, 1, 7, '15: 10', 40, 1.5, '2.2500', 17.7, 'Normal', 'Stunted', '2020-01-29 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -382,19 +319,6 @@ CREATE TABLE `books` (
   `gradeLevel` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `books`
---
-
-INSERT INTO `books` (`id`, `bookCode`, `bookName`, `gradeLevel`) VALUES
-(1, 'ENG32', 'English For You And Me 7', 7),
-(2, 'MATH32', 'Mathematics in our Daily Lives', 8),
-(3, 'FILIPINO-69', 'Wikang Sariling Atin', 7),
-(4, 'MATH31', 'Algebra', 7),
-(5, 'AP20', 'Araling Panlipunan', 7),
-(6, 'ENG31', 'English For Younglings', 8),
-(7, 'AP21', 'Philippine History', 8);
-
 -- --------------------------------------------------------
 
 --
@@ -411,20 +335,6 @@ CREATE TABLE `booksissuedreturned` (
   `dateUpdated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `booksissuedreturned`
---
-
-INSERT INTO `booksissuedreturned` (`id`, `sectionId`, `studentId`, `bookId`, `dateIssued`, `dateReturned`, `dateUpdated`) VALUES
-(1, 7, 1, 1, '2020-11-02', 'FM:LLTR', '2021-01-02 12:55:17'),
-(2, 7, 1, 3, '2020-11-02', 'NEG', '2021-01-02 12:55:17'),
-(3, 7, 1, 4, '2020-11-02', 'NEG:PTL', '2021-01-02 12:55:17'),
-(4, 7, 1, 5, '2020-11-02', '2021-01-02', '2021-01-02 12:55:17'),
-(5, 7, 3, 1, '2020-11-03', '2021-01-02', '2021-01-02 12:59:03'),
-(6, 7, 3, 3, '2020-11-03', '2021-01-02', '2021-01-02 12:59:03'),
-(7, 7, 3, 4, '2020-11-03', '2021-01-02', '2021-01-02 12:59:03'),
-(8, 7, 3, 5, '2020-11-03', '2021-01-02', '2021-01-02 12:59:03');
-
 -- --------------------------------------------------------
 
 --
@@ -437,15 +347,6 @@ CREATE TABLE `booktemplates` (
   `gradeLevel` int(11) NOT NULL,
   `booksContained` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `booktemplates`
---
-
-INSERT INTO `booktemplates` (`id`, `templateName`, `gradeLevel`, `booksContained`) VALUES
-(1, 'Grade 7 Template', 7, '1:4:3:5:'),
-(2, 'Grade 8 Template', 8, '7:6:2:'),
-(3, 'Grade 9 Template', 9, '');
 
 -- --------------------------------------------------------
 
@@ -461,17 +362,28 @@ CREATE TABLE `enrollment` (
   `remarks` varchar(1000) NOT NULL DEFAULT ' ! !'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `enrollment`
+-- Table structure for table `enrollment_static`
 --
 
-INSERT INTO `enrollment` (`id`, `studentId`, `sectionId`, `dateEnrolled`, `remarks`) VALUES
-(5, 3, 7, '2019-11-10 21:28:46', 'Yolo 3_7!T/I: 2020-02-01!'),
-(9, 1, 8, '2020-01-18 10:24:25', 'Yolo 1_8!T/I: 2020-02-01!'),
-(15, 1, 10, '2020-02-12 13:27:51', 'Yolo 1_10!T/I: 2020-02-01!'),
-(17, 1, 7, '2020-09-19 12:00:58', 'YoloNew 1_7!T/I: 2020-02-01!'),
-(18, 3, 14, '2020-11-03 10:24:59', 'Yolo 3_14!T/I: 2020-02-01!'),
-(19, 3, 9, '2020-11-03 10:26:08', 'Yolo 3_9!T/I: 2020-02-01!');
+CREATE TABLE `enrollment_static` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `section_name` varchar(200) NOT NULL,
+  `adviser_name` varchar(200) NOT NULL,
+  `grade_level` int(11) NOT NULL,
+  `school_year` int(11) NOT NULL,
+  `date_imported` datetime NOT NULL,
+  `school_name` varchar(500) NOT NULL,
+  `school_id` varchar(10) NOT NULL,
+  `district` varchar(500) NOT NULL,
+  `division` varchar(500) NOT NULL,
+  `region` varchar(100) NOT NULL,
+  `general_average` varchar(10) NOT NULL,
+  `gen_ave_remarks` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -488,15 +400,6 @@ CREATE TABLE `finalgrades` (
   `failedSubjects` varchar(1000) NOT NULL DEFAULT ' ',
   `dateUpdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `finalgrades`
---
-
-INSERT INTO `finalgrades` (`id`, `sectionId`, `studentId`, `generalAverage`, `actionTaken`, `failedSubjects`, `dateUpdated`) VALUES
-(1, 7, 1, 87.166, 'Promoted', ' ', '2020-11-27 13:10:58'),
-(2, 9, 3, 0, 'Incomplete', ' ', '2020-11-22 00:33:46'),
-(3, 7, 3, 70.166, 'Incomplete', 'ENG7, MATH7, SCI7, FIL7, AP7, TLE7, MUS7, PE7, HLT7', '2021-01-03 16:45:47');
 
 -- --------------------------------------------------------
 
@@ -754,120 +657,24 @@ CREATE TABLE `grades` (
   `dateUpdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `grades`
+-- Table structure for table `grades_static`
 --
 
-INSERT INTO `grades` (`id`, `studentId`, `sectionId`, `subjectId`, `firstQuarter`, `secondQuarter`, `thirdQuarter`, `fourthQuarter`, `gwa`, `status`, `dateUpdated`) VALUES
-(1, 6, 7, 11, '76', '78', '79', '77', '78', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(2, 3, 7, 11, '80', '90', '86', '89', '86', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(3, 5, 7, 11, '75', '80', '90', '95', '85', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(4, 6, 7, 8, '79', '76', '79', '78', '78', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(5, 3, 7, 8, '90', '', '', '', '22', 'Approved:Open:Open:Open:Incomplete:', '2021-07-25 18:43:07'),
-(6, 5, 7, 8, '80', '90', '88', '89', '87', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(7, 6, 7, 14, '79', '78', '80', '79', '79', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(8, 6, 7, 17, '78', '78', '78', '81', '79', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(9, 6, 7, 10, '77', '75', '78', '78', '77', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(10, 6, 7, 13, '80', '80', '81', '78', '80', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(11, 6, 7, 16, '75', '77', '79', '79', '78', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(12, 6, 7, 18, '77', '77', '79', '83', '79', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(13, 6, 7, 9, '77', '77', '76', '77', '77', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(14, 6, 7, 12, '77', '78', '76', '77', '77', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(15, 6, 7, 15, '76', '77', '79', '80', '78', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(16, 6, 8, 19, '80', '90', '75', '80', '81', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(17, 6, 8, 23, '88', '79', '80', '85', '83', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(18, 6, 8, 26, '90', '82', '79', '90', '85', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(19, 6, 8, 29, '88', '77', '90', '85', '85', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(20, 6, 8, 20, '75', '80', '85', '90', '83', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(21, 6, 8, 21, '80', '80', '90', '93', '86', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(22, 6, 8, 24, '87', '86', '85', '90', '87', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(23, 6, 8, 28, '80', '80', '83', '84', '82', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(24, 6, 8, 22, '88', '89', '90', '94', '90', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(25, 6, 8, 25, '79', '86', '87', '96', '87', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(26, 6, 8, 27, '80', '86', '88', '95', '87', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(27, 6, 8, 53, '80', '0', '0', '0', '20', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(28, 8, 7, 8, '80', '69', '74', '99', '81', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(29, 9, 9, 8, '90', '90', '88', '96', '91', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(30, 9, 9, 11, '80', '85', '88', '90', '86', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(31, 9, 9, 15, '90', '87', '99', '76', '88', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(32, 9, 9, 18, '90', '80', '76', '88', '84', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(33, 9, 9, 52, '88', '89', '90', '91', '90', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(34, 9, 9, 10, '88', '89', '75', '78', '83', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(35, 9, 9, 12, '88', '89', '90', '88', '89', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(36, 9, 9, 14, '90', '78', '79', '88', '84', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(37, 9, 9, 16, '80', '89', '90', '95', '89', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(38, 9, 9, 9, '95', '80', '95', '98', '92', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(39, 9, 9, 13, '88', '96', '85', '89', '90', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(40, 9, 9, 17, '88', '89', '75', '89', '85', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(41, 7, 7, 8, '80', '80', '80', '80', '80', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(42, 8, 7, 10, '70', '70', '95', '95', '83', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(43, 3, 7, 10, '78', '88', '88', '88', '86', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(44, 5, 7, 10, '80', '80', '80', '85', '81', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(45, 7, 7, 10, '88', '78', '80', '79', '81', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(46, 8, 7, 11, '88', '87', '84', '81', '85', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(47, 7, 7, 11, '78', '77', '79', '90', '81', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(48, 7, 7, 14, '80', '80', '80', '88', '82', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(49, 5, 7, 14, '90', '86', '88', '81', '86', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(50, 3, 7, 14, '78', '88', '79', '86', '83', 'Submitted:Submitted:Submitted:Submitted:Incomplete:', '2021-03-10 16:30:54'),
-(51, 8, 7, 14, '90', '91', '75', '99', '89', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(52, 7, 7, 17, '80', '80', '80', '80', '80', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(53, 5, 7, 17, '90', '90', '90', '90', '90', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(54, 3, 7, 17, '80', '80', '90', '85', '84', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(55, 8, 7, 17, '77', '79', '80', '87', '81', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(56, 7, 7, 9, '80', '90', '77', '88', '84', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(57, 5, 7, 9, '80', '88', '86', '78', '83', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(58, 3, 7, 9, '80', '90', '85', '90', '86', 'Open:Open:Open:Open:Incomplete:', '2020-10-20 10:59:03'),
-(59, 8, 7, 9, '90', '80', '86', '84', '85', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(60, 7, 7, 12, '70', '78', '88', '86', '81', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(61, 5, 7, 12, '80', '88', '87', '87', '86', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(62, 3, 7, 12, '78', '79', '90', '96', '86', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(63, 8, 7, 12, '80', '96', '84', '87', '87', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(64, 7, 7, 16, '79', '78', '99', '76', '83', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(65, 5, 7, 16, '78', '79', '90', '78', '81', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(66, 3, 7, 16, '89', '88', '90', '76', '85', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-26 21:37:29'),
-(67, 8, 7, 16, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(68, 7, 7, 18, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(69, 5, 7, 18, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(70, 3, 7, 18, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-11-27 13:16:15'),
-(71, 8, 7, 18, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(72, 7, 7, 13, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(73, 5, 7, 13, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(74, 3, 7, 13, '90', '77', '78', '80', '81', 'Open:Open:Open:Open:Passed:', '2020-11-26 21:38:44'),
-(75, 8, 7, 13, '80', '-1', '-1', '-1', '20', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(76, 7, 7, 15, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(77, 5, 7, 15, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(78, 3, 7, 15, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(79, 8, 7, 15, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(80, 6, 10, 32, '90', '90', '90', '90', '90', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(81, 6, 10, 36, '80', '88', '89', '78', '84', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(82, 6, 10, 38, '80', '90', '88', '90', '87', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(83, 6, 10, 30, '80', '90', '88', '87', '86', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(84, 6, 10, 33, '80', '90', '87', '89', '87', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(85, 6, 10, 35, '80', '90', '80', '77', '82', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(86, 6, 10, 37, '80', '90', '77', '89', '84', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(87, 6, 10, 54, '99', '78', '80', '90', '87', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(88, 6, 10, 31, '80', '90', '78', '89', '84', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(89, 6, 10, 34, '80', '90', '87', '99', '89', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(90, 6, 10, 39, '88', '77', '99', '88', '88', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(91, 6, 10, 40, '90', '80', '90', '80', '85', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(92, 1, 8, 22, '99', '99', '99', '99', '99', 'Open:Open:Open:Open:Passed:', '2021-01-08 20:43:15'),
-(93, 4, 8, 22, '-1', '-1', '-1', '-1', '0', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(94, 1, 8, 27, '83', '-1', '-1', '-1', '21', 'Open:Open:Open:Open:Incomplete:', '2020-10-18 13:00:30'),
-(95, 1, 7, 9, '80', '99', '89', '79', '86', 'Open:Open:Open:Open:Passed:', '2020-11-20 23:36:35'),
-(97, 1, 7, 12, '80', '80', '76', '95', '82', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-26 21:36:21'),
-(98, 1, 7, 16, '98', '90', '88', '89', '91', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-26 21:37:04'),
-(99, 1, 7, 13, '98', '89', '76', '90', '88', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-26 22:01:07'),
-(100, 1, 7, 17, '80', '88', '79', '90', '84', 'Open:Open:Open:Open:Passed:', '2020-11-27 13:06:21'),
-(101, 1, 7, 14, '88', '87', '90', '85', '87', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-27 13:04:57'),
-(102, 1, 7, 18, '90', '90', '95', '92', '91', 'Open:Open:Open:Open:Passed:', '2020-11-27 13:08:33'),
-(103, 1, 7, 11, '89', '86', '90', '88', '88', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-26 21:51:59'),
-(104, 1, 7, 15, '80', '88', '96', '80', '86', 'Open:Open:Open:Open:Passed:', '2020-11-27 13:05:53'),
-(105, 1, 7, 10, '89', '90', '96', '80', '88', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-26 21:51:00'),
-(106, 1, 7, 8, '89', '90', '86', '88', '88', 'Approved:Submitted:Open:Open:Passed:', '2021-07-24 17:10:03'),
-(107, 1, 7, 60, '88', '88', '88', '88', '88', 'Closed:Closed:Closed:Closed:Passed:', '2020-11-27 13:09:43'),
-(108, 3, 7, 60, '80', '97', '88', '82', '86', 'Open:Open:Open:Open:Passed:', '2020-11-27 13:09:59'),
-(111, 3, 9, 14, '', '', '', '', '', 'Open:Open:Open:Open:Incomplete:', '2021-07-04 19:14:00'),
-(112, 3, 9, 8, '90', '', '', '', '22', 'Submitted:Open:Open:Open:Incomplete:', '2021-07-06 17:12:57');
+CREATE TABLE `grades_static` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `enrollment_id` int(11) NOT NULL,
+  `subject_name` varchar(500) NOT NULL,
+  `first_quarter` varchar(11) NOT NULL,
+  `second_quarter` varchar(11) NOT NULL,
+  `third_quarter` varchar(11) NOT NULL,
+  `fourth_quarter` varchar(11) NOT NULL,
+  `final_rating` varchar(11) NOT NULL,
+  `remarks` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1114,21 +921,6 @@ CREATE TABLE `loads` (
   `d_subjectsContained` varchar(500) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `loads`
---
-
-INSERT INTO `loads` (`a_id`, `b_loadName`, `c_gradeLevel`, `d_subjectsContained`) VALUES
-(8, 'K-12, Grade 7', 7, '9:10:11:8:12:13:14:60:15:16:17:18:52:'),
-(9, 'K-12, Grade 8', 8, '19:20:21:22:23:24:25:61:26:27:28:29:53:'),
-(10, 'K-12, Grade 9', 9, '30:31:32:33:34:35:36:37:38:39:40:62:54:'),
-(11, 'K-12, Grade 10', 10, '41:42:43:44:45:46:47:48:49:50:51:63:55:'),
-(12, 'Grade 8 New', 8, ''),
-(13, 'Grade 8', 8, ''),
-(14, 'Grade 10', 10, ''),
-(15, 'Test Load', 7, '8:9:10:11:12:13:14:15:16:17:18:52:60:'),
-(16, 'Test Load', 10, '41:42:43:44:45:46:47:48:49:50:51:63:55:');
-
 -- --------------------------------------------------------
 
 --
@@ -1155,60 +947,6 @@ CREATE TABLE `personalinfo` (
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `personalinfo`
---
-
-INSERT INTO `personalinfo` (`id`, `stdId`, `bDate`, `age`, `mTongue`, `ip`, `rlgn`, `houseN`, `brgy`, `mncpl`, `prvnce`, `fName`, `mName`, `gName`, `rltnshp`, `contact`, `date`) VALUES
-(1, 1, '2006-12-11', 12, 'Mandaya', ' ', 'Roman Catholic', 'Purok 18, Bato St.', 'Central', 'Manay', 'Davao Oriental', 'Enrique C. Paderogao', 'Jocelyn E. Paderogao', ' ', ' ', '09483428056', '2021-02-12 13:17:12'),
-(3, 2, '2006-12-11', 20, 'Mandaya', 'Mandaya', 'Roman Catholic', 'Purok 18, Bato St.', 'Central', 'Manay', 'Davao Oriental', 'Enrique C. Paderogao', 'Jocelyn E. Paderogao', 'Joerick E. Paderogao', 'Brother', '09483428056', '2020-09-09 18:37:23'),
-(5, 3, '2006-05-13', 13, 'LANGUAGE', 'INDIGENOUS PEOPLE', 'RELIGION', 'HOUSE NUM', 'BRGY', 'MUNICIPAL', 'PROVINCE', 'FATHER NAME', 'MOTHER NAME', 'GUARDIAN NAME', 'RELATIONSHIP', 'CONTACT', '2021-02-12 13:17:11'),
-(6, 7, '2005-11-15', 14, 'Cebuano / Sinugbuanong Binisay', ' ', 'Christianity', ' ', 'BANGKAS HEIGHTS', 'DAVAO CITY', 'DAVAO DEL SUR', 'ABANIL, RONIE GUMAPO', 'ARELLANO,ELINITA,ANGGAT,', ' ', ' ', ' ', '2021-03-10 15:37:19'),
-(7, 8, '2005-07-06', 14, 'Cebuano', ' ', 'Christianity', ' ', 'BALIOK', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'MULATO,JOSIE,FLORENDO,', ' ', ' ', ' ', '2021-03-10 15:37:19'),
-(8, 9, '2004-09-14', 15, 'Cebuano', ' ', 'Christianity', ' ', 'CROSSING BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', 'ANDALES, DIONILO JR TEQUILLO', 'PITAO,TERESITA,DEL ROSARIO,', ' ', ' ', ' ', '2021-03-10 15:37:19'),
-(9, 10, '2004-08-22', 15, 'Cebuano', ' ', 'Christianity', ' ', 'LUBOGAN', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'GOMEZ,CATHERINE,,', ' ', ' ', ' ', '2021-03-10 15:37:20'),
-(10, 11, '2006-01-10', 14, 'Cebuano', ' ', 'Christianity', ' ', 'BANGKAS HEIGHTS', 'DAVAO CITY', 'DAVAO DEL SUR', 'BATITAY, ESTEBAN', 'SOLEDAD,NORIEJEN,EGAGAMAO,', ' ', ' ', ' ', '2021-03-10 15:37:20'),
-(11, 12, '2005-10-19', 14, 'Tagalog', ' ', 'Christianity', ' ', 'BAGO GALLERA', 'DAVAO CITY', 'DAVAO DEL SUR', 'BUSTAMANTE, MILAN PEPITO', 'PEROCILLO,MERCE,PALMA,', ' ', ' ', ' ', '2021-03-10 15:37:20'),
-(12, 13, '2005-12-29', 14, 'Cebuano', ' ', 'Christianity', ' ', 'CROSSING BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'CALIXTRO,SHIELA MARIE,ACERO,', ' ', ' ', ' ', '2021-03-10 15:37:20'),
-(13, 14, '2006-04-05', 14, 'Cebuano / Sinugbuanong Binisay', ' ', 'Islam', ' ', 'CROSSING BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'COMAGUEL,DAISEREE,CAASI,', ' ', ' ', ' ', '2021-03-10 15:37:21'),
-(14, 15, '2006-06-27', 13, 'Cebuano', ' ', 'Christianity', ' ', 'DALIAO', 'DAVAO CITY', 'DAVAO DEL SUR', 'GABRINAO, LUIS JR PANTIG', 'JUDAR,DIANNE MAE,EWAYAN,', ' ', ' ', ' ', '2021-03-10 15:37:21'),
-(15, 16, '2005-11-14', 14, 'Cebuano / Sinugbuanong Binisay', ' ', 'Christianity', ' ', 'LIZADA', 'DAVAO CITY', 'DAVAO DEL SUR', 'GEALON, ROLAN ATRAGENIO', 'EMBANG,MERLYN,DAGUINSAL,', ' ', ' ', ' ', '2021-03-10 15:37:21'),
-(16, 17, '2006-02-01', 14, 'Cebuano / Sinugbuanong Binisay', ' ', 'Christianity', ' ', 'BALIOK', 'DAVAO CITY', 'DAVAO DEL SUR', 'HIMONGALA, JERRY BANGAY', 'CERNA,CHARON,JUMAWAN,', ' ', ' ', ' ', '2021-03-10 15:37:21'),
-(17, 18, '2005-10-26', 14, 'Cebuano / Sinugbuanong Binisay', ' ', 'Christianity', ' ', 'TAGLUNO', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'AYAG,ALICIA,FUENTES,', ' ', ' ', ' ', '2021-03-10 15:37:22'),
-(18, 19, '2006-09-06', 13, 'Cebuano', ' ', 'Christianity', ' ', 'BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', 'JANOPOL, MANNY N', 'LADERA,MARIVIC,E,', ' ', ' ', ' ', '2021-03-10 15:37:22'),
-(19, 20, '2005-01-08', 15, 'Cebuano', ' ', 'Christianity', ' ', 'LUBOGAN', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'LUMINGKIT,MA DOLORES,RACAZA,', ' ', ' ', ' ', '2021-03-10 15:37:22'),
-(20, 21, '2006-01-11', 14, 'Cebuano / Sinugbuanong Binisay', ' ', 'Christianity', ' ', 'CROSSING BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', 'MIER, RODEL AMONCIO', 'DE LEON,JENELL,,', ' ', ' ', ' ', '2021-03-10 15:37:22'),
-(21, 22, '2005-03-24', 15, 'Cebuano', ' ', 'Christianity', ' ', 'LUBOGAN', 'DAVAO CITY', 'DAVAO DEL SUR', 'MONFORTE, MICHAEL GORREON', 'LORANA,MARIVIC,CAMACHO,', ' ', ' ', ' ', '2021-03-10 15:37:22'),
-(22, 23, '2006-09-23', 13, 'Cebuano / Sinugbuanong Binisay', 'Cebuano', 'Christianity', ' ', 'LUBOGAN', 'DAVAO CITY', 'DAVAO DEL SUR', 'OREJUDOS, BRANDO JIMENEZ', 'BASTASA,RHEA MAY,STA MONICA,', ' ', ' ', ' ', '2021-03-10 15:37:23'),
-(23, 24, '2006-05-10', 14, 'Cebuano', ' ', 'Christianity', ' ', 'BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'MAGSIGAY,JOYCEL,PACITES,', ' ', ' ', ' ', '2021-03-10 15:37:23'),
-(24, 25, '2005-02-25', 15, 'Cebuano', ' ', 'Christianity', ' ', 'CROSSING BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'SABERON,NICA,BALLE,', ' ', ' ', ' ', '2021-03-10 15:37:23'),
-(25, 26, '2002-08-14', 17, 'Cebuano', ' ', 'Christianity', ' ', 'CROSSING BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', 'TUAYON, ROGER ABAD', 'BITACURA,AMY,MAPAIT,', ' ', ' ', ' ', '2021-03-10 15:37:24'),
-(26, 27, '2003-12-08', 16, 'Cebuano / Sinugbuanong Binisay', ' ', 'Christianity', ' ', 'BATO', 'DAVAO CITY', 'DAVAO DEL SUR', 'VILLEGAS, GERALD OLARTE', 'GUIAMLA,JAMILAH,ABDUL,', ' ', ' ', ' ', '2021-03-10 15:37:24'),
-(27, 28, '2005-03-23', 15, 'Cebuano / Sinugbuanong Binisay', ' ', 'Christianity', ' ', 'BANGKAS HEIGHTS', 'DAVAO CITY', 'DAVAO DEL SUR', 'ZAFRA, CIOLEN VILLAPAS', 'GALVEZ,JOANNE,ACEBU,', ' ', ' ', ' ', '2021-03-10 15:37:24'),
-(28, 29, '2005-01-20', 15, 'Maranao', 'Maranao', 'Islam', ' ', 'ILIAN', 'BALABAGAN', 'LANAO DEL SUR', 'AYOON, ISMAIL MORO', 'ATANDOR,JONAIMA,SUWAIB,', ' ', ' ', ' ', '2021-03-10 15:37:24'),
-(29, 30, '2005-04-30', 15, 'Cebuano', ' ', 'Christianity', ' ', 'CROSSING BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', 'BACUS, OLIVER REMOLIO', 'GETIZO,MYLYN,INAD,', ' ', ' ', ' ', '2021-03-10 15:37:25'),
-(30, 31, '2006-08-15', 13, 'Cebuano', ' ', 'Christianity', ' ', 'CROSSING BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'ARREGLADO,ANALYN,DELIARTE,', ' ', ' ', ' ', '2021-03-10 15:37:25'),
-(31, 32, '2006-01-30', 14, 'Cebuano', ' ', 'Christianity', ' ', 'CROSSING BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'BOISER,BOISER,,', ' ', ' ', ' ', '2021-03-10 15:37:25'),
-(32, 33, '2006-04-24', 14, 'Cebuano / Sinugbuanong Binisay', ' ', 'Christianity', ' ', 'MA-A', 'DAVAO CITY', 'DAVAO DEL SUR', 'CAMPOREDONDO, JOEL COLETA', 'PARILLO,REA FE,BAZAR,', ' ', ' ', ' ', '2021-03-10 15:37:25'),
-(33, 34, '2005-11-05', 14, 'Cebuano', ' ', 'Christianity', ' ', 'MANKILAM', 'CITY OF TAGUM (Capital)', 'DAVAO DEL NORTE', 'CANTILA, RONALD ANI%C3%91ON', 'CAMPOREDONDO,AILEEN,MATUNDAG,', ' ', ' ', ' ', '2021-03-10 15:37:25'),
-(34, 35, '2004-03-08', 16, 'Cebuano', ' ', 'Christianity', ' ', 'CROSSING BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', 'CATAYAS, EMMANUEL', 'UGPAT,FLORDELIZA,,', ' ', ' ', ' ', '2021-03-10 15:37:26'),
-(35, 36, '2004-09-17', 15, 'Cebuano', ' ', 'Christianity', ' ', 'CATALUNAN PEQUE%C3%91O', 'DAVAO CITY', 'DAVAO DEL SUR', 'CORTEZANO, ROLITO BROCE', 'CUENCO,ADELYN,MAHUSAY,', ' ', ' ', ' ', '2021-03-10 15:37:26'),
-(36, 37, '2006-02-18', 14, 'Cebuano', ' ', 'Christianity', ' ', 'TORIL (POB.)', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'PASILAN,DOROTHY,JANE,DIWA', ' ', ' ', ' ', '2021-03-10 15:37:26'),
-(37, 38, '2004-06-02', 16, 'Cebuano / Sinugbuanong Binisay', ' ', 'Christianity', ' ', 'CROSSING BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', 'ESPINA, RODRIGO MADULA', 'QUIZAN,RHEA,NAPITAN,', ' ', ' ', ' ', '2021-03-10 15:37:26'),
-(38, 39, '2006-09-04', 13, 'Cebuano', ' ', 'Christianity', ' ', 'BATO', 'DAVAO CITY', 'DAVAO DEL SUR', 'FUERTES, JOVELLE', 'TAN,STEPHANIE,,', ' ', ' ', ' ', '2021-03-10 15:37:27'),
-(39, 40, '2005-11-30', 14, 'Cebuano', ' ', 'Christianity', ' ', 'LANAO KURAN', 'ARAKAN', 'NORTH COTABATO', 'HONTIVEROS, RAYMUNDO ALCOSABA', 'SABANAL,MARICEL,CALDERON,', ' ', ' ', ' ', '2021-03-10 15:37:27'),
-(40, 41, '2006-08-11', 13, 'Cebuano', ' ', 'Christianity', ' ', 'CROSSING BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'LANUZA,MILA,,', ' ', ' ', ' ', '2021-03-10 15:37:27'),
-(41, 42, '2004-06-30', 15, 'Maranao', 'Maranao', 'Islam', ' ', 'MARAPANGI', 'DAVAO CITY', 'DAVAO DEL SUR', 'LOMONTOD, ALIMOZAMAN MINCOL', 'TOMANONG,NORHAYA,AMIGOS,', ' ', ' ', ' ', '2021-03-10 15:37:27'),
-(42, 43, '2006-09-08', 13, 'Cebuano', ' ', 'Christianity', ' ', 'DUMOY', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'APID,MARILYN,,', ' ', ' ', ' ', '2021-03-10 15:37:27'),
-(43, 44, '2006-03-13', 14, 'Cebuano', ' ', 'Christianity', ' ', 'DUMOY', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'GALLENTES,NANCY,LUCERO,', ' ', ' ', ' ', '2021-03-10 15:37:28'),
-(44, 45, '2006-06-11', 13, 'Cebuano / Sinugbuanong Binisay', ' ', 'Christianity', ' ', 'CROSSING BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'LORANA,MARIVIC,CAMACHO,', ' ', ' ', ' ', '2021-03-10 15:37:28'),
-(45, 46, '2006-02-17', 14, 'Cebuano / Sinugbuanong Binisay', ' ', 'Christianity', ' ', 'MATINA CROSSING', 'DAVAO CITY', 'DAVAO DEL SUR', 'OCHO, DANILO CADION', 'CALIXTRO,MARY ANN,A,', ' ', ' ', ' ', '2021-03-10 15:37:28'),
-(46, 47, '2004-04-15', 16, 'Cebuano / Sinugbuanong Binisay', ' ', 'Christianity', ' ', 'BAGO APLAYA', 'DAVAO CITY', 'DAVAO DEL SUR', 'PAGATPAT, NIEVE ANDRADE', 'BARON,JOYCE,OLEVEROS,', ' ', ' ', ' ', '2021-03-10 15:37:28'),
-(47, 48, '2006-10-11', 13, 'Cebuano', ' ', 'Christianity', ' ', 'CROSSING BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'ALLANIC,MARILYN,,', ' ', ' ', ' ', '2021-03-10 15:37:29'),
-(48, 49, '2007-07-08', 12, 'Cebuano', ' ', 'Christianity', ' ', 'LUBOGAN', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'BANTAYAN,ROGEROSE,,', ' ', ' ', ' ', '2021-03-10 15:37:29'),
-(49, 50, '2006-10-06', 13, 'Cebuano', ' ', 'Christianity', ' ', 'DUMOY', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'ULAH,BERNADITH,CHAVEZ,', ' ', ' ', ' ', '2021-03-10 15:37:29'),
-(50, 51, '2005-10-08', 14, 'Cebuano', ' ', 'Christianity', ' ', 'CROSSING BAYABAS', 'DAVAO CITY', 'DAVAO DEL SUR', ' ', 'MALNEGRO,MARIE,REBUCAS,', ' ', ' ', ' ', '2021-03-10 15:37:29');
-
 -- --------------------------------------------------------
 
 --
@@ -1223,23 +961,6 @@ CREATE TABLE `sections` (
   `bookTemplateId` int(11) NOT NULL DEFAULT '-1',
   `schoolYear` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sections`
---
-
-INSERT INTO `sections` (`id`, `sectionName`, `adviserId`, `loadId`, `bookTemplateId`, `schoolYear`) VALUES
-(7, 'Grade 7 - Fidelity', 2, 8, 1, 2019),
-(8, 'Grade 8 - Cashew', 2, 9, -1, 2020),
-(9, 'Grade 7 - Rizal', 1, 8, -1, 2020),
-(10, 'Grade 9 - Mabini', 2, 10, 3, 2020),
-(11, 'Grade 10 - Strawberry', 3, 11, -1, 2019),
-(12, 'Grade 9 - Integrity', 3, 8, -1, 2019),
-(13, 'Grade 10 - Unity', 2, 11, -1, 2019),
-(14, 'Grade 7 - Oreo', 3, 8, -1, 2019),
-(15, 'Grade 9 - Nikko', 8, 10, -1, 2019),
-(16, 'Grade 8 - Paderogao', 2, 12, -1, 2020),
-(17, 'Grade 10 - Del Pilar', 2, 11, -1, 2021);
 
 -- --------------------------------------------------------
 
@@ -1258,65 +979,17 @@ CREATE TABLE `students` (
   `curGrLvl` int(11) NOT NULL DEFAULT '0',
   `schoolId` varchar(11) NOT NULL DEFAULT '000000',
   `schoolName` varchar(1000) NOT NULL DEFAULT ' ',
-  `schoolAddress` varchar(1000) NOT NULL DEFAULT ' '
+  `schoolAddress` varchar(1000) NOT NULL DEFAULT ' ',
+  `dep_type` varchar(10) NOT NULL DEFAULT 'JHS'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `lrn`, `lName`, `fName`, `mName`, `sex`, `inGr`, `curGrLvl`, `schoolId`, `schoolName`, `schoolAddress`) VALUES
-(1, '123543457474', 'Paderogao,Jr', 'Phil Rey', 'Estrella', 'Female', 90.1, 7, '000001', 'GMES-1', 'Manay, Davao Oriental'),
-(2, '123456789012', 'Paderogao', 'Kerby', 'Estrella', 'Female', 90.2, 0, '000000', 'GMES-1', 'Manay, Davao Oriental'),
-(3, '123456789023', 'Rizal', 'Jose', ' ', 'Male', 99, 7, '000000', 'Cuta Elementary School', 'Tarragona, Davao Oriental'),
-(4, '129493120101', 'Cabillon', 'Jesthony', ' ', 'Male', 80, 0, '000000', 'GMES-1', 'Manay, Davao Oriental'),
-(5, '129679130184', 'Antiga', 'Ariel', 'Socorro', 'Male', 80, 0, '000000', 'GMES-1', 'Manay, Davao Oriental'),
-(6, '123546789014', 'Masyedow', 'Marites', 'Supladae', 'Female', 89, 0, '123456', 'Chaka Elementary School', 'Dimakita City'),
-(7, '128782110001', 'Abanil', 'Juvanie', 'Arellano', 'Male', 0, 0, '000000', ' ', ' '),
-(8, '405459150105', 'Algar', 'Wilhelmn Nash', 'Momo', 'Male', 0, 0, '000000', ' ', ' '),
-(9, '129679100013', 'Andales,Jr.', 'Dionilo', 'Pitao', 'Male', 0, 0, '000000', ' ', ' '),
-(10, '129688120067', 'Baba', 'Jay Reecarl', ' ', 'Male', 0, 0, '000000', ' ', ' '),
-(11, '129682120068', 'Batitay', 'Marvin', 'Soledad', 'Male', 0, 0, '000000', ' ', ' '),
-(12, '466108150281', 'Bustamante', 'Clarence', 'Perocillo', 'Male', 0, 0, '000000', ' ', ' '),
-(13, '129648120371', 'Calixtro', 'Mark Paulo', 'Acero', 'Male', 0, 0, '000000', ' ', ' '),
-(14, '129688110074', 'Comaguel', 'Zaiful', 'Caasi', 'Male', 0, 0, '000000', ' ', ' '),
-(15, '129720120256', 'Gabrinao', 'Luis Gabriel', 'Judar', 'Male', 0, 0, '000000', ' ', ' '),
-(16, '129622110006', 'Gealon', 'Ian Romer', 'Embang', 'Male', 0, 0, '000000', ' ', ' '),
-(17, '129713110039', 'Hemongala', 'John Paul', 'Cerna', 'Male', 0, 0, '000000', ' ', ' '),
-(18, '129692110015', 'Hermosa', 'Andrew', 'Bersalona', 'Male', 0, 0, '000000', ' ', ' '),
-(19, '127641110029', 'Janopol', 'Edmar Emmanuel', 'Ladera', 'Male', 0, 0, '000000', ' ', ' '),
-(20, '405466150183', 'Lumingkit', 'Brian Jesler', ' ', 'Male', 0, 0, '000000', ' ', ' '),
-(21, '129688120011', 'Mier', 'Charles', 'De Leon', 'Male', 0, 0, '000000', ' ', ' '),
-(22, '129688120213', 'Monforte', 'Vence Cedrec Dew', 'Lora%C3%B1a', 'Male', 0, 0, '000000', ' ', ' '),
-(23, '129548120196', 'Orejudos', 'Vince Lenard', 'Bastasa', 'Male', 0, 0, '000000', ' ', ' '),
-(24, '129688110202', 'Parilla', 'Rian Jay', 'Magsigay', 'Male', 0, 0, '000000', ' ', ' '),
-(25, '129688120077', 'Saberon', 'Rezan', ' ', 'Male', 0, 0, '000000', ' ', ' '),
-(26, '129688090297', 'Tuayon', 'Christian Dave', 'Bitacora', 'Male', 0, 0, '000000', ' ', ' '),
-(27, '129551100218', 'Villegas', 'Roger', 'Guiamla', 'Male', 0, 0, '000000', ' ', ' '),
-(28, '129684120021', 'Zafra', 'Jianlen', 'Galvez', 'Male', 0, 0, '000000', ' ', ' '),
-(29, '133569160140', 'Ayoon', 'Pahima', 'Atandor', 'Female', 0, 0, '000000', ' ', ' '),
-(30, '129688120115', 'Bacus', 'Pinky Rose', 'Getizo', 'Female', 0, 0, '000000', ' ', ' '),
-(31, '129688130652', 'Balicog', 'Roenamie', 'Arreglado', 'Female', 0, 0, '000000', ' ', ' '),
-(32, '129679120250', 'Cabarles', 'Eve Marie Virgil', 'Boiser', 'Female', 0, 0, '000000', ' ', ' '),
-(33, '129648120040', 'Camporedondo', 'Rojean', 'Parillo', 'Female', 0, 0, '000000', ' ', ' '),
-(34, '128778120199', 'Cantila', 'Veve Jane', 'Camporedondo', 'Female', 0, 0, '000000', ' ', ' '),
-(35, '129679120176', 'Catayas', 'Marry Stiffany', 'Ugpat', 'Female', 0, 0, '000000', ' ', ' '),
-(36, '129697100107', 'Cortezano', 'Angel Mae', 'Cuenco', 'Female', 0, 0, '000000', ' ', ' '),
-(37, '129550120284', 'Diwa', 'Chastity Jane', 'Pasilan', 'Female', 0, 0, '000000', ' ', ' '),
-(38, '129688100159', 'Espina', 'Ana Godeva', 'Quizan', 'Female', 0, 0, '000000', ' ', ' '),
-(39, '129688120021', 'Fuertes', 'Zacharielle Zelene', 'Tan', 'Female', 0, 0, '000000', ' ', ' '),
-(40, '129914110019', 'Hontiveros', 'Rhea Mae', 'Sabanal', 'Female', 0, 0, '000000', ' ', ' '),
-(41, '129688120045', 'Lagmay', 'Maxene', 'Lanuza', 'Female', 0, 0, '000000', ' ', ' '),
-(42, '129684100061', 'Lomontod', 'Habibah', 'Tomanong', 'Female', 0, 0, '000000', ' ', ' '),
-(43, '129679120141', 'Luage', 'Lyna Mae', 'Apid', 'Female', 0, 0, '000000', ' ', ' '),
-(44, '129720110071', 'Marcellones', 'Maria Katrina', 'Gallentes', 'Female', 0, 0, '000000', ' ', ' '),
-(45, '129688120232', 'Monforte', 'Venece', 'Lora%C3%B1a', 'Female', 0, 0, '000000', ' ', ' '),
-(46, '129648120425', 'Ocho', 'Danna Mae', 'Calixtro', 'Female', 0, 0, '000000', ' ', ' '),
-(47, '129719100055', 'Pagatpat', 'Jovea Jane', 'Baron', 'Female', 0, 0, '000000', ' ', ' '),
-(48, '129679120150', 'Ruferos', 'Jennelyn', 'Allanic', 'Female', 0, 0, '000000', ' ', ' '),
-(49, '129679120225', 'Sasuta', 'Ashley Kynch', 'Bantayan', 'Female', 0, 0, '000000', ' ', ' '),
-(50, '129720120178', 'Suico', 'Grace', 'Ulah', 'Female', 0, 0, '000000', ' ', ' '),
-(51, '129688120239', 'Tabada', 'Danica Mae', 'Malnegro', 'Female', 0, 0, '000000', ' ', ' ');
+INSERT INTO `students` (`id`, `lrn`, `lName`, `fName`, `mName`, `sex`, `inGr`, `curGrLvl`, `schoolId`, `schoolName`, `schoolAddress`, `dep_type`) VALUES
+(1, '123456789012', 'Paderogao', 'Phil Rey', 'Estrella', 'Male', 90.25, 0, '123456', 'Gregorio Moralizon Elementary School - I', 'Manay, Davao Oriental', 'JHS'),
+(2, '123456789013', 'Chan', 'Jose', 'Marie', 'Female', 90, 0, '1234567', 'Rizal Elementary School', 'Dimakita Island', 'SHS');
 
 -- --------------------------------------------------------
 
@@ -1384,10 +1057,6 @@ INSERT INTO `subjects` (`id`, `subjectCode`, `description`, `gradeLevel`) VALUES
 (53, 'ADV8', 'Advisory 8', 8),
 (54, 'ADV9', 'Advisory 9', 9),
 (55, 'ADV10', 'Advisory 10', 10),
-(56, 'IT410', 'IT Practicum 2', 7),
-(57, 'span8', 'Spanish 8', 8),
-(58, 'it 411', ';lksdfbvhnlkajsfbg', 7),
-(59, 'ANIM7', 'Animation 7', 7),
 (60, 'MPH7', 'MAPEH 7', 7),
 (61, 'MPH8', 'MAPEH 8', 8),
 (62, 'MPH9', 'MAPEH 9', 9),
@@ -1408,101 +1077,6 @@ CREATE TABLE `teacherloads` (
   `timeEnd` time NOT NULL DEFAULT '08:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `teacherloads`
---
-
-INSERT INTO `teacherloads` (`id`, `sectionId`, `teacherId`, `subjectId`, `timeStart`, `timeEnd`) VALUES
-(1, 7, 3, 9, '07:00:00', '08:00:00'),
-(2, 9, 2, 8, '07:00:00', '08:00:00'),
-(3, 9, 3, 9, '07:00:00', '08:00:00'),
-(4, 9, 4, 10, '07:00:00', '08:00:00'),
-(5, 9, 5, 11, '07:00:00', '08:00:00'),
-(6, 9, 7, 12, '07:00:00', '08:00:00'),
-(7, 9, 8, 13, '07:00:00', '08:00:00'),
-(8, 9, 7, 14, '07:00:00', '08:00:00'),
-(9, 9, 10, 15, '07:00:00', '08:00:00'),
-(10, 9, 11, 16, '07:00:00', '08:00:00'),
-(11, 9, 8, 17, '07:00:00', '08:00:00'),
-(12, 9, 4, 18, '07:00:00', '08:00:00'),
-(13, 9, 1, 52, '07:00:00', '08:00:00'),
-(14, 8, -1, 19, '07:00:00', '08:00:00'),
-(15, 8, -1, 20, '07:00:00', '08:00:00'),
-(16, 8, -1, 21, '07:00:00', '08:00:00'),
-(17, 8, -1, 22, '07:00:00', '08:00:00'),
-(18, 8, -1, 23, '07:00:00', '08:00:00'),
-(19, 8, -1, 24, '07:00:00', '08:00:00'),
-(20, 8, -1, 25, '07:00:00', '08:00:00'),
-(21, 8, -1, 26, '07:00:00', '08:00:00'),
-(22, 8, -1, 27, '07:00:00', '08:00:00'),
-(23, 8, -1, 28, '07:00:00', '08:00:00'),
-(24, 8, -1, 29, '07:00:00', '08:00:00'),
-(25, 8, 2, 53, '07:00:00', '08:00:00'),
-(26, 10, -1, 30, '07:00:00', '08:00:00'),
-(27, 10, -1, 31, '07:00:00', '08:00:00'),
-(28, 10, -1, 32, '07:00:00', '08:00:00'),
-(29, 10, -1, 33, '07:00:00', '08:00:00'),
-(30, 10, -1, 34, '07:00:00', '08:00:00'),
-(31, 10, -1, 35, '07:00:00', '08:00:00'),
-(32, 10, -1, 36, '07:00:00', '08:00:00'),
-(33, 10, -1, 37, '07:00:00', '08:00:00'),
-(34, 10, -1, 38, '07:00:00', '08:00:00'),
-(35, 10, -1, 39, '07:00:00', '08:00:00'),
-(36, 10, -1, 40, '07:00:00', '08:00:00'),
-(37, 10, 2, 54, '07:00:00', '08:00:00'),
-(38, 11, -1, 41, '07:00:00', '08:00:00'),
-(39, 11, -1, 42, '07:00:00', '08:00:00'),
-(40, 11, -1, 43, '07:00:00', '08:00:00'),
-(41, 11, -1, 44, '07:00:00', '08:00:00'),
-(42, 11, -1, 45, '07:00:00', '08:00:00'),
-(43, 11, -1, 46, '07:00:00', '08:00:00'),
-(44, 11, -1, 47, '07:00:00', '08:00:00'),
-(45, 11, -1, 48, '07:00:00', '08:00:00'),
-(46, 11, -1, 49, '07:00:00', '08:00:00'),
-(47, 11, -1, 50, '07:00:00', '08:00:00'),
-(48, 11, -1, 51, '07:00:00', '08:00:00'),
-(49, 11, -1, 55, '07:00:00', '08:00:00'),
-(50, 13, -1, 41, '07:00:00', '08:00:00'),
-(51, 13, -1, 42, '07:00:00', '08:00:00'),
-(52, 13, -1, 43, '07:00:00', '08:00:00'),
-(53, 13, -1, 44, '07:00:00', '08:00:00'),
-(54, 13, -1, 45, '07:00:00', '08:00:00'),
-(55, 13, -1, 46, '07:00:00', '08:00:00'),
-(56, 13, -1, 47, '07:00:00', '08:00:00'),
-(57, 13, -1, 48, '07:00:00', '08:00:00'),
-(58, 13, -1, 49, '07:00:00', '08:00:00'),
-(59, 13, -1, 50, '07:00:00', '08:00:00'),
-(60, 13, -1, 51, '07:00:00', '08:00:00'),
-(61, 13, -1, 55, '07:00:00', '08:00:00'),
-(62, 7, 2, 8, '07:00:00', '08:00:00'),
-(63, 7, 3, 10, '07:00:00', '08:00:00'),
-(64, 7, 2, 11, '07:00:00', '08:00:00'),
-(65, 7, 2, 12, '07:00:00', '08:00:00'),
-(66, 7, 2, 13, '07:00:00', '08:00:00'),
-(67, 7, 2, 14, '07:00:00', '08:00:00'),
-(68, 7, 2, 15, '07:00:00', '08:00:00'),
-(69, 7, 2, 16, '07:00:00', '08:00:00'),
-(70, 7, 2, 17, '07:00:00', '08:00:00'),
-(71, 7, 2, 18, '07:00:00', '08:00:00'),
-(72, 7, 2, 52, '07:00:00', '08:00:00'),
-(73, 9, -1, 60, '07:00:00', '08:00:00'),
-(86, 8, -1, 61, '07:00:00', '08:00:00'),
-(99, 10, -1, 62, '07:00:00', '08:00:00'),
-(112, 7, 2, 60, '07:00:00', '08:00:00'),
-(125, 14, -1, 8, '07:00:00', '08:00:00'),
-(126, 14, -1, 9, '07:00:00', '08:00:00'),
-(127, 14, -1, 10, '07:00:00', '08:00:00'),
-(128, 14, -1, 11, '07:00:00', '08:00:00'),
-(129, 14, -1, 12, '07:00:00', '08:00:00'),
-(130, 14, -1, 13, '07:00:00', '08:00:00'),
-(131, 14, -1, 14, '07:00:00', '08:00:00'),
-(132, 14, -1, 15, '07:00:00', '08:00:00'),
-(133, 14, -1, 16, '07:00:00', '08:00:00'),
-(134, 14, -1, 17, '07:00:00', '08:00:00'),
-(135, 14, -1, 18, '07:00:00', '08:00:00'),
-(136, 14, -1, 60, '07:00:00', '08:00:00'),
-(137, 14, 3, 52, '07:00:00', '08:00:00');
-
 -- --------------------------------------------------------
 
 --
@@ -1521,22 +1095,6 @@ CREATE TABLE `userdetails` (
   `minor` varchar(1000) NOT NULL DEFAULT 'MINOR',
   `managedSubjects` varchar(10000) NOT NULL DEFAULT 'NONE'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `userdetails`
---
-
-INSERT INTO `userdetails` (`id`, `userId`, `employeeNumber`, `fundSource`, `position`, `nature`, `degree`, `major`, `minor`, `managedSubjects`) VALUES
-(3, 1, 'emp', 'Fund', 'Pos', 'Nature\'s Spring Davao Branch', 'Deg', 'Majo', 'Min', '8:9:'),
-(4, 2, ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'NONE'),
-(5, 5, '12313153463', 'Fund Source', 'Master Teacher IV', 'Spring', 'BED', 'FILIPINO', 'ENGLISH', '8:19:30:41:'),
-(6, 3, ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'NONE'),
-(7, 4, ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'NONE'),
-(8, 6, ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'NONE'),
-(9, 7, '12315346-12312313', 'Funds', 'Master Teacher V', 'Nature', 'BEED', 'English', 'Filipino', 'NONE'),
-(10, 8, ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'NONE'),
-(11, 9, '32165465', 'FSDFG', 'FDFG', 'VXCV', 'XCVA', 'ASZ', 'ZXCZSD', '9:20:31:42:'),
-(13, 10, 'TIN NUMBER', 'FUND SOURCE', 'POSITION', 'NATURE', 'DEGREE', 'MAJOR', 'MINOR', 'NONE');
 
 -- --------------------------------------------------------
 
@@ -1574,7 +1132,7 @@ INSERT INTO `users` (`id`, `user_Lname`, `user_Fname`, `user_Mname`, `gender`, `
 (12, 'Minchin', 'Maria', 'Loti', 'Female', 'minchinxsarah', 'password', 4),
 (13, 'Mason', 'Alex', 'Joe', 'Male', 'thenumbers', 'password', 3),
 (14, 'Filonzo', 'Ferdinand', 'Wika', 'Male', 'ferdi', 'password', 2),
-(15, 'Englard', 'Edgar', 'Poe', 'Male', 'edgar', 'password', 2);
+(15, 'Englesias', 'Edgar', 'Poe', 'Male', 'edgar', 'password', 2);
 
 -- --------------------------------------------------------
 
@@ -2031,6 +1589,12 @@ ALTER TABLE `enrollment`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `enrollment_static`
+--
+ALTER TABLE `enrollment_static`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `finalgrades`
 --
 ALTER TABLE `finalgrades`
@@ -2040,6 +1604,12 @@ ALTER TABLE `finalgrades`
 -- Indexes for table `grades`
 --
 ALTER TABLE `grades`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `grades_static`
+--
+ALTER TABLE `grades_static`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2110,13 +1680,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `bmi`
 --
 ALTER TABLE `bmi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `bmichart_female`
@@ -2134,37 +1704,49 @@ ALTER TABLE `bmichart_male`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `booksissuedreturned`
 --
 ALTER TABLE `booksissuedreturned`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `booktemplates`
 --
 ALTER TABLE `booktemplates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `enrollment`
 --
 ALTER TABLE `enrollment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `enrollment_static`
+--
+ALTER TABLE `enrollment_static`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `finalgrades`
 --
 ALTER TABLE `finalgrades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `grades`
 --
 ALTER TABLE `grades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `grades_static`
+--
+ALTER TABLE `grades_static`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `hfachart_female`
@@ -2182,25 +1764,25 @@ ALTER TABLE `hfachart_male`
 -- AUTO_INCREMENT for table `loads`
 --
 ALTER TABLE `loads`
-  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `personalinfo`
 --
 ALTER TABLE `personalinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `subjects`
@@ -2212,13 +1794,13 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `teacherloads`
 --
 ALTER TABLE `teacherloads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `userdetails`
 --
 ALTER TABLE `userdetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
