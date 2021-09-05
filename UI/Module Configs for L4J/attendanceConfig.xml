@@ -2,8 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>D:\CBNHS System\Project Files\Attendance System Final\dist\Attendance_System_Final.jar</jar>
-  <outfile>D:\CBNHS System\Builds\modules\attendance.exe</outfile>
+  <jar>D:\Repositories\CBNHS-System\Project Files\Attendance System Final\dist\Attendance_System_Final.jar</jar>
+  <outfile>D:\Repositories\CBNHS-System\Builds\modules\attendance.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
@@ -13,7 +13,7 @@
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
-  <icon>D:\CBNHS System\Builds\modules\icons [temp]\icons8_calendar.ico</icon>
+  <icon>D:\Repositories\CBNHS-System\Builds\modules\icons [temp]\icons8_calendar.ico</icon>
   <singleInstance>
     <mutexName>hisrms_attendance</mutexName>
     <windowTitle>Attendance System</windowTitle>
@@ -35,7 +35,7 @@
     <runtimeBits>64/32</runtimeBits>
   </jre>
   <splash>
-    <file>E:\Splash Screens\splash_attendance.bmp</file>
+    <file>D:\Repositories\CBNHS-System\UI\Splash Screens\splash_attendance.bmp</file>
     <waitForWindow>true</waitForWindow>
     <timeout>60</timeout>
     <timeoutErr>true</timeoutErr>

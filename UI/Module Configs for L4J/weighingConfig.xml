@@ -2,8 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>D:\CBNHS System\Project Files\Weighing System Final\dist\Weighing_System_Final.jar</jar>
-  <outfile>D:\CBNHS System\Builds\modules\weighing.exe</outfile>
+  <jar>D:\Repositories\CBNHS-System\Project Files\Weighing System Final\dist\Weighing_System_Final.jar</jar>
+  <outfile>D:\Repositories\CBNHS-System\Builds\modules\weighing.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
@@ -13,7 +13,7 @@
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
-  <icon>D:\CBNHS System\Builds\modules\icons [temp]\icons8_scale.ico</icon>
+  <icon>D:\Repositories\CBNHS-System\Builds\modules\icons [temp]\icons8_scale.ico</icon>
   <singleInstance>
     <mutexName>hisrms_weighing</mutexName>
     <windowTitle>Weighing System</windowTitle>
@@ -35,7 +35,7 @@
     <runtimeBits>64/32</runtimeBits>
   </jre>
   <splash>
-    <file>E:\Splash Screens\splash_weighing.bmp</file>
+    <file>D:\Repositories\CBNHS-System\UI\Splash Screens\splash_weighing.bmp</file>
     <waitForWindow>true</waitForWindow>
     <timeout>60</timeout>
     <timeoutErr>true</timeoutErr>

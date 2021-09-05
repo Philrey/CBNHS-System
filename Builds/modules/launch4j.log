@@ -1,0 +1,277 @@
+
+
+Version:	3.14
+CmdLine:	D:\Repositories\CBNHS-System\Builds\modules\registration.exe --l4j-debug
+WOW64:		yes
+Create mutex:	hisrms_registration
+Working dir:	D:\Repositories\CBNHS-System\Builds\modules\.
+Java min ver:	1.000.000
+Java max ver:	1.009.009_009
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+32-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_291
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000_291
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.008.000_291 (64-bit)
+Launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe
+Launcher args:	-jar "D:\Repositories\CBNHS-System\Builds\modules\registration.exe"
+Args length:	67/32768 chars
+Exit code:	259
+
+
+Version:	3.14
+CmdLine:	D:\Repositories\CBNHS-System\Builds\modules\attendance.exe --l4j-debug
+WOW64:		yes
+Create mutex:	hisrms_attendance
+Working dir:	D:\Repositories\CBNHS-System\Builds\modules\.
+Java min ver:	1.000.000
+Java max ver:	1.009.009_009
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+32-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_291
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000_291
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.008.000_291 (64-bit)
+Main class:	mahPackage3.login
+Add classpath:	lib\KGradientPanel.jar
+Add classpath:	lib\java-json.jar
+Add classpath:	lib\AbsoluteLayout.jar
+Add classpath:	lib\jcalendar-1.4.jar
+Launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe
+Launcher args:	-classpath "D:\Repositories\CBNHS-System\Builds\modules\attendance.exe;lib\KGradientPanel.jar;lib\java-json.jar;lib\AbsoluteLayout.jar;lib\jcalendar-1.4.jar" mahPackage3.login
+Args length:	175/32768 chars
+Exit code:	259
+
+
+Version:	3.14
+CmdLine:	D:\Repositories\CBNHS-System\Builds\modules\bookKeeping.exe --l4j-debug
+WOW64:		yes
+Create mutex:	hisrms_book_keeping
+Working dir:	D:\Repositories\CBNHS-System\Builds\modules\.
+Java min ver:	1.008.000_000
+Java max ver:	1.015.000_000
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+32-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_291
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000_291
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.008.000_291 (64-bit)
+Main class:	mahPackage5.login
+Add classpath:	lib\AbsoluteLayout.jar
+Add classpath:	lib\java-json.jar
+Add classpath:	lib\KGradientPanel.jar
+Add classpath:	lib\jcalendar-1.4.jar
+Launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe
+Launcher args:	-classpath "D:\Repositories\CBNHS-System\Builds\modules\bookKeeping.exe;lib\AbsoluteLayout.jar;lib\java-json.jar;lib\KGradientPanel.jar;lib\jcalendar-1.4.jar" mahPackage5.login
+Args length:	176/32768 chars
+Exit code:	259
+
+
+Version:	3.14
+CmdLine:	D:\Repositories\CBNHS-System\Builds\modules\bookKeeping.exe --l4j-debug
+WOW64:		yes
+Create mutex:	hisrms_book_keeping
+Working dir:	D:\Repositories\CBNHS-System\Builds\modules\.
+Java min ver:	1.008.000_000
+Java max ver:	1.015.000_000
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+32-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_291
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000_291
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.008.000_291 (64-bit)
+Main class:	mahPackage5.login
+Add classpath:	lib\AbsoluteLayout.jar
+Add classpath:	lib\java-json.jar
+Add classpath:	lib\KGradientPanel.jar
+Add classpath:	lib\jcalendar-1.4.jar
+Launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe
+Launcher args:	-classpath "D:\Repositories\CBNHS-System\Builds\modules\bookKeeping.exe;lib\AbsoluteLayout.jar;lib\java-json.jar;lib\KGradientPanel.jar;lib\jcalendar-1.4.jar" mahPackage5.login
+Args length:	176/32768 chars
+Exit code:	259
+
+
+Version:	3.14
+CmdLine:	D:\Repositories\CBNHS-System\Builds\modules\grading.exe --l4j-debug
+WOW64:		yes
+Create mutex:	hisrms_grading
+Working dir:	D:\Repositories\CBNHS-System\Builds\modules\.
+Java min ver:	1.000.000
+Java max ver:	1.009.009_009
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+32-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_291
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000_291
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.008.000_291 (64-bit)
+Main class:	mahPackage4.login
+Add classpath:	lib\KGradientPanel.jar
+Add classpath:	lib\java-json.jar
+Add classpath:	lib\AbsoluteLayout.jar
+Add classpath:	lib\jcalendar-1.4.jar
+Launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe
+Launcher args:	-classpath "D:\Repositories\CBNHS-System\Builds\modules\grading.exe;lib\KGradientPanel.jar;lib\java-json.jar;lib\AbsoluteLayout.jar;lib\jcalendar-1.4.jar" mahPackage4.login
+Args length:	172/32768 chars
+Exit code:	259
+
+
+Version:	3.14
+CmdLine:	D:\Repositories\CBNHS-System\Builds\modules\grading.exe --l4j-debug
+WOW64:		yes
+Create mutex:	hisrms_grading
+Working dir:	D:\Repositories\CBNHS-System\Builds\modules\.
+Java min ver:	1.000.000
+Java max ver:	1.009.009_009
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+32-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_291
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000_291
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.008.000_291 (64-bit)
+Main class:	mahPackage4.login
+Add classpath:	lib\KGradientPanel.jar
+Add classpath:	lib\java-json.jar
+Add classpath:	lib\AbsoluteLayout.jar
+Add classpath:	lib\jcalendar-1.4.jar
+Launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe
+Launcher args:	-classpath "D:\Repositories\CBNHS-System\Builds\modules\grading.exe;lib\KGradientPanel.jar;lib\java-json.jar;lib\AbsoluteLayout.jar;lib\jcalendar-1.4.jar" mahPackage4.login
+Args length:	172/32768 chars
+Exit code:	259
+
+
+Version:	3.14
+CmdLine:	D:\Repositories\CBNHS-System\Builds\modules\grading.exe --l4j-debug
+WOW64:		yes
+Create mutex:	hisrms_grading
+Working dir:	D:\Repositories\CBNHS-System\Builds\modules\.
+Java min ver:	1.000.000
+Java max ver:	1.009.009_009
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+32-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_291
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000_291
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.008.000_291 (64-bit)
+Main class:	mahPackage4.login
+Add classpath:	lib\KGradientPanel.jar
+Add classpath:	lib\java-json.jar
+Add classpath:	lib\AbsoluteLayout.jar
+Add classpath:	lib\jcalendar-1.4.jar
+Launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe
+Launcher args:	-classpath "D:\Repositories\CBNHS-System\Builds\modules\grading.exe;lib\KGradientPanel.jar;lib\java-json.jar;lib\AbsoluteLayout.jar;lib\jcalendar-1.4.jar" mahPackage4.login
+Args length:	172/32768 chars
+Exit code:	259
+
+
+Version:	3.14
+CmdLine:	D:\Repositories\CBNHS-System\Builds\modules\forms.exe --l4j-debug
+WOW64:		yes
+Create mutex:	hisrms_forms
+Working dir:	D:\Repositories\CBNHS-System\Builds\modules\.
+Java min ver:	1.000.000
+Java max ver:	1.009.009_009
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+32-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_291
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000_291
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.008.000_291 (64-bit)
+Main class:	mahPackage7.formsLogin
+Add classpath:	lib\java-json.jar
+Add classpath:	lib\KGradientPanel.jar
+Add classpath:	lib\jcalendar-1.4.jar
+Add classpath:	lib\AbsoluteLayout.jar
+Add classpath:	lib\poi-4.1.2.jar
+Add classpath:	lib\poi-ooxml-4.1.2.jar
+Add classpath:	lib\poi-ooxml-schemas-4.1.2.jar
+Add classpath:	lib\commons-collections4-4.3.jar
+Add classpath:	lib\commons-compress-1.18.jar
+Add classpath:	lib\dom4j-1.6.jar
+Add classpath:	lib\xmlbeans-3.1.0.jar
+Launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe
+Launcher args:	-classpath "D:\Repositories\CBNHS-System\Builds\modules\forms.exe;lib\java-json.jar;lib\KGradientPanel.jar;lib\jcalendar-1.4.jar;lib\AbsoluteLayout.jar;lib\poi-4.1.2.jar;lib\poi-ooxml-4.1.2.jar;lib\poi-ooxml-schemas-4.1.2.jar;lib\commons-collections4-4.3.jar;lib\commons-compress-1.18.jar;lib\dom4j-1.6.jar;lib\xmlbeans-3.1.0.jar" mahPackage7.formsLogin
+Args length:	353/32768 chars
+Exit code:	0
+
+
+Version:	3.14
+CmdLine:	D:\Repositories\CBNHS-System\Builds\modules\forms.exe --l4j-debug
+WOW64:		yes
+Create mutex:	hisrms_forms
+Working dir:	D:\Repositories\CBNHS-System\Builds\modules\.
+Java min ver:	1.000.000
+Java max ver:	1.009.009_009
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+32-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_291
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000_291
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.008.000_291 (64-bit)
+Main class:	mahPackage7.formsLogin
+Add classpath:	lib\java-json.jar
+Add classpath:	lib\KGradientPanel.jar
+Add classpath:	lib\jcalendar-1.4.jar
+Add classpath:	lib\AbsoluteLayout.jar
+Add classpath:	lib\poi-4.1.2.jar
+Add classpath:	lib\poi-ooxml-4.1.2.jar
+Add classpath:	lib\poi-ooxml-schemas-4.1.2.jar
+Add classpath:	lib\commons-collections4-4.3.jar
+Add classpath:	lib\commons-compress-1.18.jar
+Add classpath:	lib\dom4j-1.6.jar
+Add classpath:	lib\xmlbeans-3.1.0.jar
+Launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe
+Launcher args:	-classpath "D:\Repositories\CBNHS-System\Builds\modules\forms.exe;lib\java-json.jar;lib\KGradientPanel.jar;lib\jcalendar-1.4.jar;lib\AbsoluteLayout.jar;lib\poi-4.1.2.jar;lib\poi-ooxml-4.1.2.jar;lib\poi-ooxml-schemas-4.1.2.jar;lib\commons-collections4-4.3.jar;lib\commons-compress-1.18.jar;lib\dom4j-1.6.jar;lib\xmlbeans-3.1.0.jar" mahPackage7.formsLogin
+Args length:	353/32768 chars
+Exit code:	259
