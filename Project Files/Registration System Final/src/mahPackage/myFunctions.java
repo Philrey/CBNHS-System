@@ -540,7 +540,7 @@ public class myFunctions {
                 cLine = "";
                 
                 //Display column index & name
-                if(myVariables.isDebugModeOn()){
+                if(!myVariables.isDebugModeOn()){
                     for(int n=0;n<sample.names().length();n++){
                         System.out.println(n+" "+sample.names().getString(n));
                     }

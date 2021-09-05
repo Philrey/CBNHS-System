@@ -1832,19 +1832,23 @@ public class dashBoard extends javax.swing.JFrame {
         String toSearch = my.convertEscapeCharacters(tfSearchStudent1.getText().trim());
         String where = "";
         
-        if(toSearch.contains(",")){
+        if(myVariables.getAccessLevel() < 5){
             String additionalQuery;
-            additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Middle Name","LIKE,LIKE,LIKE",toSearch);
+            if(toSearch.contains(",")){
+                additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
+            }else{
+                additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch+",");
+            }
             if(additionalQuery == null){
                 return;
             }
-
-            where+="WHERE ("+additionalQuery+")";
+            where = "WHERE (lrn='"+toSearch+"' OR "+additionalQuery+") AND dep_type='JHS'";
+            
+            my.searchItem(where, studentTable, 0, new int [] {6}, new int [] {2,3,4}, true, true, null, tfSearchStudent1, false);            
         }else{
-            where+="WHERE (lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%')";
+            where = "WHERE (lrn= '"+toSearch+"' OR lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%') and dep_type='JHS'";
+            my.searchItem(where, studentTable, 0, new int [] {6}, new int [] {2,3,4}, true, true, null, tfSearchStudent1, true);
         }
-        
-        my.searchItem(where, studentTable, 0, new int [] {6}, new int [] {2,3,4}, true, true, null, tfSearchStudent1, true);
     }//GEN-LAST:event_searchStudentToEnrollHandler
 
     private void searchLoadHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchLoadHandler

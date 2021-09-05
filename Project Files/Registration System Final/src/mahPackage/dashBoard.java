@@ -413,13 +413,10 @@ public class dashBoard extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(studentTable);
         if (studentTable.getColumnModel().getColumnCount() > 0) {
-            studentTable.getColumnModel().getColumn(0).setHeaderValue("ID (H)");
             studentTable.getColumnModel().getColumn(1).setPreferredWidth(120);
             studentTable.getColumnModel().getColumn(2).setPreferredWidth(150);
-            studentTable.getColumnModel().getColumn(2).setHeaderValue("Last Name");
-            studentTable.getColumnModel().getColumn(3).setPreferredWidth(300);
+            studentTable.getColumnModel().getColumn(3).setPreferredWidth(200);
             studentTable.getColumnModel().getColumn(4).setPreferredWidth(150);
-            studentTable.getColumnModel().getColumn(4).setHeaderValue("Middle Name");
             studentTable.getColumnModel().getColumn(5).setPreferredWidth(100);
             studentTable.getColumnModel().getColumn(6).setPreferredWidth(120);
             studentTable.getColumnModel().getColumn(7).setPreferredWidth(100);
@@ -3505,6 +3502,7 @@ public class dashBoard extends javax.swing.JFrame {
             my.convertEscapeCharacters(tfSchoolId.getText().trim()).length() > 0 ?my.convertEscapeCharacters(tfSchoolId.getText().trim()) : " ",
             my.convertEscapeCharacters(tfSchoolName.getText().trim()).length() > 0 ?my.convertEscapeCharacters(tfSchoolName.getText().trim()) : " ",
             my.convertEscapeCharacters(tfSchoolAddress.getText().trim()).length() > 0 ?my.convertEscapeCharacters(tfSchoolAddress.getText().trim()) : " ",
+            "JHS"
         };
         
         //Validate Fields
@@ -3544,7 +3542,7 @@ public class dashBoard extends javax.swing.JFrame {
         }
         
         //Check for duplicate LRN
-        String [] result = my.return_values("*", "students", "WHERE lrn = '"+fields[4]+"'", myVariables.getStudentsOrder());
+        String [] result = my.return_values("*", "students", "WHERE lrn = '"+fields[4]+"' AND dep_type='JHS'", myVariables.getStudentsOrder());
         
         if(result != null){
             String student[] = my.toNameFormat(result[0], new int[] {2,3,4}).split("@@");
@@ -3553,7 +3551,7 @@ public class dashBoard extends javax.swing.JFrame {
             return;
         }
         //Add
-        if(my.add_values("students", "id,fName,mName,lName,lrn,sex,inGr,curGrLvl,schoolId,schoolName,schoolAddress", fields)){
+        if(my.add_values("students", "id,fName,mName,lName,lrn,sex,inGr,curGrLvl,schoolId,schoolName,schoolAddress,dep_type", fields)){
             my.showMessage("Student added successfully", JOptionPane.INFORMATION_MESSAGE);
         }else{
             my.showMessage("Adding Failed. Make sure you are connected to the School Network.", JOptionPane.ERROR_MESSAGE);
@@ -3565,22 +3563,23 @@ public class dashBoard extends javax.swing.JFrame {
 
     private void searchStudentHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentHandler
         String toSearch = my.convertEscapeCharacters(tfSearchStudent.getText().trim());
-        String where = "WHERE lrn='"+toSearch+"' ";
+        String where = "WHERE (lrn='"+toSearch+"' ";
         
         if(myVariables.getAccessLevel() <5){
+            String additionalQuery;
             if(toSearch.contains(",")){
-                String additionalQuery;
                 additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
-                if(additionalQuery == null){
-                    return;
-                }
-
-                where+="OR ("+additionalQuery+")";
+            }else{
+                additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch+",");
             }
+            if(additionalQuery == null){
+                return;
+            }
+            where+="OR ("+additionalQuery+")) AND dep_type='JHS'";
 
             my.searchItem(where, studentTable, 0, null, null, false, true, lbSearchResult, tfSearchStudent,false);
         }else{
-            where = "WHERE lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%'";
+            where = "WHERE (lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%') AND dep_type='JHS'";
             my.searchItem(where, studentTable, 0, null, null, false, true, lbSearchResult, tfSearchStudent,true);
         }
         clearAddStudentFields();
@@ -3667,22 +3666,23 @@ public class dashBoard extends javax.swing.JFrame {
 
     private void searchStudentForPrsnlInfHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentForPrsnlInfHandler
         String toSearch = my.convertEscapeCharacters(tfSearchStudent1.getText().trim());
-        String where = "WHERE lrn='"+toSearch+"' ";
+        String where = "WHERE (lrn='"+toSearch+"' ";
         
         if(myVariables.getAccessLevel() <5){
+            String additionalQuery;
             if(toSearch.contains(",")){
-                String additionalQuery;
                 additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
-                if(additionalQuery == null){
-                    return;
-                }
-
-                where+="OR ("+additionalQuery+")";
+            }else{
+                additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch+",");
             }
+            if(additionalQuery == null){
+                return;
+            }
+            where+="OR ("+additionalQuery+")) AND dep_type='JHS'";
 
             my.searchItem(where, studentTable1, 0, null, null, false, true, lbSearchResult1, tfSearchStudent1,false);
         }else{
-            where = "WHERE lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%'";
+            where = "WHERE (lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%') AND dep_type='JHS'";
             my.searchItem(where, studentTable1, 0, null, null, false, true, lbSearchResult1, tfSearchStudent1,true);
         }
         enableDisablePersonalInfoFields(false, true);
