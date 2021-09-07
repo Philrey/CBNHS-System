@@ -209,7 +209,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
                     Thread.sleep(threadDelay);
                     lbLoadingMessage.setText("Connecting to Database...");
 
-                    String [] attendanceResults = return_values("*", "attendance", where, myVariables.getAttendanceOrder());
+                    String [] attendanceResults = my.return_values("*", "attendance", where, myVariables.getAttendanceOrder());
 
                     Thread.sleep(pauseDelay);
                     lbLoadingMessage.setText("Loading Attendance...");
@@ -944,7 +944,7 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         */
         lbLoadingMessage.setText("Determining Days...Connecting to Database");
         
-        String [] result = return_values("getStartingDay('"+dateT+"+') as 'startingDay',getLastDay('"+dateT+"') as 'getLastDay'", "", "", new int [] {0,1});
+        String [] result = my.return_values("getStartingDay('"+dateT+"+') as 'startingDay',getLastDay('"+dateT+"') as 'getLastDay'", "", "", new int [] {0,1});
         String [] dateStrings = null;
         if(result != null){
             //Convert day name to number
@@ -1019,87 +1019,6 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         }else{
             
         }
-        return null;
-    }
-    public String [] return_values(String select,String from,String where,int [] order){
-        String [] lines;
-        String cLine;
-        
-        try {
-            String url = myVariables.getIpAddress()+"returnValues.php?select="+select+"&from="+from+"&where="+where;
-            //System.out.println(url);
-            url = url.replace("%", "%25");
-            url = url.replace(" ", "%20");
-            url = url.replace("Ñ", "%25C3%2591");
-            url = url.replace("ñ", "%25C3%25B1");
-            
-            URL obj = new URL(url);
-            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-            // optional default is GET
-            con.setRequestMethod("GET");
-            //add request header
-            con.setRequestProperty("User-Agent", "Mozilla/5.0");
-            int responseCode = con.getResponseCode();
-            System.out.println("\nSending 'GET' request to URL : " + url);
-            System.out.println("Response Code : " + responseCode);
-            
-            if(responseCode != 200){
-                JOptionPane.showMessageDialog(null, "Server Error. Please check your connection.");
-                return null;
-            }
-            
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-            while ((inputLine = in.readLine()) != null) {
-               response.append(inputLine);
-            }
-            in.close();
-            //print in String
-            //System.out.println(response.toString());
-            
-
-            //Read JSON response and print
-            JSONObject myResponse = new JSONObject(response.toString());
-            JSONArray res = myResponse.getJSONArray("result");
-            
-            //Get column names
-            
-            
-            
-            if(res.length() > 0){
-                //Get column names
-                JSONObject sample = res.getJSONObject(0);
-                cLine = "";
-                
-                //Display column index & name
-                for(int n=0;n<sample.names().length();n++){
-                    System.out.println(n+" "+sample.names().getString(n));
-                }
-                
-                //Get values based on column name keys
-                for(int n=0;n<res.length();n++){
-                    JSONObject row = res.getJSONObject(n);
-                    String temp = "";
-                    for(int x=0;x<order.length;x++){
-                        //System.err.println(row.names().getString(order[x]));
-                        temp+=row.getString(row.names().getString(order[x]))+"@@";
-                    }
-                    cLine+=temp+"//";
-                }
-                cLine = cLine.replace("%C3%91", "Ñ");
-                cLine = cLine.replace("%C3%B1", "ñ");
-                
-                lines = cLine.split("//");
-                return lines;
-            }else{
-                System.err.println("No result");
-            }
-        } catch (Exception e) {
-            System.err.println("Exception Found "+e.getLocalizedMessage());
-        }
-        
         return null;
     }
     //</editor-fold>
