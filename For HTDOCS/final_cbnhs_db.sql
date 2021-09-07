@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2021 at 05:40 AM
+-- Generation Time: Sep 07, 2021 at 06:33 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -359,8 +359,17 @@ CREATE TABLE `enrollment` (
   `studentId` int(11) NOT NULL,
   `sectionId` int(11) NOT NULL,
   `dateEnrolled` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `remarks` varchar(1000) NOT NULL DEFAULT ' ! !'
+  `remarks` varchar(1000) NOT NULL DEFAULT ' ! !',
+  `dep_type` varchar(10) NOT NULL DEFAULT 'JHS'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `enrollment`
+--
+
+INSERT INTO `enrollment` (`id`, `studentId`, `sectionId`, `dateEnrolled`, `remarks`, `dep_type`) VALUES
+(1, 1, 1, '2021-09-06 19:57:19', 'T/I: 2021-09-06!T/I: 2021-09-06!', 'JHS'),
+(2, 2, 2, '2021-09-06 21:07:52', ' ! !', 'SHS');
 
 -- --------------------------------------------------------
 
@@ -382,7 +391,8 @@ CREATE TABLE `enrollment_static` (
   `division` varchar(500) NOT NULL,
   `region` varchar(100) NOT NULL,
   `general_average` varchar(10) NOT NULL,
-  `gen_ave_remarks` varchar(100) NOT NULL
+  `gen_ave_remarks` varchar(100) NOT NULL,
+  `dep_type` varchar(10) NOT NULL DEFAULT 'JHS'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -918,8 +928,17 @@ CREATE TABLE `loads` (
   `a_id` int(11) NOT NULL,
   `b_loadName` varchar(200) NOT NULL,
   `c_gradeLevel` int(11) NOT NULL,
-  `d_subjectsContained` varchar(500) NOT NULL DEFAULT ''
+  `d_subjectsContained` varchar(500) NOT NULL DEFAULT '',
+  `dep_type` varchar(10) NOT NULL DEFAULT 'JHS'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loads`
+--
+
+INSERT INTO `loads` (`a_id`, `b_loadName`, `c_gradeLevel`, `d_subjectsContained`, `dep_type`) VALUES
+(1, 'K12 - Grade 7', 7, '8:9:10:11:12:13:14:60:15:16:17:18:52:', 'JHS'),
+(2, 'STEM - 11', 11, '', 'SHS');
 
 -- --------------------------------------------------------
 
@@ -959,8 +978,17 @@ CREATE TABLE `sections` (
   `adviserId` int(11) NOT NULL,
   `loadId` int(11) NOT NULL,
   `bookTemplateId` int(11) NOT NULL DEFAULT '-1',
-  `schoolYear` int(11) NOT NULL
+  `schoolYear` int(11) NOT NULL,
+  `dep_type` varchar(10) NOT NULL DEFAULT 'JHS'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sections`
+--
+
+INSERT INTO `sections` (`id`, `sectionName`, `adviserId`, `loadId`, `bookTemplateId`, `schoolYear`, `dep_type`) VALUES
+(1, 'Grade 7 - Honesto', 2, 1, -1, 2021, 'JHS'),
+(2, 'Grade 11 - SHS Test', 1, 2, -1, 2021, 'SHS');
 
 -- --------------------------------------------------------
 
@@ -988,8 +1016,8 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `lrn`, `lName`, `fName`, `mName`, `sex`, `inGr`, `curGrLvl`, `schoolId`, `schoolName`, `schoolAddress`, `dep_type`) VALUES
-(1, '123456789012', 'Paderogao', 'Phil Rey', 'Estrella', 'Male', 90.25, 0, '123456', 'Gregorio Moralizon Elementary School - I', 'Manay, Davao Oriental', 'JHS'),
-(2, '123456789013', 'Chan', 'Jose', 'Marie', 'Female', 90, 0, '1234567', 'Rizal Elementary School', 'Dimakita Island', 'SHS');
+(1, '123456789012', 'Paderogao', 'Phil Rey', 'Estrella', 'Male', 90.25, 7, '123456', 'Gregorio Moralizon Elementary School - I', 'Manay, Davao Oriental', 'JHS'),
+(2, '123456789013', 'Chan', 'Jose', 'Marie', 'Female', 90, 11, '1234567', 'Rizal Elementary School', 'Dimakita Island', 'SHS');
 
 -- --------------------------------------------------------
 
@@ -1001,66 +1029,68 @@ CREATE TABLE `subjects` (
   `id` int(11) NOT NULL,
   `subjectCode` varchar(200) NOT NULL,
   `description` varchar(500) NOT NULL,
-  `gradeLevel` int(11) NOT NULL
+  `gradeLevel` int(11) NOT NULL,
+  `dep_type` varchar(10) NOT NULL DEFAULT 'JHS'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`id`, `subjectCode`, `description`, `gradeLevel`) VALUES
-(8, 'FIL7', 'Filipino 7', 7),
-(9, 'ENG7', 'English 7', 7),
-(10, 'MATH7', 'Mathematics 7', 7),
-(11, 'SCI7', 'Science 7', 7),
-(12, 'AP7', 'Araling Panlipunan 7', 7),
-(13, 'ESP7', 'Edukasyon sa Pagpapakatao 7', 7),
-(14, 'TLE7', 'Technology and Livelihood Education 7', 7),
-(15, 'MUS7', 'Music 7', 7),
-(16, 'ART7', 'Arts 7', 7),
-(17, 'PE7', 'Physical Education 7', 7),
-(18, 'HLT7', 'Health 7', 7),
-(19, 'FIL8', 'Filipino 8', 8),
-(20, 'ENG8', 'English 8', 8),
-(21, 'MATH8', 'Mathematics 8', 8),
-(22, 'SCI8', 'Science 8', 8),
-(23, 'AP8', 'Araling Panlipunan 8', 8),
-(24, 'ESP8', 'Edukasyon sa Pagpapakatao 8', 8),
-(25, 'TLE8', 'Technology and Livelihood Education', 8),
-(26, 'MUS8', 'Music 8', 8),
-(27, 'ART8', 'Arts 8', 8),
-(28, 'PE8', 'Physical Education 8', 8),
-(29, 'HLT8', 'Health 8', 8),
-(30, 'FIL9', 'Filipino 9', 9),
-(31, 'ENG9', 'English 9', 9),
-(32, 'MATH9', 'Mathematics 9', 9),
-(33, 'SCI9', 'Science 9', 9),
-(34, 'AP9', 'Araling Panlipunan 9', 9),
-(35, 'ESP9', 'Edukasyon sa Pagpapakatao 9', 9),
-(36, 'TLE9', 'Technology and Livelihood Education 9', 9),
-(37, 'MUS9', 'Music 9', 9),
-(38, 'ART9', 'Arts 9', 9),
-(39, 'PE9', 'Physical Education 9', 9),
-(40, 'HLT9', 'Health 9', 9),
-(41, 'FIL10', 'Filipino 10', 10),
-(42, 'ENG10', 'English 10', 10),
-(43, 'MATH10', 'Mathematics 10', 10),
-(44, 'SCI10', 'Science 10', 10),
-(45, 'AP10', 'Araling Panlipunan 10', 10),
-(46, 'ESP10', 'Edukasyon sa Pagpapakatao 10', 10),
-(47, 'TLE10', 'Technology and Livelihood Education 10', 10),
-(48, 'MUS10', 'Music 10', 10),
-(49, 'ART10', 'Arts 10', 10),
-(50, 'PE10', 'Physical Education 10', 10),
-(51, 'HLT10', 'Health 10', 10),
-(52, 'ADV7', 'Advisory 7', 7),
-(53, 'ADV8', 'Advisory 8', 8),
-(54, 'ADV9', 'Advisory 9', 9),
-(55, 'ADV10', 'Advisory 10', 10),
-(60, 'MPH7', 'MAPEH 7', 7),
-(61, 'MPH8', 'MAPEH 8', 8),
-(62, 'MPH9', 'MAPEH 9', 9),
-(63, 'MPH10', 'MAPEH 10', 10);
+INSERT INTO `subjects` (`id`, `subjectCode`, `description`, `gradeLevel`, `dep_type`) VALUES
+(8, 'FIL7', 'Filipino 7', 7, 'JHS'),
+(9, 'ENG7', 'English 7', 7, 'JHS'),
+(10, 'MATH7', 'Mathematics 7', 7, 'JHS'),
+(11, 'SCI7', 'Science 7', 7, 'JHS'),
+(12, 'AP7', 'Araling Panlipunan 7', 7, 'JHS'),
+(13, 'ESP7', 'Edukasyon sa Pagpapakatao 7', 7, 'JHS'),
+(14, 'TLE7', 'Technology and Livelihood Education 7', 7, 'JHS'),
+(15, 'MUS7', 'Music 7', 7, 'JHS'),
+(16, 'ART7', 'Arts 7', 7, 'JHS'),
+(17, 'PE7', 'Physical Education 7', 7, 'JHS'),
+(18, 'HLT7', 'Health 7', 7, 'JHS'),
+(19, 'FIL8', 'Filipino 8', 8, 'JHS'),
+(20, 'ENG8', 'English 8', 8, 'JHS'),
+(21, 'MATH8', 'Mathematics 8', 8, 'JHS'),
+(22, 'SCI8', 'Science 8', 8, 'JHS'),
+(23, 'AP8', 'Araling Panlipunan 8', 8, 'JHS'),
+(24, 'ESP8', 'Edukasyon sa Pagpapakatao 8', 8, 'JHS'),
+(25, 'TLE8', 'Technology and Livelihood Education', 8, 'JHS'),
+(26, 'MUS8', 'Music 8', 8, 'JHS'),
+(27, 'ART8', 'Arts 8', 8, 'JHS'),
+(28, 'PE8', 'Physical Education 8', 8, 'JHS'),
+(29, 'HLT8', 'Health 8', 8, 'JHS'),
+(30, 'FIL9', 'Filipino 9', 9, 'JHS'),
+(31, 'ENG9', 'English 9', 9, 'JHS'),
+(32, 'MATH9', 'Mathematics 9', 9, 'JHS'),
+(33, 'SCI9', 'Science 9', 9, 'JHS'),
+(34, 'AP9', 'Araling Panlipunan 9', 9, 'JHS'),
+(35, 'ESP9', 'Edukasyon sa Pagpapakatao 9', 9, 'JHS'),
+(36, 'TLE9', 'Technology and Livelihood Education 9', 9, 'JHS'),
+(37, 'MUS9', 'Music 9', 9, 'JHS'),
+(38, 'ART9', 'Arts 9', 9, 'JHS'),
+(39, 'PE9', 'Physical Education 9', 9, 'JHS'),
+(40, 'HLT9', 'Health 9', 9, 'JHS'),
+(41, 'FIL10', 'Filipino 10', 10, 'JHS'),
+(42, 'ENG10', 'English 10', 10, 'JHS'),
+(43, 'MATH10', 'Mathematics 10', 10, 'JHS'),
+(44, 'SCI10', 'Science 10', 10, 'JHS'),
+(45, 'AP10', 'Araling Panlipunan 10', 10, 'JHS'),
+(46, 'ESP10', 'Edukasyon sa Pagpapakatao 10', 10, 'JHS'),
+(47, 'TLE10', 'Technology and Livelihood Education 10', 10, 'JHS'),
+(48, 'MUS10', 'Music 10', 10, 'JHS'),
+(49, 'ART10', 'Arts 10', 10, 'JHS'),
+(50, 'PE10', 'Physical Education 10', 10, 'JHS'),
+(51, 'HLT10', 'Health 10', 10, 'JHS'),
+(52, 'ADV7', 'Advisory 7', 7, 'JHS'),
+(53, 'ADV8', 'Advisory 8', 8, 'JHS'),
+(54, 'ADV9', 'Advisory 9', 9, 'JHS'),
+(55, 'ADV10', 'Advisory 10', 10, 'JHS'),
+(60, 'MPH7', 'MAPEH 7', 7, 'JHS'),
+(61, 'MPH8', 'MAPEH 8', 8, 'JHS'),
+(62, 'MPH9', 'MAPEH 9', 9, 'JHS'),
+(63, 'MPH10', 'MAPEH 10', 10, 'JHS'),
+(64, 'PRC11', 'Pre Calculus', 11, 'SHS');
 
 -- --------------------------------------------------------
 
@@ -1076,6 +1106,25 @@ CREATE TABLE `teacherloads` (
   `timeStart` time NOT NULL DEFAULT '07:00:00',
   `timeEnd` time NOT NULL DEFAULT '08:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `teacherloads`
+--
+
+INSERT INTO `teacherloads` (`id`, `sectionId`, `teacherId`, `subjectId`, `timeStart`, `timeEnd`) VALUES
+(1, 1, 2, 8, '07:00:00', '08:00:00'),
+(2, 1, -1, 9, '07:00:00', '08:00:00'),
+(3, 1, -1, 10, '07:00:00', '08:00:00'),
+(4, 1, -1, 11, '07:00:00', '08:00:00'),
+(5, 1, -1, 12, '07:00:00', '08:00:00'),
+(6, 1, -1, 13, '07:00:00', '08:00:00'),
+(7, 1, -1, 14, '07:00:00', '08:00:00'),
+(8, 1, -1, 60, '07:00:00', '08:00:00'),
+(9, 1, -1, 15, '07:00:00', '08:00:00'),
+(10, 1, -1, 16, '07:00:00', '08:00:00'),
+(11, 1, -1, 17, '07:00:00', '08:00:00'),
+(12, 1, -1, 18, '07:00:00', '08:00:00'),
+(13, 1, 2, 52, '07:00:00', '08:00:00');
 
 -- --------------------------------------------------------
 
@@ -1110,29 +1159,31 @@ CREATE TABLE `users` (
   `gender` varchar(12) NOT NULL,
   `user_name` varchar(200) NOT NULL,
   `user_password` varchar(200) NOT NULL,
-  `user_level` int(11) NOT NULL
+  `user_level` int(11) NOT NULL,
+  `dep_type` varchar(10) NOT NULL DEFAULT 'JHS'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user_Lname`, `user_Fname`, `user_Mname`, `gender`, `user_name`, `user_password`, `user_level`) VALUES
-(1, 'Paderogao', 'Phil Rey', 'Estrella%C3%91', 'Male', 'admin', 'password', 5),
-(2, 'Furahashi', 'Fumino', 'Ona', 'Female', 'benkyu', 'password', 1),
-(3, 'Paderogao', 'Kerby', 'Estrella', 'Female', 'kerbs', 'pass', 1),
-(4, 'Dela Cruz', 'Juan', 'Ponciano', 'Male', 'registrar', 'password', 4),
-(5, 'Rizal', 'Jose', 'Protacio', 'Male', 'depheadfil7', 'password', 2),
-(6, 'Ramsey', 'Gordon', 'Grant', 'Male', 'currhead', 'password', 3),
-(7, 'Sins', 'Jhonny', 'Marcus', 'Male', 'john', 'password', 4),
-(8, 'Bulahan', 'Harris', 'Kay', 'Male', 'hbulahan', 'password1', 3),
-(9, 'Rezane', 'Warren', 'Dunno', 'Male', 'wrezxaneDH', '1234567', 2),
-(10, 'Lname', 'Fname', 'Mname', 'Female', 'admin2', 'password', 3),
-(11, 'Lname2', 'Fname2', 'Mname2', 'Female', 'admin3', 'password', 2),
-(12, 'Minchin', 'Maria', 'Loti', 'Female', 'minchinxsarah', 'password', 4),
-(13, 'Mason', 'Alex', 'Joe', 'Male', 'thenumbers', 'password', 3),
-(14, 'Filonzo', 'Ferdinand', 'Wika', 'Male', 'ferdi', 'password', 2),
-(15, 'Englesias', 'Edgar', 'Poe', 'Male', 'edgar', 'password', 2);
+INSERT INTO `users` (`id`, `user_Lname`, `user_Fname`, `user_Mname`, `gender`, `user_name`, `user_password`, `user_level`, `dep_type`) VALUES
+(1, 'Paderogao', 'Phil Rey', 'Estrella%C3%91', 'Male', 'admin', 'password', 5, 'JHS'),
+(2, 'Furahashi', 'Fumino', 'Ona', 'Female', 'benkyu', 'password', 1, 'JHS'),
+(3, 'Paderogao', 'Kerby', 'Estrella', 'Female', 'kerbs', 'pass', 1, 'JHS'),
+(4, 'Dela Cruz', 'Juan', 'Ponciano', 'Male', 'registrar', 'password', 4, 'JHS'),
+(5, 'Rizal', 'Jose', 'Protacio', 'Male', 'depheadfil7', 'password', 2, 'JHS'),
+(6, 'Ramsey', 'Gordon', 'Grant', 'Male', 'currhead', 'password', 3, 'JHS'),
+(7, 'Sins', 'Jhonny', 'Marcus', 'Male', 'john', 'password', 4, 'JHS'),
+(8, 'Bulahan', 'Harris', 'Kay', 'Male', 'hbulahan', 'password1', 3, 'JHS'),
+(9, 'Rezane', 'Warren', 'Dunno', 'Male', 'wrezxaneDH', '1234567', 2, 'JHS'),
+(10, 'Lname', 'Fname', 'Mname', 'Female', 'admin2', 'password', 3, 'JHS'),
+(11, 'Lname2', 'Fname2', 'Mname2', 'Female', 'admin3', 'password', 2, 'JHS'),
+(12, 'Minchin', 'Maria', 'Loti', 'Female', 'minchinxsarah', 'password', 4, 'JHS'),
+(13, 'Mason', 'Alex', 'Joe', 'Male', 'thenumbers', 'password', 3, 'JHS'),
+(14, 'Filonzo', 'Ferdinand', 'Wika', 'Male', 'ferdi', 'password', 2, 'JHS'),
+(15, 'Englesias', 'Edgar', 'Poe', 'Male', 'edgar', 'password', 2, 'JHS'),
+(16, 'Paderogao', 'Phil Rey', 'Estrella', 'Male', 'admin', 'password', 5, 'SHS');
 
 -- --------------------------------------------------------
 
@@ -1141,6 +1192,33 @@ INSERT INTO `users` (`id`, `user_Lname`, `user_Fname`, `user_Mname`, `gender`, `
 -- (See below for the actual view)
 --
 CREATE TABLE `v_enrollment` (
+`id` int(11)
+,`studentId` int(11)
+,`lrn` varchar(12)
+,`lName` varchar(100)
+,`fName` varchar(100)
+,`mName` varchar(100)
+,`sex` varchar(10)
+,`sectionId` int(11)
+,`sectionName` varchar(50)
+,`adviserId` int(11)
+,`user_Lname` varchar(200)
+,`user_Fname` varchar(200)
+,`user_Mname` varchar(200)
+,`loadId` int(11)
+,`b_loadName` varchar(200)
+,`c_gradeLevel` int(11)
+,`schoolYear` int(11)
+,`dateEnrolled` datetime
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_enrollment_jhs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_enrollment_jhs` (
 `id` int(11)
 ,`studentId` int(11)
 ,`lrn` varchar(12)
@@ -1182,6 +1260,42 @@ CREATE TABLE `v_enrollment_minimal` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `v_enrollment_minimal_jhs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_enrollment_minimal_jhs` (
+`id` int(11)
+,`studentId` int(11)
+,`lrn` varchar(12)
+,`lName` varchar(100)
+,`fName` varchar(100)
+,`mName` varchar(100)
+,`sex` varchar(10)
+,`sectionId` int(11)
+,`remarks` varchar(1000)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_enrollment_minimal_shs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_enrollment_minimal_shs` (
+`id` int(11)
+,`studentId` int(11)
+,`lrn` varchar(12)
+,`lName` varchar(100)
+,`fName` varchar(100)
+,`mName` varchar(100)
+,`sex` varchar(10)
+,`sectionId` int(11)
+,`remarks` varchar(1000)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `v_enrollment_mini_wbdate`
 -- (See below for the actual view)
 --
@@ -1195,6 +1309,69 @@ CREATE TABLE `v_enrollment_mini_wbdate` (
 ,`sex` varchar(10)
 ,`bDate` date
 ,`sectionId` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_enrollment_mini_wbdate_jhs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_enrollment_mini_wbdate_jhs` (
+`id` int(11)
+,`studentId` int(11)
+,`lrn` varchar(12)
+,`lName` varchar(100)
+,`fName` varchar(100)
+,`mName` varchar(100)
+,`sex` varchar(10)
+,`bDate` varchar(10)
+,`sectionId` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_enrollment_mini_wbdate_shs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_enrollment_mini_wbdate_shs` (
+`id` int(11)
+,`studentId` int(11)
+,`lrn` varchar(12)
+,`lName` varchar(100)
+,`fName` varchar(100)
+,`mName` varchar(100)
+,`sex` varchar(10)
+,`bDate` varchar(10)
+,`sectionId` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_enrollment_shs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_enrollment_shs` (
+`id` int(11)
+,`studentId` int(11)
+,`lrn` varchar(12)
+,`lName` varchar(100)
+,`fName` varchar(100)
+,`mName` varchar(100)
+,`sex` varchar(10)
+,`sectionId` int(11)
+,`sectionName` varchar(50)
+,`adviserId` int(11)
+,`user_Lname` varchar(200)
+,`user_Fname` varchar(200)
+,`user_Mname` varchar(200)
+,`loadId` int(11)
+,`b_loadName` varchar(200)
+,`c_gradeLevel` int(11)
+,`schoolYear` int(11)
+,`dateEnrolled` datetime
 );
 
 -- --------------------------------------------------------
@@ -1219,6 +1396,32 @@ CREATE TABLE `v_grades` (
 ,`gwa` varchar(11)
 ,`status` varchar(100)
 ,`dateUpdated` datetime
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_loads_jhs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_loads_jhs` (
+`a_id` int(11)
+,`b_loadName` varchar(200)
+,`c_gradeLevel` int(11)
+,`d_subjectsContained` varchar(500)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_loads_shs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_loads_shs` (
+`a_id` int(11)
+,`b_loadName` varchar(200)
+,`c_gradeLevel` int(11)
+,`d_subjectsContained` varchar(500)
 );
 
 -- --------------------------------------------------------
@@ -1317,6 +1520,114 @@ CREATE TABLE `v_sections` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `v_sections_jhs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_sections_jhs` (
+`id` int(11)
+,`sectionName` varchar(50)
+,`adviserId` int(11)
+,`user_Lname` varchar(200)
+,`user_Fname` varchar(200)
+,`user_Mname` varchar(200)
+,`gender` varchar(12)
+,`loadId` int(11)
+,`b_loadName` varchar(200)
+,`c_gradeLevel` int(11)
+,`schoolYear` int(11)
+,`d_subjectsContained` varchar(500)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_sections_shs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_sections_shs` (
+`id` int(11)
+,`sectionName` varchar(50)
+,`adviserId` int(11)
+,`user_Lname` varchar(200)
+,`user_Fname` varchar(200)
+,`user_Mname` varchar(200)
+,`gender` varchar(12)
+,`loadId` int(11)
+,`b_loadName` varchar(200)
+,`c_gradeLevel` int(11)
+,`schoolYear` int(11)
+,`d_subjectsContained` varchar(500)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_students_jhs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_students_jhs` (
+`id` int(11)
+,`lrn` varchar(12)
+,`lName` varchar(100)
+,`fName` varchar(100)
+,`mName` varchar(100)
+,`sex` varchar(10)
+,`inGr` float
+,`curGrLvl` int(11)
+,`schoolId` varchar(11)
+,`schoolName` varchar(1000)
+,`schoolAddress` varchar(1000)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_students_shs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_students_shs` (
+`id` int(11)
+,`lrn` varchar(12)
+,`lName` varchar(100)
+,`fName` varchar(100)
+,`mName` varchar(100)
+,`sex` varchar(10)
+,`inGr` float
+,`curGrLvl` int(11)
+,`schoolId` varchar(11)
+,`schoolName` varchar(1000)
+,`schoolAddress` varchar(1000)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_subjects_jhs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_subjects_jhs` (
+`id` int(11)
+,`subjectCode` varchar(200)
+,`description` varchar(500)
+,`gradeLevel` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_subjects_shs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_subjects_shs` (
+`id` int(11)
+,`subjectCode` varchar(200)
+,`description` varchar(500)
+,`gradeLevel` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `v_teacherloads`
 -- (See below for the actual view)
 --
@@ -1354,6 +1665,40 @@ CREATE TABLE `v_teacherloads_w_time` (
 ,`gradeLevel` int(11)
 ,`timeStart` time
 ,`timeEnd` time
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_users_jhs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_users_jhs` (
+`id` int(11)
+,`user_Lname` varchar(200)
+,`user_Fname` varchar(200)
+,`user_Mname` varchar(200)
+,`gender` varchar(12)
+,`user_name` varchar(200)
+,`user_password` varchar(200)
+,`user_level` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_users_shs`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_users_shs` (
+`id` int(11)
+,`user_Lname` varchar(200)
+,`user_Fname` varchar(200)
+,`user_Mname` varchar(200)
+,`gender` varchar(12)
+,`user_name` varchar(200)
+,`user_password` varchar(200)
+,`user_level` int(11)
 );
 
 -- --------------------------------------------------------
@@ -1458,11 +1803,38 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `v_enrollment_jhs`
+--
+DROP TABLE IF EXISTS `v_enrollment_jhs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_enrollment_jhs`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`sectionId` AS `sectionId`,`sections`.`sectionName` AS `sectionName`,`sections`.`adviserId` AS `adviserId`,`users`.`user_Lname` AS `user_Lname`,`users`.`user_Fname` AS `user_Fname`,`users`.`user_Mname` AS `user_Mname`,`sections`.`loadId` AS `loadId`,`loads`.`b_loadName` AS `b_loadName`,`loads`.`c_gradeLevel` AS `c_gradeLevel`,`sections`.`schoolYear` AS `schoolYear`,`enrollment`.`dateEnrolled` AS `dateEnrolled` from ((((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `sections` on((`enrollment`.`sectionId` = `sections`.`id`))) left join `users` on((`sections`.`adviserId` = `users`.`id`))) left join `loads` on((`sections`.`loadId` = `loads`.`a_id`))) where (`enrollment`.`dep_type` = 'JHS') ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `v_enrollment_minimal`
 --
 DROP TABLE IF EXISTS `v_enrollment_minimal`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_enrollment_minimal`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`sectionId` AS `sectionId`,`enrollment`.`remarks` AS `remarks` from (`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_enrollment_minimal_jhs`
+--
+DROP TABLE IF EXISTS `v_enrollment_minimal_jhs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_enrollment_minimal_jhs`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`sectionId` AS `sectionId`,`enrollment`.`remarks` AS `remarks` from (`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) where (`enrollment`.`dep_type` = 'JHS') order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_enrollment_minimal_shs`
+--
+DROP TABLE IF EXISTS `v_enrollment_minimal_shs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_enrollment_minimal_shs`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`sectionId` AS `sectionId`,`enrollment`.`remarks` AS `remarks` from (`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) where (`enrollment`.`dep_type` = 'SHS') order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
 
 -- --------------------------------------------------------
 
@@ -1476,11 +1848,56 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `v_enrollment_mini_wbdate_jhs`
+--
+DROP TABLE IF EXISTS `v_enrollment_mini_wbdate_jhs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_enrollment_mini_wbdate_jhs`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,ifnull(`personalinfo`.`bDate`,'NOT SET') AS `bDate`,`enrollment`.`sectionId` AS `sectionId` from ((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `personalinfo` on((`enrollment`.`studentId` = `personalinfo`.`stdId`))) where (`enrollment`.`dep_type` = 'JHS') order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_enrollment_mini_wbdate_shs`
+--
+DROP TABLE IF EXISTS `v_enrollment_mini_wbdate_shs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_enrollment_mini_wbdate_shs`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,ifnull(`personalinfo`.`bDate`,'NOT SET') AS `bDate`,`enrollment`.`sectionId` AS `sectionId` from ((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `personalinfo` on((`enrollment`.`studentId` = `personalinfo`.`stdId`))) where (`enrollment`.`dep_type` = 'SHS') order by `enrollment`.`sectionId` desc,`students`.`sex` desc,`students`.`lName`,`students`.`fName`,`students`.`mName` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_enrollment_shs`
+--
+DROP TABLE IF EXISTS `v_enrollment_shs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_enrollment_shs`  AS  select `enrollment`.`id` AS `id`,`enrollment`.`studentId` AS `studentId`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`enrollment`.`sectionId` AS `sectionId`,`sections`.`sectionName` AS `sectionName`,`sections`.`adviserId` AS `adviserId`,`users`.`user_Lname` AS `user_Lname`,`users`.`user_Fname` AS `user_Fname`,`users`.`user_Mname` AS `user_Mname`,`sections`.`loadId` AS `loadId`,`loads`.`b_loadName` AS `b_loadName`,`loads`.`c_gradeLevel` AS `c_gradeLevel`,`sections`.`schoolYear` AS `schoolYear`,`enrollment`.`dateEnrolled` AS `dateEnrolled` from ((((`enrollment` left join `students` on((`enrollment`.`studentId` = `students`.`id`))) left join `sections` on((`enrollment`.`sectionId` = `sections`.`id`))) left join `users` on((`sections`.`adviserId` = `users`.`id`))) left join `loads` on((`sections`.`loadId` = `loads`.`a_id`))) where (`enrollment`.`dep_type` = 'SHS') ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `v_grades`
 --
 DROP TABLE IF EXISTS `v_grades`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_grades`  AS  select `grades`.`id` AS `id`,`grades`.`sectionId` AS `sectionId`,`grades`.`studentId` AS `studentId`,`teacherloads`.`teacherId` AS `teacherId`,ifnull(`users`.`user_Lname`,'None') AS `user_Lname`,ifnull(`users`.`user_Fname`,'None') AS `user_Fname`,ifnull(`users`.`user_Mname`,'None') AS `user_Mname`,ifnull(`users`.`gender`,'None') AS `gender`,`grades`.`subjectId` AS `subjectId`,`subjects`.`subjectCode` AS `subjectCode`,`subjects`.`description` AS `description`,`subjects`.`gradeLevel` AS `gradeLevel`,`grades`.`gwa` AS `gwa`,`grades`.`status` AS `status`,`grades`.`dateUpdated` AS `dateUpdated` from (((`grades` left join `teacherloads` on((`grades`.`subjectId` = `teacherloads`.`subjectId`))) left join `users` on((`teacherloads`.`teacherId` = `users`.`id`))) left join `subjects` on((`subjects`.`id` = `grades`.`subjectId`))) order by `grades`.`sectionId`,`grades`.`subjectId`,`grades`.`studentId` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_loads_jhs`
+--
+DROP TABLE IF EXISTS `v_loads_jhs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_loads_jhs`  AS  select `loads`.`a_id` AS `a_id`,`loads`.`b_loadName` AS `b_loadName`,`loads`.`c_gradeLevel` AS `c_gradeLevel`,`loads`.`d_subjectsContained` AS `d_subjectsContained` from `loads` where (`loads`.`dep_type` = 'JHS') order by `loads`.`b_loadName` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_loads_shs`
+--
+DROP TABLE IF EXISTS `v_loads_shs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_loads_shs`  AS  select `loads`.`a_id` AS `a_id`,`loads`.`b_loadName` AS `b_loadName`,`loads`.`c_gradeLevel` AS `c_gradeLevel`,`loads`.`d_subjectsContained` AS `d_subjectsContained` from `loads` where (`loads`.`dep_type` = 'SHS') order by `loads`.`b_loadName` ;
 
 -- --------------------------------------------------------
 
@@ -1521,6 +1938,60 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `v_sections_jhs`
+--
+DROP TABLE IF EXISTS `v_sections_jhs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_sections_jhs`  AS  select `sections`.`id` AS `id`,`sections`.`sectionName` AS `sectionName`,`sections`.`adviserId` AS `adviserId`,`users`.`user_Lname` AS `user_Lname`,`users`.`user_Fname` AS `user_Fname`,`users`.`user_Mname` AS `user_Mname`,`users`.`gender` AS `gender`,`sections`.`loadId` AS `loadId`,`loads`.`b_loadName` AS `b_loadName`,`loads`.`c_gradeLevel` AS `c_gradeLevel`,`sections`.`schoolYear` AS `schoolYear`,`loads`.`d_subjectsContained` AS `d_subjectsContained` from ((`sections` left join `users` on((`sections`.`adviserId` = `users`.`id`))) left join `loads` on((`sections`.`loadId` = `loads`.`a_id`))) where (`sections`.`dep_type` = 'JHS') order by `sections`.`schoolYear` desc,`loads`.`c_gradeLevel`,`sections`.`sectionName` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_sections_shs`
+--
+DROP TABLE IF EXISTS `v_sections_shs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_sections_shs`  AS  select `sections`.`id` AS `id`,`sections`.`sectionName` AS `sectionName`,`sections`.`adviserId` AS `adviserId`,`users`.`user_Lname` AS `user_Lname`,`users`.`user_Fname` AS `user_Fname`,`users`.`user_Mname` AS `user_Mname`,`users`.`gender` AS `gender`,`sections`.`loadId` AS `loadId`,`loads`.`b_loadName` AS `b_loadName`,`loads`.`c_gradeLevel` AS `c_gradeLevel`,`sections`.`schoolYear` AS `schoolYear`,`loads`.`d_subjectsContained` AS `d_subjectsContained` from ((`sections` left join `users` on((`sections`.`adviserId` = `users`.`id`))) left join `loads` on((`sections`.`loadId` = `loads`.`a_id`))) where (`sections`.`dep_type` = 'SHS') order by `sections`.`schoolYear` desc,`loads`.`c_gradeLevel`,`sections`.`sectionName` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_students_jhs`
+--
+DROP TABLE IF EXISTS `v_students_jhs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_students_jhs`  AS  select `students`.`id` AS `id`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`students`.`inGr` AS `inGr`,`students`.`curGrLvl` AS `curGrLvl`,`students`.`schoolId` AS `schoolId`,`students`.`schoolName` AS `schoolName`,`students`.`schoolAddress` AS `schoolAddress` from `students` where (`students`.`dep_type` = 'JHS') ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_students_shs`
+--
+DROP TABLE IF EXISTS `v_students_shs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_students_shs`  AS  select `students`.`id` AS `id`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`students`.`inGr` AS `inGr`,`students`.`curGrLvl` AS `curGrLvl`,`students`.`schoolId` AS `schoolId`,`students`.`schoolName` AS `schoolName`,`students`.`schoolAddress` AS `schoolAddress` from `students` where (`students`.`dep_type` = 'SHS') ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_subjects_jhs`
+--
+DROP TABLE IF EXISTS `v_subjects_jhs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_subjects_jhs`  AS  select `subjects`.`id` AS `id`,`subjects`.`subjectCode` AS `subjectCode`,`subjects`.`description` AS `description`,`subjects`.`gradeLevel` AS `gradeLevel` from `subjects` where (`subjects`.`dep_type` = 'JHS') order by `subjects`.`gradeLevel` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_subjects_shs`
+--
+DROP TABLE IF EXISTS `v_subjects_shs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_subjects_shs`  AS  select `subjects`.`id` AS `id`,`subjects`.`subjectCode` AS `subjectCode`,`subjects`.`description` AS `description`,`subjects`.`gradeLevel` AS `gradeLevel` from `subjects` where (`subjects`.`dep_type` = 'SHS') order by `subjects`.`gradeLevel` ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `v_teacherloads`
 --
 DROP TABLE IF EXISTS `v_teacherloads`;
@@ -1535,6 +2006,24 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `v_teacherloads_w_time`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_teacherloads_w_time`  AS  select `teacherloads`.`id` AS `id`,`teacherloads`.`sectionId` AS `sectionId`,`teacherloads`.`teacherId` AS `teacherId`,ifnull(`users`.`user_Lname`,'None') AS `user_Lname`,ifnull(`users`.`user_Fname`,'None') AS `user_Fname`,ifnull(`users`.`user_Mname`,'None') AS `user_Mname`,ifnull(`users`.`gender`,'None') AS `gender`,`teacherloads`.`subjectId` AS `subjectId`,`subjects`.`subjectCode` AS `subjectCode`,`subjects`.`description` AS `description`,`subjects`.`gradeLevel` AS `gradeLevel`,`teacherloads`.`timeStart` AS `timeStart`,`teacherloads`.`timeEnd` AS `timeEnd` from ((`teacherloads` left join `users` on((`teacherloads`.`teacherId` = `users`.`id`))) left join `subjects` on((`teacherloads`.`subjectId` = `subjects`.`id`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_users_jhs`
+--
+DROP TABLE IF EXISTS `v_users_jhs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_users_jhs`  AS  select `users`.`id` AS `id`,`users`.`user_Lname` AS `user_Lname`,`users`.`user_Fname` AS `user_Fname`,`users`.`user_Mname` AS `user_Mname`,`users`.`gender` AS `gender`,`users`.`user_name` AS `user_name`,`users`.`user_password` AS `user_password`,`users`.`user_level` AS `user_level` from `users` where (`users`.`dep_type` = 'JHS') order by `users`.`user_level` desc,`users`.`user_Lname`,`users`.`user_Fname`,`users`.`user_Mname` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_users_shs`
+--
+DROP TABLE IF EXISTS `v_users_shs`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_users_shs`  AS  select `users`.`id` AS `id`,`users`.`user_Lname` AS `user_Lname`,`users`.`user_Fname` AS `user_Fname`,`users`.`user_Mname` AS `user_Mname`,`users`.`gender` AS `gender`,`users`.`user_name` AS `user_name`,`users`.`user_password` AS `user_password`,`users`.`user_level` AS `user_level` from `users` where (`users`.`dep_type` = 'SHS') order by `users`.`user_level` desc,`users`.`user_Lname`,`users`.`user_Fname`,`users`.`user_Mname` ;
 
 --
 -- Indexes for dumped tables
@@ -1722,7 +2211,7 @@ ALTER TABLE `booktemplates`
 -- AUTO_INCREMENT for table `enrollment`
 --
 ALTER TABLE `enrollment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `enrollment_static`
@@ -1764,7 +2253,7 @@ ALTER TABLE `hfachart_male`
 -- AUTO_INCREMENT for table `loads`
 --
 ALTER TABLE `loads`
-  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `personalinfo`
@@ -1776,7 +2265,7 @@ ALTER TABLE `personalinfo`
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -1788,13 +2277,13 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `teacherloads`
 --
 ALTER TABLE `teacherloads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `userdetails`
@@ -1806,7 +2295,7 @@ ALTER TABLE `userdetails`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
