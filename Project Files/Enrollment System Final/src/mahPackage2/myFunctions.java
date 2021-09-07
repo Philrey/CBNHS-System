@@ -106,15 +106,15 @@ public class myFunctions {
         int [] order = null;
         switch(viewTableIndex){
             case 0:{
-                from = "students";
+                from = "v_students_jhs";
                 order = myVariables.getStudentsOrder();
                 break;
             }case 1:{
-                from = "subjects";
+                from = "v_subjects_jhs";
                 order = myVariables.getSubjectOrder();
                 break;
             }case 2:{
-                from = "loads";
+                from = "v_loads_jhs";
                 order = myVariables.getSubjectLoadsOrder();
                 break;
             }case 3:{
@@ -122,7 +122,7 @@ public class myFunctions {
                 order = myVariables.getUsersOrder();
                 break;
             }case 4:{
-                from = "v_sections";
+                from = "v_sections_jhs";
                 order = myVariables.getSectionsOrder();
                 break;
             }default:{
@@ -768,7 +768,7 @@ public class myFunctions {
         return new ActionEvent(source,ActionEvent.ACTION_FIRST, "");
     }
     public int login(String userName,String passWord,int [] accessLevelAllowed){
-        String [] result = return_values("*", "users","WHERE user_name ='"+userName+"' AND user_password = '"+passWord+"'",myVariables.getUsersOrder());
+        String [] result = return_values("*", "v_users_jhs","WHERE user_name ='"+userName+"' AND user_password = '"+passWord+"'",myVariables.getUsersOrder());
         if(result != null){
             String [] tempRow = toNameFormat(result[0], new int [] {1,2,3}).split("@@");
             int accessLevel = Integer.valueOf(tempRow[5]);

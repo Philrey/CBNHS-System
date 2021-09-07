@@ -3542,7 +3542,7 @@ public class dashBoard extends javax.swing.JFrame {
         }
         
         //Check for duplicate LRN
-        String [] result = my.return_values("*", "students", "WHERE lrn = '"+fields[4]+"' AND dep_type='JHS'", myVariables.getStudentsOrder());
+        String [] result = my.return_values("*", "v_students_jhs", "WHERE lrn = '"+fields[4]+"' AND dep_type='JHS'", myVariables.getStudentsOrder());
         
         if(result != null){
             String student[] = my.toNameFormat(result[0], new int[] {2,3,4}).split("@@");
@@ -3563,7 +3563,7 @@ public class dashBoard extends javax.swing.JFrame {
 
     private void searchStudentHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentHandler
         String toSearch = my.convertEscapeCharacters(tfSearchStudent.getText().trim());
-        String where = "WHERE (lrn='"+toSearch+"' ";
+        String where = "WHERE lrn='"+toSearch+"' ";
         
         if(myVariables.getAccessLevel() <5){
             String additionalQuery;
@@ -3575,11 +3575,11 @@ public class dashBoard extends javax.swing.JFrame {
             if(additionalQuery == null){
                 return;
             }
-            where+="OR ("+additionalQuery+")) AND dep_type='JHS'";
+            where+="OR ("+additionalQuery+")";
 
             my.searchItem(where, studentTable, 0, null, null, false, true, lbSearchResult, tfSearchStudent,false);
         }else{
-            where = "WHERE (lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%') AND dep_type='JHS'";
+            where = "WHERE lrn='"+toSearch+"' OR lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%'";
             my.searchItem(where, studentTable, 0, null, null, false, true, lbSearchResult, tfSearchStudent,true);
         }
         clearAddStudentFields();
@@ -3666,7 +3666,7 @@ public class dashBoard extends javax.swing.JFrame {
 
     private void searchStudentForPrsnlInfHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStudentForPrsnlInfHandler
         String toSearch = my.convertEscapeCharacters(tfSearchStudent1.getText().trim());
-        String where = "WHERE (lrn='"+toSearch+"' ";
+        String where = "WHERE lrn='"+toSearch+"' ";
         
         if(myVariables.getAccessLevel() <5){
             String additionalQuery;
@@ -3678,11 +3678,11 @@ public class dashBoard extends javax.swing.JFrame {
             if(additionalQuery == null){
                 return;
             }
-            where+="OR ("+additionalQuery+")) AND dep_type='JHS'";
+            where+="OR ("+additionalQuery+")";
 
             my.searchItem(where, studentTable1, 0, null, null, false, true, lbSearchResult1, tfSearchStudent1,false);
         }else{
-            where = "WHERE (lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%') AND dep_type='JHS'";
+            where = "WHERE lrn='%"+toSearch+"%' OR lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%'";
             my.searchItem(where, studentTable1, 0, null, null, false, true, lbSearchResult1, tfSearchStudent1,true);
         }
         enableDisablePersonalInfoFields(false, true);
@@ -3865,7 +3865,7 @@ public class dashBoard extends javax.swing.JFrame {
             }
         }
         //Search for duplicate username
-        String [] result = my.return_values("*", "users", "WHERE user_name ='"+fields[5]+"'", myVariables.getUsersOrder());
+        String [] result = my.return_values("*", "v_users_jhs", "WHERE user_name ='"+fields[5]+"'", myVariables.getUsersOrder());
         
         if(result != null){
             my.showMessage("User name already exists. Please use another one.", JOptionPane.WARNING_MESSAGE);
@@ -4188,7 +4188,7 @@ public class dashBoard extends javax.swing.JFrame {
             String studentId = studentTable.getValueAt(row, 0).toString();
             
             //Retrieve Values
-            String [] result = my.return_values("*", "students", "where id = '"+studentId+"'", myVariables.getStudentsOrder());
+            String [] result = my.return_values("*", "v_students_jhs", "where id = '"+studentId+"'", myVariables.getStudentsOrder());
             System.out.println(result[0]);
             String [] info = result[0].split("@@");
             
@@ -4273,7 +4273,7 @@ public class dashBoard extends javax.swing.JFrame {
         }
         
         //Check for duplicate LRN
-        String [] result = my.return_values("*", "students", "WHERE lrn='"+fields[3]+"'AND id!='"+studentId+"'", myVariables.getStudentsOrder());
+        String [] result = my.return_values("*", "v_students_jhs", "WHERE lrn='"+fields[3]+"'AND id!='"+studentId+"'", myVariables.getStudentsOrder());
         
         if(result != null){
             String student[] = my.toNameFormat(result[0], new int[] {2,3,4}).split("@@");
@@ -4354,7 +4354,7 @@ public class dashBoard extends javax.swing.JFrame {
             int row = subjectTable.getSelectedRow();
             String subjectId = subjectTable.getValueAt(row, 0).toString();
             
-            String result [] = my.return_values("*", "subjects", "WHERE id='"+subjectId+"'", myVariables.getSubjectOrder());
+            String result [] = my.return_values("*", "v_subjects_jhs", "WHERE id='"+subjectId+"'", myVariables.getSubjectOrder());
             
             if(result.length > 0){
                 if(subjectsTab.getTabCount() <= 1){
@@ -4563,7 +4563,7 @@ public class dashBoard extends javax.swing.JFrame {
             }
         }
         //Check for duplicate user name
-        String result [] = my.return_values("*", "users", "WHERE user_name ='"+userName+"' AND id !='"+userId+"'", myVariables.getUsersOrder());
+        String result [] = my.return_values("*", "v_users_jhs", "WHERE user_name ='"+userName+"' AND id !='"+userId+"'", myVariables.getUsersOrder());
         
         if(result != null){
             my.showMessage("Username already exists. Please choose another one.", JOptionPane.WARNING_MESSAGE);

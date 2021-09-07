@@ -1810,7 +1810,7 @@ public class dashBoard extends javax.swing.JFrame {
         }
         where +=(jcbSchoolYear2.getSelectedIndex()!=0?"AND schoolYear='"+yearFilter+"'":"");
         
-        String [] result = my.return_values("*", "v_enrollment", where, myVariables.getEnrollmentViewOrder());
+        String [] result = my.return_values("*", "v_enrollment_jhs", where, myVariables.getEnrollmentViewOrder());
         
         my.clear_table_rows(enrollmentTable);
         if(result != null){
@@ -2015,7 +2015,7 @@ public class dashBoard extends javax.swing.JFrame {
         String sectionId = sectionsTable1.getValueAt(sectionRow, 0).toString();
                 
         //Check if student is already enrolled to the same section
-        String duplicate [] = my.return_values("*", "enrollment", "WHERE studentId='"+studentId+"' AND sectionId ='"+sectionId+"'",new int [] {0,1,2,3});
+        String duplicate [] = my.return_values("*", "v_enrollment_jhs", "WHERE studentId='"+studentId+"' AND sectionId ='"+sectionId+"'",new int [] {0,1,2,3});
         String date [] = my.return_values("substr(now(),1,10) as 'dateNow'", "", "", new int [] {0});
         String dateNow = "";
         try {

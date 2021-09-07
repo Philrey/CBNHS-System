@@ -2134,7 +2134,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         String where = "WHERE sectionId='"+sectionId+"'";
         
-        String result [] = my.return_values("*", "v_enrollment_minimal", where, myVariables.getEnrollmentViewMinimalOrder());
+        String result [] = my.return_values("*", "v_enrollment_minimal_jhs", where, myVariables.getEnrollmentViewMinimalOrder());
         
         if(result == null){
             my.showMessage("Can't check attendance without students. Please enroll some first.", JOptionPane.ERROR_MESSAGE);
@@ -2424,7 +2424,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         String where = "WHERE sectionId='"+sectionId+"'";
         
-        String result [] = my.return_values("*", "v_enrollment_minimal", where, myVariables.getEnrollmentViewMinimalOrder());
+        String result [] = my.return_values("*", "v_enrollment_minimal_jhs", where, myVariables.getEnrollmentViewMinimalOrder());
         
         if(result == null){
             my.showMessage("Can't check attendance without students. Please enroll some first.", JOptionPane.ERROR_MESSAGE);
