@@ -110,7 +110,7 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
         progressBar.setValue(1);
         Thread.sleep(pauseDelay);
         //#2 Read each file inside and put values to import table
-        //Note: use thread_importSf1 reading process
+        //Note: use/copy thread_importSf1 reading process
         progressBar.setValue(0);
         progressBar.setMaximum(filesInsideFolder.length);
         for(int n=0,length=filesInsideFolder.length;n<length;n++){
@@ -132,8 +132,11 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
                     my.toNameFormatFull(lName+"@@"+fName+"@@"+mName+"@@", new int [] {0,1,2})
                     +result[5]+"@@"+
                     result[8]+"-"+result[6]+"-"+result[7]+"@@"+
-                    result[9]+"@@"+result[10]+"@@"+result[11]+"@@"+result[12]+"@@Ready@@";
-            System.err.println("Line " + lrn);
+                    getSimplifiedGrade(result[9])+"@@"+
+                    result[10]+"@@"+
+                    result[11]+"@@"+
+                    result[12]+"@@Ready@@";
+            System.err.println("Line " + result[9]);
             
             String name = my.capitalizeName(my.getValueAtColumn(line, 1).toLowerCase(),true);
             line = my.setValueAtColumn(line, 1, name);
@@ -200,7 +203,11 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
                         break;
                     }case 4:{   //Grade
                         try {
-                            Float.parseFloat(cValue);
+                            float grade = Float.parseFloat(cValue);
+                            if(grade == 0f){
+                                msg = "No Grade";
+                                isReadyForImport = false;
+                            }
                         } catch (NumberFormatException e) {
                             msg = "Invalid Grade";
                             isReadyForImport = false;
@@ -209,6 +216,10 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
                     }case 5:{   //School ID
                         try {
                             Integer.parseInt(cValue);
+                            if(cValue.trim().length() <= 0){
+                                msg = "Invalid Grade";
+                                isReadyForImport = false;
+                            }
                         } catch (NumberFormatException e) {
                             msg = "Invalid School ID";
                             isReadyForImport = false;
@@ -240,6 +251,16 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
         return middleName.trim().length()>0? middleName.trim() : "-";
     }
     
+    private float getSimplifiedGrade(String value){
+        try {
+            float currValue = Float.parseFloat(value);
+            int intValue = Integer.parseInt(value);
+            
+            return currValue / intValue == 0 ? intValue : currValue;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
     //</editor-fold>
     @Override
     protected void done() {
