@@ -4363,7 +4363,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jtbImportTabs" pref="212" max="32767" attributes="0"/>
+                  <Component id="jtbImportTabs" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -4577,52 +4577,52 @@
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
-                                  <Title value="House No."/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
-                                  <Title value="Brgy."/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
-                                  <Title value="Municipality"/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
-                                  <Title value="Province"/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="250" resizable="true">
-                                  <Title value="Father&apos;s Name"/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="250" resizable="true">
-                                  <Title value="Mother&apos;s Name"/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="250" resizable="true">
-                                  <Title value="Guardian&apos;s Name"/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
-                                  <Title value="Relationship"/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
-                                  <Title value="Contact"/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
-                                  <Title value="Remarks"/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>

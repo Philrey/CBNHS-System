@@ -3206,25 +3206,15 @@ public class dashBoard extends javax.swing.JFrame {
             importTableSF1.getColumnModel().getColumn(6).setPreferredWidth(100);
             importTableSF1.getColumnModel().getColumn(7).setPreferredWidth(100);
             importTableSF1.getColumnModel().getColumn(8).setPreferredWidth(100);
-            importTableSF1.getColumnModel().getColumn(8).setHeaderValue("House No.");
             importTableSF1.getColumnModel().getColumn(9).setPreferredWidth(100);
-            importTableSF1.getColumnModel().getColumn(9).setHeaderValue("Brgy.");
             importTableSF1.getColumnModel().getColumn(10).setPreferredWidth(100);
-            importTableSF1.getColumnModel().getColumn(10).setHeaderValue("Municipality");
             importTableSF1.getColumnModel().getColumn(11).setPreferredWidth(100);
-            importTableSF1.getColumnModel().getColumn(11).setHeaderValue("Province");
             importTableSF1.getColumnModel().getColumn(12).setPreferredWidth(250);
-            importTableSF1.getColumnModel().getColumn(12).setHeaderValue("Father's Name");
             importTableSF1.getColumnModel().getColumn(13).setPreferredWidth(250);
-            importTableSF1.getColumnModel().getColumn(13).setHeaderValue("Mother's Name");
             importTableSF1.getColumnModel().getColumn(14).setPreferredWidth(250);
-            importTableSF1.getColumnModel().getColumn(14).setHeaderValue("Guardian's Name");
             importTableSF1.getColumnModel().getColumn(15).setPreferredWidth(100);
-            importTableSF1.getColumnModel().getColumn(15).setHeaderValue("Relationship");
             importTableSF1.getColumnModel().getColumn(16).setPreferredWidth(100);
-            importTableSF1.getColumnModel().getColumn(16).setHeaderValue("Contact");
             importTableSF1.getColumnModel().getColumn(17).setPreferredWidth(200);
-            importTableSF1.getColumnModel().getColumn(17).setHeaderValue("Remarks");
             importTableSF1.getColumnModel().getColumn(18).setPreferredWidth(200);
         }
 
@@ -3375,7 +3365,7 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtbImportTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
+                .addComponent(jtbImportTabs))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);

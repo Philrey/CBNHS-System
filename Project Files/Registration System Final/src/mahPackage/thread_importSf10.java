@@ -251,14 +251,23 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
         return middleName.trim().length()>0? middleName.trim() : "-";
     }
     
-    private float getSimplifiedGrade(String value){
+    private String getSimplifiedGrade(String value){
+        if(value.length() < 1){
+            return "0";
+        }
         try {
             float currValue = Float.parseFloat(value);
-            int intValue = Integer.parseInt(value);
+            int intValue = (int) currValue;
             
-            return currValue / intValue == 0 ? intValue : currValue;
+            System.err.println("Result: "+(currValue % (float)intValue));
+            if(currValue % (float)intValue > 0f){
+                return String.valueOf(currValue);
+            }else{
+                return String.valueOf((int)intValue);
+            }
         } catch (Exception e) {
-            return 0;
+            my.showMessage(e.getMessage(), JOptionPane.ERROR_MESSAGE);
+            return "0";
         }
     }
     //</editor-fold>
