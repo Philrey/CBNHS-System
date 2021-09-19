@@ -13,4 +13,4 @@
 [12] school_head_name=Phil Rey Estrella Paderogao
 [13] division_representative=Phil Rey Estrella Paderogao
 [14] division_superintendent=Phil Rey Estrella Paderogao
-[15] speed=0
+[15] speed=2

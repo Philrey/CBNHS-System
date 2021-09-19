@@ -1,9 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package mahPackage;
 
-import java.io.File;
+import java.util.Arrays;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -12,13 +16,14 @@ import org.apache.commons.validator.GenericValidator;
 
 /**
  *
- * @author Phil Rey Paderogao
+ * @author pader
  */
-public class thread_registerSf1 extends SwingWorker<String, Object>{
+public class thread_registerSF10 extends SwingWorker<String, Object>{
     long threadDelay = 100;
     long pauseDelay = 500;
     //Main Variables
     JTable importTable;
+    String fileLocation;
     String startingAddress;
     String endingAddress;
     
@@ -27,22 +32,22 @@ public class thread_registerSf1 extends SwingWorker<String, Object>{
     JButton btnFileChooser;
     JButton btnCancel;
     JButton btnRegister;
+    
+    boolean updateExistingRecords;
     //<editor-fold desc="Load Variables">
     String lrn = "";
     String studentId,personalInfoId;
     String lastName,firstName,middleName,extensionName;
-    String gender,age,birthDay,motherTongue,indigenousPeople,religion;
-    String houseNo,brgy,mncplty,province;
-    String fathersName,mothersName,guardiansName,relationship,contact;
-    String remarks;
+    String gender,birthDay,elementaryGrade,schoolId,schoolName,schoolAddress;
+    String status;
     //</editor-fold>
     //Dialog Properties
     myFunctions my;
     private JLabel lbLoadingMessage;
     private JProgressBar progressBar;
-    private String dateFormats [] = {"MM/dd/yyyy","MM-dd-yyyy","MM/dd/yyyy"};
-
-    public thread_registerSf1(JTable [] tablesToUse,String [] stringsToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean [] booleansToUse) {
+    private String dateFormats [] = {"MM/dd/yyyy","MM-dd-yyyy","yyyy-MM-dd"};
+    
+    public thread_registerSF10(JTable [] tablesToUse,String [] stringsToUse,JTextField [] textFieldsToUse,JButton [] buttonsToUse,boolean [] booleansToUse) {
         my = new myFunctions(true);
         //Main Variables
         importTable = tablesToUse[0];
@@ -51,6 +56,8 @@ public class thread_registerSf1 extends SwingWorker<String, Object>{
         btnFileChooser = buttonsToUse[0];
         btnCancel = buttonsToUse[1];
         btnRegister = buttonsToUse[2];
+        
+        updateExistingRecords = booleansToUse[0];
         //For Loading Screen
         lbLoadingMessage = myVariables.getLbLoadingMessage();
         progressBar = myVariables.getProgressBar();
@@ -60,7 +67,6 @@ public class thread_registerSf1 extends SwingWorker<String, Object>{
         pauseDelay = threadSpeeds[1];
     }
     
-    
     @Override
     protected String doInBackground() throws Exception {
         runningThread();
@@ -69,6 +75,7 @@ public class thread_registerSf1 extends SwingWorker<String, Object>{
         progressBar.setValue(0);
         
         String result [] = null;
+        String lastNameNew = null;
         int registered=0,updated=0,failed=0;
         boolean duplicateFound;
         
@@ -76,7 +83,11 @@ public class thread_registerSf1 extends SwingWorker<String, Object>{
             lbLoadingMessage.setText("Importing..."+(n+1)+"/"+rowCount);
             progressBar.setValue(n+1);
             lrn = importTable.getValueAt(n, 0).toString();
+            status = importTable.getValueAt(n, 8).toString();
             
+            if(!status.contains("Ready")){
+                continue;
+            }
             switch(setValues(n)){
                 case -1:{
                     throw new InterruptedException("Interrupted @ setValues()");
@@ -96,6 +107,11 @@ public class thread_registerSf1 extends SwingWorker<String, Object>{
             //<editor-fold desc="#2 Register To Students Table">
             setStatus(n, "Saving Student");
             if(duplicateFound){
+                if(!updateExistingRecords){ //Skip existing records if checkbox is disabled
+                    setStatus(n, "Duplicate Found");
+                    continue;
+                }
+                
                 //Get student id & Update Only
                 result = my.return_values("id", "v_students_jhs", "WHERE lrn='"+lrn+"'", new int[]{0}, myVariables.isDebugModeOn());
                 if(result == null){
@@ -105,12 +121,16 @@ public class thread_registerSf1 extends SwingWorker<String, Object>{
                 }
                 studentId = my.getValueAtColumn(result[0], 0);
                 
-                String lastNameNew = extensionName.trim().length()>0? lastName+","+extensionName:lastName;
+                lastNameNew = extensionName.trim().length()>0? lastName+","+extensionName:lastName;
                 String sets [] = {
                     "lName='"+lastNameNew+"'",
                     "fName='"+firstName+"'",
                     "mName='"+middleName+"'",
-                    "sex='"+gender+"'"
+                    "sex='"+gender+"'",
+                    "inGr='"+elementaryGrade+"'",
+                    "schoolId='"+schoolId+"'",
+                    "schoolName='"+schoolName+"'",
+                    "schoolAddress='"+schoolAddress+"'",
                 };
                 if(!my.update_values("students", sets, "id='"+studentId+"'")){
                     setStatus(n, "Updating Student Failed");
@@ -119,9 +139,10 @@ public class thread_registerSf1 extends SwingWorker<String, Object>{
                 }
             }else{
                 //Create new entry
-                String lastNameNew = extensionName.trim().length()>0? lastName+","+extensionName:lastName;
-                String studentValues [] = {"null",lrn,lastNameNew,firstName,middleName,gender};
-                if(!my.add_values("students", "id,lrn,lName,fName,mName,sex", studentValues)){
+                lastNameNew = extensionName.trim().length()>0? lastName+","+extensionName:lastName;
+                String studentValues [] = {"null",lrn,lastNameNew,firstName,middleName,gender,elementaryGrade,schoolId,schoolName,schoolAddress};
+                System.err.println(Arrays.toString(studentValues));
+                if(!my.add_values("students", "id,lrn,lName,fName,mName,sex,inGr,schoolId,schoolName,schoolAddress", studentValues)){
                     setStatus(n, "Saving Student Failed");
                     failed++;
                     continue;
@@ -134,13 +155,14 @@ public class thread_registerSf1 extends SwingWorker<String, Object>{
             setStatus(n, "Saving Personal Information");
             String sets [];
             //Add or Update Personal Info
-            String columns = "id,stdId,bDate,age,mTongue,ip,rlgn,houseN,brgy,mncpl,prvnce,fName,mName,gName,rltnshp,contact,date";
+            String columns = "id,stdId,bDate,date";
             if (duplicateFound) {
-                String setVariables = "bDate=VALUES(bDate),age=VALUES(age),"
-                        + "mTongue=VALUES(mTongue),ip=VALUES(ip),rlgn=VALUES(rlgn),"
-                        + "houseN=VALUES(houseN),brgy=VALUES(brgy),mncpl=VALUES(mncpl),"
-                        + "fName=VALUES(fName),mName=VALUES(mName),gName=VALUES(gName),"
-                        + "rltnshp=VALUES(rltnshp),contact=VALUES(contact),date=VALUES(date)";
+                if(!updateExistingRecords){ //Skip existing records if checkbox is disabled
+                    setStatus(n, "Duplicate Found");
+                    continue;
+                }
+                
+                String setVariables = "bDate=VALUES(bDate),date=VALUES(date)";
                 //Get student id & Update Only
                 result = my.return_values("id", "personalinfo", "WHERE stdId='"+studentId+"'", new int[]{0}, myVariables.isDebugModeOn());
                 if(result == null){
@@ -151,11 +173,8 @@ public class thread_registerSf1 extends SwingWorker<String, Object>{
                 personalInfoId = my.getValueAtColumn(result[0], 0);
                 
                 sets = new String []{
-                    personalInfoId+","+studentId+",'"+birthDay+"','"+age+"','"+motherTongue+"','"
-                        +indigenousPeople+"','"+religion+"','"
-                        +houseNo+"','"+brgy+"','"+mncplty+"','"+province+"','"
-                        +fathersName+"','"+mothersName+"','"+guardiansName+"','"
-                        +relationship+"','"+contact+"',now()"
+                    personalInfoId+","+studentId+",'"+birthDay+
+                        "',now()"
                 };
                 
                 if(!my.update_multiple_values("personalinfo",columns,setVariables,sets)){
@@ -175,11 +194,7 @@ public class thread_registerSf1 extends SwingWorker<String, Object>{
                 studentId = my.getValueAtColumn(result[0], 0);
                 
                 sets = new String []{
-                    "null,"+studentId+",'"+birthDay+"','"+age+"','"+motherTongue+"','"
-                        +indigenousPeople+"','"+religion+"','"
-                        +houseNo+"','"+brgy+"','"+mncplty+"','"+province+"','"
-                        +fathersName+"','"+mothersName+"','"+guardiansName+"','"
-                        +relationship+"','"+contact+"',now()"
+                    "null,"+studentId+",'"+birthDay+"',now()"
                 };
                 if(!my.add_multiple_values("personalinfo", columns, sets)){
                     setStatus(n, "Adding Personal Info Failed");
@@ -189,6 +204,7 @@ public class thread_registerSf1 extends SwingWorker<String, Object>{
                 registered++;
             }
             //</editor-fold>
+            
             Thread.sleep(threadDelay);
             //#4 Set Status
             if(duplicateFound){
@@ -198,18 +214,8 @@ public class thread_registerSf1 extends SwingWorker<String, Object>{
             }
             Thread.sleep(threadDelay);
         }
-        //Show Import Message
-        if(failed==0 && updated==0){
-            my.showMessage(rowCount+" Students Registered Successfully.", JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            if(failed == 0){
-                my.showMessage(rowCount+" Students Imported.\n\nRegistered: "+registered+"\nUpdated: "+updated, JOptionPane.WARNING_MESSAGE);
-            }else{
-                my.showMessage(rowCount+ " Students Imported.\n\nRegistered: "+registered+"\nUpdated: "+updated+"\nFailed: "+failed, JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        lbLoadingMessage.setText("Registering Complete");
-        return "Registering Complete...";
+        
+        return "register SF10 Thread Complete";
     }
 
     @Override
@@ -265,31 +271,17 @@ public class thread_registerSf1 extends SwingWorker<String, Object>{
             }
             gender = importTable.getValueAt(rowIndex, 2).toString().contains("F")? "Female" : "Male";
             birthDay = importTable.getValueAt(rowIndex, 3).toString();
+            elementaryGrade = importTable.getValueAt(rowIndex, 4).toString();
+            schoolId = importTable.getValueAt(rowIndex, 5).toString();
+            schoolName = importTable.getValueAt(rowIndex, 6).toString();
+            schoolAddress = importTable.getValueAt(rowIndex, 7).toString();
+            
             if(!checkBirthDate(birthDay)){
                 setStatus(rowIndex, "Invalid Birthday");
                 return 1;
             }
-            birthDay = my.changeDateFormat(birthDay, dateFormats[fileTypeSelected], "yyyy-MM-dd");
-            
-            age = importTable.getValueAt(rowIndex, 4).toString();
+            //birthDay = my.changeDateFormat(birthDay, dateFormats[fileTypeSelected], "yyyy-MM-dd");
             //birthPlace = importTable.getValueAt(rowIndex, 5).toString();
-            
-            motherTongue = importTable.getValueAt(rowIndex, 5).toString();
-            indigenousPeople = importTable.getValueAt(rowIndex, 6).toString();
-            religion = importTable.getValueAt(rowIndex, 7).toString();
-            
-            houseNo = importTable.getValueAt(rowIndex, 8).toString();
-            brgy = importTable.getValueAt(rowIndex, 9).toString();
-            mncplty = importTable.getValueAt(rowIndex, 10).toString();
-            province = importTable.getValueAt(rowIndex, 11).toString();
-            
-            fathersName = importTable.getValueAt(rowIndex, 12).toString();
-            mothersName = importTable.getValueAt(rowIndex, 13).toString();
-            guardiansName = importTable.getValueAt(rowIndex, 14).toString();
-            relationship = importTable.getValueAt(rowIndex, 15).toString();
-            contact = importTable.getValueAt(rowIndex, 16).toString();
-            
-            remarks = importTable.getValueAt(rowIndex, 17).toString();// Remarks is for enrollment importing
             Thread.sleep(threadDelay);
             
             return 0;
@@ -302,9 +294,10 @@ public class thread_registerSf1 extends SwingWorker<String, Object>{
         return GenericValidator.isDate(date, dateFormats[fileTypeSelected], true);
     }
     private void setStatus(int rowIndex,String message){
-        importTable.setValueAt(message, rowIndex, 18); //Status Column index 18, column 19
+        importTable.setValueAt(message, rowIndex, 8); //Status Column index 8, column 9
     }
     //</editor-fold>
+    
     //<editor-fold desc="Running Thread Functions">
     private void runningThread(){
         btnFileChooser.setEnabled(false);

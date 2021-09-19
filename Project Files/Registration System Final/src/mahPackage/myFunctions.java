@@ -1211,6 +1211,8 @@ public class myFunctions {
                 toLoad = new Thread(tld);
                 break;
             }case 3:{
+                thread_registerSF10 tld = new thread_registerSF10(tablesToUse, valuesToUse, textFieldsToUse, buttonsToUse, booleansToUse);
+                toLoad = new Thread(tld);
                 break;
             }default:{
                 System.err.println("No proper thread selected.");
@@ -1382,7 +1384,7 @@ public class myFunctions {
     
     public boolean checkForDuplicates(String tableName,String whereLimitExluded,int [] order){
         whereLimitExluded +=" LIMIT 1"; //For fast search. You only need to find at least 1 dupliclate
-        String result [] = return_values("*", tableName, whereLimitExluded, order, myVariables.isDebugModeOn());
+        String result [] = return_values("*", tableName, whereLimitExluded, order, true);
         
         if(result != null){
             return true;

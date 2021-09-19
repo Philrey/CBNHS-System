@@ -371,6 +371,7 @@ public class dashBoard extends javax.swing.JFrame {
         btnCancelImport = new javax.swing.JButton();
         jpbProgressBar = new javax.swing.JProgressBar();
         lbProgressMessage = new javax.swing.JLabel();
+        cbUpdateExisting = new javax.swing.JCheckBox();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -3298,6 +3299,12 @@ public class dashBoard extends javax.swing.JFrame {
 
         lbProgressMessage.setText("Select a file first...");
 
+        cbUpdateExisting.setFont(myVariables.TEXTFIELD_HEADER_FONT);
+        cbUpdateExisting.setText("Update Existing Records?");
+        cbUpdateExisting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        cbUpdateExisting.setOpaque(false);
+        cbUpdateExisting.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+
         javax.swing.GroupLayout importStudentsTabLayout = new javax.swing.GroupLayout(importStudentsTab);
         importStudentsTab.setLayout(importStudentsTabLayout);
         importStudentsTabLayout.setHorizontalGroup(
@@ -3318,7 +3325,9 @@ public class dashBoard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelImport, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRegisterStudents))
+                        .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnRegisterStudents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbUpdateExisting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(importStudentsTabLayout.createSequentialGroup()
                         .addComponent(jLabel95)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -3339,12 +3348,16 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(importTablesTab, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegisterStudents, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, importStudentsTabLayout.createSequentialGroup()
-                        .addComponent(jpbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbUpdateExisting)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbProgressMessage))
-                    .addComponent(btnCancelImport, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnRegisterStudents))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, importStudentsTabLayout.createSequentialGroup()
+                        .addGroup(importStudentsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnCancelImport, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jpbProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbProgressMessage)))
                 .addContainerGap())
         );
 
@@ -4732,20 +4745,41 @@ public class dashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelImportActionPerformed
 
     private void btnRegisterStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterStudentsActionPerformed
-        if(importTableSF1.getRowCount() <= 0){
-            my.showMessage("No Students found inside the table.", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+        int index = jcbFileFormats.getSelectedIndex();
         
-        my.runMainThread(
-                1,
-                new JTable[]{importTableSF1},
-                new String[]{String.valueOf(jcbFileFormats.getSelectedIndex())},
-                new JTextField[]{tfFileLocation},
-                new JButton[]{btnOpenFileExplorer,btnCancelImport,btnRegisterStudents},
-                null,
-                null
-        );
+        switch(index){
+            case 2:{
+                if(importTableSF10.getRowCount() <= 0){
+                    my.showMessage("No Students found inside the table.", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                my.runMainThread(
+                    3,
+                    new JTable[]{importTableSF10},
+                    new String[]{String.valueOf(index)},
+                    null,
+                    new JButton[]{btnOpenFileExplorer,btnCancelImport,btnRegisterStudents},
+                    new boolean[]{cbUpdateExisting.isSelected()},
+                    null
+                );
+                break;
+            }default:{
+                if(importTableSF1.getRowCount() <= 0){
+                    my.showMessage("No Students found inside the table.", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                my.runMainThread(
+                    1,
+                    new JTable[]{importTableSF1},
+                    new String[]{String.valueOf(index)},
+                    new JTextField[]{tfFileLocation},
+                    new JButton[]{btnOpenFileExplorer,btnCancelImport,btnRegisterStudents},
+                    null,
+                    null
+                );
+                break;
+            }
+        }
     }//GEN-LAST:event_btnRegisterStudentsActionPerformed
 
     private void importTableSF10loadStudentHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importTableSF10loadStudentHandler
@@ -5390,6 +5424,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnSearch5;
     private javax.swing.JButton btnSearch6;
     private javax.swing.JButton btnSearch7;
+    private javax.swing.JCheckBox cbUpdateExisting;
     private javax.swing.JPanel editLoadTab;
     private javax.swing.ButtonGroup editStudentGenderGroup;
     private javax.swing.JPanel editStudentTab;
