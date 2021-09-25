@@ -2315,7 +2315,7 @@ public class dashBoard extends javax.swing.JFrame {
                     }else{
                         jtaLeaveNotes.setText("");
                     }
-                    showCustomDialog("Write Notes (Check Attendance)", addNotesDialog, true, 400, 300, false);
+                    showCustomDialog("Write Notes (Check Attendance)", addNotesDialog, true, 400, 350, false);
                     break;
                 }
             }

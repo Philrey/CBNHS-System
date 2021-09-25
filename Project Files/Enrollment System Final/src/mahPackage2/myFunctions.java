@@ -644,6 +644,16 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
+    public boolean checkForDuplicates(String tableName,String whereLimitExluded,int [] order){
+        whereLimitExluded +=" LIMIT 1"; //For fast search. You only need to find at least 1 dupliclate
+        String result [] = return_values("*", tableName, whereLimitExluded, order);
+        
+        if(result != null){
+            return true;
+        }
+        return false;
+    }
+    
     public void setPlaceHolder(String msg,JTextField textField){
         
     }

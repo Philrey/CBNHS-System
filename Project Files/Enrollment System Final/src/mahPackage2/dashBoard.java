@@ -90,6 +90,8 @@ public class dashBoard extends javax.swing.JFrame {
         btnAddNewSection = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jcbSchoolYear = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
+        btnDuplicateSections = new javax.swing.JButton();
         editSectionPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
@@ -187,6 +189,14 @@ public class dashBoard extends javax.swing.JFrame {
         rbAm = new javax.swing.JRadioButton();
         rbPm = new javax.swing.JRadioButton();
         btnSaveTime = new javax.swing.JButton();
+        duplicateSectionDialog = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel37 = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        sectionsTable3 = new javax.swing.JTable();
+        jcbDuplicateSchoolYear = new javax.swing.JComboBox<>();
+        jLabel22 = new javax.swing.JLabel();
+        btnSaveDuplicates = new javax.swing.JButton();
         timePickerGroup = new javax.swing.ButtonGroup();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
@@ -218,17 +228,17 @@ public class dashBoard extends javax.swing.JFrame {
 
         sectionsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Section Name", "Adv ID", "Adviser", "Gender", "Lod ID", "Curriculum", "Grade Level", "School Year"
+                "ID", "Section Name", "Adv ID", "Adviser", "Gender", "Lod ID", "Curriculum", "Grade Level", "School Year", "Subjects Contained"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -286,7 +296,7 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(btnSearchSection)
                     .addComponent(jcbSchoolYear4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -428,6 +438,16 @@ public class dashBoard extends javax.swing.JFrame {
 
         jcbSchoolYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020" }));
 
+        jLabel21.setText("Other Options");
+
+        btnDuplicateSections.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_add_16px.png"))); // NOI18N
+        btnDuplicateSections.setText("Duplicate Selected Sections");
+        btnDuplicateSections.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDuplicateSectionscreateNewSectionHandler(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -456,7 +476,9 @@ public class dashBoard extends javax.swing.JFrame {
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jcbSchoolYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDuplicateSections, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -490,6 +512,10 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(jcbSchoolYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAddNewSection)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDuplicateSections)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -503,7 +529,7 @@ public class dashBoard extends javax.swing.JFrame {
         );
         addNewSectionPanelLayout.setVerticalGroup(
             addNewSectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
         );
 
         sectionsTab.addTab("Add Section", addNewSectionPanel);
@@ -611,17 +637,17 @@ public class dashBoard extends javax.swing.JFrame {
         loadsTable1.setAutoCreateRowSorter(true);
         loadsTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID (H)", "Name", "Grade"
+                "ID (H)", "Name", "Grade", "Subjects Contained"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1645,6 +1671,111 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        duplicateSectionDialog.setBackground(new java.awt.Color(255, 255, 204));
+
+        jPanel10.setBackground(new java.awt.Color(22, 66, 33));
+
+        jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel37.setText("Duplicate Sections");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel37)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel37)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        sectionsTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Section Name", "Adv ID", "Adviser", "Gender", "Lod ID", "Curriculum", "Grade Level", "School Year"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        sectionsTable3.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        sectionsTable3.getTableHeader().setReorderingAllowed(false);
+        sectionsTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sectionsTable3MouseClicked(evt);
+            }
+        });
+        jScrollPane10.setViewportView(sectionsTable3);
+        if (sectionsTable3.getColumnModel().getColumnCount() > 0) {
+            sectionsTable3.getColumnModel().getColumn(1).setResizable(false);
+            sectionsTable3.getColumnModel().getColumn(1).setPreferredWidth(200);
+            sectionsTable3.getColumnModel().getColumn(3).setPreferredWidth(200);
+            sectionsTable3.getColumnModel().getColumn(4).setResizable(false);
+            sectionsTable3.getColumnModel().getColumn(4).setPreferredWidth(80);
+            sectionsTable3.getColumnModel().getColumn(6).setPreferredWidth(150);
+            sectionsTable3.getColumnModel().getColumn(7).setResizable(false);
+            sectionsTable3.getColumnModel().getColumn(7).setPreferredWidth(100);
+            sectionsTable3.getColumnModel().getColumn(8).setResizable(false);
+            sectionsTable3.getColumnModel().getColumn(8).setPreferredWidth(100);
+        }
+
+        jcbDuplicateSchoolYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020" }));
+
+        jLabel22.setText("Select School Year");
+
+        btnSaveDuplicates.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_save_16px.png"))); // NOI18N
+        btnSaveDuplicates.setText("Save Changes");
+
+        javax.swing.GroupLayout duplicateSectionDialogLayout = new javax.swing.GroupLayout(duplicateSectionDialog);
+        duplicateSectionDialog.setLayout(duplicateSectionDialogLayout);
+        duplicateSectionDialogLayout.setHorizontalGroup(
+            duplicateSectionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(duplicateSectionDialogLayout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(duplicateSectionDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(duplicateSectionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, duplicateSectionDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcbDuplicateSchoolYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSaveDuplicates)))
+                .addContainerGap())
+        );
+        duplicateSectionDialogLayout.setVerticalGroup(
+            duplicateSectionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(duplicateSectionDialogLayout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(duplicateSectionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcbDuplicateSchoolYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22)
+                    .addComponent(btnSaveDuplicates))
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Dashboard");
         setIconImage(my.getImgIcn(myVariables.getEnrollmentWindowIcon()).getImage()
@@ -1926,12 +2057,16 @@ public class dashBoard extends javax.swing.JFrame {
             String loadId = sectionsTable.getValueAt(row, 5).toString();
             String loadName = sectionsTable.getValueAt(row, 6).toString();
             String gradeLevel = sectionsTable.getValueAt(row, 7).toString();
+            String subjectsContained = sectionsTable.getValueAt(row, 9).toString();
             
             my.clear_table_rows(usersTable1);
             my.clear_table_rows(loadsTable1);
             
             my.add_table_row(adviserId+"@@"+adviserName+"@@"+gender+"@@"+accessLevel+"@@", usersTable1);
-            my.add_table_row(loadId+"@@"+loadName+"@@"+gradeLevel+"@@", loadsTable1);
+            my.add_table_row(loadId+"@@"+loadName+"@@"+gradeLevel+"@@"+subjectsContained+"@@", loadsTable1);
+            
+            usersTable1.setRowSelectionInterval(0, 0);
+            loadsTable1.setRowSelectionInterval(0, 0);
             //</editor-fold>
             
             tfSectionName1.setText(sectionName);
@@ -1981,16 +2116,47 @@ public class dashBoard extends javax.swing.JFrame {
             my.showMessage("Please select a Curriculum", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        //<editor-fold desc="Check if Section is already finalized">
+        String subjectsContained = loadsTable1.getValueAt(currIndex, 3).toString();
+        boolean duplicateFound = false;
+        if(subjectsContained.trim().length()>0){
+            subjectsContained = subjectsContained.replace(':', ',');
+            
+            if(subjectsContained.charAt(subjectsContained.length()-1) == ','){
+                subjectsContained = subjectsContained.substring(0, subjectsContained.length()-1);
+                System.err.println("Comma found...deleting");
+            }
+            String where = "WHERE subjectId IN ("+subjectsContained+") AND sectionId='"+sectionId+"' ORDER BY FIELD(subjectId,"+subjectsContained+")";
+            
+            duplicateFound = my.checkForDuplicates("v_teacherloads", where, myVariables.getTeacherLoadsViewOrder());
+        }
+        //</editor-fold>
         
-        String [] sets = {
-            "sectionName='"+sectionName+"'",
-            "adviserId='"+usersTable1.getValueAt(advIndex, 0).toString()+"'",
-            "loadId='"+loadsTable1.getValueAt(currIndex, 0).toString()+"'",
-            "schoolYear='"+schoolYear+"'",
-        };
+        String [] sets = null;
+        
+        if(duplicateFound){
+            sets = new String [] {
+                "sectionName='"+sectionName+"'",
+                "adviserId='"+usersTable1.getValueAt(advIndex, 0).toString()+"'",
+                //Ignore Curriculum updates since section is already finalized
+                //"loadId='"+loadsTable1.getValueAt(currIndex, 0).toString()+"'",
+                "schoolYear='"+schoolYear+"'",
+            };
+        }else{
+            sets = new String [] {
+                "sectionName='"+sectionName+"'",
+                "adviserId='"+usersTable1.getValueAt(advIndex, 0).toString()+"'",
+                "loadId='"+loadsTable1.getValueAt(currIndex, 0).toString()+"'",
+                "schoolYear='"+schoolYear+"'",
+            };
+        }
         
         if(my.update_values("sections", sets, "id='"+sectionId+"'")){
-            my.showMessage("Update Successful.", JOptionPane.INFORMATION_MESSAGE);
+            if(duplicateFound){
+                my.showMessage("Update Successful.\nCurriculum not updated!(Already Finalized)", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                my.showMessage("Update Successful.", JOptionPane.INFORMATION_MESSAGE);
+            }
             
             btnSearchSectionHandler(evt);
         }else{
@@ -2404,6 +2570,40 @@ public class dashBoard extends javax.swing.JFrame {
         }
         my.searchItem(where, usersTable2, 3, new int[]{5,6}, new int[]{1,2,3}, true, true, null, tfSearchUser2, true);
     }//GEN-LAST:event_searchUserHandler2
+
+    private void btnDuplicateSectionscreateNewSectionHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDuplicateSectionscreateNewSectionHandler
+        int [] indeces = sectionsTable.getSelectedRows();
+        
+        if(indeces.length > 0){
+            my.clear_table_rows(sectionsTable3);
+            String firstSchoolYear="";
+            //Add Selected Sections to Dialog
+            for(int n=0,len=indeces.length; n<len; n++){
+                if(n==0){
+                    firstSchoolYear = sectionsTable.getValueAt(n, 8).toString();
+                    //Increase to next school year
+                    firstSchoolYear = String.valueOf(Integer.parseInt(firstSchoolYear)+1);
+                }
+                my.add_table_row(my.get_table_row_values(indeces[n], sectionsTable), sectionsTable3);
+            }
+            
+            //Select School Year based on first section selected
+            for(int n=0,len=jcbDuplicateSchoolYear.getItemCount(); n<len; n++){
+                if(jcbDuplicateSchoolYear.getItemAt(n).equals(firstSchoolYear)){
+                    jcbDuplicateSchoolYear.setSelectedIndex(n);
+                    break;
+                }
+            }
+            
+            showCustomDialog("Duplicate Selected Sections.", duplicateSectionDialog, true, 500, 500, true, null);
+        }else{
+            my.showMessage("No Section(s) Selected.", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDuplicateSectionscreateNewSectionHandler
+
+    private void sectionsTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sectionsTable3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sectionsTable3MouseClicked
     
     private void updateHour(){
         tfHour.setText(my.addZeroes(jsHour.getValue()));
@@ -2589,6 +2789,8 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(sectionsTable2, new int [] {0,2,5,7,9});
             my.hideColumns(assignedTeacherTable, new int [] {0,1,2,5,6,8});
             my.hideColumns(usersTable2, new int[] {0});
+            
+            my.hideColumns(sectionsTable3, new int [] {0,2,5});
         }
         
         //Set table fonts
@@ -2606,6 +2808,8 @@ public class dashBoard extends javax.swing.JFrame {
             sectionsTable2,
             assignedTeacherTable,
             usersTable2,
+            
+            sectionsTable3,
         };
         //customizeTableColumnColors(sf1SectionTable, new int [] {0,1,2,3}, Color.RED,Color.WHITE,new Font("Segoe UI",Font.PLAIN,11),true);
         //customHeaders(sf1SectionTable, new int []{0,1,2,3}, Color.RED, Color.WHITE, new Font("Comic Sans MS", Font.BOLD, 12), true);
@@ -2674,6 +2878,8 @@ public class dashBoard extends javax.swing.JFrame {
             btnNone,
             
             btnSaveTime,
+            btnDuplicateSections,
+            btnSaveDuplicates,
         };
         
         JButton lightButtons [] = {
@@ -2709,7 +2915,7 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadLabels(){
         JLabel titleHeaderLabels [] = {
-            jLabel1,jLabel2,jLabel34,jLabel35,jLabel36,
+            jLabel1,jLabel2,jLabel34,jLabel35,jLabel36,jLabel37,
         };
         JLabel labels [] = {
             lbSearchResult,lbSearchResult1,lbSearchResult2,
@@ -2721,7 +2927,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         JLabel textFieldHeaderLabels [] = {
             jLabel5,jLabel6,jLabel7,jLabel8,jLabel9,jLabel10,jLabel13,jLabel11,jLabel15,
-            jLabel16,jLabel19,jLabel20,
+            jLabel16,jLabel19,jLabel20,jLabel21,jLabel22,
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -2770,7 +2976,7 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void loadYearDropDowns(int numberOfYears){
         JComboBox [] yearDropDowns = {
-            jcbSchoolYear,jcbSchoolYear1,
+            jcbSchoolYear,jcbSchoolYear1,jcbDuplicateSchoolYear,
         };
         
         JComboBox [] yearDropDownsWithAllOption = {
@@ -2808,9 +3014,11 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTable assignedTeacherTable;
     private javax.swing.JButton btnAddNewSection;
     private javax.swing.JButton btnAssignTeacher;
+    private javax.swing.JButton btnDuplicateSections;
     private javax.swing.JButton btnEditSubjectTeacher;
     private javax.swing.JButton btnEnrollStudent;
     private javax.swing.JButton btnNone;
+    private javax.swing.JButton btnSaveDuplicates;
     private javax.swing.JButton btnSaveSectionChanges;
     private javax.swing.JButton btnSaveSubjectTeacherChanges;
     private javax.swing.JButton btnSaveTime;
@@ -2825,6 +3033,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnSearchUser1;
     private javax.swing.JButton btnSearchUser2;
     private javax.swing.JPanel detailsTab;
+    private javax.swing.JPanel duplicateSectionDialog;
     private javax.swing.JPanel editSectionPanel;
     private javax.swing.JPanel enrollStudentPanel;
     private javax.swing.JTable enrollmentTable;
@@ -2842,10 +3051,13 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2853,6 +3065,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel3;
@@ -2863,6 +3076,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
@@ -2882,6 +3096,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JComboBox<String> jcbDuplicateSchoolYear;
     private javax.swing.JComboBox<String> jcbSchoolYear;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
     private javax.swing.JComboBox<String> jcbSchoolYear2;
@@ -2915,6 +3130,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTable sectionsTable;
     private javax.swing.JTable sectionsTable1;
     private javax.swing.JTable sectionsTable2;
+    private javax.swing.JTable sectionsTable3;
     private javax.swing.JPanel selectTeacherTab;
     private javax.swing.JTable studentTable;
     private javax.swing.JTabbedPane subjectTeacherTab;
