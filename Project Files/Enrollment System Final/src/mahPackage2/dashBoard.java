@@ -10,6 +10,7 @@ import java.awt.ComponentOrientation;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -1741,7 +1742,12 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel22.setText("Select School Year");
 
         btnSaveDuplicates.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_save_16px.png"))); // NOI18N
-        btnSaveDuplicates.setText("Save Changes");
+        btnSaveDuplicates.setText("Duplicate");
+        btnSaveDuplicates.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveDuplicatesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout duplicateSectionDialogLayout = new javax.swing.GroupLayout(duplicateSectionDialog);
         duplicateSectionDialog.setLayout(duplicateSectionDialogLayout);
@@ -2604,6 +2610,46 @@ public class dashBoard extends javax.swing.JFrame {
     private void sectionsTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sectionsTable3MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_sectionsTable3MouseClicked
+
+    private void btnSaveDuplicatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveDuplicatesActionPerformed
+        int count = sectionsTable3.getRowCount();
+        if(count == -1){
+            my.showMessage("No Sections to duplicate.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(!my.getConfirmation("Duplicated Sections' school year must not be lesser or equal to the currently selected.\nSections with the same school year will be ignored.\n\nNOTE: Book Template not included.")){
+            return;
+        }
+        int selectedSchoolYear = Integer.parseInt(jcbDuplicateSchoolYear.getSelectedItem().toString());
+        String sectionName,adviserId,loadId;
+        int schoolYear;
+        
+        ArrayList<String> sets = new ArrayList<>();
+        for(int n=0;n<count;n++){
+            schoolYear = Integer.parseInt(sectionsTable3.getValueAt(n, 8).toString());
+            System.err.println(schoolYear+" "+selectedSchoolYear);
+            if(schoolYear >= selectedSchoolYear){
+                continue;
+            }
+            
+            sectionName = sectionsTable3.getValueAt(n, 1).toString();
+            adviserId = sectionsTable3.getValueAt(n, 2).toString();
+            loadId = sectionsTable3.getValueAt(n, 5).toString();
+            
+            System.err.println("Section Added");
+            sets.add("null,'"+sectionName+"','"+adviserId+"','"+loadId+"','"+selectedSchoolYear+"'");
+        }
+        if(sets.size() <= 0){
+            my.showMessage("No Sections to Duplicate.", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(my.add_multiple_values("sections", "id,sectionName,adviserId,loadId,schoolYear", sets)){
+            my.showMessage("Duplication Success.", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            my.showMessage("Duplication Failed.", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSaveDuplicatesActionPerformed
     
     private void updateHour(){
         tfHour.setText(my.addZeroes(jsHour.getValue()));

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -281,6 +282,13 @@ public class myFunctions {
         }
     }
     //C= Create Method Multiple//
+    public boolean add_multiple_values(String tableName,String columnNames,ArrayList<String> values){
+        String [] temp = new String[values.size()];
+        for (int n=0,len=values.size();n<len;n++) {
+            temp[n] = values.get(n);
+        }
+        return add_multiple_values(tableName, columnNames, temp);
+    }
     public boolean add_multiple_values(String tableName,String columnNames,String [] values){
         String toSend = "";
         String [] column = values;
