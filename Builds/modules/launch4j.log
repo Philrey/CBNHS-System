@@ -481,3 +481,32 @@ Launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe
 Launcher args:	-jar "D:\Repositories\CBNHS-System\Builds\modules\registration.exe"
 Args length:	67/32768 chars
 Exit code:	259
+
+
+Version:	3.14
+CmdLine:	D:\Repositories\CBNHS-System\Builds\modules\bookKeeping.exe --l4j-debug
+WOW64:		yes
+Create mutex:	hisrms_book_keeping
+Working dir:	D:\Repositories\CBNHS-System\Builds\modules\.
+Java min ver:	1.008.000_000
+Java max ver:	1.015.000_000
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+32-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_291
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000_291
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.008.000_291 (64-bit)
+Main class:	mahPackage5.login
+Add classpath:	lib\AbsoluteLayout.jar
+Add classpath:	lib\java-json.jar
+Add classpath:	lib\KGradientPanel.jar
+Add classpath:	lib\jcalendar-1.4.jar
+Launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe
+Launcher args:	-classpath "D:\Repositories\CBNHS-System\Builds\modules\bookKeeping.exe;lib\AbsoluteLayout.jar;lib\java-json.jar;lib\KGradientPanel.jar;lib\jcalendar-1.4.jar" mahPackage5.login
+Args length:	176/32768 chars
+Exit code:	259
