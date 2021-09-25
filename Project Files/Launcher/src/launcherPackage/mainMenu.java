@@ -957,13 +957,13 @@ public class mainMenu extends javax.swing.JFrame {
     //<editor-fold desc="Custom Functions">
     private static final String moduleInformation [] = {
         "Select a System for more info.",
-        "Registration",
-        "Enrollment",
-        "Attendance",
-        "Weighing",
-        "Book Keeping",
-        "Grading",
-        "Forms"
+        "Registration System\n\nUsed for registering new students and monitoring their main information",
+        "Enrollment System\n\nManages sections and Enrollment of Students.",
+        "Attendance System\n\nManages Student daily and monthly Attendances.",
+        "Weighing System\n\nUsed for monitoring Students' BMI and other health measurements.",
+        "Book Keeping System\n\nUsed for recording distributed & returned books by students throughout the School Year.",
+        "Grading System\n\nRecords the quarterly grades of students.",
+        "Forms System\n\nCompiles all the data recorded by the other Systems and exports them as School Documents."
     };
     
     private void selectModuleInfo(int index){

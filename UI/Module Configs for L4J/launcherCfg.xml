@@ -2,8 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>D:\CBNHS System\Builds\Launcher.jar</jar>
-  <outfile>D:\CBNHS System\Builds\hisrms_launcher.exe</outfile>
+  <jar>D:\Repositories\CBNHS-System\Project Files\Launcher\dist\Launcher.jar</jar>
+  <outfile>D:\Repositories\CBNHS-System\Builds\hisrms_launcher.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
@@ -13,7 +13,7 @@
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
-  <icon>D:\CBNHS System\Builds\modules\icons [temp]\icons8_product_documents_1.ico</icon>
+  <icon>D:\Repositories\CBNHS-System\Builds\modules\icons [temp]\icons8_product_documents_1.ico</icon>
   <singleInstance>
     <mutexName>hisrms_home</mutexName>
     <windowTitle>High School Records Management System</windowTitle>
