@@ -199,6 +199,16 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
                         if(cValue.length() != 8 && cValue.length() != 9 && cValue.length() != 10){
                             msg = "Invalid Date";
                             isReadyForImport = false;
+                        }else{
+                            try {
+                                String temp [] = cValue.split("-");
+                                if(temp.length != 3){
+                                    throw new Exception("");
+                                }
+                            } catch (Exception e) {
+                                msg = "Invalid Date";
+                                isReadyForImport = false;
+                            }
                         }
                         break;
                     }case 4:{   //Grade

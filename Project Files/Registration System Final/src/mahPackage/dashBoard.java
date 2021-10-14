@@ -3570,7 +3570,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         if(myVariables.getAccessLevel() <5){
             String additionalQuery;
-            if(toSearch.contains(",")){
+            if(toSearch.contains("/")){
                 additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
             }else{
                 additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch+",");
@@ -3673,7 +3673,7 @@ public class dashBoard extends javax.swing.JFrame {
         
         if(myVariables.getAccessLevel() <5){
             String additionalQuery;
-            if(toSearch.contains(",")){
+            if(toSearch.contains("/")){
                 additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
             }else{
                 additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch+",");
@@ -3852,7 +3852,7 @@ public class dashBoard extends javax.swing.JFrame {
             "null",
             my.convertEscapeCharacters(tfLName1.getText().trim()),
             my.convertEscapeCharacters(tfFname1.getText().trim()),
-            my.convertEscapeCharacters(tfMname1.getText().trim()),
+            my.convertEscapeCharacters(tfMname1.getText().trim().length()>0? tfMname1.getText().trim() : " "),
             jcbGender2.getSelectedIndex()==0?"Male":"Female",
             my.convertEscapeCharacters(tfUserName.getText()),
             my.convertEscapeCharacters(tfPassword.getText()),
@@ -3905,7 +3905,7 @@ public class dashBoard extends javax.swing.JFrame {
         String order = " ORDER BY user_level DESC,user_Lname ASC,user_Fname ASC, user_Mname ASC";
         
         if(myVariables.getAccessLevel() <5){
-            if(toSearch.contains(",")){
+            if(toSearch.contains("/")){
                 String additionalQuery;
                 additionalQuery = my.multipleColumnSearch("user_Lname,user_Fname,user_Mname", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
                 if(additionalQuery == null){
