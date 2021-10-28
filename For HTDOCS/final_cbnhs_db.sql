@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2021 at 06:33 AM
+-- Generation Time: Oct 28, 2021 at 09:44 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -319,6 +319,14 @@ CREATE TABLE `books` (
   `gradeLevel` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `books`
+--
+
+INSERT INTO `books` (`id`, `bookCode`, `bookName`, `gradeLevel`) VALUES
+(1, 'ENG-32', 'English For You and Me', 7),
+(2, 'MATH-33', 'Mathematics For Dummies', 7);
+
 -- --------------------------------------------------------
 
 --
@@ -347,6 +355,14 @@ CREATE TABLE `booktemplates` (
   `gradeLevel` int(11) NOT NULL,
   `booksContained` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `booktemplates`
+--
+
+INSERT INTO `booktemplates` (`id`, `templateName`, `gradeLevel`, `booksContained`) VALUES
+(1, 'K12 - Grade 7', 7, '1:2:'),
+(2, 'K12 - Grade 8', 8, '');
 
 -- --------------------------------------------------------
 
@@ -966,6 +982,21 @@ CREATE TABLE `personalinfo` (
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `personalinfo`
+--
+
+INSERT INTO `personalinfo` (`id`, `stdId`, `bDate`, `age`, `mTongue`, `ip`, `rlgn`, `houseN`, `brgy`, `mncpl`, `prvnce`, `fName`, `mName`, `gName`, `rltnshp`, `contact`, `date`) VALUES
+(1, 1, '1999-03-01', 13, 'LANGUAGE', 'INDIGENOUS PEOPLE', 'RELIGION', 'HOUSE NUM', 'BRGY', 'MUNICIPAL', 'PROVINCE', 'FATHER NAME', 'MOTHER NAME', 'GUARDIAN NAME', 'RELATIONSHIP', 'CONTACT', '2021-09-18 18:15:22'),
+(2, 3, '2005-08-20', 0, 'LANGUAGE', 'INDIGENOUS PEOPLE', 'RELIGION', 'HOUSE NUM', 'BRGY', 'MUNICIPAL', 'PROVINCE', 'FATHER NAME', 'MOTHER NAME', 'GUARDIAN NAME', 'RELATIONSHIP', 'CONTACT', '2021-09-20 00:16:13'),
+(3, 4, '2006-02-15', 0, 'LANGUAGE', 'INDIGENOUS PEOPLE', 'RELIGION', 'HOUSE NUM', 'BRGY', 'MUNICIPAL', 'PROVINCE', 'FATHER NAME', 'MOTHER NAME', 'GUARDIAN NAME', 'RELATIONSHIP', 'CONTACT', '2021-09-20 00:16:13'),
+(4, 5, '2005-08-20', 0, 'LANGUAGE', 'INDIGENOUS PEOPLE', 'RELIGION', 'HOUSE NUM', 'BRGY', 'MUNICIPAL', 'PROVINCE', 'FATHER NAME', 'MOTHER NAME', 'GUARDIAN NAME', 'RELATIONSHIP', 'CONTACT', '2021-09-20 00:25:17'),
+(5, 6, '2006-02-15', 0, 'LANGUAGE', 'INDIGENOUS PEOPLE', 'RELIGION', 'HOUSE NUM', 'BRGY', 'MUNICIPAL', 'PROVINCE', 'FATHER NAME', 'MOTHER NAME', 'GUARDIAN NAME', 'RELATIONSHIP', 'CONTACT', '2021-09-20 00:25:17'),
+(6, 7, '2005-08-20', 0, 'LANGUAGE', 'INDIGENOUS PEOPLE', 'RELIGION', 'HOUSE NUM', 'BRGY', 'MUNICIPAL', 'PROVINCE', 'FATHER NAME', 'MOTHER NAME', 'GUARDIAN NAME', 'RELATIONSHIP', 'CONTACT', '2021-09-20 00:30:16'),
+(7, 8, '2006-02-15', 0, 'LANGUAGE', 'INDIGENOUS PEOPLE', 'RELIGION', 'HOUSE NUM', 'BRGY', 'MUNICIPAL', 'PROVINCE', 'FATHER NAME', 'MOTHER NAME', 'GUARDIAN NAME', 'RELATIONSHIP', 'CONTACT', '2021-09-20 00:30:17'),
+(8, 9, '2005-08-20', 0, 'LANGUAGE', 'INDIGENOUS PEOPLE', 'RELIGION', 'HOUSE NUM', 'BRGY', 'MUNICIPAL', 'PROVINCE', 'FATHER NAME', 'MOTHER NAME', 'GUARDIAN NAME', 'RELATIONSHIP', 'CONTACT', '2021-09-20 14:50:11'),
+(9, 10, '2006-02-15', 0, 'LANGUAGE', 'INDIGENOUS PEOPLE', 'RELIGION', 'HOUSE NUM', 'BRGY', 'MUNICIPAL', 'PROVINCE', 'FATHER NAME', 'MOTHER NAME', 'GUARDIAN NAME', 'RELATIONSHIP', 'CONTACT', '2021-09-20 14:50:11');
+
 -- --------------------------------------------------------
 
 --
@@ -987,8 +1018,9 @@ CREATE TABLE `sections` (
 --
 
 INSERT INTO `sections` (`id`, `sectionName`, `adviserId`, `loadId`, `bookTemplateId`, `schoolYear`, `dep_type`) VALUES
-(1, 'Grade 7 - Honesto', 2, 1, -1, 2021, 'JHS'),
-(2, 'Grade 11 - SHS Test', 1, 2, -1, 2021, 'SHS');
+(1, 'Grade 7 - Honesto', 2, 1, 1, 2021, 'JHS'),
+(2, 'Grade 11 - SHS Test', 1, 2, -1, 2021, 'SHS'),
+(4, 'Grade 7 - Honesto', 2, 1, -1, 2022, 'JHS');
 
 -- --------------------------------------------------------
 
@@ -1016,8 +1048,12 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `lrn`, `lName`, `fName`, `mName`, `sex`, `inGr`, `curGrLvl`, `schoolId`, `schoolName`, `schoolAddress`, `dep_type`) VALUES
-(1, '123456789012', 'Paderogao', 'Phil Rey', 'Estrella', 'Male', 90.25, 7, '123456', 'Gregorio Moralizon Elementary School - I', 'Manay, Davao Oriental', 'JHS'),
-(2, '123456789013', 'Chan', 'Jose', 'Marie', 'Female', 90, 11, '1234567', 'Rizal Elementary School', 'Dimakita Island', 'SHS');
+(1, '123456789012', 'Paderogao', 'Phil Rey', ' ', 'Male', 90.25, 7, '123456', 'Gregorio Moralizon Elementary School - I', 'Manay, Davao Oriental', 'JHS'),
+(2, '123456789013', 'Chan', 'Jose', 'Marie', 'Female', 90, 11, '1234567', 'Rizal Elementary School', 'Dimakita Island', 'SHS'),
+(7, '131779120034', 'Alsola', 'Mark Luis', 'Jalmas', 'Male', 0, 0, '000000', ' ', ' ', 'SHS'),
+(8, '129679110086', 'Villegas', 'Dario', 'Casicas', 'Male', 0, 0, '000000', ' ', ' ', 'SHS'),
+(9, '131779120034', 'Alsola', 'Mark Luis', 'Jalmas', 'Male', 93, 0, '131861', 'AFGA CENTRAL ELEM. SCHOOL', 'AFGA,SIBAGAT,ADS', 'JHS'),
+(10, '129679110086', 'Villegas', 'Dario', 'Casicas', 'Male', 85, 0, '129679', 'ARTEMIO LOYOLA ELEM. SCHOOL', 'TORIL, DAVAO CITY', 'JHS');
 
 -- --------------------------------------------------------
 
@@ -1104,27 +1140,28 @@ CREATE TABLE `teacherloads` (
   `teacherId` int(11) NOT NULL,
   `subjectId` int(11) NOT NULL,
   `timeStart` time NOT NULL DEFAULT '07:00:00',
-  `timeEnd` time NOT NULL DEFAULT '08:00:00'
+  `timeEnd` time NOT NULL DEFAULT '08:00:00',
+  `daysScheduled` varchar(100) NOT NULL DEFAULT '--'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `teacherloads`
 --
 
-INSERT INTO `teacherloads` (`id`, `sectionId`, `teacherId`, `subjectId`, `timeStart`, `timeEnd`) VALUES
-(1, 1, 2, 8, '07:00:00', '08:00:00'),
-(2, 1, -1, 9, '07:00:00', '08:00:00'),
-(3, 1, -1, 10, '07:00:00', '08:00:00'),
-(4, 1, -1, 11, '07:00:00', '08:00:00'),
-(5, 1, -1, 12, '07:00:00', '08:00:00'),
-(6, 1, -1, 13, '07:00:00', '08:00:00'),
-(7, 1, -1, 14, '07:00:00', '08:00:00'),
-(8, 1, -1, 60, '07:00:00', '08:00:00'),
-(9, 1, -1, 15, '07:00:00', '08:00:00'),
-(10, 1, -1, 16, '07:00:00', '08:00:00'),
-(11, 1, -1, 17, '07:00:00', '08:00:00'),
-(12, 1, -1, 18, '07:00:00', '08:00:00'),
-(13, 1, 2, 52, '07:00:00', '08:00:00');
+INSERT INTO `teacherloads` (`id`, `sectionId`, `teacherId`, `subjectId`, `timeStart`, `timeEnd`, `daysScheduled`) VALUES
+(1, 1, 2, 8, '07:00:00', '08:00:00', 'M:W:F'),
+(2, 1, -1, 9, '07:00:00', '08:00:00', '--'),
+(3, 1, -1, 10, '07:00:00', '08:00:00', '--'),
+(4, 1, -1, 11, '07:00:00', '08:00:00', '--'),
+(5, 1, -1, 12, '07:00:00', '08:00:00', '--'),
+(6, 1, -1, 13, '07:00:00', '08:00:00', '--'),
+(7, 1, -1, 14, '07:00:00', '08:00:00', '--'),
+(8, 1, -1, 60, '07:00:00', '08:00:00', '--'),
+(9, 1, -1, 15, '07:00:00', '08:00:00', '--'),
+(10, 1, -1, 16, '07:00:00', '08:00:00', '--'),
+(11, 1, -1, 17, '07:00:00', '08:00:00', '--'),
+(12, 1, -1, 18, '07:00:00', '08:00:00', '--'),
+(13, 1, 2, 52, '07:00:00', '08:00:00', '--');
 
 -- --------------------------------------------------------
 
@@ -1144,6 +1181,14 @@ CREATE TABLE `userdetails` (
   `minor` varchar(1000) NOT NULL DEFAULT 'MINOR',
   `managedSubjects` varchar(10000) NOT NULL DEFAULT 'NONE'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `userdetails`
+--
+
+INSERT INTO `userdetails` (`id`, `userId`, `employeeNumber`, `fundSource`, `position`, `nature`, `degree`, `major`, `minor`, `managedSubjects`) VALUES
+(1, 5, 'TIN NUMBER', 'FUND SOURCE', 'POSITION', 'NATURE', 'DEGREE', 'MAJOR', 'MINOR', '8:19:30:41:'),
+(2, 2, 'TIN NUMBER', 'FUND SOURCE', 'POSITION', 'NATURE', 'DEGREE', 'MAJOR', 'MINOR', 'NONE');
 
 -- --------------------------------------------------------
 
@@ -1168,8 +1213,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_Lname`, `user_Fname`, `user_Mname`, `gender`, `user_name`, `user_password`, `user_level`, `dep_type`) VALUES
-(1, 'Paderogao', 'Phil Rey', 'Estrella%C3%91', 'Male', 'admin', 'password', 5, 'JHS'),
-(2, 'Furahashi', 'Fumino', 'Ona', 'Female', 'benkyu', 'password', 1, 'JHS'),
+(1, 'Paderogao', 'Phil Rey', 'Estrellan%C3%91', 'Male', 'admin', 'password', 5, 'JHS'),
+(2, 'Furahashi', 'Fumino', 'Haruka', 'Female', 'benkyu', 'password', 1, 'JHS'),
 (3, 'Paderogao', 'Kerby', 'Estrella', 'Female', 'kerbs', 'pass', 1, 'JHS'),
 (4, 'Dela Cruz', 'Juan', 'Ponciano', 'Male', 'registrar', 'password', 4, 'JHS'),
 (5, 'Rizal', 'Jose', 'Protacio', 'Male', 'depheadfil7', 'password', 2, 'JHS'),
@@ -1183,7 +1228,8 @@ INSERT INTO `users` (`id`, `user_Lname`, `user_Fname`, `user_Mname`, `gender`, `
 (13, 'Mason', 'Alex', 'Joe', 'Male', 'thenumbers', 'password', 3, 'JHS'),
 (14, 'Filonzo', 'Ferdinand', 'Wika', 'Male', 'ferdi', 'password', 2, 'JHS'),
 (15, 'Englesias', 'Edgar', 'Poe', 'Male', 'edgar', 'password', 2, 'JHS'),
-(16, 'Paderogao', 'Phil Rey', 'Estrella', 'Male', 'admin', 'password', 5, 'SHS');
+(16, 'Paderogao', 'Phil Rey', 'Estrella', 'Male', 'admin', 'password', 5, 'SHS'),
+(17, 'Paderogao', 'Jeff', ' ', 'Male', 'jeff', 'password', 1, 'JHS');
 
 -- --------------------------------------------------------
 
@@ -2193,7 +2239,7 @@ ALTER TABLE `bmichart_male`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `booksissuedreturned`
@@ -2205,7 +2251,7 @@ ALTER TABLE `booksissuedreturned`
 -- AUTO_INCREMENT for table `booktemplates`
 --
 ALTER TABLE `booktemplates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `enrollment`
@@ -2259,19 +2305,19 @@ ALTER TABLE `loads`
 -- AUTO_INCREMENT for table `personalinfo`
 --
 ALTER TABLE `personalinfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `subjects`
@@ -2289,13 +2335,13 @@ ALTER TABLE `teacherloads`
 -- AUTO_INCREMENT for table `userdetails`
 --
 ALTER TABLE `userdetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
