@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2021 at 09:44 AM
+-- Generation Time: Oct 29, 2021 at 06:28 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -1149,7 +1149,7 @@ CREATE TABLE `teacherloads` (
 --
 
 INSERT INTO `teacherloads` (`id`, `sectionId`, `teacherId`, `subjectId`, `timeStart`, `timeEnd`, `daysScheduled`) VALUES
-(1, 1, 2, 8, '07:00:00', '08:00:00', 'M:W:F'),
+(1, 1, 2, 8, '07:00:00', '09:00:00', 'Mon:Tue:Wed:Thu:Fri:'),
 (2, 1, -1, 9, '07:00:00', '08:00:00', '--'),
 (3, 1, -1, 10, '07:00:00', '08:00:00', '--'),
 (4, 1, -1, 11, '07:00:00', '08:00:00', '--'),
@@ -1188,7 +1188,8 @@ CREATE TABLE `userdetails` (
 
 INSERT INTO `userdetails` (`id`, `userId`, `employeeNumber`, `fundSource`, `position`, `nature`, `degree`, `major`, `minor`, `managedSubjects`) VALUES
 (1, 5, 'TIN NUMBER', 'FUND SOURCE', 'POSITION', 'NATURE', 'DEGREE', 'MAJOR', 'MINOR', '8:19:30:41:'),
-(2, 2, 'TIN NUMBER', 'FUND SOURCE', 'POSITION', 'NATURE', 'DEGREE', 'MAJOR', 'MINOR', 'NONE');
+(2, 2, 'TIN NUMBER', 'FUND SOURCE', 'POSITION', 'NATURE', 'DEGREE', 'MAJOR', 'MINOR', 'NONE'),
+(3, 1, 'TIN NUMBER', 'FUND SOURCE', 'POSITION', 'NATURE', 'DEGREE', 'MAJOR', 'MINOR', 'NONE');
 
 -- --------------------------------------------------------
 
@@ -1716,6 +1717,29 @@ CREATE TABLE `v_teacherloads_w_time` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `v_teacherloads_w_time_nd_day`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_teacherloads_w_time_nd_day` (
+`id` int(11)
+,`sectionId` int(11)
+,`teacherId` int(11)
+,`user_Lname` varchar(200)
+,`user_Fname` varchar(200)
+,`user_Mname` varchar(200)
+,`gender` varchar(12)
+,`subjectId` int(11)
+,`subjectCode` varchar(200)
+,`description` varchar(500)
+,`gradeLevel` int(11)
+,`timeStart` time
+,`timeEnd` time
+,`daysScheduled` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `v_users_jhs`
 -- (See below for the actual view)
 --
@@ -2056,6 +2080,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `v_teacherloads_w_time_nd_day`
+--
+DROP TABLE IF EXISTS `v_teacherloads_w_time_nd_day`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_teacherloads_w_time_nd_day`  AS  select `teacherloads`.`id` AS `id`,`teacherloads`.`sectionId` AS `sectionId`,`teacherloads`.`teacherId` AS `teacherId`,ifnull(`users`.`user_Lname`,'None') AS `user_Lname`,ifnull(`users`.`user_Fname`,'None') AS `user_Fname`,ifnull(`users`.`user_Mname`,'None') AS `user_Mname`,ifnull(`users`.`gender`,'None') AS `gender`,`teacherloads`.`subjectId` AS `subjectId`,`subjects`.`subjectCode` AS `subjectCode`,`subjects`.`description` AS `description`,`subjects`.`gradeLevel` AS `gradeLevel`,`teacherloads`.`timeStart` AS `timeStart`,`teacherloads`.`timeEnd` AS `timeEnd`,`teacherloads`.`daysScheduled` AS `daysScheduled` from ((`teacherloads` left join `users` on((`teacherloads`.`teacherId` = `users`.`id`))) left join `subjects` on((`teacherloads`.`subjectId` = `subjects`.`id`))) ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `v_users_jhs`
 --
 DROP TABLE IF EXISTS `v_users_jhs`;
@@ -2335,7 +2368,7 @@ ALTER TABLE `teacherloads`
 -- AUTO_INCREMENT for table `userdetails`
 --
 ALTER TABLE `userdetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
