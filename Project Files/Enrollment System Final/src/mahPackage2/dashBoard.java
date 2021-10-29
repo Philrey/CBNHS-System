@@ -178,6 +178,12 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         lbTimeFrom = new javax.swing.JLabel();
         lbTimeTo = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        cbMonday = new javax.swing.JCheckBox();
+        cbTuesday = new javax.swing.JCheckBox();
+        cbWednesday = new javax.swing.JCheckBox();
+        cbThursday = new javax.swing.JCheckBox();
+        cbFriday = new javax.swing.JCheckBox();
         timePickerDialog = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -1450,6 +1456,43 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
 
+        jLabel23.setText("Day(s) Selected");
+
+        cbMonday.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbMonday.setText("Mon");
+        cbMonday.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        cbMonday.setIconTextGap(1);
+        cbMonday.setOpaque(false);
+        cbMonday.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+
+        cbTuesday.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbTuesday.setText("Tue");
+        cbTuesday.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        cbTuesday.setIconTextGap(1);
+        cbTuesday.setOpaque(false);
+        cbTuesday.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+
+        cbWednesday.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbWednesday.setText("Wed");
+        cbWednesday.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        cbWednesday.setIconTextGap(1);
+        cbWednesday.setOpaque(false);
+        cbWednesday.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+
+        cbThursday.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbThursday.setText("Thu");
+        cbThursday.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        cbThursday.setIconTextGap(1);
+        cbThursday.setOpaque(false);
+        cbThursday.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+
+        cbFriday.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cbFriday.setText("Fri");
+        cbFriday.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_unchecked_checkbox_20px.png"))); // NOI18N
+        cbFriday.setIconTextGap(1);
+        cbFriday.setOpaque(false);
+        cbFriday.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_checked_checkbox_20px.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -1472,8 +1515,21 @@ public class dashBoard extends javax.swing.JFrame {
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addComponent(lbTimeFrom)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbTimeTo)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lbTimeTo))
+                            .addComponent(jLabel23)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(cbMonday)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbTuesday)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbWednesday)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbThursday)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbFriday)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnNone)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAssignTeacher)))
@@ -1495,11 +1551,22 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbTimeFrom)
-                    .addComponent(lbTimeTo)
+                    .addComponent(lbTimeTo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbMonday)
+                    .addComponent(cbTuesday)
+                    .addComponent(cbWednesday)
+                    .addComponent(cbThursday)
+                    .addComponent(cbFriday))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAssignTeacher)
                     .addComponent(btnNone))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2973,7 +3040,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         JLabel textFieldHeaderLabels [] = {
             jLabel5,jLabel6,jLabel7,jLabel8,jLabel9,jLabel10,jLabel13,jLabel11,jLabel15,
-            jLabel16,jLabel19,jLabel20,jLabel21,jLabel22,
+            jLabel16,jLabel19,jLabel20,jLabel21,jLabel22,jLabel23
         };
         
         for (JLabel n : titleHeaderLabels) {
@@ -3078,6 +3145,11 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnSearchUser;
     private javax.swing.JButton btnSearchUser1;
     private javax.swing.JButton btnSearchUser2;
+    private javax.swing.JCheckBox cbFriday;
+    private javax.swing.JCheckBox cbMonday;
+    private javax.swing.JCheckBox cbThursday;
+    private javax.swing.JCheckBox cbTuesday;
+    private javax.swing.JCheckBox cbWednesday;
     private javax.swing.JPanel detailsTab;
     private javax.swing.JPanel duplicateSectionDialog;
     private javax.swing.JPanel editSectionPanel;
@@ -3099,6 +3171,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
