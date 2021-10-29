@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -1235,25 +1236,25 @@ public class dashBoard extends javax.swing.JFrame {
 
         assignedTeacherTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Section ID", "Adv ID", "Name", "Gender", "Subject ID", "Code", "Description", "Grade", "Time Start", "Time End"
+                "ID", "Section ID", "Adv ID", "Name", "Gender", "Subject ID", "Code", "Description", "Grade", "Time Start", "Time End", "Schedule"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1276,6 +1277,7 @@ public class dashBoard extends javax.swing.JFrame {
             assignedTeacherTable.getColumnModel().getColumn(7).setPreferredWidth(150);
             assignedTeacherTable.getColumnModel().getColumn(9).setPreferredWidth(100);
             assignedTeacherTable.getColumnModel().getColumn(10).setPreferredWidth(100);
+            assignedTeacherTable.getColumnModel().getColumn(11).setPreferredWidth(150);
         }
 
         btnSaveSubjectTeacherChanges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage2/icons/icons8_save_16px.png"))); // NOI18N
@@ -2351,7 +2353,7 @@ public class dashBoard extends javax.swing.JFrame {
             where = "WHERE subjectId IN ("+subjectsContained+") AND sectionId='"+sectionId+"' ORDER BY FIELD(subjectId,"+subjectsContained+")";
             
             //Check if section is already finalized in teacherLoads table
-            String result [] = my.return_values("*", "v_teacherloads_w_time", where, myVariables.getTeacherLoadsViewWTimeOrder());
+            String result [] = my.return_values("*", "v_teacherloads_w_time_nd_day", where, myVariables.getTeacherLoadsViewWTimeNdDayOrder());
             
             if(result == null){
                 //Prompt to finalize section
@@ -2504,10 +2506,12 @@ public class dashBoard extends javax.swing.JFrame {
         if(evt.getClickCount() == 2 && assignedTeacherTable.isEnabled()){
             //Check if selected subject is on allowed subjects table
             int row = assignedTeacherTable.getSelectedRow();
-            int selectedSubjectId = Integer.parseInt(assignedTeacherTable.getValueAt(row, 5).toString());            
+            int selectedSubjectId = Integer.parseInt(assignedTeacherTable.getValueAt(row, 5).toString());
+            String schedule = assignedTeacherTable.getValueAt(row, 11).toString();
             
             lbTimeFrom.setText(assignedTeacherTable.getValueAt(row, 9).toString());
             lbTimeTo.setText(assignedTeacherTable.getValueAt(row, 10).toString());
+            loadDaysScheduled(schedule);
             
             if(subjectTeacherTab.getTabCount() <= 1){
                 subjectTeacherTab.addTab("Select Teacher", selectTeacherTab);
@@ -2540,16 +2544,17 @@ public class dashBoard extends javax.swing.JFrame {
             String subjectId = assignedTeacherTable.getValueAt(n, 5).toString();
             String timeStart = assignedTeacherTable.getValueAt(n, 9).toString();
             String timeEnd = assignedTeacherTable.getValueAt(n, 10).toString();
+            String schedule = assignedTeacherTable.getValueAt(n, 11).toString();
             
             timeStart = my.from12To24HourFormat(timeStart);
             timeEnd = my.from12To24HourFormat(timeEnd);
-            //ID,Section ID,Teacher ID,Subject ID,timeStart,timeEnd
-            rows[n] = id+","+sectionId+","+teacherId+","+subjectId+",'"+timeStart+"','"+timeEnd+"'";
+            //ID,Section ID,Teacher ID,Subject ID,timeStart,timeEnd,daysScheduled
+            rows[n] = id+","+sectionId+","+teacherId+","+subjectId+",'"+timeStart+"','"+timeEnd+"','"+schedule+"'";
         }
         
         if(my.update_multiple_values(
-            "teacherloads", "id,sectionId,teacherId,subjectId,timestart,timeEnd",
-            "teacherId = VALUES(teacherId),timeStart = VALUES(timeStart),timeEnd = VALUES(timeEnd)", rows)){
+            "teacherloads", "id,sectionId,teacherId,subjectId,timestart,timeEnd,daysScheduled",
+            "teacherId = VALUES(teacherId),timeStart = VALUES(timeStart),timeEnd = VALUES(timeEnd),daysScheduled = VALUES(daysScheduled)", rows)){
             my.showMessage("Update Succesfull.", JOptionPane.INFORMATION_MESSAGE);
             btnSearchSectionHandler2(evt);
         }else{
@@ -2820,6 +2825,8 @@ public class dashBoard extends javax.swing.JFrame {
             assignedTeacherTable.setValueAt(lbTimeFrom.getText(), slotRow, 9);
             assignedTeacherTable.setValueAt(lbTimeTo.getText(), slotRow, 10);
         }
+        
+        assignedTeacherTable.setValueAt(getSelectedSchedules(), slotRow, 11);   //You can update sched without a teacher
         if(subjectTeacherTab.getTabCount() >= 2){
             subjectTeacherTab.removeTabAt(1);
         }
@@ -2900,7 +2907,7 @@ public class dashBoard extends javax.swing.JFrame {
             my.hideColumns(sectionsTable1, new int [] {0});
             
             my.hideColumns(sectionsTable2, new int [] {0,2,5,7,9});
-            my.hideColumns(assignedTeacherTable, new int [] {0,1,2,5,6,8});
+            my.hideColumns(assignedTeacherTable, new int [] {0,1,2,4,5,6,8});
             my.hideColumns(usersTable2, new int[] {0});
             
             my.hideColumns(sectionsTable3, new int [] {0,2,5});
@@ -3119,6 +3126,58 @@ public class dashBoard extends javax.swing.JFrame {
         for(JComboBox n : dropDowns){
             n.setFont(myVariables.TEXTFIELD_FONT);
         }
+    }
+    
+    private void loadDaysScheduled(String schedule){
+        boolean  [] EMPTY_SCHEDULE = new boolean[]{false,false,false,false,false};
+        
+        if(schedule.trim().length() <= 0 || schedule.equalsIgnoreCase("--")){
+            System.err.println("Empty schedule");
+            checkScheduleBoxes(EMPTY_SCHEDULE);
+            return;
+        }
+        
+        String days [] = schedule.split(":");   // schedule = "M:W:F"
+        boolean [] cbStatus = EMPTY_SCHEDULE;
+        
+        for(int n=0,len=days.length;n<len;n++){
+            switch(days[n]){
+                case "Mon":{
+                    cbStatus[0] = true;break;
+                }case "Tue":{
+                    cbStatus[1] = true;break;
+                }case "Wed":{
+                    cbStatus[2] = true;break;
+                }case "Thu":{
+                    cbStatus[3] = true;break;
+                }case "Fri":{
+                    cbStatus[4] = true;break;
+                }
+            }
+        }
+        
+        checkScheduleBoxes(cbStatus);
+    }
+    
+    private void checkScheduleBoxes(boolean [] checkStatus){
+        JCheckBox box [] = {cbMonday,cbTuesday,cbWednesday,cbThursday,cbFriday};
+        
+        for(int n=0,len=box.length; n<len; n++){
+            box[n].setSelected(checkStatus[n]);
+        }
+    }
+    
+    private String getSelectedSchedules(){
+        JCheckBox box [] = {cbMonday,cbTuesday,cbWednesday,cbThursday,cbFriday};
+        String schedule = "";
+        
+        if(cbMonday.isSelected()) {schedule += "Mon:";}
+        if(cbTuesday.isSelected()) {schedule += "Tue:";}
+        if(cbWednesday.isSelected()) {schedule += "Wed:";}
+        if(cbThursday.isSelected()) {schedule += "Thu:";}
+        if(cbFriday.isSelected()) {schedule += "Fri:";}
+        
+        return  schedule.trim().length() <=0 ? "--" : schedule;
     }
     //</editor-fold>
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -71,6 +71,7 @@ public class myVariables {
     private static int [] enrollmentViewOrder = new int [] {15,7,3,0,9,16,1,5,8,11,4,2,17,10,6,12,13,14};
     private static int [] teacherLoadsViewOrder = new int [] {6,7,1,4,3,8,2,10,9,5,0};
     private static int [] teacherLoadsViewWTimeOrder = new int [] {10,5,8,3,2,11,1,6,12,4,7,9,0};
+    private static int [] teacherLoadsViewWTimeNdDayOrder = new int [] {11,6,9,4,3,12,1,7,13,5,8,10,0,2};
     
     private static int [] sectionViewRev3Order = new int [] {8,0,2,4,5,6,3,1,7};
     private static int [] jhsf1Order= new int [] {18,11,5,20,0,9,12,1,8,21,13,23,4,10,3,7,17,14,2,15,6,19,16,22};
@@ -327,10 +328,13 @@ public class myVariables {
 
     //<editor-fold desc="Getters & Setters">
 
+    public static int[] getTeacherLoadsViewWTimeNdDayOrder() {
+        return teacherLoadsViewWTimeNdDayOrder;
+    }
+    
     public static String getTimeIcon() {
         return timeIcon;
     }
-    
     
     public static int[] getTeacherLoadsViewWTimeOrder() {
         return teacherLoadsViewWTimeOrder;

@@ -119,7 +119,7 @@ public class myFunctions {
                 order = myVariables.getSubjectLoadsOrder();
                 break;
             }case 3:{
-                from = "users";
+                from = "v_users_jhs";
                 order = myVariables.getUsersOrder();
                 break;
             }case 4:{
