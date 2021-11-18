@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2021 at 06:31 AM
+-- Generation Time: Oct 29, 2021 at 06:28 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -1040,7 +1040,6 @@ CREATE TABLE `students` (
   `schoolId` varchar(11) NOT NULL DEFAULT '000000',
   `schoolName` varchar(1000) NOT NULL DEFAULT ' ',
   `schoolAddress` varchar(1000) NOT NULL DEFAULT ' ',
-  `strand` varchar(10) NOT NULL DEFAULT 'NONE',
   `dep_type` varchar(10) NOT NULL DEFAULT 'JHS'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1048,13 +1047,13 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `lrn`, `lName`, `fName`, `mName`, `sex`, `inGr`, `curGrLvl`, `schoolId`, `schoolName`, `schoolAddress`, `strand`, `dep_type`) VALUES
-(1, '123456789012', 'Paderogao', 'Phil Rey', ' ', 'Male', 90.25, 7, '123456', 'Gregorio Moralizon Elementary School - I', 'Manay, Davao Oriental', 'NONE', 'JHS'),
-(2, '123456789013', 'Chan', 'Jose', 'Marie', 'Female', 90, 11, '1234567', 'Rizal Elementary School', 'Dimakita Island', 'NONE', 'SHS'),
-(7, '131779120034', 'Alsola', 'Mark Luis', 'Jalmas', 'Male', 0, 0, '000000', ' ', ' ', 'NONE', 'SHS'),
-(8, '129679110086', 'Villegas', 'Dario', 'Casicas', 'Male', 0, 0, '000000', ' ', ' ', 'NONE', 'SHS'),
-(9, '131779120034', 'Alsola', 'Mark Luis', 'Jalmas', 'Male', 93, 0, '131861', 'AFGA CENTRAL ELEM. SCHOOL', 'AFGA,SIBAGAT,ADS', 'NONE', 'JHS'),
-(10, '129679110086', 'Villegas', 'Dario', 'Casicas', 'Male', 85, 0, '129679', 'ARTEMIO LOYOLA ELEM. SCHOOL', 'TORIL, DAVAO CITY', 'NONE', 'JHS');
+INSERT INTO `students` (`id`, `lrn`, `lName`, `fName`, `mName`, `sex`, `inGr`, `curGrLvl`, `schoolId`, `schoolName`, `schoolAddress`, `dep_type`) VALUES
+(1, '123456789012', 'Paderogao', 'Phil Rey', ' ', 'Male', 90.25, 7, '123456', 'Gregorio Moralizon Elementary School - I', 'Manay, Davao Oriental', 'JHS'),
+(2, '123456789013', 'Chan', 'Jose', 'Marie', 'Female', 90, 11, '1234567', 'Rizal Elementary School', 'Dimakita Island', 'SHS'),
+(7, '131779120034', 'Alsola', 'Mark Luis', 'Jalmas', 'Male', 0, 0, '000000', ' ', ' ', 'SHS'),
+(8, '129679110086', 'Villegas', 'Dario', 'Casicas', 'Male', 0, 0, '000000', ' ', ' ', 'SHS'),
+(9, '131779120034', 'Alsola', 'Mark Luis', 'Jalmas', 'Male', 93, 0, '131861', 'AFGA CENTRAL ELEM. SCHOOL', 'AFGA,SIBAGAT,ADS', 'JHS'),
+(10, '129679110086', 'Villegas', 'Dario', 'Casicas', 'Male', 85, 0, '129679', 'ARTEMIO LOYOLA ELEM. SCHOOL', 'TORIL, DAVAO CITY', 'JHS');
 
 -- --------------------------------------------------------
 
@@ -1067,7 +1066,6 @@ CREATE TABLE `subjects` (
   `subjectCode` varchar(200) NOT NULL,
   `description` varchar(500) NOT NULL,
   `gradeLevel` int(11) NOT NULL,
-  `sem` varchar(15) NOT NULL DEFAULT 'NONE',
   `dep_type` varchar(10) NOT NULL DEFAULT 'JHS'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1075,60 +1073,60 @@ CREATE TABLE `subjects` (
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`id`, `subjectCode`, `description`, `gradeLevel`, `sem`, `dep_type`) VALUES
-(8, 'FIL7', 'Filipino 7', 7, 'NONE', 'JHS'),
-(9, 'ENG7', 'English 7', 7, 'NONE', 'JHS'),
-(10, 'MATH7', 'Mathematics 7', 7, 'NONE', 'JHS'),
-(11, 'SCI7', 'Science 7', 7, 'NONE', 'JHS'),
-(12, 'AP7', 'Araling Panlipunan 7', 7, 'NONE', 'JHS'),
-(13, 'ESP7', 'Edukasyon sa Pagpapakatao 7', 7, 'NONE', 'JHS'),
-(14, 'TLE7', 'Technology and Livelihood Education 7', 7, 'NONE', 'JHS'),
-(15, 'MUS7', 'Music 7', 7, 'NONE', 'JHS'),
-(16, 'ART7', 'Arts 7', 7, 'NONE', 'JHS'),
-(17, 'PE7', 'Physical Education 7', 7, 'NONE', 'JHS'),
-(18, 'HLT7', 'Health 7', 7, 'NONE', 'JHS'),
-(19, 'FIL8', 'Filipino 8', 8, 'NONE', 'JHS'),
-(20, 'ENG8', 'English 8', 8, 'NONE', 'JHS'),
-(21, 'MATH8', 'Mathematics 8', 8, 'NONE', 'JHS'),
-(22, 'SCI8', 'Science 8', 8, 'NONE', 'JHS'),
-(23, 'AP8', 'Araling Panlipunan 8', 8, 'NONE', 'JHS'),
-(24, 'ESP8', 'Edukasyon sa Pagpapakatao 8', 8, 'NONE', 'JHS'),
-(25, 'TLE8', 'Technology and Livelihood Education', 8, 'NONE', 'JHS'),
-(26, 'MUS8', 'Music 8', 8, 'NONE', 'JHS'),
-(27, 'ART8', 'Arts 8', 8, 'NONE', 'JHS'),
-(28, 'PE8', 'Physical Education 8', 8, 'NONE', 'JHS'),
-(29, 'HLT8', 'Health 8', 8, 'NONE', 'JHS'),
-(30, 'FIL9', 'Filipino 9', 9, 'NONE', 'JHS'),
-(31, 'ENG9', 'English 9', 9, 'NONE', 'JHS'),
-(32, 'MATH9', 'Mathematics 9', 9, 'NONE', 'JHS'),
-(33, 'SCI9', 'Science 9', 9, 'NONE', 'JHS'),
-(34, 'AP9', 'Araling Panlipunan 9', 9, 'NONE', 'JHS'),
-(35, 'ESP9', 'Edukasyon sa Pagpapakatao 9', 9, 'NONE', 'JHS'),
-(36, 'TLE9', 'Technology and Livelihood Education 9', 9, 'NONE', 'JHS'),
-(37, 'MUS9', 'Music 9', 9, 'NONE', 'JHS'),
-(38, 'ART9', 'Arts 9', 9, 'NONE', 'JHS'),
-(39, 'PE9', 'Physical Education 9', 9, 'NONE', 'JHS'),
-(40, 'HLT9', 'Health 9', 9, 'NONE', 'JHS'),
-(41, 'FIL10', 'Filipino 10', 10, 'NONE', 'JHS'),
-(42, 'ENG10', 'English 10', 10, 'NONE', 'JHS'),
-(43, 'MATH10', 'Mathematics 10', 10, 'NONE', 'JHS'),
-(44, 'SCI10', 'Science 10', 10, 'NONE', 'JHS'),
-(45, 'AP10', 'Araling Panlipunan 10', 10, 'NONE', 'JHS'),
-(46, 'ESP10', 'Edukasyon sa Pagpapakatao 10', 10, 'NONE', 'JHS'),
-(47, 'TLE10', 'Technology and Livelihood Education 10', 10, 'NONE', 'JHS'),
-(48, 'MUS10', 'Music 10', 10, 'NONE', 'JHS'),
-(49, 'ART10', 'Arts 10', 10, 'NONE', 'JHS'),
-(50, 'PE10', 'Physical Education 10', 10, 'NONE', 'JHS'),
-(51, 'HLT10', 'Health 10', 10, 'NONE', 'JHS'),
-(52, 'ADV7', 'Advisory 7', 7, 'NONE', 'JHS'),
-(53, 'ADV8', 'Advisory 8', 8, 'NONE', 'JHS'),
-(54, 'ADV9', 'Advisory 9', 9, 'NONE', 'JHS'),
-(55, 'ADV10', 'Advisory 10', 10, 'NONE', 'JHS'),
-(60, 'MPH7', 'MAPEH 7', 7, 'NONE', 'JHS'),
-(61, 'MPH8', 'MAPEH 8', 8, 'NONE', 'JHS'),
-(62, 'MPH9', 'MAPEH 9', 9, 'NONE', 'JHS'),
-(63, 'MPH10', 'MAPEH 10', 10, 'NONE', 'JHS'),
-(64, 'PRC11', 'Pre Calculus', 11, 'NONE', 'SHS');
+INSERT INTO `subjects` (`id`, `subjectCode`, `description`, `gradeLevel`, `dep_type`) VALUES
+(8, 'FIL7', 'Filipino 7', 7, 'JHS'),
+(9, 'ENG7', 'English 7', 7, 'JHS'),
+(10, 'MATH7', 'Mathematics 7', 7, 'JHS'),
+(11, 'SCI7', 'Science 7', 7, 'JHS'),
+(12, 'AP7', 'Araling Panlipunan 7', 7, 'JHS'),
+(13, 'ESP7', 'Edukasyon sa Pagpapakatao 7', 7, 'JHS'),
+(14, 'TLE7', 'Technology and Livelihood Education 7', 7, 'JHS'),
+(15, 'MUS7', 'Music 7', 7, 'JHS'),
+(16, 'ART7', 'Arts 7', 7, 'JHS'),
+(17, 'PE7', 'Physical Education 7', 7, 'JHS'),
+(18, 'HLT7', 'Health 7', 7, 'JHS'),
+(19, 'FIL8', 'Filipino 8', 8, 'JHS'),
+(20, 'ENG8', 'English 8', 8, 'JHS'),
+(21, 'MATH8', 'Mathematics 8', 8, 'JHS'),
+(22, 'SCI8', 'Science 8', 8, 'JHS'),
+(23, 'AP8', 'Araling Panlipunan 8', 8, 'JHS'),
+(24, 'ESP8', 'Edukasyon sa Pagpapakatao 8', 8, 'JHS'),
+(25, 'TLE8', 'Technology and Livelihood Education', 8, 'JHS'),
+(26, 'MUS8', 'Music 8', 8, 'JHS'),
+(27, 'ART8', 'Arts 8', 8, 'JHS'),
+(28, 'PE8', 'Physical Education 8', 8, 'JHS'),
+(29, 'HLT8', 'Health 8', 8, 'JHS'),
+(30, 'FIL9', 'Filipino 9', 9, 'JHS'),
+(31, 'ENG9', 'English 9', 9, 'JHS'),
+(32, 'MATH9', 'Mathematics 9', 9, 'JHS'),
+(33, 'SCI9', 'Science 9', 9, 'JHS'),
+(34, 'AP9', 'Araling Panlipunan 9', 9, 'JHS'),
+(35, 'ESP9', 'Edukasyon sa Pagpapakatao 9', 9, 'JHS'),
+(36, 'TLE9', 'Technology and Livelihood Education 9', 9, 'JHS'),
+(37, 'MUS9', 'Music 9', 9, 'JHS'),
+(38, 'ART9', 'Arts 9', 9, 'JHS'),
+(39, 'PE9', 'Physical Education 9', 9, 'JHS'),
+(40, 'HLT9', 'Health 9', 9, 'JHS'),
+(41, 'FIL10', 'Filipino 10', 10, 'JHS'),
+(42, 'ENG10', 'English 10', 10, 'JHS'),
+(43, 'MATH10', 'Mathematics 10', 10, 'JHS'),
+(44, 'SCI10', 'Science 10', 10, 'JHS'),
+(45, 'AP10', 'Araling Panlipunan 10', 10, 'JHS'),
+(46, 'ESP10', 'Edukasyon sa Pagpapakatao 10', 10, 'JHS'),
+(47, 'TLE10', 'Technology and Livelihood Education 10', 10, 'JHS'),
+(48, 'MUS10', 'Music 10', 10, 'JHS'),
+(49, 'ART10', 'Arts 10', 10, 'JHS'),
+(50, 'PE10', 'Physical Education 10', 10, 'JHS'),
+(51, 'HLT10', 'Health 10', 10, 'JHS'),
+(52, 'ADV7', 'Advisory 7', 7, 'JHS'),
+(53, 'ADV8', 'Advisory 8', 8, 'JHS'),
+(54, 'ADV9', 'Advisory 9', 9, 'JHS'),
+(55, 'ADV10', 'Advisory 10', 10, 'JHS'),
+(60, 'MPH7', 'MAPEH 7', 7, 'JHS'),
+(61, 'MPH8', 'MAPEH 8', 8, 'JHS'),
+(62, 'MPH9', 'MAPEH 9', 9, 'JHS'),
+(63, 'MPH10', 'MAPEH 10', 10, 'JHS'),
+(64, 'PRC11', 'Pre Calculus', 11, 'SHS');
 
 -- --------------------------------------------------------
 
@@ -1646,7 +1644,6 @@ CREATE TABLE `v_students_shs` (
 ,`schoolId` varchar(11)
 ,`schoolName` varchar(1000)
 ,`schoolAddress` varchar(1000)
-,`strand` varchar(10)
 );
 
 -- --------------------------------------------------------
@@ -1673,7 +1670,6 @@ CREATE TABLE `v_subjects_shs` (
 ,`subjectCode` varchar(200)
 ,`description` varchar(500)
 ,`gradeLevel` int(11)
-,`sem` varchar(15)
 );
 
 -- --------------------------------------------------------
@@ -2043,7 +2039,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_students_shs`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_students_shs`  AS  select `students`.`id` AS `id`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`students`.`inGr` AS `inGr`,`students`.`curGrLvl` AS `curGrLvl`,`students`.`schoolId` AS `schoolId`,`students`.`schoolName` AS `schoolName`,`students`.`schoolAddress` AS `schoolAddress`,`students`.`strand` AS `strand` from `students` where (`students`.`dep_type` = 'SHS') ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_students_shs`  AS  select `students`.`id` AS `id`,`students`.`lrn` AS `lrn`,`students`.`lName` AS `lName`,`students`.`fName` AS `fName`,`students`.`mName` AS `mName`,`students`.`sex` AS `sex`,`students`.`inGr` AS `inGr`,`students`.`curGrLvl` AS `curGrLvl`,`students`.`schoolId` AS `schoolId`,`students`.`schoolName` AS `schoolName`,`students`.`schoolAddress` AS `schoolAddress` from `students` where (`students`.`dep_type` = 'SHS') ;
 
 -- --------------------------------------------------------
 
@@ -2061,7 +2057,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_subjects_shs`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_subjects_shs`  AS  select `subjects`.`id` AS `id`,`subjects`.`subjectCode` AS `subjectCode`,`subjects`.`description` AS `description`,`subjects`.`gradeLevel` AS `gradeLevel`,`subjects`.`sem` AS `sem` from `subjects` where (`subjects`.`dep_type` = 'SHS') order by `subjects`.`gradeLevel` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_subjects_shs`  AS  select `subjects`.`id` AS `id`,`subjects`.`subjectCode` AS `subjectCode`,`subjects`.`description` AS `description`,`subjects`.`gradeLevel` AS `gradeLevel` from `subjects` where (`subjects`.`dep_type` = 'SHS') order by `subjects`.`gradeLevel` ;
 
 -- --------------------------------------------------------
 
