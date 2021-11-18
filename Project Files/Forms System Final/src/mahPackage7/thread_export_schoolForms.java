@@ -302,7 +302,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         //</editor-fold>
         
         //<editor-fold desc="#1 Create File & Determine which sheet to use">
-        if(!my.createExcelFile(getFileName(true))){
+        if(!my.createExcelFile(getFileName(true,null))){
             my.showMessage("There was an error Creating the file.\nPlease Make Sure the template exists inside the Templates folder.", JOptionPane.ERROR_MESSAGE);
             throw new InterruptedException("Reading Failed");
         }
@@ -349,7 +349,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
         //<editor-fold desc="#5 Save File">
         lbLoadingMessage.setText("Saving File...5/5");
         
-        if(!my.saveExcelFile(getFileName(false))){
+        if(!my.saveExcelFile(getFileName(false," "+my.getSystemTime("dd-MM-yyyy hh;mm;ss")))){
             my.showMessage("There was an error Exporting the file.\nPlease make sure the file you are saving at is not open and try again.", JOptionPane.ERROR_MESSAGE);
             throw new InterruptedException("Save Failed");
         }
@@ -1388,32 +1388,37 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
             return true;
         }
     }
-    private String getFileName(boolean importExport){
+    /*private String getFileName(boolean importExport, String additionalTitle){
+        // jh_sf1.xlsx = jh_sf1_ + [additionalTitle].xlsx
+        return getFileName(importExport)+ "_" + additionalTitle;
+    }*/
+    
+    private String getFileName(boolean importExport,String additionalTitle){
         String fileName = "";
         switch(myVariables.getFormSelected()){
             case 1:{
-                fileName = importExport? "templates/jh_sf1.xlsx" : "exports/jh_sf1.xlsx";break;
+                fileName = importExport? "templates/jh_sf1.xlsx" : "exports/jh_sf1"+ additionalTitle +".xlsx";break;
             }case 2:{
-                fileName = importExport? "templates/jh_sf2.xlsx" : "exports/jh_sf2.xlsx";break;
+                fileName = importExport? "templates/jh_sf2.xlsx" : "exports/jh_sf2"+ additionalTitle +".xlsx";break;
             }case 3:{
-                fileName = importExport? "templates/jh_sf3.xlsx" : "exports/jh_sf3.xlsx";break;
+                fileName = importExport? "templates/jh_sf3.xlsx" : "exports/jh_sf3"+ additionalTitle +".xlsx";break;
             }case 4:{
-                fileName = importExport? "templates/jh_sf4.xlsx" : "exports/jh_sf4.xlsx";break;
+                fileName = importExport? "templates/jh_sf4.xlsx" : "exports/jh_sf4"+ additionalTitle +".xlsx";break;
             }case 5:{
-                fileName = importExport? "templates/jh_sf5.xlsx" : "exports/jh_sf5.xlsx";break;
+                fileName = importExport? "templates/jh_sf5.xlsx" : "exports/jh_sf5"+ additionalTitle +".xlsx";break;
             }case 6:{
-                fileName = importExport? "templates/jh_sf6.xlsx" : "exports/jh_sf6.xlsx";break;
+                fileName = importExport? "templates/jh_sf6.xlsx" : "exports/jh_sf6"+ additionalTitle +".xlsx";break;
             }case 7:{
-                fileName = importExport? "templates/jh_sf7.xlsx" : "exports/jh_sf7.xlsx";break;
+                fileName = importExport? "templates/jh_sf7.xlsx" : "exports/jh_sf7"+ additionalTitle +".xlsx";break;
             }case 8:{
-                fileName = importExport? "templates/jh_sf8.xlsx" : "exports/jh_sf8.xlsx";break;
+                fileName = importExport? "templates/jh_sf8.xlsx" : "exports/jh_sf8"+ additionalTitle +".xlsx";break;
             }case 9:{
-                fileName = importExport? "templates/jh_sf9.xlsx" : "exports/jh_sf9.xlsx";break;
+                fileName = importExport? "templates/jh_sf9.xlsx" : "exports/jh_sf9"+ additionalTitle +".xlsx";break;
             }case 10:{
-                fileName = importExport? "templates/jh_sf10.xlsx" : "exports/jh_sf10.xlsx";break;
+                fileName = importExport? "templates/jh_sf10.xlsx" : "exports/jh_sf10"+ additionalTitle +".xlsx";break;
             }
         }
-        
+        System.out.println("File name: "+ fileName);
         return fileName;
     }
     //</editor-fold>

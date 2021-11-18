@@ -19,6 +19,7 @@ import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -928,6 +929,13 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
+    public String getSystemTime(String dateFormat){
+        // dateFormat "dd-MM-yyyy HH:mm:ss" don't use "/"
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+        Date date = new Date();
+        return formatter.format(date);
+    }
+    
     private static final String acronyms [][] = {
         new String [] {"edukasyon sa pagpapakatao","ESP"},
         new String [] {"physical education","PE"},
@@ -1977,7 +1985,7 @@ public class myFunctions {
             fileOut.close();
             return true;
         } catch (Exception e) {
-            System.err.println("Saving File Failed...");
+            System.err.println("Saving File Failed..." + e.getMessage());
             return false;
         }
     }
