@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2021 at 06:31 AM
+-- Generation Time: Nov 28, 2021 at 04:08 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -342,6 +342,14 @@ CREATE TABLE `booksissuedreturned` (
   `dateReturned` varchar(30) NOT NULL,
   `dateUpdated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `booksissuedreturned`
+--
+
+INSERT INTO `booksissuedreturned` (`id`, `sectionId`, `studentId`, `bookId`, `dateIssued`, `dateReturned`, `dateUpdated`) VALUES
+(1, 1, 1, 1, '2021-11-28', '2021-11-29', '2021-11-28 22:45:43'),
+(2, 1, 1, 2, '2021-11-28', '2021-11-29', '2021-11-28 22:45:43');
 
 -- --------------------------------------------------------
 
@@ -2282,7 +2290,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `booksissuedreturned`
 --
 ALTER TABLE `booksissuedreturned`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `booktemplates`
