@@ -3821,7 +3821,7 @@ public class dashBoard extends javax.swing.JFrame {
                 assignedSubjects = assignedSubjects.substring(0, length-1);
             }
             
-            String [] subjects = my.return_values("*", "subjects", "WHERE id IN ("+assignedSubjects+")", myVariables.getSubjectOrder());
+            String [] subjects = my.return_values("*", "v_subjects_jhs", "WHERE id IN ("+assignedSubjects+")", myVariables.getSubjectOrder());
             
             if(subjects != null){
                 my.clear_table_rows(assignedSubjectsTable);
