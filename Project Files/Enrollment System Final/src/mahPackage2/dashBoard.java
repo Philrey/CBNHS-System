@@ -2003,7 +2003,7 @@ public class dashBoard extends javax.swing.JFrame {
         String toSearch = my.convertEscapeCharacters(tfSearchStudent.getText().trim());
         String where = "WHERE ";
         
-        if(toSearch.contains(",")){
+        if(toSearch.contains("/")){
             String additionalQuery;
             additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Middle Name","LIKE,LIKE,LIKE",toSearch);
             if(additionalQuery == null){
@@ -2012,7 +2012,7 @@ public class dashBoard extends javax.swing.JFrame {
 
             where+=" ("+additionalQuery+")";
         }else{
-            where+=" (lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%')";
+            where+=" (lrn='"+toSearch+"' OR lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%')";
         }
         where +=(jcbSchoolYear2.getSelectedIndex()!=0?"AND schoolYear='"+yearFilter+"'":"");
         
@@ -2052,7 +2052,7 @@ public class dashBoard extends javax.swing.JFrame {
             
             my.searchItem(where, studentTable, 0, new int [] {6}, new int [] {2,3,4}, true, true, null, tfSearchStudent1, false);            
         }else{
-            where = "WHERE (lrn= '"+toSearch+"' OR lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%') and dep_type='JHS'";
+            where = "WHERE lrn= '"+toSearch+"' OR lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%'";
             my.searchItem(where, studentTable, 0, new int [] {6}, new int [] {2,3,4}, true, true, null, tfSearchStudent1, true);
         }
     }//GEN-LAST:event_searchStudentToEnrollHandler

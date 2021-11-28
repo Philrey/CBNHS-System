@@ -749,7 +749,7 @@ public class myFunctions {
         return toConvert;
     }
     public String multipleColumnSearch(String columnValues, String columnValuesOnDisplay, String logOperatorPerColumn, String toSearch){
-        String [] values = toSearch.split(",");                         //Paderogao,Phil Rey,Estrella
+        String [] values = toSearch.split("/");                         //Paderogao, Jr/Phil Rey/Estrella
         String [] columns = columnValues.split(",");                    //lName,fName,mName
         String [] logicalOperators = logOperatorPerColumn.split(",");   //=,=,LIKE
         int valLength = values.length;
