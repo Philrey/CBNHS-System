@@ -4016,7 +4016,7 @@ public class dashBoard extends javax.swing.JFrame {
         String order = " ORDER BY user_level DESC,user_Lname ASC,user_Fname ASC, user_Mname ASC";
         
         if(myVariables.getAccessLevel() <5){
-            if(toSearch.contains(",")){
+            if(toSearch.contains("/")){
                 String additionalQuery;
                 additionalQuery = my.multipleColumnSearch("user_Lname,user_Fname,user_Mname", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
                 if(additionalQuery == null){
