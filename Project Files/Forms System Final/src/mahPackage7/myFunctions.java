@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.math.RoundingMode;
 import java.net.HttpURLConnection;
@@ -2147,13 +2148,15 @@ public class myFunctions {
         int location [] = parseExcelAddress(excelCellAddress);
         drawImageToCell(sheetNumber, imgUrl, new int [] {location[0],location[1],location[0]+1,location[1]+1}, resetSize);
     }
-    public void drawImageToCell(int sheetNumber,String imgUrl,int [] anchors_X1Y1_X2Y2,boolean resetSize){
+    public boolean drawImageToCell(int sheetNumber,String imgUrl,int [] anchors_X1Y1_X2Y2,boolean resetSize){
+        System.err.println("Drawing Image");
         try {
             XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
             
             //Load File
             
-            FileInputStream inpStream = new FileInputStream(new File(getClass().getResource(imgUrl).toURI()));
+            
+            InputStream inpStream = getClass().getResourceAsStream(imgUrl);
             byte[] bytes = IOUtils.toByteArray(inpStream);
             int pictureIndex = workbook.addPicture(bytes, XSSFWorkbook.PICTURE_TYPE_PNG);
             inpStream.close();
@@ -2179,13 +2182,13 @@ public class myFunctions {
             if(resetSize){
                 picture.resize();
             }
-        }catch(URISyntaxException x){
-            System.err.println("Invalid URI");
-            x.printStackTrace();
+            
+            return true;
         }catch (IOException e) {
             System.err.println("File Not Found\n"+e.getMessage());
             e.printStackTrace();
         }
+        return false;
     }
     //</editor-fold>
     //<editor-fold desc="Merge Functions">

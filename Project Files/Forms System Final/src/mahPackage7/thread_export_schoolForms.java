@@ -534,17 +534,17 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                             }if(attendanceValue.equals("A")){
                                 my.writeExcelSingleDataWColor(sheetNumber, "X", row+7, col-5,!myVariables.isDebugModeOn()?Color.BLACK:Color.RED,borders);
                                 continue;
-                            }if(attendanceValue.equals("TLC")){
-                                my.writeExcelSingleDataWColor(sheetNumber, "TLC", row+7, col-5,!myVariables.isDebugModeOn()?Color.WHITE:Color.ORANGE,borders);
+                            }if(attendanceValue.trim().equals("TLC")){
                                 my.drawImageToCell(sheetNumber, myVariables.getLateCommerIcon(), new int [] {row+7,col-5,row+8,col-4}, false);
+                                my.writeExcelSingleDataWColor(sheetNumber, "TLC", row+7, col-5,!myVariables.isDebugModeOn()?Color.WHITE:Color.ORANGE,borders);
                                 continue;
-                            }if(attendanceValue.equals("TCC")){
-                                my.writeExcelSingleDataWColor(sheetNumber, "TCC", row+7, col-5,!myVariables.isDebugModeOn()?Color.WHITE:Color.RED,borders);
+                            }if(attendanceValue.trim().equals("TCC")){
                                 my.drawImageToCell(sheetNumber, myVariables.getCuttingClassesIcon(), new int [] {row+7,col-5,row+8,col-4}, false);
+                                my.writeExcelSingleDataWColor(sheetNumber, "TCC", row+7, col-5,!myVariables.isDebugModeOn()?Color.WHITE:Color.RED,borders);
                                 continue;
                             }if(attendanceValue.equals("T")){
-                                my.writeExcelSingleDataWColor(sheetNumber, "T", row+7, col-5,!myVariables.isDebugModeOn()?Color.WHITE:Color.ORANGE,borders);
                                 my.drawImageToCell(sheetNumber, myVariables.getLateCommerIcon(), new int [] {row+7,col-5,row+8,col-4}, false);
+                                my.writeExcelSingleDataWColor(sheetNumber, "T", row+7, col-5,!myVariables.isDebugModeOn()?Color.WHITE:Color.ORANGE,borders);
                                 continue;
                             }if(attendanceValue.equals("--")){
                                 my.writeExcelSingleData(sheetNumber, "--", row+7, col-5);

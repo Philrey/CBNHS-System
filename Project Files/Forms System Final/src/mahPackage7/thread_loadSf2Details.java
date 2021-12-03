@@ -560,11 +560,19 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
 
             float maleRegistered = Float.parseFloat(summaryTable.getValueAt(2, 1).toString());
             float femaleRegistered = Float.parseFloat(summaryTable.getValueAt(2, 2).toString());
-
-            String percentMale = df.format((maleADA/maleRegistered) * 100);
-            String percentFemale = df.format((femaleADA/femaleRegistered) * 100);
-            String percentTotal = df.format(((maleADA+femaleADA)/(maleRegistered+femaleRegistered)) * 100);
-
+            
+            float pm = (maleADA/maleRegistered) * 100;
+            float pf = (femaleADA/femaleRegistered) * 100;
+            float pt = ((maleADA+femaleADA)/(maleRegistered+femaleRegistered)) * 100;
+            
+            pm = Float.isNaN(pm)? 0 : pm;
+            pf = Float.isNaN(pf)? 0 : pf;
+            pt = Float.isNaN(pt)? 0 : pt;
+            
+            String percentMale = df.format(pm);
+            String percentFemale = df.format(pf);
+            String percentTotal = df.format(pt);
+            
             summaryTable.setValueAt(!percentMale.contains("NaN")?percentMale:"0", 5, 1);
             summaryTable.setValueAt(!percentFemale.contains("NaN")?percentFemale:"0", 5, 2);
             summaryTable.setValueAt(!percentTotal.contains("NaN")?percentTotal:"0", 5, 3);
@@ -708,8 +716,9 @@ public class thread_loadSf2Details extends SwingWorker<String, Object>{
         DecimalFormat df = new DecimalFormat("#.#");
         df.setRoundingMode(RoundingMode.DOWN);
         
-        String result = df.format(((float)enrolledStudentsOnTime/(float)registeredLearners)*100f);
-        return result.contains("NaN")? "0" : result;
+        float answer = ((float)enrolledStudentsOnTime/(float)registeredLearners)*100f;
+        answer = Float.isNaN(answer)? 0 : answer;
+        return df.format(answer);
     }
     private boolean loadSummary(){
         try {

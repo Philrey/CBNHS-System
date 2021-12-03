@@ -442,6 +442,8 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jtaNotes = new javax.swing.JTextArea();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        jTextArea4 = new javax.swing.JTextArea();
         addNotesDialog = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel38 = new javax.swing.JLabel();
@@ -1415,6 +1417,13 @@ public class dashBoard extends javax.swing.JFrame {
         jtaNotes.setWrapStyleWord(true);
         jScrollPane5.setViewportView(jtaNotes);
 
+        jTextArea4.setEditable(false);
+        jTextArea4.setColumns(20);
+        jTextArea4.setFont(myVariables.TEXTFIELD_FONT);
+        jTextArea4.setRows(5);
+        jTextArea4.setText("Guidelines:\n   If tardy, type CODE:MESSAGE.\n   -LC Late Commer\n   -CC Cutting Classes\n    (e.g. LC:15 minutes late)");
+        jScrollPane15.setViewportView(jTextArea4);
+
         javax.swing.GroupLayout editAttendanceDialogLayout = new javax.swing.GroupLayout(editAttendanceDialog);
         editAttendanceDialog.setLayout(editAttendanceDialogLayout);
         editAttendanceDialogLayout.setHorizontalGroup(
@@ -1445,9 +1454,11 @@ public class dashBoard extends javax.swing.JFrame {
                                         .addComponent(rbTardy, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel11))))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editAttendanceDialogLayout.createSequentialGroup()
+                    .addGroup(editAttendanceDialogLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane5)))
+                        .addGroup(editAttendanceDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane15))))
                 .addContainerGap())
         );
         editAttendanceDialogLayout.setVerticalGroup(
@@ -1472,7 +1483,9 @@ public class dashBoard extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSaveChangesToAttendance)
                 .addContainerGap())
         );
@@ -1515,6 +1528,7 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
 
+        jTextArea3.setEditable(false);
         jTextArea3.setColumns(20);
         jTextArea3.setFont(myVariables.TEXTFIELD_FONT);
         jTextArea3.setRows(5);
@@ -2228,7 +2242,7 @@ public class dashBoard extends javax.swing.JFrame {
         lbDateAdded.setText("Date : "+my.numberToWordDate(date));
         jtaNotes.setText(notes);
         
-        showCustomDialog("Edit Selected Attendance",editAttendanceDialog, true, 400, 350, false);
+        showCustomDialog("Edit Selected Attendance",editAttendanceDialog, true, 400, 500, false);
     }//GEN-LAST:event_btnEditAttendanceActionPerformed
 
     private void btnSaveChangesToAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesToAttendanceActionPerformed
@@ -2851,6 +2865,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2865,6 +2880,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextArea4;
     private javax.swing.JComboBox<String> jcbMeridan;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
     private com.toedter.calendar.JDateChooser jdcCustomDate;
