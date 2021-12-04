@@ -373,8 +373,8 @@ public class thread_loadSf3Details extends SwingWorker<String, Object>{
                 
                 lbLoadingMessage.setText("Connecting to Database...");
                 String booksIsdRtn [] = my.return_values("*", "booksissuedreturned", "WHERE sectionId='"+sectionId+"' AND studentId='"+studentId+"'", myVariables.getBooksIssuedReturnedOrder());
-                int booksLength = booksIsdRtn.length;
                 if(booksIsdRtn != null){
+                    int booksLength = booksIsdRtn.length;
                     for(int x=0;x<booksLength;x++){
                         lbLoadingMessage.setText("Processing Record "+(x+1)+" of "+booksLength);
                         putValuesToBookColumn(n, booksIsdRtn[x]);
