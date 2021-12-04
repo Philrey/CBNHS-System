@@ -172,7 +172,7 @@ public class thread_loadGrades extends SwingWorker<String, Object>{
                     if(!matchFound && !subjectCode.startsWith("ADV")){
                         String name = my.getValueAtColumn(assignedTeachers[n], 3)+"@@"+my.getValueAtColumn(assignedTeachers[n], 4)+"@@"+my.getValueAtColumn(assignedTeachers[n], 5)+"@@";
                         String gender = my.getValueAtColumn(assignedTeachers[n], 6);
-                        name = my.toNameFormat(name, new int []{0,1,2});
+                        name = curUserId <=0 ? "Unassigned@@" : my.toNameFormat(name, new int []{0,1,2});
                         my.add_table_row("-1@@"+sectionId+"@@"+studentId+"@@"+curUserId+"@@"+name+gender+"@@"+
                                 curSubjectId+"@@"+subjectCode+"@@"+my.getValueAtColumn(assignedTeachers[n], 9)+"@@"+
                                 my.getValueAtColumn(assignedTeachers[n], 10)+"@@0@@Incomplete@@Missing@@",

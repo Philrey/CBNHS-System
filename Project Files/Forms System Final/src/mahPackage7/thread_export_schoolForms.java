@@ -722,6 +722,11 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         Thread.sleep(threadDelay);
                     }
                     //Write Female & Total Counters
+                    if(rowCount <= 0){  //Write male counter if there is no student on the table
+                        my.writeExcelLine(sheetNumber, mCount, excelColumnsToSkip, startingAddress+(row+8));
+                        row++;
+                    }
+                    
                     my.writeExcelLine(sheetNumber, fCount, excelColumnsToSkip, startingAddress+(row+8));
                     my.writeExcelLine(sheetNumber, tCount, excelColumnsToSkip, startingAddress+(row+8+1));
                     
