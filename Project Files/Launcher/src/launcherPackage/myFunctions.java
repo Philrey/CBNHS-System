@@ -1215,12 +1215,14 @@ public class myFunctions {
                     return false;
                 }
                 
-                if(!isProcessRunning(file)){
+                desktop.open(file);
+                return true;
+                /*if(!isProcessRunning(file)){
                     desktop.open(file);
                     return true;
                 }else{
                     showMessage(fileName+" is already running.", JOptionPane.ERROR_MESSAGE);
-                }
+                }*/
             } catch (IOException x){
                 x.printStackTrace();
             }catch (Exception e) {
