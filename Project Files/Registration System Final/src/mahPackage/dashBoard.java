@@ -4555,7 +4555,8 @@ public class dashBoard extends javax.swing.JFrame {
         
         String lName = my.convertEscapeCharacters(tfLName2.getText());
         String fName = my.convertEscapeCharacters(tfFname2.getText());
-        String mName = my.convertEscapeCharacters(tfMname2.getText());
+        String mName = tfMname2.getText().trim().length() > 0 ? tfMname2.getText().trim() : " ";
+        mName = my.convertEscapeCharacters(mName);
         
         String gender = jcbGender1.getSelectedIndex()==0?"Male":"Female";
         String userName = my.convertEscapeCharacters(tfUserName1.getText());
