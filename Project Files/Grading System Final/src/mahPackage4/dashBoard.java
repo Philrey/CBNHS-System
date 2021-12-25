@@ -1016,6 +1016,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         btnAdvSelected.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage4/icons/icons8_to_do_16px.png"))); // NOI18N
         btnAdvSelected.setText("Submit Selected");
+        btnAdvSelected.setToolTipText("");
         btnAdvSelected.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdvSelectedActionPerformed(evt);
@@ -3839,7 +3840,6 @@ public class dashBoard extends javax.swing.JFrame {
             }
         }
     }
-    
     private void loadStudentsAndGrades(){
         int row = assignedTeacherTable.getSelectedRow();
         

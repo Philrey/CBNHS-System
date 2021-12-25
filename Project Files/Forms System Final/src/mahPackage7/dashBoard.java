@@ -506,6 +506,7 @@ public class dashBoard extends javax.swing.JFrame {
         lbSchoolAddress = new javax.swing.JLabel();
         lbLoggedInUser = new javax.swing.JLabel();
         btnShowRankings = new javax.swing.JButton();
+        btnOpenExportFolder = new javax.swing.JButton();
         mainTab = new javax.swing.JTabbedPane();
 
         selectFormPanel.setBackground(new java.awt.Color(11, 102, 35));
@@ -5105,6 +5106,14 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
 
+        btnOpenExportFolder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage7/icons/icons8_folder_16px.png"))); // NOI18N
+        btnOpenExportFolder.setText("Export Folder");
+        btnOpenExportFolder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpenExportFolderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
@@ -5113,13 +5122,15 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(headerPanelLayout.createSequentialGroup()
+                        .addComponent(lbSchoolName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 444, Short.MAX_VALUE)
+                        .addComponent(lbLoggedInUser))
+                    .addGroup(headerPanelLayout.createSequentialGroup()
                         .addComponent(lbSchoolAddress)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnShowRankings))
-                    .addGroup(headerPanelLayout.createSequentialGroup()
-                        .addComponent(lbSchoolName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbLoggedInUser)))
+                        .addComponent(btnShowRankings)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnOpenExportFolder)))
                 .addContainerGap())
         );
         headerPanelLayout.setVerticalGroup(
@@ -5132,7 +5143,8 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbSchoolAddress)
-                    .addComponent(btnShowRankings))
+                    .addComponent(btnShowRankings)
+                    .addComponent(btnOpenExportFolder))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -6236,6 +6248,10 @@ public class dashBoard extends javax.swing.JFrame {
             my.showMessage("Your access level("+myVariables.getAccessLevel()+") is not allowed to access this feature.", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnLabelSf10MouseClicked
+
+    private void btnOpenExportFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenExportFolderActionPerformed
+        my.openFolderDirectory("exports/");
+    }//GEN-LAST:event_btnOpenExportFolderActionPerformed
     private void selectFormToExport(int formIndexExact){
         if(myVariables.getFormSelected() != formIndexExact){
             my.clear_table_rows(assignedTeacherTable);
@@ -6769,7 +6785,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         
         JButton lightButtons [] = {
-            btnShowRankings,btnUseSelectedSections,
+            btnShowRankings,btnUseSelectedSections,btnOpenExportFolder,
         };
         Cursor tempC;
         for(int n=0;n<buttons.length;n++){
@@ -6994,6 +7010,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnLoadTeacher;
     private javax.swing.JButton btnOnlySelectedSections;
     private javax.swing.JButton btnOnlySelectedSections1;
+    private javax.swing.JButton btnOpenExportFolder;
     private javax.swing.JButton btnRefreshRankings;
     private javax.swing.JButton btnSearchEnrolledStudent;
     private javax.swing.JButton btnSearchEnrolledStudent1;

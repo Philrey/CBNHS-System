@@ -2,6 +2,7 @@ package mahPackage7;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemTray;
@@ -932,6 +933,21 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
+    public boolean openFolderDirectory(String path){
+        try {
+            Desktop desktop = Desktop.getDesktop();
+            File file = new File(path);
+            
+            desktop.open(file);
+            return true;
+        } catch (Exception e) {
+            showMessage("["+ path + "] Folder can't be found.\n"
+                    + "Please create a directory and try again!",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+        return false;
+    }
     public String getSystemTime(String dateFormat){
         // dateFormat "dd-MM-yyyy HH:mm:ss" don't use "/"
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);

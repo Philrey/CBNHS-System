@@ -9144,15 +9144,17 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lbSchoolName" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" pref="444" max="32767" attributes="0"/>
+                              <Component id="lbLoggedInUser" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="lbSchoolAddress" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnShowRankings" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="lbSchoolName" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                              <Component id="lbLoggedInUser" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnOpenExportFolder" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -9171,6 +9173,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbSchoolAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnShowRankings" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnOpenExportFolder" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -9227,6 +9230,17 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowRankingsActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnOpenExportFolder">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/mahPackage7/icons/icons8_folder_16px.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Export Folder"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpenExportFolderActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
