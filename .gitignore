@@ -1,4 +1,3 @@
-Project Files\Attendance System Final\build
 *.class
 *.class
 Project Files\Grading System Final\build
@@ -26,3 +25,6 @@ Project Files/~$er Manual Enrollment.docx
 /Project Files/Launcher/dist/
 /Project Files/Grading System Final/dist/
 /Project Files/Enrollment System Final/build/
+/Project Files/Enrollment System Final/dist/
+/Project Files/Attendance System Final/build/
+/Project Files/Attendance System Final/dist/
