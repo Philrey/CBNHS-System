@@ -4782,7 +4782,7 @@ public class dashBoard extends javax.swing.JFrame {
                     new String[]{String.valueOf(index)},
                     new JTextField[]{tfFileLocation},
                     new JButton[]{btnOpenFileExplorer,btnCancelImport,btnRegisterStudents},
-                    null,
+                    new boolean[]{cbUpdateExisting.isSelected()},
                     null
                 );
                 break;
