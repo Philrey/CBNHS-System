@@ -1545,7 +1545,7 @@ public class myFunctions {
             
             if(temp.length > 1){
                 for (int x = 0; x < temp.length; x++) {
-                    if(removeDashedMiddleNames && temp[x].contains("-")){
+                    if(removeDashedMiddleNames && temp[x].trim().equals("-")){
                         rowSkipped = true;
                         break;
                     }else{
@@ -1556,7 +1556,7 @@ public class myFunctions {
                     }
                 }
             }else{
-                if(removeDashedMiddleNames && names[n].contains("-")){
+                if(removeDashedMiddleNames && names[n].trim().equals("-")){
                     rowSkipped = true;
                 }else{
                     finalString+=StringUtils.capitalize(names[n].trim());
@@ -1570,7 +1570,6 @@ public class myFunctions {
             }else{
                 //remove comma at last
                 int wordLength = finalString.length();
-                //System.err.println(finalString+" Last char: "+finalString.charAt(wordLength-1));
                 if(finalString.charAt(wordLength-1) == ','){
                     finalString = finalString.substring(0, finalString.length()-1);
                 }

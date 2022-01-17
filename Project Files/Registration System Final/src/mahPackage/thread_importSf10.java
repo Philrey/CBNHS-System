@@ -129,15 +129,15 @@ public class thread_importSf10 extends SwingWorker<String, Object>{
             String mName = checkMiddleName(result[3]);
             
             String line = result[0]+"@@"+
-                    my.toNameFormatFull(lName+"@@"+fName+"@@"+mName+"@@", new int [] {0,1,2})
-                    +result[5]+"@@"+
-                    result[8]+"-"+result[6]+"-"+result[7]+"@@"+
-                    getSimplifiedGrade(result[9])+"@@"+
-                    result[10]+"@@"+
-                    result[11]+"@@"+
-                    result[12]+"@@Ready@@";
-            System.err.println("Line " + result[9]);
-            
+                my.toNameFormatFull(lName+"@@"+fName+"@@"+mName+"@@", new int [] {0,1,2})
+                +result[5]+"@@"+
+                result[8]+"-"+result[6]+"-"+result[7]+"@@"+
+                getSimplifiedGrade(result[9])+"@@"+
+                result[10]+"@@"+
+                result[11]+"@@"+
+                result[12]+"@@Ready@@";
+            //System.err.println("Line " + line);
+
             String name = my.capitalizeName(my.getValueAtColumn(line, 1).toLowerCase(),true);
             line = my.setValueAtColumn(line, 1, name);
             //System.err.println("LineA " + line);
