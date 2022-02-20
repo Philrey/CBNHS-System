@@ -3545,7 +3545,7 @@ public class dashBoard extends javax.swing.JFrame {
         }
         
         //Check for duplicate LRN
-        String [] result = my.return_values("*", "v_students_jhs", "WHERE lrn = '"+fields[4]+"' AND dep_type='JHS'", myVariables.getStudentsOrder());
+        String [] result = my.return_values("*", "v_students_jhs", "WHERE lrn = '"+fields[4]+"'", myVariables.getStudentsOrder());
         
         if(result != null){
             String student[] = my.toNameFormat(result[0], new int[] {2,3,4}).split("@@");
