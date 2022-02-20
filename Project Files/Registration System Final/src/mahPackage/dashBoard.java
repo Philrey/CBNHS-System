@@ -4042,12 +4042,6 @@ public class dashBoard extends javax.swing.JFrame {
             String userId = usersTable1.getValueAt(row, 0).toString();
             String accessLevel = usersTable1.getValueAt(row, 7).toString();
             
-            if(!accessLevel.equalsIgnoreCase("2") && !accessLevel.equalsIgnoreCase("5")){
-                //clear fields
-                enableDisableUsersPersonalInfoFields(false, true);
-                enableDisableManagedSubjectButtons(false, false);
-                return;
-            }
             String [] result = my.return_values("*", "userdetails", "where userId = '"+userId+"'", myVariables.getUsersPersonalInfoOrder());
             
             
@@ -4086,6 +4080,10 @@ public class dashBoard extends javax.swing.JFrame {
             
             enableDisableUsersPersonalInfoFields(false, false);
             enableDisableManagedSubjectButtons(false, true);
+            
+            if(!accessLevel.equalsIgnoreCase("2") && !accessLevel.equalsIgnoreCase("5")){
+                btnEditAssignedSubject.setEnabled(false);   //Disable manage Subject Edit
+            }
             
             //Loading Managed Subjects
             String subjectsContained = info[9];
