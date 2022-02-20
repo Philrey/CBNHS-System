@@ -1,0 +1,25 @@
+
+
+Version:	3.14
+CmdLine:	D:\Repositories\CBNHS-System\Builds\modules\registration.exe --l4j-debug
+WOW64:		yes
+Create mutex:	hisrms_registration
+Working dir:	D:\Repositories\CBNHS-System\Builds\modules\.
+Java min ver:	1.000.000
+Java max ver:	1.009.009_009
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+32-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_291
+Check launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe (OK)
+Match:		1.008.000_291
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.008.000_291 (64-bit)
+Launcher:	C:\Program Files\Java\jdk1.8.0_291\bin\javaw.exe
+Launcher args:	-jar "D:\Repositories\CBNHS-System\Builds\modules\registration.exe"
+Args length:	67/32768 chars
+Exit code:	259

@@ -425,7 +425,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel7">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="Last Name, Extention (Jr,Sr,IV)"/>
+                                <Property name="text" type="java.lang.String" value="Last Name, Extension (Jr,Sr,IV)"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel8">
