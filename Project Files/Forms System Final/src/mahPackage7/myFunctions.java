@@ -1233,9 +1233,65 @@ public class myFunctions {
             return null;
         }
     }
-    public String from24To12HourFormat(String time24Hour){
-        
-        return null;
+    
+    public String from24To12HourFormat(String time24Hour,boolean includeSeconds){
+        try {
+            String time [] = time24Hour.split(":");
+            int hour = Integer.parseInt(time[0]);
+            int minute = Integer.parseInt(time[1]);
+            int second = time.length>2 ? Integer.parseInt(time[2]) : 0;
+            
+            String meridiem = hour < 12 ? "AM" : "PM";
+            
+            if(hour == 0){
+                hour = 12;
+            }else{
+                hour = hour > 12 ? hour-12 : hour;
+            }
+            
+            if(time.length > 2 && includeSeconds){
+                return addZeroes(hour) + ":" + addZeroes(minute) + ":" + addZeroes(second) + " " + meridiem;
+            }else{
+                return addZeroes(hour) + ":" + addZeroes(minute) + " " + meridiem;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public String acronymSchedule(String schedule){
+        // Mon:Tue:Wed
+        try {
+            String [] days = schedule.split(":");
+            String finalDays = "";
+            for (String day : days) {
+                switch (day){
+                    case "Mon":{
+                        finalDays+="M:";break;
+                    }case "Tue":{
+                        finalDays+="T:";break;
+                    }case "Wed":{
+                        finalDays+="W:";break;
+                    }case "Thu":{
+                        finalDays+="Th:";break;
+                    }case "Fri":{
+                        finalDays+="F:";break;
+                    }case "Sat":{
+                        finalDays+="S:";break;
+                    }case "Sun":{
+                        finalDays+="Su:";break;
+                    }
+                }
+            }
+            return finalDays;
+        } catch (Exception e) {
+            return schedule;
+        }
+    }
+    
+    public String addZeroes(int value){
+        return value < 10 ? "0"+String.valueOf(value) : String.valueOf(value);
     }
     
     public boolean checkForDuplicates(String tableName,String whereLimitExluded,int [] order){
@@ -2217,8 +2273,16 @@ public class myFunctions {
         mergeRegion(sheetNumber, addr1[0], addr1[1], addr2[0], addr2[1]);
     }
     public void mergeRegion(int sheetNumber,int row1,int column1,int row2,int column2){
-        XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
-        sheet.addMergedRegion(new CellRangeAddress(row1, row2, column1, column2));
+        try {
+            XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+            sheet.addMergedRegion(new CellRangeAddress(row1, row2, column1, column2));
+        } catch (Exception e) {
+            if(e.getMessage().contains("overlaps with an existing merged")){
+                System.err.println("Already Merged region.");
+            }else{
+                System.err.println("Failed to merge region: "+e.getMessage());
+            }
+        }
     }
     public void mergeColumns(int sheetNumber,int rowAddress,String columnAddressStart,String columnAddressEnd){
         int values [] = parseExcelColumns(columnAddressStart.toLowerCase()+","+columnAddressEnd.toLowerCase());
@@ -2226,8 +2290,16 @@ public class myFunctions {
         mergeColumns(sheetNumber, rowAddress-1, values[0], values[1]);
     }
     public void mergeColumns(int sheetNumber,int rowAddress, int columnIndexStart, int columnIndexEnd){
-        XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
-        sheet.addMergedRegion(new CellRangeAddress(rowAddress, rowAddress, columnIndexStart, columnIndexEnd));
+        try {
+            XSSFSheet sheet = workbook.getSheetAt(sheetNumber);
+            sheet.addMergedRegion(new CellRangeAddress(rowAddress, rowAddress, columnIndexStart, columnIndexEnd));
+        } catch (Exception e) {
+            if(e.getMessage().contains("overlaps with an existing merged")){
+                System.err.println("Already Merged column.");
+            }else{
+                System.err.println("Failed to merge column: "+e.getMessage());
+            }
+        }
     }
     public void mergeRows(int sheetNumber,String columnAddress,int rowAddressStart,int rowAddressEnd){
         int column = getLetterValueAdvanced(columnAddress.toLowerCase());

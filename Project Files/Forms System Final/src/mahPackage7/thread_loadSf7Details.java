@@ -114,7 +114,7 @@ public class thread_loadSf7Details extends SwingWorker<String, Object>{
                 
                 userId = teachersTable.getValueAt(n, 0).toString();
                 where = "WHERE teacherId='"+userId+"' AND schoolYear='"+schoolYear+"'";
-                String loadsResult[] = my.return_values("*", "form_sf7view_loads", where, myVariables.getJhsf7LoadsOrder());
+                String loadsResult[] = my.return_values("*", "form_sf7view_loads_wsched", where, myVariables.getJhsf7LoadsWSchedOrder());
                 
                 Thread.sleep(threadDelay);
                 

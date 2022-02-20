@@ -3090,17 +3090,17 @@ public class dashBoard extends javax.swing.JFrame {
 
         sf7AssignedSubjectsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Teacher ID", "Section ID", "Section Name", "Subject ID", "Code", "Description", "Grade", "School Year"
+                "ID", "Teacher ID", "Section ID", "Section Name", "Subject ID", "Code", "Description", "Day Scheduled", "From", "To", "Grade", "School Year"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -3115,10 +3115,11 @@ public class dashBoard extends javax.swing.JFrame {
             sf7AssignedSubjectsTable.getColumnModel().getColumn(3).setPreferredWidth(200);
             sf7AssignedSubjectsTable.getColumnModel().getColumn(5).setPreferredWidth(100);
             sf7AssignedSubjectsTable.getColumnModel().getColumn(6).setPreferredWidth(200);
-            sf7AssignedSubjectsTable.getColumnModel().getColumn(7).setResizable(false);
-            sf7AssignedSubjectsTable.getColumnModel().getColumn(7).setPreferredWidth(80);
-            sf7AssignedSubjectsTable.getColumnModel().getColumn(8).setResizable(false);
-            sf7AssignedSubjectsTable.getColumnModel().getColumn(8).setPreferredWidth(150);
+            sf7AssignedSubjectsTable.getColumnModel().getColumn(7).setPreferredWidth(150);
+            sf7AssignedSubjectsTable.getColumnModel().getColumn(10).setResizable(false);
+            sf7AssignedSubjectsTable.getColumnModel().getColumn(10).setPreferredWidth(80);
+            sf7AssignedSubjectsTable.getColumnModel().getColumn(11).setResizable(false);
+            sf7AssignedSubjectsTable.getColumnModel().getColumn(11).setPreferredWidth(150);
         }
 
         spLeft.setRightComponent(jScrollPane45);

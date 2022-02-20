@@ -809,7 +809,9 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     String subjName;
                     String subjSection;
                     String subjectDetails;
-                    String grLvl;
+                    String schedule;
+                    String from;
+                    String to;
                     
                     int [] selectedSubjects;
                     
@@ -853,14 +855,21 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                             if(!useSubjectCodeAsSubjectName){
                                 subjName = sf7AssignedSubjectsTable.getValueAt(selectedSubjects[x], 6).toString();
                                 if(useAcronyms){
-                                    gradeLevel = sf7AssignedSubjectsTable.getValueAt(selectedSubjects[x], 7).toString();
+                                    gradeLevel = sf7AssignedSubjectsTable.getValueAt(selectedSubjects[x], 10).toString();
                                     subjName = my.getAcronym(subjName, true, gradeLevel);
                                 }
                             }else{
                                 subjName = sf7AssignedSubjectsTable.getValueAt(selectedSubjects[x], 5).toString();
                             }
                             subjSection = my.getSectionNameOnly(sf7AssignedSubjectsTable.getValueAt(selectedSubjects[x], 3).toString(), true);
-                            subjectDetails = subjName.toUpperCase()+" - "+subjSection+"@@";
+                            schedule = sf7AssignedSubjectsTable.getValueAt(selectedSubjects[x], 7).toString();
+                            from = sf7AssignedSubjectsTable.getValueAt(selectedSubjects[x], 8).toString();
+                            to = sf7AssignedSubjectsTable.getValueAt(selectedSubjects[x], 9).toString();
+                            
+                            schedule = my.acronymSchedule(schedule);
+                            subjectDetails = subjName.toUpperCase()+" - "+subjSection+"@@"
+                                +schedule+"@@"+my.from24To12HourFormat(from,false)+"@@"
+                                +my.from24To12HourFormat(to,false)+"@@";
                             
                             my.writeExcelLine(sheetNumber, subjectDetails, null, startingAddress2+((17+(16*n))+x) );
                             Thread.sleep(threadDelay);
@@ -957,7 +966,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     }
                     
                     //Fix Distorted Footers
-                    my.mergeColumns(sheetNumber, lastRowAddress+2, "A", "K");
+                    my.mergeColumns(sheetNumber, lastRowAddress+1, "A", "K");
                     my.mergeColumns(sheetNumber, lastRowAddress+2, "M", "P");
                     my.mergeColumns(sheetNumber, lastRowAddress+5, "M", "P");
                     my.mergeColumns(sheetNumber, lastRowAddress+6, "M", "P");

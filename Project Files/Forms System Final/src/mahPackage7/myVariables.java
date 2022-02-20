@@ -111,6 +111,7 @@ public class myVariables {
     private static final int [] jhsf5FullOrder=new int [] {15,6,8,14,10,13,4,3,16,9,5,0,11,17,2,18,1,12,7};
     private static final int [] jhsf7TeachersOrder= new int [] {10,6,5,3,12,0,7,11,2,4,8,1,9};
     private static final int [] jhsf7LoadsOrder= new int [] {5,2,6,0,8,7,3,1,4};
+    private static final int [] jhsf7LoadsWSchedOrder= new int [] {8,3,9,0,11,10,6,5,4,1,2,7};
     private static final int [] jhsf8Order= new int [] {12,7,6,4,0,9,13,10,3,1,15,5,16,14,17,8,2,11};
     private static final int [] jhsf9Order= new int [] {9,7,3,5,11,2,0,10,1,4,8,12,6};
     private static final int [] jhsf10Order= new int [] {17,9,5,0,12,18,2,7,10,14,6,3,19,1,13,8,11,4,15,20,16};
@@ -394,6 +395,10 @@ public class myVariables {
     
     //<editor-fold desc="Getters & Setters">
 
+    public static int[] getJhsf7LoadsWSchedOrder() {
+        return jhsf7LoadsWSchedOrder;
+    }
+        
     public static String getFreshemenIcon() {
         return freshemenIcon;
     }
