@@ -2039,18 +2039,8 @@ public class dashBoard extends javax.swing.JFrame {
         String where = "";
         
         if(myVariables.getAccessLevel() < 5){
-            String additionalQuery;
-            if(toSearch.contains(",")){
-                additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
-            }else{
-                additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch+",");
-            }
-            if(additionalQuery == null){
-                return;
-            }
-            where = "WHERE (lrn='"+toSearch+"' OR "+additionalQuery+") AND dep_type='JHS'";
-            
-            my.searchItem(where, studentTable, 0, new int [] {6}, new int [] {2,3,4}, true, true, null, tfSearchStudent1, false);            
+            where = "WHERE lrn= '"+toSearch+"' OR lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%' LIMIT 20";
+            my.searchItem(where, studentTable, 0, new int [] {6}, new int [] {2,3,4}, true, true, null, tfSearchStudent1, true);
         }else{
             where = "WHERE lrn= '"+toSearch+"' OR lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%'";
             my.searchItem(where, studentTable, 0, new int [] {6}, new int [] {2,3,4}, true, true, null, tfSearchStudent1, true);
