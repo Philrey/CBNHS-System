@@ -3569,18 +3569,8 @@ public class dashBoard extends javax.swing.JFrame {
         String where = "WHERE lrn='"+toSearch+"' ";
         
         if(myVariables.getAccessLevel() <5){
-            String additionalQuery;
-            if(toSearch.contains("/")){
-                additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
-            }else{
-                additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch+",");
-            }
-            if(additionalQuery == null){
-                return;
-            }
-            where+="OR ("+additionalQuery+")";
-
-            my.searchItem(where, studentTable, 0, null, null, false, true, lbSearchResult, tfSearchStudent,false);
+            where = "WHERE lrn='"+toSearch+"' OR lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%' LIMIT 50";
+            my.searchItem(where, studentTable, 0, null, null, false, true, lbSearchResult, tfSearchStudent,true);
         }else{
             where = "WHERE lrn='"+toSearch+"' OR lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%'";
             my.searchItem(where, studentTable, 0, null, null, false, true, lbSearchResult, tfSearchStudent,true);
@@ -3672,18 +3662,8 @@ public class dashBoard extends javax.swing.JFrame {
         String where = "WHERE lrn='"+toSearch+"' ";
         
         if(myVariables.getAccessLevel() <5){
-            String additionalQuery;
-            if(toSearch.contains("/")){
-                additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
-            }else{
-                additionalQuery = my.multipleColumnSearch("lName,fName,mName", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch+",");
-            }
-            if(additionalQuery == null){
-                return;
-            }
-            where+="OR ("+additionalQuery+")";
-
-            my.searchItem(where, studentTable1, 0, null, null, false, true, lbSearchResult1, tfSearchStudent1,false);
+            where = "WHERE lrn='%"+toSearch+"%' OR lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%' LIMIT 50";
+            my.searchItem(where, studentTable1, 0, null, null, false, true, lbSearchResult1, tfSearchStudent1,true);
         }else{
             where = "WHERE lrn='%"+toSearch+"%' OR lName LIKE'%"+toSearch+"%' OR fName LIKE'%"+toSearch+"%' OR mName LIKE'%"+toSearch+"%'";
             my.searchItem(where, studentTable1, 0, null, null, false, true, lbSearchResult1, tfSearchStudent1,true);
@@ -3905,17 +3885,8 @@ public class dashBoard extends javax.swing.JFrame {
         String order = " ORDER BY user_level DESC,user_Lname ASC,user_Fname ASC, user_Mname ASC";
         
         if(myVariables.getAccessLevel() <5){
-            if(toSearch.contains("/")){
-                String additionalQuery;
-                additionalQuery = my.multipleColumnSearch("user_Lname,user_Fname,user_Mname", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
-                if(additionalQuery == null){
-                    return;
-                }
-
-                where+=" OR ("+additionalQuery+") AND user_level!=5";
-            }
-
-            my.searchItem(where+order, usersTable, 3, null, null, false, true, lbSearchResult4, tfSearchUser,false);
+            where = "WHERE user_Lname LIKE'%"+toSearch+"%' OR user_Fname LIKE'%"+toSearch+"%' OR user_Mname LIKE'%"+toSearch+"%' LIMIT 50";
+            my.searchItem(where+order, usersTable, 3, null, null, false, true, lbSearchResult4, tfSearchUser,true);
         }else{
             where = "WHERE user_Lname LIKE'%"+toSearch+"%' OR user_Fname LIKE'%"+toSearch+"%' OR user_Mname LIKE'%"+toSearch+"%'";
             my.searchItem(where+order, usersTable, 3, null, null, false, true, lbSearchResult4, tfSearchUser,true);
@@ -4016,17 +3987,8 @@ public class dashBoard extends javax.swing.JFrame {
         String order = " ORDER BY user_level DESC,user_Lname ASC,user_Fname ASC, user_Mname ASC";
         
         if(myVariables.getAccessLevel() <5){
-            if(toSearch.contains("/")){
-                String additionalQuery;
-                additionalQuery = my.multipleColumnSearch("user_Lname,user_Fname,user_Mname", "Last Name,First Name,Mname","LIKE,LIKE,LIKE",toSearch);
-                if(additionalQuery == null){
-                    return;
-                }
-
-                where+=" OR ("+additionalQuery+")";
-            }
-
-            my.searchItem(where+order, usersTable1, 3, null, null, false, true, lbSearchResult5, tfSearchUser1,false);
+            where = "WHERE user_Lname LIKE'%"+toSearch+"%' OR user_Fname LIKE'%"+toSearch+"%' OR user_Mname LIKE'%"+toSearch+"%' LIMIT 50";
+            my.searchItem(where+order, usersTable1, 3, null, null, false, true, lbSearchResult5, tfSearchUser1,true);
         }else{
             where = "WHERE user_Lname LIKE'%"+toSearch+"%' OR user_Fname LIKE'%"+toSearch+"%' OR user_Mname LIKE'%"+toSearch+"%'";
             my.searchItem(where+order, usersTable1, 3, null, null, false, true, lbSearchResult5, tfSearchUser1,true);
