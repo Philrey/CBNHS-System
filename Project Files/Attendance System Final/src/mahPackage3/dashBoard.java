@@ -70,6 +70,19 @@ public class dashBoard extends javax.swing.JFrame {
     JDialog dialog;
     JDialog seconDaryDialog;
     
+    private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable, String iconUrl){
+        dialog = new JDialog(this);
+        dialog.setTitle(title);
+        dialog.add(customPanel);
+        dialog.setModal(isModal);
+        dialog.setSize(width, height);
+        dialog.setResizable(isResizable);
+        if(iconUrl != null){
+            dialog.setIconImage(my.getImage(iconUrl));
+        }
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+    }
     private void showCustomDialog(String title, JPanel customPanel, boolean isModal, int width, int height, boolean isResizable){
         dialog = new JDialog(this);
         dialog.setTitle(title);
@@ -204,6 +217,7 @@ public class dashBoard extends javax.swing.JFrame {
             //Check Attendance
             btnFinishAttendance,
             btnSaveChangesToAttendance,
+            btnSaveTime,
                 //Add Notes Dialog
                 btnSaveNotes,
             //Recheck Attendance
@@ -249,10 +263,11 @@ public class dashBoard extends javax.swing.JFrame {
         };
         
         JLabel formsHeaderLabels [] = {
-            jLabel1,jLabel2,jLabel3,jLabel4,jLabel8,jLabel9,jLabel14,
+            jLabel1,jLabel2,jLabel3,jLabel4,jLabel8,jLabel9,jLabel14,jLabel22,
+            jLabel24,jLabel25,
         };
         JLabel textFieldHeaderLabels [] = {
-            lbAttendanceCount,jLabel7,jLabel5,lbDateAdded,jLabel10,jLabel11,lbDateToRecheck,
+            lbAttendanceCount,jLabel5,lbDateAdded,jLabel10,jLabel11,lbDateToRecheck,
             jLabel12,jLabel13,jLabel15,jLabel16,jLabel17,jLabel18,lbLoadingMessage,jLabel20,
         };
         
@@ -281,7 +296,7 @@ public class dashBoard extends javax.swing.JFrame {
             jdcDate,jdcCustomDate,
         };
         JSpinner spinners [] = {
-            jsHours,jsMinutes
+            
         };
         
         JTextField searchFields [] = {
@@ -314,7 +329,7 @@ public class dashBoard extends javax.swing.JFrame {
             jcbSchoolYear1,
         };
         JComboBox [] dropDowns = {
-            jcbMeridan,
+            
         };
         int startingYear = 2019;
         
@@ -417,12 +432,9 @@ public class dashBoard extends javax.swing.JFrame {
         rbCustomDate = new javax.swing.JRadioButton();
         jdcCustomDate = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
-        jsHours = new javax.swing.JSpinner();
-        jsMinutes = new javax.swing.JSpinner();
-        jLabel7 = new javax.swing.JLabel();
-        jcbMeridan = new javax.swing.JComboBox<>();
         btnFinishAttendance = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        lbTime = new javax.swing.JLabel();
         setDateGroup = new javax.swing.ButtonGroup();
         setStatusGroup = new javax.swing.ButtonGroup();
         setRemarksGroup = new javax.swing.ButtonGroup();
@@ -476,6 +488,19 @@ public class dashBoard extends javax.swing.JFrame {
         jpbProgressBar = new javax.swing.JProgressBar();
         lbLoadingMessage = new javax.swing.JLabel();
         btnCancelLoading = new javax.swing.JButton();
+        timePickerDialog = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        tfHour = new javax.swing.JTextField();
+        tfMinute = new javax.swing.JTextField();
+        jsHour = new javax.swing.JSlider();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jsMinute = new javax.swing.JSlider();
+        rbAm = new javax.swing.JRadioButton();
+        rbPm = new javax.swing.JRadioButton();
+        btnSaveTime = new javax.swing.JButton();
+        timePickerGroup = new javax.swing.ButtonGroup();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         headerPanel = new javax.swing.JPanel();
         lbSchoolName = new javax.swing.JLabel();
@@ -1212,12 +1237,7 @@ public class dashBoard extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Date and Time");
-
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText(":");
-
-        jcbMeridan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
+        jLabel5.setText("Date");
 
         btnFinishAttendance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_save_16px.png"))); // NOI18N
         btnFinishAttendance.setText("Save Attendance");
@@ -1230,13 +1250,23 @@ public class dashBoard extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Finalize Attendance");
 
+        lbTime.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_alarm_clock_16px.png"))); // NOI18N
+        lbTime.setText("07:00 AM");
+        lbTime.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Time", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, myVariables.TEXTFIELD_FONT));
+        lbTime.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbTime.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbTimeMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 60, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1248,17 +1278,11 @@ public class dashBoard extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lbTime)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jdcCustomDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jsHours, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jsMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcbMeridan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jdcCustomDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -1275,14 +1299,10 @@ public class dashBoard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jdcCustomDate, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jdcCustomDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jsHours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jsMinutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcbMeridan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbTime)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnFinishAttendance)
@@ -1295,7 +1315,7 @@ public class dashBoard extends javax.swing.JFrame {
         right1.setLayout(right1Layout);
         right1Layout.setHorizontalGroup(
             right1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+            .addComponent(jScrollPane4)
         );
         right1Layout.setVerticalGroup(
             right1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1811,6 +1831,136 @@ public class dashBoard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        timePickerDialog.setBackground(new java.awt.Color(255, 255, 204));
+
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setText("Select Time");
+
+        jLabel23.setFont(myVariables.TITLE_HEADER_FONT);
+        jLabel23.setText(":");
+
+        tfHour.setFont(myVariables.TITLE_HEADER_FONT);
+        tfHour.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfHour.setText("HH");
+        tfHour.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
+        tfMinute.setFont(myVariables.TITLE_HEADER_FONT);
+        tfMinute.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfMinute.setText("MM");
+        tfMinute.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
+        jsHour.setMaximum(12);
+        jsHour.setMinimum(1);
+        jsHour.setPaintTicks(true);
+        jsHour.setSnapToTicks(true);
+        jsHour.setValue(6);
+        jsHour.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jsHour.setOpaque(false);
+        jsHour.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jsHourStateChanged(evt);
+            }
+        });
+
+        jLabel24.setText("Hours:");
+
+        jLabel25.setText("Minutes:");
+
+        jsMinute.setMaximum(59);
+        jsMinute.setPaintTicks(true);
+        jsMinute.setSnapToTicks(true);
+        jsMinute.setToolTipText("");
+        jsMinute.setValue(29);
+        jsMinute.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jsMinute.setOpaque(false);
+        jsMinute.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jsMinuteStateChanged(evt);
+            }
+        });
+
+        timePickerGroup.add(rbAm);
+        rbAm.setFont(myVariables.TITLE_HEADER_FONT);
+        rbAm.setSelected(true);
+        rbAm.setText("AM");
+        rbAm.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rbAm.setOpaque(false);
+
+        timePickerGroup.add(rbPm);
+        rbPm.setFont(myVariables.TITLE_HEADER_FONT);
+        rbPm.setText("PM");
+        rbPm.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rbPm.setOpaque(false);
+
+        btnSaveTime.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mahPackage3/icons/icons8_ok_16px.png"))); // NOI18N
+        btnSaveTime.setText("Save");
+        btnSaveTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveTimeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout timePickerDialogLayout = new javax.swing.GroupLayout(timePickerDialog);
+        timePickerDialog.setLayout(timePickerDialogLayout);
+        timePickerDialogLayout.setHorizontalGroup(
+            timePickerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(timePickerDialogLayout.createSequentialGroup()
+                .addGroup(timePickerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(timePickerDialogLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(tfHour, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfMinute, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(timePickerDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(timePickerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSaveTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(timePickerDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(timePickerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(timePickerDialogLayout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(rbAm)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rbPm)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jsHour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jsMinute, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        timePickerDialogLayout.setVerticalGroup(
+            timePickerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(timePickerDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(timePickerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfHour, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23)
+                    .addComponent(tfMinute, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(jLabel24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jsHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jsMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(timePickerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbAm)
+                    .addComponent(rbPm))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSaveTime)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Dashboard");
         setIconImage(my.getImgIcn(myVariables.getAttendanceWindowIcon()).getImage()
@@ -2033,7 +2183,7 @@ public class dashBoard extends javax.swing.JFrame {
                 return;
             }
             dateSelected = my.jCalendarToNumberDate(jdcCustomDate.getDate().toString(), false);
-            time = jsHours.getValue().toString()+":"+jsMinutes.getValue().toString()+":00 "+jcbMeridan.getSelectedItem().toString();
+            time = lbTime.getText();
             
             time = my.from12To24HourFormat(time);
             
@@ -2220,7 +2370,9 @@ public class dashBoard extends javax.swing.JFrame {
         
         String id = attendanceTable.getValueAt(row, 0).toString();
         String status = attendanceTable.getValueAt(row, 4).toString();
-        String date = attendanceTable.getValueAt(row, 5).toString();
+        String dateTime[] = attendanceTable.getValueAt(row, 5).toString().split(" ");
+        String date = dateTime[0];
+        String time = dateTime[1];
         String notes = attendanceTable.getValueAt(row, 6).toString();
         
         lbAttendanceID.setText(id);
@@ -2239,7 +2391,7 @@ public class dashBoard extends javax.swing.JFrame {
                 break;
             }
         }
-        lbDateAdded.setText("Date : "+my.numberToWordDate(date));
+        lbDateAdded.setText("Date : "+my.numberToWordDate(date) + " " + my.from24To12HourFormat(time,true));
         jtaNotes.setText(notes);
         
         showCustomDialog("Edit Selected Attendance",editAttendanceDialog, true, 400, 500, false);
@@ -2701,6 +2853,49 @@ public class dashBoard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSaveEvaluationActionPerformed
 
+    private void lbTimeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTimeMouseClicked
+        updateTimePicker(lbTime.getText());
+        showCustomDialog("Set Time of Attendance", timePickerDialog, true, 250, 350, false, myVariables.getTimeIcon());
+    }//GEN-LAST:event_lbTimeMouseClicked
+
+    private void jsHourStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsHourStateChanged
+        updateHour();
+    }//GEN-LAST:event_jsHourStateChanged
+
+    private void jsMinuteStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsMinuteStateChanged
+        updateMinute();
+    }//GEN-LAST:event_jsMinuteStateChanged
+
+    private void btnSaveTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveTimeActionPerformed
+        //Validate Time
+        try {
+            int hr = Integer.parseInt(tfHour.getText());
+            int min = Integer.parseInt(tfMinute.getText());
+            
+            if(hr < 1 || hr > 12){
+                throw new Exception("Invalid Range (Hour)");
+            }
+            if(min < 0 || min > 59){
+                throw new Exception("Invalid Range (Minute)");
+            }
+        }catch (NumberFormatException x){
+            my.showMessage("Invalid Time", JOptionPane.ERROR_MESSAGE);
+            return;
+        }catch (Exception e) {
+            my.showMessage(e.getMessage(), JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        closeCustomDialog();
+        if(dialog.getTitle().contains("Set Time of Attendance")){
+            lbTime.setText(
+                my.addZeroes(tfHour.getText())+":"+
+                my.addZeroes(tfMinute.getText())+" "+
+                (rbAm.isSelected()? "AM" : "PM")
+            );
+        }
+    }//GEN-LAST:event_btnSaveTimeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2789,11 +2984,31 @@ public class dashBoard extends javax.swing.JFrame {
     }
     private void enableDisableCustomDateType(boolean enabled){
         jdcCustomDate.setEnabled(enabled);
-        jsHours.setEnabled(enabled);
-        jsMinutes.setEnabled(enabled);
-        
-        jcbMeridan.setEnabled(enabled);
+        lbTime.setEnabled(enabled);
     }
+    
+    //<editor-fold desc="Time Picker Methods">
+    private void updateHour(){
+        tfHour.setText(my.addZeroes(jsHour.getValue()));
+    }
+    
+    private void updateMinute(){
+        tfMinute.setText(my.addZeroes(jsMinute.getValue()));
+    }
+    
+    private void updateTimePicker(String time12Hr){
+        String time[] = time12Hr.replace(" ", ":").split(":");
+        
+        tfHour.setText(time[0]);
+        tfMinute.setText(time[1]);
+        
+        jsHour.setValue(Integer.parseInt(time[0]));
+        jsMinute.setValue(Integer.parseInt(time[1]));
+        
+        rbAm.setSelected(time[2].contains("AM"));
+        rbPm.setSelected(time[2].contains("PM"));
+    }
+    //</editor-fold>
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addNotesDialog;
     private javax.swing.JTable assignedTeacherTable;
@@ -2810,6 +3025,7 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnSaveNotes;
     private javax.swing.JButton btnSaveRecheckAttendanceChanges;
     private javax.swing.JButton btnSaveRemarks;
+    private javax.swing.JButton btnSaveTime;
     private javax.swing.JButton btnSearchDate;
     private javax.swing.JButton btnSearchEnrolledStudent;
     private javax.swing.JButton btnSearchSection;
@@ -2835,6 +3051,10 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
@@ -2846,7 +3066,6 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -2881,13 +3100,12 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JComboBox<String> jcbMeridan;
     private javax.swing.JComboBox<String> jcbSchoolYear1;
     private com.toedter.calendar.JDateChooser jdcCustomDate;
     private com.toedter.calendar.JDateChooser jdcDate;
     private javax.swing.JProgressBar jpbProgressBar;
-    private javax.swing.JSpinner jsHours;
-    private javax.swing.JSpinner jsMinutes;
+    private javax.swing.JSlider jsHour;
+    private javax.swing.JSlider jsMinute;
     private javax.swing.JTextArea jtaLeaveNotes;
     private javax.swing.JTextArea jtaNotes;
     private keeptoo.KGradientPanel kGradientPanel1;
@@ -2903,14 +3121,17 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel lbSchoolName;
     private javax.swing.JLabel lbSearchResult;
     private javax.swing.JLabel lbSearchResult1;
+    private javax.swing.JLabel lbTime;
     private javax.swing.JPanel left;
     private javax.swing.JPanel left1;
     private javax.swing.JPanel loadingDialog;
     private javax.swing.JTabbedPane mainTab;
     private javax.swing.JRadioButton rbAbsent;
+    private javax.swing.JRadioButton rbAm;
     private javax.swing.JRadioButton rbConditional;
     private javax.swing.JRadioButton rbCustomDate;
     private javax.swing.JRadioButton rbIncomplete;
+    private javax.swing.JRadioButton rbPm;
     private javax.swing.JRadioButton rbPresent;
     private javax.swing.JRadioButton rbPromoted;
     private javax.swing.JRadioButton rbRetained;
@@ -2928,12 +3149,16 @@ public class dashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel testDialog;
     private javax.swing.JTextField tfFailedSubjects;
     private javax.swing.JTextField tfGeneralAverage;
+    private javax.swing.JTextField tfHour;
+    private javax.swing.JTextField tfMinute;
     private javax.swing.JTextField tfSearchEnrolledStudent;
     private javax.swing.JTextField tfSearchTeacherLoad;
     private javax.swing.JTextField tfSf1Remarks;
     private javax.swing.JTextField tfSf1RemarksDisplay;
     private javax.swing.JTextField tfSf2Remarks;
     private javax.swing.JTextField tfSf2RemarksDisplay;
+    private javax.swing.JPanel timePickerDialog;
+    private javax.swing.ButtonGroup timePickerGroup;
     private javax.swing.JPanel viewStudentsTab;
     // End of variables declaration//GEN-END:variables
 }

@@ -754,6 +754,14 @@ public class myFunctions {
     }
     //</editor-fold>
     //<editor-fold desc="Other Functions">
+    public String addZeroes(int value){
+        return value < 10 ? "0"+String.valueOf(value) : String.valueOf(value);
+    }
+    
+    public String addZeroes(String value){
+        return Integer.parseInt(value) < 10 ? "0"+Integer.parseInt(value) : value;
+    }
+    
     public String convertEscapeCharacters(String toConvert){
         //This function is primarily used for user input with possible escape characters being typed.
         //Usually on SEARCH FIELDS and INPUT FIELDS during add_values and/or update_values
@@ -800,7 +808,11 @@ public class myFunctions {
             String temp [] = time[0].split(":");
             int hour = Integer.valueOf(temp[0]);
             int minute = Integer.valueOf(temp[1]);
-            int seconds = Integer.valueOf(temp[2]);
+            int seconds = 0;
+            if(temp.length > 2){    //Check if there is a second field
+                seconds = Integer.valueOf(temp[2]);
+            }
+            
             String meridan = time[1];
             
             String finalTime = "";
@@ -827,9 +839,30 @@ public class myFunctions {
             return null;
         }
     }
-    public String from24To12HourFormat(String time24Hour){
-        
-        return null;
+    public String from24To12HourFormat(String time24Hour,boolean includeSeconds){
+        try {
+            String time [] = time24Hour.split(":");
+            int hour = Integer.parseInt(time[0]);
+            int minute = Integer.parseInt(time[1]);
+            int second = time.length>2 ? Integer.parseInt(time[2]) : 0;
+            
+            String meridiem = hour < 12 ? "AM" : "PM";
+            
+            if(hour == 0){
+                hour = 12;
+            }else{
+                hour = hour > 12 ? hour-12 : hour;
+            }
+            
+            if(time.length > 2 && includeSeconds){
+                return addZeroes(hour) + ":" + addZeroes(minute) + ":" + addZeroes(second) + " " + meridiem;
+            }else{
+                return addZeroes(hour) + ":" + addZeroes(minute) + " " + meridiem;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
     public boolean checkForDuplicates(String tableName,String whereLimitExluded,int [] order){
