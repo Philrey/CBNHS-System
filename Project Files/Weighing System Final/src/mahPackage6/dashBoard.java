@@ -1391,7 +1391,7 @@ public class dashBoard extends javax.swing.JFrame {
 
         my.remove_multiple_tabs(mainTab, new int [] {1,2});
 
-        String where = "WHERE subjectCode LIKE 'ADV%'";
+        String where = "WHERE (subjectCode LIKE 'ADV%' OR subjectCode LIKE 'MPH%')";
 
         //Filter search based on Access Level
         switch (myVariables.getAccessLevel()){
