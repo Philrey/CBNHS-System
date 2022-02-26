@@ -3103,9 +3103,12 @@ public class dashBoard extends javax.swing.JFrame {
         if(row == -1){
             return;
         }
-        //updateGrades(row);
-        rbAllQuarters.setEnabled(true);
-        selectQuarter("Update Grades");
+        if(myVariables.getAccessLevel() == 2){  //Skip Quarter Check if DepHead
+            updateGrades(row);
+        }else{
+            rbAllQuarters.setEnabled(true);
+            selectQuarter("Update Grades");
+        }
     }//GEN-LAST:event_btnSaveChangesCurrentActionPerformed
 
     private void rbAllQuarterscbAllowDecimalValuesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbAllQuarterscbAllowDecimalValuesMouseClicked
@@ -3155,10 +3158,10 @@ public class dashBoard extends javax.swing.JFrame {
         
         String updatedStatus = "";
         
-        if(myVariables.getAccessLevel() == 1){
+        if(myVariables.getAccessLevel() == 1 || myVariables.getAccessLevel() == 2){
             updatedStatus = retrieveCheckedStatuses(row, true);
         }else {
-            updatedStatus = my.getConfirmation("Set grade's status from 'Open' to 'Submitted'?\n\nYes - Updates Grade and sets status to Submitted\nNo - Updates Grades but status remains as is")?
+            updatedStatus = my.getConfirmation("Set grade's status from 'Open' to 'Submitted'?\n\nYes - Updates Grades with Open status and sets status to Submitted\nNo - Updates Grades but status remains Open")?
                                     retrieveCheckedStatuses(row, true):
                                     retrieveCheckedStatuses(row, false);
         }
@@ -3680,7 +3683,7 @@ public class dashBoard extends javax.swing.JFrame {
                 }
             }
             showEvaluation(statuses);
-            enableDisableRadioBtnsByUserType();
+            enableDisableRadioBtnsByUserType(statuses);
         }
     }
     private String retrieveCheckedStatuses(int row, boolean checkForSubmittedGrades ){
@@ -3885,8 +3888,9 @@ public class dashBoard extends javax.swing.JFrame {
             registrarBtns[n].setEnabled(registrar);
         }
     }
-    private void enableDisableRadioBtnsByUserType(){
+    private void enableDisableRadioBtnsByUserType(String statuses){
         //System.err.println("Enabling Radio Btns "+ myVariables.getAccessLevel());
+        String gradeStatus [] = statuses.split(":");
         JRadioButton [][] radioSets = {
             new JRadioButton[] {jRadioButton17,jRadioButton18,jRadioButton19,jRadioButton20},
             new JRadioButton[] {jRadioButton21,jRadioButton22,jRadioButton23,jRadioButton24},
@@ -3895,6 +3899,7 @@ public class dashBoard extends javax.swing.JFrame {
         };
         
         for(int n=0;n<radioSets.length;n++){
+            //System.err.println("Quarter ["+n+"] "+gradeStatus[n]);
             switch(myVariables.getAccessLevel()){
                 case 1:{
                     radioSets[n][0].setEnabled(false);
@@ -3903,12 +3908,15 @@ public class dashBoard extends javax.swing.JFrame {
                     radioSets[n][3].setEnabled(false);
                     break;
                 }case 2:{
-                    radioSets[n][0].setEnabled(false);
-                    radioSets[n][1].setEnabled(true);
-                    radioSets[n][2].setEnabled(true);
-                    radioSets[n][3].setEnabled(false);
+                    if(!gradeStatus[n].contains("Closed")){ //Give access until grade is closed
+                        //System.err.println("Grade Still not closed for dephead");
+                        radioSets[n][0].setEnabled(false);
+                        radioSets[n][1].setEnabled(true);
+                        radioSets[n][2].setEnabled(true);
+                        radioSets[n][3].setEnabled(false);
+                    }
                     break;
-                }case 3:{
+                }case 3:{   //Not allowed anymore
                     radioSets[n][0].setEnabled(true);
                     radioSets[n][1].setEnabled(true);
                     radioSets[n][2].setEnabled(true);
@@ -3996,7 +4004,7 @@ public class dashBoard extends javax.swing.JFrame {
         if(!myVariables.isDebugModeOn()){
             my.hideColumns(assignedTeacherTable, new int [] {0,1,3,6});
             my.hideColumns(enrolledStudentsTable, new int [] {0,1,5});
-            my.hideColumns(enrolledStudentsTable1, new int [] {0,1,5,6}); // 12 is status column
+            my.hideColumns(enrolledStudentsTable1, new int [] {0,1,5,6,12}); // 12 is status column
             my.hideColumns(assignedSubjectsTable, new int [] {0});
         }
         
