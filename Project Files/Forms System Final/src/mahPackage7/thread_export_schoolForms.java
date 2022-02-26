@@ -1268,6 +1268,8 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     break;
                 }case 4:{
                     //<editor-fold desc="SF4 Headers">
+                    String prncplName [] = new String [] {"O,30","O,40","O,50","O,60","O,70","O,80","O,90"};
+                    
                     headers = new header[]{
                         //Header Parts
                         new header(schoolId, "D,4"),
@@ -1277,6 +1279,8 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         new header(schoolName, "C,6"),
                         new header(schoolYear, "Y,6"),
                         new header(sf4MonthSelected, "AJ,6"),
+                        //Form's Custom Fields
+                        new header(principalName, prncplName[sheetNumber]),
                     };
                     //</editor-fold>
                     break;
