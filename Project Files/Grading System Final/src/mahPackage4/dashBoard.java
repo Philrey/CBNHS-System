@@ -2899,13 +2899,13 @@ public class dashBoard extends javax.swing.JFrame {
                                 ); 
                                 
                                 enrolledStudentsTable1.setValueAt(temp, row, col);
-                                calculateGrade(row);
+                                calculateGrade(row,true);
                             } catch (NumberFormatException e) {
                                 if(temp.length() != 0){
                                     my.showMessage("Invalid Grade Entered.", JOptionPane.WARNING_MESSAGE);
                                 }else {
                                     enrolledStudentsTable1.setValueAt(temp, row, col);
-                                    calculateGrade(row);
+                                    calculateGrade(row,true);
                                 }
                                 
                             }
@@ -2967,7 +2967,10 @@ public class dashBoard extends javax.swing.JFrame {
         int row = enrolledStudentsTable1.getSelectedRow();
         int col = enrolledStudentsTable1.getSelectedColumn();
         
-        if(row != -1 && (evt.getKeyCode() == KeyEvent.VK_RIGHT || evt.getKeyCode() == KeyEvent.VK_LEFT)){
+        if(row != -1 && (evt.getKeyCode() == KeyEvent.VK_RIGHT || 
+                evt.getKeyCode() == KeyEvent.VK_LEFT || 
+                evt.getKeyCode() == KeyEvent.VK_DOWN ||
+                evt.getKeyCode() == KeyEvent.VK_UP)){
             String statuses = enrolledStudentsTable1.getValueAt(row, 12).toString();
             btnSaveChangesCurrent.setEnabled(true);
             
@@ -2998,7 +3001,7 @@ public class dashBoard extends javax.swing.JFrame {
                                 ); 
                                 
                                 enrolledStudentsTable1.setValueAt(temp, row, col);
-                                calculateGrade(row);
+                                calculateGrade(row,true);
                             } catch (NumberFormatException e) {
                                 my.showMessage("Invalid Grade Entered.", JOptionPane.WARNING_MESSAGE);
                             }
@@ -3497,9 +3500,10 @@ public class dashBoard extends javax.swing.JFrame {
             return "Passed";
         }
     }
-    private void calculateGrade(int row){
+    private void calculateGrade(int row,boolean roundUpNochanges){
         int q1,q2,q3,q4,gwa;
-        
+        float gwaDecimal;
+        float decDifference;
         //Column 7 = Q1
         
         try {
@@ -3511,8 +3515,15 @@ public class dashBoard extends javax.swing.JFrame {
                     Integer.parseInt(enrolledStudentsTable1.getValueAt(row, 9).toString()) : 0;
             q4 = enrolledStudentsTable1.getValueAt(row, 10).toString().length()>0 ?
                     Integer.parseInt(enrolledStudentsTable1.getValueAt(row, 10).toString()) : 0;
-
-            gwa = (q1+q2+q3+q4)/4;
+            
+            
+            if(roundUpNochanges){
+                gwaDecimal = (float)(q1+q2+q3+q4)/4;
+                gwa = Math.round(gwaDecimal);
+                System.err.println("Result Grade: "+gwaDecimal + " " + gwa);
+            }else{
+                gwa = (q1+q2+q3+q4)/4;
+            }
 
             enrolledStudentsTable1.setValueAt(gwa,row, 11);
             
