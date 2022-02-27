@@ -1366,6 +1366,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         new header(sectionName, "G,9"),
                         //Form's Custom Fields
                         new header(adviserName, "K,16"),
+                        new header(principalName, "A,17"),
                         
                         new header(lrn, "C,8"),
                         new header(studentName, "C,7"),

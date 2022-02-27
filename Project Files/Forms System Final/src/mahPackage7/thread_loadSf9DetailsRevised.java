@@ -94,7 +94,7 @@ public class thread_loadSf9DetailsRevised extends SwingWorker<String, Object>{
         where = "WHERE id IN("+subjectIds+") "
                 + "AND subjectCode NOT LIKE'ADV%' "
                 + "ORDER BY FIELD(id,"+subjectIds+")";
-        String subjectsResult [] = my.return_values("*", "subjects", where, myVariables.getSubjectOrder());
+        String subjectsResult [] = my.return_values("*", "v_subjects_jhs", where, myVariables.getSubjectOrder());
         
         if (subjectsResult == null) {
             System.err.println("No Subjects Contained");
@@ -128,6 +128,7 @@ public class thread_loadSf9DetailsRevised extends SwingWorker<String, Object>{
                 lbLoadingMessage.setText("Loading Subjects..."+(n+1)+" of "+subjectCount);
                 progressBar.setValue(n+1);
                 //Find Match Using subjectId
+                System.out.println("SubRes: "+n+" "+subjectsResult[n]);
                 currSubjectId = Integer.parseInt(my.getValueAtColumn(subjectsResult[n], 0));
                 matchFound = false;
                 for (int x = 0; x < gradeCount; x++) {
