@@ -195,7 +195,8 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                 gradeLevel = textFieldsToUse[2].getText();
                 schoolYear = textFieldsToUse[3].getText();
                 //SF5 Variables
-                sf5Curriculum = my.getCurriculumNameOnly(textFieldsToUse[4].getText(), ",", 0, true);
+                sf5Curriculum = my.getCurriculumNameOnly(textFieldsToUse[4].getText(), "-", 0, true);
+                //System.out.println("TF: "+textFieldsToUse[4].getText()+" sf5: "+sf5Curriculum);
                 
                 sf5Table = tables[0];
                 sf5SummaryTable = tables[1];
@@ -1285,7 +1286,7 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                     //</editor-fold>
                     break;
                 }case 5:{
-                    //<editor-fold desc="SF5 Headers">
+                    //<editor-fold desc="SF5 Headers">                    
                     headers = new header[]{
                         //Header Parts
                         new header(schoolId, "C,5"),
@@ -1298,6 +1299,8 @@ public class thread_export_schoolForms extends SwingWorker<Object, Object>{
                         new header(sf5Curriculum, "J,5"),
                         //Form's Custom Fields
                         new header(adviserName, "J,29"),
+                        new header(principalName, "J,35"),
+                        new header(representativeName, "J,41"),
                     };
                     //</editor-fold>
                     break;
